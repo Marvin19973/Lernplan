@@ -2005,10 +2005,11 @@ const WK1_CARDS = {
     { front: "KRZ: Koordinationszahl?", back: "8" },
     { front: "KFZ: Koordinationszahl?", back: "12" },
     { front: "HEX: Koordinationszahl?", back: "12" },
-    { front: "KP: Packungsdichte (Atomic Packing Factor)?", back: "π/6 ≈ 0,52 (52 %)" },
-    { front: "KRZ: Packungsdichte?", back: "√3·π/8 ≈ 0,68 (68 %)" },
-    { front: "KFZ: Packungsdichte?", back: "π/(3√2) ≈ 0,74 (74 %)" },
-    { front: "HEX: Packungsdichte bei idealem c/a-Verhältnis?", back: "≈ 0,74 (74 %) — genauso dicht gepackt wie KFZ" },
+    { front: "Wie lautet die allgemeine (vollständige) Formel der Packungsdichte?", back: "Packungsdichte = V_Atome / V_Zelle = (n · (4/3)·π·r³) / V_Zelle, mit n = Atome pro Zelle, r = Atomradius, V_Zelle = Volumen der Elementarzelle" },
+    { front: "KP: Packungsdichte — vollständige Rechnung (n, a einsetzen)?", back: "n=1, V_Zelle=a³=(2r)³=8r³ → Packungsdichte = (1·(4/3)πr³) / 8r³ = π/6 ≈ 0,52 (52 %)" },
+    { front: "KRZ: Packungsdichte — vollständige Rechnung (n, a einsetzen)?", back: "n=2, V_Zelle=a³=(4r/√3)³=64r³/(3√3) → Packungsdichte = (2·(4/3)πr³) / (64r³/(3√3)) = √3·π/8 ≈ 0,68 (68 %)" },
+    { front: "KFZ: Packungsdichte — vollständige Rechnung (n, a einsetzen)?", back: "n=4, V_Zelle=a³=(2√2r)³=16√2·r³ → Packungsdichte = (4·(4/3)πr³) / (16√2·r³) = π/(3√2) ≈ 0,74 (74 %)" },
+    { front: "HEX: Packungsdichte — vollständige Rechnung (n, Zellvolumen einsetzen)?", back: "n=6, V_Zelle = (3√3/2)·a²·c mit a=2r, c=a·√(8/3) → Packungsdichte = (6·(4/3)πr³) / [(3√3/2)·a²·c] ≈ 0,74 (74 %) — genauso dicht gepackt wie KFZ" },
     { front: "KP: Zusammenhang zwischen Gitterkonstante a und Atomradius r?", back: "a = 2r (Atome berühren sich entlang der Würfelkante)" },
     { front: "KRZ: Zusammenhang zwischen a und r?", back: "a = 4r/√3 (Atome berühren sich entlang der Raumdiagonale: √3·a = 4r)" },
     { front: "KFZ: Zusammenhang zwischen a und r?", back: "a = 4r/√2 = 2√2·r (Atome berühren sich entlang der Flächendiagonale: √2·a = 4r)" },
@@ -2029,15 +2030,29 @@ const WK1_CARDS = {
     { front: "Wie berechnet man die Lastspielzahl bis zum Bruch N_f (Risswachstum von a₀ bis zur kritischen Risslänge a_c)?", back: "N_f = [ a_c^(1−m/2) − a₀^(1−m/2) ] / [ (1−m/2)·K' ]" },
     { front: "Sonderfall m = 2: Wie sieht die integrierte Lösung dann aus?", back: "da/dN = K'·a → ln(a/a₀) = K'·N → a(N) = a₀·e^(K'·N)" },
     { front: "Wie bestimmt man C und m experimentell aus gemessenen da/dN-Werten?", back: "Logarithmieren: log(da/dN) = log C + m·log(ΔK) → lineare Regression im log-log-Diagramm liefert Steigung m und Achsenabschnitt log C" }
+  ]},
+  kriechen: { label: 'Kriechen', sub: 'Norton-Gesetz ε̇ = A·σⁿ', cards: [
+    { front: "Wie lautet das Norton'sche Kriechgesetz für die stationäre Kriechgeschwindigkeit ε̇s?", back: "ε̇s = A·σⁿ, mit A = Materialkonstante, σ = Spannung, n = Spannungsexponent (Kriechexponent)" },
+    { front: "Norton'sches Kriechgesetz nach der Materialkonstante A umgestellt — wie lautet sie?", back: "A = ε̇s / σⁿ" },
+    { front: "Norton'sches Kriechgesetz nach der Spannung σ umgestellt — wie lautet sie?", back: "σ = (ε̇s / A)^(1/n)" },
+    { front: "Norton'sches Kriechgesetz nach dem Spannungsexponenten n umgestellt (durch Logarithmieren) — wie lautet sie?", back: "ln(ε̇s) = ln(A) + n·ln(σ) → n = [ln(ε̇s) − ln(A)] / ln(σ)" },
+    { front: "Wie bestimmt man A und n experimentell aus mehreren Messpunkten (ε̇s, σ)?", back: "Doppelt-logarithmische Auftragung: ln(ε̇s) gegen ln(σ) → Steigung der Regressionsgeraden = n, Achsenabschnitt = ln(A)" },
+    { front: "Wie lautet die vollständige, temperaturabhängige Kriechgleichung nach Norton-Arrhenius?", back: "ε̇s = A·σⁿ·exp(−Q/(R·T)), mit Q = Aktivierungsenergie, R = universelle Gaskonstante, T = absolute Temperatur" },
+    { front: "Norton-Arrhenius-Gleichung nach der Aktivierungsenergie Q umgestellt (durch Logarithmieren) — wie lautet sie?", back: "ln(ε̇s) = ln(A) + n·ln(σ) − Q/(R·T) → Q = −R·T·[ln(ε̇s) − ln(A) − n·ln(σ)]" },
+    { front: "Norton-Arrhenius-Gleichung nach der Temperatur T umgestellt — wie lautet sie?", back: "T = −Q / [R·(ln(ε̇s) − ln(A) − n·ln(σ))]" },
+    { front: "Wie vergleicht man die Kriechgeschwindigkeiten bei zwei Temperaturen T1, T2 (gleiche Spannung σ, gleiches A, n)?", back: "ε̇2/ε̇1 = exp[ −Q/R · (1/T2 − 1/T1) ] — daraus lässt sich z.B. Q bestimmen, wenn ε̇1, ε̇2, T1, T2 bekannt sind" },
+    { front: "Wie vergleicht man die Kriechgeschwindigkeiten bei zwei Spannungen σ1, σ2 (gleiche Temperatur)?", back: "ε̇2/ε̇1 = (σ2/σ1)ⁿ → n = ln(ε̇2/ε̇1) / ln(σ2/σ1)" },
+    { front: "Welche Größenordnung hat der Spannungsexponent n typischerweise beim Versetzungskriechen (power-law creep)?", back: "n ≈ 3–8 (typisch für Versetzungskriechen/dislocation creep)" },
+    { front: "Welchen Wert hat n typischerweise beim Diffusionskriechen (z.B. Nabarro-Herring- oder Coble-Kriechen)?", back: "n ≈ 1 (linear-viskoses Verhalten)" }
   ]}
 };
 
 const wk1State = {
   active: 'kristall',
-  order: { kristall: null, riss: null },
-  index: { kristall: 0, riss: 0 },
-  flipped: { kristall: false, riss: false },
-  stats: { kristall: { know: 0, again: 0 }, riss: { know: 0, again: 0 } }
+  order: { kristall: null, riss: null, kriechen: null },
+  index: { kristall: 0, riss: 0, kriechen: 0 },
+  flipped: { kristall: false, riss: false, kriechen: false },
+  stats: { kristall: { know: 0, again: 0 }, riss: { know: 0, again: 0 }, kriechen: { know: 0, again: 0 } }
 };
 
 function wk1EnsureOrder(key) {
