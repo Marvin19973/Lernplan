@@ -456,6 +456,7 @@
     <button class="tab-btn active" id="tab-module">Module</button>
     <button class="tab-btn" id="tab-day">Tagesplan</button>
     <button class="tab-btn" id="tab-quiz">EBWL Quiz</button>
+    <button class="tab-btn" id="tab-vwlquiz">VWL Quiz</button>
   </div>
 
   <div class="view active" id="view-module">
@@ -470,6 +471,12 @@
     <div class="quiz-tabs" id="quizTabs"></div>
     <div class="quiz-progress"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
     <div id="quizPanel"></div>
+  </div>
+
+  <div class="view" id="view-vwlquiz">
+    <div class="quiz-tabs" id="vwlQuizTabs"></div>
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="vwlQuizProgressFill"></div></div>
+    <div id="vwlQuizPanel"></div>
   </div>
 
   <button class="reset-btn" id="reset">Fortschritt zurücksetzen</button>
@@ -960,16 +967,17 @@ function renderDay() {
 }
 
 function showView(viewId, tabId) {
-  ['view-module', 'view-day', 'view-quiz'].forEach(id => {
+  ['view-module', 'view-day', 'view-quiz', 'view-vwlquiz'].forEach(id => {
     document.getElementById(id).classList.toggle('active', id === viewId);
   });
-  ['tab-module', 'tab-day', 'tab-quiz'].forEach(id => {
+  ['tab-module', 'tab-day', 'tab-quiz', 'tab-vwlquiz'].forEach(id => {
     document.getElementById(id).classList.toggle('active', id === tabId);
   });
 }
 document.getElementById('tab-module').addEventListener('click', () => showView('view-module', 'tab-module'));
 document.getElementById('tab-day').addEventListener('click', () => showView('view-day', 'tab-day'));
 document.getElementById('tab-quiz').addEventListener('click', () => { showView('view-quiz', 'tab-quiz'); renderQuiz(); });
+document.getElementById('tab-vwlquiz').addEventListener('click', () => { showView('view-vwlquiz', 'tab-vwlquiz'); renderVwlQuiz(); });
 
 const quizToday = new Date(); quizToday.setHours(0,0,0,0);
 const quizUnlockB = new Date(2026,7,1);
@@ -1363,8 +1371,7 @@ function quizShuffleOptions(item) {
 
 function quizBuildVariant(key) {
   const base = QUIZ_DATA[key].questions;
-  if (!quizVariantMode) return base.map(it => ({ ...it, opts: it.opts.slice(), correct: Array.isArray(it.correct) ? it.correct.slice() : it.correct }));
-  const list = base.map(it => it.genKey ? QUIZ_CALC_GENERATORS[it.genKey]() : quizShuffleOptions(it));
+  const list = base.map(it => (quizVariantMode && it.genKey) ? QUIZ_CALC_GENERATORS[it.genKey]() : quizShuffleOptions(it));
   return quizShuffle(list);
 }
 
@@ -1519,7 +1526,7 @@ function renderQuizPanel() {
     document.getElementById('quizResetBtn').onclick = () => {
       quizState.answers[key] = {};
       quizState.pending[key] = {};
-      if (quizVariantMode) quizState.variant[key] = quizBuildVariant(key);
+      quizState.variant[key] = quizBuildVariant(key);
       renderQuiz();
     };
   }
@@ -1528,6 +1535,432 @@ function renderQuizPanel() {
 function renderQuiz() {
   renderQuizTabs();
   renderQuizPanel();
+}
+
+// ============================================================
+// VWL-Quiz (Märkte und strategisches Entscheiden)
+// ============================================================
+
+const QUIZ_VWL_DATA = {
+  T1: { label: 'Spieltheorie', sub: 'Strategien & Gleichgewichte', questions: [
+    { q: "Wann ist eine Strategie strikt dominiert?",
+      opts: ["Wenn eine andere Strategie unabhängig von der Wahl des Gegners immer eine strikt höhere Auszahlung liefert","Wenn sie in mindestens einem Fall eine höhere Auszahlung liefert","Wenn sie die Auszahlung des Gegners maximiert","Wenn sie im Nash-Gleichgewicht gespielt wird"],
+      correct: 0, explain: "Eine Strategie ist strikt dominiert, wenn es eine andere Strategie gibt, die unabhängig von der Wahl des Gegenspielers immer eine strikt höhere Auszahlung liefert." },
+    { q: "Wie geht man vor, um alle strikt dominierten Strategien in einem Spiel zu identifizieren?",
+      opts: ["Für jede Strategie prüfen, ob eine andere Strategie sie in jeder Spalte/Zeile schlägt; dominierte Strategien iterativ entfernen","Nur die Strategie mit der höchsten Einzelauszahlung suchen","Die Auszahlungen aller Spieler addieren und das Maximum suchen","Nur Strategien vergleichen, die im Gleichgewicht liegen"],
+      correct: 0, explain: "Man vergleicht für jeden Spieler seine Strategien paarweise: dominiert eine Strategie eine andere in jeder möglichen Antwort des Gegners strikt, wird die dominierte Strategie eliminiert (ggf. iterativ)." },
+    { q: "Wodurch ist ein Nash-Gleichgewicht in reinen Strategien definiert?",
+      opts: ["Jeder Spieler spielt eine beste Antwort auf die Strategien der anderen Spieler – keiner kann sich durch einseitiges Abweichen verbessern","Jeder Spieler maximiert die Summe aller Auszahlungen","Es ist die Strategiekombination mit der höchsten Auszahlung für Spieler 1","Es ist immer Pareto-optimal"],
+      correct: 0, explain: "Im Nash-Gleichgewicht spielt jeder Spieler eine beste Antwort auf die Strategien der übrigen Spieler; kein Spieler kann sich durch einseitiges Abweichen verbessern." },
+    { q: "Wie findet man alle Nash-Gleichgewichte in reinen Strategien in einer Auszahlungsmatrix?",
+      opts: ["Für jede Spalte die beste Antwort von Spieler 1 markieren, für jede Zeile die beste Antwort von Spieler 2 – Felder mit beiden Markierungen sind Nash-Gleichgewichte","Nur das Feld mit der höchsten Summe beider Auszahlungen suchen","Alle strikt dominierten Strategien sind automatisch Nash-Gleichgewichte","Nur die Diagonale der Matrix betrachten"],
+      correct: 0, explain: "Man markiert für jede Spalte die beste Antwort von Spieler 1 (höchste Auszahlung in der Spalte) und für jede Zeile die beste Antwort von Spieler 2 (höchste Auszahlung in der Zeile). Felder mit beiden Markierungen sind Nash-Gleichgewichte." },
+    { q: "Wie bestimmt man die Gleichgewichts-Mischwahrscheinlichkeit eines Spielers in einem Spiel mit gemischten Strategien?",
+      opts: ["Man setzt die erwarteten Auszahlungen des GEGNERS aus dessen beiden reinen Strategien gleich und löst nach der Wahrscheinlichkeit auf","Man setzt die eigenen erwarteten Auszahlungen gleich","Man wählt die Strategie mit der höchsten Einzelauszahlung","Man mittelt einfach alle Auszahlungen der Matrix"],
+      correct: 0, explain: "Damit der Gegner indifferent zwischen seinen Strategien ist, setzt man dessen erwartete Auszahlungen bei beiden reinen Strategien gleich und löst nach der Mischwahrscheinlichkeit des jeweils anderen Spielers auf." },
+    { q: "Wie funktioniert die Rückwärtsinduktion zur Lösung sequentieller Spiele?",
+      opts: ["Man beginnt bei den letzten Entscheidungsknoten, bestimmt dort die optimale Wahl, und arbeitet sich so schrittweise zum Anfangsknoten vor","Man beginnt beim ersten Spieler und rät die beste Strategie","Man betrachtet nur die Endauszahlungen ohne die Baumstruktur","Man wählt an jedem Knoten zufällig eine Strategie"],
+      correct: 0, explain: "Bei der Rückwärtsinduktion löst man das Spiel von den letzten Entscheidungsknoten aus rückwärts: An jedem Knoten wählt der jeweilige Spieler seine optimale Aktion gegeben die (bereits bestimmten) Folgeaktionen." },
+    { q: "Wann ist ein Zustand (eine Auszahlungskombination) Pareto-optimal?",
+      opts: ["Wenn kein Spieler besser gestellt werden kann, ohne einen anderen Spieler schlechter zu stellen","Wenn beide Spieler die maximal mögliche Auszahlung erhalten","Wenn die Summe der Auszahlungen minimal ist","Wenn es sich um ein Nash-Gleichgewicht handelt"],
+      correct: 0, explain: "Ein Zustand ist Pareto-optimal, wenn keine andere erreichbare Kombination existiert, die mindestens einen Spieler besser stellt, ohne einen anderen Spieler schlechter zu stellen." },
+    { q: "Auszahlungsmatrix (Spieler1;Spieler2): Spieler 1 hat A,B,C,D, Spieler 2 hat W,X,Y,Z. A: W=8;2, X=4;5, Y=4;6, Z=9;1. B: W=5;4, X=2;7, Y=6;3, Z=8;3. C: W=3;6, X=5;8, Y=8;4, Z=1;7. D: W=7;5, X=3;4, Y=2;5, Z=7;3. Wie viele strikt dominierte Strategien gibt es in diesem Spiel?",
+      opts: ["2","0","1","3"], correct: 0,
+      explain: "In diesem Spiel gibt es 2 strikt dominierte Strategien (A und C werden von anderen Strategien strikt dominiert) – siehe Musterlösung SoSe 2024." },
+    { q: "Auszahlungsmatrix (Spieler1;Spieler2): Spieler 1 hat A,B,C,D, Spieler 2 hat W,X,Y,Z. A: W=2;1,X=2;1,Y=8;5,Z=8;5. B: W=4;6,X=4;6,Y=3;0,Z=3;0. C: W=6;4,X=3;2,Y=6;4,Z=3;2. D: W=6;4,X=3;2,Y=6;4,Z=3;2. Wie viele Nash-Gleichgewichte in reinen Strategien gibt es in diesem Spiel?",
+      opts: ["5","3","4","2"], correct: 0,
+      explain: "In diesem Spiel gibt es 5 Nash-Gleichgewichte in reinen Strategien – siehe Musterlösung SoSe 2024." },
+    { q: "Auszahlungsmatrix: Spieler 1 (O,U) x Spieler 2 (L,R). O: L=5;8, R=9;1. U: L=7;0, R=1;5. Spieler 2 mischt L mit Wahrscheinlichkeit t. Welchen Wert hat t im Gleichgewicht (auf 2 Nachkommastellen gerundet)?",
+      opts: ["0,80","0,50","0,33","0,67"], correct: 0,
+      explain: "Spieler 1 muss indifferent zwischen O und U sein: 5t+9(1−t) = 7t+1·(1−t) → 9−4t = 6t+1 → t = 0,8." },
+    { q: "Auszahlungsmatrix: Spieler 1 (A,B,C,D) x Spieler 2 (V,W,X,Y,Z). A: V=3;3,W=6;5,X=6;8,Y=0;8,Z=0;1. B: V=3;7,W=6;10,X=4;0,Y=3;5,Z=7;8. C: V=7;0,W=0;2,X=1;4,Y=3;9,Z=6;6. D: V=7;2,W=6;3,X=9;0,Y=7;5,Z=1;6. Wie viele Zustände sind in diesem Spiel Pareto-optimal?",
+      opts: ["3","2","4","5"], correct: 0,
+      explain: "In diesem Spiel sind 3 Zustände Pareto-optimal – siehe Musterlösung SoSe 2024." },
+    { q: "Auszahlungsmatrix: Spieler 1 (A,B,C,D) x Spieler 2 (W,X,Y,Z). A: W=3;1,X=3;4,Y=5;8,Z=1;2. B: W=9;2,X=9;4,Y=8;4,Z=4;3. C: W=6;3,X=4;4,Y=6;8,Z=9;3. D: W=2;6,X=3;8,Y=4;9,Z=3;5. Welche Strategien werden strikt dominiert?",
+      opts: ["A, D, W, Z","B, C, X, Y","Nur A und W","Keine"], correct: 0,
+      explain: "Strikt dominiert werden die Strategien A, D (von Spieler 1) sowie W, Z (von Spieler 2)." },
+    { q: "Sequentielles Spiel mit 3 Spielern (Auszahlungstripel: Spieler1;Spieler2;Spieler3): Spieler 1 wählt L oder R. Bei L folgt Spieler 3 mit T→(1,2,3) oder U→(4,5,6). Bei R entscheidet Spieler 2 zwischen A und B. Bei A folgt Spieler 3 mit V→(3,5,5) oder W→(5,1,3). Bei B folgt Spieler 3 mit X→(6,6,6), Y→(5,4,7) oder Z→(2,2,2). Was ist das Gleichgewicht durch Rückwärtsinduktion?",
+      opts: ["(L,A,(U,V,Y))","(R,A,(U,V,Y))","(L,B,(U,W,Y))","(R,B,(T,V,Z))"], correct: 0,
+      explain: "Rückwärtsinduktion: Bei L wählt Spieler 3 U (6>3). Bei R,A wählt Spieler 3 V (5>3). Bei R,B wählt Spieler 3 Y (7>6>2). Spieler 2 vergleicht bei R: A gibt ihm 5, B gibt ihm 4 → wählt A. Spieler 1 vergleicht: L gibt ihm 4, R (über A) gibt ihm 3 → wählt L. Gleichgewicht: (L,A,(U,V,Y))." }
+  ]},
+  T2: { label: 'Markt & Monopol', sub: 'Wohlfahrt & Preissetzung', questions: [
+    { q: "Wie ist die Konsumentenrente (KR) bei der Gleichgewichtsmenge qE und dem Marktpreis pE definiert?",
+      opts: ["KR = ∫₀^qE p(q)dq − pE·qE (Fläche unter der Nachfragekurve oberhalb des Marktpreises)","KR = pE·qE − ∫₀^qE p(q)dq","KR = pE·qE","KR = ∫₀^qE p(q)dq"],
+      correct: 0, explain: "KR = ∫₀^qE p(q)dq − pE·qE: die Fläche unterhalb der Nachfragekurve und oberhalb des tatsächlich gezahlten Preises." },
+    { q: "Wie ist die Produzentenrente (PR) im Marktgleichgewicht definiert?",
+      opts: ["PR = pE·qE − ∫₀^qE Angebotsfunktion(q)dq","PR = ∫₀^qE Angebotsfunktion(q)dq","PR = pE·qE + ∫₀^qE Angebotsfunktion(q)dq","PR = pE − Angebotsfunktion(qE)"],
+      correct: 0, explain: "PR = pE·qE − ∫₀^qE Angebot(q)dq: Erlös abzüglich der Fläche unterhalb der Angebotskurve." },
+    { q: "Welche Bedingung kennzeichnet die gewinnmaximale Menge eines Monopolisten?",
+      opts: ["Grenzerlös = Grenzkosten (E' = K')","Preis = Grenzkosten","Durchschnittskosten = Grenzkosten","Erlös = Kosten"],
+      correct: 0, explain: "Im Gewinnmaximum gilt Grenzerlös = Grenzkosten (E'=K'), äquivalent: die erste Ableitung des Gewinns nach der Menge ist 0." },
+    { q: "Wie lautet die Aufschlagsgleichung (Lerner-Maß) für einen gewinnmaximierenden Monopolisten?",
+      opts: ["1/ε = (pM − MC) / pM","1/ε = MC / pM","ε = (pM − MC) / MC","1/ε = pM / (pM − MC)"],
+      correct: 0, explain: "Die Aufschlagsgleichung lautet 1/ε = (pM−MC)/pM, wobei ε die (Betrag der) Preiselastizität der Nachfrage im Gewinnmaximum ist." },
+    { q: "Wie setzt ein Monopolist bei einem einzigen Käufer eine gewinnmaximale zweistufige Gebühr (Eintrittsgebühr + Stückpreis)?",
+      opts: ["Stückpreis = Grenzkosten, Eintrittsgebühr = gesamte Konsumentenrente bei diesem Preis","Stückpreis = 0, Eintrittsgebühr = maximal möglicher Gesamterlös","Stückpreis = Monopolpreis, Eintrittsgebühr = 0","Stückpreis und Eintrittsgebühr sind immer gleich hoch"],
+      correct: 0, explain: "Bei genau einem Käufer setzt der Monopolist den Stückpreis gleich den Grenzkosten (effizientes Ergebnis) und schöpft über die Eintrittsgebühr die gesamte resultierende Konsumentenrente ab." },
+    { q: "Wie berechnen sich die Kosten des Staates, wenn er bei einem wirksamen Mindestpreis das komplette Überangebot aufkauft?",
+      opts: ["Kosten = Mindestpreis × Überangebotsmenge (Differenz aus angebotener und nachgefragter Menge beim Mindestpreis)","Kosten = Mindestpreis × Gleichgewichtsmenge","Kosten = Gleichgewichtspreis × Überangebotsmenge","Kosten = Mindestpreis − Gleichgewichtspreis"],
+      correct: 0, explain: "Der Staat zahlt den Mindestpreis für die gesamte Überschussmenge (angebotene minus nachgefragte Menge zum Mindestpreis): Kosten = Mindestpreis × (qS − qD)." },
+    { q: "Wann ist ein Mindestpreis auf einem Markt 'wirksam' (bindend)?",
+      opts: ["Wenn er oberhalb des Gleichgewichtspreises liegt","Wenn er unterhalb des Gleichgewichtspreises liegt","Wenn er genau dem Gleichgewichtspreis entspricht","Ein Mindestpreis ist immer wirksam"],
+      correct: 0, explain: "Ein Mindestpreis ist nur dann wirksam (bindend), wenn er oberhalb des Marktgleichgewichtspreises liegt – sonst hat er keine Auswirkung auf den Markt." },
+    { q: "Monopolist mit Kostenfunktion K(q)=188+40q+q², inverse Nachfragekurve p(q)=152−6q. Wie hoch ist die Konsumentenrente im Gewinnmaximum?",
+      opts: ["192","260","832","104"], correct: 0,
+      explain: "Gewinnmaximum: q=8, p=104. KR = ∫₀^8 (152−6q)dq − 104·8 = 1216−192−832 = 192." },
+    { q: "Monopolist mit inverser Nachfragekurve p(q)=386−2q, konstanten Grenzkosten von 2 und Fixkosten C. Wie hoch darf C maximal sein, damit der Monopolist keinen Verlust erzielt?",
+      opts: ["18.432","18.624","192","96"], correct: 0,
+      explain: "Gewinnmaximale Menge q=96 (aus E'=K': 386−4q=2), Preis=194, Erlös=18.624, variable Kosten=192, Deckungsbeitrag=18.432 – das ist der maximale Fixkostenbetrag C." },
+    { q: "Monopolist verkauft an einen einzigen Käufer mit Nachfrage q(p)=12−2p, konstanten Grenzkosten 4. Bei zweistufiger Gebühr (Eintrittsgebühr T, Stückpreis=Grenzkosten): Wie hoch ist T im Gewinnmaximum?",
+      opts: ["4","6","8","12"], correct: 0,
+      explain: "Stückpreis = Grenzkosten = 4. Bei p=4 ist q=4. Inverse Nachfrage: p=6−0,5q. T = Konsumentenrente = ∫₀^4(6−0,5q−4)dq = 4." },
+    { q: "Rechenaufgabe: Auf einem Markt in vollständiger Konkurrenz gilt Nachfrage p = 180 − 3y und Angebot p = 20 + 2y. Wie hoch ist die Produzentenrente im Gleichgewicht dieses Marktes?",
+      opts: ["1024","512","3200","800"], correct: 0,
+      explain: "Gleichgewicht: 180−3y=20+2y → y=32, p=84. PR = p·y − ∫₀^32(20+2y)dy = 84·32 − (20·32+32²) = 2688−1664 = 1024." },
+    { q: "Rechenaufgabe: Auf einem Markt in vollständiger Konkurrenz gilt Nachfrage p = 140 − 2y und Angebot p = 36 + 2y. Der Staat setzt einen wirksamen Mindestpreis, der genau 4 Einheiten vom Gleichgewichtspreis abweicht, und kauft das komplette Überangebot auf. Welche Kosten hat der Staat?",
+      opts: ["368","312","288","400"], correct: 0,
+      explain: "Gleichgewicht: y=26, p=88. Mindestpreis=92. qS=(92−36)/2=28, qD=(140−92)/2=24. Überangebot=4. Kosten=92·4=368." },
+    { q: "Rechenaufgabe: Monopolist mit Nachfrage p = 1064 − 8y und Kosten K = 8y² + 198. Wie hoch ist der Gewinn im Gewinnmaximum?",
+      opts: ["17491","14933","19064","8745"], correct: 0,
+      explain: "G'=1064−32y=0 → y=33,25. Gewinn = 1064·33,25 − 16·33,25² − 198 ≈ 17.491." }
+  ]},
+  T3: { label: 'Oligopol', sub: 'Cournot, Stackelberg, Bertrand', questions: [
+    { q: "Was kennzeichnet den Cournot-Wettbewerb?",
+      opts: ["Zwei (oder mehr) Anbieter legen simultan und unabhängig voneinander ihre Mengen fest","Anbieter legen simultan ihre Preise fest","Ein Anbieter beobachtet die Menge des anderen, bevor er selbst entscheidet","Anbieter kooperieren bei der Preisfestsetzung"],
+      correct: 0, explain: "Im Cournot-Wettbewerb legen die Anbieter simultan und unabhängig voneinander ihre Mengen fest (Mengenwettbewerb)." },
+    { q: "Wie löst man ein sequentielles Mengenspiel (Stackelberg), bei dem Produzent 2 die Menge von Produzent 1 beobachten kann?",
+      opts: ["Zuerst die Reaktionsfunktion von Produzent 2 (Folger) bestimmen, dann in die Gewinnfunktion von Produzent 1 (Führer) einsetzen und dessen Menge optimieren","Beide Produzenten maximieren gleichzeitig unabhängig voneinander","Nur Produzent 1 maximiert seinen Gewinn, Produzent 2 produziert 0","Man setzt einfach beide Mengen gleich"],
+      correct: 0, explain: "Per Rückwärtsinduktion bestimmt man zunächst die Reaktionsfunktion des Folgers (Produzent 2), setzt diese in die Gewinnfunktion des Führers (Produzent 1) ein und maximiert dessen Gewinn – der Führer antizipiert die Reaktion des Folgers." },
+    { q: "Was besagt das Bertrand-Paradox bei homogenen Gütern und gleichen (konstanten) Grenzkosten beider Anbieter?",
+      opts: ["Im Gleichgewicht setzen beide Anbieter den Preis gleich den Grenzkosten (Preis = Grenzkosten, Gewinn = 0)","Beide Anbieter setzen den Monopolpreis","Der Preis liegt immer über den Grenzkosten","Es gibt kein Gleichgewicht im Bertrand-Wettbewerb"],
+      correct: 0, explain: "Im Bertrand-Wettbewerb mit homogenen Gütern und gleichen Grenzkosten unterbieten sich die Anbieter, bis der Preis gleich den Grenzkosten ist – im Gleichgewicht ist der Gewinn beider Anbieter null (Bertrand-Paradox)." },
+    { q: "Wie bestimmt man die Reaktionsfunktion eines Produzenten im Cournot-Wettbewerb?",
+      opts: ["Gewinnfunktion nach der eigenen Menge ableiten, gleich 0 setzen und nach der eigenen Menge auflösen (in Abhängigkeit von der Menge des Konkurrenten)","Die Gewinnfunktion nach der Menge des Konkurrenten ableiten","Grenzkosten gleich Grenzerlös des Konkurrenten setzen","Die Summe beider Mengen maximieren"],
+      correct: 0, explain: "Man leitet die eigene Gewinnfunktion nach der eigenen Menge ab, setzt die Ableitung gleich 0 und löst nach der eigenen Menge auf – das Ergebnis (abhängig von der Menge des Konkurrenten) ist die Reaktionsfunktion." },
+    { q: "Was ändert sich beim Cournot-Wettbewerb, wenn die Produzenten differenzierte statt homogene Güter anbieten?",
+      opts: ["Jeder Produzent hat eine eigene (inverse) Nachfragekurve, die auch von der Menge des Konkurrenten abhängt – meist mit schwächerem Koeffizienten als der Eigeneffekt","Es gibt dann keine Reaktionsfunktionen mehr","Der Preis ist für beide Produzenten immer identisch","Die Grenzkosten spielen keine Rolle mehr"],
+      correct: 0, explain: "Bei differenzierten Gütern hat jeder Produzent seine eigene Preis-Absatz-Funktion, die auch von der Menge des Konkurrenten abhängt (Kreuzpreiseffekt), meist mit einem schwächeren Koeffizienten als der eigene Mengeneffekt." },
+    { q: "Zwei Produzenten im Mengenwettbewerb, Preis p=100−5q1−5q2, Grenz- und Fixkosten 0. Produzent 1 legt q1 zuerst fest, Produzent 2 beobachtet q1 und legt dann q2 fest. Welche Menge produziert Produzent 2 im Gleichgewicht?",
+      opts: ["20/3","10","100/15","50/9"], correct: 0,
+      explain: "Reaktionsfunktion von P2: q2=(100−5q1)/10. Eingesetzt in P1's Gewinn und optimiert ergibt q1=20/3, damit q2=(100−5·20/3)/10=20/3." },
+    { q: "Zwei Produzenten im Cournot-Wettbewerb, Preis p=38−6q1−6q2, konstante Grenzkosten 2, keine Fixkosten. Welche Menge produziert Produzent 1 im Cournot-Gleichgewicht?",
+      opts: ["2","3","4","6"], correct: 0,
+      explain: "Reaktionsfunktionen: q1=(36−6q2)/12, q2=(36−6q1)/12. Da symmetrisch: q1=q2=2." },
+    { q: "Zwei Produzenten mit differenzierten Gütern: p1=49−9q1−5q2, p2=49−5q1−9q2, konstante Grenzkosten 3, keine Fixkosten. Welche Menge produziert Produzent 1 im Cournot-Gleichgewicht?",
+      opts: ["2","3","4","46/18"], correct: 0,
+      explain: "Reaktionsfunktion: −18q1+46−5q2=0. Da symmetrisch (q1=q2): −18q1+46−5q1=0 → 23q1=46 → q1=2." },
+    { q: "Zwei Produzenten mit differenzierten Gütern, Produzent 1 setzt q1 zuerst fest (Stackelberg-Führer), Produzent 2 beobachtet und setzt q2. p1=102−3q1−q2, p2=102−q1−3q2, keine Kosten. Welche Menge produziert Produzent 1 im Gleichgewicht?",
+      opts: ["15","17","51/6","102/6"], correct: 0,
+      explain: "Reaktionsfunktion von P2: q2*(q1)=(102−q1)/6. Eingesetzt in Gewinnfunktion von P1 und optimiert ergibt q1=15." },
+    { q: "Zwei Produzenten im Bertrand-Preiswettbewerb mit homogenem Gut, Nachfrage Q(p)=40−4p, beide mit Kostenfunktion C(q)=7q. Welchen Gleichgewichtspreis setzt Produzent 1?",
+      opts: ["7","10","3,5","20"], correct: 0,
+      explain: "Da beide Firmen die gleichen Grenzkosten (7) haben, entspricht der Bertrand-Gleichgewichtspreis genau den Grenzkosten: p1=7." }
+  ]}
+};
+
+const quizVwlVariantMode = true;
+
+const QUIZ_VWL_CALC_GENERATORS = {
+  marktgleichgewicht: function () {
+    const a = quizRandInt(120, 300, 10);
+    const b = quizRandInt(1, 5, 1);
+    const d = quizRandInt(1, 5, 1);
+    const c = quizRandInt(10, Math.max(20, a - 60), 5);
+    const qStar = (a - c) / (b + d);
+    const pStar = a - b * qStar;
+    const correctVal = Math.round(pStar);
+    const rawDistractors = [
+      (a + c) / 2,
+      a - b * (qStar / 2),
+      c + d * (qStar) + (a - c) / (b + d + 2)
+    ];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 4);
+    const built = quizBuildOptions(correctVal, distractors, ' €');
+    return {
+      q: `Rechenaufgabe: Auf einem Markt in vollständiger Konkurrenz gilt Nachfrage p = ${a} − ${b}·y und Angebot p = ${c} + ${d}·y. Welcher Preis wird im Marktgleichgewicht verlangt?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `Gleichgewicht: ${a} − ${b}y = ${c} + ${d}y → y = ${quizDe(qStar)}. Preis: p = ${a} − ${b}·${quizDe(qStar)} ≈ ${quizDe(correctVal)} €.`
+    };
+  },
+  wohlfahrt: function () {
+    const a = quizRandInt(120, 300, 10);
+    const b = quizRandInt(1, 5, 1);
+    const d = quizRandInt(1, 5, 1);
+    const c = quizRandInt(10, Math.max(20, a - 60), 5);
+    const qStar = (a - c) / (b + d);
+    const pStar = a - b * qStar;
+    const kr = a * qStar - 0.5 * b * qStar * qStar - pStar * qStar;
+    const pr = pStar * qStar - c * qStar - 0.5 * d * qStar * qStar;
+    const askKR = Math.random() < 0.5;
+    const correctVal = Math.round(askKR ? kr : pr);
+    const rawDistractors = [
+      Math.round(askKR ? pr : kr),
+      Math.round(correctVal * 1.6),
+      Math.round((askKR ? kr : pr) * 0.5)
+    ];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 5);
+    const built = quizBuildOptions(correctVal, distractors, '');
+    const rentName = askKR ? 'Konsumentenrente' : 'Produzentenrente';
+    return {
+      q: `Rechenaufgabe: Auf einem Markt in vollständiger Konkurrenz gilt Nachfrage p = ${a} − ${b}·y und Angebot p = ${c} + ${d}·y. Wie hoch ist die ${rentName} im Gleichgewicht dieses Marktes?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `Gleichgewicht: y≈${quizDe(qStar)}, p≈${quizDe(pStar)}. ${rentName} ${askKR ? '(KR = ∫Nachfrage dq − p·y)' : '(PR = p·y − ∫Angebot dq)'} ≈ ${quizDe(correctVal)}.`
+    };
+  },
+  monopol_gewinn: function () {
+    const a = quizRandInt(400, 1200, 20);
+    const b = quizRandInt(2, 10, 1);
+    const c = quizRandInt(2, 10, 1);
+    const F = quizRandInt(50, 400, 10);
+    const qStar = a / (2 * (b + c));
+    const profit = a * qStar - (b + c) * qStar * qStar - F;
+    const correctVal = Math.round(profit);
+    const rawDistractors = [
+      Math.round(a * qStar - b * qStar * qStar - F),
+      Math.round(profit + F),
+      Math.round(profit * 0.6)
+    ];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 30);
+    const built = quizBuildOptions(correctVal, distractors, ' €');
+    return {
+      q: `Rechenaufgabe: Ein Monopolist hat die Nachfrage p = ${a} − ${b}·y und Kosten K = ${c}y² + ${F}. Wie hoch ist der Gewinn im Gewinnmaximum?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `G'=0: y* = ${a}/(2·(${b}+${c})) ≈ ${quizDe(qStar)}. Gewinn = ${a}·y − (${b}+${c})·y² − ${F} ≈ ${quizDe(correctVal)} €.`
+    };
+  },
+  lerner: function () {
+    const a = quizRandInt(80, 300, 5);
+    const b = quizRandInt(2, 10, 1);
+    const c = quizRandInt(5, Math.max(10, a - 30), 5);
+    const L = (a - c) / (a + c);
+    const correctVal = Math.round(L * 100) / 100;
+    const rawWrong = [
+      Math.round(((a - c) / (2 * b)) * 100) / 100,
+      Math.round((c / ((a + c) / 2)) * 100) / 100,
+      Math.round(((a - c) / (2 * a)) * 100) / 100
+    ];
+    const used = [correctVal];
+    const distractors = [];
+    rawWrong.forEach(raw => {
+      let v = raw;
+      let guard = 0;
+      while (used.some(u => Math.abs(u - v) < 0.02)) {
+        guard++;
+        v = Math.round((raw + (guard % 2 === 0 ? -0.05 * guard : 0.05 * guard)) * 100) / 100;
+        if (guard > 30) v = Math.round((correctVal + (Math.random() * 0.4 - 0.2)) * 100) / 100;
+      }
+      used.push(v);
+      distractors.push(v);
+    });
+    const allVals = quizShuffle([correctVal, ...distractors]);
+    const opts = allVals.map(v => v.toFixed(2).replace('.', ','));
+    const correctIdx = allVals.indexOf(correctVal);
+    return {
+      q: `Rechenaufgabe: Inverse Nachfragekurve p(y) = ${a} − ${b}·y, Monopolist mit konstanten Grenzkosten von ${c} (keine Fixkosten). Wie hoch ist der Wert des Lerner-Maßes im Gewinnmaximum? (2 Nachkommastellen)`,
+      opts, correct: correctIdx, calc: true,
+      explain: `Gewinnmaximum: p* = (${a}+${c})/2. Lerner-Maß L = (p*−MC)/p* = (${a}−${c})/(${a}+${c}) ≈ ${correctVal.toFixed(2).replace('.', ',')}.`
+    };
+  },
+  cournot: function () {
+    const a = quizRandInt(200, 500, 10);
+    const b = quizRandInt(1, 3, 1);
+    const mA = quizRandInt(2, 20, 1);
+    const mB = quizRandInt(2, 20, 1);
+    const qA = (a - 2 * mA + mB) / (3 * b);
+    const qB = (a - 2 * mB + mA) / (3 * b);
+    const Q = qA + qB;
+    const pStar = a - b * Q;
+    const askPrice = Math.random() < 0.5;
+    const correctVal = Math.round(askPrice ? pStar : qB);
+    const rawDistractors = askPrice ? [
+      Math.round(pStar + (mA - mB)),
+      Math.round((a + mA + mB) / 3),
+      Math.round(pStar * 1.3)
+    ] : [
+      Math.round(qA),
+      Math.round(qB * 1.4),
+      Math.round((a - mB) / (2 * b))
+    ];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 4);
+    const built = quizBuildOptions(correctVal, distractors, askPrice ? ' €' : ' Einheiten');
+    return {
+      q: `Rechenaufgabe: Zwei Unternehmen A und B stehen im Cournot-Wettbewerb. Inverse Nachfrage p(Q) = ${a} − ${b}·Q mit Q=qA+qB. Grenzkosten: Unternehmen A = ${mA}, Unternehmen B = ${mB} (keine Fixkosten). ${askPrice ? 'Wie hoch ist der Preis im Cournot-Gleichgewicht?' : 'Welche Menge produziert Unternehmen B im Cournot-Gleichgewicht?'}`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `Reaktionsfunktionen führen zu qA=(${a}−2·${mA}+${mB})/(3·${b})≈${quizDe(qA)}, qB=(${a}−2·${mB}+${mA})/(3·${b})≈${quizDe(qB)}. Q≈${quizDe(Q)}, Preis p=${a}−${b}·Q≈${quizDe(pStar)}.`
+    };
+  },
+  bertrand: function () {
+    const c = quizRandInt(3, 40, 1);
+    const a = quizRandInt(20, 60, 2);
+    const bslope = quizRandInt(2, 6, 1);
+    const correctVal = c;
+    const rawDistractors = [c * 2, Math.round(c * 1.5), Math.max(1, c - 5)];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 3);
+    const built = quizBuildOptions(correctVal, distractors, ' €');
+    return {
+      q: `Rechenaufgabe: Zwei Unternehmen mit homogenem Gut stehen im Bertrand-Preiswettbewerb (Marktnachfrage Q(p)=${a}−${bslope}·p). Beide Unternehmen haben identische, konstante Grenzkosten von ${c}. Welchen Gleichgewichtspreis setzt Unternehmen 1?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `Da beide Unternehmen identische Grenzkosten haben, entspricht der Bertrand-Gleichgewichtspreis genau den Grenzkosten: p = ${c} €.`
+    };
+  }
+};
+
+const QUIZ_VWL_GENKEY_BY_TAB = { T2: ['marktgleichgewicht', 'wohlfahrt', 'monopol_gewinn', 'lerner'], T3: ['cournot', 'bertrand'] };
+
+function quizVwlBuildVariant(key) {
+  const base = QUIZ_VWL_DATA[key].questions.map(it => ({ ...it, opts: it.opts.slice(), correct: Array.isArray(it.correct) ? it.correct.slice() : it.correct }));
+  if (!quizVwlVariantMode) return base;
+  const shuffled = base.map(it => quizShuffleOptions(it));
+  const genKeys = QUIZ_VWL_GENKEY_BY_TAB[key] || [];
+  const generated = genKeys.map(gk => ({ ...QUIZ_VWL_CALC_GENERATORS[gk](), genKey: gk }));
+  return quizShuffle([...shuffled, ...generated]);
+}
+
+const quizVwlState = { active: 'T1', answers: { T1: {}, T2: {}, T3: {} }, variant: { T1: null, T2: null, T3: null }, pending: { T1: {}, T2: {}, T3: {} } };
+
+function quizVwlEnsureVariant(key) {
+  if (!quizVwlState.variant[key]) quizVwlState.variant[key] = quizVwlBuildVariant(key);
+  return quizVwlState.variant[key];
+}
+
+function renderVwlQuizTabs() {
+  const el = document.getElementById('vwlQuizTabs');
+  el.innerHTML = '';
+  Object.keys(QUIZ_VWL_DATA).forEach(key => {
+    const div = document.createElement('div');
+    div.className = 'quiz-tab' + (quizVwlState.active === key ? ' active' : '');
+    const answered = Object.keys(quizVwlState.answers[key]).length;
+    const total = quizVwlEnsureVariant(key).length;
+    const correctCount = Object.values(quizVwlState.answers[key]).filter(v => v.correct).length;
+    div.innerHTML = `
+      <p class="quiz-tab-title">${QUIZ_VWL_DATA[key].label}</p>
+      <p class="quiz-tab-sub">${QUIZ_VWL_DATA[key].sub}</p>
+      <p class="quiz-tab-score">${answered > 0 ? correctCount + ' / ' + answered + ' richtig' : total + ' Fragen'}</p>
+    `;
+    div.onclick = () => { quizVwlState.active = key; renderVwlQuiz(); };
+    el.appendChild(div);
+  });
+}
+
+function renderVwlQuizPanel() {
+  const panel = document.getElementById('vwlQuizPanel');
+  panel.innerHTML = '';
+  const key = quizVwlState.active;
+  const qs = quizVwlEnsureVariant(key);
+
+  qs.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    const isMulti = !!item.multi;
+    const answered = quizVwlState.answers[key][qi];
+    const multiHint = isMulti ? '<span class="quiz-calc-badge">Mehrfachauswahl</span>' : '';
+    card.innerHTML = `
+      <div class="quiz-q-head"><div><span class="quiz-q-num">${qi + 1}.</span>${item.q}</div>${item.calc ? '<span class="quiz-calc-badge">Rechenaufgabe</span>' : multiHint}</div>
+      <div class="quiz-opts"></div>
+      <div class="quiz-explain ${answered !== undefined ? 'show' : ''}">${item.explain}</div>
+    `;
+    const optsWrap = card.querySelector('.quiz-opts');
+
+    if (!isMulti) {
+      item.opts.forEach((optText, oi) => {
+        const optDiv = document.createElement('div');
+        let cls = 'quiz-opt';
+        if (answered !== undefined) {
+          cls += ' disabled-look';
+          if (oi === item.correct) cls += ' correct';
+          else if (oi === answered.idx) cls += ' wrong';
+        }
+        optDiv.className = cls;
+        const letter = String.fromCharCode(65 + oi);
+        let dotContent = letter;
+        if (answered !== undefined && oi === item.correct) dotContent = '✓';
+        else if (answered !== undefined && oi === answered.idx) dotContent = '✗';
+        optDiv.innerHTML = `<span class="quiz-dot">${dotContent}</span><span>${optText}</span>`;
+        if (answered === undefined) {
+          optDiv.onclick = () => {
+            quizVwlState.answers[key][qi] = { idx: oi, correct: oi === item.correct };
+            renderVwlQuiz();
+          };
+        }
+        optsWrap.appendChild(optDiv);
+      });
+    } else {
+      if (!quizVwlState.pending[key][qi]) quizVwlState.pending[key][qi] = [];
+      const pending = quizVwlState.pending[key][qi];
+      item.opts.forEach((optText, oi) => {
+        const optDiv = document.createElement('div');
+        let cls = 'quiz-opt';
+        const isSelected = pending.includes(oi);
+        const isCorrectOpt = item.correct.includes(oi);
+        if (answered !== undefined) {
+          cls += ' disabled-look';
+          const wasSelected = answered.selected.includes(oi);
+          if (isCorrectOpt && wasSelected) cls += ' correct';
+          else if (!isCorrectOpt && wasSelected) cls += ' wrong';
+          else if (isCorrectOpt && !wasSelected) cls += ' missed';
+        } else if (isSelected) {
+          cls += ' selected';
+        }
+        optDiv.className = cls;
+        let dotContent = '';
+        if (answered !== undefined) {
+          const wasSelected = answered.selected.includes(oi);
+          if (isCorrectOpt && wasSelected) dotContent = '✓';
+          else if (!isCorrectOpt && wasSelected) dotContent = '✗';
+          else if (isCorrectOpt && !wasSelected) dotContent = '!';
+        } else if (isSelected) {
+          dotContent = '✓';
+        }
+        optDiv.innerHTML = `<span class="quiz-dot quiz-dot-square">${dotContent}</span><span>${optText}</span>`;
+        if (answered === undefined) {
+          optDiv.onclick = () => {
+            const idx = pending.indexOf(oi);
+            if (idx === -1) pending.push(oi); else pending.splice(idx, 1);
+            renderVwlQuiz();
+          };
+        }
+        optsWrap.appendChild(optDiv);
+      });
+      if (answered === undefined) {
+        const checkWrap = document.createElement('div');
+        checkWrap.className = 'quiz-check-wrap';
+        checkWrap.innerHTML = `<button class="quiz-check-btn" ${pending.length === 0 ? 'disabled' : ''}>Antwort prüfen</button>`;
+        checkWrap.querySelector('button').onclick = () => {
+          const selSorted = [...pending].sort((a, b) => a - b);
+          const corrSorted = [...item.correct].sort((a, b) => a - b);
+          const isRight = selSorted.length === corrSorted.length && selSorted.every((v, i) => v === corrSorted[i]);
+          quizVwlState.answers[key][qi] = { selected: selSorted, correct: isRight };
+          delete quizVwlState.pending[key][qi];
+          renderVwlQuiz();
+        };
+        card.appendChild(checkWrap);
+      }
+    }
+    panel.appendChild(card);
+  });
+
+  const answeredCount = Object.keys(quizVwlState.answers[key]).length;
+  const total = qs.length;
+  const correctCount = Object.values(quizVwlState.answers[key]).filter(v => v.correct).length;
+  document.getElementById('vwlQuizProgressFill').style.width = (answeredCount / total * 100) + '%';
+
+  if (answeredCount === total) {
+    const summary = document.createElement('div');
+    summary.className = 'quiz-summary';
+    summary.innerHTML = `${QUIZ_VWL_DATA[key].label} abgeschlossen: <strong>${correctCount} / ${total}</strong> richtig.<br><span class="quiz-reset-btn" id="vwlQuizResetBtn">Neue Fragen üben</span>`;
+    panel.appendChild(summary);
+    document.getElementById('vwlQuizResetBtn').onclick = () => {
+      quizVwlState.answers[key] = {};
+      quizVwlState.pending[key] = {};
+      quizVwlState.variant[key] = quizVwlBuildVariant(key);
+      renderVwlQuiz();
+    };
+  }
+}
+
+function renderVwlQuiz() {
+  renderVwlQuizTabs();
+  renderVwlQuizPanel();
 }
 
 document.getElementById('reset').addEventListener('click', () => {
