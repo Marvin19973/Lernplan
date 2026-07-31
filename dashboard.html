@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Uni – Klausuren-Dashboard</title>
+<style>
+  :root {
+    --bg: #0e1016;
+    --card: #171a24;
+    --card-border: #262a38;
+    --text-primary: #eef0f5;
+    --text-secondary: #9096ab;
+    --text-muted: #666c80;
+    --accent: #5b8def;
+    --green: #34d399;
+    --amber: #f5a623;
+    --pill-bg: #1f2433;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  #app { max-width: 1100px; margin: 0 auto; }
+  .top-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 4px; }
+  .subtitle { font-size: 14px; color: var(--text-secondary); margin: 0 0 1.75rem; }
+
+  .next-exam {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .next-exam-label {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+  .next-exam-name { font-size: 16px; font-weight: 600; }
+  .next-exam-date { font-size: 13px; color: var(--text-secondary); margin-left: 8px; }
+  .next-exam-countdown {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--amber);
+    white-space: nowrap;
+  }
+  .next-exam-countdown span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-left: 4px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1.25rem 1.35rem 1.5rem;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .card-title { font-size: 17px; font-weight: 600; margin: 0 0 2px; }
+  .card-sub { font-size: 12.5px; color: var(--text-secondary); }
+  .ring-wrap { position: relative; width: 54px; height: 54px; flex-shrink: 0; }
+  .ring-wrap svg { transform: rotate(-90deg); }
+  .ring-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--pill-bg);
+    color: var(--amber);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 14px 0 6px;
+  }
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    cursor: pointer;
+    font-size: 13.5px;
+  }
+  .check {
+    width: 17px; height: 17px;
+    border-radius: 50%;
+    border: 1.5px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .check.on {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check.on svg { width: 10px; height: 10px; }
+  .item-text { color: var(--text-primary); }
+  .item-text.done { color: var(--green); text-decoration: line-through; text-decoration-color: var(--text-muted); }
+
+  .plan-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    cursor: pointer;
+  }
+  .plan-num {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 1px;
+    transition: all 0.15s ease;
+  }
+  .plan-num.on {
+    background: var(--green);
+    border-color: var(--green);
+    color: #0e1016;
+  }
+  .plan-num.on svg { width: 10px; height: 10px; }
+  .plan-body { flex: 1; }
+  .plan-range {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .plan-desc {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+  .plan-desc.done { color: var(--green); text-decoration: line-through; text-decoration-color: var(--text-muted); }
+  .divider { border-top: 1px solid var(--card-border); margin: 14px 0; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-right: 8px;
+  }
+  .reset-btn:hover { background: var(--pill-bg); }
+
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .week-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 1.5rem 0 8px;
+    text-transform: uppercase;
+  }
+  .week-title:first-child { margin-top: 0; }
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 10px;
+  }
+  .day-card.exam { border-color: var(--amber); }
+  .day-card.travel { opacity: 0.65; }
+  .day-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .day-card-date { font-weight: 600; font-size: 14px; }
+  .exam-badge {
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--pill-bg);
+    color: var(--amber);
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .travel-badge { font-size: 11px; color: var(--text-muted); }
+  .task-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 4px 0;
+    cursor: pointer;
+    font-size: 13.5px;
+  }
+  .task-mod {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 4px;
+  }
+
+  .notes-list { margin-bottom: 8px; }
+  .note-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .note-row:last-child { border-bottom: none; }
+  .note-text { color: var(--text-primary); flex: 1; }
+  .note-del {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    padding: 2px 4px;
+    flex-shrink: 0;
+  }
+  .note-del:hover { color: var(--text-primary); }
+  .note-empty {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    padding: 4px 0 8px;
+  }
+  .note-add {
+    display: flex;
+    gap: 6px;
+  }
+  .note-input {
+    flex: 1;
+    background: var(--pill-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    outline: none;
+  }
+  .note-input::placeholder { color: var(--text-muted); }
+  .note-add-btn {
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .quiz-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .quiz-tab {
+    flex: 1; min-width: 150px; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--card-border); background: var(--card); cursor: pointer; text-align: left;
+  }
+  .quiz-tab.active { border: 2px solid var(--accent); }
+  .quiz-tab.locked { cursor: not-allowed; opacity: 0.55; }
+  .quiz-tab-title { font-weight: 600; font-size: 14px; margin: 0 0 2px; color: var(--text-primary); }
+  .quiz-tab-sub { font-size: 12px; color: var(--text-secondary); margin: 0; }
+  .quiz-tab-score { font-size: 12px; color: var(--accent); font-weight: 600; margin-top: 4px; }
+  .quiz-lock-note { font-size: 12px; color: var(--amber); margin-top: 4px; }
+  .quiz-progress { height: 6px; border-radius: 3px; background: var(--card-border); overflow: hidden; margin-bottom: 20px; }
+  .quiz-progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
+  .quiz-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 14px; overflow: hidden; }
+  .quiz-q-head {
+    background: rgba(255,255,255,0.02); padding: 14px 16px; font-size: 14.5px; font-weight: 500;
+    border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; gap: 12px; color: var(--text-primary);
+  }
+  .quiz-q-num { color: var(--text-muted); font-weight: 600; margin-right: 6px; }
+  .quiz-opt {
+    display: flex; align-items: center; gap: 10px; padding: 13px 16px; font-size: 14px;
+    border-bottom: 1px solid var(--card-border); cursor: pointer; color: var(--text-primary);
+  }
+  .quiz-opt:last-child { border-bottom: none; }
+  .quiz-opt:hover { background: rgba(255,255,255,0.03); }
+  .quiz-opt .quiz-dot {
+    width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--text-muted); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff;
+  }
+  .quiz-opt.correct { background: rgba(52,211,153,0.12); }
+  .quiz-opt.correct .quiz-dot { background: var(--green); border-color: var(--green); }
+  .quiz-opt.wrong { background: rgba(239,68,68,0.12); }
+  .quiz-opt.wrong .quiz-dot { background: #ef4444; border-color: #ef4444; }
+  .quiz-opt.disabled-look { cursor: default; }
+  .quiz-dot-square { border-radius: 4px; }
+  .quiz-opt.selected { background: rgba(91,141,239,0.14); }
+  .quiz-opt.selected .quiz-dot { background: var(--accent); border-color: var(--accent); }
+  .quiz-opt.missed { background: rgba(245,166,35,0.14); }
+  .quiz-opt.missed .quiz-dot { background: var(--amber); border-color: var(--amber); color: #0e1016; }
+  .quiz-check-wrap { padding: 10px 16px 14px; border-top: 1px solid var(--card-border); }
+  .quiz-check-btn {
+    background: var(--accent); border: none; color: #fff; font-size: 13px; font-weight: 500;
+    padding: 8px 16px; border-radius: 8px; cursor: pointer;
+  }
+  .quiz-explain {
+    font-size: 13px; color: var(--text-secondary); padding: 12px 16px;
+    background: rgba(255,255,255,0.02); border-top: 1px solid var(--card-border); display: none;
+  }
+  .quiz-explain.show { display: block; }
+  .quiz-calc-badge {
+    font-size: 11px; font-weight: 600; color: var(--accent); background: var(--pill-bg);
+    padding: 2px 8px; border-radius: 20px; white-space: nowrap; align-self: flex-start;
+  }
+  .quiz-summary {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px;
+    text-align: center; font-size: 14px; margin-top: 4px; color: var(--text-primary);
+  }
+  .quiz-reset-btn {
+    display: inline-block; margin-top: 10px; padding: 8px 16px; border-radius: 8px;
+    border: 1px solid var(--card-border); background: var(--pill-bg); color: var(--text-primary); cursor: pointer; font-size: 13px;
+  }
+
+  #lock-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1.5rem;
+  }
+  .lock-box {
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+  }
+  .lock-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .lock-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+  }
+  .lock-input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    font-size: 15px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  .lock-btn {
+    width: 100%;
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .lock-error {
+    color: #ef4444;
+    font-size: 12.5px;
+    margin-top: 8px;
+    min-height: 16px;
+  }
+  #app { display: none; }
+  #app.unlocked { display: block; }
+</style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<body>
+<div id="lock-screen">
+  <div class="lock-box">
+    <div class="lock-title">Geschützt</div>
+    <div class="lock-sub">Passwort eingeben, um den Lernplan zu sehen</div>
+    <input type="password" class="lock-input" id="lock-input" placeholder="Passwort" autocomplete="off" />
+    <button class="lock-btn" id="lock-btn">Entsperren</button>
+    <div class="lock-error" id="lock-error"></div>
+  </div>
+</div>
+<div id="app">
+  <div class="top-label">ZIELE</div>
+  <h1>Uni</h1>
+  <p class="subtitle">Klausur-Countdowns, Lernplan und Altklausuren im Überblick</p>
+
+  <div class="next-exam" id="next-exam"></div>
+
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-module">Module</button>
+    <button class="tab-btn" id="tab-day">Tagesplan</button>
+    <button class="tab-btn" id="tab-quiz">EBWL Quiz</button>
+  </div>
+
+  <div class="view active" id="view-module">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="view" id="view-day">
+    <div id="dayplan"></div>
+  </div>
+
+  <div class="view" id="view-quiz">
+    <div class="quiz-tabs" id="quizTabs"></div>
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+    <div id="quizPanel"></div>
+  </div>
+
+  <button class="reset-btn" id="reset">Fortschritt zurücksetzen</button>
+</div>
+
+<script>
+const STORAGE_KEY = 'uni-dashboard-progress';
+const NOTES_KEY = 'uni-dashboard-notes';
+
+const SUPABASE_URL = 'https://lusgeshniirqehnfytnl.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_PxTl1rdS-GVDLxp5NYQ1og_qun86eXD';
+const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+let notes = {};
+
+async function loadNotes() {
+  // Erst lokalen Cache laden, damit sofort etwas angezeigt wird
+  try {
+    const raw = localStorage.getItem(NOTES_KEY);
+    notes = raw ? JSON.parse(raw) : {};
+  } catch (e) { notes = {}; }
+
+  if (!sb) return;
+  try {
+    const { data, error } = await sb.from('app_data').select('value').eq('key', 'notes').single();
+    if (error) throw error;
+    if (data && data.value) {
+      notes = data.value;
+      try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); } catch (e) {}
+    }
+  } catch (e) {
+    console.error('Cloud-Notizen laden fehlgeschlagen, nutze lokalen Stand', e);
+  }
+}
+
+async function saveNotes() {
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); }
+  catch (e) { console.error('Lokal speichern fehlgeschlagen', e); }
+
+  if (!sb) return;
+  try {
+    const { error } = await sb.from('app_data')
+      .update({ value: notes, updated_at: new Date().toISOString() })
+      .eq('key', 'notes');
+    if (error) throw error;
+  } catch (e) {
+    console.error('Cloud-Notizen speichern fehlgeschlagen', e);
+  }
+}
+
+
+const DAYPLAN = [
+  { title: 'Woche 1 – Fokus Werkstoffkunde', days: [
+    { date: '22.07', label: 'Mi 22.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+    ]},
+    { date: '23.07', label: 'Do 23.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur SS23 (Aufgabe 1–3)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+    ]},
+    { date: '24.07', label: 'Fr 24.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur SS23 (Aufgabe 4–6)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+    ]},
+    { date: '25.07', label: 'Sa 25.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur WS22/23 (Aufgabe 1–3)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '26.07', label: 'So 26.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur WS22/23 (Aufgabe 4–6)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '27.07', label: 'Mo 27.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur SS22 (Aufgabe 1–3)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '28.07', label: 'Di 28.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur SS22 (Aufgabe 4–6)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '29.07', label: 'Mi 29.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur WS21/22 (Aufgabe 1–3)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '30.07', label: 'Do 30.07', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur WS21/22 (Aufgabe 4–6)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'Zusammenfassung Kap. 1–4 lesen (Unternehmerisch Denken, Rechnungswesen, Investment, Finanzierung)' },
+      { mod: 'EBWL', text: 'KI-Übungsmodule (BWL-Justus / Chat-BWL) zu Kap. 1–4' },
+    ]},
+  ]},
+  { title: 'Woche 2 – Fokus VWL', days: [
+    { date: '31.07', label: 'Fr 31.07', tasks: [
+      { mod: 'VWL', text: 'Übung 1–5' },
+      { mod: 'EBWL', text: 'Zusammenfassung Kap. 1–4 lesen (Unternehmerisch Denken, Rechnungswesen, Investment, Finanzierung)' },
+      { mod: 'Werkstoffkunde', text: 'Altklausur SS21 (Aufgabe 1–3)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer: Teil A (Kap. 1–4) im Quiz-Tab üben' },
+    ]},
+    { date: '01.08', label: 'Sa 01.08', tasks: [
+      { mod: 'VWL', text: 'Übung 6–10' },
+      { mod: 'EBWL', text: 'Zusammenfassung Kap. 5–8 lesen (Strategie, Produktion, Marketing, Innovation)' },
+      { mod: 'Werkstoffkunde', text: 'Altklausur SS21 (Aufgabe 4–6)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer: Teil B (Kap. 5–8) im Quiz-Tab üben' },
+    ]},
+    { date: '02.08', label: 'So 02.08', tasks: [
+      { mod: 'VWL', text: 'Altklausur 1–2' },
+      { mod: 'EBWL', text: 'Zusammenfassung Kap. 9–12 lesen (Management, Organisation, Controlling, Leadership)' },
+      { mod: 'Werkstoffkunde', text: 'Altklausur unter Zeitdruck wiederholen (1)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer: Teil C (Kap. 9–12) im Quiz-Tab üben' },
+    ]},
+    { date: '03.08', label: 'Mo 03.08', tasks: [
+      { mod: 'VWL', text: 'Schwachstellen nacharbeiten + Wiederholung' },
+      { mod: 'EBWL', text: 'SS23 PT1 ohne Lösung unter Zeitdruck (60 Min) bearbeiten' },
+      { mod: 'Werkstoffkunde', text: 'Altklausur unter Zeitdruck wiederholen (2)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'Mit Lösungsversion vergleichen & auswerten' },
+    ]},
+    { date: '04.08', label: 'Di 04.08', tasks: [
+      { mod: 'EBWL', text: 'SoSe25 1. Termin ohne Lösung unter Zeitdruck (60 Min) bearbeiten & mit Lösungen vergleichen' },
+      { mod: 'Werkstoffkunde', text: 'Altklausur unter Zeitdruck wiederholen (3)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'Schwachstellen mit EBWL-Quiz & Zusammenfassung nacharbeiten' },
+    ]},
+  ]},
+  { title: 'Woche 3 – Abschluss & Reise', days: [
+    { date: '05.08', label: 'Mi 05.08', exam: 'Klausur VWL', tasks: [
+      { mod: 'VWL', text: 'Morgens kurz auffrischen' },
+      { mod: 'VWL', text: 'Klausur schreiben' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'Zusammenfassung EBWL kurz querlesen' },
+    ]},
+    { date: '06.08', label: 'Do 06.08', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Altklausur unter Zeitdruck wiederholen (4), Puffer' },
+      { mod: 'EBWL', text: 'Beide Altklausuren unter Zeitdruck wiederholen — Fokus Rechenaufgaben' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer (alle 3 Teile) gezielt für verbliebene Schwachstellen wiederholen' },
+      { mod: 'EBWL', text: 'Zusammenfassung ein letztes Mal komplett durchlesen' },
+    ]},
+    { date: '07.08', label: 'Fr 07.08', travel: true, tasks: [
+      { mod: '', text: 'Reise – kein aktives Lernen (auch kein EBWL)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten (falls möglich)' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '08.08', label: 'Sa 08.08', travel: true, tasks: [
+      { mod: '', text: 'Reise – kein aktives Lernen (auch kein EBWL)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten (falls möglich)' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '09.08', label: 'So 09.08', travel: true, tasks: [
+      { mod: '', text: 'Reise – kein aktives Lernen (auch kein EBWL)' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten (falls möglich)' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '10.08', label: 'Mo 10.08', exam: 'Klausur EBWL', tasks: [
+      { mod: 'EBWL', text: 'Morgens Altklausuren & Zusammenfassung querlesen' },
+      { mod: 'EBWL', text: 'Klausur schreiben' },
+      { mod: 'Werkstoffkunde', text: 'Altklausur-Fehler wiederholen' },
+      { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten' },
+      { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+    ]},
+    { date: '11.08', label: 'Di 11.08', exam: 'Klausur Werkstoffkunde', tasks: [
+      { mod: 'Werkstoffkunde', text: 'Klausur schreiben' },
+    ]},
+  ]},
+];
+
+const MODULES = [
+  { id: 'vwl', name: 'VWL', date: '2026-08-05',
+    lernplan: [
+      { range: '31.07', desc: 'Übung 1–5 durchrechnen', ids: ['day-31.07-0'] },
+      { range: '01.08', desc: 'Übung 6–10 durchrechnen', ids: ['day-01.08-0'] },
+      { range: '02.08', desc: 'Altklausur 1–2', ids: ['day-02.08-0'] },
+      { range: '03.08', desc: 'Schwachstellen nacharbeiten + Wiederholung', ids: ['day-03.08-0'] },
+      { range: '05.08', desc: 'Klausur VWL', ids: ['day-05.08-0','day-05.08-1'] },
+    ],
+    altklausuren: [
+      { text: 'Altklausur 1', ids: ['vwl-ak-0'] },
+      { text: 'Altklausur 2', ids: ['vwl-ak-1'] },
+    ]},
+  { id: 'ebwl', name: 'EBWL', date: '2026-08-10',
+    lernplan: [
+      { range: '30.07', desc: 'Zusammenfassung Kap. 1–4 lesen', ids: ['day-30.07-3'] },
+      { range: '30.07', desc: 'KI-Übungsmodule zu Kap. 1–4', ids: ['day-30.07-4'] },
+      { range: '31.07', desc: 'Zusammenfassung Kap. 1–4 lesen', ids: ['day-31.07-1'] },
+      { range: '31.07', desc: 'EBWL-Klausurtrainer: Teil A üben', ids: ['day-31.07-5'] },
+      { range: '01.08', desc: 'Zusammenfassung Kap. 5–8 lesen', ids: ['day-01.08-1'] },
+      { range: '01.08', desc: 'EBWL-Klausurtrainer: Teil B üben', ids: ['day-01.08-5'] },
+      { range: '02.08', desc: 'Zusammenfassung Kap. 9–12 lesen', ids: ['day-02.08-1'] },
+      { range: '02.08', desc: 'EBWL-Klausurtrainer: Teil C üben', ids: ['day-02.08-5'] },
+      { range: '03.08', desc: 'SS23 PT1 ohne Lösung unter Zeitdruck (60 Min)', ids: ['day-03.08-1'] },
+      { range: '03.08', desc: 'Mit Lösungsversion vergleichen & auswerten', ids: ['day-03.08-5'] },
+      { range: '04.08', desc: 'SoSe25 1. Termin unter Zeitdruck bearbeiten & vergleichen', ids: ['day-04.08-0'] },
+      { range: '04.08', desc: 'Schwachstellen mit EBWL-Quiz & Zusammenfassung nacharbeiten', ids: ['day-04.08-4'] },
+      { range: '05.08', desc: 'Zusammenfassung EBWL kurz querlesen', ids: ['day-05.08-4'] },
+      { range: '06.08', desc: 'Beide Altklausuren unter Zeitdruck wiederholen — Fokus Rechenaufgaben', ids: ['day-06.08-1'] },
+      { range: '06.08', desc: 'EBWL-Klausurtrainer gezielt für verbliebene Schwachstellen wiederholen', ids: ['day-06.08-4'] },
+      { range: '06.08', desc: 'Zusammenfassung ein letztes Mal komplett durchlesen', ids: ['day-06.08-5'] },
+      { range: '10.08', desc: 'Klausur EBWL', ids: ['day-10.08-0','day-10.08-1'] },
+    ],
+    altklausuren: [
+      { text: 'SS23 PT1', ids: ['day-03.08-1','day-03.08-5'] },
+      { text: 'SoSe25 1. Termin', ids: ['day-04.08-0'] },
+    ]},
+  { id: 'werkstoffkunde', name: 'Werkstoffkunde 1', date: '2026-08-11',
+    lernplan: [
+      { range: '22.07', desc: 'Anki-Karteikarten', ids: ['day-22.07-0'] },
+      { range: '23.07', desc: 'Altklausur SS23 (Aufgabe 1–3)', ids: ['day-23.07-0'] },
+      { range: '23.07', desc: 'Anki-Karteikarten', ids: ['day-23.07-1'] },
+      { range: '24.07', desc: 'Altklausur SS23 (Aufgabe 4–6)', ids: ['day-24.07-0'] },
+      { range: '24.07', desc: 'Anki-Karteikarten', ids: ['day-24.07-1'] },
+      { range: '25.07', desc: 'Altklausur WS22/23 (Aufgabe 1–3)', ids: ['day-25.07-0'] },
+      { range: '25.07', desc: 'Anki-Karteikarten', ids: ['day-25.07-1'] },
+      { range: '25.07', desc: 'Zusammenfassung durchlesen', ids: ['day-25.07-2'] },
+      { range: '26.07', desc: 'Altklausur WS22/23 (Aufgabe 4–6)', ids: ['day-26.07-0'] },
+      { range: '26.07', desc: 'Anki-Karteikarten', ids: ['day-26.07-1'] },
+      { range: '26.07', desc: 'Zusammenfassung durchlesen', ids: ['day-26.07-2'] },
+      { range: '27.07', desc: 'Altklausur SS22 (Aufgabe 1–3)', ids: ['day-27.07-0'] },
+      { range: '27.07', desc: 'Anki-Karteikarten', ids: ['day-27.07-1'] },
+      { range: '27.07', desc: 'Zusammenfassung durchlesen', ids: ['day-27.07-2'] },
+      { range: '28.07', desc: 'Altklausur SS22 (Aufgabe 4–6)', ids: ['day-28.07-0'] },
+      { range: '28.07', desc: 'Anki-Karteikarten', ids: ['day-28.07-1'] },
+      { range: '28.07', desc: 'Zusammenfassung durchlesen', ids: ['day-28.07-2'] },
+      { range: '29.07', desc: 'Altklausur WS21/22 (Aufgabe 1–3)', ids: ['day-29.07-0'] },
+      { range: '29.07', desc: 'Anki-Karteikarten', ids: ['day-29.07-1'] },
+      { range: '29.07', desc: 'Zusammenfassung durchlesen', ids: ['day-29.07-2'] },
+      { range: '30.07', desc: 'Altklausur WS21/22 (Aufgabe 4–6)', ids: ['day-30.07-0'] },
+      { range: '30.07', desc: 'Anki-Karteikarten', ids: ['day-30.07-1'] },
+      { range: '30.07', desc: 'Zusammenfassung durchlesen', ids: ['day-30.07-2'] },
+      { range: '31.07', desc: 'Altklausur SS21 (Aufgabe 1–3)', ids: ['day-31.07-2'] },
+      { range: '31.07', desc: 'Anki-Karteikarten', ids: ['day-31.07-3'] },
+      { range: '31.07', desc: 'Zusammenfassung durchlesen', ids: ['day-31.07-4'] },
+      { range: '01.08', desc: 'Altklausur SS21 (Aufgabe 4–6)', ids: ['day-01.08-2'] },
+      { range: '01.08', desc: 'Anki-Karteikarten', ids: ['day-01.08-3'] },
+      { range: '01.08', desc: 'Zusammenfassung durchlesen', ids: ['day-01.08-4'] },
+      { range: '02.08', desc: 'Altklausur unter Zeitdruck wiederholen (1)', ids: ['day-02.08-2'] },
+      { range: '02.08', desc: 'Anki-Karteikarten', ids: ['day-02.08-3'] },
+      { range: '02.08', desc: 'Zusammenfassung durchlesen', ids: ['day-02.08-4'] },
+      { range: '03.08', desc: 'Altklausur unter Zeitdruck wiederholen (2)', ids: ['day-03.08-2'] },
+      { range: '03.08', desc: 'Anki-Karteikarten', ids: ['day-03.08-3'] },
+      { range: '03.08', desc: 'Zusammenfassung durchlesen', ids: ['day-03.08-4'] },
+      { range: '04.08', desc: 'Altklausur unter Zeitdruck wiederholen (3)', ids: ['day-04.08-1'] },
+      { range: '04.08', desc: 'Anki-Karteikarten', ids: ['day-04.08-2'] },
+      { range: '04.08', desc: 'Zusammenfassung durchlesen', ids: ['day-04.08-3'] },
+      { range: '05.08', desc: 'Anki-Karteikarten', ids: ['day-05.08-2'] },
+      { range: '05.08', desc: 'Zusammenfassung durchlesen', ids: ['day-05.08-3'] },
+      { range: '06.08', desc: 'Altklausur unter Zeitdruck wiederholen (4), Puffer', ids: ['day-06.08-0'] },
+      { range: '06.08', desc: 'Anki-Karteikarten', ids: ['day-06.08-2'] },
+      { range: '06.08', desc: 'Zusammenfassung durchlesen', ids: ['day-06.08-3'] },
+      { range: '07.08', desc: 'Anki-Karteikarten (falls möglich)', ids: ['day-07.08-1'] },
+      { range: '07.08', desc: 'Zusammenfassung durchlesen', ids: ['day-07.08-2'] },
+      { range: '08.08', desc: 'Anki-Karteikarten (falls möglich)', ids: ['day-08.08-1'] },
+      { range: '08.08', desc: 'Zusammenfassung durchlesen', ids: ['day-08.08-2'] },
+      { range: '09.08', desc: 'Anki-Karteikarten (falls möglich)', ids: ['day-09.08-1'] },
+      { range: '09.08', desc: 'Zusammenfassung durchlesen', ids: ['day-09.08-2'] },
+      { range: '10.08', desc: 'Altklausur-Fehler wiederholen', ids: ['day-10.08-2'] },
+      { range: '10.08', desc: 'Anki-Karteikarten', ids: ['day-10.08-3'] },
+      { range: '10.08', desc: 'Zusammenfassung durchlesen', ids: ['day-10.08-4'] },
+      { range: '11.08', desc: 'Klausur schreiben', ids: ['day-11.08-0'] },
+    ],
+    altklausuren: [
+      { text: 'SS23', ids: ['day-23.07-0','day-24.07-0'] },
+      { text: 'WS22/23', ids: ['day-25.07-0','day-26.07-0'] },
+      { text: 'SS22', ids: ['day-27.07-0','day-28.07-0'] },
+      { text: 'WS21/22', ids: ['day-29.07-0','day-30.07-0'] },
+      { text: 'SS21', ids: ['day-31.07-2','day-01.08-2'] },
+    ]},
+];
+
+let state = {};
+
+async function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    state = raw ? JSON.parse(raw) : {};
+  } catch (e) { state = {}; }
+
+  if (!sb) return;
+  try {
+    const { data, error } = await sb.from('app_data').select('value').eq('key', 'progress').single();
+    if (error) throw error;
+    if (data && data.value) {
+      state = data.value;
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+  } catch (e) {
+    console.error('Cloud-Fortschritt laden fehlgeschlagen, nutze lokalen Stand', e);
+  }
+}
+async function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch (e) { console.error('Lokal speichern fehlgeschlagen', e); }
+
+  if (!sb) return;
+  try {
+    const { error } = await sb.from('app_data')
+      .update({ value: state, updated_at: new Date().toISOString() })
+      .eq('key', 'progress');
+    if (error) throw error;
+  } catch (e) {
+    console.error('Cloud-Fortschritt speichern fehlgeschlagen', e);
+  }
+}
+
+function daysUntil(dateStr) {
+  const target = new Date(dateStr + 'T00:00:00');
+  const now = new Date();
+  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((target - nowMid) / 86400000);
+}
+
+function allIds(mod) {
+  const set = new Set();
+  mod.lernplan.forEach(block => block.ids.forEach(id => set.add(id)));
+  mod.altklausuren.forEach(item => item.ids.forEach(id => set.add(id)));
+  return [...set];
+}
+
+function planRow(mod, i, block) {
+  const on = block.ids.every(id => state[id]);
+  const doneCount = block.ids.filter(id => state[id]).length;
+  const desc = block.daily ? `${block.desc} (${doneCount}/${block.ids.length} Tage)` : block.desc;
+  return `<div class="plan-row" data-ids="${block.ids.join(',')}">
+    <div class="plan-num ${on ? 'on' : ''}">${on ? checkIcon() : (i+1)}</div>
+    <div class="plan-body">
+      <div class="plan-range">${block.range}</div>
+      <div class="plan-desc ${on ? 'done' : ''}">${desc}</div>
+    </div>
+  </div>`;
+}
+
+function ring(pct) {
+  const r = 22, c = 2*Math.PI*r;
+  const off = c - (pct/100)*c;
+  return `<div class="ring-wrap">
+    <svg width="54" height="54" viewBox="0 0 54 54">
+      <circle cx="27" cy="27" r="${r}" fill="none" stroke="#262a38" stroke-width="5"/>
+      <circle cx="27" cy="27" r="${r}" fill="none" stroke="var(--green)" stroke-width="5"
+        stroke-dasharray="${c}" stroke-dashoffset="${off}" stroke-linecap="round"/>
+    </svg>
+    <div class="ring-label">${pct}%</div>
+  </div>`;
+}
+
+function checkIcon() {
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="#0e1016" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+}
+
+function itemRow(item) {
+  const on = item.ids.every(id => state[id]);
+  return `<div class="item-row" data-ids="${item.ids.join(',')}">
+    <div class="check ${on ? 'on' : ''}">${on ? checkIcon() : ''}</div>
+    <span class="item-text ${on ? 'done' : ''}">${item.text}</span>
+  </div>`;
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  const sorted = [...MODULES].sort((a,b) => daysUntil(a.date) - daysUntil(b.date));
+
+  grid.innerHTML = sorted.map(mod => {
+    const ids = allIds(mod);
+    const done = ids.filter(id => state[id]).length;
+    const pct = ids.length ? Math.round(done/ids.length*100) : 0;
+    const days = daysUntil(mod.date);
+    const dateLabel = new Date(mod.date+'T00:00:00').toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'2-digit' });
+    const daysLabel = days < 0 ? 'vorbei' : (days === 0 ? 'heute' : 'noch ' + days + ' Tage');
+
+    return `
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">${mod.name}</div>
+          <div class="card-sub">${done} von ${ids.length} Punkten fertig</div>
+        </div>
+        ${ring(pct)}
+      </div>
+      <div class="badge">${dateLabel} · ${daysLabel}</div>
+
+      <div class="section-label">ALTKLAUSUREN</div>
+      ${mod.altklausuren.map(item => itemRow(item)).join('')}
+
+      <div class="divider"></div>
+      <div class="section-label">NICHT VERSTANDEN ODER WIEDERHOLEN</div>
+      <div class="notes-list">
+        ${(notes[mod.id] && notes[mod.id].length) ? notes[mod.id].map((n, ni) => `
+          <div class="note-row">
+            <span class="note-text">${n}</span>
+            <button class="note-del" data-mod="${mod.id}" data-idx="${ni}" aria-label="Eintrag entfernen">×</button>
+          </div>
+        `).join('') : '<div class="note-empty">Noch nichts eingetragen</div>'}
+      </div>
+      <div class="note-add">
+        <input class="note-input" type="text" placeholder="z. B. Fehlerfortpflanzung nicht verstanden" data-mod-input="${mod.id}" />
+        <button class="note-add-btn" data-mod-add="${mod.id}">Hinzufügen</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.item-row, .plan-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const ids = row.dataset.ids.split(',');
+      const allOn = ids.every(id => state[id]);
+      ids.forEach(id => { state[id] = !allOn; });
+      saveState();
+      render();
+      renderDay();
+    });
+  });
+
+  grid.querySelectorAll('.note-del').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modId = btn.dataset.mod;
+      const idx = parseInt(btn.dataset.idx, 10);
+      notes[modId].splice(idx, 1);
+      saveNotes();
+      render();
+    });
+  });
+
+  grid.querySelectorAll('.note-add-btn').forEach(btn => {
+    btn.addEventListener('click', () => addNote(btn.dataset.modAdd));
+  });
+  grid.querySelectorAll('.note-input').forEach(input => {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addNote(input.dataset.modInput);
+    });
+  });
+}
+
+function addNote(modId) {
+  const input = document.querySelector(`.note-input[data-mod-input="${modId}"]`);
+  const text = input.value.trim();
+  if (!text) return;
+  if (!notes[modId]) notes[modId] = [];
+  notes[modId].push(text);
+  saveNotes();
+  render();
+}
+
+function renderDay() {
+  const el = document.getElementById('dayplan');
+  el.innerHTML = DAYPLAN.map(week => `
+    <div class="week-title">${week.title}</div>
+    ${week.days.map(day => `
+      <div class="day-card ${day.exam ? 'exam' : ''} ${day.travel ? 'travel' : ''}">
+        <div class="day-card-header">
+          <span class="day-card-date">${day.label}</span>
+          ${day.exam ? `<span class="exam-badge">${day.exam}</span>` : ''}
+          ${day.travel ? `<span class="travel-badge">Reisetag</span>` : ''}
+        </div>
+        ${day.tasks.map((t, ti) => {
+          const id = 'day-' + day.date + '-' + ti;
+          const on = !!state[id];
+          return `<div class="task-row" data-id="${id}">
+            <div class="check ${on ? 'on' : ''}">${on ? checkIcon() : ''}</div>
+            <span>${t.mod ? `<span class="task-mod">${t.mod}:</span>` : ''}<span class="item-text ${on ? 'done' : ''}">${t.text}</span></span>
+          </div>`;
+        }).join('')}
+      </div>
+    `).join('')}
+  `).join('');
+
+  el.querySelectorAll('.task-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = row.dataset.id;
+      state[id] = !state[id];
+      saveState();
+      renderDay();
+      render();
+    });
+  });
+}
+
+function showView(viewId, tabId) {
+  ['view-module', 'view-day', 'view-quiz'].forEach(id => {
+    document.getElementById(id).classList.toggle('active', id === viewId);
+  });
+  ['tab-module', 'tab-day', 'tab-quiz'].forEach(id => {
+    document.getElementById(id).classList.toggle('active', id === tabId);
+  });
+}
+document.getElementById('tab-module').addEventListener('click', () => showView('view-module', 'tab-module'));
+document.getElementById('tab-day').addEventListener('click', () => showView('view-day', 'tab-day'));
+document.getElementById('tab-quiz').addEventListener('click', () => { showView('view-quiz', 'tab-quiz'); renderQuiz(); });
+
+const quizToday = new Date(); quizToday.setHours(0,0,0,0);
+const quizUnlockB = new Date(2026,7,1);
+const quizUnlockC = new Date(2026,7,2);
+
+const QUIZ_DATA = {
+  A: { label: 'Teil A', sub: 'Kapitel 1–4 · gelesen', unlockDate: null, questions: [
+    { q: "Was unterscheidet die BWL laut Vorlesung von Naturwissenschaft bzw. Ingenieurwesen?",
+      opts: ["Der Fokus liegt auf dem irrationalen Menschen; mit offenen, komplexen Modellen wird versucht, das Entscheidungsrisiko zu minimieren.","BWL verwendet ausschließlich geschlossene, deterministische Modelle ohne Unsicherheit.","BWL betrachtet nur gesamtwirtschaftliche Zusammenhänge.","BWL hat keinen Bezug zur Entscheidungsfindung."],
+      correct: 0, explain: "BWL fokussiert auf den irrationalen Menschen und nutzt offene, komplexe Modelle zur Risikominimierung bei Entscheidungen." },
+    { q: "Zu welcher Wissenschaftskategorie gehört die BWL laut Vorlesung?",
+      opts: ["Sozialwissenschaften","Naturwissenschaften","Formalwissenschaften","Ingenieurwissenschaften"],
+      correct: 0, explain: "BWL ist wie VWL eine Wirtschaftswissenschaft und gehört damit den Sozialwissenschaften (Geistes- und Realwissenschaften) an." },
+    { q: "Was sind die 4 Ziele der Betriebswirtschaft?",
+      opts: ["Erklärung, Bewertung, Prognose und Gestaltung wirtschaftlicher Tätigkeiten","Nur Gewinnmaximierung um jeden Preis","Nur Kostenminimierung im Einkauf","Nur Steigerung des Marktanteils"],
+      correct: 0, explain: "Die BWL verfolgt 4 Ziele: Erklärung, Bewertung, Prognose und Gestaltung der wirtschaftlichen Tätigkeiten." },
+    { q: "Wie lautet die Definition von 'Wirtschaft' laut Vorlesung?",
+      opts: ["Zusammenfassung aller menschlichen Aktivitäten zur Reduzierung des Warenmangels unter Berücksichtigung wirtschaftlicher Prinzipien","Die Gesamtheit aller Aktiengesellschaften eines Landes","Ein System zur Maximierung des Staatshaushalts","Die Lehre von Angebot und Nachfrage allein"],
+      correct: 0, explain: "Wirtschaft = Zusammenfassung aller menschlichen Aktivitäten zur Reduzierung des Warenmangels unter Berücksichtigung wirtschaftlicher Prinzipien." },
+    { q: "Wie berechnet man Opportunitätskosten?",
+      opts: ["Nutzen der gewählten Option − Nutzen der lukrativsten Option","Nutzen der lukrativsten Option − Nutzen der gewählten Option","Summe aller in der Vergangenheit angefallenen, nicht reversiblen Kosten","Fixkosten ÷ Marge pro Einheit"],
+      correct: 1, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option." },
+    { q: "Was sind Sunk Costs?",
+      opts: ["Hypothetische, zukünftig anfallende Kosten","Kostenpositionen, die in der Vergangenheit angefallen und nicht mehr reversibel sind","Identisch mit Opportunitätskosten","Nur in der Außenfinanzierung relevant"],
+      correct: 1, explain: "Sunk Costs sind retrospektive, tatsächlich angefallene und nicht mehr beeinflussbare Kosten der Vergangenheit." },
+    { q: "Was besagt das 2. Gossensche Gesetz?",
+      opts: ["Die Grenzkosten der Anschaffung sind über alle verfügbaren Waren und Dienstleistungen hinweg gleich.","Der Gesamtnutzen steigt immer weiter, ohne einen Sättigungspunkt zu erreichen.","Der Grenznutzen steigt mit zunehmender Warenmenge.","Nutzen und Kosten stehen in keinem Zusammenhang."],
+      correct: 0, explain: "2. Gossensches Gesetz: Die Grenzkosten der Anschaffung sind über alle verfügbaren Waren und Dienstleistungen hinweg gleich." },
+    { q: "Wie verhalten sich inferiore Güter bei einer Budgeterhöhung?",
+      opts: ["Der Verbrauch sinkt, z.B. weniger öffentliche Verkehrsmittel, da man auf Taxen umsteigt.","Der Verbrauch steigt immer proportional zum Budget.","Der Verbrauch bleibt exakt konstant.","Das gilt ausschließlich für Luxusgüter."],
+      correct: 0, explain: "Inferiore Güter: Eine Budgeterhöhung bedeutet weniger Verbrauch, z.B. öffentliche Verkehrsmittel zugunsten von Taxis." },
+    { q: "Was passiert mit komplementären Gütern, wenn der Preis von Gut X steigt?",
+      opts: ["Es wird weniger von Gut Y verbraucht, z.B. weniger Kraftstoff bei steigenden Autopreisen.","Es wird mehr von Gut Y verbraucht.","Gut Y wird automatisch zum Substitut.","Es entsteht kein Effekt auf Gut Y."],
+      correct: 0, explain: "Komplementäre Güter: Preisanstieg von Gut X (z.B. Autos) führt zu weniger Verbrauch von Gut Y (z.B. Kraftstoff)." },
+    { q: "Wer entdeckte die Vorteile der Arbeitsteilung und um das Wievielfache stieg dadurch laut Vorlesung die Leistung?",
+      opts: ["Adam Smith, 240x","Henry Ford, 100x","Frederick Taylor, 50x","Adam Smith, 10x"],
+      correct: 0, explain: "Adam Smith (1723–1790) entdeckte die Vorteile der Arbeitsteilung mit einer Leistungssteigerung von 240x." },
+    { q: "Welche Unternehmen müssen laut Vorlesung einen Lagebericht erstellen?",
+      opts: ["Mittlere und große Aktiengesellschaften","Kleine Aktiengesellschaften","Alle Handelsunternehmen","Nur börsennotierte Konzerne"],
+      correct: 0, explain: "Nur mittlere und große Aktiengesellschaften müssen einen Lagebericht erstellen; Bilanz und GuV müssen alle veröffentlichen." },
+    { q: "Wodurch unterscheiden sich HGB und IFRS?",
+      opts: ["HGB verfolgt Gläubigerschutz (Vorsicht), IFRS verfolgt Anlegerschutz (faire Sichtweise für Investoren).","HGB gilt international, IFRS nur national.","Beide verfolgen exakt dieselben Ziele.","IFRS regelt ausschließlich die Gewinn- und Verlustrechnung."],
+      correct: 0, explain: "HGB (national): Kapitalerhaltung, Vorsichtsprinzip → Gläubigerschutz. IFRS (international): faire Information für Investoren → Anlegerschutz." },
+    { q: "Wonach ist die Aktivseite einer Bilanz sortiert?",
+      opts: ["Nach Liquidierbarkeit, von langsam zu schnell","Nach Fälligkeit, von langfristig zu kurzfristig","Alphabetisch nach Kontenname","Nach Buchwert, absteigend"],
+      correct: 0, explain: "Aktiva werden nach Liquidierbarkeit sortiert (langsam → schnell), Passiva nach Fälligkeit (langfristig → kurzfristig)." },
+    { q: "Was passiert bei einer Bilanzverlängerung?",
+      opts: ["Beide Seiten der Bilanz vergrößern sich.","Beide Seiten der Bilanz verkleinern sich.","Nur die Aktivseite verändert sich.","Nur die Passivseite verändert sich."],
+      correct: 0, explain: "Bilanzverlängerung: Beide Seiten der Bilanz vergrößern sich (Gegenstück: Bilanzverkürzung – beide Seiten verkleinern sich)." },
+    { q: "Was zeichnet fixe Kosten aus?",
+      opts: ["Sie verändern sich nicht mit der produzierten Menge.","Sie steigen linear mit der Produktionsmenge.","Sie sind identisch mit variablen Kosten.","Sie entstehen nur durch Abschreibungen."],
+      correct: 0, explain: "Fixe Kosten fallen unabhängig von der Geschäftstätigkeit / produzierten Menge an." },
+    { q: "Welche Aussage zu statischen Bewertungsmethoden einer Investition ist korrekt?",
+      opts: ["Sie vernachlässigen den Zeitwert des Geldes.","Sie berücksichtigen den Zeitwert des Geldes vollständig.","Sie sind komplexer in der Datenerfassung als dynamische Methoden.","Sie basieren auf der Kapitalwertmethode."],
+      correct: 0, explain: "Statische Methoden (Kosten-, Gewinnvergleich, Amortisation) vernachlässigen den Zeitwert des Geldes – im Gegensatz zu dynamischen Methoden." },
+    { q: "Welche 2 Arten der Außenfinanzierung gibt es?",
+      opts: ["Eigenkapitalfinanzierung und Fremdfinanzierung","Innenfinanzierung und Rückstellungen","Abschreibung und Anlagenverkauf","Selbstfinanzierung und Kreditfinanzierung"],
+      correct: 0, explain: "Außenfinanzierung gliedert sich in Eigenkapitalfinanzierung (z.B. Aktien) und Fremdfinanzierung (z.B. Kredite)." },
+    { q: "Welche 3 Arten der Innenfinanzierung gibt es?",
+      opts: ["Eigenfinanzierung (Selbstfinanzierung), gemischte Finanzierung (Vermögensumstrukturierung) und Fremdfinanzierung (Rückstellungen)","Eigenkapital, Fremdkapital und Mezzanine-Kapital","Aktien, Anleihen und Bankkredite","Nur die Selbstfinanzierung zählt zur Innenfinanzierung"],
+      correct: 0, explain: "Innenfinanzierung: Eigenfinanzierung (z.B. Gewinnüberschüsse), gemischte Finanzierung (z.B. Abschreibungen, Anlagenverkauf), Fremdfinanzierung (Rückstellungen)." },
+    { q: "Welche Finanzierungsmöglichkeiten passen zur Inbetriebnahme-Phase (Cashflow < 0) im Unternehmenslebenszyklus?",
+      opts: ["Angel-Round und Private Equity","IPO und Anleihen","Kapitalerhöhung und Convertibles","Bankkredit und High Yield"],
+      correct: 0, explain: "Inbetriebnahme (CF < 0): Angel-Round, Private Equity. Wachstum (CF ≈ 0): High Yield, Bankkredit. Laufzeit (CF > 0): IPO, Kapitalerhöhung, Convertibles, Anleihen." },
+    { q: "Rechenaufgabe: Anschaffung 30.000 €, fixe + variable Kosten 5.000 €/Jahr, Umsatzerlöse 20.000 €/Jahr, Zins 10 %, t = 2 Jahre. Wie hoch ist der Kapitalwert?",
+      opts: ["−3.967 €","5.033 €","−16.364 €","30.000 €"], correct: 0,
+      explain: "Gewinn/Jahr = 15.000 €. Kapitalwert = −30.000 + 15.000/1,1 + 15.000/1,1² = −30.000 + 13.636 + 12.397 ≈ −3.967 €.", calc: true, genKey: 'kapitalwert' },
+    { q: "Rechenaufgabe: Umsatzkosten pro Tag 600 €, Umsatz pro Tag 700 €, durchschn. Vorräte 36.000 €, durchschn. Forderungen 21.000 €, durchschn. Verbindlichkeiten 18.000 €. Wie hoch ist der Cash Conversion Cycle (CCC) in Tagen?",
+      opts: ["60 Tage","90 Tage","30 Tage","120 Tage"], correct: 0,
+      explain: "DIO = 36.000/600 = 60. DSO = 21.000/700 = 30. DPO = 18.000/600 = 30. CCC = DIO + DSO − DPO = 60 + 30 − 30 = 60 Tage.", calc: true, genKey: 'ccc' },
+    { q: "Welche der folgenden Methoden zählen zu den dynamischen Bewertungsmethoden einer Investition? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Kapitalwertmethode","Annuitätenmethode","Interner Zinssatz","Kostenvergleich","Amortisationszeitraum"],
+      multi: true, correct: [0,1,2],
+      explain: "Dynamische Bewertungsmethoden: Kapitalwertmethode, Annuitätenmethode, Interner Zinssatz. Kostenvergleich und Amortisationszeitraum gehören zu den statischen Methoden." },
+    { q: "Welche Aussagen zu Zinssätzen und Risiko sind laut Vorlesung wahr? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Je höher das Risiko, desto höher der Zinssatz","Der risikofreie Zinssatz ist mit einem hohen Risiko verbunden","Eine Veränderung des Risikos führt zu einer Veränderung der Risikoprämie","Das Kreditrisiko des Kreditnehmers ist Teil des risikofreien Zinssatzes"],
+      multi: true, correct: [0,2],
+      explain: "Höheres Risiko bedeutet höheren Zinssatz und höhere Risikoprämie. Der risikofreie Zinssatz ist per Definition ohne Kreditrisiko – das Kreditrisiko ist ein separater Bestandteil des Gesamtzinssatzes." },
+    { q: "Ein neuer Gesellschafter bringt 850.000 € eigenes Kapital ins Unternehmen ein und wird dafür an dem Unternehmen beteiligt. Um welche Finanzierungsarten handelt es sich? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Außenfinanzierung","Eigenfinanzierung","Innenfinanzierung","Fremdfinanzierung","Kreditfinanzierung"],
+      multi: true, correct: [0,1],
+      explain: "Das Kapital kommt von außen (Außenfinanzierung) und in Form von Eigenkapital (Eigenfinanzierung) – nicht von innen und nicht als Kredit." },
+    { q: "Wie lautet die Formel für die Opportunitätskosten?",
+      opts: ["Nutzen der lukrativsten Option − Nutzen der gewählten Option","Nutzen der gewählten Option − Nutzen der lukrativsten Option","Nutzen der gewählten Option + Nutzen der lukrativsten Option","Kosten der gewählten Option ÷ Nutzen der lukrativsten Option"],
+      correct: 0, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
+    { q: "Wie lautet die Formel der Annuitätenmethode zur Berechnung der jährlichen Rente a?",
+      opts: ["a = Kapitalwert · [(1+i)ⁿ · i] ÷ [(1+i)ⁿ − 1]","a = Kapitalwert ÷ [(1+i)ⁿ · i]","a = Kapitalwert · [(1+i)ⁿ − 1] ÷ [(1+i)ⁿ · i]","a = Kapitalwert + (1+i)ⁿ · i"],
+      correct: 0, explain: "Annuitätenmethode: a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
+    { q: "Wodurch ist der interne Zinssatz einer Investition definiert?",
+      opts: ["Der Zinssatz i, bei dem der Kapitalwert genau 0 beträgt (Kapitalwert = 0 = Σ Cashflow_t/(1+i)ᵗ)","Der durchschnittliche Marktzins über die gesamte Laufzeit","Der Zinssatz, der die höchste Annuität erzeugt","Der risikofreie Zinssatz zuzüglich eines pauschalen Risikoaufschlags"],
+      correct: 0, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." }
+  ]},
+  B: { label: 'Teil B', sub: 'Kapitel 5–8 · morgen', unlockDate: quizUnlockB, questions: [
+    { q: "Was zeigen Porter's Five Forces?",
+      opts: ["Die Wettbewerbsfähigkeit einer Branche anhand von 5 Kräften (Lieferanten, neue Marktteilnehmer, Käufer, Substitute, Branchenkonkurrenz)","Nur die Verhandlungsmacht der Kunden","Die vier Stufen der Strategiepyramide","Die Bewertungsmethode von Investitionen"],
+      correct: 0, explain: "Porter's Five Forces bewerten die Wettbewerbsintensität einer Branche anhand von fünf Kräften." },
+    { q: "Welche Beschreibung passt zum BCG-Feld 'Star' (hohe Marktwachstumsrate, hoher Marktanteil)?",
+      opts: ["Einheiten mit hohem Marktanteil in einer schnell wachsenden Branche","Einheiten 'Break-Even' mit niedrigem Marktanteil in reifer Branche","Einheiten mit hohem Marktanteil in langsam wachsender Branche","Einheiten mit geringem Marktanteil in wachstumsstarken Märkten"],
+      correct: 0, explain: "'Stars' haben hohen Marktanteil bei hohem Marktwachstum. Option 3 beschreibt 'Cash Cows', Option 4 'Fragezeichen'." },
+    { q: "Wofür steht das 'I' in den VRIN-Merkmalen?",
+      opts: ["Inimitable – schwer zu kopieren","Innovative","Integriert","Intern"],
+      correct: 0, explain: "VRIN = Valuable, Rare, Inimitable, Non-substitutable." },
+    { q: "Was beschreibt die limitationale Produktionsfunktion?",
+      opts: ["Eine feste Beziehung zwischen zwei Inputfaktoren","Beliebige Substituierbarkeit der Inputfaktoren","Nur ein Inputfaktor wird benötigt","Der Output bleibt konstant, während der Input beliebig variiert"],
+      correct: 0, explain: "Limitational = feste Beziehung von Inputfaktoren. Substitutional = Input ändert sich, Output bleibt gleich." },
+    { q: "Wie lautet die richtige Reihenfolge der Strategiepyramide von oben nach unten?",
+      opts: ["Werte → Vision → Mission → Strategie → Plan","Plan → Strategie → Mission → Vision → Werte","Vision → Werte → Plan → Mission → Strategie","Strategie → Plan → Werte → Vision → Mission"],
+      correct: 0, explain: "Strategiepyramide von oben nach unten: Werte ('Woran wir glauben') → Vision → Mission → Strategie → Plan ('Was zu tun ist')." },
+    { q: "Was unterscheidet 'Strategie' von 'Planung'?",
+      opts: ["Strategie beantwortet 'Wohin soll es gehen und wie kommt man dort hin?'; Planung beantwortet 'Was ist zu tun und wie funktioniert das?'","Beide Begriffe sind identisch und austauschbar.","Planung ist immer langfristiger als Strategie.","Strategie befasst sich nur mit der Vergangenheit."],
+      correct: 0, explain: "Strategie = langfristiger Aktionsplan ('Wohin, wie'). Planung = Operationalisierung der Strategie ('Was, wie funktioniert das')." },
+    { q: "Aus welchen 4 Elementen besteht eine SWOT-Analyse?",
+      opts: ["Stärken, Schwächen, Möglichkeiten und Bedrohungen","Strategie, Wachstum, Organisation und Technologie","Struktur, Wettbewerb, Organisation und Team","Segmentierung, Werbung, Optimierung und Timing"],
+      correct: 0, explain: "SWOT = Strengths (Stärken), Weaknesses (Schwächen), Opportunities (Möglichkeiten), Threats (Bedrohungen)." },
+    { q: "Welche Porter-Wettbewerbsstrategie verfolgt Tata mit dem 'preiswertesten Auto der Welt'?",
+      opts: ["Gesamtkostenführerschaft","Differenzierung","Fokus","Diversifikation"],
+      correct: 0, explain: "Beispiele: Differenzierung – Volvo (sicheres Auto); Gesamtkostenführerschaft – Tata (preiswertestes Auto); Fokus – Porsche (Premium-Nische)." },
+    { q: "Welches Feld der BCG-Matrix beschreibt einen geringen Marktanteil in einem stark wachsenden Markt?",
+      opts: ["Investition (Fragezeichen)","Unterstützung (Star)","Ernte (Cash Cow)","De-Investition (Dog)"],
+      correct: 0, explain: "Investition/Fragezeichen: geringer Marktanteil, hohes Marktwachstum – Ausgangspunkt der meisten Unternehmen, Potenzial zum Star." },
+    { q: "Welche Aktivitäten zählen laut Porter's Wertschöpfungskette zu den primären Aktivitäten?",
+      opts: ["Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service","Unternehmensführung & HR, Buchhaltung, Beschaffung","Nur Marketing und Vertrieb","Investitionen und Finanzierung sowie Technologieentwicklung"],
+      correct: 0, explain: "Primäre Aktivitäten: Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service. Sekundär: Unternehmensführung/HR, Buchhaltung, Investitionen/Finanzierung, Beschaffung, Technologieentwicklung." },
+    { q: "Auf welchen 3 Grundsätzen basieren Dynamic Capabilities?",
+      opts: ["Eine Chance erkennen, diese Chance nutzen, Prozesse umstellen","Ressourcen einkaufen, Personal einstellen, Kosten senken","Markt analysieren, Preis festlegen, Produkt launchen","Planen, Ausführen, Kontrollieren"],
+      correct: 0, explain: "Dynamic Capabilities basieren darauf, eine Chance zu erkennen, sie zu nutzen und die Prozesse entsprechend umzustellen." },
+    { q: "Wozu dient die ABC-Analyse im Einkauf?",
+      opts: ["Priorisierung von Gütern nach Wertanteil (häufig 20% der Menge = 80% des Werts) zur Unterstützung der Make-or-Buy-Entscheidung","Bestimmung der optimalen Bestellmenge über die Andlerformel","Messung der Kundenbindungsrate","Klassifizierung von Führungsstilen"],
+      correct: 0, explain: "ABC-Analyse: 20% der Menge machen oft 80% des Werts aus → Grundlage für priorisierte Kontrolle und Make-or-Buy-Entscheidungen." },
+    { q: "Was zeichnet das Kanban-System aus?",
+      opts: ["Ein Holprinzip durch nachgelagerte Prozesse, das Durchlaufzeiten um bis zu 70% reduzieren kann","Ein Bringprinzip, bei dem der Lieferant unabhängig vom Bedarf produziert","Eine Methode zur Berechnung des Kapitalwerts","Ein Instrument der externen Rechnungslegung"],
+      correct: 0, explain: "Kanban: Holprinzip durch nachgelagerte Prozesse, reduziert Durchlaufzeiten (~70%), begrenzt Überbestände. Voraussetzung: geringe Nachfrageschwankungen, effizientes Transportsystem." },
+    { q: "Was ist das Ziel des Poka-Yoke-Prinzips?",
+      opts: ["Prozesse so gestalten, dass Fehler gar nicht erst passieren können","Fehler nachträglich möglichst schnell zu korrigieren","Lagerbestände zu maximieren","Die Kundenbindung durch Rabatte zu erhöhen"],
+      correct: 0, explain: "Poka-Yoke macht Prozesse 'fehlersicher', sodass Fehler von vornherein ausgeschlossen werden." },
+    { q: "Rechenaufgabe (Andlerformel): Jährlicher Bedarf 80.000 Stück, Bestellkosten 12 €, Einkaufspreis 0,08 €, Lagerkostensatz 0,1. Wie hoch ist die optimale Bestellmenge?",
+      opts: ["15.492 Stück","8.944 Stück","24.000 Stück","4.899 Stück"], correct: 0,
+      explain: "q = √(2·80.000·12 / (0,08·0,1)) = √(1.920.000 / 0,008) = √240.000.000 ≈ 15.492.", calc: true, genKey: 'andler' },
+    { q: "Was zeichnet Single Sourcing im Vergleich zu Multiple Sourcing aus?",
+      opts: ["Ein Lieferant, geringere Koordination, aber höhere Abhängigkeit","Immer geringere Kosten ganz ohne Nachteile","Multiple Sourcing erhöht immer die Abhängigkeit von einem Lieferanten","Single und Multiple Sourcing sind identisch mit Just-in-Time"],
+      correct: 0, explain: "Single Sourcing: ein Lieferant → Fixkostendegression und Vertrauen, aber hohe Abhängigkeit und Lieferrisiko." },
+    { q: "Welche 4 Gestaltungsprinzipien unterstützen die Umsetzung von Industrie 4.0?",
+      opts: ["Interoperabilität, Informationstransparenz, Technische Unterstützung, Dezentrale Entscheidungen","Kostenführerschaft, Differenzierung, Fokus, Diversifikation","Planung, Ausführung, Kontrolle, Anpassung","Beschaffung, Produktion, Marketing, Vertrieb"],
+      correct: 0, explain: "Industrie 4.0: Interoperabilität (Vernetzung), Informationstransparenz (virtuelle Kopie), Technische Unterstützung (Assistenzsysteme), Dezentrale Entscheidungen (Cyber Physical Systems)." },
+    { q: "In welcher Marktsituation ist Marketing laut Vorlesung besonders sinnvoll?",
+      opts: ["Bei einem Käufermarkt, wenn das Angebot größer als die Nachfrage ist","Bei einem Verkäufermarkt, wenn die Nachfrage größer als das Angebot ist","Nur bei einem Monopol","Nur in der Wachstumsphase eines Produkts"],
+      correct: 0, explain: "Marketing ist besonders relevant im Käufermarkt (Angebot > Nachfrage), da um die Nachfrage geworben werden muss." },
+    { q: "Was ist der Customer Lifetime Value (CLV)?",
+      opts: ["Der monetäre Wert einer Kundenbeziehung über die gesamte Beziehungsdauer","Der einmalige Umsatz eines Kunden im ersten Kaufjahr","Die Anzahl der Käufe pro Kunde und Jahr","Der durchschnittliche Rabatt, den ein Kunde erhält"],
+      correct: 0, explain: "CLV = Summe der diskontierten zukünftigen Zahlungen eines Kunden, gewichtet mit der Kundenbindungsrate." },
+    { q: "Durch welche 2 psychologischen Phänomene lassen sich Kunden laut Vorlesung beeinflussen?",
+      opts: ["Signaling-Theorie und Anchoring-Theorie","SWOT-Theorie und BCG-Theorie","Gossen'sche Gesetze","VRIN-Theorie"],
+      correct: 0, explain: "Signaling-Theorie: von einem Signal (z.B. Preis) wird auf die Gesamtheit geschlossen. Anchoring-Theorie: zu starke Verankerung an der ersten Information." },
+    { q: "Was sind die 4P's des Marketing-Mix?",
+      opts: ["Produkt, Preis, Promotion, Place","Produkt, Personal, Prozess, Preis","Planung, Preis, Prognose, Place","Produkt, Preis, Partnerschaft, Prozess"],
+      correct: 0, explain: "Die 4P's des Marketing-Mix sind Produkt, Preis, Promotion und Place." },
+    { q: "Welche Innovationsart zeichnet sich durch 'Problem gut definiert, Gebiet jedoch nicht' aus?",
+      opts: ["Bahnbrechende Innovation","Grundlagenforschung","Nachhaltige Innovation","Disruptive Innovation"],
+      correct: 0, explain: "Bahnbrechende Innovation: gut definiertes Problem, aber unklares Gebiet (z.B. Einzelgänger, offene Innovation)." },
+    { q: "Welche Punkte gehören zu Porter's Five Forces? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Verhandlungsmacht der Lieferanten","Bedrohung durch neue Marktteilnehmer","Verhandlungsmacht der Käufer","Bedrohung durch Substitute","Branchenkonkurrenz","Kapitalumschlag"],
+      multi: true, correct: [0,1,2,3,4],
+      explain: "Porter's Five Forces: Verhandlungsmacht der Lieferanten, Bedrohung durch neue Marktteilnehmer, Verhandlungsmacht der Käufer, Bedrohung durch Substitute, Branchenkonkurrenz. Kapitalumschlag gehört zur DuPont-Analyse (Teil C)." },
+    { q: "Welche Vorteile bietet Multiple Sourcing gegenüber Single Sourcing? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Reduzierung von Abhängigkeiten","Nutzung günstiger Marktpreise durch Wettbewerb","Sicherheit bei Lieferproblemen","Fixkostendegression durch große Bestellmengen","Wenig Koordinations- und Kontrollaufwand"],
+      multi: true, correct: [0,1,2],
+      explain: "Multiple Sourcing: Reduzierung von Abhängigkeiten, Nutzung günstiger Marktpreise (Wettbewerb), Sicherheit bei Lieferproblemen. Fixkostendegression und wenig Koordinationsaufwand sind dagegen Vorteile von Single Sourcing." },
+    { q: "Wie lautet die Formel für den Customer Lifetime Value (CLV)?",
+      opts: ["CLV = Σ [(rt − ct) ÷ (1+i)ᵗ] · Dt","CLV = Σ [(rt + ct) ÷ (1+i)ᵗ] · Dt","CLV = Σ (rt − ct) · (1+i)ᵗ · Dt","CLV = (rt − ct) ÷ Dt"],
+      correct: 0, explain: "CLV = Σ [(rt−ct)/(1+i)ᵗ]·Dt, mit rt = erwartete Umsätze, ct = erwartete Kosten, Dt = Kundenbindungsrate, i = Diskontierungssatz der Periode t." },
+    { q: "Welche Variablen gehen in die Andlerformel zur Berechnung der optimalen Bestellmenge q ein? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Gesamtbedarf der Periode (m)","Variable Kosten je Bestellung (kB)","Einkaufspreis der Ware (w)","Lagerungskostensatz (i)","Fixe Vertriebskosten"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Andlerformel: q = √(2·m·kB / (w·i)). Fixe Vertriebskosten sind kein Bestandteil der Formel." }
+  ]},
+  C: { label: 'Teil C', sub: 'Kapitel 9–12 · Sonntag', unlockDate: quizUnlockC, questions: [
+    { q: "Wie unterscheiden sich Management und Leadership in der Dimension 'Risiko und Vertrauen'?",
+      opts: ["Leadership: Vertrauen in Teammitglieder; Management: kein Vertrauen, Aufrechterhaltung von Autorität","Beide setzen ausschließlich auf Kontrolle und Befehl","Management vertraut den Teammitgliedern uneingeschränkt","Leadership fokussiert nur auf Zeitmanagement"],
+      correct: 0, explain: "Management: Befehl & Kontrolle, kein Vertrauen. Leadership: Vertrauen in Teammitglieder." },
+    { q: "Welche Organisationsform zeichnet sich durch 'zentralen Aufbau, geringe Verbindung zwischen den Einheiten' aus?",
+      opts: ["Funktionale Organisation","Divisionale Organisation","Matrix Organisation","Reine Projektorganisation"],
+      correct: 0, explain: "Funktionale Organisation: zentraler Aufbau nach Aufgaben gegliedert, geringe Verbindung zwischen Einheiten." },
+    { q: "Woraus setzt sich der ROE laut DuPont-Analyse zusammen?",
+      opts: ["Gewinnmarge × Kapitalumschlag × Eigenkapital-Multiplikator","Umsatz × Kosten ÷ Eigenkapital","Fixkosten ÷ Marge pro Einheit","Cashflow ÷ Diskontierungssatz"],
+      correct: 0, explain: "ROE = Gewinnmarge · Kapitalumschlag · EK-Multiplikator." },
+    { q: "Was zeichnet integrierte KPIs (Beispiel Balanced Scorecard) aus?",
+      opts: ["Ein ganzheitliches Controlling- und Managementsystem mit einheitlichem Kontrollrahmen","Nur die Bewertung einzelner Kostenstellen","Ausschließlich finanzielle Kennzahlen ohne weitere Perspektiven","Eine kurzfristige Break-Even-Analyse einzelner Produkte"],
+      correct: 0, explain: "Integrierte KPIs (z.B. Balanced Scorecard) bieten ein ganzheitliches, einheitliches Controlling-System für alle Perspektiven." },
+    { q: "Wie lautet die Definition von 'Management' laut Vorlesung?",
+      opts: ["Organisation und Koordination der Geschäftsaktivitäten zur Erreichung vordefinierter Ziele","Ausschließlich die Motivation von Mitarbeitern durch Visionen","Die Erstellung von Jahresberichten","Die Bewertung von Investitionsalternativen"],
+      correct: 0, explain: "Management = Organisation und Koordination der Geschäftsaktivitäten zur Erreichung vordefinierter Ziele; Entscheidung über den Aufbau des Unternehmens." },
+    { q: "Welche 3 Fehler machen Menschen häufig, wenn sie über Management und Leadership sprechen?",
+      opts: ["Begriffe werden synonym verwendet; Leadership wird nur mit der Hierarchiespitze assoziiert; Leadership wird auf Charisma reduziert","Management wird immer als wichtiger angesehen als Leadership","Leadership wird ausschließlich mit Kontrolle gleichgesetzt","Management und Leadership werden nie verwechselt"],
+      correct: 0, explain: "Häufige Fehler: Management und Leadership synonym verwenden, Leadership nur auf die Hierarchiespitze beziehen, Leadership auf Charisma reduzieren." },
+    { q: "Auf welchen 6 Komponenten basiert das Entrepreneurial Mindset?",
+      opts: ["Unternehmerische Persönlichkeit, Geschäftsidee & Potentialbewertung, Prozessmanagement, Team-/Netzwerkaufbau, Lean-Start-Up-Ansatz, Überwindung kritischer Hindernisse","Nur Kapitalbeschaffung und Marketing","Nur Buchhaltung und Controlling","Strategie, Struktur, Systeme, Skills, Style, Staff (7-S-Modell)"],
+      correct: 0, explain: "Die 6 Komponenten: unternehmerische Persönlichkeit entwickeln, Geschäftsidee bewerten, Prozessmanagement, Team/Netzwerk aufbauen, Lean-Start-Up-Ansatz, kritische Hindernisse überwinden." },
+    { q: "Was unterscheidet erfahrene Unternehmer von Nichtunternehmern bei der Entscheidungsfindung?",
+      opts: ["Erfahrene Unternehmer definieren zuerst die vorhandenen Ressourcen und leiten daraus Entscheidungen sowie das bestmögliche Ergebnis ab.","Nichtunternehmer definieren nie klare Ziele.","Erfahrene Unternehmer ignorieren vorhandene Ressourcen völlig.","Beide Gruppen gehen exakt gleich vor."],
+      correct: 0, explain: "Erfahrene Unternehmer: Ressourcen definieren → Entscheidungen auf Basis von Ressourcen → bestmögliches Ergebnis. Nichtunternehmer: Ziele definieren → Entscheidungen auf Basis von Zielen → Ressourcen definieren." },
+    { q: "Was zeigt das disruptive Innovationsmodell?",
+      opts: ["Geschäftsmodelle etablierter Unternehmen werden durch disruptive Innovationen in Frage gestellt.","Etablierte Unternehmen sind vor Innovation komplett geschützt.","Disruptive Innovation betrifft nur Startups, nie Großunternehmen.","Es beschreibt ausschließlich die Kapitalwertmethode."],
+      correct: 0, explain: "Disruptive Innovationen stellen die bestehenden Geschäftsmodelle etablierter Unternehmen infrage, oft ausgehend vom unteren Marktende." },
+    { q: "Welche 4 Risiken/Herausforderungen prägen das Unternehmertum laut Vorlesung?",
+      opts: ["Fehlende Ressourcen, keine etablierte Marke/Kundenstamm, keine Risikodiversifikation, hohe Abhängigkeit von den Fähigkeiten des Gründers","Zu viel Kapital, zu große Teams, zu stabile Prozesse, zu hohe Markenbekanntheit","Nur steuerliche Risiken","Nur Wettbewerbsrisiken durch Großunternehmen"],
+      correct: 0, explain: "4 Risiken: fehlende Ressourcen, keine etablierte Marke/Kundenstamm, keine Risikodiversifikation (volle Konzentration auf ein Angebot), Abhängigkeit von den Fähigkeiten des Gründers." },
+    { q: "In welche 3 Dimensionen gliedert sich die Organisationsstruktur eines Unternehmens?",
+      opts: ["Prozessdimension (Planung/Controlling), Strukturelle Dimension (Organisation/Disposition), Persönliche Dimension (Vorgesetzter/Mitarbeiter)","Finanzdimension, Marketingdimension, Produktionsdimension","Nur die strukturelle Dimension ist relevant","Zeitdimension, Kostendimension, Qualitätsdimension"],
+      correct: 0, explain: "3 Dimensionen: Prozessdimension (Planung, Controlling), Strukturelle Dimension (Organisation, Disposition), Persönliche Dimension (Vorgesetzter, Mitarbeiter)." },
+    { q: "Was sind die 4 Charakterisierungsmerkmale eines Projekts?",
+      opts: ["Zeitachse, Ressourcenknappheit, (unabhängiges) Zielsystem, projektspezifische Organisation","Budget, Team, Software, Kunde","Strategie, Struktur, Kultur, Führung","Planung, Kontrolle, Reporting, Audit"],
+      correct: 0, explain: "Ein Projekt zeichnet sich aus durch Zeitachse, Ressourcenknappheit, ein eigenes Zielsystem und ggf. eine projektspezifische Organisation." },
+    { q: "Wie läuft der kybernetische Kontrollzyklus ab?",
+      opts: ["Planung → Ausführung → Kontrolle (und zurück zur Planung)","Kontrolle → Planung → Ausführung → Ende","Ausführung → Kontrolle → Ende, keine Rückkopplung","Planung → Kontrolle → Ausführung → Ende"],
+      correct: 0, explain: "Der kybernetische Kontrollzyklus stellt sicher, dass Pläne umgesetzt werden: Planung → Ausführung → Kontrolle → erneute Planung." },
+    { q: "Rechenaufgabe: Fixkosten 120.000 €, Verkaufspreis 15 €/Stück, variable Kosten 9 €/Stück. Wie hoch ist der Break-Even-Point in Stück?",
+      opts: ["20.000 Stück","13.333 Stück","8.000 Stück","120.000 Stück"], correct: 0,
+      explain: "BEP = Fixkosten / (Preis − variable Kosten) = 120.000 / (15 − 9) = 20.000 Stück.", calc: true, genKey: 'breakeven' },
+    { q: "Welche 4 Arten von KPIs unterscheidet man laut Vorlesung?",
+      opts: ["Selektive, Fokussierte, Balanced und Integrierte KPIs","Interne, Externe, Finanzielle und Operative KPIs","Kurzfristige, Mittelfristige, Langfristige und Strategische KPIs","Qualitative, Quantitative, Absolute und Relative KPIs"],
+      correct: 0, explain: "4 KPI-Arten: Selektive KPIs (z.B. Break-Even), Fokussierte KPIs (z.B. DuPont), Balanced KPIs (z.B. Lean Controlling), Integrierte KPIs (z.B. Balanced Scorecard)." },
+    { q: "Welche 4 Perspektiven umfasst die Balanced Scorecard?",
+      opts: ["Finanzielle Perspektive, Business-Perspektive, Kundenperspektive, Innovations- und Lernperspektive","Marketing-, Produktions-, Finanz- und HR-Perspektive","Nur die finanzielle und die Kundenperspektive","Strategie-, Struktur-, System- und Personalperspektive"],
+      correct: 0, explain: "Die Balanced Scorecard verbindet 4 Perspektiven: Finanzen, Business, Kunden sowie Innovation & Lernen." },
+    { q: "Was besagt der Effectuation-Ansatz?",
+      opts: ["Der strategische Fokus liegt auf vorhandenen Ressourcen und Kontrolle statt auf Zielen und Vorhersage ('Was ist im Kühlschrank?' statt 'Was steht im Kochbuch?')","Ziele werden immer zuerst definiert und dann strikt verfolgt.","Er beschreibt ausschließlich die Kapitalwertmethode.","Er ist identisch mit dem Stage-Gate-Modell."],
+      correct: 0, explain: "Effectuation: Fokus auf vorhandene Ressourcen und Kontrolle statt auf Vorhersage von Zielen – 'Wir müssen nicht vorhersagen, was wir beeinflussen können'." },
+    { q: "Welches Bedürfnis nach Maslow steht hinter der Sorge eines Mitarbeiters um seinen Arbeitsplatz?",
+      opts: ["Sicherheitsbedürfnis","Bedürfnis nach Selbstverwirklichung","Bedürfnis nach Zugehörigkeit","Physiologisches Bedürfnis"],
+      correct: 0, explain: "Sorge um den Arbeitsplatz spricht das Sicherheitsbedürfnis an – Manager sollten klares, konstruktives Feedback geben." },
+    { q: "Welcher Führungsstil 'fordert sofortige Konformität' und eignet sich am besten im Krisenmodus?",
+      opts: ["Zwangsstil","Demokratischer Stil","Coaching-Stil","Affiliativer Stil"],
+      correct: 0, explain: "Der Zwangsstil ('Tu, was ich dir sage') ist effizient in Krisen, hat aber insgesamt eine negative Klimawirkung." },
+    { q: "Welche der folgenden gehört NICHT zu den 5 Komponenten der emotionalen Intelligenz bei der Arbeit?",
+      opts: ["Kreativität","Selbsterkenntnis","Selbstregulierung","Motivation","Empathie","Soziale Kompetenz"],
+      correct: 0, explain: "Die 5 Komponenten sind Selbsterkenntnis, Selbstregulierung, Motivation, Empathie und soziale Kompetenz – Kreativität gehört nicht dazu." },
+    { q: "Was unterscheidet Outsourcing von Offshoring?",
+      opts: ["Outsourcing = Verlagerung an Drittunternehmen; Offshoring = Verlagerung an räumlich entfernte Standorte","Beide Begriffe sind identisch","Offshoring bezieht sich nur auf interne Leistungserbringung","Outsourcing findet nur im Inland statt"],
+      correct: 0, explain: "Outsourcing bezieht sich auf Drittunternehmen, Offshoring auf die räumliche Distanz des Leistungsortes – beides kann kombiniert auftreten." },
+    { q: "Welche Elemente gehören zu den 4 Perspektiven der Balanced Scorecard? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Finanzielle Perspektive","Kundenperspektive","Business-Perspektive","Innovations- und Lernperspektive","Wettbewerbsperspektive"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Die Balanced Scorecard umfasst die finanzielle Perspektive, die Kundenperspektive, die Business-Perspektive sowie die Innovations- und Lernperspektive. Eine separate 'Wettbewerbsperspektive' gibt es nicht." },
+    { q: "Welche der folgenden Aussagen zu Führung (Leadership) treffen laut Vorlesung zu? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Führung ist ein Prozess des sozialen Einflusses.","Führung beinhaltet ein klares Ziel oder beabsichtigtes Ergebnis.","Als Führungspersönlichkeit werden bestimmte Titel und Persönlichkeitsmerkmale benötigt.","Führung entsteht immer durch Autorität oder Macht."],
+      multi: true, correct: [0,1],
+      explain: "Führung ist ein Prozess des sozialen Einflusses mit einem klaren Ziel. Sie erfordert keine bestimmten Titel/Persönlichkeitsmerkmale und entsteht nicht zwangsläufig durch Autorität oder Macht." },
+    { q: "Welche Verhältnisse entsprechen den 3 Komponenten der DuPont-Formel (ROE = Gewinnmarge · Kapitalumschlag · EK-Multiplikator)? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Gewinnmarge = Nettogewinn ÷ Umsatz","Kapitalumschlag = Umsatz ÷ durchschn. Gesamtvermögen","EK-Multiplikator = durchschn. Gesamtvermögen ÷ durchschn. Eigenkapital","Gewinnmarge = Umsatz ÷ Nettogewinn","Kapitalumschlag = durchschn. Eigenkapital ÷ Umsatz"],
+      multi: true, correct: [0,1,2],
+      explain: "ROE = (Nettogewinn/Umsatz) · (Umsatz/durchschn. Gesamtvermögen) · (durchschn. Gesamtvermögen/durchschn. EK) = Nettogewinn/durchschn. EK." }
+  ]}
+};
+
+const quizVariantFrom = new Date(2026,7,3);
+const quizVariantMode = quizToday >= quizVariantFrom;
+
+function quizRandInt(min, max, step) {
+  step = step || 1;
+  const n = Math.floor(Math.random() * ((max - min) / step + 1));
+  return min + n * step;
+}
+function quizShuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function quizDe(n) { return Math.round(n).toLocaleString('de-DE'); }
+function quizMakeDistinct(correctVal, rawDistractors, gap) {
+  const used = [correctVal];
+  const result = [];
+  rawDistractors.forEach(raw => {
+    let v = Math.round(raw);
+    let guard = 0;
+    while (used.indexOf(v) !== -1) {
+      guard++;
+      const step = gap * Math.ceil(guard / 2);
+      v = Math.round(raw) + (guard % 2 === 0 ? -step : step);
+      if (guard > 30) { v = correctVal + Math.round((Math.random() * 20 - 10) * gap); }
+    }
+    used.push(v);
+    result.push(v);
+  });
+  return result;
+}
+function quizBuildOptions(correctVal, distractors, suffix) {
+  const values = quizShuffle([correctVal, ...distractors]);
+  const opts = values.map(v => (v < 0 ? '−' : '') + quizDe(Math.abs(v)) + suffix);
+  const correct = values.indexOf(correctVal);
+  return { opts, correct };
+}
+
+const QUIZ_CALC_GENERATORS = {
+  kapitalwert: function () {
+    const invest = quizRandInt(20000, 45000, 5000);
+    const kosten = quizRandInt(3000, 8000, 500);
+    const umsatz = quizRandInt(15000, 32000, 1000);
+    const zinsPct = quizRandInt(5, 15, 1);
+    const t = quizRandInt(2, 4, 1);
+    const i = zinsPct / 100;
+    const gewinn = umsatz - kosten;
+    let npv = -invest;
+    for (let k = 1; k <= t; k++) npv += gewinn / Math.pow(1 + i, k);
+    const correctVal = Math.round(npv);
+    const rawDistractors = [
+      gewinn * t - invest,
+      -invest + gewinn / (1 + i),
+      invest - gewinn * t
+    ];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 350);
+    const built = quizBuildOptions(correctVal, distractors, ' €');
+    return {
+      q: `Rechenaufgabe: Anschaffung ${quizDe(invest)} €, fixe + variable Kosten ${quizDe(kosten)} €/Jahr, Umsatzerlöse ${quizDe(umsatz)} €/Jahr, Zins ${zinsPct} %, t = ${t} Jahre. Wie hoch ist der Kapitalwert?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `Gewinn/Jahr = ${quizDe(gewinn)} €. Kapitalwert = −${quizDe(invest)} + Summe Gewinn/(1+${i.toString().replace('.', ',')})^t über ${t} Jahre ≈ ${quizDe(correctVal)} €.`
+    };
+  },
+  ccc: function () {
+    const ukTag = quizRandInt(400, 800, 50);
+    const uTag = quizRandInt(ukTag + 50, 900, 50);
+    const vorraete = quizRandInt(20000, 50000, 1000);
+    const forderungen = quizRandInt(10000, 30000, 1000);
+    const verbindlichkeiten = quizRandInt(10000, 30000, 1000);
+    const dio = vorraete / ukTag;
+    const dso = forderungen / uTag;
+    const dpo = verbindlichkeiten / ukTag;
+    const correctVal = Math.round(dio + dso - dpo);
+    const rawDistractors = [dio + dso + dpo, dio - dso + dpo, dio + dpo];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 8);
+    const built = quizBuildOptions(correctVal, distractors, ' Tage');
+    return {
+      q: `Rechenaufgabe: Umsatzkosten pro Tag ${quizDe(ukTag)} €, Umsatz pro Tag ${quizDe(uTag)} €, durchschn. Vorräte ${quizDe(vorraete)} €, durchschn. Forderungen ${quizDe(forderungen)} €, durchschn. Verbindlichkeiten ${quizDe(verbindlichkeiten)} €. Wie hoch ist der Cash Conversion Cycle (CCC) in Tagen?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `DIO = ${quizDe(vorraete)}/${quizDe(ukTag)} ≈ ${Math.round(dio)}. DSO = ${quizDe(forderungen)}/${quizDe(uTag)} ≈ ${Math.round(dso)}. DPO = ${quizDe(verbindlichkeiten)}/${quizDe(ukTag)} ≈ ${Math.round(dpo)}. CCC = DIO + DSO − DPO ≈ ${quizDe(correctVal)} Tage.`
+    };
+  },
+  andler: function () {
+    const m = quizRandInt(50000, 150000, 10000);
+    const kB = quizRandInt(8, 20, 1);
+    const w = quizRandInt(5, 50, 5) / 100;
+    const iSatz = quizRandInt(5, 20, 1) / 100;
+    const q = Math.sqrt(2 * m * kB / (w * iSatz));
+    const correctVal = Math.round(q);
+    const rawDistractors = [
+      Math.sqrt(m * kB / (w * iSatz)),
+      Math.sqrt(2 * m * kB / w),
+      q * 1.5
+    ];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 200);
+    const built = quizBuildOptions(correctVal, distractors, ' Stück');
+    return {
+      q: `Rechenaufgabe (Andlerformel): Jährlicher Bedarf ${quizDe(m)} Stück, Bestellkosten ${kB} €, Einkaufspreis ${w.toFixed(2).replace('.', ',')} €, Lagerkostensatz ${iSatz.toFixed(2).replace('.', ',')}. Wie hoch ist die optimale Bestellmenge?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `q = √(2·${quizDe(m)}·${kB} / (${w.toFixed(2).replace('.', ',')}·${iSatz.toFixed(2).replace('.', ',')})) ≈ ${quizDe(correctVal)} Stück.`
+    };
+  },
+  breakeven: function () {
+    const fix = quizRandInt(80000, 200000, 10000);
+    const preis = quizRandInt(10, 25, 1);
+    const varK = quizRandInt(Math.round(preis * 0.3), Math.round(preis * 0.7), 1);
+    const margin = preis - varK;
+    const correctVal = Math.round(fix / margin);
+    const rawDistractors = [fix / preis, fix / varK, fix * margin / 1000];
+    const distractors = quizMakeDistinct(correctVal, rawDistractors, 400);
+    const built = quizBuildOptions(correctVal, distractors, ' Stück');
+    return {
+      q: `Rechenaufgabe: Fixkosten ${quizDe(fix)} €, Verkaufspreis ${preis} €/Stück, variable Kosten ${varK} €/Stück. Wie hoch ist der Break-Even-Point in Stück?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `BEP = Fixkosten / (Preis − variable Kosten) = ${quizDe(fix)} / (${preis} − ${varK}) ≈ ${quizDe(correctVal)} Stück.`
+    };
+  }
+};
+
+function quizShuffleOptions(item) {
+  const idxs = quizShuffle(item.opts.map((_, i) => i));
+  const newCorrect = item.multi
+    ? item.correct.map(oldIdx => idxs.indexOf(oldIdx))
+    : idxs.indexOf(item.correct);
+  return {
+    q: item.q,
+    opts: idxs.map(i => item.opts[i]),
+    correct: newCorrect,
+    explain: item.explain,
+    calc: item.calc,
+    multi: item.multi
+  };
+}
+
+function quizBuildVariant(key) {
+  const base = QUIZ_DATA[key].questions;
+  if (!quizVariantMode) return base.map(it => ({ ...it, opts: it.opts.slice(), correct: Array.isArray(it.correct) ? it.correct.slice() : it.correct }));
+  const list = base.map(it => it.genKey ? QUIZ_CALC_GENERATORS[it.genKey]() : quizShuffleOptions(it));
+  return quizShuffle(list);
+}
+
+const quizState = { active: 'A', answers: { A: {}, B: {}, C: {} }, variant: { A: null, B: null, C: null }, pending: { A: {}, B: {}, C: {} } };
+
+function quizEnsureVariant(key) {
+  if (!quizState.variant[key]) quizState.variant[key] = quizBuildVariant(key);
+  return quizState.variant[key];
+}
+
+function quizIsLocked(key) {
+  const d = QUIZ_DATA[key].unlockDate;
+  if (!d) return false;
+  return quizToday < d;
+}
+function quizFmtDate(d) {
+  return d.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
+}
+
+function renderQuizTabs() {
+  const el = document.getElementById('quizTabs');
+  el.innerHTML = '';
+  Object.keys(QUIZ_DATA).forEach(key => {
+    const locked = quizIsLocked(key);
+    const div = document.createElement('div');
+    div.className = 'quiz-tab' + (quizState.active === key ? ' active' : '') + (locked ? ' locked' : '');
+    const answered = Object.keys(quizState.answers[key]).length;
+    const total = QUIZ_DATA[key].questions.length;
+    const correctCount = Object.values(quizState.answers[key]).filter(v => v.correct).length;
+    div.innerHTML = `
+      <p class="quiz-tab-title">${locked ? '🔒 ' : ''}${QUIZ_DATA[key].label}</p>
+      <p class="quiz-tab-sub">${QUIZ_DATA[key].sub}</p>
+      ${locked ? `<p class="quiz-lock-note">ab ${quizFmtDate(QUIZ_DATA[key].unlockDate)}</p>` :
+        `<p class="quiz-tab-score">${answered > 0 ? correctCount + ' / ' + answered + ' richtig' : total + ' Fragen'}</p>`}
+    `;
+    if (!locked) div.onclick = () => { quizState.active = key; renderQuiz(); };
+    el.appendChild(div);
+  });
+}
+
+function renderQuizPanel() {
+  const panel = document.getElementById('quizPanel');
+  panel.innerHTML = '';
+  const key = quizState.active;
+  if (quizIsLocked(key)) {
+    panel.innerHTML = `<div class="quiz-summary">Dieser Teil ist laut deinem Lernplan erst ab ${quizFmtDate(QUIZ_DATA[key].unlockDate)} dran.</div>`;
+    document.getElementById('quizProgressFill').style.width = '0%';
+    return;
+  }
+  const qs = quizEnsureVariant(key);
+  qs.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    const isMulti = !!item.multi;
+    const answered = quizState.answers[key][qi];
+    const multiHint = isMulti ? '<span class="quiz-calc-badge">Mehrfachauswahl</span>' : '';
+    card.innerHTML = `
+      <div class="quiz-q-head"><div><span class="quiz-q-num">${qi + 1}.</span>${item.q}</div>${item.calc ? '<span class="quiz-calc-badge">Rechenaufgabe</span>' : multiHint}</div>
+      <div class="quiz-opts"></div>
+      <div class="quiz-explain ${answered !== undefined ? 'show' : ''}">${item.explain}</div>
+    `;
+    const optsWrap = card.querySelector('.quiz-opts');
+
+    if (!isMulti) {
+      item.opts.forEach((optText, oi) => {
+        const optDiv = document.createElement('div');
+        let cls = 'quiz-opt';
+        if (answered !== undefined) {
+          cls += ' disabled-look';
+          if (oi === item.correct) cls += ' correct';
+          else if (oi === answered.idx) cls += ' wrong';
+        }
+        optDiv.className = cls;
+        const letter = String.fromCharCode(65 + oi);
+        let dotContent = letter;
+        if (answered !== undefined && oi === item.correct) dotContent = '✓';
+        else if (answered !== undefined && oi === answered.idx) dotContent = '✗';
+        optDiv.innerHTML = `<span class="quiz-dot">${dotContent}</span><span>${optText}</span>`;
+        if (answered === undefined) {
+          optDiv.onclick = () => {
+            quizState.answers[key][qi] = { idx: oi, correct: oi === item.correct };
+            renderQuiz();
+          };
+        }
+        optsWrap.appendChild(optDiv);
+      });
+    } else {
+      if (!quizState.pending[key][qi]) quizState.pending[key][qi] = [];
+      const pending = quizState.pending[key][qi];
+      item.opts.forEach((optText, oi) => {
+        const optDiv = document.createElement('div');
+        let cls = 'quiz-opt';
+        const isSelected = pending.includes(oi);
+        const isCorrectOpt = item.correct.includes(oi);
+        if (answered !== undefined) {
+          cls += ' disabled-look';
+          const wasSelected = answered.selected.includes(oi);
+          if (isCorrectOpt && wasSelected) cls += ' correct';
+          else if (!isCorrectOpt && wasSelected) cls += ' wrong';
+          else if (isCorrectOpt && !wasSelected) cls += ' missed';
+        } else if (isSelected) {
+          cls += ' selected';
+        }
+        optDiv.className = cls;
+        let dotContent = '';
+        if (answered !== undefined) {
+          const wasSelected = answered.selected.includes(oi);
+          if (isCorrectOpt && wasSelected) dotContent = '✓';
+          else if (!isCorrectOpt && wasSelected) dotContent = '✗';
+          else if (isCorrectOpt && !wasSelected) dotContent = '!';
+        } else if (isSelected) {
+          dotContent = '✓';
+        }
+        optDiv.innerHTML = `<span class="quiz-dot quiz-dot-square">${dotContent}</span><span>${optText}</span>`;
+        if (answered === undefined) {
+          optDiv.onclick = () => {
+            const idx = pending.indexOf(oi);
+            if (idx === -1) pending.push(oi); else pending.splice(idx, 1);
+            renderQuiz();
+          };
+        }
+        optsWrap.appendChild(optDiv);
+      });
+      if (answered === undefined) {
+        const checkWrap = document.createElement('div');
+        checkWrap.className = 'quiz-check-wrap';
+        checkWrap.innerHTML = `<button class="quiz-check-btn" ${pending.length === 0 ? 'disabled' : ''}>Antwort prüfen</button>`;
+        checkWrap.querySelector('button').onclick = () => {
+          const selSorted = [...pending].sort((a,b)=>a-b);
+          const corrSorted = [...item.correct].sort((a,b)=>a-b);
+          const isRight = selSorted.length === corrSorted.length && selSorted.every((v,i) => v === corrSorted[i]);
+          quizState.answers[key][qi] = { selected: selSorted, correct: isRight };
+          delete quizState.pending[key][qi];
+          renderQuiz();
+        };
+        card.appendChild(checkWrap);
+      }
+    }
+    panel.appendChild(card);
+  });
+
+  const answeredCount = Object.keys(quizState.answers[key]).length;
+  const total = qs.length;
+  const correctCount = Object.values(quizState.answers[key]).filter(v => v.correct).length;
+  document.getElementById('quizProgressFill').style.width = (answeredCount / total * 100) + '%';
+
+  if (answeredCount === total) {
+    const summary = document.createElement('div');
+    summary.className = 'quiz-summary';
+    summary.innerHTML = `${QUIZ_DATA[key].label} abgeschlossen: <strong>${correctCount} / ${total}</strong> richtig.<br><span class="quiz-reset-btn" id="quizResetBtn">${quizVariantMode ? 'Neue Fragen üben' : 'Nochmal üben'}</span>`;
+    panel.appendChild(summary);
+    document.getElementById('quizResetBtn').onclick = () => {
+      quizState.answers[key] = {};
+      quizState.pending[key] = {};
+      if (quizVariantMode) quizState.variant[key] = quizBuildVariant(key);
+      renderQuiz();
+    };
+  }
+}
+
+function renderQuiz() {
+  renderQuizTabs();
+  renderQuizPanel();
+}
+
+document.getElementById('reset').addEventListener('click', () => {
+  if (confirm('Wirklich den gesamten Fortschritt zurücksetzen?')) {
+    state = {};
+    saveState();
+    render();
+    renderDay();
+  }
+});
+
+function renderNextExam() {
+  const el = document.getElementById('next-exam');
+  const upcoming = [...MODULES]
+    .map(m => ({ ...m, days: daysUntil(m.date) }))
+    .filter(m => m.days >= 0)
+    .sort((a, b) => a.days - b.days);
+
+  if (!upcoming.length) {
+    el.innerHTML = '<div class="next-exam-name">Alle Klausuren geschrieben 🎉</div>';
+    return;
+  }
+
+  const next = upcoming[0];
+  const dateLabel = new Date(next.date + 'T00:00:00').toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'2-digit' });
+  const countdown = next.days === 0 ? 'heute' : next.days;
+  const unit = next.days === 0 ? '' : (next.days === 1 ? 'Tag' : 'Tage');
+
+  el.innerHTML = `
+    <div>
+      <div class="next-exam-label">NÄCHSTE KLAUSUR</div>
+      <span class="next-exam-name">${next.name}</span>
+      <span class="next-exam-date">${dateLabel}</span>
+    </div>
+    <div class="next-exam-countdown">${countdown}${unit ? ` <span>${unit}</span>` : ''}</div>
+  `;
+}
+
+async function initApp() {
+  await Promise.all([loadState(), loadNotes()]);
+  render();
+  renderDay();
+  renderNextExam();
+}
+initApp();
+
+const SITE_PASSWORD = 'Gamechanger2.0';
+const UNLOCK_KEY = 'dashboard-unlocked';
+
+function unlockApp() {
+  document.getElementById('lock-screen').style.display = 'none';
+  document.getElementById('app').classList.add('unlocked');
+}
+
+function tryUnlock() {
+  const input = document.getElementById('lock-input');
+  const error = document.getElementById('lock-error');
+  if (input.value === SITE_PASSWORD) {
+    try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (e) {}
+    unlockApp();
+  } else {
+    error.textContent = 'Falsches Passwort';
+    input.value = '';
+    input.focus();
+  }
+}
+
+document.getElementById('lock-btn').addEventListener('click', tryUnlock);
+document.getElementById('lock-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') tryUnlock();
+});
+
+try {
+  if (localStorage.getItem(UNLOCK_KEY) === '1') {
+    unlockApp();
+  } else {
+    document.getElementById('lock-input').focus();
+  }
+} catch (e) {
+  document.getElementById('lock-input').focus();
+}
+</script>
+</body>
+</html>
