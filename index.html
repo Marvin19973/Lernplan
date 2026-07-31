@@ -1096,7 +1096,25 @@ const QUIZ_DATA = {
       correct: 0, explain: "Annuitätenmethode: a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
     { q: "Wodurch ist der interne Zinssatz einer Investition definiert?",
       opts: ["Der Zinssatz i, bei dem der Kapitalwert genau 0 beträgt (Kapitalwert = 0 = Σ Cashflow_t/(1+i)ᵗ)","Der durchschnittliche Marktzins über die gesamte Laufzeit","Der Zinssatz, der die höchste Annuität erzeugt","Der risikofreie Zinssatz zuzüglich eines pauschalen Risikoaufschlags"],
-      correct: 0, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." }
+      correct: 0, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." },
+    { q: "Wie lautet die mathematische Formel des 2. Gossenschen Gesetzes?",
+      opts: ["∂U/∂x_i ÷ p_i = ∂U/∂x_j ÷ p_j (Grenznutzen pro Geldeinheit ist für alle Güter gleich)","∂U/∂x_i · p_i = ∂U/∂x_j · p_j","∂U/∂x_i = ∂U/∂x_j (Grenznutzen aller Güter ist absolut gleich)","p_i ÷ ∂U/∂x_i = p_j · ∂U/∂x_j"],
+      correct: 0, explain: "2. Gossensches Gesetz: ∂U/∂x_i / p_i = ∂U/∂x_j / p_j — der Grenznutzen pro ausgegebener Geldeinheit ist im Nutzenoptimum für alle Güter gleich." },
+    { q: "Wie lautet die allgemeine Formel des Kapitalwerts (Kapitalwertmethode)?",
+      opts: ["Kapitalwert = −Anschaffungsauszahlung + Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Anschaffungsauszahlung − Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Σ Cashflow_t · (1+i)ᵗ − Anschaffungsauszahlung","Kapitalwert = Anschaffungsauszahlung ÷ Σ Cashflow_t"],
+      correct: 0, explain: "Kapitalwert = −I₀ + Σ CFₜ/(1+i)ᵗ, mit I₀ = Anschaffungsauszahlung, CFₜ = Cashflow der Periode t, i = Kalkulationszinssatz. Investition lohnt sich, wenn der Kapitalwert positiv ist." },
+    { q: "Wie lautet die Formel des Cash Conversion Cycle (CCC) inkl. der 3 Teilkennzahlen?",
+      opts: ["CCC = DIO + DSO − DPO, mit DIO = Ø Vorräte ÷ Umsatzkosten/Tag, DSO = Ø Forderungen ÷ Umsatz/Tag, DPO = Ø Verbindlichkeiten ÷ Umsatzkosten/Tag","CCC = DIO − DSO + DPO","CCC = DIO + DSO + DPO","CCC = (DIO + DSO) ÷ DPO"],
+      correct: 0, explain: "CCC = DIO + DSO − DPO. DIO (Days Inventory Outstanding) = Ø Vorräte / Umsatzkosten pro Tag. DSO (Days Sales Outstanding) = Ø Forderungen / Umsatz pro Tag. DPO (Days Payable Outstanding) = Ø Verbindlichkeiten / Umsatzkosten pro Tag." },
+    { q: "Wie lautet die Formel für DIO (Days Inventory Outstanding)?",
+      opts: ["DIO = Ø Vorräte ÷ Umsatzkosten pro Tag","DIO = Umsatzkosten pro Tag ÷ Ø Vorräte","DIO = Ø Vorräte ÷ Umsatz pro Tag","DIO = Ø Forderungen ÷ Umsatzkosten pro Tag"],
+      correct: 0, explain: "DIO (Days Inventory Outstanding) = durchschnittliche Vorräte ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage Ware im Lager liegt, bevor sie verkauft wird." },
+    { q: "Wie lautet die Formel für DSO (Days Sales Outstanding)?",
+      opts: ["DSO = Ø Forderungen ÷ Umsatz pro Tag","DSO = Umsatz pro Tag ÷ Ø Forderungen","DSO = Ø Forderungen ÷ Umsatzkosten pro Tag","DSO = Ø Verbindlichkeiten ÷ Umsatz pro Tag"],
+      correct: 0, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
+    { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
+      opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
+      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." }
   ]},
   B: { label: 'Teil B', sub: 'Kapitel 5–8 · morgen', unlockDate: quizUnlockB, questions: [
     { q: "Was zeigen Porter's Five Forces?",
@@ -1179,7 +1197,10 @@ const QUIZ_DATA = {
     { q: "Welche Variablen gehen in die Andlerformel zur Berechnung der optimalen Bestellmenge q ein? Wählen Sie alle zutreffenden Antworten aus.",
       opts: ["Gesamtbedarf der Periode (m)","Variable Kosten je Bestellung (kB)","Einkaufspreis der Ware (w)","Lagerungskostensatz (i)","Fixe Vertriebskosten"],
       multi: true, correct: [0,1,2,3],
-      explain: "Andlerformel: q = √(2·m·kB / (w·i)). Fixe Vertriebskosten sind kein Bestandteil der Formel." }
+      explain: "Andlerformel: q = √(2·m·kB / (w·i)). Fixe Vertriebskosten sind kein Bestandteil der Formel." },
+    { q: "Wie lautet die Andlerformel zur Berechnung der optimalen Bestellmenge q?",
+      opts: ["q = √(2·m·kB ÷ (w·i))","q = √(m·kB ÷ (2·w·i))","q = (2·m·kB) ÷ (w·i)","q = √(2·m·w ÷ (kB·i))"],
+      correct: 0, explain: "Andlerformel: q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." }
   ]},
   C: { label: 'Teil C', sub: 'Kapitel 9–12 · Sonntag', unlockDate: quizUnlockC, questions: [
     { q: "Wie unterscheiden sich Management und Leadership in der Dimension 'Risiko und Vertrauen'?",
@@ -1256,7 +1277,10 @@ const QUIZ_DATA = {
     { q: "Welche Verhältnisse entsprechen den 3 Komponenten der DuPont-Formel (ROE = Gewinnmarge · Kapitalumschlag · EK-Multiplikator)? Wählen Sie alle zutreffenden Antworten aus.",
       opts: ["Gewinnmarge = Nettogewinn ÷ Umsatz","Kapitalumschlag = Umsatz ÷ durchschn. Gesamtvermögen","EK-Multiplikator = durchschn. Gesamtvermögen ÷ durchschn. Eigenkapital","Gewinnmarge = Umsatz ÷ Nettogewinn","Kapitalumschlag = durchschn. Eigenkapital ÷ Umsatz"],
       multi: true, correct: [0,1,2],
-      explain: "ROE = (Nettogewinn/Umsatz) · (Umsatz/durchschn. Gesamtvermögen) · (durchschn. Gesamtvermögen/durchschn. EK) = Nettogewinn/durchschn. EK." }
+      explain: "ROE = (Nettogewinn/Umsatz) · (Umsatz/durchschn. Gesamtvermögen) · (durchschn. Gesamtvermögen/durchschn. EK) = Nettogewinn/durchschn. EK." },
+    { q: "Wie lautet die Formel des Break-Even-Points (BEP) in Stück?",
+      opts: ["BEP = Fixkosten ÷ (Verkaufspreis − variable Kosten pro Stück)","BEP = Fixkosten · (Verkaufspreis − variable Kosten pro Stück)","BEP = (Fixkosten + variable Kosten) ÷ Verkaufspreis","BEP = Verkaufspreis ÷ Fixkosten"],
+      correct: 0, explain: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." }
   ]}
 };
 
