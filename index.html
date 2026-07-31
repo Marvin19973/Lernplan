@@ -375,6 +375,27 @@
     border: 1px solid var(--card-border); background: var(--pill-bg); color: var(--text-primary); cursor: pointer; font-size: 13px;
   }
 
+  .flashcard-progress-text { text-align: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+  .flashcard-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
+  .flashcard {
+    width: 100%; max-width: 560px; min-height: 180px; background: var(--card);
+    border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-size: 16px; line-height: 1.5; color: var(--text-primary); cursor: pointer;
+  }
+  .flashcard-back { color: var(--text-secondary); }
+  .flashcard-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .flashcard-btn {
+    border: none; border-radius: 10px; padding: 10px 18px; font-size: 13px; font-weight: 500;
+    cursor: pointer; color: #fff;
+  }
+  .flashcard-btn.show { background: var(--accent); }
+  .flashcard-btn.again { background: #ef4444; }
+  .flashcard-btn.know { background: var(--green); }
+  .flashcard-btn.restart { background: var(--pill-bg); color: var(--text-primary); border: 1px solid var(--card-border); }
+  .flashcard-stats { text-align: center; font-size: 13px; color: var(--text-secondary); margin-top: 10px; }
+  .flashcard-hint { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+
   #lock-screen {
     position: fixed;
     inset: 0;
@@ -457,6 +478,7 @@
     <button class="tab-btn" id="tab-day">Tagesplan</button>
     <button class="tab-btn" id="tab-quiz">EBWL Quiz</button>
     <button class="tab-btn" id="tab-vwlquiz">VWL Quiz</button>
+    <button class="tab-btn" id="tab-wk1cards">WK1 Karteikarten</button>
   </div>
 
   <div class="view active" id="view-module">
@@ -477,6 +499,11 @@
     <div class="quiz-tabs" id="vwlQuizTabs"></div>
     <div class="quiz-progress"><div class="quiz-progress-fill" id="vwlQuizProgressFill"></div></div>
     <div id="vwlQuizPanel"></div>
+  </div>
+
+  <div class="view" id="view-wk1cards">
+    <div class="quiz-tabs" id="wk1Tabs"></div>
+    <div id="wk1Panel"></div>
   </div>
 
   <button class="reset-btn" id="reset">Fortschritt zurücksetzen</button>
@@ -967,10 +994,10 @@ function renderDay() {
 }
 
 function showView(viewId, tabId) {
-  ['view-module', 'view-day', 'view-quiz', 'view-vwlquiz'].forEach(id => {
+  ['view-module', 'view-day', 'view-quiz', 'view-vwlquiz', 'view-wk1cards'].forEach(id => {
     document.getElementById(id).classList.toggle('active', id === viewId);
   });
-  ['tab-module', 'tab-day', 'tab-quiz', 'tab-vwlquiz'].forEach(id => {
+  ['tab-module', 'tab-day', 'tab-quiz', 'tab-vwlquiz', 'tab-wk1cards'].forEach(id => {
     document.getElementById(id).classList.toggle('active', id === tabId);
   });
 }
@@ -978,6 +1005,7 @@ document.getElementById('tab-module').addEventListener('click', () => showView('
 document.getElementById('tab-day').addEventListener('click', () => showView('view-day', 'tab-day'));
 document.getElementById('tab-quiz').addEventListener('click', () => { showView('view-quiz', 'tab-quiz'); renderQuiz(); });
 document.getElementById('tab-vwlquiz').addEventListener('click', () => { showView('view-vwlquiz', 'tab-vwlquiz'); renderVwlQuiz(); });
+document.getElementById('tab-wk1cards').addEventListener('click', () => { showView('view-wk1cards', 'tab-wk1cards'); renderWk1(); });
 
 const quizToday = new Date(); quizToday.setHours(0,0,0,0);
 const quizUnlockB = new Date(2026,7,1);
@@ -1961,6 +1989,161 @@ function renderVwlQuizPanel() {
 function renderVwlQuiz() {
   renderVwlQuizTabs();
   renderVwlQuizPanel();
+}
+
+// ============================================================
+// WK1-Karteikarten (Kristallstrukturen & Rissfortschritt)
+// ============================================================
+
+const WK1_CARDS = {
+  kristall: { label: 'Kristallstrukturen', sub: 'KP, KRZ, KFZ, HEX', cards: [
+    { front: "KP (kubisch-primitiv): Wie viele Atome pro Elementarzelle?", back: "1 Atom (8 Eckatome × 1/8)" },
+    { front: "KRZ (kubisch-raumzentriert): Wie viele Atome pro Elementarzelle?", back: "2 Atome (8 Eckatome × 1/8 + 1 Atom im Zentrum)" },
+    { front: "KFZ (kubisch-flächenzentriert): Wie viele Atome pro Elementarzelle?", back: "4 Atome (8 Eckatome × 1/8 + 6 Flächenatome × 1/2)" },
+    { front: "HEX (hexagonal dichteste Packung): Wie viele Atome pro (hexagonaler) Elementarzelle?", back: "6 Atome (12 Eckatome × 1/6 + 2 Deck-/Bodenflächenatome × 1/2 + 3 Atome im Inneren)" },
+    { front: "KP: Koordinationszahl?", back: "6" },
+    { front: "KRZ: Koordinationszahl?", back: "8" },
+    { front: "KFZ: Koordinationszahl?", back: "12" },
+    { front: "HEX: Koordinationszahl?", back: "12" },
+    { front: "KP: Packungsdichte (Atomic Packing Factor)?", back: "π/6 ≈ 0,52 (52 %)" },
+    { front: "KRZ: Packungsdichte?", back: "√3·π/8 ≈ 0,68 (68 %)" },
+    { front: "KFZ: Packungsdichte?", back: "π/(3√2) ≈ 0,74 (74 %)" },
+    { front: "HEX: Packungsdichte bei idealem c/a-Verhältnis?", back: "≈ 0,74 (74 %) — genauso dicht gepackt wie KFZ" },
+    { front: "KP: Zusammenhang zwischen Gitterkonstante a und Atomradius r?", back: "a = 2r (Atome berühren sich entlang der Würfelkante)" },
+    { front: "KRZ: Zusammenhang zwischen a und r?", back: "a = 4r/√3 (Atome berühren sich entlang der Raumdiagonale: √3·a = 4r)" },
+    { front: "KFZ: Zusammenhang zwischen a und r?", back: "a = 4r/√2 = 2√2·r (Atome berühren sich entlang der Flächendiagonale: √2·a = 4r)" },
+    { front: "HEX: Zusammenhang zwischen a und r? Ideales c/a-Verhältnis?", back: "a = 2r; ideales c/a ≈ 1,633" },
+    { front: "Wie lautet die allgemeine Dichteformel für eine Kristallstruktur?", back: "ρ = (n·M) / (N_A·V_Zelle), mit n = Atome pro Zelle, M = Molmasse, N_A = Avogadro-Konstante, V_Zelle = Zellvolumen" },
+    { front: "Dichteformel (kubisches System) nach der Gitterkonstante a umgestellt — wie lautet sie?", back: "a = [ n·M / (N_A·ρ) ]^(1/3), da V_Zelle = a³ bei kubischen Systemen" },
+    { front: "Welche Metalle kristallisieren typischerweise in KRZ?", back: "z.B. α-Eisen (bei Raumtemperatur), Chrom, Wolfram, Molybdän" },
+    { front: "Welche Metalle kristallisieren typischerweise in KFZ?", back: "z.B. γ-Eisen (Austenit), Aluminium, Kupfer, Nickel, Gold, Silber" },
+    { front: "Welche Metalle kristallisieren typischerweise in HEX?", back: "z.B. Titan (α-Ti), Magnesium, Zink, Cobalt" }
+  ]},
+  riss: { label: 'Rissfortschritt', sub: 'Paris-Gleichung nach a umgestellt', cards: [
+    { front: "Wie lautet die Paris-Gleichung für das Rissfortschrittsverhalten?", back: "da/dN = C·(ΔK)^m, mit a = Risslänge, N = Lastspielzahl, ΔK = Schwingbreite des Spannungsintensitätsfaktors, C und m = werkstoffabhängige Konstanten" },
+    { front: "Wie ist ΔK (Schwingbreite des Spannungsintensitätsfaktors) definiert?", back: "ΔK = Y·Δσ·√(π·a), mit Y = Geometriefaktor, Δσ = Spannungsschwingbreite, a = Risslänge" },
+    { front: "Wie sieht da/dN = C·(ΔK)^m aus, wenn man ΔK = Y·Δσ·√(π·a) einsetzt (Δσ, Y konstant)?", back: "da/dN = C·(Y·Δσ)^m·(π·a)^(m/2) = K'·a^(m/2), mit K' = C·(Y·Δσ)^m·π^(m/2)" },
+    { front: "Wie trennt man in da/dN = K'·a^(m/2) die Variablen, um nach a integrieren zu können?", back: "a^(−m/2)·da = K'·dN — anschließend beide Seiten integrieren (a von a₀ bis a, N von 0 bis N)" },
+    { front: "Was ergibt ∫ a^(−m/2) da von a₀ bis a (für m ≠ 2)?", back: "[a^(1−m/2) − a₀^(1−m/2)] / (1−m/2)" },
+    { front: "Wie lautet die nach a umgestellte, integrierte Paris-Gleichung a(N) (für m ≠ 2)?", back: "a(N) = [ a₀^(1−m/2) + (1−m/2)·K'·N ]^(1/(1−m/2)), mit K' = C·(Y·Δσ)^m·π^(m/2)" },
+    { front: "Wie berechnet man die Lastspielzahl bis zum Bruch N_f (Risswachstum von a₀ bis zur kritischen Risslänge a_c)?", back: "N_f = [ a_c^(1−m/2) − a₀^(1−m/2) ] / [ (1−m/2)·K' ]" },
+    { front: "Sonderfall m = 2: Wie sieht die integrierte Lösung dann aus?", back: "da/dN = K'·a → ln(a/a₀) = K'·N → a(N) = a₀·e^(K'·N)" },
+    { front: "Wie bestimmt man C und m experimentell aus gemessenen da/dN-Werten?", back: "Logarithmieren: log(da/dN) = log C + m·log(ΔK) → lineare Regression im log-log-Diagramm liefert Steigung m und Achsenabschnitt log C" }
+  ]}
+};
+
+const wk1State = {
+  active: 'kristall',
+  order: { kristall: null, riss: null },
+  index: { kristall: 0, riss: 0 },
+  flipped: { kristall: false, riss: false },
+  stats: { kristall: { know: 0, again: 0 }, riss: { know: 0, again: 0 } }
+};
+
+function wk1EnsureOrder(key) {
+  if (!wk1State.order[key]) wk1State.order[key] = quizShuffle(WK1_CARDS[key].cards.map((_, i) => i));
+  return wk1State.order[key];
+}
+
+function renderWk1Tabs() {
+  const el = document.getElementById('wk1Tabs');
+  el.innerHTML = '';
+  Object.keys(WK1_CARDS).forEach(key => {
+    const order = wk1EnsureOrder(key);
+    const idx = Math.min(wk1State.index[key], order.length);
+    const div = document.createElement('div');
+    div.className = 'quiz-tab' + (wk1State.active === key ? ' active' : '');
+    div.innerHTML = `
+      <p class="quiz-tab-title">${WK1_CARDS[key].label}</p>
+      <p class="quiz-tab-sub">${WK1_CARDS[key].sub}</p>
+      <p class="quiz-tab-score">${idx} / ${order.length} Karten</p>
+    `;
+    div.onclick = () => { wk1State.active = key; renderWk1(); };
+    el.appendChild(div);
+  });
+}
+
+function wk1NextCard(key) {
+  wk1State.index[key]++;
+  wk1State.flipped[key] = false;
+  renderWk1();
+}
+
+function renderWk1Panel() {
+  const panel = document.getElementById('wk1Panel');
+  panel.innerHTML = '';
+  const key = wk1State.active;
+  const order = wk1EnsureOrder(key);
+  const idx = wk1State.index[key];
+  const stats = wk1State.stats[key];
+
+  if (idx >= order.length) {
+    panel.innerHTML = `
+      <div class="quiz-summary">
+        ${WK1_CARDS[key].label} durchgearbeitet: <strong>${stats.know} / ${order.length}</strong> direkt gewusst.<br>
+        <span class="quiz-reset-btn" id="wk1RestartBtn">Neu mischen &amp; nochmal üben</span>
+      </div>
+    `;
+    document.getElementById('wk1RestartBtn').onclick = () => {
+      wk1State.order[key] = null;
+      wk1State.index[key] = 0;
+      wk1State.flipped[key] = false;
+      wk1State.stats[key] = { know: 0, again: 0 };
+      renderWk1();
+    };
+    return;
+  }
+
+  const card = WK1_CARDS[key].cards[order[idx]];
+  const flipped = wk1State.flipped[key];
+
+  const progressText = document.createElement('div');
+  progressText.className = 'flashcard-progress-text';
+  progressText.textContent = `Karte ${idx + 1} von ${order.length}`;
+  panel.appendChild(progressText);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'flashcard-wrap';
+  const cardDiv = document.createElement('div');
+  cardDiv.className = 'flashcard';
+  cardDiv.innerHTML = flipped ? `<div class="flashcard-back">${card.back}</div>` : `<div>${card.front}</div>`;
+  if (!flipped) cardDiv.onclick = () => { wk1State.flipped[key] = true; renderWk1(); };
+  wrap.appendChild(cardDiv);
+  panel.appendChild(wrap);
+
+  const actions = document.createElement('div');
+  actions.className = 'flashcard-actions';
+  if (!flipped) {
+    actions.innerHTML = `<button class="flashcard-btn show">Antwort zeigen</button>`;
+    actions.querySelector('.show').onclick = () => { wk1State.flipped[key] = true; renderWk1(); };
+  } else {
+    actions.innerHTML = `<button class="flashcard-btn again">Nochmal 🔁</button><button class="flashcard-btn know">Weiß ich ✓</button>`;
+    actions.querySelector('.again').onclick = () => {
+      stats.again++;
+      order.push(order[idx]);
+      wk1NextCard(key);
+    };
+    actions.querySelector('.know').onclick = () => {
+      stats.know++;
+      wk1NextCard(key);
+    };
+  }
+  panel.appendChild(actions);
+
+  const hint = document.createElement('div');
+  hint.className = 'flashcard-hint';
+  hint.textContent = flipped ? '' : 'Karte anklicken oder Button drücken, um die Antwort zu sehen.';
+  panel.appendChild(hint);
+
+  const statsEl = document.createElement('div');
+  statsEl.className = 'flashcard-stats';
+  statsEl.textContent = `Gewusst: ${stats.know} · Nochmal: ${stats.again}`;
+  panel.appendChild(statsEl);
+}
+
+function renderWk1() {
+  renderWk1Tabs();
+  renderWk1Panel();
 }
 
 document.getElementById('reset').addEventListener('click', () => {
