@@ -362,6 +362,10 @@
     background: rgba(255,255,255,0.02); border-top: 1px solid var(--card-border); display: none;
   }
   .quiz-explain.show { display: block; }
+  .quiz-diagram-wrap {
+    padding: 12px 16px 4px; background: rgba(255,255,255,0.015); border-bottom: 1px solid var(--card-border);
+  }
+  .quiz-diagram-wrap svg { width: 100%; height: auto; display: block; margin: 0 auto; max-width: 560px; }
   .quiz-calc-badge {
     font-size: 11px; font-weight: 600; color: var(--accent); background: var(--pill-bg);
     padding: 2px 8px; border-radius: 20px; white-space: nowrap; align-self: flex-start;
@@ -659,19 +663,22 @@ const DAYPLAN = [
       { mod: 'EBWL', text: 'Zusammenfassung ein letztes Mal komplett durchlesen' },
     ]},
     { date: '07.08', label: 'Fr 07.08', travel: true, tasks: [
-      { mod: '', text: 'Reise – kein aktives Lernen (auch kein EBWL)' },
+      { mod: '', text: 'Reise – nur leichtes Lernen unterwegs' },
       { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten (falls möglich)' },
       { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer (Quiz-Tab) unterwegs üben' },
     ]},
     { date: '08.08', label: 'Sa 08.08', travel: true, tasks: [
-      { mod: '', text: 'Reise – kein aktives Lernen (auch kein EBWL)' },
+      { mod: '', text: 'Reise – nur leichtes Lernen unterwegs' },
       { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten (falls möglich)' },
       { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer (Quiz-Tab) unterwegs üben' },
     ]},
     { date: '09.08', label: 'So 09.08', travel: true, tasks: [
-      { mod: '', text: 'Reise – kein aktives Lernen (auch kein EBWL)' },
+      { mod: '', text: 'Reise – nur leichtes Lernen unterwegs' },
       { mod: 'Werkstoffkunde', text: 'Anki-Karteikarten (falls möglich)' },
       { mod: 'Werkstoffkunde', text: 'Zusammenfassung durchlesen' },
+      { mod: 'EBWL', text: 'EBWL-Klausurtrainer (Quiz-Tab) unterwegs üben' },
     ]},
     { date: '10.08', label: 'Mo 10.08', exam: 'Klausur EBWL', tasks: [
       { mod: 'EBWL', text: 'Morgens Altklausuren & Zusammenfassung querlesen' },
@@ -717,6 +724,9 @@ const MODULES = [
       { range: '06.08', desc: 'Beide Altklausuren unter Zeitdruck wiederholen — Fokus Rechenaufgaben', ids: ['day-06.08-1'] },
       { range: '06.08', desc: 'EBWL-Klausurtrainer gezielt für verbliebene Schwachstellen wiederholen', ids: ['day-06.08-4'] },
       { range: '06.08', desc: 'Zusammenfassung ein letztes Mal komplett durchlesen', ids: ['day-06.08-5'] },
+      { range: '07.08', desc: 'EBWL-Klausurtrainer unterwegs üben', ids: ['day-07.08-3'] },
+      { range: '08.08', desc: 'EBWL-Klausurtrainer unterwegs üben', ids: ['day-08.08-3'] },
+      { range: '09.08', desc: 'EBWL-Klausurtrainer unterwegs üben', ids: ['day-09.08-3'] },
       { range: '10.08', desc: 'Klausur EBWL', ids: ['day-10.08-0','day-10.08-1'] },
     ],
     altklausuren: [
@@ -1011,6 +1021,160 @@ const quizToday = new Date(); quizToday.setHours(0,0,0,0);
 const quizUnlockB = new Date(2026,7,1);
 const quizUnlockC = new Date(2026,7,2);
 
+// ---------- Diagramme für die "Abbildung beschriften"-Fragen (wie in echten Altklausuren) ----------
+const QUIZ_DIAGRAMS = {
+  bilanz: `<svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg">
+    <style>.t{font:12px sans-serif;fill:#c7cbd6;}.h{font:bold 14px sans-serif;fill:#fff;}.b{font:bold 13px sans-serif;fill:#c7cbd6;}.L{font:bold 15px sans-serif;fill:#f5a623;}.box{fill:none;stroke:#5b8def;stroke-width:2;stroke-dasharray:4,3;}</style>
+    <text x="145" y="18" class="h" text-anchor="middle">Aktiva</text>
+    <text x="475" y="18" class="h" text-anchor="middle">Passiva</text>
+    <rect x="20" y="28" width="250" height="62" class="box"/>
+    <text x="30" y="48" class="L">A</text>
+    <text x="55" y="48" class="t">1. Immaterielle Vermögensgegenstände</text>
+    <text x="55" y="63" class="t">2. Sachanlagen</text>
+    <text x="55" y="78" class="t">3. Finanzanlagen</text>
+    <rect x="20" y="96" width="250" height="80" class="box"/>
+    <text x="30" y="114" class="L">B</text>
+    <text x="55" y="114" class="t">1. Vorräte</text>
+    <text x="55" y="129" class="t">2. Forderungen</text>
+    <text x="55" y="144" class="t">3. Wertpapiere</text>
+    <text x="55" y="159" class="t">4. Zahlungsmittel</text>
+    <rect x="350" y="28" width="250" height="62" class="box"/>
+    <text x="360" y="48" class="L">C</text>
+    <text x="385" y="48" class="t">1. Gezeichnetes Kapital</text>
+    <text x="385" y="63" class="t">2. Kapitalrücklage</text>
+    <text x="385" y="78" class="t">3. Gewinnrücklage</text>
+    <rect x="350" y="96" width="250" height="22" class="box"/>
+    <text x="360" y="111" class="L">D</text>
+    <text x="385" y="111" class="t">4. ?</text>
+    <text x="360" y="132" class="t">5. Jahresüberschuss/-fehlbetrag</text>
+    <text x="350" y="152" class="b">Rückstellungen</text>
+    <text x="370" y="167" class="t">1. Rückstellungen auf Pensionen</text>
+    <text x="370" y="182" class="t">2. Steuerrückstellungen</text>
+    <text x="370" y="197" class="t">3. Sonstige Rückstellungen</text>
+    <text x="350" y="217" class="b">Verbindlichkeiten</text>
+    <rect x="350" y="223" width="250" height="22" class="box"/>
+    <text x="360" y="238" class="L">E</text>
+    <text x="385" y="238" class="t">1. ?</text>
+    <text x="370" y="263" class="t">2. Verbindlichkeiten ggü. Kreditinstituten</text>
+    <text x="370" y="278" class="t">3. Verbindlichkeiten aus Lieferungen u. Leistungen</text>
+    <text x="370" y="293" class="t">Rechnungsabgrenzungsposten</text>
+    <line x1="0" y1="312" x2="620" y2="312" stroke="#3a3f4d" stroke-width="1"/>
+    <text x="145" y="330" class="b" text-anchor="middle">Bilanzsumme</text>
+    <text x="475" y="330" class="b" text-anchor="middle">Bilanzsumme</text>
+  </svg>`,
+
+  lebenszyklus: `<svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
+    <style>.t{font:11px sans-serif;fill:#c7cbd6;}.L{font:bold 15px sans-serif;fill:#f5a623;}.ax{font:11px sans-serif;fill:#9aa0ac;}</style>
+    <line x1="50" y1="20" x2="50" y2="200" stroke="#9aa0ac" stroke-width="1.5"/>
+    <line x1="50" y1="200" x2="600" y2="200" stroke="#9aa0ac" stroke-width="1.5"/>
+    <text x="35" y="35" class="L">A</text>
+    <text x="470" y="216" class="ax">Unternehmenslebenszyklus (Zeit)</text>
+    <path d="M60,195 L580,50" stroke="#5b8def" stroke-width="1.5" fill="none"/>
+    <path d="M60,195 Q160,235 260,205 T580,110" stroke="#5cc26b" stroke-width="2" fill="none"/>
+    <text x="560" y="100" class="ax" fill="#5cc26b">Gewinn</text>
+    <ellipse cx="115" cy="178" rx="34" ry="12" fill="#1c2030" stroke="#5b8def"/><text x="115" y="182" class="t" text-anchor="middle">Angel round</text>
+    <ellipse cx="185" cy="158" rx="18" ry="12" fill="#1c2030" stroke="#f5a623"/><text x="185" y="162" class="L" text-anchor="middle" font-size="13">D</text>
+    <ellipse cx="260" cy="138" rx="34" ry="12" fill="#1c2030" stroke="#5b8def"/><text x="260" y="142" class="t" text-anchor="middle">High Yield</text>
+    <ellipse cx="335" cy="116" rx="18" ry="12" fill="#1c2030" stroke="#f5a623"/><text x="335" y="120" class="L" text-anchor="middle" font-size="13">C</text>
+    <ellipse cx="405" cy="96" rx="24" ry="12" fill="#1c2030" stroke="#5b8def"/><text x="405" y="100" class="t" text-anchor="middle">IPO</text>
+    <ellipse cx="475" cy="78" rx="40" ry="12" fill="#1c2030" stroke="#5b8def"/><text x="475" y="82" class="t" text-anchor="middle">Kapitalerhöhung</text>
+    <ellipse cx="535" cy="63" rx="34" ry="12" fill="#1c2030" stroke="#5b8def"/><text x="535" y="67" class="t" text-anchor="middle">Convertibles</text>
+    <ellipse cx="585" cy="50" rx="30" ry="12" fill="#1c2030" stroke="#5b8def"/><text x="585" y="54" class="t" text-anchor="middle">Anleihen</text>
+    <rect x="50" y="205" width="180" height="20" fill="#1c2030" stroke="#3a3f4d"/><text x="140" y="219" class="t" text-anchor="middle">Vorreiter/Inbetriebnahme</text>
+    <rect x="230" y="205" width="170" height="20" fill="#1c2030" stroke="#3a3f4d"/><text x="315" y="219" class="L" text-anchor="middle" font-size="13">B</text>
+    <rect x="400" y="205" width="200" height="20" fill="#1c2030" stroke="#3a3f4d"/><text x="500" y="219" class="t" text-anchor="middle">Laufzeit</text>
+  </svg>`,
+
+  innenaussen: `<svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+    <style>.t{font:10.5px sans-serif;fill:#c7cbd6;}.h{font:bold 11px sans-serif;fill:#9aa0ac;}</style>
+    <rect x="20" y="55" width="110" height="90" rx="6" fill="none" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="75" y="90" class="t" text-anchor="middle">Eigenfinanzierung</text>
+    <text x="75" y="105" class="t" text-anchor="middle">(neuer/bestehender</text>
+    <text x="75" y="120" class="t" text-anchor="middle">Gesellschafter/Partner)</text>
+    <rect x="140" y="55" width="110" height="90" rx="6" fill="rgba(91,141,239,0.12)" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="195" y="80" class="t" text-anchor="middle">Selbstfinanzierung</text>
+    <text x="195" y="95" class="t" text-anchor="middle">über Gewinnüberschuss</text>
+    <text x="195" y="110" class="t" text-anchor="middle">in der GuV</text>
+    <rect x="260" y="55" width="110" height="90" rx="6" fill="rgba(91,141,239,0.12)" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="315" y="80" class="t" text-anchor="middle">Umstrukturierung von</text>
+    <text x="315" y="95" class="t" text-anchor="middle">Vermögenswerten</text>
+    <text x="315" y="110" class="t" text-anchor="middle">(Abschreibungen,</text>
+    <text x="315" y="123" class="t" text-anchor="middle">Anlagenverkauf)</text>
+    <rect x="380" y="55" width="110" height="90" rx="6" fill="rgba(91,141,239,0.12)" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="435" y="100" class="t" text-anchor="middle">Rückstellungen</text>
+    <rect x="500" y="55" width="100" height="90" rx="6" fill="none" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="550" y="90" class="t" text-anchor="middle">Kreditfinanzierung</text>
+    <text x="550" y="105" class="t" text-anchor="middle">kurzfristig,</text>
+    <text x="550" y="120" class="t" text-anchor="middle">langfristig</text>
+    <line x1="20" y1="35" x2="130" y2="35" stroke="#9aa0ac"/><line x1="20" y1="35" x2="20" y2="45" stroke="#9aa0ac"/><line x1="130" y1="35" x2="130" y2="45" stroke="#9aa0ac"/>
+    <text x="75" y="25" class="h" text-anchor="middle">Eigenfinanzierung</text>
+    <line x1="500" y1="35" x2="600" y2="35" stroke="#9aa0ac"/><line x1="500" y1="35" x2="500" y2="45" stroke="#9aa0ac"/><line x1="600" y1="35" x2="600" y2="45" stroke="#9aa0ac"/>
+    <text x="550" y="25" class="h" text-anchor="middle">Fremdfinanzierung</text>
+    <line x1="140" y1="165" x2="490" y2="165" stroke="#f5a623"/><line x1="140" y1="155" x2="140" y2="165" stroke="#f5a623"/><line x1="490" y1="155" x2="490" y2="165" stroke="#f5a623"/>
+    <text x="315" y="180" class="h" text-anchor="middle" fill="#f5a623">Innenfinanzierung</text>
+    <line x1="20" y1="195" x2="600" y2="195" stroke="#5cc26b"/><line x1="20" y1="185" x2="20" y2="195" stroke="#5cc26b"/><line x1="600" y1="185" x2="600" y2="195" stroke="#5cc26b"/>
+    <text x="315" y="210" class="h" text-anchor="middle" fill="#5cc26b">Außenfinanzierung</text>
+  </svg>`,
+
+  gueterarten: `<svg viewBox="0 0 620 400" xmlns="http://www.w3.org/2000/svg">
+    <style>.tt{font:bold 12px sans-serif;fill:#fff;}.dt{font:10px sans-serif;fill:#9aa0ac;}.ax{font:10px sans-serif;fill:#9aa0ac;}</style>
+    <g transform="translate(10,10)">
+      <rect x="0" y="0" width="290" height="180" rx="6" fill="none" stroke="#3a3f4d"/>
+      <text x="145" y="20" class="tt" text-anchor="middle">Normale (superiore) Güter</text>
+      <line x1="35" y1="30" x2="35" y2="140" stroke="#9aa0ac"/><line x1="35" y1="140" x2="260" y2="140" stroke="#9aa0ac"/>
+      <path d="M50,130 Q90,60 220,45" stroke="#5b8def" stroke-width="1.5" fill="none"/>
+      <path d="M50,110 Q80,50 200,40" stroke="#5cc26b" stroke-width="1.5" fill="none"/>
+      <text x="145" y="160" class="dt" text-anchor="middle">Lebensmittel, Luxusgüter: mehr Budget → mehr Verbrauch</text>
+    </g>
+    <g transform="translate(320,10)">
+      <rect x="0" y="0" width="290" height="180" rx="6" fill="none" stroke="#3a3f4d"/>
+      <text x="145" y="20" class="tt" text-anchor="middle">Inferiore Güter</text>
+      <line x1="35" y1="30" x2="35" y2="140" stroke="#9aa0ac"/><line x1="35" y1="140" x2="260" y2="140" stroke="#9aa0ac"/>
+      <path d="M50,60 Q120,120 220,130" stroke="#5b8def" stroke-width="1.5" fill="none"/>
+      <path d="M50,45 Q110,100 200,112" stroke="#5cc26b" stroke-width="1.5" fill="none"/>
+      <text x="145" y="160" class="dt" text-anchor="middle">Öffentl. Verkehrsmittel vs. Taxi: mehr Budget → weniger Verbrauch</text>
+    </g>
+    <g transform="translate(10,210)">
+      <rect x="0" y="0" width="290" height="180" rx="6" fill="none" stroke="#3a3f4d"/>
+      <text x="145" y="20" class="tt" text-anchor="middle">Substitutionsgüter</text>
+      <line x1="35" y1="30" x2="35" y2="140" stroke="#9aa0ac"/><line x1="35" y1="140" x2="260" y2="140" stroke="#9aa0ac"/>
+      <path d="M45,50 Q100,90 230,95" stroke="#5b8def" stroke-width="1.5" fill="none"/>
+      <path d="M45,70 Q95,110 230,115" stroke="#5cc26b" stroke-width="1.5" fill="none"/>
+      <text x="145" y="160" class="dt" text-anchor="middle">Wein/Bier, Butter/Margarine: Preis X↑ → mehr Y gekauft</text>
+    </g>
+    <g transform="translate(320,210)">
+      <rect x="0" y="0" width="290" height="180" rx="6" fill="none" stroke="#3a3f4d"/>
+      <text x="145" y="20" class="tt" text-anchor="middle">Komplementäre Güter</text>
+      <line x1="35" y1="30" x2="35" y2="140" stroke="#9aa0ac"/><line x1="35" y1="140" x2="260" y2="140" stroke="#9aa0ac"/>
+      <path d="M45,45 Q120,60 225,135" stroke="#5b8def" stroke-width="1.5" fill="none"/>
+      <path d="M55,45 Q130,60 235,125" stroke="#5cc26b" stroke-width="1.5" fill="none"/>
+      <text x="145" y="160" class="dt" text-anchor="middle">Auto/Benzin: Preis X↑ → weniger Y verbraucht</text>
+    </g>
+  </svg>`,
+
+  bcg: `<svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+    <style>.q{font:bold 14px sans-serif;fill:#fff;}.ax{font:11px sans-serif;fill:#9aa0ac;}</style>
+    <line x1="60" y1="20" x2="60" y2="360" stroke="#9aa0ac" stroke-width="1.5"/>
+    <line x1="60" y1="360" x2="400" y2="360" stroke="#9aa0ac" stroke-width="1.5"/>
+    <line x1="230" y1="20" x2="230" y2="360" stroke="#3a3f4d" stroke-dasharray="4,3"/>
+    <line x1="60" y1="190" x2="400" y2="190" stroke="#3a3f4d" stroke-dasharray="4,3"/>
+    <rect x="60" y="20" width="170" height="170" fill="rgba(92,194,107,0.10)"/>
+    <rect x="230" y="20" width="170" height="170" fill="rgba(245,166,35,0.10)"/>
+    <rect x="60" y="190" width="170" height="170" fill="rgba(91,141,239,0.10)"/>
+    <rect x="230" y="190" width="170" height="170" fill="rgba(239,68,68,0.10)"/>
+    <text x="145" y="110" class="q" text-anchor="middle" fill="#5cc26b">Star</text>
+    <text x="315" y="110" class="q" text-anchor="middle" fill="#f5a623">Fragezeichen</text>
+    <text x="145" y="280" class="q" text-anchor="middle" fill="#5b8def">Cash Cow</text>
+    <text x="315" y="280" class="q" text-anchor="middle" fill="#ef4444">Dog</text>
+    <text x="25" y="30" class="ax">hoch</text>
+    <text x="25" y="355" class="ax">niedrig</text>
+    <text x="15" y="195" class="ax" transform="rotate(-90 15 195)" text-anchor="middle">Marktwachstumsrate</text>
+    <text x="65" y="380" class="ax">hoch</text>
+    <text x="365" y="380" class="ax">niedrig</text>
+    <text x="230" y="400" class="ax" text-anchor="middle">Relativer Marktanteil</text>
+  </svg>`,
+};
+
 const QUIZ_DATA = {
   A: { label: 'Teil A', sub: 'Kapitel 1–4 · gelesen', unlockDate: null, questions: [
     { q: "Was unterscheidet die BWL laut Vorlesung von Naturwissenschaft bzw. Ingenieurwesen?",
@@ -1114,7 +1278,58 @@ const QUIZ_DATA = {
       correct: 0, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
     { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
       opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
-      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." }
+      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
+    { q: "Bilanz-Diagramm beschriften: In der Aktiva steht Position 'A' über 1. Immaterielle Vermögensgegenstände, 2. Sachanlagen, 3. Finanzanlagen. Wie heißt Position A?",
+      opts: ["Anlagevermögen","Umlaufvermögen","Eigenkapital","Rückstellungen"],
+      correct: 0, diagramKey: 'bilanz', explain: "Anlagevermögen umfasst die langfristig gebundenen Vermögensgegenstände: Immaterielle Vermögensgegenstände, Sachanlagen und Finanzanlagen." },
+    { q: "Bilanz-Diagramm beschriften: In der Aktiva steht Position 'B' über 1. Vorräte, 2. Forderungen, 3. Wertpapiere, 4. Zahlungsmittel. Wie heißt Position B?",
+      opts: ["Umlaufvermögen","Anlagevermögen","Verbindlichkeiten","Rechnungsabgrenzungsposten"],
+      correct: 0, diagramKey: 'bilanz', explain: "Umlaufvermögen umfasst kurzfristig verfügbare Vermögensgegenstände: Vorräte, Forderungen, Wertpapiere und Zahlungsmittel." },
+    { q: "Bilanz-Diagramm beschriften: In der Passiva steht Position 'C' über 1. Gezeichnetes Kapital, 2. Kapitalrücklage, 3. Gewinnrücklage. Wie heißt Position C?",
+      opts: ["Eigenkapital","Rückstellungen","Verbindlichkeiten","Anlagevermögen"],
+      correct: 0, diagramKey: 'bilanz', explain: "Eigenkapital setzt sich u.a. aus gezeichnetem Kapital, Kapitalrücklage und Gewinnrücklage zusammen." },
+    { q: "Bilanz-Diagramm beschriften: In der Passiva steht Position 'D' direkt vor '5. Jahresüberschuss/-fehlbetrag' (innerhalb des Eigenkapitalblocks). Wie heißt Position D?",
+      opts: ["Gewinn-/Verlustvortrag","Anleihen","Rückstellungen für Pensionen","Verbindlichkeiten aus Lieferungen und Leistungen"],
+      correct: 0, diagramKey: 'bilanz', explain: "Der Gewinn-/Verlustvortrag ist die 4. Position des Eigenkapitals, direkt vor dem Jahresüberschuss/-fehlbetrag (Position 5)." },
+    { q: "Bilanz-Diagramm beschriften: In der Passiva steht Position 'E' bei den Verbindlichkeiten, direkt vor '2. Verbindlichkeiten ggü. Kreditinstituten'. Wie heißt Position E?",
+      opts: ["Anleihen","Rückstellungen","Gezeichnetes Kapital","Rechnungsabgrenzungsposten"],
+      correct: 0, diagramKey: 'bilanz', explain: "Anleihen stehen als erste Position unter den Verbindlichkeiten, vor den Verbindlichkeiten gegenüber Kreditinstituten." },
+    { q: "Diagramm 'Finanzierungsmöglichkeiten im Unternehmenslebenszyklus': Welche Größe wird auf der y-Achse (Position 'A') abgetragen?",
+      opts: ["Cashflow","Umsatz","Marktanteil","Gewinnmarge"],
+      correct: 0, diagramKey: 'lebenszyklus', explain: "Die y-Achse des Diagramms zeigt den Cashflow, der über den Unternehmenslebenszyklus von negativ (Inbetriebnahme) über null (Wachstum) zu positiv (Laufzeit) verläuft." },
+    { q: "Diagramm 'Finanzierungsmöglichkeiten im Unternehmenslebenszyklus': Welche Phase steht bei Position 'B', zwischen 'Vorreiter/Inbetriebnahme' und 'Laufzeit' (auf Höhe von High Yield und Kapitalerhöhung)?",
+      opts: ["Wachstum","Reife","Sättigung","Rückgang"],
+      correct: 0, diagramKey: 'lebenszyklus', explain: "Die mittlere Phase des Unternehmenslebenszyklus ist die Wachstumsphase, zwischen Inbetriebnahme und Laufzeit." },
+    { q: "Diagramm 'Finanzierungsmöglichkeiten im Unternehmenslebenszyklus': Welche Finanzierungsform steht bei Position 'C', zwischen 'High Yield' und 'IPO'?",
+      opts: ["Bankkredit","Angel Round","Anleihen","Convertibles"],
+      correct: 0, diagramKey: 'lebenszyklus', explain: "Der Bankkredit folgt im Diagramm auf High Yield-Finanzierung und liegt vor dem Börsengang (IPO)." },
+    { q: "Diagramm 'Finanzierungsmöglichkeiten im Unternehmenslebenszyklus': Welche Finanzierungsform steht bei Position 'D', zwischen 'Angel Round' und 'High Yield'?",
+      opts: ["Private Equity","IPO","Anleihen","Kapitalerhöhung"],
+      correct: 0, diagramKey: 'lebenszyklus', explain: "Private Equity folgt im Diagramm auf die Angel Round und liegt vor der High-Yield-Finanzierung." },
+    { q: "Finanzierungs-Diagramm (Innen-/Außen-/Eigen-/Fremdfinanzierung): 'Selbstfinanzierung über Gewinnüberschuss in der Gewinn- und Verlustrechnung' – wie wird dieses Feld im Diagramm eingeordnet?",
+      opts: ["Innenfinanzierung + Eigenfinanzierung","Außenfinanzierung + Eigenfinanzierung","Innenfinanzierung + Fremdfinanzierung","Außenfinanzierung + Fremdfinanzierung"],
+      correct: 0, diagramKey: 'innenaussen', explain: "Selbstfinanzierung über Gewinnüberschuss ist Innenfinanzierung (das Geld kommt aus dem Unternehmen selbst) UND Eigenfinanzierung (kein Kredit)." },
+    { q: "Finanzierungs-Diagramm: 'Umstrukturierung von Vermögenswerten (Abschreibungen, Anlagenverkauf)' – wie wird dieses Feld im Diagramm eingeordnet?",
+      opts: ["Innenfinanzierung + Eigenfinanzierung","Außenfinanzierung + Eigenfinanzierung","Innenfinanzierung + Fremdfinanzierung","Außenfinanzierung + Fremdfinanzierung"],
+      correct: 0, diagramKey: 'innenaussen', explain: "Abschreibungen und Anlagenverkauf zählen zur Innenfinanzierung (kommt von innen) im Bereich der Eigenfinanzierung." },
+    { q: "Finanzierungs-Diagramm: 'Rückstellungen' – wie wird dieses Feld im Diagramm eingeordnet?",
+      opts: ["Innenfinanzierung + Fremdfinanzierung","Außenfinanzierung + Fremdfinanzierung","Innenfinanzierung + Eigenfinanzierung","Außenfinanzierung + Eigenfinanzierung"],
+      correct: 0, diagramKey: 'innenaussen', explain: "Rückstellungen sind Innenfinanzierung (kommt von innen) aus dem Bereich der Fremdfinanzierung (sind letztlich Schulden)." },
+    { q: "Finanzierungs-Diagramm: 'Kreditfinanzierung (kurz- und langfristig)' – wie wird dieses Feld im Diagramm eingeordnet?",
+      opts: ["Außenfinanzierung + Fremdfinanzierung","Innenfinanzierung + Fremdfinanzierung","Außenfinanzierung + Eigenfinanzierung","Innenfinanzierung + Eigenfinanzierung"],
+      correct: 0, diagramKey: 'innenaussen', explain: "Kreditfinanzierung kommt von außen (Bank) und ist Fremdkapital – also Außenfinanzierung + Fremdfinanzierung." },
+    { q: "Diagramm zu Güterarten: Ein Quadrant zeigt anhand von Lebensmitteln/Luxusgütern 'Eine Budgeterhöhung bedeutet mehr Verbrauch des Gutes'. Um welche Güterart handelt es sich?",
+      opts: ["Normale (superiore) Güter","Inferiore Güter","Komplementäre Güter","Substitutionsgüter"],
+      correct: 0, diagramKey: 'gueterarten', explain: "Bei normalen (superioren) Gütern führt eine Budgeterhöhung zu mehr Verbrauch – z.B. teurere Lebensmittel oder Luxusgüter." },
+    { q: "Diagramm zu Güterarten: Ein Quadrant zeigt anhand öffentlicher Verkehrsmittel vs. Taxi 'Eine Budgeterhöhung bedeutet weniger Verbrauch des Gutes'. Um welche Güterart handelt es sich?",
+      opts: ["Inferiore Güter","Normale Güter","Komplementäre Güter","Substitutionsgüter"],
+      correct: 0, diagramKey: 'gueterarten', explain: "Bei inferioren Gütern führt eine Budgeterhöhung zu weniger Verbrauch – z.B. weniger öffentliche Verkehrsmittel zugunsten von Taxis." },
+    { q: "Diagramm zu Güterarten: Steigt der Weinpreis und wird deshalb mehr Bier gekauft (bzw. bei steigendem Butterpreis mehr Margarine) – welche Güterbeziehung liegt vor?",
+      opts: ["Substitutionsgüter","Komplementäre Güter","Inferiore Güter","Normale Güter"],
+      correct: 0, diagramKey: 'gueterarten', explain: "Steigt der Preis von Gut X und wird dafür mehr von Gut Y verbraucht, sind X und Y Substitutionsgüter (z.B. Wein/Bier, Butter/Margarine)." },
+    { q: "Diagramm zu Güterarten: Werden Autos teurer und wird deshalb weniger Benzin verbraucht – welche Güterbeziehung liegt vor?",
+      opts: ["Komplementäre Güter","Substitutionsgüter","Inferiore Güter","Normale Güter"],
+      correct: 0, diagramKey: 'gueterarten', explain: "Steigt der Preis von Gut X und sinkt dadurch der Verbrauch von Gut Y, sind X und Y komplementäre Güter (z.B. Autos/Benzin)." }
   ]},
   B: { label: 'Teil B', sub: 'Kapitel 5–8 · morgen', unlockDate: quizUnlockB, questions: [
     { q: "Was zeigen Porter's Five Forces?",
@@ -1144,6 +1359,15 @@ const QUIZ_DATA = {
     { q: "Welches Feld der BCG-Matrix beschreibt einen geringen Marktanteil in einem stark wachsenden Markt?",
       opts: ["Investition (Fragezeichen)","Unterstützung (Star)","Ernte (Cash Cow)","De-Investition (Dog)"],
       correct: 0, explain: "Investition/Fragezeichen: geringer Marktanteil, hohes Marktwachstum – Ausgangspunkt der meisten Unternehmen, Potenzial zum Star." },
+    { q: "BCG-Matrix-Diagramm beschriften: Welche Größe wird auf der y-Achse (vertikal) abgetragen?",
+      opts: ["Marktwachstumsrate","Relativer Marktanteil","Umsatz","Deckungsbeitrag"],
+      correct: 0, diagramKey: 'bcg', explain: "Die y-Achse der BCG-Matrix zeigt die Marktwachstumsrate (hoch/niedrig), die x-Achse den relativen Marktanteil." },
+    { q: "BCG-Matrix-Diagramm beschriften: Welche Größe wird auf der x-Achse (horizontal) abgetragen?",
+      opts: ["Relativer Marktanteil","Marktwachstumsrate","Gewinnmarge","Kapitalumschlag"],
+      correct: 0, diagramKey: 'bcg', explain: "Die x-Achse der BCG-Matrix zeigt den relativen Marktanteil (hoch/niedrig), die y-Achse die Marktwachstumsrate." },
+    { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €.",
+      opts: ["Relativer Marktanteil = Eigener Umsatz ÷ Umsatz des Hauptwettbewerbers = 300/280 ≈ 107,1 %","= Eigener Umsatz ÷ Gesamtmarktvolumen","= Marktvolumen ÷ Eigener Umsatz","= Umsatz des Hauptwettbewerbers ÷ Eigener Umsatz"],
+      correct: 0, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
     { q: "Welche Aktivitäten zählen laut Porter's Wertschöpfungskette zu den primären Aktivitäten?",
       opts: ["Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service","Unternehmensführung & HR, Buchhaltung, Beschaffung","Nur Marketing und Vertrieb","Investitionen und Finanzierung sowie Technologieentwicklung"],
       correct: 0, explain: "Primäre Aktivitäten: Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service. Sekundär: Unternehmensführung/HR, Buchhaltung, Investitionen/Finanzierung, Beschaffung, Technologieentwicklung." },
@@ -1417,7 +1641,8 @@ function quizShuffleOptions(item) {
     correct: newCorrect,
     explain: item.explain,
     calc: item.calc,
-    multi: item.multi
+    multi: item.multi,
+    diagramKey: item.diagramKey
   };
 }
 
@@ -1482,6 +1707,7 @@ function renderQuizPanel() {
     const multiHint = isMulti ? '<span class="quiz-calc-badge">Mehrfachauswahl</span>' : '';
     card.innerHTML = `
       <div class="quiz-q-head"><div><span class="quiz-q-num">${qi + 1}.</span>${item.q}</div>${item.calc ? '<span class="quiz-calc-badge">Rechenaufgabe</span>' : multiHint}</div>
+      ${item.diagramKey && QUIZ_DIAGRAMS[item.diagramKey] ? `<div class="quiz-diagram-wrap">${QUIZ_DIAGRAMS[item.diagramKey]}</div>` : ''}
       <div class="quiz-opts"></div>
       <div class="quiz-explain ${answered !== undefined ? 'show' : ''}">${item.explain}</div>
     `;
@@ -1908,6 +2134,7 @@ function renderVwlQuizPanel() {
     const multiHint = isMulti ? '<span class="quiz-calc-badge">Mehrfachauswahl</span>' : '';
     card.innerHTML = `
       <div class="quiz-q-head"><div><span class="quiz-q-num">${qi + 1}.</span>${item.q}</div>${item.calc ? '<span class="quiz-calc-badge">Rechenaufgabe</span>' : multiHint}</div>
+      ${item.diagramKey && QUIZ_DIAGRAMS[item.diagramKey] ? `<div class="quiz-diagram-wrap">${QUIZ_DIAGRAMS[item.diagramKey]}</div>` : ''}
       <div class="quiz-opts"></div>
       <div class="quiz-explain ${answered !== undefined ? 'show' : ''}">${item.explain}</div>
     `;
