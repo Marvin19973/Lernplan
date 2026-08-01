@@ -833,6 +833,55 @@ async function saveState() {
   }
 }
 
+// ---------- EBWL-Quiz-Statistiken (Schwachstellen-Priorisierung) ----------
+// Merkt sich pro Frage (stabile baseId, unabhängig von Mischreihenfolge/Zufallszahlen),
+// wie oft sie richtig/falsch beantwortet wurde. Fragen mit mehr Fehlern werden beim
+// nächsten Üben weiter vorne einsortiert, ALLE Fragen bleiben aber immer im Pool
+// (volle Theorie-Abdeckung, keine Frage fällt jemals raus).
+const QUIZ_STATS_KEY = 'ebwl-quiz-stats';
+let quizStats = {};
+
+async function loadQuizStats() {
+  try {
+    const raw = localStorage.getItem(QUIZ_STATS_KEY);
+    quizStats = raw ? JSON.parse(raw) : {};
+  } catch (e) { quizStats = {}; }
+
+  if (!sb) return;
+  try {
+    const { data, error } = await sb.from('app_data').select('value').eq('key', 'quizStats').single();
+    if (error) throw error;
+    if (data && data.value) {
+      quizStats = data.value;
+      try { localStorage.setItem(QUIZ_STATS_KEY, JSON.stringify(quizStats)); } catch (e) {}
+    }
+  } catch (e) {
+    console.error('Cloud-Quiz-Statistik laden fehlgeschlagen (evtl. noch nicht angelegt), nutze lokalen Stand', e);
+  }
+}
+
+async function saveQuizStats() {
+  try { localStorage.setItem(QUIZ_STATS_KEY, JSON.stringify(quizStats)); }
+  catch (e) { console.error('Lokal speichern fehlgeschlagen', e); }
+
+  if (!sb) return;
+  try {
+    const { error } = await sb.from('app_data')
+      .upsert({ key: 'quizStats', value: quizStats, updated_at: new Date().toISOString() }, { onConflict: 'key' });
+    if (error) throw error;
+  } catch (e) {
+    console.error('Cloud-Quiz-Statistik speichern fehlgeschlagen', e);
+  }
+}
+
+function quizRecordStat(key, baseId, isCorrect) {
+  if (!baseId) return;
+  if (!quizStats[key]) quizStats[key] = {};
+  if (!quizStats[key][baseId]) quizStats[key][baseId] = { correct: 0, wrong: 0 };
+  if (isCorrect) quizStats[key][baseId].correct++; else quizStats[key][baseId].wrong++;
+  saveQuizStats();
+}
+
 function daysUntil(dateStr) {
   const target = new Date(dateStr + 'T00:00:00');
   const now = new Date();
@@ -1236,10 +1285,10 @@ const QUIZ_DATA = {
       correct: 0, explain: "Inbetriebnahme (CF < 0): Angel-Round, Private Equity. Wachstum (CF ≈ 0): High Yield, Bankkredit. Laufzeit (CF > 0): IPO, Kapitalerhöhung, Convertibles, Anleihen." },
     { q: "Rechenaufgabe: Anschaffung 30.000 €, fixe + variable Kosten 5.000 €/Jahr, Umsatzerlöse 20.000 €/Jahr, Zins 10 %, t = 2 Jahre. Wie hoch ist der Kapitalwert?",
       opts: ["−3.967 €","5.033 €","−16.364 €","30.000 €"], correct: 0,
-      explain: "Gewinn/Jahr = 15.000 €. Kapitalwert = −30.000 + 15.000/1,1 + 15.000/1,1² = −30.000 + 13.636 + 12.397 ≈ −3.967 €.", calc: true, genKey: 'kapitalwert' },
+      explain: "Gewinn/Jahr = 15.000 €. Kapitalwert = −30.000 + 15.000/1,1 + 15.000/1,1² = −30.000 + 13.636 + 12.397 ≈ −3.967 €.", calc: true, genKey: 'kapitalwert', formula: true },
     { q: "Rechenaufgabe: Umsatzkosten pro Tag 600 €, Umsatz pro Tag 700 €, durchschn. Vorräte 36.000 €, durchschn. Forderungen 21.000 €, durchschn. Verbindlichkeiten 18.000 €. Wie hoch ist der Cash Conversion Cycle (CCC) in Tagen?",
       opts: ["60 Tage","90 Tage","30 Tage","120 Tage"], correct: 0,
-      explain: "DIO = 36.000/600 = 60. DSO = 21.000/700 = 30. DPO = 18.000/600 = 30. CCC = DIO + DSO − DPO = 60 + 30 − 30 = 60 Tage.", calc: true, genKey: 'ccc' },
+      explain: "DIO = 36.000/600 = 60. DSO = 21.000/700 = 30. DPO = 18.000/600 = 30. CCC = DIO + DSO − DPO = 60 + 30 − 30 = 60 Tage.", calc: true, genKey: 'ccc', formula: true },
     { q: "Welche der folgenden Methoden zählen zu den dynamischen Bewertungsmethoden einer Investition? Wählen Sie alle zutreffenden Antworten aus.",
       opts: ["Kapitalwertmethode","Annuitätenmethode","Interner Zinssatz","Kostenvergleich","Amortisationszeitraum"],
       multi: true, correct: [0,1,2],
@@ -1254,31 +1303,31 @@ const QUIZ_DATA = {
       explain: "Das Kapital kommt von außen (Außenfinanzierung) und in Form von Eigenkapital (Eigenfinanzierung) – nicht von innen und nicht als Kredit." },
     { q: "Wie lautet die Formel für die Opportunitätskosten?",
       opts: ["Nutzen der lukrativsten Option − Nutzen der gewählten Option","Nutzen der gewählten Option − Nutzen der lukrativsten Option","Nutzen der gewählten Option + Nutzen der lukrativsten Option","Kosten der gewählten Option ÷ Nutzen der lukrativsten Option"],
-      correct: 0, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
+      correct: 0, formula: true, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
     { q: "Wie lautet die Formel der Annuitätenmethode zur Berechnung der jährlichen Rente a?",
       opts: ["a = Kapitalwert · [(1+i)ⁿ · i] ÷ [(1+i)ⁿ − 1]","a = Kapitalwert ÷ [(1+i)ⁿ · i]","a = Kapitalwert · [(1+i)ⁿ − 1] ÷ [(1+i)ⁿ · i]","a = Kapitalwert + (1+i)ⁿ · i"],
-      correct: 0, explain: "Annuitätenmethode: a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
+      correct: 0, formula: true, explain: "Annuitätenmethode: a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
     { q: "Wodurch ist der interne Zinssatz einer Investition definiert?",
       opts: ["Der Zinssatz i, bei dem der Kapitalwert genau 0 beträgt (Kapitalwert = 0 = Σ Cashflow_t/(1+i)ᵗ)","Der durchschnittliche Marktzins über die gesamte Laufzeit","Der Zinssatz, der die höchste Annuität erzeugt","Der risikofreie Zinssatz zuzüglich eines pauschalen Risikoaufschlags"],
-      correct: 0, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." },
+      correct: 0, formula: true, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." },
     { q: "Wie lautet die mathematische Formel des 2. Gossenschen Gesetzes?",
       opts: ["∂U/∂x_i ÷ p_i = ∂U/∂x_j ÷ p_j (Grenznutzen pro Geldeinheit ist für alle Güter gleich)","∂U/∂x_i · p_i = ∂U/∂x_j · p_j","∂U/∂x_i = ∂U/∂x_j (Grenznutzen aller Güter ist absolut gleich)","p_i ÷ ∂U/∂x_i = p_j · ∂U/∂x_j"],
-      correct: 0, explain: "2. Gossensches Gesetz: ∂U/∂x_i / p_i = ∂U/∂x_j / p_j — der Grenznutzen pro ausgegebener Geldeinheit ist im Nutzenoptimum für alle Güter gleich." },
+      correct: 0, formula: true, explain: "2. Gossensches Gesetz: ∂U/∂x_i / p_i = ∂U/∂x_j / p_j — der Grenznutzen pro ausgegebener Geldeinheit ist im Nutzenoptimum für alle Güter gleich." },
     { q: "Wie lautet die allgemeine Formel des Kapitalwerts (Kapitalwertmethode)?",
       opts: ["Kapitalwert = −Anschaffungsauszahlung + Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Anschaffungsauszahlung − Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Σ Cashflow_t · (1+i)ᵗ − Anschaffungsauszahlung","Kapitalwert = Anschaffungsauszahlung ÷ Σ Cashflow_t"],
-      correct: 0, explain: "Kapitalwert = −I₀ + Σ CFₜ/(1+i)ᵗ, mit I₀ = Anschaffungsauszahlung, CFₜ = Cashflow der Periode t, i = Kalkulationszinssatz. Investition lohnt sich, wenn der Kapitalwert positiv ist." },
+      correct: 0, formula: true, explain: "Kapitalwert = −I₀ + Σ CFₜ/(1+i)ᵗ, mit I₀ = Anschaffungsauszahlung, CFₜ = Cashflow der Periode t, i = Kalkulationszinssatz. Investition lohnt sich, wenn der Kapitalwert positiv ist." },
     { q: "Wie lautet die Formel des Cash Conversion Cycle (CCC) inkl. der 3 Teilkennzahlen?",
       opts: ["CCC = DIO + DSO − DPO, mit DIO = Ø Vorräte ÷ Umsatzkosten/Tag, DSO = Ø Forderungen ÷ Umsatz/Tag, DPO = Ø Verbindlichkeiten ÷ Umsatzkosten/Tag","CCC = DIO − DSO + DPO","CCC = DIO + DSO + DPO","CCC = (DIO + DSO) ÷ DPO"],
-      correct: 0, explain: "CCC = DIO + DSO − DPO. DIO (Days Inventory Outstanding) = Ø Vorräte / Umsatzkosten pro Tag. DSO (Days Sales Outstanding) = Ø Forderungen / Umsatz pro Tag. DPO (Days Payable Outstanding) = Ø Verbindlichkeiten / Umsatzkosten pro Tag." },
+      correct: 0, formula: true, explain: "CCC = DIO + DSO − DPO. DIO (Days Inventory Outstanding) = Ø Vorräte / Umsatzkosten pro Tag. DSO (Days Sales Outstanding) = Ø Forderungen / Umsatz pro Tag. DPO (Days Payable Outstanding) = Ø Verbindlichkeiten / Umsatzkosten pro Tag." },
     { q: "Wie lautet die Formel für DIO (Days Inventory Outstanding)?",
       opts: ["DIO = Ø Vorräte ÷ Umsatzkosten pro Tag","DIO = Umsatzkosten pro Tag ÷ Ø Vorräte","DIO = Ø Vorräte ÷ Umsatz pro Tag","DIO = Ø Forderungen ÷ Umsatzkosten pro Tag"],
-      correct: 0, explain: "DIO (Days Inventory Outstanding) = durchschnittliche Vorräte ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage Ware im Lager liegt, bevor sie verkauft wird." },
+      correct: 0, formula: true, explain: "DIO (Days Inventory Outstanding) = durchschnittliche Vorräte ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage Ware im Lager liegt, bevor sie verkauft wird." },
     { q: "Wie lautet die Formel für DSO (Days Sales Outstanding)?",
       opts: ["DSO = Ø Forderungen ÷ Umsatz pro Tag","DSO = Umsatz pro Tag ÷ Ø Forderungen","DSO = Ø Forderungen ÷ Umsatzkosten pro Tag","DSO = Ø Verbindlichkeiten ÷ Umsatz pro Tag"],
-      correct: 0, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
+      correct: 0, formula: true, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
     { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
       opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
-      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
+      correct: 0, formula: true, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
     { q: "Bilanz-Diagramm beschriften: In der Aktiva steht Position 'A' über 1. Immaterielle Vermögensgegenstände, 2. Sachanlagen, 3. Finanzanlagen. Wie heißt Position A?",
       opts: ["Anlagevermögen","Umlaufvermögen","Eigenkapital","Rückstellungen"],
       correct: 0, diagramKey: 'bilanz', explain: "Anlagevermögen umfasst die langfristig gebundenen Vermögensgegenstände: Immaterielle Vermögensgegenstände, Sachanlagen und Finanzanlagen." },
@@ -1329,7 +1378,105 @@ const QUIZ_DATA = {
       correct: 0, diagramKey: 'gueterarten', explain: "Steigt der Preis von Gut X und wird dafür mehr von Gut Y verbraucht, sind X und Y Substitutionsgüter (z.B. Wein/Bier, Butter/Margarine)." },
     { q: "Diagramm zu Güterarten: Werden Autos teurer und wird deshalb weniger Benzin verbraucht – welche Güterbeziehung liegt vor?",
       opts: ["Komplementäre Güter","Substitutionsgüter","Inferiore Güter","Normale Güter"],
-      correct: 0, diagramKey: 'gueterarten', explain: "Steigt der Preis von Gut X und sinkt dadurch der Verbrauch von Gut Y, sind X und Y komplementäre Güter (z.B. Autos/Benzin)." }
+      correct: 0, diagramKey: 'gueterarten', explain: "Steigt der Preis von Gut X und sinkt dadurch der Verbrauch von Gut Y, sind X und Y komplementäre Güter (z.B. Autos/Benzin)." },
+    { q: "Wo liegen laut Vorlesung die Ursprünge der Betriebswirtschaft?",
+      opts: ["Bereits bei den Ägyptern, Griechen und Römern, die Bestand und Vermögen ihrer Unternehmen festhalten mussten","Erst im 20. Jahrhundert mit den ersten Handelshochschulen","Im Mittelalter mit den ersten Handelsgilden","Erst nach dem Zweiten Weltkrieg"],
+      correct: 0, explain: "Bereits zur Zeit der Ägypter, Griechen und Römer gab es Unternehmen, deren Bestand und Vermögen festgehalten werden musste. Die moderne Form der BWL entstand erst im 20. Jahrhundert mit den ersten Handelshochschulen." },
+    { q: "Wie unterscheidet sich die BWL von der VWL?",
+      opts: ["VWL betrachtet gesamtwirtschaftliche Zusammenhänge, BWL stellt die einzelne Organisation in den Vordergrund","BWL betrachtet gesamtwirtschaftliche Zusammenhänge, VWL die einzelne Organisation","Beide betrachten ausschließlich gesamtwirtschaftliche Zusammenhänge","BWL und VWL sind vollständig identisch"],
+      correct: 0, explain: "VWL (Volkswirtschaftslehre) betrachtet gesamtwirtschaftliche Zusammenhänge, während die BWL die einzelne Organisation/das einzelne Unternehmen in den Vordergrund stellt." },
+    { q: "Warum muss überhaupt wirtschaftlich gehandelt werden?",
+      opts: ["Weil Ressourcen und Güter knapp, die menschlichen Bedürfnisse aber unbegrenzt sind","Weil Ressourcen unbegrenzt, aber Bedürfnisse knapp sind","Weil der Staat es per Gesetz vorschreibt","Weil sonst kein Gewinn erzielt werden kann"],
+      correct: 0, explain: "Da Ressourcen und Güter knapp, die menschlichen Bedürfnisse jedoch unbegrenzt sind, muss wirtschaftlich (d.h. mit begrenzten Mitteln möglichst zielführend) gehandelt werden." },
+    { q: "Wie lautet die Definition von 'Unternehmen' laut Vorlesung?",
+      opts: ["Eine organisierte und systematische wirtschaftliche Einheit, die Waren oder Dienstleistungen herstellt oder vertreibt","Eine rein staatliche Institution zur Verwaltung von Ressourcen","Eine Gruppe von Investoren ohne operative Tätigkeit","Ein rein rechtliches Konstrukt ohne wirtschaftliche Aktivität"],
+      correct: 0, explain: "Ein Unternehmen ist eine organisierte und systematische wirtschaftliche Einheit, die Waren oder Dienstleistungen herstellt oder vertreibt." },
+    { q: "In welchen 3 Schritten erfolgt laut Vorlesung eine Entscheidung?",
+      opts: ["Alternativen identifizieren, Bewertung der Alternativen, Festlegung von Entscheidungskriterien","Ziele, Ressourcen, Ergebnisse","Planung, Ausführung, Kontrolle","Analyse, Synthese, Evaluation"],
+      correct: 0, explain: "Eine Entscheidung erfolgt in 3 Schritten: Alternativen identifizieren, diese bewerten und Entscheidungskriterien festlegen." },
+    { q: "Wie trifft man eine Entscheidung rein ökonomisch?",
+      opts: ["Man verknüpft die Alternativen mit Kosten und wählt die Option mit den geringsten Kosten","Man wählt immer die Option mit dem höchsten Umsatz","Man entscheidet zufällig zwischen gleichwertigen Optionen","Man befragt ausschließlich Experten"],
+      correct: 0, explain: "Eine rein ökonomische Entscheidung verknüpft jede Alternative mit ihren Kosten und wählt die Option mit den geringsten Kosten." },
+    { q: "Welche 2 Formen von Risikobewusstsein gibt es laut Vorlesung?",
+      opts: ["Risikoaverses Verhalten (bevorzugt geringeres Risiko) und risikofreudiges Verhalten (bevorzugt höheres Risiko)","Nur risikoaverses Verhalten existiert in der Realität","Risikoneutralität und Risikoaversion","Kurzfristiges und langfristiges Risiko"],
+      correct: 0, explain: "2 Formen: Risikoaverses Verhalten (bevorzugt bei gleichem Erwartungswert das geringere Risiko) und risikofreudiges Verhalten (bevorzugt das höhere Risiko)." },
+    { q: "Was zeichnet das St. Petersburg Paradoxon aus?",
+      opts: ["Das Spiel besitzt einen unendlichen Erwartungswert, wird von den meisten Menschen aber mit deutlich weniger als 25 € bewertet","Das Spiel hat einen Erwartungswert von genau 0","Teilnehmer sind im Durchschnitt bereit, unendlich viel dafür zu zahlen","Es beschreibt ein risikofreies Investment ohne jede Unsicherheit"],
+      correct: 0, explain: "Das St. Petersburg Paradoxon zeigt, dass ein Spiel mit unendlichem Erwartungswert von den meisten Menschen trotzdem nur mit einem geringen, endlichen Betrag (deutlich unter 25 €) bewertet wird – reiner Erwartungswert erklärt reales Entscheidungsverhalten also nicht vollständig." },
+    { q: "Wie lautet die Definition von 'Effektivität'?",
+      opts: ["Ein definiertes Ziel mit den verfügbaren Ressourcen zu erreichen","Mit so wenigen Ressourcen wie möglich ein Ziel zu erreichen","Den höchstmöglichen Gewinn zu erzielen, unabhängig vom Ziel","Ressourcen möglichst gleichmäßig auf alle Abteilungen zu verteilen"],
+      correct: 0, explain: "Effektivität = ein definiertes Ziel mit den verfügbaren Ressourcen erreichen ('die richtigen Dinge tun')." },
+    { q: "Wie lautet die Definition von 'Effizienz'?",
+      opts: ["Mit so wenigen Ressourcen wie möglich ein gewünschtes Ziel zu erreichen","Ein Ziel unabhängig vom Ressourceneinsatz zu erreichen","Ausschließlich den Umsatz zu maximieren","Den Gewinn pro Mitarbeiter zu maximieren"],
+      correct: 0, explain: "Effizienz = mit so wenigen Ressourcen wie möglich ein gewünschtes Ziel erreichen ('die Dinge richtig tun')." },
+    { q: "Welche 2 Formen der Effizienz gibt es (Trade-off zwischen Input und Output)?",
+      opts: ["Maximierung (Output mit verfügbaren Ressourcen maximieren) und Minimierung (Ziel mit minimalen Ressourcen erreichen)","Nur die Maximierung ist in der unternehmerischen Praxis relevant","Kurzfristige und langfristige Effizienz","Interne und externe Effizienz"],
+      correct: 0, explain: "2 Formen der Effizienz: Maximierung (mit gegebenen Ressourcen den größtmöglichen Output erzielen) und Minimierung (ein gegebenes Ziel mit den geringstmöglichen Ressourcen erreichen)." },
+    { q: "Was zeigt eine Indifferenzkurve an?",
+      opts: ["Für welche Güterkombinationen ein Entscheider indifferent ist, also keine Präferenz zwischen ihnen hat","Nur die günstigste verfügbare Güterkombination am Markt","Die maximale Menge, die ein Unternehmen produzieren kann","Ausschließlich das Preisverhältnis zwischen zwei Wettbewerbern"],
+      correct: 0, explain: "Eine Indifferenzkurve zeigt alle Güterkombinationen, zwischen denen ein Entscheider indifferent ist – er hat keine Präferenz für die eine oder andere Kombination." },
+    { q: "Was zeigt der Berührungspunkt von Budgetgerade und Indifferenzkurve an?",
+      opts: ["Die optimale Güterkombination, die den größten Nutzen für ein bestimmtes Budget bringt","Den Punkt mit den höchsten Opportunitätskosten","Ausschließlich die teuerste mögliche Güterkombination","Den Punkt, an dem kein Gut mehr konsumiert wird"],
+      correct: 0, explain: "Der Berührungspunkt (Tangentialpunkt) von Budgetgerade und Indifferenzkurve zeigt die optimale Güterkombination – den größten erreichbaren Nutzen bei gegebenem Budget." },
+    { q: "Welche 3 Effekte resultieren laut Vorlesung aus der Arbeitsteilung?",
+      opts: ["Steigerung der Produktivität, Spezialisierung der Aktivitäten, Skalierbarkeit der Prozesse","Nur höhere Löhne für die Arbeiter","Reduzierung der Produktqualität","Ausschließlich geringere Fixkosten"],
+      correct: 0, explain: "Arbeitsteilung führt zu: Steigerung der Produktivität, Spezialisierung der Aktivitäten und Skalierbarkeit der Prozesse." },
+    { q: "Welche 5 Meilensteine prägten laut Vorlesung das Konzept der Arbeitsteilung?",
+      opts: ["Industrielle Produktion, Taylorismus/Scientific Management, Fordismus, Neuer Fordismus, Lean Management","Handwerk, Manufaktur, Fabrik, Automatisierung, Digitalisierung","Nur Taylorismus und Fordismus gelten als relevante Meilensteine","Feudalismus, Merkantilismus, Kapitalismus, Sozialismus, Globalisierung"],
+      correct: 0, explain: "5 Meilensteine: Industrielle Produktion, Taylorismus (Scientific Management), Fordismus, Neuer Fordismus, Lean Management." },
+    { q: "Was ist die Aufgabe des Rechnungswesens?",
+      opts: ["Informationen und Daten für interne und externe Interessensgruppen bereitzustellen (z.B. Management, Kreditgeber, Behörden)","Ausschließlich die Berechnung von Steuern","Nur die Kommunikation mit dem Finanzamt","Die Verwaltung des Personals eines Unternehmens"],
+      correct: 0, explain: "Das Rechnungswesen stellt Informationen und Daten für interne (z.B. Management) und externe (z.B. Kreditgeber, Behörden) Interessensgruppen bereit." },
+    { q: "Was sind die 3 Ziele des Rechnungswesens?",
+      opts: ["Dokumentation der Vergangenheit, Planung als Entscheidungsgrundlage, Kontrolle als Vergleich von Planung und Umsetzung","Nur Gewinnmaximierung","Ausschließlich die gesetzliche Pflichterfüllung","Marketing, Vertrieb und Produktion"],
+      correct: 0, explain: "3 Ziele des Rechnungswesens: Dokumentation der Vergangenheit, Planung als Entscheidungsgrundlage, Kontrolle als Vergleich von Plan und Umsetzung." },
+    { q: "Welche Rechnungsgröße verwendet die Finanzrechnung als Sparte des Rechnungswesens?",
+      opts: ["Zahlungsmittel – Einzahlungen und Auszahlungen","Reinvermögen – Ertrag und Aufwand","Betriebsnotwendiges Vermögen – Leistungen und Kosten","Geldvermögen – Einnahmen und Ausgaben"],
+      correct: 0, explain: "Finanzrechnung: Zahlungsmittel (Ein-/Auszahlungen). Finanzierungsrechnung: Geldvermögen (Einnahmen/Ausgaben). Externes RW: Reinvermögen (Ertrag/Aufwand). Internes RW: Betriebsnotwendiges Vermögen (Leistungen/Kosten)." },
+    { q: "Was sind Skalenvorteile (Economies of Scale)?",
+      opts: ["Die Fixkosten pro Einheit sinken, je mehr Einheiten produziert werden","Die variablen Kosten sinken unabhängig von der produzierten Menge","Der Gewinn pro Einheit bleibt bei jeder Menge konstant","Die Gesamtkosten sinken unabhängig von der Produktionsmenge"],
+      correct: 0, explain: "Skalenvorteile (Economies of Scale): Die Fixkosten verteilen sich auf mehr Einheiten, wodurch die Fixkosten pro Einheit mit steigender Produktionsmenge sinken." },
+    { q: "Welche Rechtsstrukturen für Unternehmen gibt es in Deutschland? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Einzelunternehmen (z.B. Kleingewerbe)","Personengesellschaften (z.B. GbR, OHG, KG)","Kapitalgesellschaften (z.B. GmbH, AG)","Sonstige Rechtsformen (z.B. Verein, Stiftung)","Nur Aktiengesellschaften sind in Deutschland zulässig"],
+      multi: true, correct: [0,1,2,3],
+      explain: "In Deutschland gibt es u.a. Einzelunternehmen, Personengesellschaften (GbR, OHG, KG), Kapitalgesellschaften (GmbH, AG) sowie sonstige Rechtsformen (Verein, Stiftung)." },
+    { q: "Welche 4 buchhalterischen Vorgänge gibt es bei der Geschäftstätigkeit? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Aktivtausch (Werte auf der Aktivseite werden ausgetauscht)","Passivtausch (Verbindlichkeiten/Eigenkapital werden ausgetauscht)","Bilanzverlängerung (beide Seiten vergrößern sich)","Bilanzverkürzung (beide Seiten verkleinern sich)","Gewinnvortrag-Tausch"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Die 4 buchhalterischen Grundvorgänge sind Aktivtausch, Passivtausch, Bilanzverlängerung und Bilanzverkürzung." },
+    { q: "Welche 3 Formen der Abschreibung (Wertverlust von Vermögensgegenständen) gibt es?",
+      opts: ["Lineare Abschreibung (gleichmäßig über die Zeit), degressive Abschreibung (zu Beginn stärker), außerplanmäßige Abschreibung (unerwarteter Wertverlust)","Nur die lineare Abschreibung ist gesetzlich zulässig","Progressive und degressive Abschreibung","Kurzfristige und langfristige Abschreibung"],
+      correct: 0, explain: "3 Abschreibungsformen: linear (gleichmäßig), degressiv (zu Beginn stärker), außerplanmäßig (unerwarteter Wertverlust, z.B. durch Beschädigung)." },
+    { q: "Wie lautet die Definition einer 'Investition'?",
+      opts: ["Eine Ausgabe in der Gegenwart in Erwartung zukünftiger Renditen","Eine reine Buchungsposition ohne realen Geldfluss","Eine ausschließlich staatliche Fördermaßnahme","Ein garantierter Gewinn ohne jegliches Risiko"],
+      correct: 0, explain: "Eine Investition ist eine Ausgabe in der Gegenwart in Erwartung zukünftiger Renditen (Cashflows)." },
+    { q: "Welcher Zusammenhang besteht zwischen Finanzierung und Investition?",
+      opts: ["Finanzierung beantwortet, woher das Kapital kommt; Investition beantwortet, was mit dem Kapital passiert","Beide Begriffe sind vollständig identisch","Finanzierung betrifft nur Eigenkapital, Investition nur Fremdkapital","Investition ist immer zwingende Voraussetzung für Finanzierung"],
+      correct: 0, explain: "Finanzierung = woher kommt das Kapital (Mittelherkunft). Investition = was passiert mit dem Kapital (Mittelverwendung)." },
+    { q: "Was ist der 'Preis der Zeit' bei einer Investition?",
+      opts: ["Der Diskontierungsfaktor – heutiges Geld ist durch Verzinsung mehr wert als zukünftiges Geld","Die Bearbeitungsgebühr einer Bank für die Kreditvergabe","Der Zeitraum bis zur vollständigen Kapitalrückzahlung","Die Inflation der letzten 12 Monate"],
+      correct: 0, explain: "Der 'Preis der Zeit' ist der Diskontierungsfaktor: Geld heute ist (durch Verzinsungsmöglichkeit) mehr wert als dieselbe Summe in der Zukunft." },
+    { q: "In welchen 3 Wahrscheinlichkeitszuständen werden Investitionsentscheidungen getroffen?",
+      opts: ["Sicherheit (Eintrittswahrscheinlichkeit 100%), Risiko (bekannte Wahrscheinlichkeiten), Ungewissheit (unbekannte Wahrscheinlichkeiten)","Nur unter Sicherheit werden in der Praxis Investitionen entschieden","Gewinn, Verlust, Nullsumme","Kurzfristig, mittelfristig, langfristig"],
+      correct: 0, explain: "3 Zustände: Sicherheit (100% Eintrittswahrscheinlichkeit), Risiko (Wahrscheinlichkeiten bekannt), Ungewissheit (Wahrscheinlichkeiten unbekannt)." },
+    { q: "Was zeigt der Erwartungswert bei einer Investitionsentscheidung unter Risiko, und was ist seine Einschränkung?",
+      opts: ["Er zeigt die Alternative mit dem höchsten erwarteten Wert, spiegelt aber nicht das subjektive Risikobewusstsein des Entscheiders wider","Er berücksichtigt immer vollständig das individuelle Risikoverhalten des Entscheiders","Er ist nur bei Investitionen unter Sicherheit überhaupt anwendbar","Er entspricht immer exakt dem tatsächlich eintretenden Ergebnis"],
+      correct: 0, explain: "Der Erwartungswert zeigt rein rechnerisch die beste Alternative, berücksichtigt aber nicht das individuelle Risikobewusstsein (siehe St. Petersburg Paradoxon)." },
+    { q: "Wie unterteilt man die Eigenkapitalfinanzierung als Außenfinanzierung?",
+      opts: ["Öffentliches Eigenkapital (börsengelistet) und privates Eigenkapital (nicht gelistet)","Nur in kurzfristiges und langfristiges Eigenkapital","In nationales und internationales Eigenkapital","In Stamm- und Vorzugskapital"],
+      correct: 0, explain: "Eigenkapitalfinanzierung als Außenfinanzierung gliedert sich in öffentliches (börsengelistetes) und privates (nicht gelistetes) Eigenkapital." },
+    { q: "Wie sind die Fristigkeiten der Fremdfinanzierung typischerweise definiert?",
+      opts: ["Kurzfristig < 1 Jahr, mittelfristig 1–5 Jahre, langfristig > 5 Jahre","Kurzfristig < 1 Monat, langfristig > 1 Jahr","Nur kurzfristig (< 1 Jahr) und langfristig (> 1 Jahr)","Kurzfristig < 3 Jahre, langfristig > 3 Jahre"],
+      correct: 0, explain: "Fristigkeiten der Fremdfinanzierung: kurzfristig < 1 Jahr, mittelfristig 1–5 Jahre, langfristig > 5 Jahre." },
+    { q: "Wozu dienen Finanzintermediäre (Finanzvermittler)?",
+      opts: ["Interessensausgleich zwischen Investoren (kleine Beträge, geringes Risiko gewünscht) und Kreditnehmern (hohe Beträge, höheres Risiko) sowie Koordination des Finanzmarkts","Ausschließlich der Gewinnmaximierung der jeweiligen Bank","Nur der Kreditvergabe an Unternehmen","Der staatlichen Kontrolle des gesamten Kapitalmarkts"],
+      correct: 0, explain: "Finanzintermediäre gleichen die Interessen von Investoren (kleine Beträge, geringes Risiko) und Kreditnehmern (hohe Beträge, höheres Risiko) aus und koordinieren den Finanzmarkt." },
+    { q: "In welchen 3 Kategorien erzielen Finanzintermediäre Skaleneffekte?",
+      opts: ["Suche nach Informationen, Risikoverteilung, Transaktionskosten","Marketing, Vertrieb, Produktion","Nur bei den Transaktionskosten entstehen Skaleneffekte","Personalkosten, Mietkosten, IT-Kosten"],
+      correct: 0, explain: "Finanzintermediäre erzielen Skaleneffekte in 3 Kategorien: Suche nach Informationen, Risikoverteilung (Diversifikation), Transaktionskosten." },
+    { q: "Was versteht man unter dem risikofreien Zinssatz?",
+      opts: ["Zinszahlung für das Nicht-direkt-Verbrauchen von Geld (reiner Zeiteffekt, ohne Kreditrisiko)","Den höchsten am Markt verfügbaren Zinssatz","Einen Zinssatz, den ausschließlich Staaten erhalten können","Einen Zinssatz von garantiert 0%"],
+      correct: 0, explain: "Der risikofreie Zinssatz ist die Zinszahlung für das Nicht-direkt-Verbrauchen von Geld (reiner Zeiteffekt) – ohne jegliches Kreditausfallrisiko. Das Kreditrisiko kommt als separater Aufschlag hinzu." }
   ]},
   B: { label: 'Teil B', sub: 'Kapitel 5–8 · morgen', unlockDate: quizUnlockB, questions: [
     { q: "Was zeigen Porter's Five Forces?",
@@ -1367,7 +1514,7 @@ const QUIZ_DATA = {
       correct: 0, diagramKey: 'bcg', explain: "Die x-Achse der BCG-Matrix zeigt den relativen Marktanteil (hoch/niedrig), die y-Achse die Marktwachstumsrate." },
     { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €.",
       opts: ["Relativer Marktanteil = Eigener Umsatz ÷ Umsatz des Hauptwettbewerbers = 300/280 ≈ 107,1 %","= Eigener Umsatz ÷ Gesamtmarktvolumen","= Marktvolumen ÷ Eigener Umsatz","= Umsatz des Hauptwettbewerbers ÷ Eigener Umsatz"],
-      correct: 0, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
+      correct: 0, formula: true, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
     { q: "Welche Aktivitäten zählen laut Porter's Wertschöpfungskette zu den primären Aktivitäten?",
       opts: ["Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service","Unternehmensführung & HR, Buchhaltung, Beschaffung","Nur Marketing und Vertrieb","Investitionen und Finanzierung sowie Technologieentwicklung"],
       correct: 0, explain: "Primäre Aktivitäten: Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service. Sekundär: Unternehmensführung/HR, Buchhaltung, Investitionen/Finanzierung, Beschaffung, Technologieentwicklung." },
@@ -1385,7 +1532,7 @@ const QUIZ_DATA = {
       correct: 0, explain: "Poka-Yoke macht Prozesse 'fehlersicher', sodass Fehler von vornherein ausgeschlossen werden." },
     { q: "Rechenaufgabe (Andlerformel): Jährlicher Bedarf 80.000 Stück, Bestellkosten 12 €, Einkaufspreis 0,08 €, Lagerkostensatz 0,1. Wie hoch ist die optimale Bestellmenge?",
       opts: ["15.492 Stück","8.944 Stück","24.000 Stück","4.899 Stück"], correct: 0,
-      explain: "q = √(2·80.000·12 / (0,08·0,1)) = √(1.920.000 / 0,008) = √240.000.000 ≈ 15.492.", calc: true, genKey: 'andler' },
+      explain: "q = √(2·80.000·12 / (0,08·0,1)) = √(1.920.000 / 0,008) = √240.000.000 ≈ 15.492.", calc: true, genKey: 'andler', formula: true },
     { q: "Was zeichnet Single Sourcing im Vergleich zu Multiple Sourcing aus?",
       opts: ["Ein Lieferant, geringere Koordination, aber höhere Abhängigkeit","Immer geringere Kosten ganz ohne Nachteile","Multiple Sourcing erhöht immer die Abhängigkeit von einem Lieferanten","Single und Multiple Sourcing sind identisch mit Just-in-Time"],
       correct: 0, explain: "Single Sourcing: ein Lieferant → Fixkostendegression und Vertrauen, aber hohe Abhängigkeit und Lieferrisiko." },
@@ -1424,7 +1571,84 @@ const QUIZ_DATA = {
       explain: "Andlerformel: q = √(2·m·kB / (w·i)). Fixe Vertriebskosten sind kein Bestandteil der Formel." },
     { q: "Wie lautet die Andlerformel zur Berechnung der optimalen Bestellmenge q?",
       opts: ["q = √(2·m·kB ÷ (w·i))","q = √(m·kB ÷ (2·w·i))","q = (2·m·kB) ÷ (w·i)","q = √(2·m·w ÷ (kB·i))"],
-      correct: 0, explain: "Andlerformel: q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." }
+      correct: 0, formula: true, explain: "Andlerformel: q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." },
+    { q: "Wie lautet die Definition von 'Strategie'?",
+      opts: ["Ein langfristig orientierter Aktionsplan, um ein vorgegebenes Ziel zu erreichen: 'Wohin soll es gehen und wie kommt man dort hin?'","Die kurzfristige Umsetzung des Tagesgeschäfts","Ausschließlich die Finanzplanung eines Unternehmens","Ein rein reaktiver Prozess ohne jede Zielsetzung"],
+      correct: 0, explain: "Strategie = langfristig orientierter Aktionsplan zur Erreichung eines vorgegebenen Ziels: 'Wohin soll es gehen und wie kommt man dort hin?'" },
+    { q: "Aus welchen 4 Bereichen besteht eine Strategie laut Vorlesung?",
+      opts: ["Wettbewerbsvorteil, Kooperationen, ausgeprägte Kompetenzen/Ressourcen, Anwendungsbereich der Abläufe","Nur Preis, Produkt, Promotion, Place","Finanzen, Personal, Produktion, Marketing","Vision, Mission, Werte, Kultur"],
+      correct: 0, explain: "4 Bereiche einer Strategie: Wettbewerbsvorteil, Kooperationen, ausgeprägte Kompetenzen/Ressourcen, Anwendungsbereich der Abläufe." },
+    { q: "Wie lautet die Definition von 'Planung' im Unterschied zur Strategie?",
+      opts: ["Die Operationalisierung einer Strategie: 'Was ist zu tun und wie funktioniert das?'","Planung und Strategie sind exakt dasselbe","Planung befasst sich ausschließlich mit der Vergangenheit","Planung ist ausschließlich Aufgabe der Geschäftsführung"],
+      correct: 0, explain: "Planung ist die Operationalisierung einer Strategie: 'Was ist zu tun und wie funktioniert das?'" },
+    { q: "Welche planerischen Herausforderungen muss ein Unternehmen laut Vorlesung berücksichtigen? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Starker Wettbewerb","Kürzere Produktlebenszyklen","Globale Märkte und globaler Handel","Weniger Kundentreue","Sinkender Druck der Finanzmärkte"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Planerische Herausforderungen: starker Wettbewerb, kürzere Produktlebenszyklen, globale Märkte/Handel, weniger Kundentreue. Der Druck der Finanzmärkte sinkt dagegen nicht, sondern steigt." },
+    { q: "Was zeichnet eine marktbasierte Strategie aus (im Gegensatz zur ressourcenbasierten Strategie)?",
+      opts: ["Entwicklung basierend auf Trends, Branchenumfeld und Marktanalysen","Konzentration ausschließlich auf interne Ressourcen und Kompetenzen","Ein reines Inside-Out-Management ohne jeden Marktbezug","Vollständige Ignoranz des Wettbewerbs"],
+      correct: 0, explain: "Marktbasierte Strategie: Entwicklung basierend auf Trends, Branchenumfeld und Marktanalysen (Outside-In). Ressourcenbasierte Strategie: Fokus auf interne Ressourcen/Kompetenzen (Inside-Out)." },
+    { q: "Wie lautet die Definition von 'Produktion'?",
+      opts: ["Prozesse, die materielle und immaterielle Mittel in Produkte oder Dienstleistungen überführen","Ausschließlich die Herstellung physischer Güter","Der reine Einkauf von Rohstoffen","Die Auslieferung fertiger Produkte an den Kunden"],
+      correct: 0, explain: "Produktion = Prozesse, die materielle und immaterielle Mittel (Input) in Produkte oder Dienstleistungen (Output) überführen." },
+    { q: "Welcher grundlegende Trade-off existiert in jedem Produktionsprozess?",
+      opts: ["Qualität vs. Kosten","Umsatz vs. Marketingbudget","Personal vs. Standortwahl","Innovation vs. Tradition"],
+      correct: 0, explain: "Jeder Produktionsprozess steht vor dem grundlegenden Trade-off zwischen Qualität und Kosten." },
+    { q: "Was ist die Minimalkostenkombination in der Produktion?",
+      opts: ["Der Schnittpunkt der Produktionsfunktion und der Kostenisoquante, der zu minimalen Kosten führt","Die höchstmögliche Produktionsmenge unabhängig von den Kosten","Der Punkt mit dem geringsten Personalbedarf im Unternehmen","Ausschließlich die günstigste am Markt verfügbare Maschine"],
+      correct: 0, explain: "Die Minimalkostenkombination ist der Punkt, an dem eine gegebene Ausbringungsmenge mit minimalen Kosten erzeugt wird." },
+    { q: "Was ist die Aufgabe der Beschaffung (Einkauf)?",
+      opts: ["Strukturierung der Waren sowie Entscheidung, was, wann, wo und wie viel gekauft wird","Ausschließlich die Verhandlung von Einkaufspreisen","Nur die Lagerhaltung von bereits gekauften Waren","Die Auswahl neuer Mitarbeiter für die Einkaufsabteilung"],
+      correct: 0, explain: "Beschaffung strukturiert die benötigten Waren und entscheidet, was, wann, wo und wie viel gekauft wird." },
+    { q: "Wozu dient die XYZ-Analyse (im Gegensatz zur ABC-Analyse)?",
+      opts: ["Über Verbrauch und Planbarkeit von Waren Rückschlüsse auf die geeignete Beschaffungsart zu ziehen","Über den Wertanteil von Gütern zu entscheiden, welche priorisiert kontrolliert werden","Ausschließlich zur Bewertung des Lieferantenrisikos","Zur direkten Berechnung der optimalen Bestellmenge"],
+      correct: 0, explain: "Während die ABC-Analyse nach Wertanteil klassifiziert, zieht die XYZ-Analyse über Verbrauch und Planbarkeit Rückschlüsse auf die geeignete Beschaffungsart (z.B. Vorratsbeschaffung vs. Einzelbeschaffung)." },
+    { q: "Was ist das oberste Ziel des Einkaufs?",
+      opts: ["Gesamtbeschaffungskosten durch effizienten Umgang mit Gütern und Ressourcen zu minimieren","Ausschließlich die Anzahl der Lieferanten zu maximieren","Den höchstmöglichen Lagerbestand zu halten","Nur den günstigsten Einkaufspreis zu erzielen, unabhängig von allen anderen Kosten"],
+      correct: 0, explain: "Oberstes Ziel des Einkaufs: Gesamtbeschaffungskosten (nicht nur den Einkaufspreis) durch effizienten Umgang mit Gütern und Ressourcen minimieren." },
+    { q: "Was zeichnet das Just-in-Time-Prinzip aus?",
+      opts: ["Lieferanten stellen Material erst nach tatsächlichem Bedarf zur Verfügung, wodurch Lagerkosten reduziert werden","Es wird immer der maximal mögliche Lagerbestand gehalten","Bestellungen erfolgen grundsätzlich nur einmal jährlich","Es gilt ausschließlich für reine Dienstleistungsunternehmen"],
+      correct: 0, explain: "Just-in-Time: Material wird erst bei tatsächlichem Bedarf geliefert, wodurch Lagerkosten und Kapitalbindung reduziert werden." },
+    { q: "Was zeichnet Kaizen als Bestandteil des Lean Management aus?",
+      opts: ["Kontinuierliche Verbesserung in kleinen Schritten nach dem Prinzip Plan – Do – Check – Act","Eine einmalige, radikale Umstrukturierung des gesamten Unternehmens","Ausschließlich die vollständige Automatisierung von Prozessen","Die vollständige Auslagerung der gesamten Produktion"],
+      correct: 0, explain: "Kaizen: kontinuierliche Verbesserung in kleinen Schritten nach dem PDCA-Zyklus (Plan – Do – Check – Act)." },
+    { q: "Wie sieht der Produktlebenszyklus laut Vorlesung aus?",
+      opts: ["Einführung, Wachstum, Reife, Sättigung","Idee, Entwicklung, Launch, Rückzug","Planung, Produktion, Vertrieb, Recycling","Test, Optimierung, Skalierung, Abschaltung"],
+      correct: 0, explain: "Der Produktlebenszyklus verläuft in den Phasen Einführung, Wachstum, Reife und Sättigung." },
+    { q: "Welches Instrument bringt laut Vorlesung die größte Gewinnsteigerung?",
+      opts: ["Eine Preiserhöhung","Eine Reduzierung der variablen Kosten","Eine reine Umsatzsteigerung","Eine Reduzierung der fixen Kosten"],
+      correct: 0, explain: "Eine Preiserhöhung bringt laut Vorlesung die größte Gewinnsteigerung – noch vor Reduzierung variabler Kosten, Umsatzsteigerung oder Reduzierung fixer Kosten." },
+    { q: "Welche 3 Konzepte zur Preisbestimmung gibt es?",
+      opts: ["Kostenorientierung, Wettbewerbsorientierung, Bedarfsorientierung","Nur die Kostenorientierung ist in der Praxis relevant","Angebots-, Nachfrage- und Marktorientierung","Kurzfristige und langfristige Preisorientierung"],
+      correct: 0, explain: "3 Preisbestimmungskonzepte: Kostenorientierung, Wettbewerbsorientierung, Bedarfsorientierung." },
+    { q: "Nach welchen Kriterien kann Preisdifferenzierung erfolgen? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Personen (z.B. Studententarife)","Geographie (länderspezifische Preise)","Zeit (Haupt-/Nebensaison)","Quantität (Mengenrabatte)","Ausschließlich nach dem Wetter"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Preisdifferenzierung kann u.a. nach Personen, Geographie, Zeit und Quantität erfolgen." },
+    { q: "Welche 2 Arten von Vertriebskanälen unterscheidet man?",
+      opts: ["Direkter Vertrieb und indirekter Vertrieb","Nur der direkte Vertrieb existiert in der Praxis","Online- und Offline-Vertrieb","Nationaler und internationaler Vertrieb"],
+      correct: 0, explain: "2 Vertriebskanäle: direkter Vertrieb (ohne Zwischenhändler) und indirekter Vertrieb (über Zwischenhändler)." },
+    { q: "Was sind die 3 wichtigsten Treiber des Customer Lifetime Value?",
+      opts: ["Kundengewinnungskosten, Kundenmarge, Kundenbindung","Nur der Umsatz pro Kunde ist relevant","Werbebudget, Markenbekanntheit, Standort","Produktqualität, Lieferzeit, Servicequalität"],
+      correct: 0, explain: "3 CLV-Treiber: Kundengewinnungskosten, Kundenmarge (Ertrag pro Kunde), Kundenbindung (Bindungsrate)." },
+    { q: "Wie lautet die Definition einer 'Innovation'?",
+      opts: ["Die praktische Umsetzung einer Erfindung mit einzigartiger Funktion oder einzigartigem Ergebnis – muss nicht zwingend erfolgreich sein","Jede neue Idee, unabhängig von ihrer Umsetzung","Ausschließlich eine technische Erfindung","Eine Verbesserung, die immer zwingend erfolgreich sein muss"],
+      correct: 0, explain: "Innovation = die praktische Umsetzung einer Erfindung mit einzigartiger Funktion/einzigartigem Ergebnis. Sie muss nicht zwingend erfolgreich sein, um als Innovation zu gelten." },
+    { q: "Wodurch zeichnet sich Grundlagenforschung als Innovationsart aus?",
+      opts: ["Problem und Gebiet sind beide nicht gut definiert; schafft Voraussetzungen für spätere, akademisch geprägte Innovation","Problem und Gebiet sind beide gut definiert","Nur das Gebiet ist gut definiert, das Problem nicht","Sie findet ausschließlich innerhalb von Unternehmen statt"],
+      correct: 0, explain: "Grundlagenforschung: Problem und Gebiet sind beide nicht gut definiert – sie schafft die Grundlagen für spätere, oft akademisch geprägte Innovationen." },
+    { q: "Wodurch zeichnet sich eine disruptive Innovation (Kapitel 8, Innovationsarten) aus?",
+      opts: ["Innovation in unerforschten Umgebungen mit bestehenden Kompetenzbereichen, die das Geschäftsmodell reformiert","Eine reine, kleine Verbesserung bestehender Produkte","Innovation ausschließlich in stark regulierten Branchen","Ausschließlich Innovationen ganz ohne Marktrisiko"],
+      correct: 0, explain: "Disruptive Innovation: Innovation in unerforschten Umgebungen unter Nutzung bestehender Kompetenzbereiche, die das bestehende Geschäftsmodell reformiert." },
+    { q: "Was unterscheidet Closed Innovation von Open Innovation?",
+      opts: ["Closed Innovation erfolgt nur mit eigenen Mitarbeitern zur Kontrolle des geistigen Eigentums, Open Innovation bezieht externe Institutionen mit ein","Beide Konzepte schließen sich vollständig gegenseitig aus","Open Innovation ist ausschließlich für Start-ups relevant","Closed Innovation ist immer günstiger als Open Innovation"],
+      correct: 0, explain: "Closed Innovation: nur eigene Mitarbeiter, volle Kontrolle über geistiges Eigentum. Open Innovation: Einbeziehung externer Institutionen (Kunden, Partner, Forschung)." },
+    { q: "Wozu dient das Stage-Gate-Modell?",
+      opts: ["Es bietet Orientierung bei der Produktentwicklung und inkrementellen Innovation in mehreren Schritten mit Kontrollpunkten ('Gates')","Es dient ausschließlich der Finanzplanung eines Unternehmens","Es ersetzt die Marktforschung vollständig","Es ist ausschließlich auf disruptive Innovationen anwendbar"],
+      correct: 0, explain: "Das Stage-Gate-Modell strukturiert die Produktentwicklung/inkrementelle Innovation in Phasen ('Stages'), die jeweils durch Kontrollpunkte ('Gates') getrennt sind." },
+    { q: "Was ist die Aufgabe der Minimum Viable Product (MVP) Entwicklung?",
+      opts: ["Frühzeitig Feedback vom Markt zu sammeln, um Produkteigenschaften im weiteren Entwicklungsprozess zu verbessern","Das fertige Endprodukt so schnell wie möglich zu launchen","Ausschließlich Kosten in der Entwicklung zu sparen","Alle Produktfeatures von Anfang an vollständig zu implementieren"],
+      correct: 0, explain: "Das MVP dient dazu, mit minimalem Funktionsumfang frühzeitig echtes Marktfeedback zu sammeln und das Produkt iterativ zu verbessern." }
   ]},
   C: { label: 'Teil C', sub: 'Kapitel 9–12 · Sonntag', unlockDate: quizUnlockC, questions: [
     { q: "Wie unterscheiden sich Management und Leadership in der Dimension 'Risiko und Vertrauen'?",
@@ -1504,7 +1728,39 @@ const QUIZ_DATA = {
       explain: "ROE = (Nettogewinn/Umsatz) · (Umsatz/durchschn. Gesamtvermögen) · (durchschn. Gesamtvermögen/durchschn. EK) = Nettogewinn/durchschn. EK." },
     { q: "Wie lautet die Formel des Break-Even-Points (BEP) in Stück?",
       opts: ["BEP = Fixkosten ÷ (Verkaufspreis − variable Kosten pro Stück)","BEP = Fixkosten · (Verkaufspreis − variable Kosten pro Stück)","BEP = (Fixkosten + variable Kosten) ÷ Verkaufspreis","BEP = Verkaufspreis ÷ Fixkosten"],
-      correct: 0, explain: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." }
+      correct: 0, formula: true, explain: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." },
+    { q: "Auf welchen 5 Fähigkeiten basiert Leadership laut Vorlesung?",
+      opts: ["Klare Vision schaffen, Visionen teilen, Konflikte koordinieren, kreatives Denken in unsicheren Situationen, Bereitstellung von Informationen/Wissen/Fähigkeiten","Nur Charisma und Persönlichkeit","Ausschließlich Budgetverantwortung","Hierarchische Position und formaler Titel"],
+      correct: 0, explain: "5 Fähigkeiten von Leadership: klare Vision schaffen, Visionen teilen, Konflikte koordinieren, kreatives Denken in unsicheren Situationen, Bereitstellung von Informationen/Wissen/Fähigkeiten." },
+    { q: "Wie ist die Bedürfnispyramide nach Maslow aufgebaut (von unten nach oben)?",
+      opts: ["Physiologische Bedürfnisse, Sicherheitsbedürfnisse, Zugehörigkeit/Liebe, Wertschätzung, Selbstverwirklichung","Sicherheit, Physiologie, Wertschätzung, Zugehörigkeit, Selbstverwirklichung","Selbstverwirklichung, Wertschätzung, Zugehörigkeit, Sicherheit, Physiologie","Nur 3 Stufen: Grundbedürfnisse, psychologische Bedürfnisse, Selbstverwirklichung"],
+      correct: 0, explain: "Maslows Pyramide von unten nach oben: Physiologische Bedürfnisse und Sicherheitsbedürfnisse (Grundbedürfnisse), Zugehörigkeit/Liebe und Wertschätzung (psychologische Bedürfnisse), Selbstverwirklichung an der Spitze." },
+    { q: "Was beschreibt die Organisation als Bestandteil der strukturellen Dimension?",
+      opts: ["Aufstellung allgemeiner Regeln und Vorschriften für Arbeitsprozesse","Ausschließlich die Zuweisung von Büroräumen","Die Personalauswahl im Unternehmen","Nur die Finanzplanung eines Unternehmens"],
+      correct: 0, explain: "Organisation (strukturelle Dimension): Aufstellung allgemeiner, meist langfristig gültiger Regeln und Vorschriften für Arbeitsprozesse." },
+    { q: "Was beschreibt die Disposition als Bestandteil der strukturellen Dimension?",
+      opts: ["Regeln und Prozesse, die im Unternehmen situativ und häufiger wiederkehrend festgelegt werden (Verfahrensregelungen)","Die einmalige, dauerhafte Festlegung der Unternehmensstrategie","Ausschließlich die Buchhaltung","Die Auswahl der Rechtsform des Unternehmens"],
+      correct: 0, explain: "Disposition (strukturelle Dimension): situative, häufiger wiederkehrende Regeln und Verfahrensentscheidungen – im Gegensatz zur langfristig stabilen Organisation." },
+    { q: "Welche Voraussetzungen müssen erfüllt sein, damit Projektmanagement nötig wird?",
+      opts: ["Einzigartigkeit/Singularität der Aufgabe, und die Aufgabe kann nicht von einer Einzelperson allein erledigt werden","Die Aufgabe muss regelmäßig und routinemäßig wiederkehren","Es muss sich um eine reine Routineaufgabe ohne Zeitdruck handeln","Es darf nur eine einzige Abteilung beteiligt sein"],
+      correct: 0, explain: "Projektmanagement wird nötig, wenn eine Aufgabe einzigartig/singulär ist und nicht von einer Einzelperson allein bewältigt werden kann." },
+    { q: "Was sind typische Gründe für das Scheitern von Projekten? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Unklarer strategischer Fokus (z.B. unklare Ziele)","Mängel in Management und Steuerung (z.B. fehlende Struktur)","Begrenzte Ressourcen, begrenztes Personal oder Budget","Zu große Erfahrung des Projektteams"],
+      multi: true, correct: [0,1,2],
+      explain: "Typische Gründe für Projektscheitern: unklarer strategischer Fokus, Mängel in Management/Steuerung, begrenzte Ressourcen/Personal/Budget. Zu viel Erfahrung ist kein Risikofaktor." },
+    { q: "Was ist die allgemeine Aufgabe des Controllings (im Gegensatz zur strategischen Planung)?",
+      opts: ["'Die Dinge richtig machen' (operative Umsetzung und Steuerung)","'Die richtigen Dinge tun' – das ist die Aufgabe der strategischen Planung","Ausschließlich die reine Kostenkontrolle am Jahresende","Nur die Erstellung des jährlichen Geschäftsberichts"],
+      correct: 0, explain: "Controlling bedeutet 'die Dinge richtig machen' (Effizienz, operative Steuerung), während strategische Planung 'die richtigen Dinge tun' bedeutet (Effektivität)." },
+    { q: "Was versteht man unter 'Controlling als Vergleich' bei einem Ziel-Ist-Vergleich?",
+      opts: ["Vergleich der Plankosten des laufenden Jahres mit den tatsächlichen Istkosten desselben Jahres","Vergleich der Istkosten des laufenden Jahres mit den Istkosten des Vorjahres","Vergleich der geplanten Kosten des laufenden Jahres mit dem Plan des Vorjahres","Vergleich zweier komplett unterschiedlicher Unternehmen"],
+      correct: 0, explain: "Ziel-Ist-Vergleich: Plankosten des laufenden Jahres vs. tatsächliche Istkosten desselben Jahres. Ist-Ist-Vergleich: Istkosten dieses Jahres vs. Istkosten des Vorjahres. Ziel-Ziel-Vergleich: Plan dieses Jahres vs. Plan des Vorjahres." },
+    { q: "Wie läuft 'Controlling als Prozess' konkret ab?",
+      opts: ["Vergleich → Abweichungsanalyse → Anpassungsmaßnahmen","Planung → Ausführung → Kontrolle → erneute Planung (das ist der kybernetische Kontrollzyklus)","Nur eine einmalige Kostenkontrolle am Jahresende","Budgetierung → Freigabe → Auszahlung"],
+      correct: 0, explain: "Controlling als Prozess läuft über Vergleich (Soll/Ist) → Abweichungsanalyse → Anpassungsmaßnahmen. Der Planung-Ausführung-Kontrolle-Zyklus ist der separate kybernetische Kontrollzyklus." },
+    { q: "Was sind Ursachen der Informationsüberflutung im Controlling? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Strukturelle Veränderungen im Unternehmen","Mängel bei der KPI-Entwicklung","Zahlengläubigkeit ('mehr Daten = bessere Entscheidung')","Zunehmende Technologisierung","Zu wenige verfügbare Daten"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Ursachen der Informationsüberflutung: strukturelle Veränderungen, Mängel bei der KPI-Entwicklung, Zahlengläubigkeit, zunehmende Technologisierung. Zu wenige Daten ist das Gegenteil des Problems." }
   ]}
 };
 
@@ -1642,14 +1898,46 @@ function quizShuffleOptions(item) {
     explain: item.explain,
     calc: item.calc,
     multi: item.multi,
-    diagramKey: item.diagramKey
+    diagramKey: item.diagramKey,
+    formula: item.formula
   };
+}
+
+// Formeln müssen "sitzen": Formel-Fragen bekommen einen festen Bonus auf ihren Fehler-Score,
+// damit sie so lange bevorzugt vorne im Quiz auftauchen, bis sie mehrfach hintereinander
+// richtig beantwortet wurden (jede richtige Antwort senkt den Score um 0.5) – aber auch sie
+// werden nie aus dem Pool entfernt, sie werden nur priorisiert.
+const QUIZ_FORMULA_BOOST = 3;
+
+function quizWeightedOrder(key, list) {
+  // Zufällig vormischen (sorgt für Zufall unter gleich gewichteten Fragen, da sort() stabil ist),
+  // dann nach "Fehlerquote" (+ Formel-Bonus) absteigend sortieren: oft falsch beantwortete / noch
+  // nie geübte Fragen und alle Formel-Fragen kommen zuerst dran, sicher gewusste rutschen nach
+  // hinten – aber NICHTS wird je entfernt, die komplette Theorie bleibt jede Session vollständig.
+  const stats = quizStats[key] || {};
+  const shuffled = quizShuffle(list);
+  return shuffled
+    .map((item, i) => ({ item, i }))
+    .sort((a, b) => {
+      const sa = stats[a.item.baseId] || { correct: 0, wrong: 0 };
+      const sb = stats[b.item.baseId] || { correct: 0, wrong: 0 };
+      const scoreA = sa.wrong - sa.correct * 0.5 + (a.item.formula ? QUIZ_FORMULA_BOOST : 0);
+      const scoreB = sb.wrong - sb.correct * 0.5 + (b.item.formula ? QUIZ_FORMULA_BOOST : 0);
+      if (scoreB !== scoreA) return scoreB - scoreA;
+      return a.i - b.i;
+    })
+    .map(x => x.item);
 }
 
 function quizBuildVariant(key) {
   const base = QUIZ_DATA[key].questions;
-  const list = base.map(it => (quizVariantMode && it.genKey) ? QUIZ_CALC_GENERATORS[it.genKey]() : quizShuffleOptions(it));
-  return quizShuffle(list);
+  const list = base.map((it, i) => {
+    const built = (quizVariantMode && it.genKey) ? QUIZ_CALC_GENERATORS[it.genKey]() : quizShuffleOptions(it);
+    built.baseId = key + i;
+    built.formula = it.formula || built.formula;
+    return built;
+  });
+  return quizWeightedOrder(key, list);
 }
 
 const quizState = { active: 'A', answers: { A: {}, B: {}, C: {} }, variant: { A: null, B: null, C: null }, pending: { A: {}, B: {}, C: {} } };
@@ -1730,7 +2018,9 @@ function renderQuizPanel() {
         optDiv.innerHTML = `<span class="quiz-dot">${dotContent}</span><span>${optText}</span>`;
         if (answered === undefined) {
           optDiv.onclick = () => {
-            quizState.answers[key][qi] = { idx: oi, correct: oi === item.correct };
+            const isCorrect = oi === item.correct;
+            quizState.answers[key][qi] = { idx: oi, correct: isCorrect };
+            quizRecordStat(key, item.baseId, isCorrect);
             renderQuiz();
           };
         }
@@ -1782,6 +2072,7 @@ function renderQuizPanel() {
           const corrSorted = [...item.correct].sort((a,b)=>a-b);
           const isRight = selSorted.length === corrSorted.length && selSorted.every((v,i) => v === corrSorted[i]);
           quizState.answers[key][qi] = { selected: selSorted, correct: isRight };
+          quizRecordStat(key, item.baseId, isRight);
           delete quizState.pending[key][qi];
           renderQuiz();
         };
@@ -1799,7 +2090,12 @@ function renderQuizPanel() {
   if (answeredCount === total) {
     const summary = document.createElement('div');
     summary.className = 'quiz-summary';
-    summary.innerHTML = `${QUIZ_DATA[key].label} abgeschlossen: <strong>${correctCount} / ${total}</strong> richtig.<br><span class="quiz-reset-btn" id="quizResetBtn">${quizVariantMode ? 'Neue Fragen üben' : 'Nochmal üben'}</span>`;
+    const stats = quizStats[key] || {};
+    const masteredCount = QUIZ_DATA[key].questions.filter((it, i) => {
+      const s = stats[key + i];
+      return s && s.correct >= 2 && s.wrong === 0;
+    }).length;
+    summary.innerHTML = `${QUIZ_DATA[key].label} abgeschlossen: <strong>${correctCount} / ${total}</strong> richtig.<br><span style="font-size:12px;color:var(--text-muted);">Sicher gewusst (≥2× richtig, nie falsch): ${masteredCount} / ${QUIZ_DATA[key].questions.length}</span><br><span class="quiz-reset-btn" id="quizResetBtn">${quizVariantMode ? 'Neue Fragen üben' : 'Nochmal üben'}</span>`;
     panel.appendChild(summary);
     document.getElementById('quizResetBtn').onclick = () => {
       quizState.answers[key] = {};
@@ -2449,7 +2745,7 @@ function renderNextExam() {
 }
 
 async function initApp() {
-  await Promise.all([loadState(), loadNotes()]);
+  await Promise.all([loadState(), loadNotes(), loadQuizStats()]);
   render();
   renderDay();
   renderNextExam();
