@@ -1263,6 +1263,27 @@ const QUIZ_DIAGRAMS = {
     <line x1="210" y1="340" x2="210" y2="252" stroke="#9aa0ac" stroke-width="1.5"/>
   </svg>`,
 
+  porterstrategie: `<svg viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg">
+    <style>.q{font:bold 14px sans-serif;fill:#fff;}.ax{font:11px sans-serif;fill:#9aa0ac;}.s{font:10px sans-serif;fill:#9aa0ac;}</style>
+    <line x1="70" y1="20" x2="70" y2="270" stroke="#9aa0ac" stroke-width="1.5"/>
+    <line x1="70" y1="270" x2="410" y2="270" stroke="#9aa0ac" stroke-width="1.5"/>
+    <rect x="70" y="20" width="170" height="130" fill="rgba(91,141,239,0.10)" stroke="#3a3f4d" stroke-dasharray="4,3"/>
+    <rect x="240" y="20" width="170" height="130" fill="rgba(92,194,107,0.10)" stroke="#3a3f4d" stroke-dasharray="4,3"/>
+    <rect x="70" y="150" width="340" height="60" fill="rgba(245,166,35,0.10)" stroke="#3a3f4d" stroke-dasharray="4,3"/>
+    <rect x="70" y="210" width="340" height="60" fill="rgba(239,68,68,0.10)" stroke="#3a3f4d" stroke-dasharray="4,3"/>
+    <text x="155" y="90" class="q" text-anchor="middle" fill="#5b8def">A</text>
+    <text x="325" y="90" class="q" text-anchor="middle" fill="#5cc26b">Gesamtkosten-</text>
+    <text x="325" y="105" class="q" text-anchor="middle" fill="#5cc26b">führerschaft</text>
+    <text x="240" y="185" class="q" text-anchor="middle" fill="#f5a623">In der Mitte gefangen</text>
+    <text x="240" y="245" class="q" text-anchor="middle" fill="#ef4444">B</text>
+    <text x="30" y="85" class="ax" transform="rotate(-90 30 85)" text-anchor="middle">Branchenweit</text>
+    <text x="30" y="240" class="ax" transform="rotate(-90 30 240)" text-anchor="middle">Nur ein Segment</text>
+    <text x="8" y="150" class="s" transform="rotate(-90 8 150)" text-anchor="middle">Strategisches Ziel</text>
+    <text x="155" y="290" class="s" text-anchor="middle">Besonderheit (Kundenwahrnehmung)</text>
+    <text x="325" y="290" class="s" text-anchor="middle">Niedrige Kostenposition</text>
+    <text x="240" y="310" class="s" text-anchor="middle">Strategischer Vorteil</text>
+  </svg>`,
+
   strategiepyramide: `<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
     <style>.t{font:12px sans-serif;fill:#fff;}.L{font:bold 13px sans-serif;fill:#f5a623;}</style>
     <polygon points="180,10 220,10 240,50 160,50" fill="rgba(92,194,107,0.15)" stroke="#5cc26b"/>
@@ -1336,6 +1357,19 @@ const QUIZ_DIAGRAMS = {
     <path d="M250,225 L150,225" stroke="#9aa0ac" stroke-width="1.5" fill="none"/>
     <path d="M110,190 L155,75" stroke="#9aa0ac" stroke-width="1.5" fill="none"/>
   </svg>`,
+
+  isoquanten: `<svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+    <style>.t{font:12px sans-serif;fill:#c7cbd6;}.ax{font:11px sans-serif;fill:#9aa0ac;}.L{font:bold 13px sans-serif;fill:#f5a623;}</style>
+    <line x1="60" y1="20" x2="60" y2="270" stroke="#9aa0ac" stroke-width="1.5"/>
+    <line x1="60" y1="270" x2="400" y2="270" stroke="#9aa0ac" stroke-width="1.5"/>
+    <text x="20" y="30" class="ax">Mitarbeiter</text>
+    <text x="360" y="290" class="ax">Maschinen</text>
+    <path d="M90,240 C130,150 180,90 290,75" stroke="#5b8def" stroke-width="2" fill="none"/>
+    <path d="M130,260 C180,180 250,130 370,120" stroke="#5cc26b" stroke-width="2" fill="none"/>
+    <text x="290" y="68" class="t" fill="#5b8def">M = Einheiten (niedriger)</text>
+    <text x="372" y="112" class="t" fill="#5cc26b" text-anchor="end">M = Einheiten (höher)</text>
+    <text x="230" y="45" class="L" text-anchor="middle">Isoquanten</text>
+  </svg>`,
 };
 
 const QUIZ_DATA = {
@@ -1358,6 +1392,13 @@ const QUIZ_DATA = {
     { q: "Was sind Sunk Costs?",
       opts: ["Hypothetische, zukünftig anfallende Kosten","Kostenpositionen, die in der Vergangenheit angefallen und nicht mehr reversibel sind","Identisch mit Opportunitätskosten","Nur in der Außenfinanzierung relevant"],
       correct: 1, explain: "Sunk Costs sind retrospektive, tatsächlich angefallene und nicht mehr beeinflussbare Kosten der Vergangenheit." },
+    { q: "Was ist der zentrale Unterschied zwischen Opportunitätskosten und Sunk Costs?",
+      opts: ["Opportunitätskosten sind hypothetische Kosten (entgangener Nutzen einer Alternative), Sunk Costs sind retrospektive, tatsächlich angefallene und nicht mehr beeinflussbare Kosten","Beide sind identisch und austauschbar","Opportunitätskosten sind immer retrospektiv, Sunk Costs immer hypothetisch","Sunk Costs sind Teil der Formel für Opportunitätskosten"],
+      correct: 0, explain: "Opportunitätskosten = hypothetische Kosten (entgangener Nutzen der nicht gewählten, lukrativsten Alternative). Sunk Costs = retrospektive, in der Vergangenheit bereits angefallene, nicht mehr reversible Kosten." },
+    { q: "Welche Aussagen zu Opportunitätskosten sind laut Vorlesung korrekt? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Sie sind relevant für zwei sich gegenseitig ausschließende Ereignisse","Sie sind hypothetische Kosten, die ex ante (im Voraus) bewertet werden","Sie sind Kostenpositionen, die bereits in der Vergangenheit aufgetreten sind und nicht mehr rückgängig gemacht werden können","Sie berechnen sich als: Nutzen der gewählten Option − Nutzen der lukrativsten Option"],
+      multi: true, correct: [0,1],
+      explain: "Achtung Falle: Opportunitätskosten sind relevant für sich gegenseitig ausschließende Ereignisse und werden hypothetisch/ex ante bewertet. Die dritte Aussage beschreibt Sunk Costs, nicht Opportunitätskosten. Die vierte Aussage hat die Formel-Reihenfolge vertauscht – korrekt ist: Nutzen der lukrativsten Option − Nutzen der gewählten Option." },
     { q: "Was besagt das 2. Gossensche Gesetz?",
       opts: ["Die Grenzkosten der Anschaffung sind über alle verfügbaren Waren und Dienstleistungen hinweg gleich.","Der Gesamtnutzen steigt immer weiter, ohne einen Sättigungspunkt zu erreichen.","Der Grenznutzen steigt mit zunehmender Warenmenge.","Nutzen und Kosten stehen in keinem Zusammenhang."],
       correct: 0, explain: "2. Gossensches Gesetz: Die Grenzkosten der Anschaffung sind über alle verfügbaren Waren und Dienstleistungen hinweg gleich." },
@@ -1526,6 +1567,9 @@ const QUIZ_DATA = {
     { q: "Welche 2 Formen der Effizienz gibt es (Trade-off zwischen Input und Output)?",
       opts: ["Maximierung (Output mit verfügbaren Ressourcen maximieren) und Minimierung (Ziel mit minimalen Ressourcen erreichen)","Nur die Maximierung ist in der unternehmerischen Praxis relevant","Kurzfristige und langfristige Effizienz","Interne und externe Effizienz"],
       correct: 0, explain: "2 Formen der Effizienz: Maximierung (mit gegebenen Ressourcen den größtmöglichen Output erzielen) und Minimierung (ein gegebenes Ziel mit den geringstmöglichen Ressourcen erreichen)." },
+    { q: "Welche Opportunitätskosten besitzt eine Güterkombination, die unterhalb der Indifferenzkurve liegt?",
+      opts: ["Hohe Opportunitätskosten – die Kombination ist ungünstiger ('schlechter')","Geringe Opportunitätskosten – die Kombination ist günstiger ('besser')","Opportunitätskosten von exakt 0","Das lässt sich aus der Indifferenzkurve nicht ableiten"],
+      correct: 0, explain: "Eine Option unterhalb der Indifferenzkurve besitzt hohe Opportunitätskosten und ist somit ungünstig ('schlechter'), eine Option oberhalb der Kurve besitzt geringe Opportunitätskosten und ist günstig ('besser')." },
     { q: "Was zeigt eine Indifferenzkurve an?",
       opts: ["Für welche Güterkombinationen ein Entscheider indifferent ist, also keine Präferenz zwischen ihnen hat","Nur die günstigste verfügbare Güterkombination am Markt","Die maximale Menge, die ein Unternehmen produzieren kann","Ausschließlich das Preisverhältnis zwischen zwei Wettbewerbern"],
       correct: 0, explain: "Eine Indifferenzkurve zeigt alle Güterkombinationen, zwischen denen ein Entscheider indifferent ist – er hat keine Präferenz für die eine oder andere Kombination." },
@@ -1629,6 +1673,16 @@ const QUIZ_DATA = {
     { q: "Wofür steht das 'I' in den VRIN-Merkmalen?",
       opts: ["Inimitable – schwer zu kopieren","Innovative","Integriert","Intern"],
       correct: 0, explain: "VRIN = Valuable, Rare, Inimitable, Non-substitutable." },
+    { q: "Wofür stehen alle 4 Buchstaben der VRIN-Merkmale?",
+      opts: ["Valuable (bringt Wert), Rare (einzigartig), Inimitable (schwer zu kopieren), Non-substitutable (nicht ersetzbar)","Valuable, Reliable, Innovative, Necessary","Visible, Rare, Integrated, Novel","Variable, Risky, Inimitable, Nested"],
+      correct: 0, explain: "VRIN-Merkmale definieren die strategische Relevanz von Ressourcen: Valuable (bringt Wert), Rare (einzigartig ggü. Wettbewerbern), Inimitable (schwer zu kopieren), Non-substitutable (nicht durch andere Ressourcen ersetzbar)." },
+    { q: "Was passiert laut Porter's Strategiematrix, wenn ein Unternehmen weder Differenzierung noch Gesamtkostenführerschaft noch Fokus konsequent verfolgt?",
+      opts: ["Es ist 'in der Mitte gefangen' (stuck in the middle) – ohne klaren strategischen Vorteil","Es erzielt automatisch die höchste Rentabilität","Es verfolgt zwangsläufig eine erfolgreiche Diversifikationsstrategie","Es gilt automatisch als Marktführer"],
+      correct: 0, explain: "Wer zwischen den 3 Wettbewerbsstrategien (Differenzierung, Gesamtkostenführerschaft, Fokus) keine klare Wahl trifft, ist 'in der Mitte gefangen' – ohne klaren Wettbewerbsvorteil und meist mit unterdurchschnittlicher Rentabilität." },
+    { q: "Welche Aktivitäten zählen laut Porter's Wertschöpfungskette zu den sekundären (unterstützenden) Aktivitäten? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Unternehmensführung & HR","Buchhaltung","Investitionen und Finanzierung","Technologieentwicklung","Marketing & Vertrieb"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Sekundäre (unterstützende) Aktivitäten: Unternehmensführung & HR, Buchhaltung, Investitionen & Finanzierung, Beschaffung, Technologieentwicklung. Marketing & Vertrieb gehört zu den primären Aktivitäten." },
     { q: "Was beschreibt die limitationale Produktionsfunktion?",
       opts: ["Eine feste Beziehung zwischen zwei Inputfaktoren","Beliebige Substituierbarkeit der Inputfaktoren","Nur ein Inputfaktor wird benötigt","Der Output bleibt konstant, während der Input beliebig variiert"],
       correct: 0, explain: "Limitational = feste Beziehung von Inputfaktoren. Substitutional = Input ändert sich, Output bleibt gleich." },
@@ -1644,6 +1698,21 @@ const QUIZ_DATA = {
     { q: "Welche Porter-Wettbewerbsstrategie verfolgt Tata mit dem 'preiswertesten Auto der Welt'?",
       opts: ["Gesamtkostenführerschaft","Differenzierung","Fokus","Diversifikation"],
       correct: 0, explain: "Beispiele: Differenzierung – Volvo (sicheres Auto); Gesamtkostenführerschaft – Tata (preiswertestes Auto); Fokus – Porsche (Premium-Nische)." },
+    { q: "Welche Porter-Wettbewerbsstrategie verfolgt Volvo mit einem besonders sicheren Auto?",
+      opts: ["Differenzierung","Gesamtkostenführerschaft","Fokus","Diversifikation"],
+      correct: 0, explain: "Volvo hebt sich durch ein wahrgenommenes Alleinstellungsmerkmal (Sicherheit) ab, ohne dabei über den Preis zu konkurrieren – klassisches Beispiel für Differenzierung." },
+    { q: "Welche Porter-Wettbewerbsstrategie verfolgt Porsche mit seiner Premium-Nische?",
+      opts: ["Fokus","Differenzierung","Gesamtkostenführerschaft","Diversifikation"],
+      correct: 0, explain: "Porsche konzentriert sich auf ein bestimmtes, enges Marktsegment (Premiumbereich) statt branchenweit zu konkurrieren – das ist die Fokus-Strategie." },
+    { q: "Ordnen Sie die Beispiele korrekt der jeweiligen Porter-Wettbewerbsstrategie zu: Volvo, Tata, Porsche.",
+      opts: ["Volvo = Differenzierung, Tata = Gesamtkostenführerschaft, Porsche = Fokus","Volvo = Fokus, Tata = Differenzierung, Porsche = Gesamtkostenführerschaft","Volvo = Gesamtkostenführerschaft, Tata = Fokus, Porsche = Differenzierung","Alle drei verfolgen dieselbe Strategie"],
+      correct: 0, explain: "Volvo = Differenzierung (sicheres Auto), Tata = Gesamtkostenführerschaft (preiswertestes Auto der Welt), Porsche = Fokus (Premium-Nische)." },
+    { q: "Was besagt Porter's Strategiematrix, wenn ein Unternehmen weder klar auf Differenzierung, Gesamtkostenführerschaft noch Fokus setzt?",
+      opts: ["Es ist 'in der Mitte gefangen' und hat keinen klaren strategischen Vorteil","Es verfolgt automatisch die erfolgreichste Strategie","Es betreibt zwangsläufig Diversifikation","Es hat den größten Marktanteil"],
+      correct: 0, explain: "Ohne klare Positionierung auf einer der drei Strategien ('stuck in the middle') fehlt dem Unternehmen ein eindeutiger Wettbewerbsvorteil.", diagramKey: "porterstrategie" },
+    { q: "In Porter's Strategiematrix: Welche zwei Dimensionen spannen die Matrix auf?",
+      opts: ["Strategisches Ziel (branchenweit / nur ein Segment) und Strategischer Vorteil (Besonderheit / niedrige Kostenposition)","Marktwachstum und relativer Marktanteil","Stärken/Schwächen und Chancen/Risiken","Umsatz und Zeit"],
+      correct: 0, explain: "Porter's Strategiematrix wird durch 'Strategisches Ziel' (branchenweit vs. ein bestimmtes Segment) und 'Strategischer Vorteil' (wahrgenommene Besonderheit vs. niedrige Kostenposition) aufgespannt – nicht zu verwechseln mit der BCG-Matrix (Marktwachstum/Marktanteil).", diagramKey: "porterstrategie" },
     { q: "Welches Feld der BCG-Matrix beschreibt einen geringen Marktanteil in einem stark wachsenden Markt?",
       opts: ["Investition (Fragezeichen)","Unterstützung (Star)","Ernte (Cash Cow)","De-Investition (Dog)"],
       correct: 0, explain: "Investition/Fragezeichen: geringer Marktanteil, hohes Marktwachstum – Ausgangspunkt der meisten Unternehmen, Potenzial zum Star." },
@@ -1738,6 +1807,12 @@ const QUIZ_DATA = {
     { q: "Was ist die Minimalkostenkombination in der Produktion?",
       opts: ["Der Schnittpunkt der Produktionsfunktion und der Kostenisoquante, der zu minimalen Kosten führt","Die höchstmögliche Produktionsmenge unabhängig von den Kosten","Der Punkt mit dem geringsten Personalbedarf im Unternehmen","Ausschließlich die günstigste am Markt verfügbare Maschine"],
       correct: 0, explain: "Die Minimalkostenkombination ist der Punkt, an dem eine gegebene Ausbringungsmenge mit minimalen Kosten erzeugt wird." },
+    { q: "Was beschreibt die substitutionale Produktionsfunktion und wie werden die Kombinationsmöglichkeiten von Inputfaktoren mit gleichem Output grafisch dargestellt?",
+      opts: ["Ein Inputfaktor kann (in engen Grenzen) durch einen anderen ersetzt werden, ohne dass sich der Output ändert – dargestellt durch Isoquanten","Inputfaktoren stehen in einem festen, unveränderlichen Verhältnis zueinander – dargestellt durch eine Gerade durch den Ursprung","Der Output kann beliebig gesteigert werden, ohne dass sich der Input ändert","Nur ein einziger Inputfaktor wird für die Produktion benötigt"],
+      correct: 0, explain: "Substitutionale Produktionsfunktion: ein Produktionsfaktor (z.B. Mitarbeiter) kann in engen Grenzen durch einen anderen (z.B. Maschinen) ersetzt werden, wobei der Output (M) gleich bleibt. Die Kombinationen gleichen Outputs bilden eine Isoquante – im Gegensatz zur limitationalen Produktionsfunktion mit fester Faktorbeziehung.", diagramKey: "isoquanten" },
+    { q: "Rechenaufgabe (Kostenisoquante): Ein Kapitalbudget von 1.000 € pro Monat steht zur Verfügung. Die Maschinenmiete beträgt 200 €/Monat. Wie viele Maschinen können maximal finanziert werden, wenn das gesamte Budget nur für Maschinen ausgegeben wird?",
+      opts: ["5 Maschinen (1.000 € ÷ 200 €/Maschine)","2 Maschinen","10 Maschinen","20 Maschinen"],
+      correct: 0, calc: true, formula: true, explain: "Die Kostenisoquante ergibt sich aus Faktormenge = Kapitalbudget ÷ Faktorpreis. Bei ausschließlichem Einsatz für Maschinen: 1.000 € ÷ 200 €/Monat = 5 Maschinen. Der Schnittpunkt von Produktionsfunktion und Kostenisoquante liefert die Minimalkostenkombination (z.B. 1,5 Mitarbeiter + 2 Maschinen bei einem Lohn von 330 €/Monat)." },
     { q: "Was ist die Aufgabe der Beschaffung (Einkauf)?",
       opts: ["Strukturierung der Waren sowie Entscheidung, was, wann, wo und wie viel gekauft wird","Ausschließlich die Verhandlung von Einkaufspreisen","Nur die Lagerhaltung von bereits gekauften Waren","Die Auswahl neuer Mitarbeiter für die Einkaufsabteilung"],
       correct: 0, explain: "Beschaffung strukturiert die benötigten Waren und entscheidet, was, wann, wo und wie viel gekauft wird." },
@@ -1753,6 +1828,13 @@ const QUIZ_DATA = {
     { q: "Was zeichnet Kaizen als Bestandteil des Lean Management aus?",
       opts: ["Kontinuierliche Verbesserung in kleinen Schritten nach dem Prinzip Plan – Do – Check – Act","Eine einmalige, radikale Umstrukturierung des gesamten Unternehmens","Ausschließlich die vollständige Automatisierung von Prozessen","Die vollständige Auslagerung der gesamten Produktion"],
       correct: 0, explain: "Kaizen: kontinuierliche Verbesserung in kleinen Schritten nach dem PDCA-Zyklus (Plan – Do – Check – Act)." },
+    { q: "Welche gehören laut Kaizen-Konzept zu den 'sieben Arten von Abfällen/Verschwendung' im Produktionsprozess? Wählen Sie alle zutreffenden Antworten aus.",
+      opts: ["Überproduktion","Wartezeiten","Materialbewegungen","Korrekturen (Fehler/Nacharbeit)","Hoher Personalbestand"],
+      multi: true, correct: [0,1,2,3],
+      explain: "Die sieben Arten von Abfällen im Kaizen-Konzept: Überproduktion, Wartezeiten, Bewegungen, Materialbewegungen, Lagerbestand, Verarbeitung und Korrekturen (Fehler/Nacharbeit). 'Hoher Personalbestand' gehört nicht dazu." },
+    { q: "Was besagt das PDCA-Prinzip (Kaizen-Zyklus) im Detail? Ordnen Sie die 4 Schritte richtig zu.",
+      opts: ["Plan (Änderungen/Daten definieren) → Do (Tests durchführen, Änderungen implementieren) → Check (Ergebnisse analysieren) → Act (Änderungen dauerhaft umsetzen, erneut bei Schritt 1 beginnen)","Plan → Act → Check → Do","Do → Plan → Act → Check","Check → Plan → Do → Act"],
+      correct: 0, explain: "PDCA/Kaizen-Zyklus: 1. Plan (welche Änderungen/Daten nötig?), 2. Do (Tests, Analyse, Umsetzung), 3. Check (Ergebnisse analysieren, ist die Veränderung eingetreten?), 4. Act (Änderungen dauerhaft umsetzen, Zyklus erneut beginnen)." },
     { q: "Wie sieht der Produktlebenszyklus laut Vorlesung aus?",
       opts: ["Einführung, Wachstum, Reife, Sättigung","Idee, Entwicklung, Launch, Rückzug","Planung, Produktion, Vertrieb, Recycling","Test, Optimierung, Skalierung, Abschaltung"],
       correct: 0, explain: "Der Produktlebenszyklus verläuft in den Phasen Einführung, Wachstum, Reife und Sättigung." },
