@@ -2546,7 +2546,19 @@ const EBWL_FORMULA_QUIZ = {
       correct: 0, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
     { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
       opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
-      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." }
+      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
+    { q: "Rechenaufgabe (Kostenvergleichsrechnung, statische Investitionsbewertung): Anschaffungskosten 50.000 €, Restwert 1.000 €, Nutzungsdauer 5 Jahre, Kalkulationszinssatz 10 %, Fixkosten 5.000 €/Jahr, variable Kosten 1.000 €/Jahr. Wie hoch ist der jährliche Kostenvergleichswert?",
+      opts: ["18.350 € (Abschreibung 9.800 € + Kapitalkosten 2.550 € + Fixkosten 5.000 € + variable Kosten 1.000 €)","15.800 € (nur Fixkosten + variable Kosten + Abschreibung, ohne Kapitalkosten)","9.800 € (nur die Abschreibung)","23.350 € (Anschaffungskosten ÷ Nutzungsdauer + alle Kosten)"],
+      correct: 0, calc: true,
+      explain: "Kostenvergleichsrechnung: Kostenvergleich = Abschreibung + Kapitalkosten + Fixkosten + variable Kosten. Abschreibung = (Anschaffungskosten − Restwert) ÷ Nutzungsdauer = (50.000−1.000)/5 = 9.800 €. Kapitalkosten = Ø gebundenes Kapital · Zinssatz = [(Anschaffungskosten+Restwert)/2] · i = (50.000+1.000)/2 · 0,10 = 2.550 €. Kostenvergleich = 9.800 + 2.550 + 5.000 + 1.000 = 18.350 €." },
+    { q: "Rechenaufgabe (Gewinnvergleichsrechnung): Aufbauend auf der vorigen Aufgabe (Kostenvergleich = 18.350 €) erzielt die Investition Umsatzerlöse von 20.000 €/Jahr. Wie hoch ist der Gewinnvergleich?",
+      opts: ["1.650 € (Umsatzerlöse − Kostenvergleich = 20.000 − 18.350)","20.000 € (die vollen Umsatzerlöse ohne Kostenabzug)","38.350 € (Umsatzerlöse + Kostenvergleich)","−1.650 € (Kostenvergleich − Umsatzerlöse)"],
+      correct: 0, calc: true,
+      explain: "Gewinnvergleichsrechnung: Gewinnvergleich = Umsatzerlöse − Kostenvergleich = 20.000 € − 18.350 € = 1.650 €. Wählt man je nach Methode Kosten- oder Gewinnvergleich, kann das Ranking zweier Alternativen unterschiedlich ausfallen (Perspektivfrage)." },
+    { q: "Rechenaufgabe (Amortisationsrechnung/Payback-Methode): Eine Investition kostet 50.000 € (Anschaffungskosten). Der jährliche Zahlungsüberschuss (Umsatz − Kosten, OHNE Abschreibung/Kapitalkosten) beträgt 14.000 €. Nach wie vielen Jahren ist die Investition amortisiert?",
+      opts: ["≈ 3,6 Jahre (50.000 ÷ 14.000)","3,0 Jahre (50.000 ÷ (14.000+2.667))","≈ 5,6 Jahre (bei Berücksichtigung der Abschreibung)","1,4 Jahre (14.000 ÷ 50.000 · 5)"],
+      correct: 0, calc: true,
+      explain: "Amortisationszeit (Payback-Periode) = Anschaffungskosten ÷ jährlicher Zahlungsüberschuss = 50.000 € ÷ 14.000 € ≈ 3,6 Jahre (≈ 43 Monate). Je kürzer die Amortisationszeit, desto vorteilhafter die Investition nach diesem statischen Kriterium – der Zeitwert des Geldes wird dabei vernachlässigt." }
   ]},
   produktion: { label: 'Produktion & Logistik', sub: 'Andlerformel, Kostenisoquante, BCG, Marn/Rosiello, CLV', questions: [
     { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €.",
