@@ -1332,21 +1332,6 @@ const QUIZ_DATA = {
     { q: "Welche Finanzierungsmöglichkeiten passen zur Inbetriebnahme-Phase (Cashflow < 0) im Unternehmenslebenszyklus?",
       opts: ["Angel-Round und Private Equity","IPO und Anleihen","Kapitalerhöhung und Convertibles","Bankkredit und High Yield"],
       correct: 0, explain: "Inbetriebnahme (CF < 0): Angel-Round, Private Equity. Wachstum (CF ≈ 0): High Yield, Bankkredit. Laufzeit (CF > 0): IPO, Kapitalerhöhung, Convertibles, Anleihen." },
-    { q: "Rechenaufgabe: Anschaffung 30.000 €, fixe + variable Kosten 5.000 €/Jahr, Umsatzerlöse 20.000 €/Jahr, Zins 10 %, t = 2 Jahre. Wie hoch ist der Kapitalwert?",
-      opts: ["−3.967 €","5.033 €","−16.364 €","30.000 €"], correct: 0,
-      explain: "Gewinn/Jahr = 15.000 €. Kapitalwert = −30.000 + 15.000/1,1 + 15.000/1,1² = −30.000 + 13.636 + 12.397 ≈ −3.967 €.", calc: true, genKey: 'kapitalwert', formula: true },
-    { q: "Rechenaufgabe: Umsatzkosten pro Tag 600 €, Umsatz pro Tag 700 €, durchschn. Vorräte 36.000 €, durchschn. Forderungen 21.000 €, durchschn. Verbindlichkeiten 18.000 €. Wie hoch ist der Cash Conversion Cycle (CCC) in Tagen?",
-      opts: ["60 Tage","90 Tage","30 Tage","120 Tage"], correct: 0,
-      explain: "DIO = 36.000/600 = 60. DSO = 21.000/700 = 30. DPO = 18.000/600 = 30. CCC = DIO + DSO − DPO = 60 + 30 − 30 = 60 Tage.", calc: true, genKey: 'ccc', formula: true },
-    { q: "Rechenaufgabe (Zinseszins): Sie besitzen 1.000 €, der Zinssatz beträgt 3,75 %. Wie viel Euro stehen Ihnen unter Berücksichtigung von Zinseszinseffekten nach 5 Jahren zur Verfügung (auf 1 Nachkommastelle runden)?",
-      opts: ["1.202,1 €","1.187,5 €","1.158,7 €","1.200,0 €"], correct: 0,
-      explain: "Zinseszinsformel: Endkapital = Anfangskapital · (1+i)ⁿ. Kn = 1.000 € · 1,0375⁵ ≈ 1.202,1 €. Achtung: keine einfache lineare Verzinsung (1.000 · (1+5·0,0375) = 1.187,5 € wäre falsch, da Zinseszinseffekt fehlt).", calc: true, formula: true },
-    { q: "Wie lautet die allgemeine Formel für die Zinseszinsrechnung (Endkapital nach n Jahren)?",
-      opts: ["Kn = K₀ · (1+i)ⁿ, mit K₀ = Anfangskapital, i = Zinssatz, n = Anzahl Jahre","Kn = K₀ + n · i","Kn = K₀ · i · n","Kn = K₀ ÷ (1+i)ⁿ"],
-      correct: 0, formula: true, explain: "Zinseszinsformel: Kn = K₀ · (1+i)ⁿ. Die letzte Option (K₀ ÷ (1+i)ⁿ) ist die Diskontierung/Abzinsung – also die Umkehrung, um einen zukünftigen Wert auf heute abzuzinsen." },
-    { q: "Rechenaufgabe (CCC mit realen Bilanzzahlen): Ein Unternehmen hat Umsatzerlöse von 155.498 Mio. €, Umsatzkosten von 125.809 Mio. €, durchschnittliche Vorräte von 21.862 Mio. €, durchschnittliche Forderungen von 4.144,5 Mio. € und durchschnittliche Verbindlichkeiten von 14.833,5 Mio. €. Wie hoch ist der Cash Conversion Cycle (365 Tage/Jahr, 1 Nachkommastelle)?",
-      opts: ["30,1 Tage","10,7 Tage","33,4 Tage","116,2 Tage"], correct: 0,
-      explain: "DIO = 21.862/(125.809/365) ≈ 63,4. DSO = 4.144,5/(155.498/365) ≈ 9,7. DPO = 14.833,5/(125.809/365) ≈ 43,0. CCC = DIO + DSO − DPO ≈ 63,4 + 9,7 − 43,0 ≈ 30,1 Tage.", calc: true, formula: true },
     { q: "Welche der folgenden Methoden zählen zu den dynamischen Bewertungsmethoden einer Investition? Wählen Sie alle zutreffenden Antworten aus.",
       opts: ["Kapitalwertmethode","Annuitätenmethode","Interner Zinssatz","Kostenvergleich","Amortisationszeitraum"],
       multi: true, correct: [0,1,2],
@@ -1359,33 +1344,6 @@ const QUIZ_DATA = {
       opts: ["Außenfinanzierung","Eigenfinanzierung","Innenfinanzierung","Fremdfinanzierung","Kreditfinanzierung"],
       multi: true, correct: [0,1],
       explain: "Das Kapital kommt von außen (Außenfinanzierung) und in Form von Eigenkapital (Eigenfinanzierung) – nicht von innen und nicht als Kredit." },
-    { q: "Wie lautet die Formel für die Opportunitätskosten?",
-      opts: ["Nutzen der lukrativsten Option − Nutzen der gewählten Option","Nutzen der gewählten Option − Nutzen der lukrativsten Option","Nutzen der gewählten Option + Nutzen der lukrativsten Option","Kosten der gewählten Option ÷ Nutzen der lukrativsten Option"],
-      correct: 0, formula: true, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
-    { q: "Wie lautet die Formel der Annuitätenmethode zur Berechnung der jährlichen Rente a?",
-      opts: ["a = Kapitalwert · [(1+i)ⁿ · i] ÷ [(1+i)ⁿ − 1]","a = Kapitalwert ÷ [(1+i)ⁿ · i]","a = Kapitalwert · [(1+i)ⁿ − 1] ÷ [(1+i)ⁿ · i]","a = Kapitalwert + (1+i)ⁿ · i"],
-      correct: 0, formula: true, explain: "Annuitätenmethode: a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
-    { q: "Wodurch ist der interne Zinssatz einer Investition definiert?",
-      opts: ["Der Zinssatz i, bei dem der Kapitalwert genau 0 beträgt (Kapitalwert = 0 = Σ Cashflow_t/(1+i)ᵗ)","Der durchschnittliche Marktzins über die gesamte Laufzeit","Der Zinssatz, der die höchste Annuität erzeugt","Der risikofreie Zinssatz zuzüglich eines pauschalen Risikoaufschlags"],
-      correct: 0, formula: true, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." },
-    { q: "Wie lautet die mathematische Formel des 2. Gossenschen Gesetzes?",
-      opts: ["∂U/∂x_i ÷ p_i = ∂U/∂x_j ÷ p_j (Grenznutzen pro Geldeinheit ist für alle Güter gleich)","∂U/∂x_i · p_i = ∂U/∂x_j · p_j","∂U/∂x_i = ∂U/∂x_j (Grenznutzen aller Güter ist absolut gleich)","p_i ÷ ∂U/∂x_i = p_j · ∂U/∂x_j"],
-      correct: 0, formula: true, explain: "2. Gossensches Gesetz: ∂U/∂x_i / p_i = ∂U/∂x_j / p_j — der Grenznutzen pro ausgegebener Geldeinheit ist im Nutzenoptimum für alle Güter gleich." },
-    { q: "Wie lautet die allgemeine Formel des Kapitalwerts (Kapitalwertmethode)?",
-      opts: ["Kapitalwert = −Anschaffungsauszahlung + Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Anschaffungsauszahlung − Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Σ Cashflow_t · (1+i)ᵗ − Anschaffungsauszahlung","Kapitalwert = Anschaffungsauszahlung ÷ Σ Cashflow_t"],
-      correct: 0, formula: true, explain: "Kapitalwert = −I₀ + Σ CFₜ/(1+i)ᵗ, mit I₀ = Anschaffungsauszahlung, CFₜ = Cashflow der Periode t, i = Kalkulationszinssatz. Investition lohnt sich, wenn der Kapitalwert positiv ist." },
-    { q: "Wie lautet die Formel des Cash Conversion Cycle (CCC) inkl. der 3 Teilkennzahlen?",
-      opts: ["CCC = DIO + DSO − DPO, mit DIO = Ø Vorräte ÷ Umsatzkosten/Tag, DSO = Ø Forderungen ÷ Umsatz/Tag, DPO = Ø Verbindlichkeiten ÷ Umsatzkosten/Tag","CCC = DIO − DSO + DPO","CCC = DIO + DSO + DPO","CCC = (DIO + DSO) ÷ DPO"],
-      correct: 0, formula: true, explain: "CCC = DIO + DSO − DPO. DIO (Days Inventory Outstanding) = Ø Vorräte / Umsatzkosten pro Tag. DSO (Days Sales Outstanding) = Ø Forderungen / Umsatz pro Tag. DPO (Days Payable Outstanding) = Ø Verbindlichkeiten / Umsatzkosten pro Tag." },
-    { q: "Wie lautet die Formel für DIO (Days Inventory Outstanding)?",
-      opts: ["DIO = Ø Vorräte ÷ Umsatzkosten pro Tag","DIO = Umsatzkosten pro Tag ÷ Ø Vorräte","DIO = Ø Vorräte ÷ Umsatz pro Tag","DIO = Ø Forderungen ÷ Umsatzkosten pro Tag"],
-      correct: 0, formula: true, explain: "DIO (Days Inventory Outstanding) = durchschnittliche Vorräte ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage Ware im Lager liegt, bevor sie verkauft wird." },
-    { q: "Wie lautet die Formel für DSO (Days Sales Outstanding)?",
-      opts: ["DSO = Ø Forderungen ÷ Umsatz pro Tag","DSO = Umsatz pro Tag ÷ Ø Forderungen","DSO = Ø Forderungen ÷ Umsatzkosten pro Tag","DSO = Ø Verbindlichkeiten ÷ Umsatz pro Tag"],
-      correct: 0, formula: true, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
-    { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
-      opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
-      correct: 0, formula: true, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
     { q: "Bilanz-Diagramm beschriften: In der Aktiva steht Position 'A' über 1. Immaterielle Vermögensgegenstände, 2. Sachanlagen, 3. Finanzanlagen. Wie heißt Position A?",
       opts: ["Anlagevermögen","Umlaufvermögen","Eigenkapital","Rückstellungen"],
       correct: 0, diagramKey: 'bilanz', explain: "Anlagevermögen umfasst die langfristig gebundenen Vermögensgegenstände: Immaterielle Vermögensgegenstände, Sachanlagen und Finanzanlagen." },
@@ -1632,15 +1590,6 @@ const QUIZ_DATA = {
     { q: "BCG-Matrix-Diagramm beschriften: Welche Größe wird auf der x-Achse (horizontal) abgetragen?",
       opts: ["Relativer Marktanteil","Marktwachstumsrate","Gewinnmarge","Kapitalumschlag"],
       correct: 0, diagramKey: 'bcg', explain: "Die x-Achse der BCG-Matrix zeigt den relativen Marktanteil (hoch/niedrig), die y-Achse die Marktwachstumsrate." },
-    { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €.",
-      opts: ["Relativer Marktanteil = Eigener Umsatz ÷ Umsatz des Hauptwettbewerbers = 300/280 ≈ 107,1 %","= Eigener Umsatz ÷ Gesamtmarktvolumen","= Marktvolumen ÷ Eigener Umsatz","= Umsatz des Hauptwettbewerbers ÷ Eigener Umsatz"],
-      correct: 0, formula: true, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
-    { q: "Achtung Verwechslungsgefahr: Wie berechnet sich der Marktanteil eines Wettbewerbers selbst (NICHT der relative Marktanteil des eigenen Unternehmens)?",
-      opts: ["Marktanteil des Wettbewerbers = Umsatz des Wettbewerbers ÷ Gesamtmarktvolumen","Marktanteil des Wettbewerbers = eigener Umsatz ÷ Umsatz des Wettbewerbers","Marktanteil des Wettbewerbers = Umsatz des Wettbewerbers ÷ eigener Umsatz","Marktanteil des Wettbewerbers = Gesamtmarktvolumen ÷ Umsatz des Wettbewerbers"],
-      correct: 0, formula: true, explain: "Klausurfalle: Der (absolute) Marktanteil EINES Unternehmens (egal ob eigenes oder Wettbewerber) = Umsatz dieses Unternehmens ÷ Gesamtmarktvolumen. Der 'relative Marktanteil' (für die BCG-Matrix) ist etwas ganz anderes: eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Nicht verwechseln!" },
-    { q: "Rechenaufgabe (Marktanteil des Wettbewerbers): Ein strategisches Geschäftsfeld hat ein Marktvolumen von 900 Mio. €. Der Umsatz des Hauptwettbewerbers beträgt 450 Mio. €. Wie hoch ist der Marktanteil des Wettbewerbers?",
-      opts: ["50 %","80 %","40 %","33 %"], correct: 0, calc: true, formula: true,
-      explain: "Marktanteil des Wettbewerbers = Umsatz Wettbewerber ÷ Marktvolumen = 450/900 = 50 %. (Nicht zu verwechseln mit dem relativen Marktanteil des eigenen Unternehmens, der eigenen Umsatz durch Wettbewerber-Umsatz teilt.)" },
     { q: "Welche Aktivitäten zählen laut Porter's Wertschöpfungskette zu den primären Aktivitäten?",
       opts: ["Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service","Unternehmensführung & HR, Buchhaltung, Beschaffung","Nur Marketing und Vertrieb","Investitionen und Finanzierung sowie Technologieentwicklung"],
       correct: 0, explain: "Primäre Aktivitäten: Eingangslogistik, Betrieb, Ausgangslogistik, Marketing & Vertrieb, Service. Sekundär: Unternehmensführung/HR, Buchhaltung, Investitionen/Finanzierung, Beschaffung, Technologieentwicklung." },
@@ -1656,9 +1605,6 @@ const QUIZ_DATA = {
     { q: "Was ist das Ziel des Poka-Yoke-Prinzips?",
       opts: ["Prozesse so gestalten, dass Fehler gar nicht erst passieren können","Fehler nachträglich möglichst schnell zu korrigieren","Lagerbestände zu maximieren","Die Kundenbindung durch Rabatte zu erhöhen"],
       correct: 0, explain: "Poka-Yoke macht Prozesse 'fehlersicher', sodass Fehler von vornherein ausgeschlossen werden." },
-    { q: "Rechenaufgabe (Andlerformel): Jährlicher Bedarf 80.000 Stück, Bestellkosten 12 €, Einkaufspreis 0,08 €, Lagerkostensatz 0,1. Wie hoch ist die optimale Bestellmenge?",
-      opts: ["15.492 Stück","8.944 Stück","24.000 Stück","4.899 Stück"], correct: 0,
-      explain: "q = √(2·80.000·12 / (0,08·0,1)) = √(1.920.000 / 0,008) = √240.000.000 ≈ 15.492.", calc: true, genKey: 'andler', formula: true },
     { q: "In welchem Verhältnis stehen Lagerkosten und Beschaffungs-/Bestellkosten zueinander, und was optimiert die Andlerformel?",
       opts: ["Lagerkosten steigen mit der Bestellmenge, Beschaffungskosten pro Stück sinken mit der Bestellmenge (Fixkostendegression) – die Andlerformel findet die Bestellmenge mit minimalen Gesamtkosten aus beiden","Beide Kostenarten steigen gemeinsam proportional mit der Bestellmenge","Beide Kostenarten sinken gemeinsam mit der Bestellmenge, es gibt keinen Trade-off","Lagerkosten sind irrelevant für die optimale Bestellmenge"],
       correct: 0, explain: "Klassischer Trade-off: Je größer die Bestellmenge, desto höher die Lagerkosten (mehr Kapitalbindung/Lagerplatz), aber desto niedriger die Beschaffungskosten pro Stück (Fixkostendegression – weniger Bestellungen nötig). Die Andlerformel ermittelt die Bestellmenge, bei der die Summe aus Lager- und Bestellkosten minimal ist." },
@@ -1698,9 +1644,6 @@ const QUIZ_DATA = {
       opts: ["Gesamtbedarf der Periode (m)","Variable Kosten je Bestellung (kB)","Einkaufspreis der Ware (w)","Lagerungskostensatz (i)","Fixe Vertriebskosten"],
       multi: true, correct: [0,1,2,3],
       explain: "Andlerformel: q = √(2·m·kB / (w·i)). Fixe Vertriebskosten sind kein Bestandteil der Formel." },
-    { q: "Wie lautet die Andlerformel zur Berechnung der optimalen Bestellmenge q?",
-      opts: ["q = √(2·m·kB ÷ (w·i))","q = √(m·kB ÷ (2·w·i))","q = (2·m·kB) ÷ (w·i)","q = √(2·m·w ÷ (kB·i))"],
-      correct: 0, formula: true, explain: "Andlerformel: q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." },
     { q: "Wie lautet die Definition von 'Strategie'?",
       opts: ["Ein langfristig orientierter Aktionsplan, um ein vorgegebenes Ziel zu erreichen: 'Wohin soll es gehen und wie kommt man dort hin?'","Die kurzfristige Umsetzung des Tagesgeschäfts","Ausschließlich die Finanzplanung eines Unternehmens","Ein rein reaktiver Prozess ohne jede Zielsetzung"],
       correct: 0, explain: "Strategie = langfristig orientierter Aktionsplan zur Erreichung eines vorgegebenen Ziels: 'Wohin soll es gehen und wie kommt man dort hin?'" },
@@ -1732,9 +1675,6 @@ const QUIZ_DATA = {
     { q: "Was beschreibt die substitutionale Produktionsfunktion und wie werden die Kombinationsmöglichkeiten von Inputfaktoren mit gleichem Output grafisch dargestellt?",
       opts: ["Ein Inputfaktor kann (in engen Grenzen) durch einen anderen ersetzt werden, ohne dass sich der Output ändert – dargestellt durch Isoquanten","Inputfaktoren stehen in einem festen, unveränderlichen Verhältnis zueinander – dargestellt durch eine Gerade durch den Ursprung","Der Output kann beliebig gesteigert werden, ohne dass sich der Input ändert","Nur ein einziger Inputfaktor wird für die Produktion benötigt"],
       correct: 0, explain: "Substitutionale Produktionsfunktion: ein Produktionsfaktor (z.B. Mitarbeiter) kann in engen Grenzen durch einen anderen (z.B. Maschinen) ersetzt werden, wobei der Output (M) gleich bleibt. Die Kombinationen gleichen Outputs bilden eine Isoquante – im Gegensatz zur limitationalen Produktionsfunktion mit fester Faktorbeziehung.", diagramKey: "isoquanten" },
-    { q: "Rechenaufgabe (Kostenisoquante): Ein Kapitalbudget von 1.000 € pro Monat steht zur Verfügung. Die Maschinenmiete beträgt 200 €/Monat. Wie viele Maschinen können maximal finanziert werden, wenn das gesamte Budget nur für Maschinen ausgegeben wird?",
-      opts: ["5 Maschinen (1.000 € ÷ 200 €/Maschine)","2 Maschinen","10 Maschinen","20 Maschinen"],
-      correct: 0, calc: true, formula: true, explain: "Die Kostenisoquante ergibt sich aus Faktormenge = Kapitalbudget ÷ Faktorpreis. Bei ausschließlichem Einsatz für Maschinen: 1.000 € ÷ 200 €/Monat = 5 Maschinen. Der Schnittpunkt von Produktionsfunktion und Kostenisoquante liefert die Minimalkostenkombination (z.B. 1,5 Mitarbeiter + 2 Maschinen bei einem Lohn von 330 €/Monat)." },
     { q: "Was ist die Aufgabe der Beschaffung (Einkauf)?",
       opts: ["Strukturierung der Waren sowie Entscheidung, was, wann, wo und wie viel gekauft wird","Ausschließlich die Verhandlung von Einkaufspreisen","Nur die Lagerhaltung von bereits gekauften Waren","Die Auswahl neuer Mitarbeiter für die Einkaufsabteilung"],
       correct: 0, explain: "Beschaffung strukturiert die benötigten Waren und entscheidet, was, wann, wo und wie viel gekauft wird." },
@@ -1763,9 +1703,6 @@ const QUIZ_DATA = {
     { q: "Welches Instrument bringt laut Vorlesung die größte Gewinnsteigerung?",
       opts: ["Eine Preiserhöhung","Eine Reduzierung der variablen Kosten","Eine reine Umsatzsteigerung","Eine Reduzierung der fixen Kosten"],
       correct: 0, explain: "Eine Preiserhöhung bringt laut Vorlesung die größte Gewinnsteigerung – noch vor Reduzierung variabler Kosten, Umsatzsteigerung oder Reduzierung fixer Kosten." },
-    { q: "Rechenaufgabe/Kennzahlen (Marn/Rosiello 1993): Um wie viel Prozent steigt der Gewinn bei einer Preiserhöhung um 1%, verglichen mit einer Reduzierung der variablen Kosten um 1%, einer Umsatzsteigerung um 1% und einer Reduzierung der Fixkosten um 1%?",
-      opts: ["Preiserhöhung 11,1% > variable Kosten −1% = 7,8% > Umsatz +1% = 3,3% > Fixkosten −1% = 2,3%","Alle vier Hebel führen zu exakt derselben Gewinnsteigerung von 5%","Nur die Fixkostenreduzierung wirkt sich überhaupt auf den Gewinn aus","Umsatzsteigerung um 1% wirkt stärker als jede Preiserhöhung"],
-      correct: 0, formula: true, explain: "Nach Marn/Rosiello (1993): Preiserhöhung um 1% → Gewinnsteigerung 11,1%; Reduzierung variabler Kosten um 1% → 7,8%; Umsatzsteigerung um 1% → 3,3%; Reduzierung Fixkosten um 1% → 2,3%. Der Preis hat damit den größten Hebel auf die Rentabilität." },
     { q: "Welche 3 Konzepte zur Preisbestimmung gibt es?",
       opts: ["Kostenorientierung, Wettbewerbsorientierung, Bedarfsorientierung","Nur die Kostenorientierung ist in der Praxis relevant","Angebots-, Nachfrage- und Marktorientierung","Kurzfristige und langfristige Preisorientierung"],
       correct: 0, explain: "3 Preisbestimmungskonzepte: Kostenorientierung, Wettbewerbsorientierung, Bedarfsorientierung." },
@@ -1894,9 +1831,6 @@ const QUIZ_DATA = {
     { q: "Wie läuft der kybernetische Kontrollzyklus ab?",
       opts: ["Planung → Ausführung → Kontrolle (und zurück zur Planung)","Kontrolle → Planung → Ausführung → Ende","Ausführung → Kontrolle → Ende, keine Rückkopplung","Planung → Kontrolle → Ausführung → Ende"],
       correct: 0, explain: "Der kybernetische Kontrollzyklus stellt sicher, dass Pläne umgesetzt werden: Planung → Ausführung → Kontrolle → erneute Planung." },
-    { q: "Rechenaufgabe: Fixkosten 120.000 €, Verkaufspreis 15 €/Stück, variable Kosten 9 €/Stück. Wie hoch ist der Break-Even-Point in Stück?",
-      opts: ["20.000 Stück","13.333 Stück","8.000 Stück","120.000 Stück"], correct: 0,
-      explain: "BEP = Fixkosten / (Preis − variable Kosten) = 120.000 / (15 − 9) = 20.000 Stück.", calc: true, genKey: 'breakeven' },
     { q: "Welche 4 Arten von KPIs unterscheidet man laut Vorlesung?",
       opts: ["Selektive, Fokussierte, Balanced und Integrierte KPIs","Interne, Externe, Finanzielle und Operative KPIs","Kurzfristige, Mittelfristige, Langfristige und Strategische KPIs","Qualitative, Quantitative, Absolute und Relative KPIs"],
       correct: 0, explain: "4 KPI-Arten: Selektive KPIs (z.B. Break-Even), Fokussierte KPIs (z.B. DuPont), Balanced KPIs (z.B. Lean Controlling), Integrierte KPIs (z.B. Balanced Scorecard)." },
@@ -1930,13 +1864,6 @@ const QUIZ_DATA = {
       opts: ["Gewinnmarge = Nettogewinn ÷ Umsatz","Kapitalumschlag = Umsatz ÷ durchschn. Gesamtvermögen","EK-Multiplikator = durchschn. Gesamtvermögen ÷ durchschn. Eigenkapital","Gewinnmarge = Umsatz ÷ Nettogewinn","Kapitalumschlag = durchschn. Eigenkapital ÷ Umsatz"],
       multi: true, correct: [0,1,2],
       explain: "ROE = (Nettogewinn/Umsatz) · (Umsatz/durchschn. Gesamtvermögen) · (durchschn. Gesamtvermögen/durchschn. EK) = Nettogewinn/durchschn. EK." },
-    { q: "Rechenaufgabe (DuPont-Analyse): Ein Unternehmen hat ein durchschnittliches Gesamtkapital von 1.200 Mio. €, wovon 25 % Eigenkapital sind. Bei einem Umsatz von 1.700 Mio. € erzielt es einen Nettogewinn von 200 Mio. €. Wie hoch ist der ROE (2 Nachkommastellen bei den Zwischenschritten, Endergebnis gerundet)?",
-      opts: ["ROE ≈ 67 % (Gewinnmarge 12 % · Kapitalumschlag 142 % · EK-Multiplikator 400 %)","ROE ≈ 62 % (Gewinnmarge 12 % · Kapitalumschlag 150 % · EK-Multiplikator 350 %)","ROE ≈ 62 % (850 % · 29 % · 25 %)","ROE ≈ 67 % (16 % · 120 % · 350 %)"],
-      correct: 0, calc: true, formula: true,
-      explain: "Eigenkapital = 25 % von 1.200 Mio. = 300 Mio. €. Gewinnmarge = 200/1.700 ≈ 11,76 % ≈ 12 %. Kapitalumschlag = 1.700/1.200 ≈ 141,67 % ≈ 142 %. EK-Multiplikator = 1.200/300 = 400 %. ROE = 0,1176 · 1,4167 · 4 ≈ 0,667 = 66,7 % ≈ 67 %. Kontrolle: ROE = Nettogewinn/EK = 200/300 ≈ 66,7 % ✓." },
-    { q: "Wie lautet die Formel des Break-Even-Points (BEP) in Stück?",
-      opts: ["BEP = Fixkosten ÷ (Verkaufspreis − variable Kosten pro Stück)","BEP = Fixkosten · (Verkaufspreis − variable Kosten pro Stück)","BEP = (Fixkosten + variable Kosten) ÷ Verkaufspreis","BEP = Verkaufspreis ÷ Fixkosten"],
-      correct: 0, formula: true, explain: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." },
     { q: "Auf welchen 5 Fähigkeiten basiert Leadership laut Vorlesung?",
       opts: ["Klare Vision schaffen, Visionen teilen, Konflikte koordinieren, kreatives Denken in unsicheren Situationen, Bereitstellung von Informationen/Wissen/Fähigkeiten","Nur Charisma und Persönlichkeit","Ausschließlich Budgetverantwortung","Hierarchische Position und formaler Titel"],
       correct: 0, explain: "5 Fähigkeiten von Leadership: klare Vision schaffen, Visionen teilen, Konflikte koordinieren, kreatives Denken in unsicheren Situationen, Bereitstellung von Informationen/Wissen/Fähigkeiten." },
@@ -2577,81 +2504,134 @@ function renderWk1() {
 // EBWL-Formelkarten (alle Formeln & Rechenbeispiele aus Teil A/B/C)
 // ============================================================
 
-const EBWL_CARDS = {
-  invest: { label: 'Investition & Finanzierung', sub: 'Kapitalwert, Annuität, CCC, Opportunitätskosten', cards: [
-    { front: "Wie lautet die allgemeine Formel des Kapitalwerts (Kapitalwertmethode)?", back: "Kapitalwert = −I₀ + Σ CFₜ/(1+i)ᵗ, mit I₀ = Anschaffungsauszahlung, CFₜ = Cashflow der Periode t, i = Kalkulationszinssatz. Investition lohnt sich, wenn der Kapitalwert positiv ist." },
-    { front: "Rechenbeispiel Kapitalwert: Anschaffung 30.000 €, fixe + variable Kosten 5.000 €/Jahr, Umsatzerlöse 20.000 €/Jahr, Zins 10 %, t = 2 Jahre. Wie hoch ist der Kapitalwert?", back: "Gewinn/Jahr = 20.000 − 5.000 = 15.000 €. Kapitalwert = −30.000 + 15.000/1,1 + 15.000/1,1² = −30.000 + 13.636 + 12.397 ≈ −3.967 €. Die Investition lohnt sich hier NICHT (negativer Kapitalwert)." },
-    { front: "Wie lautet die Formel der Annuitätenmethode zur Berechnung der jährlichen Rente a?", back: "a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
-    { front: "Wodurch ist der interne Zinssatz einer Investition definiert?", back: "Der interne Zinssatz ist der Zinssatz i, der den Kapitalwert auf 0 setzt. Die Investition ist günstig, falls dieser interne Zinssatz i > den angemessenen Zielsatz ist." },
-    { front: "Wie lautet die mathematische Formel des 2. Gossenschen Gesetzes?", back: "∂U/∂x_i / p_i = ∂U/∂x_j / p_j — der Grenznutzen pro ausgegebener Geldeinheit ist im Nutzenoptimum für alle Güter gleich (= die Grenzkosten der Anschaffung sind über alle Güter hinweg gleich)." },
-    { front: "Wie lautet die Formel für die Opportunitätskosten?", back: "Opportunitätskosten = Nutzen der lukrativsten (nicht gewählten) Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
-    { front: "Wie lautet die Formel des Cash Conversion Cycle (CCC) inkl. der 3 Teilkennzahlen?", back: "CCC = DIO + DSO − DPO. DIO = Ø Vorräte / Umsatzkosten pro Tag. DSO = Ø Forderungen / Umsatz pro Tag. DPO = Ø Verbindlichkeiten / Umsatzkosten pro Tag." },
-    { front: "Wie lautet die Formel für DIO (Days Inventory Outstanding)?", back: "DIO = durchschnittliche Vorräte ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage Ware im Lager liegt, bevor sie verkauft wird." },
-    { front: "Wie lautet die Formel für DSO (Days Sales Outstanding)?", back: "DSO = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
-    { front: "Wie lautet die Formel für DPO (Days Payable Outstanding)?", back: "DPO = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
-    { front: "Rechenbeispiel CCC: Umsatzkosten/Tag 600 €, Umsatz/Tag 700 €, Ø Vorräte 36.000 €, Ø Forderungen 21.000 €, Ø Verbindlichkeiten 18.000 €. Wie hoch ist der CCC?", back: "DIO = 36.000/600 = 60. DSO = 21.000/700 = 30. DPO = 18.000/600 = 30. CCC = 60 + 30 − 30 = 60 Tage." },
-    { front: "Wie lautet die Zinseszinsformel (Endkapital nach n Jahren)?", back: "Kn = K₀ · (1+i)ⁿ, mit K₀ = Anfangskapital, i = Zinssatz, n = Anzahl Jahre. NICHT linear rechnen (K₀ + n·i·K₀ ist falsch)!" },
-    { front: "Rechenbeispiel Zinseszins: 1.000 €, Zinssatz 3,75 %, 5 Jahre. Endkapital?", back: "Kn = 1.000 € · 1,0375⁵ ≈ 1.202,1 €. (Falsch wäre die einfache/lineare Verzinsung: 1.000 · (1+5·0,0375) = 1.187,5 € — das ignoriert den Zinseszinseffekt.)" },
-    { front: "Internes vs. externes Rechnungswesen: Was ist jeweils Zweck, Wertgröße und Veröffentlichungspflicht?", back: "Internes RW: Zweck = Planung/Steuerung/Kontrolle, Wertgröße = Kosten/Leistungen, Veröffentlichung = freiwillig, Adressat = interne Stakeholder. Externes RW: Zweck = Rechenschaftslegung/Dokumentation, Wertgröße = Ertrag/Aufwand, Veröffentlichung = Pflicht, Adressat = externe Stakeholder (Investoren, Kreditgeber, Behörden)." }
+// EBWL_FORMULA_QUIZ: alle Rechen- und Formelaufgaben aus Teil A/B/C leben AUSSCHLIESSLICH
+// hier (nicht mehr im EBWL-Quiz, um Dopplungen zu vermeiden). Aufgaben mit genKey werden bei
+// jedem Durchlauf über QUIZ_CALC_GENERATORS frisch mit neuen Zahlen generiert.
+const EBWL_FORMULA_QUIZ = {
+  invest: { label: 'Investition & Finanzierung', sub: 'Kapitalwert, Zinseszins, CCC, Annuität, Opportunitätskosten', questions: [
+    { genKey: 'kapitalwert' },
+    { genKey: 'ccc' },
+    { q: "Rechenaufgabe (Zinseszins): Sie besitzen 1.000 €, der Zinssatz beträgt 3,75 %. Wie viel Euro stehen Ihnen unter Berücksichtigung von Zinseszinseffekten nach 5 Jahren zur Verfügung (auf 1 Nachkommastelle runden)?",
+      opts: ["1.202,1 €","1.187,5 €","1.158,7 €","1.200,0 €"], correct: 0, calc: true,
+      explain: "Zinseszinsformel: Endkapital = Anfangskapital · (1+i)ⁿ. Kn = 1.000 € · 1,0375⁵ ≈ 1.202,1 €. Achtung: keine einfache lineare Verzinsung (1.000 · (1+5·0,0375) = 1.187,5 € wäre falsch, da Zinseszinseffekt fehlt)." },
+    { q: "Wie lautet die allgemeine Formel für die Zinseszinsrechnung (Endkapital nach n Jahren)?",
+      opts: ["Kn = K₀ · (1+i)ⁿ, mit K₀ = Anfangskapital, i = Zinssatz, n = Anzahl Jahre","Kn = K₀ + n · i","Kn = K₀ · i · n","Kn = K₀ ÷ (1+i)ⁿ"],
+      correct: 0, explain: "Zinseszinsformel: Kn = K₀ · (1+i)ⁿ. Die letzte Option (K₀ ÷ (1+i)ⁿ) ist die Diskontierung/Abzinsung – also die Umkehrung, um einen zukünftigen Wert auf heute abzuzinsen." },
+    { q: "Rechenaufgabe (CCC mit realen Bilanzzahlen): Ein Unternehmen hat Umsatzerlöse von 155.498 Mio. €, Umsatzkosten von 125.809 Mio. €, durchschnittliche Vorräte von 21.862 Mio. €, durchschnittliche Forderungen von 4.144,5 Mio. € und durchschnittliche Verbindlichkeiten von 14.833,5 Mio. €. Wie hoch ist der Cash Conversion Cycle (365 Tage/Jahr, 1 Nachkommastelle)?",
+      opts: ["30,1 Tage","10,7 Tage","33,4 Tage","116,2 Tage"], correct: 0, calc: true,
+      explain: "DIO = 21.862/(125.809/365) ≈ 63,4. DSO = 4.144,5/(155.498/365) ≈ 9,7. DPO = 14.833,5/(125.809/365) ≈ 43,0. CCC = DIO + DSO − DPO ≈ 63,4 + 9,7 − 43,0 ≈ 30,1 Tage." },
+    { q: "Wie lautet die Formel für die Opportunitätskosten?",
+      opts: ["Nutzen der lukrativsten Option − Nutzen der gewählten Option","Nutzen der gewählten Option − Nutzen der lukrativsten Option","Nutzen der gewählten Option + Nutzen der lukrativsten Option","Kosten der gewählten Option ÷ Nutzen der lukrativsten Option"],
+      correct: 0, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
+    { q: "Wie lautet die Formel der Annuitätenmethode zur Berechnung der jährlichen Rente a?",
+      opts: ["a = Kapitalwert · [(1+i)ⁿ · i] ÷ [(1+i)ⁿ − 1]","a = Kapitalwert ÷ [(1+i)ⁿ · i]","a = Kapitalwert · [(1+i)ⁿ − 1] ÷ [(1+i)ⁿ · i]","a = Kapitalwert + (1+i)ⁿ · i"],
+      correct: 0, explain: "Annuitätenmethode: a = Kapitalwert · (1+i)ⁿ·i / ((1+i)ⁿ−1). Die Investition ist günstig, falls a > 0." },
+    { q: "Wodurch ist der interne Zinssatz einer Investition definiert?",
+      opts: ["Der Zinssatz i, bei dem der Kapitalwert genau 0 beträgt (Kapitalwert = 0 = Σ Cashflow_t/(1+i)ᵗ)","Der durchschnittliche Marktzins über die gesamte Laufzeit","Der Zinssatz, der die höchste Annuität erzeugt","Der risikofreie Zinssatz zuzüglich eines pauschalen Risikoaufschlags"],
+      correct: 0, explain: "Interner Zinssatz: Ableitung des Zinssatzes i, der zu einem Kapitalwert von 0 führt. Günstig, falls i > angemessener Zielsatz." },
+    { q: "Wie lautet die mathematische Formel des 2. Gossenschen Gesetzes?",
+      opts: ["∂U/∂x_i ÷ p_i = ∂U/∂x_j ÷ p_j (Grenznutzen pro Geldeinheit ist für alle Güter gleich)","∂U/∂x_i · p_i = ∂U/∂x_j · p_j","∂U/∂x_i = ∂U/∂x_j (Grenznutzen aller Güter ist absolut gleich)","p_i ÷ ∂U/∂x_i = p_j · ∂U/∂x_j"],
+      correct: 0, explain: "2. Gossensches Gesetz: ∂U/∂x_i / p_i = ∂U/∂x_j / p_j — der Grenznutzen pro ausgegebener Geldeinheit ist im Nutzenoptimum für alle Güter gleich." },
+    { q: "Wie lautet die allgemeine Formel des Kapitalwerts (Kapitalwertmethode)?",
+      opts: ["Kapitalwert = −Anschaffungsauszahlung + Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Anschaffungsauszahlung − Σ [Cashflow_t ÷ (1+i)ᵗ]","Kapitalwert = Σ Cashflow_t · (1+i)ᵗ − Anschaffungsauszahlung","Kapitalwert = Anschaffungsauszahlung ÷ Σ Cashflow_t"],
+      correct: 0, explain: "Kapitalwert = −I₀ + Σ CFₜ/(1+i)ᵗ, mit I₀ = Anschaffungsauszahlung, CFₜ = Cashflow der Periode t, i = Kalkulationszinssatz. Investition lohnt sich, wenn der Kapitalwert positiv ist." },
+    { q: "Wie lautet die Formel des Cash Conversion Cycle (CCC) inkl. der 3 Teilkennzahlen?",
+      opts: ["CCC = DIO + DSO − DPO, mit DIO = Ø Vorräte ÷ Umsatzkosten/Tag, DSO = Ø Forderungen ÷ Umsatz/Tag, DPO = Ø Verbindlichkeiten ÷ Umsatzkosten/Tag","CCC = DIO − DSO + DPO","CCC = DIO + DSO + DPO","CCC = (DIO + DSO) ÷ DPO"],
+      correct: 0, explain: "CCC = DIO + DSO − DPO. DIO (Days Inventory Outstanding) = Ø Vorräte / Umsatzkosten pro Tag. DSO (Days Sales Outstanding) = Ø Forderungen / Umsatz pro Tag. DPO (Days Payable Outstanding) = Ø Verbindlichkeiten / Umsatzkosten pro Tag." },
+    { q: "Wie lautet die Formel für DIO (Days Inventory Outstanding)?",
+      opts: ["DIO = Ø Vorräte ÷ Umsatzkosten pro Tag","DIO = Umsatzkosten pro Tag ÷ Ø Vorräte","DIO = Ø Vorräte ÷ Umsatz pro Tag","DIO = Ø Forderungen ÷ Umsatzkosten pro Tag"],
+      correct: 0, explain: "DIO (Days Inventory Outstanding) = durchschnittliche Vorräte ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage Ware im Lager liegt, bevor sie verkauft wird." },
+    { q: "Wie lautet die Formel für DSO (Days Sales Outstanding)?",
+      opts: ["DSO = Ø Forderungen ÷ Umsatz pro Tag","DSO = Umsatz pro Tag ÷ Ø Forderungen","DSO = Ø Forderungen ÷ Umsatzkosten pro Tag","DSO = Ø Verbindlichkeiten ÷ Umsatz pro Tag"],
+      correct: 0, explain: "DSO (Days Sales Outstanding) = durchschnittliche Forderungen ÷ Umsatz pro Tag. Gibt an, wie viele Tage es dauert, bis Kunden ihre Rechnungen bezahlen." },
+    { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
+      opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
+      correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." }
   ]},
-  produktion: { label: 'Produktion & Logistik', sub: 'Andlerformel, Kostenisoquante, BCG, Marn/Rosiello, CLV', cards: [
-    { front: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix?", back: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300 Mio. € / 280 Mio. € ≈ 107,1 % → Marktführer (relativer Marktanteil > 100 %)." },
-    { front: "Achtung Verwechslungsgefahr: Wie berechnet sich der (absolute) Marktanteil EINES Unternehmens/Wettbewerbers – im Unterschied zum relativen Marktanteil?", back: "Marktanteil (absolut) = Umsatz des Unternehmens ÷ Gesamtmarktvolumen. Beispiel: Marktvolumen 900 Mio. €, Umsatz Wettbewerber 450 Mio. € → Marktanteil Wettbewerber = 450/900 = 50 %. Der RELATIVE Marktanteil (für die BCG-Matrix) ist dagegen: eigener Umsatz ÷ Umsatz des Hauptwettbewerbers — zwei unterschiedliche Kennzahlen!" },
-    { front: "Wie lautet die Andlerformel zur Berechnung der optimalen Bestellmenge q?", back: "q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." },
-    { front: "Rechenbeispiel Andlerformel: Jährlicher Bedarf 80.000 Stück, Bestellkosten 12 €, Einkaufspreis 0,08 €, Lagerkostensatz 0,1. Wie hoch ist die optimale Bestellmenge?", back: "q = √(2·80.000·12 / (0,08·0,1)) = √(1.920.000 / 0,008) = √240.000.000 ≈ 15.492 Stück." },
-    { front: "Welchen Trade-off löst die Andlerformel auf (Lagerkosten vs. Beschaffungskosten)?", back: "Lagerkosten STEIGEN mit der Bestellmenge (mehr Kapitalbindung/Lagerplatz), Beschaffungskosten pro Stück SINKEN mit der Bestellmenge (Fixkostendegression – weniger Bestellungen nötig). Die Andlerformel findet die Bestellmenge mit minimalen Gesamtkosten aus beiden gegenläufigen Effekten." },
-    { front: "Wie lautet die Formel der Kostenisoquante (Faktormenge bei gegebenem Budget)?", back: "Faktormenge = Kapitalbudget ÷ Faktorpreis. Der Schnittpunkt von Produktionsfunktion und Kostenisoquante liefert die Minimalkostenkombination." },
-    { front: "Rechenbeispiel Kostenisoquante: Kapitalbudget 1.000 €/Monat, Maschinenmiete 200 €/Monat. Wie viele Maschinen sind maximal finanzierbar (gesamtes Budget nur für Maschinen)?", back: "1.000 € ÷ 200 €/Monat = 5 Maschinen. Minimalkostenkombination (Schnittpunkt mit Produktionsfunktion) liegt hier bei 1,5 Mitarbeitern + 2 Maschinen, bei einem Lohn von 330 €/Monat." },
-    { front: "Achtung Verwechslungsgefahr: Minimalkostenkombination in der PRODUKTION – welche zwei Kurven schneiden sich dort? (NICHT Indifferenzkurve/Budgetgerade!)", back: "Kostenisoquante ∩ Produktionsfunktion. Indifferenzkurve ∩ Budgetgerade ist die ANALOGE, aber andere Konstruktion aus der Konsumtheorie (optimale Güterkombination für den Konsumenten) – in der Klausur gerne als Falle vertauscht." },
-    { front: "Marn/Rosiello (1993): Wie stark steigt der Gewinn bei einer Preiserhöhung um 1 % im Vergleich zu anderen Hebeln?", back: "Preiserhöhung um 1% → Gewinnsteigerung 11,1%. Reduzierung variabler Kosten um 1% → 7,8%. Umsatzsteigerung um 1% → 3,3%. Reduzierung Fixkosten um 1% → 2,3%. Der Preis hat den größten Hebel." },
-    { front: "Wie lautet die Formel des Customer Lifetime Value (CLV)?", back: "CLV = Σ [(rt−ct)/(1+i)ᵗ]·Dt, mit rt = erwartete Umsätze, ct = erwartete Kosten, Dt = Kundenbindungsrate, i = Diskontierungssatz der Periode t." }
+  produktion: { label: 'Produktion & Logistik', sub: 'Andlerformel, Kostenisoquante, BCG, Marn/Rosiello, CLV', questions: [
+    { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €.",
+      opts: ["Relativer Marktanteil = Eigener Umsatz ÷ Umsatz des Hauptwettbewerbers = 300/280 ≈ 107,1 %","= Eigener Umsatz ÷ Gesamtmarktvolumen","= Marktvolumen ÷ Eigener Umsatz","= Umsatz des Hauptwettbewerbers ÷ Eigener Umsatz"],
+      correct: 0, calc: true, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
+    { q: "Achtung Verwechslungsgefahr: Wie berechnet sich der Marktanteil eines Wettbewerbers selbst (NICHT der relative Marktanteil des eigenen Unternehmens)?",
+      opts: ["Marktanteil des Wettbewerbers = Umsatz des Wettbewerbers ÷ Gesamtmarktvolumen","Marktanteil des Wettbewerbers = eigener Umsatz ÷ Umsatz des Wettbewerbers","Marktanteil des Wettbewerbers = Umsatz des Wettbewerbers ÷ eigener Umsatz","Marktanteil des Wettbewerbers = Gesamtmarktvolumen ÷ Umsatz des Wettbewerbers"],
+      correct: 0, explain: "Klausurfalle: Der (absolute) Marktanteil EINES Unternehmens (egal ob eigenes oder Wettbewerber) = Umsatz dieses Unternehmens ÷ Gesamtmarktvolumen. Der 'relative Marktanteil' (für die BCG-Matrix) ist etwas ganz anderes: eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Nicht verwechseln!" },
+    { q: "Rechenaufgabe (Marktanteil des Wettbewerbers): Ein strategisches Geschäftsfeld hat ein Marktvolumen von 900 Mio. €. Der Umsatz des Hauptwettbewerbers beträgt 450 Mio. €. Wie hoch ist der Marktanteil des Wettbewerbers?",
+      opts: ["50 %","80 %","40 %","33 %"], correct: 0, calc: true,
+      explain: "Marktanteil des Wettbewerbers = Umsatz Wettbewerber ÷ Marktvolumen = 450/900 = 50 %. (Nicht zu verwechseln mit dem relativen Marktanteil des eigenen Unternehmens, der eigenen Umsatz durch Wettbewerber-Umsatz teilt.)" },
+    { genKey: 'andler' },
+    { q: "Wie lautet die Andlerformel zur Berechnung der optimalen Bestellmenge q?",
+      opts: ["q = √(2·m·kB ÷ (w·i))","q = √(m·kB ÷ (2·w·i))","q = (2·m·kB) ÷ (w·i)","q = √(2·m·w ÷ (kB·i))"],
+      correct: 0, explain: "Andlerformel: q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." },
+    { q: "Rechenaufgabe (Kostenisoquante): Ein Kapitalbudget von 1.000 € pro Monat steht zur Verfügung. Die Maschinenmiete beträgt 200 €/Monat. Wie viele Maschinen können maximal finanziert werden, wenn das gesamte Budget nur für Maschinen ausgegeben wird?",
+      opts: ["5 Maschinen (1.000 € ÷ 200 €/Maschine)","2 Maschinen","10 Maschinen","20 Maschinen"],
+      correct: 0, calc: true, explain: "Die Kostenisoquante ergibt sich aus Faktormenge = Kapitalbudget ÷ Faktorpreis. Bei ausschließlichem Einsatz für Maschinen: 1.000 € ÷ 200 €/Monat = 5 Maschinen. Der Schnittpunkt von Produktionsfunktion und Kostenisoquante liefert die Minimalkostenkombination (z.B. 1,5 Mitarbeiter + 2 Maschinen bei einem Lohn von 330 €/Monat)." },
+    { q: "Rechenaufgabe/Kennzahlen (Marn/Rosiello 1993): Um wie viel Prozent steigt der Gewinn bei einer Preiserhöhung um 1%, verglichen mit einer Reduzierung der variablen Kosten um 1%, einer Umsatzsteigerung um 1% und einer Reduzierung der Fixkosten um 1%?",
+      opts: ["Preiserhöhung 11,1% > variable Kosten −1% = 7,8% > Umsatz +1% = 3,3% > Fixkosten −1% = 2,3%","Alle vier Hebel führen zu exakt derselben Gewinnsteigerung von 5%","Nur die Fixkostenreduzierung wirkt sich überhaupt auf den Gewinn aus","Umsatzsteigerung um 1% wirkt stärker als jede Preiserhöhung"],
+      correct: 0, explain: "Nach Marn/Rosiello (1993): Preiserhöhung um 1% → Gewinnsteigerung 11,1%; Reduzierung variabler Kosten um 1% → 7,8%; Umsatzsteigerung um 1% → 3,3%; Reduzierung Fixkosten um 1% → 2,3%. Der Preis hat damit den größten Hebel auf die Rentabilität." }
   ]},
-  controlling: { label: 'Controlling & Kennzahlen', sub: 'Break-Even, DuPont-Analyse (ROE)', cards: [
-    { front: "Wie lautet die Formel des Break-Even-Points (BEP) in Stück?", back: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." },
-    { front: "Rechenbeispiel Break-Even-Point: Fixkosten 120.000 €, Verkaufspreis 15 €/Stück, variable Kosten 9 €/Stück. Wie hoch ist der BEP?", back: "BEP = 120.000 / (15 − 9) = 120.000 / 6 = 20.000 Stück." },
-    { front: "Wie lautet die DuPont-Formel für den ROE (Eigenkapitalrendite)?", back: "ROE = Gewinnmarge × Kapitalumschlag × Eigenkapital-Multiplikator." },
-    { front: "Wie ist die Gewinnmarge (1. Komponente der DuPont-Formel) definiert?", back: "Gewinnmarge = Nettogewinn ÷ Umsatz." },
-    { front: "Wie ist der Kapitalumschlag (2. Komponente der DuPont-Formel) definiert?", back: "Kapitalumschlag = Umsatz ÷ durchschnittliches Gesamtvermögen." },
-    { front: "Wie ist der Eigenkapital-Multiplikator (3. Komponente der DuPont-Formel) definiert?", back: "EK-Multiplikator = durchschnittliches Gesamtvermögen ÷ durchschnittliches Eigenkapital." },
-    { front: "Wie kürzt sich die vollständige DuPont-Formel am Ende zu ROE = Nettogewinn/EK?", back: "ROE = (Nettogewinn/Umsatz) · (Umsatz/Ø Gesamtvermögen) · (Ø Gesamtvermögen/Ø Eigenkapital) = Nettogewinn / Ø Eigenkapital — Umsatz und Gesamtvermögen kürzen sich heraus." },
-    { front: "Rechenbeispiel DuPont: Ø Gesamtkapital 1.200 Mio. € (davon 25 % EK), Umsatz 1.700 Mio. €, Nettogewinn 200 Mio. €. Wie hoch ist der ROE?", back: "EK = 300 Mio. €. Gewinnmarge = 200/1.700 ≈ 12 %. Kapitalumschlag = 1.700/1.200 ≈ 142 %. EK-Multiplikator = 1.200/300 = 400 %. ROE = 0,12 · 1,42 · 4 ≈ 67 %. Kontrolle: 200/300 ≈ 66,7 % ✓." }
+  controlling: { label: 'Controlling & Kennzahlen', sub: 'Break-Even, DuPont-Analyse (ROE)', questions: [
+    { genKey: 'breakeven' },
+    { q: "Wie lautet die Formel des Break-Even-Points (BEP) in Stück?",
+      opts: ["BEP = Fixkosten ÷ (Verkaufspreis − variable Kosten pro Stück)","BEP = Fixkosten · (Verkaufspreis − variable Kosten pro Stück)","BEP = (Fixkosten + variable Kosten) ÷ Verkaufspreis","BEP = Verkaufspreis ÷ Fixkosten"],
+      correct: 0, explain: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." },
+    { q: "Rechenaufgabe (DuPont-Analyse): Ein Unternehmen hat ein durchschnittliches Gesamtkapital von 1.200 Mio. €, wovon 25 % Eigenkapital sind. Bei einem Umsatz von 1.700 Mio. € erzielt es einen Nettogewinn von 200 Mio. €. Wie hoch ist der ROE (2 Nachkommastellen bei den Zwischenschritten, Endergebnis gerundet)?",
+      opts: ["ROE ≈ 67 % (Gewinnmarge 12 % · Kapitalumschlag 142 % · EK-Multiplikator 400 %)","ROE ≈ 62 % (Gewinnmarge 12 % · Kapitalumschlag 150 % · EK-Multiplikator 350 %)","ROE ≈ 62 % (850 % · 29 % · 25 %)","ROE ≈ 67 % (16 % · 120 % · 350 %)"],
+      correct: 0, calc: true,
+      explain: "Eigenkapital = 25 % von 1.200 Mio. = 300 Mio. €. Gewinnmarge = 200/1.700 ≈ 11,76 % ≈ 12 %. Kapitalumschlag = 1.700/1.200 ≈ 141,67 % ≈ 142 %. EK-Multiplikator = 1.200/300 = 400 %. ROE = 0,1176 · 1,4167 · 4 ≈ 0,667 = 66,7 % ≈ 67 %. Kontrolle: ROE = Nettogewinn/EK = 200/300 ≈ 66,7 % ✓." }
   ]}
 };
 
 const ebwlCardState = {
   active: 'invest',
   order: { invest: null, produktion: null, controlling: null },
+  instance: { invest: {}, produktion: {}, controlling: {} },
   index: { invest: 0, produktion: 0, controlling: 0 },
-  flipped: { invest: false, produktion: false, controlling: false },
-  stats: { invest: { know: 0, again: 0 }, produktion: { know: 0, again: 0 }, controlling: { know: 0, again: 0 } }
+  answer: { invest: null, produktion: null, controlling: null },
+  stats: { invest: { correct: 0, wrong: 0 }, produktion: { correct: 0, wrong: 0 }, controlling: { correct: 0, wrong: 0 } }
 };
 
 function ebwlEnsureOrder(key) {
-  if (!ebwlCardState.order[key]) ebwlCardState.order[key] = quizShuffle(EBWL_CARDS[key].cards.map((_, i) => i));
+  if (!ebwlCardState.order[key]) {
+    ebwlCardState.order[key] = quizShuffle(EBWL_FORMULA_QUIZ[key].questions.map((_, i) => i));
+    ebwlCardState.instance[key] = {};
+  }
   return ebwlCardState.order[key];
+}
+
+// Liefert die tatsächlich anzuzeigende Frage: bei genKey wird einmal pro Durchlauf
+// frisch generiert (neue Zahlen), sonst die statische Formel-/Rechenaufgabe.
+function ebwlGetQuestion(key, srcIdx) {
+  const src = EBWL_FORMULA_QUIZ[key].questions[srcIdx];
+  if (src.genKey) {
+    if (!ebwlCardState.instance[key][srcIdx]) {
+      ebwlCardState.instance[key][srcIdx] = QUIZ_CALC_GENERATORS[src.genKey]();
+    }
+    return ebwlCardState.instance[key][srcIdx];
+  }
+  return src;
 }
 
 function renderEbwlCardsTabs() {
   const el = document.getElementById('ebwlTabs');
   el.innerHTML = '';
-  Object.keys(EBWL_CARDS).forEach(key => {
+  Object.keys(EBWL_FORMULA_QUIZ).forEach(key => {
     const order = ebwlEnsureOrder(key);
     const idx = Math.min(ebwlCardState.index[key], order.length);
     const div = document.createElement('div');
     div.className = 'quiz-tab' + (ebwlCardState.active === key ? ' active' : '');
     div.innerHTML = `
-      <p class="quiz-tab-title">${EBWL_CARDS[key].label}</p>
-      <p class="quiz-tab-sub">${EBWL_CARDS[key].sub}</p>
-      <p class="quiz-tab-score">${idx} / ${order.length} Karten</p>
+      <p class="quiz-tab-title">${EBWL_FORMULA_QUIZ[key].label}</p>
+      <p class="quiz-tab-sub">${EBWL_FORMULA_QUIZ[key].sub}</p>
+      <p class="quiz-tab-score">${idx} / ${order.length} Aufgaben</p>
     `;
     div.onclick = () => { ebwlCardState.active = key; renderEbwlCards(); };
     el.appendChild(div);
   });
 }
 
-function ebwlCardsNextCard(key) {
+function ebwlCardsNext(key) {
   ebwlCardState.index[key]++;
-  ebwlCardState.flipped[key] = false;
+  ebwlCardState.answer[key] = null;
   renderEbwlCards();
 }
 
@@ -2662,68 +2642,83 @@ function renderEbwlCardsPanel() {
   const order = ebwlEnsureOrder(key);
   const idx = ebwlCardState.index[key];
   const stats = ebwlCardState.stats[key];
+  const total = EBWL_FORMULA_QUIZ[key].questions.length;
 
   if (idx >= order.length) {
     panel.innerHTML = `
       <div class="quiz-summary">
-        ${EBWL_CARDS[key].label} durchgearbeitet: <strong>${stats.know} / ${order.length}</strong> direkt gewusst.<br>
-        <span class="quiz-reset-btn" id="ebwlCardsRestartBtn">Neu mischen &amp; nochmal üben</span>
+        ${EBWL_FORMULA_QUIZ[key].label} durchgerechnet: <strong>${stats.correct} / ${order.length}</strong> richtig.<br>
+        <span class="quiz-reset-btn" id="ebwlCardsRestartBtn">Neu mischen &amp; nochmal rechnen</span>
       </div>
     `;
     document.getElementById('ebwlCardsRestartBtn').onclick = () => {
       ebwlCardState.order[key] = null;
       ebwlCardState.index[key] = 0;
-      ebwlCardState.flipped[key] = false;
-      ebwlCardState.stats[key] = { know: 0, again: 0 };
+      ebwlCardState.answer[key] = null;
+      ebwlCardState.stats[key] = { correct: 0, wrong: 0 };
       renderEbwlCards();
     };
     return;
   }
 
-  const card = EBWL_CARDS[key].cards[order[idx]];
-  const flipped = ebwlCardState.flipped[key];
+  const q = ebwlGetQuestion(key, order[idx]);
+  const answer = ebwlCardState.answer[key];
 
   const progressText = document.createElement('div');
   progressText.className = 'flashcard-progress-text';
-  progressText.textContent = `Karte ${idx + 1} von ${order.length}`;
+  progressText.textContent = `Aufgabe ${idx + 1} von ${order.length} (von ${total} in diesem Kapitel)`;
   panel.appendChild(progressText);
 
-  const wrap = document.createElement('div');
-  wrap.className = 'flashcard-wrap';
-  const cardDiv = document.createElement('div');
-  cardDiv.className = 'flashcard';
-  cardDiv.innerHTML = flipped ? `<div class="flashcard-back">${card.back}</div>` : `<div>${card.front}</div>`;
-  if (!flipped) cardDiv.onclick = () => { ebwlCardState.flipped[key] = true; renderEbwlCards(); };
-  wrap.appendChild(cardDiv);
-  panel.appendChild(wrap);
+  const card = document.createElement('div');
+  card.className = 'quiz-card';
+  card.innerHTML = `
+    <div class="quiz-q-head"><div>${q.q}</div>${q.calc ? '<span class="quiz-calc-badge">Rechenaufgabe</span>' : '<span class="quiz-calc-badge">Formel</span>'}</div>
+    ${q.diagramKey && QUIZ_DIAGRAMS[q.diagramKey] ? `<div class="quiz-diagram-wrap">${QUIZ_DIAGRAMS[q.diagramKey]}</div>` : ''}
+    <div class="quiz-opts"></div>
+    <div class="quiz-explain ${answer !== null ? 'show' : ''}">${q.explain}</div>
+  `;
+  const optsWrap = card.querySelector('.quiz-opts');
+  q.opts.forEach((optText, oi) => {
+    const optDiv = document.createElement('div');
+    let cls = 'quiz-opt';
+    if (answer !== null) {
+      cls += ' disabled-look';
+      if (oi === q.correct) cls += ' correct';
+      else if (oi === answer) cls += ' wrong';
+    }
+    optDiv.className = cls;
+    const letter = String.fromCharCode(65 + oi);
+    let dotContent = letter;
+    if (answer !== null && oi === q.correct) dotContent = '✓';
+    else if (answer !== null && oi === answer) dotContent = '✗';
+    optDiv.innerHTML = `<span class="quiz-dot">${dotContent}</span><span>${optText}</span>`;
+    if (answer === null) {
+      optDiv.onclick = () => {
+        ebwlCardState.answer[key] = oi;
+        if (oi === q.correct) stats.correct++; else stats.wrong++;
+        renderEbwlCards();
+      };
+    }
+    optsWrap.appendChild(optDiv);
+  });
+  panel.appendChild(card);
 
-  const actions = document.createElement('div');
-  actions.className = 'flashcard-actions';
-  if (!flipped) {
-    actions.innerHTML = `<button class="flashcard-btn show">Antwort zeigen</button>`;
-    actions.querySelector('.show').onclick = () => { ebwlCardState.flipped[key] = true; renderEbwlCards(); };
+  if (answer !== null) {
+    const nextWrap = document.createElement('div');
+    nextWrap.className = 'flashcard-actions';
+    nextWrap.innerHTML = `<button class="flashcard-btn show">Nächste Aufgabe →</button>`;
+    nextWrap.querySelector('button').onclick = () => ebwlCardsNext(key);
+    panel.appendChild(nextWrap);
   } else {
-    actions.innerHTML = `<button class="flashcard-btn again">Nochmal 🔁</button><button class="flashcard-btn know">Weiß ich ✓</button>`;
-    actions.querySelector('.again').onclick = () => {
-      stats.again++;
-      order.push(order[idx]);
-      ebwlCardsNextCard(key);
-    };
-    actions.querySelector('.know').onclick = () => {
-      stats.know++;
-      ebwlCardsNextCard(key);
-    };
+    const hint = document.createElement('div');
+    hint.className = 'flashcard-hint';
+    hint.textContent = 'Erst rechnen, dann Antwort auswählen. Danach zeige ich dir die passende Formel.';
+    panel.appendChild(hint);
   }
-  panel.appendChild(actions);
-
-  const hint = document.createElement('div');
-  hint.className = 'flashcard-hint';
-  hint.textContent = flipped ? '' : 'Karte anklicken oder Button drücken, um die Antwort zu sehen.';
-  panel.appendChild(hint);
 
   const statsEl = document.createElement('div');
   statsEl.className = 'flashcard-stats';
-  statsEl.textContent = `Gewusst: ${stats.know} · Nochmal: ${stats.again}`;
+  statsEl.textContent = `Richtig: ${stats.correct} · Falsch: ${stats.wrong}`;
   panel.appendChild(statsEl);
 }
 
