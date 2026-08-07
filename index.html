@@ -2023,6 +2023,17 @@ function quizBuildOptions(correctVal, distractors, suffix) {
   const correct = values.indexOf(correctVal);
   return { opts, correct };
 }
+// Baut Antwortoptionen aus fertig eingesetzten, aber NICHT ausgerechneten Formel-Strings
+// (für unterwegs ohne Taschenrechner: man muss nur die richtige Rechnung erkennen, nicht lösen).
+function quizBuildExprOptions(correctExpr, distractorExprs) {
+  const values = quizShuffle([correctExpr, ...distractorExprs]);
+  const correct = values.indexOf(correctExpr);
+  return { opts: values, correct };
+}
+function quizSup(n) {
+  const map = { 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵' };
+  return map[n] || ('^' + n);
+}
 
 const QUIZ_CALC_GENERATORS = {
   kapitalwert: function () {
@@ -2036,17 +2047,22 @@ const QUIZ_CALC_GENERATORS = {
     let npv = -invest;
     for (let k = 1; k <= t; k++) npv += gewinn / Math.pow(1 + i, k);
     const correctVal = Math.round(npv);
-    const rawDistractors = [
-      gewinn * t - invest,
-      -invest + gewinn / (1 + i),
-      invest - gewinn * t
-    ];
-    const distractors = quizMakeDistinct(correctVal, rawDistractors, 350);
-    const built = quizBuildOptions(correctVal, distractors, ' €');
+    const iStr = i.toString().replace('.', ',');
+    const gewinnTerms = [], umsatzTerms = [], compoundTerms = [];
+    for (let k = 1; k <= t; k++) {
+      gewinnTerms.push(`${quizDe(gewinn)}/(1+${iStr})${quizSup(k)}`);
+      umsatzTerms.push(`${quizDe(umsatz)}/(1+${iStr})${quizSup(k)}`);
+      compoundTerms.push(`${quizDe(gewinn)}·(1+${iStr})${quizSup(k)}`);
+    }
+    const correctExpr = `−${quizDe(invest)} + ${gewinnTerms.join(' + ')}`;
+    const decoy1 = `${quizDe(invest)} − ${gewinnTerms.join(' − ')}`;
+    const decoy2 = `−${quizDe(invest)} + ${compoundTerms.join(' + ')}`;
+    const decoy3 = `−${quizDe(invest)} + ${umsatzTerms.join(' + ')}`;
+    const built = quizBuildExprOptions(correctExpr, [decoy1, decoy2, decoy3]);
     return {
-      q: `Rechenaufgabe: Anschaffung ${quizDe(invest)} €, fixe + variable Kosten ${quizDe(kosten)} €/Jahr, Umsatzerlöse ${quizDe(umsatz)} €/Jahr, Zins ${zinsPct} %, t = ${t} Jahre. Wie hoch ist der Kapitalwert?`,
+      q: `Rechenaufgabe: Anschaffung ${quizDe(invest)} €, fixe + variable Kosten ${quizDe(kosten)} €/Jahr, Umsatzerlöse ${quizDe(umsatz)} €/Jahr, Zins ${zinsPct} %, t = ${t} Jahre. Welche Rechnung liefert den Kapitalwert (Ergebnis muss nicht ausgerechnet werden)?`,
       opts: built.opts, correct: built.correct, calc: true,
-      explain: `Gewinn/Jahr = ${quizDe(gewinn)} €. Kapitalwert = −${quizDe(invest)} + Summe Gewinn/(1+${i.toString().replace('.', ',')})^t über ${t} Jahre ≈ ${quizDe(correctVal)} €.`
+      explain: `Gewinn/Jahr = Umsatz − Kosten = ${quizDe(umsatz)} − ${quizDe(kosten)} = ${quizDe(gewinn)} €. Kapitalwert = −Anschaffung + Σ Gewinn/(1+i)ᵗ ≈ ${quizDe(correctVal)} €. Typische Fehler: Vorzeichen vertauscht, mit (1+i)ᵗ multipliziert statt dividiert (Verwechslung mit Aufzinsen), oder Umsatz statt Gewinn eingesetzt (Kosten vergessen).`
     };
   },
   ccc: function () {
@@ -2059,13 +2075,16 @@ const QUIZ_CALC_GENERATORS = {
     const dso = forderungen / uTag;
     const dpo = verbindlichkeiten / ukTag;
     const correctVal = Math.round(dio + dso - dpo);
-    const rawDistractors = [dio + dso + dpo, dio - dso + dpo, dio + dpo];
-    const distractors = quizMakeDistinct(correctVal, rawDistractors, 8);
-    const built = quizBuildOptions(correctVal, distractors, ' Tage');
+    const V = quizDe(vorraete), F = quizDe(forderungen), B = quizDe(verbindlichkeiten), UK = quizDe(ukTag), U = quizDe(uTag);
+    const correctExpr = `${V}/${UK} + ${F}/${U} − ${B}/${UK}`;
+    const decoy1 = `${V}/${UK} + ${F}/${U} + ${B}/${UK}`;
+    const decoy2 = `${V}/${U} + ${F}/${UK} − ${B}/${UK}`;
+    const decoy3 = `${V}/${UK} − ${F}/${U} + ${B}/${UK}`;
+    const built = quizBuildExprOptions(correctExpr, [decoy1, decoy2, decoy3]);
     return {
-      q: `Rechenaufgabe: Umsatzkosten pro Tag ${quizDe(ukTag)} €, Umsatz pro Tag ${quizDe(uTag)} €, durchschn. Vorräte ${quizDe(vorraete)} €, durchschn. Forderungen ${quizDe(forderungen)} €, durchschn. Verbindlichkeiten ${quizDe(verbindlichkeiten)} €. Wie hoch ist der Cash Conversion Cycle (CCC) in Tagen?`,
+      q: `Rechenaufgabe: Umsatzkosten pro Tag ${UK} €, Umsatz pro Tag ${U} €, durchschn. Vorräte ${V} €, durchschn. Forderungen ${F} €, durchschn. Verbindlichkeiten ${B} €. Welche Rechnung liefert den Cash Conversion Cycle (CCC) in Tagen?`,
       opts: built.opts, correct: built.correct, calc: true,
-      explain: `DIO = ${quizDe(vorraete)}/${quizDe(ukTag)} ≈ ${Math.round(dio)}. DSO = ${quizDe(forderungen)}/${quizDe(uTag)} ≈ ${Math.round(dso)}. DPO = ${quizDe(verbindlichkeiten)}/${quizDe(ukTag)} ≈ ${Math.round(dpo)}. CCC = DIO + DSO − DPO ≈ ${quizDe(correctVal)} Tage.`
+      explain: `DIO = Vorräte/Umsatzkosten pro Tag = ${V}/${UK} ≈ ${Math.round(dio)}. DSO = Forderungen/Umsatz pro Tag = ${F}/${U} ≈ ${Math.round(dso)}. DPO = Verbindlichkeiten/Umsatzkosten pro Tag = ${B}/${UK} ≈ ${Math.round(dpo)}. CCC = DIO + DSO − DPO ≈ ${quizDe(correctVal)} Tage.`
     };
   },
   andler: function () {
@@ -2075,17 +2094,16 @@ const QUIZ_CALC_GENERATORS = {
     const iSatz = quizRandInt(5, 20, 1) / 100;
     const q = Math.sqrt(2 * m * kB / (w * iSatz));
     const correctVal = Math.round(q);
-    const rawDistractors = [
-      Math.sqrt(m * kB / (w * iSatz)),
-      Math.sqrt(2 * m * kB / w),
-      q * 1.5
-    ];
-    const distractors = quizMakeDistinct(correctVal, rawDistractors, 200);
-    const built = quizBuildOptions(correctVal, distractors, ' Stück');
+    const M = quizDe(m), KB = kB, W = w.toFixed(2).replace('.', ','), I = iSatz.toFixed(2).replace('.', ',');
+    const correctExpr = `√(2·${M}·${KB} ÷ (${W}·${I}))`;
+    const decoy1 = `√(${M}·${KB} ÷ (${W}·${I}))`;
+    const decoy2 = `√(2·${M}·${KB} ÷ ${W})`;
+    const decoy3 = `2·${M}·${KB} ÷ (${W}·${I})`;
+    const built = quizBuildExprOptions(correctExpr, [decoy1, decoy2, decoy3]);
     return {
-      q: `Rechenaufgabe (Andlerformel): Jährlicher Bedarf ${quizDe(m)} Stück, Bestellkosten ${kB} €, Einkaufspreis ${w.toFixed(2).replace('.', ',')} €, Lagerkostensatz ${iSatz.toFixed(2).replace('.', ',')}. Wie hoch ist die optimale Bestellmenge?`,
+      q: `Rechenaufgabe (Andlerformel): Jährlicher Bedarf ${M} Stück, Bestellkosten ${KB} €, Einkaufspreis ${W} €, Lagerkostensatz ${I}. Welche Rechnung liefert die optimale Bestellmenge?`,
       opts: built.opts, correct: built.correct, calc: true,
-      explain: `q = √(2·${quizDe(m)}·${kB} / (${w.toFixed(2).replace('.', ',')}·${iSatz.toFixed(2).replace('.', ',')})) ≈ ${quizDe(correctVal)} Stück.`
+      explain: `q = √(2·m·kB ÷ (w·i)) = √(2·${M}·${KB} ÷ (${W}·${I})) ≈ ${quizDe(correctVal)} Stück.`
     };
   },
   breakeven: function () {
@@ -2094,13 +2112,16 @@ const QUIZ_CALC_GENERATORS = {
     const varK = quizRandInt(Math.round(preis * 0.3), Math.round(preis * 0.7), 1);
     const margin = preis - varK;
     const correctVal = Math.round(fix / margin);
-    const rawDistractors = [fix / preis, fix / varK, fix * margin / 1000];
-    const distractors = quizMakeDistinct(correctVal, rawDistractors, 400);
-    const built = quizBuildOptions(correctVal, distractors, ' Stück');
+    const FIX = quizDe(fix);
+    const correctExpr = `${FIX} ÷ (${preis} − ${varK})`;
+    const decoy1 = `${FIX} ÷ ${preis}`;
+    const decoy2 = `${FIX} ÷ ${varK}`;
+    const decoy3 = `${FIX} · (${preis} − ${varK})`;
+    const built = quizBuildExprOptions(correctExpr, [decoy1, decoy2, decoy3]);
     return {
-      q: `Rechenaufgabe: Fixkosten ${quizDe(fix)} €, Verkaufspreis ${preis} €/Stück, variable Kosten ${varK} €/Stück. Wie hoch ist der Break-Even-Point in Stück?`,
+      q: `Rechenaufgabe: Fixkosten ${FIX} €, Verkaufspreis ${preis} €/Stück, variable Kosten ${varK} €/Stück. Welche Rechnung liefert den Break-Even-Point in Stück?`,
       opts: built.opts, correct: built.correct, calc: true,
-      explain: `BEP = Fixkosten / (Preis − variable Kosten) = ${quizDe(fix)} / (${preis} − ${varK}) ≈ ${quizDe(correctVal)} Stück.`
+      explain: `BEP = Fixkosten ÷ (Preis − variable Kosten) = ${FIX} ÷ (${preis} − ${varK}) ≈ ${quizDe(correctVal)} Stück.`
     };
   }
 };
@@ -2511,15 +2532,16 @@ const EBWL_FORMULA_QUIZ = {
   invest: { label: 'Investition & Finanzierung', sub: 'Kapitalwert, Zinseszins, CCC, Annuität, Opportunitätskosten', questions: [
     { genKey: 'kapitalwert' },
     { genKey: 'ccc' },
-    { q: "Rechenaufgabe (Zinseszins): Sie besitzen 1.000 €, der Zinssatz beträgt 3,75 %. Wie viel Euro stehen Ihnen unter Berücksichtigung von Zinseszinseffekten nach 5 Jahren zur Verfügung (auf 1 Nachkommastelle runden)?",
-      opts: ["1.202,1 €","1.187,5 €","1.158,7 €","1.200,0 €"], correct: 0, calc: true,
-      explain: "Zinseszinsformel: Endkapital = Anfangskapital · (1+i)ⁿ. Kn = 1.000 € · 1,0375⁵ ≈ 1.202,1 €. Achtung: keine einfache lineare Verzinsung (1.000 · (1+5·0,0375) = 1.187,5 € wäre falsch, da Zinseszinseffekt fehlt)." },
+    { q: "Rechenaufgabe (Zinseszins): Sie besitzen 1.000 €, der Zinssatz beträgt 3,75 %. Welche Rechnung liefert den Endbetrag nach 5 Jahren unter Berücksichtigung von Zinseszinseffekten?",
+      opts: ["1.000 · 1,0375⁵","1.000 · (1 + 5·0,0375)","1.000 · 1,0375⁴","1.000 ÷ 1,0375⁵"], correct: 0, calc: true,
+      explain: "Zinseszinsformel: Endkapital = Anfangskapital · (1+i)ⁿ. Kn = 1.000 € · 1,0375⁵ ≈ 1.202,1 €. Achtung: 1.000 · (1+5·0,0375) ≈ 1.187,5 € wäre lineare (einfache) Verzinsung ohne Zinseszinseffekt – falsch. Der Exponent muss n = 5 sein (nicht n−1), und ÷ statt · wäre eine Abzinsung." },
     { q: "Wie lautet die allgemeine Formel für die Zinseszinsrechnung (Endkapital nach n Jahren)?",
       opts: ["Kn = K₀ · (1+i)ⁿ, mit K₀ = Anfangskapital, i = Zinssatz, n = Anzahl Jahre","Kn = K₀ + n · i","Kn = K₀ · i · n","Kn = K₀ ÷ (1+i)ⁿ"],
       correct: 0, explain: "Zinseszinsformel: Kn = K₀ · (1+i)ⁿ. Die letzte Option (K₀ ÷ (1+i)ⁿ) ist die Diskontierung/Abzinsung – also die Umkehrung, um einen zukünftigen Wert auf heute abzuzinsen." },
-    { q: "Rechenaufgabe (CCC mit realen Bilanzzahlen): Ein Unternehmen hat Umsatzerlöse von 155.498 Mio. €, Umsatzkosten von 125.809 Mio. €, durchschnittliche Vorräte von 21.862 Mio. €, durchschnittliche Forderungen von 4.144,5 Mio. € und durchschnittliche Verbindlichkeiten von 14.833,5 Mio. €. Wie hoch ist der Cash Conversion Cycle (365 Tage/Jahr, 1 Nachkommastelle)?",
-      opts: ["30,1 Tage","10,7 Tage","33,4 Tage","116,2 Tage"], correct: 0, calc: true,
-      explain: "DIO = 21.862/(125.809/365) ≈ 63,4. DSO = 4.144,5/(155.498/365) ≈ 9,7. DPO = 14.833,5/(125.809/365) ≈ 43,0. CCC = DIO + DSO − DPO ≈ 63,4 + 9,7 − 43,0 ≈ 30,1 Tage." },
+    { q: "Rechenaufgabe (CCC mit realen Bilanzzahlen): Ein Unternehmen hat Umsatzerlöse von 155.498 Mio. €, Umsatzkosten von 125.809 Mio. €, durchschnittliche Vorräte von 21.862 Mio. €, durchschnittliche Forderungen von 4.144,5 Mio. € und durchschnittliche Verbindlichkeiten von 14.833,5 Mio. €. Welche Rechnung liefert den Cash Conversion Cycle (365 Tage/Jahr)?",
+      opts: ["21.862/(125.809/365) + 4.144,5/(155.498/365) − 14.833,5/(125.809/365)","21.862/(155.498/365) + 4.144,5/(125.809/365) − 14.833,5/(125.809/365)","21.862/(125.809/365) + 4.144,5/(155.498/365) + 14.833,5/(125.809/365)","14.833,5/(125.809/365) + 4.144,5/(155.498/365) − 21.862/(125.809/365)"],
+      correct: 0, calc: true,
+      explain: "DIO = Vorräte/(Umsatzkosten/365) = 21.862/(125.809/365) ≈ 63,4. DSO = Forderungen/(Umsatz/365) = 4.144,5/(155.498/365) ≈ 9,7. DPO = Verbindlichkeiten/(Umsatzkosten/365) = 14.833,5/(125.809/365) ≈ 43,0. CCC = DIO + DSO − DPO ≈ 63,4 + 9,7 − 43,0 ≈ 30,1 Tage. Achtung: DIO/DSO benutzen unterschiedliche Nenner (Umsatzkosten vs. Umsatz) – die nicht vertauschen, und DPO wird subtrahiert, nicht addiert." },
     { q: "Wie lautet die Formel für die Opportunitätskosten?",
       opts: ["Nutzen der lukrativsten Option − Nutzen der gewählten Option","Nutzen der gewählten Option − Nutzen der lukrativsten Option","Nutzen der gewählten Option + Nutzen der lukrativsten Option","Kosten der gewählten Option ÷ Nutzen der lukrativsten Option"],
       correct: 0, explain: "Opportunitätskosten = Nutzen der lukrativsten Option − Nutzen der gewählten Option. Sie spiegeln den entgangenen Gewinn der nicht gewählten Alternative wider." },
@@ -2547,35 +2569,33 @@ const EBWL_FORMULA_QUIZ = {
     { q: "Wie lautet die Formel für DPO (Days Payable Outstanding)?",
       opts: ["DPO = Ø Verbindlichkeiten ÷ Umsatzkosten pro Tag","DPO = Umsatzkosten pro Tag ÷ Ø Verbindlichkeiten","DPO = Ø Verbindlichkeiten ÷ Umsatz pro Tag","DPO = Ø Vorräte ÷ Ø Verbindlichkeiten"],
       correct: 0, explain: "DPO (Days Payable Outstanding) = durchschnittliche Verbindlichkeiten ÷ Umsatzkosten pro Tag. Gibt an, wie viele Tage das Unternehmen braucht, um seine Lieferanten zu bezahlen." },
-    { q: "Rechenaufgabe (Kostenvergleichsrechnung, statische Investitionsbewertung): Anschaffungskosten 50.000 €, Restwert 1.000 €, Nutzungsdauer 5 Jahre, Kalkulationszinssatz 10 %, Fixkosten 5.000 €/Jahr, variable Kosten 1.000 €/Jahr. Wie hoch ist der jährliche Kostenvergleichswert?",
-      opts: ["18.350 € (Abschreibung 9.800 € + Kapitalkosten 2.550 € + Fixkosten 5.000 € + variable Kosten 1.000 €)","15.800 € (nur Fixkosten + variable Kosten + Abschreibung, ohne Kapitalkosten)","9.800 € (nur die Abschreibung)","23.350 € (Anschaffungskosten ÷ Nutzungsdauer + alle Kosten)"],
+    { q: "Rechenaufgabe (Kostenvergleichsrechnung, statische Investitionsbewertung): Anschaffungskosten 50.000 €, Restwert 1.000 €, Nutzungsdauer 5 Jahre, Kalkulationszinssatz 10 %, Fixkosten 5.000 €/Jahr, variable Kosten 1.000 €/Jahr. Welche Rechnung liefert den jährlichen Kostenvergleichswert?",
+      opts: ["(50.000−1.000)/5 + (50.000+1.000)/2·0,10 + 5.000 + 1.000","50.000/5 + (50.000+1.000)/2·0,10 + 5.000 + 1.000","(50.000−1.000)/5·0,10 + 5.000 + 1.000","(50.000−1.000)/5 + 50.000·0,10 + 5.000 + 1.000"],
       correct: 0, calc: true,
-      explain: "Kostenvergleichsrechnung: Kostenvergleich = Abschreibung + Kapitalkosten + Fixkosten + variable Kosten. Abschreibung = (Anschaffungskosten − Restwert) ÷ Nutzungsdauer = (50.000−1.000)/5 = 9.800 €. Kapitalkosten = Ø gebundenes Kapital · Zinssatz = [(Anschaffungskosten+Restwert)/2] · i = (50.000+1.000)/2 · 0,10 = 2.550 €. Kostenvergleich = 9.800 + 2.550 + 5.000 + 1.000 = 18.350 €." },
-    { q: "Rechenaufgabe (Gewinnvergleichsrechnung): Aufbauend auf der vorigen Aufgabe (Kostenvergleich = 18.350 €) erzielt die Investition Umsatzerlöse von 20.000 €/Jahr. Wie hoch ist der Gewinnvergleich?",
-      opts: ["1.650 € (Umsatzerlöse − Kostenvergleich = 20.000 − 18.350)","20.000 € (die vollen Umsatzerlöse ohne Kostenabzug)","38.350 € (Umsatzerlöse + Kostenvergleich)","−1.650 € (Kostenvergleich − Umsatzerlöse)"],
-      correct: 0, calc: true,
-      explain: "Gewinnvergleichsrechnung: Gewinnvergleich = Umsatzerlöse − Kostenvergleich = 20.000 € − 18.350 € = 1.650 €. Wählt man je nach Methode Kosten- oder Gewinnvergleich, kann das Ranking zweier Alternativen unterschiedlich ausfallen (Perspektivfrage)." },
-    { q: "Rechenaufgabe (Amortisationsrechnung/Payback-Methode): Eine Investition kostet 50.000 € (Anschaffungskosten). Der jährliche Zahlungsüberschuss (Umsatz − Kosten, OHNE Abschreibung/Kapitalkosten) beträgt 14.000 €. Nach wie vielen Jahren ist die Investition amortisiert?",
-      opts: ["≈ 3,6 Jahre (50.000 ÷ 14.000)","3,0 Jahre (50.000 ÷ (14.000+2.667))","≈ 5,6 Jahre (bei Berücksichtigung der Abschreibung)","1,4 Jahre (14.000 ÷ 50.000 · 5)"],
-      correct: 0, calc: true,
-      explain: "Amortisationszeit (Payback-Periode) = Anschaffungskosten ÷ jährlicher Zahlungsüberschuss = 50.000 € ÷ 14.000 € ≈ 3,6 Jahre (≈ 43 Monate). Je kürzer die Amortisationszeit, desto vorteilhafter die Investition nach diesem statischen Kriterium – der Zeitwert des Geldes wird dabei vernachlässigt." }
+      explain: "Kostenvergleich = Abschreibung + Kapitalkosten + Fixkosten + variable Kosten. Abschreibung = (Anschaffungskosten − Restwert) ÷ Nutzungsdauer = (50.000−1.000)/5 = 9.800 €. Kapitalkosten = Ø gebundenes Kapital · Zinssatz = [(Anschaffungskosten+Restwert)/2] · i = (50.000+1.000)/2 · 0,10 = 2.550 €. Kostenvergleich = 9.800 + 2.550 + 5.000 + 1.000 = 18.350 €. Typische Fehler: Restwert bei der Abschreibung vergessen, oder die Kapitalkosten auf die vollen Anschaffungskosten statt auf den Durchschnitt aus Anschaffung und Restwert berechnen." },
+    { q: "Rechenaufgabe (Gewinnvergleichsrechnung): Aufbauend auf der vorigen Aufgabe (Kostenvergleich = 18.350 €) erzielt die Investition Umsatzerlöse von 20.000 €/Jahr. Welche Rechnung liefert den Gewinnvergleich?",
+      opts: ["20.000 − 18.350","20.000 + 18.350","18.350 − 20.000","20.000 − 9.800"], correct: 0, calc: true,
+      explain: "Gewinnvergleich = Umsatzerlöse − Kostenvergleich = 20.000 € − 18.350 € = 1.650 €. Wählt man je nach Methode Kosten- oder Gewinnvergleich, kann das Ranking zweier Alternativen unterschiedlich ausfallen (Perspektivfrage). Achtung: 20.000 − 9.800 würde nur die Abschreibung statt des vollen Kostenvergleichs abziehen – falsch." },
+    { q: "Rechenaufgabe (Amortisationsrechnung/Payback-Methode): Eine Investition kostet 50.000 € (Anschaffungskosten). Der jährliche Zahlungsüberschuss (Umsatz − Kosten, OHNE Abschreibung/Kapitalkosten) beträgt 14.000 €. Welche Rechnung liefert die Amortisationszeit in Jahren?",
+      opts: ["50.000 ÷ 14.000","50.000 ÷ 20.000","14.000 ÷ 50.000","50.000 ÷ (14.000 + 9.800)"], correct: 0, calc: true,
+      explain: "Amortisationszeit (Payback-Periode) = Anschaffungskosten ÷ jährlicher Zahlungsüberschuss = 50.000 € ÷ 14.000 € ≈ 3,6 Jahre (≈ 43 Monate). Je kürzer die Amortisationszeit, desto vorteilhafter die Investition nach diesem statischen Kriterium. Achtung: nicht den vollen Umsatz statt des Zahlungsüberschusses verwenden, und die Abschreibung (nicht-zahlungswirksam) nicht wieder zum Zahlungsüberschuss addieren." }
   ]},
   produktion: { label: 'Produktion & Logistik', sub: 'Andlerformel, Kostenisoquante, BCG, Marn/Rosiello, CLV', questions: [
-    { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €.",
-      opts: ["Relativer Marktanteil = Eigener Umsatz ÷ Umsatz des Hauptwettbewerbers = 300/280 ≈ 107,1 %","= Eigener Umsatz ÷ Gesamtmarktvolumen","= Marktvolumen ÷ Eigener Umsatz","= Umsatz des Hauptwettbewerbers ÷ Eigener Umsatz"],
-      correct: 0, calc: true, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Beispiel: 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
+    { q: "Wie berechnet man den relativen Marktanteil eines Geschäftsfelds in der BCG-Matrix? Rechenbeispiel: Eigener Umsatz 300 Mio. €, Umsatz des Hauptwettbewerbers 280 Mio. €. Welche Rechnung ist richtig?",
+      opts: ["300 ÷ 280","280 ÷ 300","300 ÷ (300 + 280)","(300 − 280) ÷ 280"],
+      correct: 0, calc: true, explain: "Relativer Marktanteil = eigener Umsatz ÷ Umsatz des Hauptwettbewerbers = 300/280 ≈ 107,1 % – das Geschäftsfeld ist Marktführer (relativer Marktanteil > 100 %)." },
     { q: "Achtung Verwechslungsgefahr: Wie berechnet sich der Marktanteil eines Wettbewerbers selbst (NICHT der relative Marktanteil des eigenen Unternehmens)?",
       opts: ["Marktanteil des Wettbewerbers = Umsatz des Wettbewerbers ÷ Gesamtmarktvolumen","Marktanteil des Wettbewerbers = eigener Umsatz ÷ Umsatz des Wettbewerbers","Marktanteil des Wettbewerbers = Umsatz des Wettbewerbers ÷ eigener Umsatz","Marktanteil des Wettbewerbers = Gesamtmarktvolumen ÷ Umsatz des Wettbewerbers"],
       correct: 0, explain: "Klausurfalle: Der (absolute) Marktanteil EINES Unternehmens (egal ob eigenes oder Wettbewerber) = Umsatz dieses Unternehmens ÷ Gesamtmarktvolumen. Der 'relative Marktanteil' (für die BCG-Matrix) ist etwas ganz anderes: eigener Umsatz ÷ Umsatz des Hauptwettbewerbers. Nicht verwechseln!" },
-    { q: "Rechenaufgabe (Marktanteil des Wettbewerbers): Ein strategisches Geschäftsfeld hat ein Marktvolumen von 900 Mio. €. Der Umsatz des Hauptwettbewerbers beträgt 450 Mio. €. Wie hoch ist der Marktanteil des Wettbewerbers?",
-      opts: ["50 %","80 %","40 %","33 %"], correct: 0, calc: true,
+    { q: "Rechenaufgabe (Marktanteil des Wettbewerbers): Ein strategisches Geschäftsfeld hat ein Marktvolumen von 900 Mio. €. Der Umsatz des Hauptwettbewerbers beträgt 450 Mio. €. Welche Rechnung liefert den Marktanteil des Wettbewerbers?",
+      opts: ["450 ÷ 900","900 ÷ 450","450 ÷ (900 − 450)","(900 − 450) ÷ 900"], correct: 0, calc: true,
       explain: "Marktanteil des Wettbewerbers = Umsatz Wettbewerber ÷ Marktvolumen = 450/900 = 50 %. (Nicht zu verwechseln mit dem relativen Marktanteil des eigenen Unternehmens, der eigenen Umsatz durch Wettbewerber-Umsatz teilt.)" },
     { genKey: 'andler' },
     { q: "Wie lautet die Andlerformel zur Berechnung der optimalen Bestellmenge q?",
       opts: ["q = √(2·m·kB ÷ (w·i))","q = √(m·kB ÷ (2·w·i))","q = (2·m·kB) ÷ (w·i)","q = √(2·m·w ÷ (kB·i))"],
       correct: 0, explain: "Andlerformel: q = √(2·m·kB / (w·i)), mit m = Gesamtbedarf der Periode, kB = variable Kosten je Bestellung, w = Einkaufspreis, i = Lagerungskostensatz." },
-    { q: "Rechenaufgabe (Kostenisoquante): Ein Kapitalbudget von 1.000 € pro Monat steht zur Verfügung. Die Maschinenmiete beträgt 200 €/Monat. Wie viele Maschinen können maximal finanziert werden, wenn das gesamte Budget nur für Maschinen ausgegeben wird?",
-      opts: ["5 Maschinen (1.000 € ÷ 200 €/Maschine)","2 Maschinen","10 Maschinen","20 Maschinen"],
+    { q: "Rechenaufgabe (Kostenisoquante): Ein Kapitalbudget von 1.000 € pro Monat steht zur Verfügung. Die Maschinenmiete beträgt 200 €/Monat. Welche Rechnung liefert die maximal finanzierbare Maschinenzahl, wenn das gesamte Budget nur für Maschinen ausgegeben wird?",
+      opts: ["1.000 ÷ 200","200 ÷ 1.000","1.000 · 200","1.000 − 200"],
       correct: 0, calc: true, explain: "Die Kostenisoquante ergibt sich aus Faktormenge = Kapitalbudget ÷ Faktorpreis. Bei ausschließlichem Einsatz für Maschinen: 1.000 € ÷ 200 €/Monat = 5 Maschinen. Der Schnittpunkt von Produktionsfunktion und Kostenisoquante liefert die Minimalkostenkombination (z.B. 1,5 Mitarbeiter + 2 Maschinen bei einem Lohn von 330 €/Monat)." },
     { q: "Rechenaufgabe/Kennzahlen (Marn/Rosiello 1993): Um wie viel Prozent steigt der Gewinn bei einer Preiserhöhung um 1%, verglichen mit einer Reduzierung der variablen Kosten um 1%, einer Umsatzsteigerung um 1% und einer Reduzierung der Fixkosten um 1%?",
       opts: ["Preiserhöhung 11,1% > variable Kosten −1% = 7,8% > Umsatz +1% = 3,3% > Fixkosten −1% = 2,3%","Alle vier Hebel führen zu exakt derselben Gewinnsteigerung von 5%","Nur die Fixkostenreduzierung wirkt sich überhaupt auf den Gewinn aus","Umsatzsteigerung um 1% wirkt stärker als jede Preiserhöhung"],
@@ -2586,10 +2606,10 @@ const EBWL_FORMULA_QUIZ = {
     { q: "Wie lautet die Formel des Break-Even-Points (BEP) in Stück?",
       opts: ["BEP = Fixkosten ÷ (Verkaufspreis − variable Kosten pro Stück)","BEP = Fixkosten · (Verkaufspreis − variable Kosten pro Stück)","BEP = (Fixkosten + variable Kosten) ÷ Verkaufspreis","BEP = Verkaufspreis ÷ Fixkosten"],
       correct: 0, explain: "BEP = Fixkosten / (Verkaufspreis − variable Kosten pro Stück). Ab dieser Stückzahl deckt der Deckungsbeitrag genau die Fixkosten (Gewinnschwelle)." },
-    { q: "Rechenaufgabe (DuPont-Analyse): Ein Unternehmen hat ein durchschnittliches Gesamtkapital von 1.200 Mio. €, wovon 25 % Eigenkapital sind. Bei einem Umsatz von 1.700 Mio. € erzielt es einen Nettogewinn von 200 Mio. €. Wie hoch ist der ROE (2 Nachkommastellen bei den Zwischenschritten, Endergebnis gerundet)?",
-      opts: ["ROE ≈ 67 % (Gewinnmarge 12 % · Kapitalumschlag 142 % · EK-Multiplikator 400 %)","ROE ≈ 62 % (Gewinnmarge 12 % · Kapitalumschlag 150 % · EK-Multiplikator 350 %)","ROE ≈ 62 % (850 % · 29 % · 25 %)","ROE ≈ 67 % (16 % · 120 % · 350 %)"],
+    { q: "Rechenaufgabe (DuPont-Analyse): Ein Unternehmen hat ein durchschnittliches Gesamtkapital von 1.200 Mio. €, wovon 25 % Eigenkapital sind (→ EK = 300 Mio. €). Bei einem Umsatz von 1.700 Mio. € erzielt es einen Nettogewinn von 200 Mio. €. Welche Rechnung liefert den ROE nach der DuPont-Zerlegung (Gewinnmarge · Kapitalumschlag · EK-Multiplikator)?",
+      opts: ["(200/1.700) · (1.700/1.200) · (1.200/300)","(200/1.700) · (1.700/1.200) · (300/1.200)","(200/1.700) + (1.700/1.200) + (1.200/300)","(1.700/200) · (1.200/1.700) · (1.200/300)"],
       correct: 0, calc: true,
-      explain: "Eigenkapital = 25 % von 1.200 Mio. = 300 Mio. €. Gewinnmarge = 200/1.700 ≈ 11,76 % ≈ 12 %. Kapitalumschlag = 1.700/1.200 ≈ 141,67 % ≈ 142 %. EK-Multiplikator = 1.200/300 = 400 %. ROE = 0,1176 · 1,4167 · 4 ≈ 0,667 = 66,7 % ≈ 67 %. Kontrolle: ROE = Nettogewinn/EK = 200/300 ≈ 66,7 % ✓." }
+      explain: "Gewinnmarge = Nettogewinn/Umsatz = 200/1.700 ≈ 11,8 %. Kapitalumschlag = Umsatz/Gesamtkapital = 1.700/1.200 ≈ 141,7 %. EK-Multiplikator = Gesamtkapital/EK = 1.200/300 = 400 %. ROE = 0,118 · 1,417 · 4 ≈ 0,667 = 66,7 %. Kontrolle: ROE = Nettogewinn/EK = 200/300 ≈ 66,7 % ✓. Achtung: Die drei Faktoren werden MULTIPLIZIERT (nicht addiert), und der EK-Multiplikator ist Gesamtkapital ÷ EK (nicht umgekehrt)." }
   ]}
 };
 
