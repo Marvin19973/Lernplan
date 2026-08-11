@@ -57,11 +57,15 @@
   .progress-bar-track { height: 6px; background: var(--pill-bg); border-radius: 4px; overflow: hidden; margin-bottom: 6px; }
   .progress-bar-fill { height: 100%; background: var(--accent); border-radius: 4px; }
   .progress-pct { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
-  .lernplan-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; padding: 5px 0; border-bottom: 1px dashed var(--card-border); }
+  .lernplan-item { padding: 5px 0; border-bottom: 1px dashed var(--card-border); }
   .lernplan-item:last-child { border-bottom: none; }
-  .lernplan-item input[type=checkbox] { margin-top: 2px; accent-color: var(--accent); cursor: pointer; }
+  .lernplan-row { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
+  .lernplan-item input[type=checkbox] { margin-top: 2px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
   .lernplan-item label { cursor: pointer; flex: 1; }
   .lernplan-item.checked label { color: var(--text-muted); text-decoration: line-through; }
+  .lernplan-toggle { flex-shrink: 0; font-size: 11px; font-weight: 600; color: var(--accent); cursor: pointer; white-space: nowrap; margin-top: 1px; }
+  .lernplan-answer { display: none; margin: 6px 0 2px 26px; font-size: 12.5px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 8px; padding: 0.6rem 0.75rem; line-height: 1.55; }
+  .lernplan-answer.show { display: block; }
 
   .day-group { margin-bottom: 22px; }
   .day-group-title { font-size: 13px; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 10px; text-transform: uppercase; }
@@ -111,6 +115,28 @@
 
   .info-box { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem 1.2rem; font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.2rem; }
   .info-box b { color: var(--text-primary); }
+
+  .kk-controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 1rem; font-size: 13px; }
+  .kk-controls select { background: var(--pill-bg); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: 8px; padding: 0.4rem 0.6rem; font-size: 13px; }
+  .kk-controls label { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); cursor: pointer; }
+  .kk-controls input[type=checkbox] { accent-color: var(--accent); cursor: pointer; }
+  .kk-shuffle-btn { background: var(--pill-bg); border: 1px solid var(--card-border); color: var(--text-primary); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .kk-progress-text { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+  .kk-stage { perspective: 1400px; margin-bottom: 1rem; }
+  .kk-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 2rem 1.6rem; min-height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; }
+  .kk-card.mastered { border-color: var(--green); }
+  .kk-side-label { font-size: 10.5px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px; }
+  .kk-front-text { font-size: 16px; font-weight: 700; line-height: 1.5; }
+  .kk-back-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; text-align: left; }
+  .kk-tap-hint { margin-top: 14px; font-size: 11.5px; color: var(--text-muted); }
+  .kk-actions { display: flex; gap: 10px; justify-content: center; }
+  .kk-btn { flex: 1; max-width: 220px; padding: 0.7rem; border-radius: 10px; border: 1px solid var(--card-border); background: var(--pill-bg); font-weight: 700; font-size: 13px; cursor: pointer; color: var(--text-primary); }
+  .kk-btn.again { color: #f16565; border-color: #f16565; }
+  .kk-btn.know { color: var(--green); border-color: var(--green); }
+  .kk-flip-hint { text-align: center; font-size: 12.5px; color: var(--text-muted); margin-bottom: 1rem; }
+  .kk-mastery-bar { display: flex; height: 6px; border-radius: 4px; overflow: hidden; background: var(--pill-bg); margin-bottom: 6px; }
+  .kk-mastery-fill { background: var(--green); height: 100%; }
+  .kk-mastery-text { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
 </style>
 </head>
 <body>
@@ -133,17 +159,21 @@
     <button class="tab-btn" id="tab-tagesplan">Tagesplan</button>
     <button class="tab-btn" id="tab-quiz">AWI Quiz</button>
     <button class="tab-btn" id="tab-formeln">AWI Formelkarten</button>
+    <button class="tab-btn" id="tab-karteikarten">Karteikarten</button>
   </div>
 
   <div class="view active" id="view-module">
+    <div class="info-box"><b>70/30-Regel (laut LE01-Folie):</b> ca. 70 % der Klausurpunkte beziehen sich auf die <b>Übungen</b> (SC/MC & Rechenaufgaben), nur ca. 30 % direkt auf die Vorlesungsfolien. Priorität: Übungsblätter samt Musterlösung durchrechnen (→ Quiz-Fragen mit „[Übung LEx]"-Präfix + Formelkarten) VOR reinem Foliennachlesen. Die Folien liefern v.a. den Begriffsrahmen, die Übungen prüfen das eigentliche Können.</div>
     <div class="grid" id="moduleGrid"></div>
   </div>
 
   <div class="view" id="view-tagesplan">
+    <div class="info-box"><b>70/30-Fokus:</b> Rechenaufgaben & Übungs-Quizfragen (Formelkarten-Tab, „[Übung LEx]"-Fragen) haben Vorrang vor reinem Folien-Lesen – sie decken ~70 % der Klausurpunkte ab.</div>
     <div id="dayplanWrap"></div>
   </div>
 
   <div class="view" id="view-quiz">
+    <div class="info-box">Fragen mit Präfix <b>„[Übung LEx]"</b> stammen direkt aus den Übungsblättern mit Musterlösung – diese sind laut LE01-Folie für ~70 % der Klausurpunkte relevant und verdienen besondere Aufmerksamkeit.</div>
     <div class="quiz-tab-row" id="quizTabs"></div>
     <div id="quizPanel"></div>
   </div>
@@ -152,6 +182,12 @@
     <div class="info-box"><b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.</div>
     <div class="quiz-tab-row" id="ebwlTabs"></div>
     <div id="ebwlPanel"></div>
+  </div>
+
+  <div class="view" id="view-karteikarten">
+    <div class="info-box"><b>Karteikarten</b> aus allen 98 Lernerfolgsfragen (LE01–LE13). Karte antippen zum Umdrehen, danach ehrlich einschätzen: „Nochmal üben" oder „Kann ich". Dein Fortschritt wird gespeichert – mit „Nur unbekannte" kannst du gezielt die Lücken wiederholen.</div>
+    <div class="kk-controls" id="kkControls"></div>
+    <div id="kkPanel"></div>
   </div>
 </div>
 
@@ -166,128 +202,130 @@ const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE
    ============================================================ */
 const MODULES = [
   { id: 'le01', title: 'LE01 · Einführung in die Arbeitswissenschaft', sub: 'Arbeitsbegriff, Gegenstand, Ziele, Arbeitssystem', lernplan: [
-    { id: 'le01-0', text: 'Wie ist Arbeit definiert? (Rohmert 1993, Stirn 1980)' },
-    { id: 'le01-1', text: 'Was ist Gegenstand der Arbeitswissenschaft?' },
-    { id: 'le01-2', text: 'Wie sehen die Zielsetzungen der Arbeitswissenschaft aus? (effektivitätsorientiert + humanitär)' },
-    { id: 'le01-3', text: 'Wie kann ein Arbeitssystem beschrieben werden? Bewertungshierarchie nach Hacker & Sachse' },
-    { id: 'le01-4', text: 'Belastungs-Beanspruchungs-Konzept erklären können' },
-    { id: 'le01-5', text: 'Herausforderungen der Arbeitswelt (Globalisierung, Digitalisierung, demografischer Wandel) nennen' }
+    { id: 'le01-0', text: 'Wie ist Arbeit definiert? (Rohmert 1993, Stirn 1980)', a: 'Rohmert (1993): „Arbeit ist, was der Mensch zur Erhaltung seiner Existenz und/oder der Gesellschaft tut, soweit es von der Gesellschaft akzeptiert und honoriert wird.“ Stirn (1980) ergänzt: Tätigsein in Interaktion mit Menschen/Hilfsmitteln, bei dem unter wirtschaftlichen Zielsetzungen Güter/Dienstleistungen erstellt werden.' },
+    { id: 'le01-1', text: 'Was ist Gegenstand der Arbeitswissenschaft?', a: 'Analyse bestehender Arbeitsbedingungen, systematische Aufbereitung des gewonnenen Wissens und Ableitung von Gestaltungsregeln.' },
+    { id: 'le01-2', text: 'Wie sehen die Zielsetzungen der Arbeitswissenschaft aus? (effektivitätsorientiert + humanitär)', a: 'Optimierung von effektivitätsorientierten UND humanitären Aspekten der Arbeit – beide Dimensionen gemeinsam, nicht nur eine.' },
+    { id: 'le01-3', text: 'Wie kann ein Arbeitssystem beschrieben werden? Bewertungshierarchie nach Hacker & Sachse', a: 'Arbeitssystem = Zusammenwirken von Arbeitenden mit Arbeitsmitteln zur Erfüllung der Systemfunktion in Arbeitsraum/-umgebung unter vorgegebenen Aufgaben. Bewertungshierarchie (unten→oben, jede Stufe setzt die darunter voraus): Ausführbarkeit → Schädigungslosigkeit/Erträglichkeit → Beeinträchtigungsfreiheit/Zumutbarkeit → Persönlichkeitsentfaltung.' },
+    { id: 'le01-4', text: 'Belastungs-Beanspruchungs-Konzept erklären können', a: 'Belastung = Gesamtheit der äußeren Einwirkungen/Anforderungen auf den Menschen. Beanspruchung = individuelle, aus Belastung UND persönlichen Voraussetzungen resultierende innere Reaktion – gleiche Belastung kann bei unterschiedlichen Personen zu unterschiedlicher Beanspruchung führen.' },
+    { id: 'le01-5', text: 'Herausforderungen der Arbeitswelt (Globalisierung, Digitalisierung, demografischer Wandel) nennen', a: 'Globalisierung (weltweite Vernetzung, internationaler Wettbewerb), Digitalisierung (körperliche Belastung sinkt, informatorische steigt), demografischer/gesellschaftlicher Wandel (Fachkräftemangel).' }
   ]},
   { id: 'le02', title: 'LE02 · Arbeitsorganisation & -gestaltung', sub: 'Menschenbilder, Handlungsspielraum, Arbeitsteilung', lernplan: [
-    { id: 'le02-0', text: 'Was versteht man unter Arbeitsorganisation?' },
-    { id: 'le02-1', text: 'Wandel der Arbeitsorganisation & Menschenbilder (Economic Man → Virtual Man)' },
-    { id: 'le02-2', text: 'Aufgabenanalyse und -synthese erklären' },
-    { id: 'le02-3', text: 'Handlungsspielraum: Tätigkeits- vs. Entscheidungs-/Kontrollspielraum' },
-    { id: 'le02-4', text: 'Arbeitsteilungsprinzipien: Verrichtungs- vs. Objektprinzip' },
-    { id: 'le02-5', text: 'Klassische Maßnahmen der Arbeitsgestaltung mit Beispielen' },
-    { id: 'le02-6', text: '4 Bewertungsebenen menschengerechter Arbeitsgestaltung (Hacker)' }
+    { id: 'le02-0', text: 'Was versteht man unter Arbeitsorganisation?', a: 'Betriebliche Mikro-/Meso-Struktur eines Systems dauerhafter Maßnahmen und Regelungen, die funktionale/prozedurale Verknüpfung der Aufgaben sowie Handlungsspielräume und optimale Aufgabenerfüllung festlegen.' },
+    { id: 'le02-1', text: 'Wandel der Arbeitsorganisation & Menschenbilder (Economic Man → Virtual Man)', a: 'Economic Man (Taylorismus, ~1900) → Social Man (Hawthorne-Studie, ~1930) → Self-actualizing Man (~1960) → Complex Man (~1990) → Virtual Man (Netzwerkbildung, ~2010).' },
+    { id: 'le02-2', text: 'Aufgabenanalyse und -synthese erklären', a: 'Aufgabenanalyse: mehrstufige Zerlegung der Gesamtaufgabe in Teil-/Elementaraufgaben. Aufgabensynthese: zielgerichtete Zusammenfassung der Elementaraufgaben zu Stellen/Abteilungen → organisatorische Aufbaustruktur.' },
+    { id: 'le02-3', text: 'Handlungsspielraum: Tätigkeits- vs. Entscheidungs-/Kontrollspielraum', a: 'Tätigkeitsspielraum (Grad der Vielseitigkeit der Tätigkeiten) und Entscheidungs-/Kontrollspielraum (Ausmaß selbstständiger Planungs-, Organisations- und Kontrollbefugnisse).' },
+    { id: 'le02-4', text: 'Arbeitsteilungsprinzipien: Verrichtungs- vs. Objektprinzip', a: 'Verrichtungsprinzip/Arteilung (jede Person übernimmt artverschiedenes Pensum) vs. Objektprinzip/Mengenteilung (artgleiches Pensum) sowie Kombination beider.' },
+    { id: 'le02-5', text: 'Klassische Maßnahmen der Arbeitsgestaltung mit Beispielen', a: 'Alle technischen, organisatorischen und ergonomischen Maßnahmen bzgl. Arbeitsplatz-, Arbeitsablauf-, Arbeitsorganisations- und Aufgabeninhaltsgestaltung (Nerdinger et al. 2011), z.B. Job Rotation, Job Enlargement, Job Enrichment, teilautonome Gruppen.' },
+    { id: 'le02-6', text: '4 Bewertungsebenen menschengerechter Arbeitsgestaltung (Hacker)', a: 'Ausführbarkeit → Schädigungslosigkeit/Erträglichkeit → Beeinträchtigungsfreiheit/Zumutbarkeit → Persönlichkeitsentfaltung – aufeinander aufbauend, unterste Ebene zuerst.' },
+    { id: 'le02-7', text: '[ÜBUNG] RHIA/VERA: Zweck & Unterschied der beiden Verfahren', a: 'RHIA (Regulationshindernisse): Analyse/Bewertung/Gestaltung von Tätigkeiten mit kaum Freiräumen für Planungs-/Entscheidungs-/Denkprozesse – v.a. Industrie/Fertigung. VERA (Regulationserfordernisse): untersucht Denk-, Entscheidungs- und Planungsprozesse, die eine Tätigkeit fordert, und wie persönlichkeitsförderlich die Aufgabe ist → Einordnung des Arbeitsplatzes in eine feste Kategorie. Regulationserfordernisse = psychische Anforderungen einer Aufgabe; Regulationsbehinderungen = Belastungen, die eine Tätigkeit unnötig behindern/die Gesundheit beeinträchtigen.' },
+    { id: 'le02-8', text: '[ÜBUNG] KOMPASS: Zentrales Prinzip & 3 Bewertungsebenen', a: 'KOMPASS = Komplementäre Analyse und Gestaltung von Produktionsaufgaben in soziotechnischen Systemen. Zentrales Prinzip: soziotechnischer Systemansatz mit Komplementarität zwischen Mensch (Durchschaubarkeit, Vorhersehbarkeit, Beeinflussbarkeit) und Technik. 3 Bewertungsebenen: Arbeitssystem, Individuelle Arbeitsaufgabe, Mensch-Maschine-Funktionsteilung. Vorgehen: Analyse (Beobachtung/Interviews/Fragebögen) → Evaluate (Bewertung nach KOMPASS-Ebenen) → Design (technische/soziale/organisatorische Maßnahmen).' }
   ]},
   { id: 'le03', title: 'LE03 · Modellierung & Optimierung von Arbeitsprozessen', sub: 'Kaizen, BPR, Flussprinzipien, DIN 66001 / eEPK', lernplan: [
-    { id: 'le03-0', text: 'Ziele der Modellierung und Optimierung von Arbeitsprozessen' },
-    { id: 'le03-1', text: 'Kaizen (KVP) vs. Business Process Reengineering unterscheiden' },
-    { id: 'le03-2', text: '8 heuristische Prozessverbesserungsmaßnahmen aufzählen' },
-    { id: 'le03-3', text: 'RPA: Vor-/Nachteile aus arbeitswissenschaftlicher Sicht' },
-    { id: 'le03-4', text: 'Grundlegende Flussprinzipien der Ablaufmodellierung' },
-    { id: 'le03-5', text: 'DIN 66001 vs. eEPK: Sinnbilder gegenüberstellen' },
-    { id: 'le03-6', text: 'Häufige Fehler bei der Arbeitsprozessmodellierung' }
+    { id: 'le03-0', text: 'Ziele der Modellierung und Optimierung von Arbeitsprozessen', a: 'Optimierung der Ablauforganisation (Kapazitätsauslastung, Durchlaufzeit, Kosten, Qualität), Verbesserung von Prozesstransparenz/-sicherheit, Kundenzufriedenheit, organisationales Lernen, Verringerung von Belastung/Beanspruchung, Entwurf von Workflow-Management-Systemen.' },
+    { id: 'le03-1', text: 'Kaizen (KVP) vs. Business Process Reengineering unterscheiden', a: 'BPR: grundlegende, radikale Neugestaltung auf Makroebene für strategische Ziele, ausgerichtet an Kundenanforderungen. Kaizen/KVP: kontinuierliche Verbesserung in kleinen Schritten, Mensch im Mittelpunkt, Probleme als „Schätze“.' },
+    { id: 'le03-2', text: '8 heuristische Prozessverbesserungsmaßnahmen aufzählen', a: 'Reihenfolge ändern/Prioritäten setzen, Eliminieren, Vereinfachen, Parallelisieren, Zusammenfassen, Auslagern/Outsourcen, Abbau von Schnittstellen, Entflechtung/Überlappen leistungsabhängiger Aktivitäten.' },
+    { id: 'le03-3', text: 'RPA: Vor-/Nachteile aus arbeitswissenschaftlicher Sicht', a: 'Vorteile: beschleunigte Prozessabwicklung, Automatisierung von Routineaufgaben, Lohnkosteneinsparung, weniger Übertragungsfehler. Nachteile: hoher Initialaufwand, erfordert standardisierte Prozesse + digitale Infrastruktur, reduzierte Flexibilität.' },
+    { id: 'le03-4', text: 'Grundlegende Flussprinzipien der Ablaufmodellierung', a: 'Sequenz von Aktivitäten, nebenläufige/simultane Aktivitäten, alternative Aktivitäten (Ja/Nein-Verzweigung), funktional gekoppelte/reziprok leistungsinterdependente Aktivitäten.' },
+    { id: 'le03-5', text: 'DIN 66001 vs. eEPK: Sinnbilder gegenüberstellen', a: 'eEPK: Ereignis (Sechseck), Funktion (Rechteck), Kontrollfluss (Pfeil), Informationsobjekt (Dokument), Konnektoren (XOR/OR/AND). DIN 66001: Verarbeitung (Rechteck), Kontrollfluss (Pfeil), Dokument, Verzweigung (Raute).' },
+    { id: 'le03-6', text: 'Häufige Fehler bei der Arbeitsprozessmodellierung', a: 'Unklare Zielsetzung (Analyse vs. Optimierung vs. Dokumentation), zu grobe/zu detaillierte Modellierung, unzureichende Datenbasis, Werkzeugfixierung (formal korrekt, aber inhaltlich unbrauchbar), fehlende Einbindung von Mitarbeitenden (→ Akzeptanzprobleme, verpasste Optimierungspotenziale).' }
   ]},
   { id: 'le04', title: 'LE04 · Analyse der Zeitstruktur nach REFA', sub: 'Auftragszeit, Belegungszeit, Multimomentverfahren', lernplan: [
-    { id: 'le04-0', text: 'Verwendungszwecke von Zeitdaten in Betrieben' },
-    { id: 'le04-1', text: 'REFA-Ablaufarten: grundsätzliche Gliederung (Mensch/Betriebsmittel/Arbeitsobjekt)' },
-    { id: 'le04-2', text: 'Auftragszeit (Vorgabezeit für den Menschen) untergliedern können' },
-    { id: 'le04-3', text: 'Methodengruppen der Zeitdatenermittlung (REFA-Standardprogramm, Multimomentverfahren)' },
-    { id: 'le04-4', text: 'Merkmale & Durchführung einer REFA-Zeitaufnahme' },
-    { id: 'le04-5', text: 'Leistungsgrad = Intensität × Effektivität – Definition' },
-    { id: 'le04-6', text: 'Merkmale & Durchführung einer Multimomentaufnahme' },
-    { id: 'le04-7', text: 'Vor-/Nachteile Zeitstudie vs. Multimomentaufnahme' },
-    { id: 'le04-8', text: 'Formeln: Grundzeit, Verteilzeit, Rüstzeit, Auftragszeit rechnen können' }
+    { id: 'le04-0', text: 'Verwendungszwecke von Zeitdaten in Betrieben', a: 'Mitarbeiterbezogen (Anreizsystem, Entwicklung), produktbezogen (Kalkulation, Angebotserstellung), führungsbezogen (Investitions-/Personalbedarfsplanung), produktionsbezogen (Ablaufplanung, Auftragsüberwachung).' },
+    { id: 'le04-1', text: 'REFA-Ablaufarten: grundsätzliche Gliederung (Mensch/Betriebsmittel/Arbeitsobjekt)', a: 'Nach Bezug auf den Menschen (→ Auftragszeit), auf Arbeits-/Betriebsmittel (→ Belegungszeit) und auf das Arbeitsobjekt (→ Durchlaufzeit).' },
+    { id: 'le04-2', text: 'Auftragszeit (Vorgabezeit für den Menschen) untergliedern können', a: 'Auftragszeit T = Ausführungszeit (m·te) + Rüstzeit tr. te = Grundzeit tg + Erholungszeit ter + Verteilzeit tv (tv = (zv/100)·tg).' },
+    { id: 'le04-3', text: 'Methodengruppen der Zeitdatenermittlung (REFA-Standardprogramm, Multimomentverfahren)', a: 'REFA-Standardprogramm (klassische Zeitstudie mit Stoppuhr) und Multimomentverfahren (Stichprobenverfahren: MMH-Zählverfahren / MMZ-Zeitmessverfahren).' },
+    { id: 'le04-4', text: 'Merkmale & Durchführung einer REFA-Zeitaufnahme', a: 'Ermittlung von Soll-Zeiten durch Messung/Auswertung von Ist-Zeiten, meist per Stoppuhr direkt am Arbeitsplatz (Zeitstrukturanalyse).' },
+    { id: 'le04-5', text: 'Leistungsgrad = Intensität × Effektivität – Definition', a: 'Leistungsgrad = Intensität (Bewegungsgeschwindigkeit, körperliche Anstrengung) × Effektivität (rhythmisch, harmonisch, zügig).' },
+    { id: 'le04-6', text: 'Merkmale & Durchführung einer Multimomentaufnahme', a: 'Stichprobenverfahren, das Schätzungen über relative Häufigkeit/Dauer unregelmäßig auftretender Tätigkeiten bei frei wählbarer Genauigkeit f und Irrtumswahrscheinlichkeit α liefert: n = z²·θ·(1−θ)/f².' },
+    { id: 'le04-7', text: 'Vor-/Nachteile Zeitstudie vs. Multimomentaufnahme', a: 'Multimoment-Vorteile: repräsentatives Abbild bei geringem Aufwand, viele Arbeitsplätze einbeziehbar, keine Messgeräte nötig. Nachteile: Ursachen/Zeiteinflussgrößen nicht direkt ersichtlich, keine Leistungsgradbeurteilung möglich, manipulierbar durch die beobachtete Person.' },
+    { id: 'le04-8', text: 'Formeln: Grundzeit, Verteilzeit, Rüstzeit, Auftragszeit rechnen können', a: 'tv=(zv/100)·tg; te=tg+ter+tv; tr=trg+trv (trv=(zrv/100)·trg); Auftragszeit T=tr+m·te.' }
   ]},
   { id: 'le05', title: 'LE05 · MTM (Methods Time Measurement)', sub: '5 Grundbewegungen, Normzeitwertkarten, verdichtete Verfahren', lernplan: [
-    { id: 'le05-0', text: 'Zweck von Systemen vorbestimmter Zeiten + Vor-/Nachteile' },
-    { id: 'le05-1', text: 'Entwicklung des MTM-Grundverfahrens (Vorgehensweise)' },
-    { id: 'le05-2', text: '5 Grundbewegungen: Hinlangen, Greifen, Bringen, Fügen, Loslassen' },
-    { id: 'le05-3', text: 'Vorgehensweise der MTM-Methode + Vor-/Nachteile' },
-    { id: 'le05-4', text: 'Voraussetzungen zur Anwendung des MTM-Grundverfahrens' },
-    { id: 'le05-5', text: 'Gründe für verdichtete MTM-Verfahren (Höher-/Querverdichtung)' },
-    { id: 'le05-6', text: 'Prinzip von MTM-HWD' },
-    { id: 'le05-7', text: 'Wahl des MTM-Analysiersystems in der Praxis' }
+    { id: 'le05-0', text: 'Zweck von Systemen vorbestimmter Zeiten + Vor-/Nachteile', a: 'Verfahren, die Bewegungsabläufe in Bewegungselemente aufgliedern und diesen Normzeitwerte zuordnen. Vorteil: Ablauf/Zeiten bereits in Planungsphase bestimmbar, keine Leistungsgradbeurteilung nötig. Nachteil: nur für manuelle Tätigkeiten, hoher Analyseaufwand.' },
+    { id: 'le05-1', text: 'Entwicklung des MTM-Grundverfahrens (Vorgehensweise)', a: 'Filmaufnahmen (16 Bilder/s) → Ist-Zeiten durch Auszählen einzelner Bilder → Ausgleich interpersoneller Streuungen (LMS-Verfahren) → Ausgleich weiterer Streuungen durch Regressionsrechnung → MTM-Normzeitwertkarte.' },
+    { id: 'le05-2', text: '5 Grundbewegungen: Hinlangen, Greifen, Bringen, Fügen, Loslassen', a: 'Hinlangen (Reach) → Greifen (Grasp) → Bringen (Move) → Fügen (Position) → Loslassen (Release) – der Grundbewegungszyklus, tritt meist in dieser Reihenfolge auf.' },
+    { id: 'le05-3', text: 'Vorgehensweise der MTM-Methode + Vor-/Nachteile', a: 'Bewegungsanalyse → Zeitanalyse (Einflussgrößen je Element) → Kodierung → Auswertung (Normzeitwertkarten) → Gesamtbewertung (Addition der Elementarzeiten). Vorteile: transparent, international vergleichbar, keine Leistungsgradbeurteilung nötig. Nachteile: nur manuelle Tätigkeiten, hoher Ausbildungsaufwand, subjektiver Spielraum.' },
+    { id: 'le05-4', text: 'Voraussetzungen zur Anwendung des MTM-Grundverfahrens', a: 'Mengenfertigung in großen Losen, geringe Variantenvielfalt, kurzzyklische Abläufe, exakt definierte Rahmenbedingungen, routinierte Mitarbeiter mit hoher Fertigkeit.' },
+    { id: 'le05-5', text: 'Gründe für verdichtete MTM-Verfahren (Höher-/Querverdichtung)', a: 'Reduktion des hohen Analyseaufwands des Grundverfahrens – Verdichtung ausgehend vom Grundsystem über Höher- oder Querverdichtung der Daten (z.B. MTM-UAS, MTM-MEK).' },
+    { id: 'le05-6', text: 'Prinzip von MTM-HWD', a: 'Verschmelzung von Zeit- und Ergonomiebewertung in einem Schritt (integrierte Prozessbeschreibung) – vom Menschen abgeleitetes Bewegungsmodell, Piktogramme statt Kodierung, unterstützt prospektive Ergonomie schon in der Planung.' },
+    { id: 'le05-7', text: 'Wahl des MTM-Analysiersystems in der Praxis', a: 'Nach Datenverdichtungsgrad je Fertigungstyp: niedrige Verdichtung/Grundverfahren für Einzel-/Kleinserienfertigung (MEK), hohe Verdichtung/Fertigungsbereichswerte für Massenfertigung (UAS).' }
   ]},
   { id: 'le06', title: 'LE06 · Arbeitsschutz & sicherheitstechnische Gestaltung', sub: 'TOP-Modell, PSA, Gefährdungsbeurteilung, FMEA', lernplan: [
-    { id: 'le06-0', text: 'Ökonomische Effekte des Arbeitsschutzes' },
-    { id: 'le06-1', text: 'Duales Arbeitsschutz-Rechtssystem (staatlich + Unfallversicherungsträger)' },
-    { id: 'le06-2', text: 'Kernaussage des TOP-Modells (Technisch/Organisatorisch/Persönlich)' },
-    { id: 'le06-3', text: 'Rangfolge der Arbeitsschutzmaßnahmen (STOP-Prinzip)' },
-    { id: 'le06-4', text: 'Gestaltung von Schutzeinrichtungen an Maschinen' },
-    { id: 'le06-5', text: 'Grundsätze bei Verwendung persönlicher Schutzausrüstung' },
-    { id: 'le06-6', text: 'Gefährdungsbeurteilung: Zielsetzung + Arten (faktor-/objektspezifisch)' },
-    { id: 'le06-7', text: 'Methoden zur Risikoidentifikation (FMEA, RPZ = A×B×E)' },
-    { id: 'le06-8', text: 'Schwierigkeiten bei Risikoidentifikation (Attribution Bias etc.)' },
-    { id: 'le06-9', text: 'Formel Nichtverfügbarkeit: verkettete vs. redundante Systeme rechnen' }
+    { id: 'le06-0', text: 'Ökonomische Effekte des Arbeitsschutzes', a: 'Direkt: weniger Lohnfortzahlung durch weniger Arbeitsunfähigkeitstage. Indirekt: höhere Produktivität, gesicherte Produktqualität, mehr Flexibilität, besseres Image/Betriebsklima.' },
+    { id: 'le06-1', text: 'Duales Arbeitsschutz-Rechtssystem (staatlich + Unfallversicherungsträger)', a: 'Staatliches Arbeitsschutzrecht (ArbSchG, ArbStättV, BetrSichV u.a.) NEBEN autonomem Unfallverhütungsrecht der Unfallversicherungsträger (SGB VII, DGUV-Vorschriften).' },
+    { id: 'le06-2', text: 'Kernaussage des TOP-Modells (Technisch/Organisatorisch/Persönlich)', a: 'Arbeitssicherheit entsteht durch Technische, Organisatorische und Persönliche Voraussetzungen – in genau dieser Rangfolge (T vor O vor P).' },
+    { id: 'le06-3', text: 'Rangfolge der Arbeitsschutzmaßnahmen (STOP-Prinzip)', a: '1. Gefahrenquelle beseitigen/reduzieren (T), 2. sicherheitstechnische Maßnahmen an der Quelle (T), 3. organisatorische Maßnahmen (O), 4. PSA (P), 5. verhaltensbezogene Maßnahmen (P).' },
+    { id: 'le06-4', text: 'Gestaltung von Schutzeinrichtungen an Maschinen', a: 'Trennende (feste mechanische Barriere, z.B. Verkleidung) vs. nichttrennende Schutzeinrichtungen (z.B. Lichtschranke, Zweihandschaltung – wirken situativ bei Bedarf).' },
+    { id: 'le06-5', text: 'Grundsätze bei Verwendung persönlicher Schutzausrüstung', a: 'PSA erst einsetzen, wenn trotz aller technischen/organisatorischen Maßnahmen kein ausreichender Schutz besteht – PSA ist selbst eine zusätzliche Belastung für die Person.' },
+    { id: 'le06-6', text: 'Gefährdungsbeurteilung: Zielsetzung + Arten (faktor-/objektspezifisch)', a: 'Ziel: Erkennung von Gefahren, die den Verletzungseintritt begünstigen. Faktorspezifisch (Listen mit Gefährdungs-/Belastungsfaktoren) vs. objektspezifisch (Erkennen/Bewerten von Gestaltungsdefiziten an konkreten Arbeitssystemen).' },
+    { id: 'le06-7', text: 'Methoden zur Risikoidentifikation (FMEA, RPZ = A×B×E)', a: 'FMEA: Risikoprioritätszahl RPZ = Bedeutung (B) × Auftretenswahrscheinlichkeit (A) × Entdeckungswahrscheinlichkeit (E), jeweils Skala 1–10 → RPZ zwischen 1 und 1000.' },
+    { id: 'le06-8', text: 'Schwierigkeiten bei Risikoidentifikation (Attribution Bias etc.)', a: 'Attribution Bias (Fehler werden eher dem Menschen als Systemmängeln zugeschrieben), Normalisierung abweichenden Verhaltens, unvollständige Gefährdungslisten, subjektive Einschätzung der Beurteilenden.' },
+    { id: 'le06-9', text: 'Formel Nichtverfügbarkeit: verkettete vs. redundante Systeme rechnen', a: 'Verkettete/Reihen-Systeme: Uges = 1 − ∏(1−Ui) (fällt aus, sobald EINE Komponente ausfällt). Redundante/parallele Systeme: Uges = ∏Ui (fällt nur aus, wenn ALLE Komponenten gleichzeitig ausfallen).' }
   ]},
   { id: 'le07', title: 'LE07 · Arbeitsökologie', sub: 'Lärm, Schall, Schadstoffe, Berufskrankheiten', lernplan: [
-    { id: 'le07-0', text: 'Häufigste anerkannte Berufskrankheiten' },
-    { id: 'le07-1', text: 'Definition von Schall und Lärm' },
-    { id: 'le07-2', text: 'Klassifikation von Schall (Luftschall/Körperschall)' },
-    { id: 'le07-3', text: 'Bewertungsgrößen von Schall (Schalldruck, -leistung, -intensität)' },
-    { id: 'le07-4', text: 'Kurven gleicher Lautstärke' },
-    { id: 'le07-5', text: 'Arten von Gehörschädigung durch Lärm (TTS, PTS, Knalltrauma)' },
-    { id: 'le07-6', text: 'Faktoren, die Schadstoffwirkung im Körper beeinflussen' },
-    { id: 'le07-7', text: 'Technische/organisatorische/persönliche Schutzmaßnahmen (TOP)' }
+    { id: 'le07-0', text: 'Häufigste anerkannte Berufskrankheiten', a: 'Asbestose, Hautkrebs durch UV-Strahlung und Lärmschwerhörigkeit zählen zu den häufigsten anerkannten Berufskrankheiten in Deutschland (2019).' },
+    { id: 'le07-1', text: 'Definition von Schall und Lärm', a: 'Schall = mechanische Schwingung eines elastischen Mediums (Luft-/Körperschall). Lärm = jeder Schall, der als störend, belästigend oder gesundheitsschädigend empfunden wird.' },
+    { id: 'le07-2', text: 'Klassifikation von Schall (Luftschall/Körperschall)', a: 'Luftschall (Schwingung in der Luft, z.B. Sprache) vs. Körperschall (Schwingung, die sich in festen Medien/Bauteilen ausbreitet, z.B. Maschinenvibration).' },
+    { id: 'le07-3', text: 'Bewertungsgrößen von Schall (Schalldruck, -leistung, -intensität)', a: 'Effektiver Schalldruck peff(T)=√(1/T·∫p²(t)dt) [Pa]; Schallleistung P(t)~peff²(t) [W]; Schallintensität I(t)=P(t)/A [W/m²].' },
+    { id: 'le07-4', text: 'Kurven gleicher Lautstärke', a: 'Isophone zeigen: die Empfindungsstärke hängt sowohl vom Schalldruckpegel als auch von der Frequenz ab – bei gleicher gefühlter Lautstärke sind bei tiefen/hohen Frequenzen höhere Schalldruckpegel nötig als im mittleren Frequenzbereich.' },
+    { id: 'le07-5', text: 'Arten von Gehörschädigung durch Lärm (TTS, PTS, Knalltrauma)', a: 'TTS (Temporary Threshold Shift, vorübergehende Hörschwellenverschiebung), PTS (Permanent Threshold Shift, dauerhafte Schädigung), Knalltrauma (akute Schädigung durch sehr hohen kurzzeitigen Schalldruck).' },
+    { id: 'le07-6', text: 'Faktoren, die Schadstoffwirkung im Körper beeinflussen', a: 'Konzentration, Expositionsdauer, Aufnahmeweg (inhalativ/dermal/oral), individuelle Empfindlichkeit, gleichzeitige Einwirkung mehrerer Stoffe (Kombinationswirkung).' },
+    { id: 'le07-7', text: 'Technische/organisatorische/persönliche Schutzmaßnahmen (TOP)', a: 'Technisch: Kapselung/Absaugung an der Quelle. Organisatorisch: Expositionszeit begrenzen, Lärm-/Gefahrenbereiche kennzeichnen. Persönlich: Gehörschutz, Atemschutz (TOP-Rangfolge).' }
   ]},
   { id: 'le08', title: 'LE08 · Produktionsergonomie', sub: 'Muskelarbeit, Körperhaltung, Lastenhandhabung, Leitmerkmalmethode', lernplan: [
-    { id: 'le08-0', text: 'Begriff der Ergonomie (IEA-Definition)' },
-    { id: 'le08-1', text: 'Statische/dynamische/biomechanische Anthropometrie-Werte' },
-    { id: 'le08-2', text: 'Warum Zwangshaltungen vermeiden?' },
-    { id: 'le08-3', text: 'Körperhaltung: neutrale Haltung + Haltungswechsel' },
-    { id: 'le08-4', text: 'Energetische Arbeitsformen (mechanisch/motorisch, reaktiv/kombinativ/kreativ)' },
-    { id: 'le08-5', text: 'Statische vs. dynamische Muskelarbeit (Blutbedarf/Durchblutung)' },
-    { id: 'le08-6', text: 'Zusammenhang Muskelarbeit ↔ Muskelermüdung' },
-    { id: 'le08-7', text: 'Pausengestaltung für optimale Erholung (kurzzyklisch statt selten & lang)' },
-    { id: 'le08-8', text: 'Warum ist die Wirbelsäule bei körperlicher Arbeit gefährdet?' },
-    { id: 'le08-9', text: 'Gestaltungsgrundsätze der Lastenhandhabung' },
-    { id: 'le08-10', text: 'Leitmerkmalmethode + DIN EN 1005-2 (RML, Risikoindex) rechnen können' }
+    { id: 'le08-0', text: 'Begriff der Ergonomie (IEA-Definition)', a: 'Ergonomie (IEA) = wissenschaftliche Disziplin, die Wechselwirkungen zwischen Mensch und weiteren Elementen eines Systems erfasst, sowie Berufsfeld, das Theorie/Erkenntnisse/Methoden anwendet, um das Wohlbefinden von Menschen und die Leistung des Gesamtsystems zu optimieren.' },
+    { id: 'le08-1', text: 'Statische/dynamische/biomechanische Anthropometrie-Werte', a: 'Statische Anthropometrie (Körpermaße, z.B. Armlänge, Beinlänge), dynamische Anthropometrie (Bewegungsmaße, z.B. Armreichweite, Schrittweite), Biomechanik (Kräfte/Geschwindigkeiten, z.B. Maximalkraft, Bewegungsgeschwindigkeit).' },
+    { id: 'le08-2', text: 'Warum Zwangshaltungen vermeiden?', a: 'Zwangshaltungen führen zu einseitiger, lang andauernder Belastung von Muskeln/Gelenken/Bandscheiben → Ermüdung, muskuloskelettale Erkrankungen.' },
+    { id: 'le08-3', text: 'Körperhaltung: neutrale Haltung + Haltungswechsel', a: 'Neutrale Haltung = möglichst gelenkschonend, geringe Muskelaktivität. Regelmäßiger Haltungswechsel verhindert einseitige Dauerbelastung und fördert die Durchblutung.' },
+    { id: 'le08-4', text: 'Energetische Arbeitsformen (mechanisch/motorisch, reaktiv/kombinativ/kreativ)', a: 'Mechanisch/motorisch (Muskelkraft/-bewegung) sowie reaktiv (Reflex), kombinativ (mehrere Anforderungen gleichzeitig), kreativ (Problemlösung) als Arbeitsformen.' },
+    { id: 'le08-5', text: 'Statische vs. dynamische Muskelarbeit (Blutbedarf/Durchblutung)', a: 'Statische Muskelarbeit: Dauerkontraktion, Muskel komprimiert eigene Blutgefäße → Blutbedarf steigt, Durchblutung sinkt → schnelle Ermüdung. Dynamische Muskelarbeit: rhythmischer Wechsel Anspannung/Entspannung → Durchblutung bleibt/steigt → weniger Ermüdung.' },
+    { id: 'le08-6', text: 'Zusammenhang Muskelarbeit ↔ Muskelermüdung', a: 'Muskelarbeit ohne ausreichende Erholung führt zu Ermüdung (reversible Leistungsminderung) – bei Dauerüberlastung zu chronischer Erschöpfung/Schädigung.' },
+    { id: 'le08-7', text: 'Pausengestaltung für optimale Erholung (kurzzyklisch statt selten & lang)', a: 'Kurzzyklische, häufige Kurzpausen sind effektiver für die Erholung als seltene, lange Pausen (Erholungskurve ist nicht linear – die frühen Pausenminuten bringen den größten Erholungseffekt).' },
+    { id: 'le08-8', text: 'Warum ist die Wirbelsäule bei körperlicher Arbeit gefährdet?', a: 'Die Wirbelsäule/Bandscheiben sind bei ungünstigen Hebelverhältnissen (z.B. gebeugter Rücken, körperfern gehaltene Last) extrem hohen Druckkräften ausgesetzt – ein körperfern am ausgestreckten Arm gehaltenes Gewicht von 10 kg kann einer Bandscheibenbelastung von 230 kg körpernah entsprechen.' },
+    { id: 'le08-9', text: 'Gestaltungsgrundsätze der Lastenhandhabung', a: 'Lasten möglichst körpernah halten, Hebelarme minimieren, Hilfsmittel nutzen, Heben aus der Hocke statt mit gebeugtem Rücken, Last- und Bewegungshäufigkeit begrenzen.' },
+    { id: 'le08-10', text: 'Leitmerkmalmethode + DIN EN 1005-2 (RML, Risikoindex) rechnen können', a: 'LMM-HHT: 6 Leitmerkmale = Zeitdauer/Häufigkeit, Lastgewicht, Lastaufnahmebedingungen, Körperhaltung, Ausführungsbedingungen, Arbeitsorganisation. DIN EN 1005-2: RML = Mref·VM·DM·HM·AM·CM·FM·OM·PM·AT; Risikoindex RI = M/RML (RI≥1 → Umgestaltung erforderlich).' }
   ]},
   { id: 'le09', title: 'LE09 · Produktergonomie I', sub: 'Anthropometrie, Perzentile, virtuelle Menschmodelle', lernplan: [
-    { id: 'le09-0', text: 'Prospektive vs. korrektive Ergonomie' },
-    { id: 'le09-1', text: 'Ebenen ergonomischer Gestaltungskriterien (Ausführbarkeit → Persönlichkeitsentfaltung)' },
-    { id: 'le09-2', text: 'Was ist ein Perzentil?' },
-    { id: 'le09-3', text: 'Anthropometrische Maße (Körper-, Höhen-, Breitenmaße, Bewegungswinkel)' },
-    { id: 'le09-4', text: 'Einflussgrößen der Maßverteilung (Geschlecht, Alter, Region)' },
-    { id: 'le09-5', text: 'Auslegungsregel: sicherheitskritisch → 1./99. Perzentil; Erreichbarkeit → 5. Perzentil Frau; Platzbedarf → 95. Perzentil Mann' },
-    { id: 'le09-6', text: 'Einsatzbereiche & Vorteile virtueller Menschmodelle' }
+    { id: 'le09-0', text: 'Prospektive vs. korrektive Ergonomie', a: 'Prospektive Ergonomie: Berücksichtigung ergonomischer Kriterien bereits im Entwurfsstadium. Korrektive Ergonomie: nachträgliche Anpassung eines bereits bestehenden Arbeitssystems.' },
+    { id: 'le09-1', text: 'Ebenen ergonomischer Gestaltungskriterien (Ausführbarkeit → Persönlichkeitsentfaltung)', a: 'Ausführbarkeit → Erträglichkeit → Zumutbarkeit → Persönlichkeitsentfaltung – analog zur allgemeinen Bewertungshierarchie aus LE01, hier auf Produktebene angewendet.' },
+    { id: 'le09-2', text: 'Was ist ein Perzentil?', a: 'Ein Perzentil gibt an, wie viel Prozent der Bevölkerung unter/über einem bestimmten Körpermaß liegen – z.B. 5. Perzentil: 5% kleiner, 95% größer als der Wert.' },
+    { id: 'le09-3', text: 'Anthropometrische Maße (Körper-, Höhen-, Breitenmaße, Bewegungswinkel)', a: 'Körpermaße/Längen (z.B. Körperhöhe), Höhenmaße (z.B. Augenhöhe, Ellenbogenhöhe), Breitenmaße (z.B. Schulterbreite), Bewegungswinkel/-reichweiten (z.B. Reichweite nach vorne).' },
+    { id: 'le09-4', text: 'Einflussgrößen der Maßverteilung (Geschlecht, Alter, Region)', a: 'Geschlecht, Alter, säkulare Akzeleration (Wachstum über Generationen, ca. 1 mm/Jahr Körperhöhe), ethnische Unterschiede, proportionale Unterschiede, Region/Kultur, Kleidung.' },
+    { id: 'le09-5', text: 'Auslegungsregel: sicherheitskritisch → 1./99. Perzentil; Erreichbarkeit → 5. Perzentil Frau; Platzbedarf → 95. Perzentil Mann', a: 'Sicherheitskritische Elemente → 1./99. Perzentil (Extremwerte). Außenmaße/Erreichbarkeit → 5. Perzentil Frau (kleinste Person). Innenmaße/Platzbedarf → 95. Perzentil Mann (größte Person). Beispieltabelle (DIN 33402, mm): Körperhöhe F 1510/1619/1725, M 1629/1733/1841; Augenhöhe F 1402/1502/1596, M 1509/1613/1721; Ellenbogenhöhe F 957/1030/1100, M 1021/1096/1179 (5./50./95. Perzentil).' },
+    { id: 'le09-6', text: 'Einsatzbereiche & Vorteile virtueller Menschmodelle', a: 'Frühzeitige, kostengünstige ergonomische Bewertung bereits in der digitalen Planungsphase ohne physischen Prototyp – Simulation verschiedener Perzentile/Körperhaltungen am virtuellen Modell.' }
   ]},
   { id: 'le10', title: 'LE10 · Produktergonomie II', sub: 'Kognitive Ergonomie, Psychophysik, Anzeigen, Kompatibilität', lernplan: [
-    { id: 'le10-0', text: 'Warum ist kognitive Ergonomie wichtig? (Informationsüberflutung)' },
-    { id: 'le10-1', text: 'Sensation, Perzeption, Kognition + Bottom-up vs. Top-down' },
-    { id: 'le10-2', text: 'Psychophysik-Gesetzmäßigkeiten: Absolutschwelle, Unterschiedsschwelle, Weber, Weber-Fechner, Stevens' },
-    { id: 'le10-3', text: 'Sensorische Modalitäten unterscheiden (visuell, auditiv, taktil, ...)' },
-    { id: 'le10-4', text: 'Anzeigenarten + Eignung für Anwendungsbereiche' },
-    { id: 'le10-5', text: 'Sehvermögen: Sehschärfe, foveales Sehen, photopisch/skotopisch' },
-    { id: 'le10-6', text: 'Kompatibilitätsarten: räumlich, Bewegungs-, modalitätsbezogen' }
+    { id: 'le10-0', text: 'Warum ist kognitive Ergonomie wichtig? (Informationsüberflutung)', a: 'Menschen sind zunehmend von Informationsflut/Reizüberflutung betroffen – kognitive Ergonomie sorgt für angepasste, verarbeitbare Informationsdarbietung und reduziert Fehler/Überlastung.' },
+    { id: 'le10-1', text: 'Sensation, Perzeption, Kognition + Bottom-up vs. Top-down', a: 'Sensation = Reizaufnahme durch Sinnesorgane. Perzeption = Auswahl/Organisation der Reize (Wahrnehmung). Kognition = übergeordnete Verarbeitung (Gedächtnis, Denken). Bottom-up = reizgetrieben; Top-down = erwartungs-/wissensgetrieben.' },
+    { id: 'le10-2', text: 'Psychophysik-Gesetzmäßigkeiten: Absolutschwelle, Unterschiedsschwelle, Weber, Weber-Fechner, Stevens', a: 'Absolutschwelle = kleinster wahrnehmbarer Reiz. Unterschiedsschwelle ΔR = kleinster wahrnehmbarer Unterschied. Weber\'sches Gesetz: k=ΔR/R (konstantes Verhältnis). Weber-Fechner: Empfindungsstärke ~ log(Reizstärke). Stevens\'sches Potenzgesetz: Empfindung ~ Reiz^n.' },
+    { id: 'le10-3', text: 'Sensorische Modalitäten unterscheiden (visuell, auditiv, taktil, ...)', a: 'Mind. 9 Modalitäten: visuell, auditiv, taktil, kinästhetisch, thermisch, Schmerzwahrnehmung, olfaktorisch, gustatorisch, vestibulär.' },
+    { id: 'le10-4', text: 'Anzeigenarten + Eignung für Anwendungsbereiche', a: 'Analoganzeigen (kontinuierliche Werte, gut für Trends/Tendenzen, schnelles Erkennen von Abweichungen) vs. Digitalanzeigen (exakte Werte, gut für präzises Ablesen konkreter Zahlen) – je nach Aufgabe geeignet.' },
+    { id: 'le10-5', text: 'Sehvermögen: Sehschärfe, foveales Sehen, photopisch/skotopisch', a: 'Sehschärfe = Fähigkeit, feine Details zu unterscheiden. Fovea centralis = Stelle schärfsten Sehens (ca. 1° Sehfeld). Photopisches Sehen = Zapfen, bei Helligkeit, Farbe. Skotopisches Sehen = Stäbchen, bei Dunkelheit.' },
+    { id: 'le10-6', text: 'Kompatibilitätsarten: räumlich, Bewegungs-, modalitätsbezogen', a: 'Räumliche/statische Kompatibilität (Anordnung Stellteile↔Anzeigen), Bewegungskompatibilität (Stellteilbewegung↔Messwertänderung), modalitätsbezogene Kompatibilität (Darbietungs-/Verarbeitungs-/Reaktionsmodalität).' }
   ]},
   { id: 'le11', title: 'LE11 · Computergestützte Büroarbeit', sub: 'Bildschirmarbeit, Beleuchtung, Usability/UX', lernplan: [
-    { id: 'le11-0', text: 'Gesundheitliche Beeinträchtigungen durch Bildschirmarbeit' },
-    { id: 'le11-1', text: 'Kriterien ergonomischer Büroarbeitsplatzgestaltung' },
-    { id: 'le11-2', text: 'Optimale Schriftgröße ermitteln (Zeichenhöhe-Formel)' },
-    { id: 'le11-3', text: 'Lichttechnische Grundgrößen: Lichtstrom, Lichtstärke, Beleuchtungsstärke, Leuchtdichte' },
-    { id: 'le11-4', text: 'Grundsätze der Dialoggestaltung nach DIN EN ISO 9241-110 (7 Prinzipien)' },
-    { id: 'le11-5', text: 'Unterschied Usability vs. User Experience (UX)' }
+    { id: 'le11-0', text: 'Gesundheitliche Beeinträchtigungen durch Bildschirmarbeit', a: 'Augenbeschwerden (trockene Augen, Sehstress), Muskel-Skelett-Beschwerden (Nacken, Rücken, Handgelenk/RSI), psychische Belastung durch Dauerkonzentration.' },
+    { id: 'le11-1', text: 'Kriterien ergonomischer Büroarbeitsplatzgestaltung', a: 'Bildschirm neig-/drehbar, Mindestabstand Auge-Bildschirm ~50 cm, Stuhl mit Sitzhöhen-/Rückenlehnenverstellung, Fußstütze bei Bedarf, ausreichende Beleuchtung ohne Blendung, regelmäßige Pausen.' },
+    { id: 'le11-2', text: 'Optimale Schriftgröße ermitteln (Zeichenhöhe-Formel)', a: 'Zeichenhöhe-Faustformel: h = Sehabstand d ÷ 155 (grobe Näherung); exakter: h = 2d·tan(α/2) mit Sehwinkel α.' },
+    { id: 'le11-3', text: 'Lichttechnische Grundgrößen: Lichtstrom, Lichtstärke, Beleuchtungsstärke, Leuchtdichte', a: 'Lichtstrom Φ [lm] = von Quelle abgestrahlte Lichtmenge. Lichtstärke I [cd] = Lichtstrom pro Raumwinkel. Beleuchtungsstärke E [lx] = Lichtstrom pro Fläche (E=Φ/A bzw. E=I/r²). Leuchtdichte L [cd/m²] = wahrgenommene Helligkeit einer Fläche.' },
+    { id: 'le11-4', text: 'Grundsätze der Dialoggestaltung nach DIN EN ISO 9241-110 (7 Prinzipien)', a: 'Aufgabenangemessenheit, Selbstbeschreibungsfähigkeit, Steuerbarkeit, Erwartungskonformität, Fehlertoleranz, Individualisierbarkeit, Lernförderlichkeit.' },
+    { id: 'le11-5', text: 'Unterschied Usability vs. User Experience (UX)', a: 'Usability = Maß, in dem ein System durch bestimmte Nutzer in bestimmtem Kontext effektiv, effizient und zufriedenstellend genutzt werden kann (DIN EN ISO 9241-110). UX = darüber hinaus die gesamte subjektive Erfahrung/Emotion bei der Nutzung, auch vor/nach der eigentlichen Nutzung.' }
   ]},
   { id: 'le12', title: 'LE12 · Motivation und Entgelt', sub: 'Maslow, Herzberg, Equity Theory, JCM, Entgeltformen', lernplan: [
-    { id: 'le12-0', text: 'Maslowsche Bedürfnispyramide (5 Ebenen) + Beispiele' },
-    { id: 'le12-1', text: 'Zwei-Faktoren-Theorie (Herzberg): Hygienefaktoren vs. Motivatoren' },
-    { id: 'le12-2', text: 'Equity Theory (Adams): Os/Is = Oa/Ia + Handlungsoptionen' },
-    { id: 'le12-3', text: 'Job Characteristics Model (Hackman & Oldham) + MPS-Formel' },
-    { id: 'le12-4', text: 'Algorithmic Management: Auswirkungen auf Motivation' },
-    { id: 'le12-5', text: 'Entgeltformen: Zeit-, Akkord-, Prämienentgelt, Bonussysteme' },
-    { id: 'le12-6', text: 'Probleme monetärer Anreizsysteme' }
+    { id: 'le12-0', text: 'Maslowsche Bedürfnispyramide (5 Ebenen) + Beispiele', a: '5 Ebenen (unten→oben): physiologische Bedürfnisse, Sicherheitsbedürfnisse, soziale Bedürfnisse, Ich-Bedürfnisse/Wertschätzung, Selbstverwirklichung. Eine höhere Ebene wird erst relevant, wenn die darunterliegende weitgehend befriedigt ist.' },
+    { id: 'le12-1', text: 'Zwei-Faktoren-Theorie (Herzberg): Hygienefaktoren vs. Motivatoren', a: 'Hygienefaktoren (z.B. Gehalt, Status, Firmenpolitik) verhindern nur Unzufriedenheit, schaffen aber KEINE Zufriedenheit. Motivatoren (z.B. Anerkennung, Verantwortung, Arbeitsinhalt) schaffen aktiv Zufriedenheit/Motivation.' },
+    { id: 'le12-2', text: 'Equity Theory (Adams): Os/Is = Oa/Ia + Handlungsoptionen', a: 'Os/Is (eigenes Output/Input-Verhältnis) wird mit Oa/Ia (Referenzperson) verglichen. Bei wahrgenommener Ungleichheit passt die Person ihre Anstrengung (Input) an oder fordert einen anderen Output, um Gerechtigkeit wiederherzustellen.' },
+    { id: 'le12-3', text: 'Job Characteristics Model (Hackman & Oldham) + MPS-Formel', a: 'Kernmerkmale: Anforderungsvielfalt, Ganzheitlichkeit, Bedeutsamkeit, Autonomie, Rückmeldung. MPS = [(Anforderungsvielfalt+Ganzheitlichkeit+Bedeutsamkeit)/3] × Autonomie × Rückmeldung.' },
+    { id: 'le12-4', text: 'Algorithmic Management: Auswirkungen auf Motivation', a: 'Automatisierte, datengetriebene Steuerung/Bewertung von Mitarbeitenden kann Autonomie und Transparenz verringern → potenziell negative Auswirkung auf intrinsische Motivation.' },
+    { id: 'le12-5', text: 'Entgeltformen: Zeit-, Akkord-, Prämienentgelt, Bonussysteme', a: 'Zeitentgelt (fixer Lohn je Zeiteinheit), Akkordentgelt (leistungsabhängig nach Stückzahl), Prämienentgelt (Grundlohn + leistungsabhängige Prämie), Bonussysteme (zusätzliche variable Vergütung).' },
+    { id: 'le12-6', text: 'Probleme monetärer Anreizsysteme', a: 'Verdrängung intrinsischer Motivation (Crowding-out-Effekt), Fokussierung nur auf gemessene/incentivierte Kennzahlen (Zielverzerrung), Ungerechtigkeitsempfinden bei unfairer Verteilung, kurzfristiges statt nachhaltiges Verhalten.' }
   ]},
   { id: 'le13', title: 'LE13 · Psychische Gefährdungen', sub: 'Belastungs-Beanspruchungs-Modell, GDA, Erfassungsmethoden', lernplan: [
-    { id: 'le13-0', text: 'Psychische Belastung vs. Beanspruchung definieren' },
-    { id: 'le13-1', text: 'Gesetzliche Vorgaben (§4/§5 ArbSchG seit 2013)' },
-    { id: 'le13-2', text: 'Belastungsfaktoren nach GDA-Leitlinie (5 Kategorien)' },
-    { id: 'le13-3', text: 'Erfassungsmethoden: BO/BS/PO/PS-Verfahren unterscheiden' },
-    { id: 'le13-4', text: 'Anforderungen an menschengerechte Gestaltung hochautomatisierter Systeme' }
+    { id: 'le13-0', text: 'Psychische Belastung vs. Beanspruchung definieren', a: 'Psychische Belastung = Gesamtheit aller von außen erfassbar auf den Menschen einwirkenden Einflüsse (neutral, nicht per se negativ). Psychische Beanspruchung = unmittelbare, individuelle Auswirkung dieser Belastung auf die Person.' },
+    { id: 'le13-1', text: 'Gesetzliche Vorgaben (§4/§5 ArbSchG seit 2013)', a: 'Seit 2013 explizit in §4/§5 ArbSchG verankert: der Arbeitgeber muss psychische Belastungen im Rahmen der Gefährdungsbeurteilung berücksichtigen.' },
+    { id: 'le13-2', text: 'Belastungsfaktoren nach GDA-Leitlinie (5 Kategorien)', a: 'GDA-Leitlinie: Arbeitsinhalt/-aufgabe, Arbeitsorganisation, soziale Beziehungen, Arbeitsumgebung, neue Arbeitsformen (5 Kategorien, u.a. mit Faktoren wie Zeitdruck, Führungsverhalten, Über-/Unterforderung).' },
+    { id: 'le13-3', text: 'Erfassungsmethoden: BO/BS/PO/PS-Verfahren unterscheiden', a: 'BO (Beobachtung objektiv, z.B. KOMPASS), BS (Beobachtung subjektiv/Interview), PO (physiologisch-objektiv, z.B. Herzratenvariabilität), PS (physiologisch-subjektiv/Fragebogen, z.B. COPSOQ).' },
+    { id: 'le13-4', text: 'Anforderungen an menschengerechte Gestaltung hochautomatisierter Systeme', a: 'Transparenz über Automatisierungsentscheidungen, Erhalt von Handlungsspielräumen, Vermeidung von Überwachungsdruck, Qualifizierung der Mitarbeitenden für neue Rollen, menschliche Kontrolle über kritische Entscheidungen.' }
   ]}
 ];
 
@@ -296,73 +334,98 @@ const DAYPLAN = [
     { date: '2026-08-12', label: 'Mi 12.08.', tag: 'LE01 + LE02 + LE03', tasks: [
       'LE01 Einführung: Foliensatz + Lernerfolgsfragen durchgehen',
       'LE02 Arbeitsorganisation: Foliensatz + Lernerfolgsfragen durchgehen',
+      '[70%-Fokus] Übungsblatt LE02 mit Musterlösung selbst durchrechnen (RHIA/VERA, KOMPASS)',
       'LE03 Modellierung & Optimierung: Foliensatz + Lernerfolgsfragen',
+      'Karteikarten: Filter LE01–LE02–LE03 einzeln durchgehen (Frage selbst beantworten, dann umdrehen)',
       'AWI Quiz Teil A (LE01–03) 1. Durchlauf'
     ]},
     { date: '2026-08-13', label: 'Do 13.08.', tag: 'LE04 komplett', tasks: [
       'LE04 REFA: Zeitdatenarten, Ablaufarten, Auftragszeit-Gliederung, Multimomentverfahren, Leistungsgrad',
+      '[70%-Fokus] Übungsblatt LE04 mit Musterlösung durchrechnen (Ablaufarten MH/BH-Schema, Multimoment-Rechenaufgaben)',
+      'Karteikarten: Filter LE04 durchgehen',
       'Formelkarten: Auftragszeit/Belegungszeit/Multimomentformel üben',
       'AWI Quiz Teil A wiederholen (falsch beantwortete Fragen)'
     ]},
     { date: '2026-08-14', label: 'Fr 14.08.', tag: 'LE05 komplett', tasks: [
       'LE05 MTM: 5 Grundbewegungen, Entwicklung Grundverfahren, Vor-/Nachteile, verdichtete Verfahren, MTM-HWD',
+      '[70%-Fokus] Übungsblatt LE05 mit Musterlösung durchrechnen (MTM-Normzeitwertkarten Hinlangen/Greifen/Bringen/Fügen)',
+      'Karteikarten: Filter LE05 durchgehen',
+      'Karteikarten: „Nur unbekannte zeigen" aktivieren, Filter „Alle" – LE01–05 wiederholen',
       'Formelkarten: Zeitwirtschaft nochmal komplett durchspielen'
     ]}
   ]},
   { title: 'Woche 2 · Sicherheit, Ökologie & Ergonomie', days: [
     { date: '2026-08-15', label: 'Sa 15.08.', tag: 'LE06 komplett', tasks: [
       'LE06 Arbeitsschutz: TOP-Modell, Rangfolge Maßnahmen, PSA, Gefährdungsbeurteilung, FMEA/RPZ',
+      '[70%-Fokus] Übungsblatt LE06 mit Musterlösung durchrechnen (Gefährdungsbeurteilung-Fallstudien: Mängel + TOP-Maßnahmen)',
+      'Karteikarten: Filter LE06 durchgehen',
       'Formelkarten: Nichtverfügbarkeit (verkettet/redundant) üben',
       'AWI Quiz Teil B (LE04–06) 1. Durchlauf'
     ]},
     { date: '2026-08-16', label: 'So 16.08.', tag: 'LE07 komplett', tasks: [
       'LE07 Arbeitsökologie: Lärm, Schall, Schadstoffe komplett',
+      'Karteikarten: Filter LE07 durchgehen',
+      'Karteikarten: „Nur unbekannte zeigen" – LE01–07 wiederholen',
       'AWI Quiz Teil B wiederholen (falsch beantwortete Fragen)',
       'Ruhiger Tag – max. 2–3 h aktives Lernen'
     ]},
     { date: '2026-08-17', label: 'Mo 17.08.', tag: 'LE08 komplett', tasks: [
       'LE08 Produktionsergonomie: Muskelarbeit, Körperhaltung, Pausen, Lastenhandhabung, Leitmerkmalmethode, DIN EN 1005-2',
+      '[70%-Fokus] Übungsblatt LE08 mit Musterlösung durchrechnen (LMM-HHT Punkte, DIN EN 1005-2 RML/RI)',
+      'Karteikarten: Filter LE08 durchgehen',
       'Formelkarten: Leitmerkmalmethode/Massegrenze RML üben'
     ]},
     { date: '2026-08-18', label: 'Di 18.08.', tag: 'LE09 komplett', tasks: [
       'LE09 Produktergonomie I: Perzentile, Anthropometrie, Auslegungsregeln (1./5./95./99. Perzentil), virtuelle Menschmodelle',
+      '[70%-Fokus] Übungsblatt LE09 mit Musterlösung durchrechnen (Perzentil-Tabellen-Lookup, Produktentwicklungsprozess)',
+      'Karteikarten: Filter LE09 durchgehen',
+      'Karteikarten: „Nur unbekannte zeigen" – LE01–09 wiederholen',
       'AWI Quiz Teil C (LE07–10) 1. Durchlauf'
     ]}
   ]},
   { title: 'Woche 3 · Wahrnehmung, Büro & Motivation', days: [
     { date: '2026-08-19', label: 'Mi 19.08.', tag: 'LE10 komplett', tasks: [
       'LE10 Produktergonomie II: Psychophysik (Weber, Weber-Fechner, Stevens), Anzeigenarten, Sehvermögen, Kompatibilitätsarten',
+      '[70%-Fokus] Übungsblatt LE10 mit Musterlösung durchrechnen (Weber/Weber-Fechner-Rechenaufgaben)',
+      'Karteikarten: Filter LE10 durchgehen',
       'Formelkarten: Weber\'sches Gesetz + Lichttechnik üben'
     ]},
     { date: '2026-08-20', label: 'Do 20.08.', tag: 'LE11 + LE12 + LE13', tasks: [
       'LE11 Büroarbeit: Bildschirmarbeit, Beleuchtung, DIN EN ISO 9241-110, Usability vs. UX',
       'LE12 Motivation & Entgelt: Maslow, Herzberg, Equity, JCM, Entgeltformen',
       'LE13 Psychische Gefährdungen komplett',
+      '[70%-Fokus] Übungsblätter LE11 & LE12 mit Musterlösung durchrechnen (Equity-Vergleich, Akkord-/Prämienlohn-Formeln)',
+      'Karteikarten: Filter LE11–LE12–LE13 einzeln durchgehen',
       'AWI Quiz Teil D (LE11–13) 1. Durchlauf'
     ]},
     { date: '2026-08-21', label: 'Fr 21.08.', tag: 'Formelsammlung + Altklausur 1', tasks: [
       'Komplette offizielle Formelsammlung einmal ganz durchgehen (alle Formeln laut aufsagen)',
       'AWI Formelkarten: alle 4 Kapitel komplett einmal durchspielen',
+      'Karteikarten: Filter „Alle 13 LE" – alle 98 Karten einmal komplett durchspielen',
       'Altklausur „EAW WS 22/23" unter Zeitdruck (60 Min.) bearbeiten + auswerten'
     ]}
   ]},
   { title: 'Endspurt · Altklausuren & Wiederholung', days: [
     { date: '2026-08-22', label: 'Sa 22.08.', tag: 'Altklausur 2', tasks: [
       'Fehler aus Altklausur 1 den jeweiligen LE zuordnen und nacharbeiten',
+      'Karteikarten: „Nur unbekannte zeigen" – kompletten Stapel (alle 13 LE) durchgehen',
       'Altklausur „EAW WS 23/24" unter Zeitdruck (60 Min.) bearbeiten + auswerten'
     ]},
     { date: '2026-08-23', label: 'So 23.08.', tag: 'Altklausur 3', tasks: [
       'Fehler aus Altklausur 2 nacharbeiten',
+      'Karteikarten: „Nur unbekannte zeigen" – nochmal durchgehen, Ziel: nur noch wenige „Nochmal üben"',
       'Altklausur „EAW SS2024" unter Zeitdruck bearbeiten + auswerten',
       'Ruhiger Tag – max. 3 h aktives Lernen'
     ]},
     { date: '2026-08-24', label: 'Mo 24.08.', tag: 'Schwachstellen gezielt', tasks: [
       'AWI Quiz: gezielt die Teile mit den meisten ✗ wiederholen',
       'AWI Formelkarten: alle 4 Kapitel nochmal komplett durchspielen',
+      'Karteikarten: kompletten Stapel (alle 98) neu mischen und ganz durchspielen',
       'Alle 3 Altklausuren nochmal quer lesen (nur die Aufgaben, die noch unsicher sind)'
     ]},
     { date: '2026-08-25', label: 'Di 25.08.', tag: 'Letzter Feinschliff', tasks: [
       'Alle 13 Lernerfolgsfragen-Listen (Module-Tab) laut ohne Unterlagen beantworten',
+      'Karteikarten: „Nur unbekannte zeigen" – Ziel 98/98 als „Kann ich" markiert',
       'AWI Quiz + Formelkarten: kompletter Gesamt-Sprint über alle Teile',
       'Klausurmaterial & Ausweis für morgen vorbereiten, früh schlafen'
     ]},
@@ -449,12 +512,22 @@ function renderModules() {
     m.lernplan.forEach(item => {
       const row = document.createElement('div');
       row.className = 'lernplan-item' + (state[item.id] ? ' checked' : '');
-      row.innerHTML = `<input type="checkbox" id="chk-${item.id}" ${state[item.id] ? 'checked' : ''}><label for="chk-${item.id}">${item.text}</label>`;
+      row.innerHTML = `
+        <div class="lernplan-row">
+          <input type="checkbox" id="chk-${item.id}" ${state[item.id] ? 'checked' : ''}>
+          <label for="chk-${item.id}">${item.text}</label>
+          <span class="lernplan-toggle">Antwort</span>
+        </div>
+        <div class="lernplan-answer">${item.a || ''}</div>
+      `;
       row.querySelector('input').addEventListener('change', (e) => {
         state[item.id] = e.target.checked;
         saveProgress();
         renderModules();
         renderDayplan();
+      });
+      row.querySelector('.lernplan-toggle').addEventListener('click', () => {
+        row.querySelector('.lernplan-answer').classList.toggle('show');
       });
       list.appendChild(row);
     });
@@ -652,7 +725,25 @@ const QUIZ_DATA = {
         "Eine rein IT-technische Umstellung von Papierakten auf digitale Systeme",
         "Ein Synonym für die Einführung von Robotic Process Automation (RPA)",
         "Eine Methode ausschließlich zur Reduktion von Personalkosten"
-      ], correct: 0, explain: "Business Process Reengineering bezeichnet die grundlegende Neugestaltung und strukturelle Optimierung des Geschäftsprozesses auf der Makroebene zur Erreichung der strategischen Geschäftsziele. Die Arbeitsabläufe werden an den Anforderungen der Kunden (nicht an der bestehenden Organisation) ausgerichtet." }
+      ], correct: 0, explain: "Business Process Reengineering bezeichnet die grundlegende Neugestaltung und strukturelle Optimierung des Geschäftsprozesses auf der Makroebene zur Erreichung der strategischen Geschäftsziele. Die Arbeitsabläufe werden an den Anforderungen der Kunden (nicht an der bestehenden Organisation) ausgerichtet." },
+    { q: "[Übung LE02] Was ist der Unterschied zwischen RHIA und VERA?", opts: [
+        "RHIA analysiert/bewertet/gestaltet Tätigkeiten mit kaum Freiräumen für Planungs-, Entscheidungs- oder Denkprozesse (v.a. Industrie/Fertigung); VERA untersucht die von einer Tätigkeit geforderten Denk-, Entscheidungs- und Planungsprozesse und ordnet den Arbeitsplatz einer Kategorie der Persönlichkeitsförderlichkeit zu",
+        "RHIA und VERA sind exakte Synonyme für dasselbe Verfahren",
+        "RHIA wird nur für Büroarbeit verwendet, VERA nur für Fertigung",
+        "VERA misst ausschließlich die Lautstärke am Arbeitsplatz"
+      ], correct: 0, explain: "RHIA (Regulationshindernisse): Analyse, Bewertung und Gestaltung von Tätigkeiten, bei denen der arbeitenden Person kaum bis gar keine Freiräume für eigene Planungs-, Entscheidungs- oder Denkprozesse gegeben werden – vorwiegend in Industrie/Fertigung eingesetzt, aber auch für Bürotätigkeiten. VERA (Regulationserfordernisse): untersucht Denk-, Entscheidungs- und Planungsprozesse, die von der arbeitenden Person gefordert werden, und gibt Einblick, inwieweit die Aufgabe zur Persönlichkeitsförderlichkeit beiträgt – Ziel: Einordnung des Arbeitsplatzes in eine feste Kategorie. Regulationserfordernisse = psychische Anforderungen einer Arbeitsaufgabe; Regulationsbehinderungen = Belastungen, die eine Tätigkeit unnötig behindern und/oder die Gesundheit beeinträchtigen." },
+    { q: "[Übung LE02] Was ist das zentrale Prinzip der Methode KOMPASS und welche 3 Bewertungsebenen nutzt sie?", opts: [
+        "Soziotechnischer Systemansatz mit Komplementarität zwischen Mensch und Technik; Bewertungsebenen: Arbeitssystem, Individuelle Arbeitsaufgabe, Mensch-Maschine-Funktionsteilung",
+        "Rein technischer Ansatz ohne Berücksichtigung des Menschen; nur eine Bewertungsebene: die Maschine",
+        "Rein finanzieller Ansatz zur Kostensenkung; Bewertungsebenen: Umsatz, Gewinn, Marktanteil",
+        "Ausschließlich psychologischer Ansatz ohne technischen Bezug"
+      ], correct: 0, explain: "KOMPASS (Komplementäre Analyse und Gestaltung von Produktionsaufgaben in soziotechnischen Systemen) fokussiert die optimale Arbeitsteilung von Mensch und Technik. Zentrales Prinzip: soziotechnischer Systemansatz – Komplementarität zwischen Mensch (Durchschaubarkeit, Vorhersehbarkeit, Beeinflussbarkeit) und Technik (Prozesstransparenz, dynamische Kopplung, flexible Autoritätsverteilung). 3 Bewertungsebenen: Arbeitssystem (z.B. Vollständigkeit der Aufgabe, Autonomie der Produktionsgruppen), Individuelle Arbeitsaufgabe (z.B. Denk-/Planungserfordernisse, Anforderungsvielfalt), Mensch-Maschine-Funktionsteilung (z.B. Prozesstransparenz, Autorität, Flexibilität). Vorgehen: Analyse (Beobachtung/Interviews/Fragebögen) → Evaluate (Bewertung nach den KOMPASS-Ebenen) → Design (techn./soziale/organisator. Maßnahmen)." },
+    { q: "[Übung LE02] Welche methodischen Zugänge nutzt KOMPASS zur Datenerhebung? (mehrere richtig)", multi: true, opts: [
+        "Dokumentenanalyse (Organigramm, Arbeitsplatzbeschreibungen, Unfallstatistiken, ISO-9000-Zertifizierung)",
+        "Leitfadengestützte Interviews",
+        "Geleitete Beobachtungsinterviews",
+        "Ausschließlich anonyme Online-Umfragen ohne jeden persönlichen Kontakt"
+      ], correct: [0,1,2], explain: "KOMPASS nutzt zur Analyse: Dokumentenanalyse (Organigramm, Arbeitsplatzbeschreibungen, Berufsbeschreibungen, Unfallstatistiken, ISO-9000-Zertifizierung u.ä.), leitfadengestützte Interviews sowie geleitete Beobachtungsinterviews vor Ort." }
   ]},
   B: { label: 'Teil B · LE04–06', sub: 'REFA-Zeitwirtschaft, MTM, Arbeitsschutz', questions: [
     { q: "Welche Verwendungszwecke haben Zeitdaten in Betrieben? (mehrere richtig)", multi: true, opts: [
@@ -715,6 +806,24 @@ const QUIZ_DATA = {
         "Ausschließlich Verfahren zur Messung von Maschinenlaufzeiten",
         "Ein System zur automatischen Personalbedarfsplanung ohne Bewegungsanalyse"
       ], correct: 0, explain: "Systeme vorbestimmter Zeiten sind Verfahren, die Bewegungsabläufe aufgliedern und diesen Bewegungselementen Normzeitwerte zuordnen. Vorteile: Arbeitsablauf/Ausführungszeiten bereits in der Planungsphase bestimmbar, Beschäftigte können neuen Arbeitsablauf vor Einführung erlernen, keine Leistungsgradbeurteilung nötig, da Normzeiten bereits vorliegen." },
+    { q: "[Übung LE04] Welche Ablaufabschnitte gehören zur Gliederung bezogen auf den Menschen (MH/MN/MZ/MA...)?", opts: [
+        "Hauptnutzungszeit (MH), Nebennutzungszeit (MN), Nebenzeit (MZ), Ausfallzeit (MA) – jeweils bezogen auf die arbeitende Person",
+        "Rüstzeit (BR), Hauptzeit (BH), Nebenzeit (BN), Störzeit (BS) – bezogen auf das Arbeitsmittel",
+        "Fertigungszeit, Prüfzeit, Transportzeit, Lagerzeit – bezogen auf den Auftrag",
+        "Bereitstellungszeit, Rüstzeit, Ausführungszeit, Verteilzeit – bezogen auf den Betrieb"
+      ], correct: 0, explain: "Die REFA-Ablaufgliederung unterscheidet zwei parallele Systeme: bezogen auf den Menschen (Präfix M: MH Haupt-, MN Neben-, MZ Zwischen-/Wartezeit, MA Ausfallzeit, außerdem MS/ME/MP für Erholung/Verteilzeit/Persönliche Zeit sowie MI/ML/MR/MX für Störungen) und bezogen auf das Arbeitsmittel/Betriebsmittel (Präfix B: BH, BN, BZ, BA, BS, BE, BP sowie BI/BL/BR/BX analog). Beide Systeme laufen parallel für dieselbe Tätigkeit, betrachten sie aber aus zwei Perspektiven." },
+    { q: "[Übung LE04] Wie lautet das Präfix für die Ablaufgliederung bezogen auf das Arbeitsmittel (im Gegensatz zum Menschen)?", opts: [
+        "B (z.B. BH = Hauptnutzungszeit des Arbeitsmittels)",
+        "M (z.B. MH = Hauptnutzungszeit des Arbeitsmittels)",
+        "A (z.B. AH = Hauptnutzungszeit des Arbeitsmittels)",
+        "T (z.B. TH = Hauptnutzungszeit des Arbeitsmittels)"
+      ], correct: 0, explain: "Bezogen auf den Menschen beginnt jedes Kürzel mit M (MH, MN, MZ, MA, MS, ME, MP, MI, ML, MR, MX), bezogen auf das Arbeitsmittel mit B (BH, BN, BZ, BA, BS, BE, BP, BI, BL, BR, BX) – strukturell analog, aber getrennt zu erheben." },
+    { q: "[Übung LE04] Multimomentstudie: Wie berechnet man die Anzahl benötigter Rundgänge aus dem erforderlichen Stichprobenumfang n?", opts: [
+        "Anzahl Rundgänge = n / Anzahl der beobachteten Objekte (Arbeitsplätze)",
+        "Anzahl Rundgänge = n · Anzahl der beobachteten Objekte",
+        "Anzahl Rundgänge = n² / Anzahl der beobachteten Objekte",
+        "Anzahl Rundgänge = √n / Anzahl der beobachteten Objekte"
+      ], correct: 0, explain: "Da bei jedem Rundgang alle beobachteten Objekte (Arbeitsplätze/Personen) gleichzeitig einmal erfasst werden, teilt man den benötigten Gesamt-Stichprobenumfang n durch die Anzahl der Objekte, um die nötige Anzahl an Rundgängen zu erhalten." },
     { q: "Welche fünf Grundbewegungen des Finger-, Hand- und Armsystems werden im MTM-Grundverfahren unterschieden?", opts: [
         "Hinlangen (Reach), Greifen (Grasp), Bringen (Move), Fügen (Position), Loslassen (Release)",
         "Heben, Senken, Tragen, Ziehen, Schieben",
@@ -798,7 +907,19 @@ const QUIZ_DATA = {
         "Zu viele objektive Messinstrumente stehen zur Verfügung",
         "Die Gefährdungsbeurteilung ist gesetzlich zu detailliert vorgeschrieben",
         "Risiken lassen sich immer vollständig und fehlerfrei identifizieren"
-      ], correct: 0, explain: "Ein zentrales Problem ist der Attribution Bias (Zuordnung kausaler Zusammenhänge, Urteilsfehler durch Einsatz von Heuristiken): u.a. Fundamental Attribution Error, Actor-Observer Bias, False Consensus Bias, Self-Serving Bias, Availability Bias, Small Numbers Bias, Anchoring Bias, The Just World Hypothesis." }
+      ], correct: 0, explain: "Ein zentrales Problem ist der Attribution Bias (Zuordnung kausaler Zusammenhänge, Urteilsfehler durch Einsatz von Heuristiken): u.a. Fundamental Attribution Error, Actor-Observer Bias, False Consensus Bias, Self-Serving Bias, Availability Bias, Small Numbers Bias, Anchoring Bias, The Just World Hypothesis." },
+    { q: "[Übung LE06] In der Gefährdungsbeurteilungs-Fallstudie: In welche vier Bereiche werden Mängel/Fehlverhalten typischerweise eingeteilt?", opts: [
+        "Arbeitsmittel, Arbeitsgegenstand, Arbeitsperson, Arbeitsumgebung",
+        "Technik, Organisation, Person, Zeit",
+        "Planung, Konzeption, Entwurf, Ausarbeitung",
+        "Auftragszeit, Belegungszeit, Durchlaufzeit, Rüstzeit"
+      ], correct: 0, explain: "In den Gefährdungsbeurteilungs-Fallstudien werden Mängel/Fehlverhalten systematisch nach vier Bereichen gegliedert: Arbeitsmittel (z.B. Maschine, Werkzeug), Arbeitsgegenstand (das bearbeitete Objekt), Arbeitsperson (Verhalten/Qualifikation) und Arbeitsumgebung (Lärm, Beleuchtung, Klima etc.). Für jeden identifizierten Mangel werden anschließend passende Maßnahmen nach dem TOP-Modell (Technisch/Organisatorisch/Personenbezogen) abgeleitet." },
+    { q: "[Übung LE06] Was bedeutet das TOP-Modell bei der Ableitung von Arbeitsschutz-Maßnahmen aus einer Gefährdungsbeurteilung?", opts: [
+        "Technische, Organisatorische und Personenbezogene Maßnahmen – in dieser Rangfolge zu prüfen",
+        "Total, Optimal, Präventiv – drei Bewertungsstufen des Risikos",
+        "Technik, Ort, Person – drei Orte der Gefahrenentstehung",
+        "Team, Objekt, Prozess – drei Analyseeinheiten der FMEA"
+      ], correct: 0, explain: "TOP-Modell = Technische, Organisatorische, Personenbezogene Maßnahmen. Es gilt die Rangfolge T vor O vor P (analog zur allgemeinen Maßnahmenhierarchie: Gefahrenquelle beseitigen/technisch sichern, erst danach organisatorisch trennen, erst zuletzt personenbezogen z.B. PSA/Verhalten)." }
   ] },
   C: { label: 'Teil C · LE07–10', sub: 'Arbeitsökologie, Produktions- & Produktergonomie', questions: [
     { q: "Welche Erkrankungen zählen zu den am häufigsten anerkannten Berufskrankheiten?", opts: [
@@ -1287,6 +1408,26 @@ const AWI_CALC_GENERATORS = {
       opts: built.opts, correct: built.correct, calc: true,
       explain: `n = z²·θ·(1−θ) / f² = ${Z}² · ${TH} · ${TH2} / ${F}² ≈ ${quizDe(correctVal)} Beobachtungen. Achtung: z und f werden jeweils quadriert, θ·(1−θ) nicht.`
     };
+  },
+  multimomentF: function () {
+    const zOptions = [1.64, 1.96, 2.58];
+    const zLabels = ['1,64 (90% Konfidenz)', '1,96 (95% Konfidenz)', '2,58 (99% Konfidenz)'];
+    const zi = quizRandInt(0, 2, 1);
+    const z = zOptions[zi];
+    const theta = quizRandInt(15, 45, 5) / 100;
+    const n = quizRandInt(200, 900, 10);
+    const correctVal = Math.sqrt((z * z * theta * (1 - theta)) / n);
+    const Z = z.toString().replace('.', ','), TH = theta.toFixed(2).replace('.', ','), TH2 = (1 - theta).toFixed(2).replace('.', ',');
+    const correctExpr = `√[(${Z}² · ${TH} · ${TH2}) ÷ ${n}]`;
+    const decoy1 = `(${Z}² · ${TH} · ${TH2}) ÷ ${n}`;
+    const decoy2 = `√[(${Z} · ${TH} · ${TH2}) ÷ ${n}]`;
+    const decoy3 = `√[${n} ÷ (${Z}² · ${TH} · ${TH2})]`;
+    const built = quizBuildExprOptions(correctExpr, [decoy1, decoy2, decoy3]);
+    return {
+      q: `Rechenaufgabe (Multimomentformel nach f umgestellt): Standardisierter Wert z = ${Z} (${zLabels[zi]}), geschätzte Wahrscheinlichkeit θ = ${TH}, bereits durchgeführter Stichprobenumfang n = ${n}. Welche Rechnung liefert die erreichte Schätzgenauigkeit f?`,
+      opts: built.opts, correct: built.correct, calc: true,
+      explain: `Nach f umgestellte Multimomentformel: f = z·√[θ(1−θ)/n] = √[z²·θ(1−θ)/n] = √[${Z}²·${TH}·${TH2} / ${n}] ≈ ${correctVal.toFixed(4).replace('.', ',')}. Wird verwendet, um bei gegebenem (bereits erhobenem) n die tatsächlich erreichte Genauigkeit zu bestimmen – die Umkehrung der Hauptformel n = z²θ(1−θ)/f².`
+    };
   }
 };
 
@@ -1294,6 +1435,11 @@ const AWI_FORMULA_QUIZ = {
   zeit: { label: 'REFA & MTM · Zeitwirtschaft', sub: 'Auftragszeit, Belegungszeit, Multimomentformel', questions: [
     { genKey: 'auftragszeit' },
     { genKey: 'multimoment' },
+    { genKey: 'multimomentF' },
+    { q: "[Übung LE04] Rechenaufgabe (Multimomentstudie, Anzahl Rundgänge): Der erforderliche Stichprobenumfang wurde mit n = 960 Beobachtungen ermittelt. Bei jedem Rundgang werden 12 Arbeitsplätze (Objekte) gleichzeitig erfasst. Welche Rechnung liefert die nötige Anzahl an Rundgängen?",
+      opts: ["960 ÷ 12","960 · 12","960 − 12","√960 ÷ 12"],
+      correct: 0, calc: true,
+      explain: "Anzahl Rundgänge = n ÷ Anzahl der beobachteten Objekte = 960 ÷ 12 = 80 Rundgänge. Bei jedem Rundgang wird jedes der 12 Objekte einmal beobachtet, sodass n/Anzahl Objekte die Anzahl der nötigen Wiederholungen (Rundgänge) ergibt." },
     { q: "Wie lautet die Formel der Belegungszeit (Vorgabezeit für Arbeits-/Betriebsmittel)?", opts: [
         "T = trB + m · teB, mit trB = Rüstzeit für das Betriebsmittel, m = Menge, teB = Zeit je Einheit (Betriebsmittel)",
         "T = trB ÷ m · teB",
@@ -1359,7 +1505,23 @@ const AWI_FORMULA_QUIZ = {
     { q: "Rechenaufgabe (Equity Theory): Herr K. hat einen Input von Is = 8 (Erfahrung/Mühe) und erhält einen Output von Os = 1.600 € (Gehalt+Bonus). Sein Kollege Herr S. hat Input Ia = 6 und Output Oa = 1.500 €. Welche Rechnung prüft korrekt, ob das Verhältnis für Herrn K. gerecht im Sinne der Equity Theory ist?",
       opts: ["1.600 ÷ 8 im Vergleich zu 1.500 ÷ 6","1.600 · 8 im Vergleich zu 1.500 · 6","1.600 + 8 im Vergleich zu 1.500 + 6","8 ÷ 1.600 im Vergleich zu 6 ÷ 1.500 · (−1)"],
       correct: 0, calc: true,
-      explain: "Equity Theory: Os/Is verglichen mit Oa/Ia. Herr K.: 1.600/8 = 200. Herr S.: 1.500/6 = 250. Da 200 < 250, ist Herrn K.s Output/Input-Verhältnis schlechter als das seines Kollegen → negative Diskrepanz → wahrgenommene Ungerechtigkeit, die laut Theorie ein Absenken seiner Anstrengung bewirken kann." }
+      explain: "Equity Theory: Os/Is verglichen mit Oa/Ia. Herr K.: 1.600/8 = 200. Herr S.: 1.500/6 = 250. Da 200 < 250, ist Herrn K.s Output/Input-Verhältnis schlechter als das seines Kollegen → negative Diskrepanz → wahrgenommene Ungerechtigkeit, die laut Theorie ein Absenken seiner Anstrengung bewirken kann." },
+    { q: "[Übung LE12] Rechenaufgabe (Akkordentgelt, lineare Lohnlinie): Bei Normalleistung (180 Brötchen/h) soll das Akkordentgelt dem Zeitentgelt (11 €/h) entsprechen, bei 240 Brötchen/h soll es 13,50 €/h betragen (proportionaler Anstieg dazwischen). Welche Formel liefert den Stundenverdienst y in Abhängigkeit der Stückzahl x?",
+      opts: [
+        "y = [(13,5 − 11) ÷ (240 − 180)] · x + b, mit b als Achsenabschnitt aus einem der beiden Punkte bestimmt",
+        "y = (13,5 + 11) ÷ (240 + 180) · x",
+        "y = (13,5 − 11) · (240 − 180) · x",
+        "y = 11 + 13,5 · x, unabhängig von der Stückzahl 180/240"
+      ], correct: 0, calc: true,
+      explain: "Akkordentgelt ist eine lineare Funktion (Lohnlinie) y = m·x + b zwischen den zwei bekannten Punkten (180 B/h, 11 €/h) und (240 B/h, 13,50 €/h): Steigung m = Δy/Δx = (13,5−11)/(240−180) = 2,5/60 ≈ 0,0417 €/Brötchen. Den Achsenabschnitt b erhält man durch Einsetzen eines Punktes, z.B. 11 = 0,0417·180 + b → b ≈ 3,5. Ergebnis: y ≈ 0,0417·x + 3,5. Klassisches Muster: 'linear zwischen zwei gegebenen Punkten interpolieren', analog zu jeder Zwei-Punkte-Geradengleichung." },
+    { q: "[Übung LE12] Rechenaufgabe (Prämienentgelt, stufenförmig): Basisentgelt 9,50 €/h, Normalleistung 180 Brötchen/h. Für jede volle Stufe von 5 Brötchen oberhalb der Normalleistung gibt es 0,20 € Prämie. Welche Formel liefert den Stundenverdienst y bei x ≥ 180 Brötchen/h?",
+      opts: [
+        "y = 9,50 + ⌊(x − 180) ÷ 5⌋ · 0,20 €, mit ⌊⌋ = Abrunden auf ganze Stufen (div)",
+        "y = 9,50 · (x − 180) ÷ 5 · 0,20",
+        "y = 9,50 + (x − 180) · 0,20, ohne Stufenbildung",
+        "y = 9,50 − ⌊(x − 180) ÷ 5⌋ · 0,20 €"
+      ], correct: 0, calc: true,
+      explain: "Prämienentgelt = Basisentgelt (9,50 €/h) + Anzahl VOLLER Stufen × Prämie pro Stufe. Stufengröße = 5 Brötchen, Prämie pro Stufe = 0,20 €. Anzahl Stufen = ganzzahlige Division (div, abgerundet!) von (x − Normalleistung) durch die Stufengröße: ⌊(x−180)/5⌋. Für x < 180 gibt es keine Prämie (0 Stufen). Wichtig: es wird auf volle Stufen ABGERUNDET, nicht linear interpoliert wie beim Akkordentgelt – daher ist der Prämienlohn eine Treppenfunktion, keine Gerade." }
   ]},
   tabellen: { label: 'Tabellen-Lookup: MTM & Perzentile', sub: 'Normzeitwertkarte Hinlangen, Körpermaß-Perzentile (DIN 33402)', questions: [
     { q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Hinlangen"): Nutze den Ausschnitt der offiziellen Normzeitwertkarte, um den TMU-Wert nachzuschlagen.
@@ -1548,6 +1710,145 @@ function renderEbwlCards() {
 }
 
 /* ============================================================
+   KARTEIKARTEN (Flashcards aus den 98 Lernerfolgsfragen)
+   ============================================================ */
+function kkBuildDeck() {
+  const deck = [];
+  MODULES.forEach(m => {
+    m.lernplan.forEach(item => {
+      deck.push({ id: item.id, le: m.id, leTitle: m.title, front: item.text, back: item.a || '' });
+    });
+  });
+  return deck;
+}
+const KK_DECK = kkBuildDeck();
+const kkState = { order: null, index: 0, flipped: false, filterLE: 'all', onlyUnmastered: false };
+
+function kkMasteredId(id) { return 'kk-' + id; }
+function kkIsMastered(id) { return !!state[kkMasteredId(id)]; }
+function kkFilteredDeck() {
+  return KK_DECK.filter(c => {
+    if (kkState.filterLE !== 'all' && c.le !== kkState.filterLE) return false;
+    if (kkState.onlyUnmastered && kkIsMastered(c.id)) return false;
+    return true;
+  });
+}
+function kkEnsureOrder() {
+  if (!kkState.order) {
+    kkState.order = quizShuffle(kkFilteredDeck().map(c => c.id));
+    kkState.index = 0;
+    kkState.flipped = false;
+  }
+  return kkState.order;
+}
+function kkShuffleDeck() {
+  kkState.order = null;
+  kkEnsureOrder();
+  renderKarteikartenPanel();
+}
+function renderKarteikartenControls() {
+  const wrap = document.getElementById('kkControls');
+  const leOptions = MODULES.map(m => `<option value="${m.id}" ${kkState.filterLE === m.id ? 'selected' : ''}>${m.title}</option>`).join('');
+  wrap.innerHTML = `
+    <select id="kkLeSelect"><option value="all" ${kkState.filterLE === 'all' ? 'selected' : ''}>Alle 13 LE (98 Karten)</option>${leOptions}</select>
+    <label><input type="checkbox" id="kkOnlyUnmastered" ${kkState.onlyUnmastered ? 'checked' : ''}> Nur unbekannte zeigen</label>
+    <span class="kk-shuffle-btn" id="kkShuffleBtn">🔀 Neu mischen</span>
+  `;
+  document.getElementById('kkLeSelect').addEventListener('change', (e) => {
+    kkState.filterLE = e.target.value;
+    kkState.order = null;
+    renderKarteikarten();
+  });
+  document.getElementById('kkOnlyUnmastered').addEventListener('change', (e) => {
+    kkState.onlyUnmastered = e.target.checked;
+    kkState.order = null;
+    renderKarteikarten();
+  });
+  document.getElementById('kkShuffleBtn').addEventListener('click', kkShuffleDeck);
+}
+function kkFlip() {
+  kkState.flipped = !kkState.flipped;
+  renderKarteikartenPanel();
+}
+function kkGrade(known) {
+  const order = kkEnsureOrder();
+  const card = KK_DECK.find(c => c.id === order[kkState.index]);
+  if (card) {
+    state[kkMasteredId(card.id)] = known;
+    saveProgress();
+  }
+  kkState.index++;
+  kkState.flipped = false;
+  renderKarteikartenPanel();
+}
+function renderKarteikartenPanel() {
+  const panel = document.getElementById('kkPanel');
+  panel.innerHTML = '';
+  const order = kkEnsureOrder();
+  const total = order.length;
+  const masteredCount = order.filter(id => kkIsMastered(id)).length;
+
+  const barWrap = document.createElement('div');
+  barWrap.innerHTML = `
+    <div class="kk-mastery-bar"><div class="kk-mastery-fill" style="width:${total ? Math.round(masteredCount/total*100) : 0}%"></div></div>
+    <div class="kk-mastery-text">${masteredCount} / ${total} in diesem Stapel als „Kann ich" markiert</div>
+  `;
+  panel.appendChild(barWrap);
+
+  if (total === 0) {
+    panel.innerHTML += `<div class="quiz-summary">Keine Karten in dieser Auswahl (ggf. „Nur unbekannte zeigen" deaktivieren).</div>`;
+    return;
+  }
+
+  if (kkState.index >= total) {
+    panel.innerHTML += `
+      <div class="quiz-summary">
+        Stapel durch! ${masteredCount} / ${total} als „Kann ich" markiert.<br>
+        <span class="quiz-reset-btn" id="kkRestartBtn">Neu mischen &amp; nochmal</span>
+      </div>`;
+    document.getElementById('kkRestartBtn').addEventListener('click', kkShuffleDeck);
+    return;
+  }
+
+  const card = KK_DECK.find(c => c.id === order[kkState.index]);
+  const progressText = document.createElement('div');
+  progressText.className = 'kk-progress-text';
+  progressText.textContent = `Karte ${kkState.index + 1} von ${total} · ${card.leTitle}`;
+  panel.appendChild(progressText);
+
+  const stage = document.createElement('div');
+  stage.className = 'kk-stage';
+  const cardEl = document.createElement('div');
+  cardEl.className = 'kk-card' + (kkIsMastered(card.id) ? ' mastered' : '');
+  if (!kkState.flipped) {
+    cardEl.innerHTML = `<div class="kk-side-label">Frage</div><div class="kk-front-text">${card.front}</div><div class="kk-tap-hint">Antippen zum Umdrehen ↻</div>`;
+  } else {
+    cardEl.innerHTML = `<div class="kk-side-label">Antwort</div><div class="kk-back-text">${card.back}</div><div class="kk-tap-hint">Antippen für die Frage ↻</div>`;
+  }
+  cardEl.addEventListener('click', kkFlip);
+  stage.appendChild(cardEl);
+  panel.appendChild(stage);
+
+  if (kkState.flipped) {
+    const actions = document.createElement('div');
+    actions.className = 'kk-actions';
+    actions.innerHTML = `<button class="kk-btn again">↺ Nochmal üben</button><button class="kk-btn know">✓ Kann ich</button>`;
+    actions.querySelector('.again').addEventListener('click', () => kkGrade(false));
+    actions.querySelector('.know').addEventListener('click', () => kkGrade(true));
+    panel.appendChild(actions);
+  } else {
+    const hint = document.createElement('div');
+    hint.className = 'kk-flip-hint';
+    hint.textContent = 'Erst selbst aus dem Kopf beantworten, dann umdrehen und ehrlich einschätzen.';
+    panel.appendChild(hint);
+  }
+}
+function renderKarteikarten() {
+  renderKarteikartenControls();
+  renderKarteikartenPanel();
+}
+
+/* ============================================================
    NAV / INIT
    ============================================================ */
 function showView(viewId, tabId) {
@@ -1560,6 +1861,7 @@ document.getElementById('tab-module').addEventListener('click', () => { showView
 document.getElementById('tab-tagesplan').addEventListener('click', () => { showView('view-tagesplan', 'tab-tagesplan'); renderDayplan(); });
 document.getElementById('tab-quiz').addEventListener('click', () => { showView('view-quiz', 'tab-quiz'); renderQuiz(); });
 document.getElementById('tab-formeln').addEventListener('click', () => { showView('view-formeln', 'tab-formeln'); renderEbwlCards(); });
+document.getElementById('tab-karteikarten').addEventListener('click', () => { showView('view-karteikarten', 'tab-karteikarten'); renderKarteikarten(); });
 
 function render() {
   renderModules();
