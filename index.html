@@ -609,27 +609,27 @@ const QUIZ_DATA = {
   A: { label: 'Teil A · LE01–03', sub: 'Einführung, Arbeitsorganisation, Modellierung', questions: [
     { le: 'le01', q: "Wie definiert Rohmert (1993) den Begriff „Arbeit“?", opts: [
         "Arbeit ist, was der Mensch zur Erhaltung seiner Existenz und/oder der Gesellschaft tut, soweit es von der Gesellschaft akzeptiert und honoriert wird.",
-        "Arbeit ist jede körperliche Anstrengung zur Erzielung eines Entgelts.",
-        "Arbeit ist die Umwandlung von Rohstoffen in Produkte innerhalb eines Arbeitssystems.",
-        "Arbeit ist ausschließlich die Tätigkeit innerhalb eines Beschäftigungsverhältnisses."
+        "Arbeit ist nach Rohmert jede körperliche Anstrengung, die zur Erzielung eines Entgelts erbracht wird, unabhängig davon, ob die Tätigkeit gesellschaftlich anerkannt oder honoriert wird.",
+        "Arbeit bezeichnet nach Rohmert die technische Umwandlung von Rohstoffen in fertige Produkte innerhalb eines Arbeitssystems, unabhängig von gesellschaftlicher Akzeptanz oder Honorierung.",
+        "Arbeit ist nach Rohmert ausschließlich die Tätigkeit innerhalb eines rechtlich geregelten Beschäftigungsverhältnisses, unabhängig vom Beitrag zur Existenzsicherung."
       ], correct: 0, explain: "Rohmert (1993): „Arbeit ist, was der Mensch zur Erhaltung seiner Existenz und/oder der Gesellschaft tut, soweit es von der Gesellschaft akzeptiert und honoriert wird.“ Stirn (1980) ergänzt: Tätigsein in Interaktion mit anderen Menschen und (technischen) Hilfsmitteln, bei dem unter wirtschaftlichen Zielsetzungen Güter/Dienstleistungen erstellt werden." },
     { le: 'le01', q: "Was ist der Gegenstand der Arbeitswissenschaft?", opts: [
         "Analyse bestehender Arbeitsbedingungen, systematische Aufbereitung des gewonnenen Wissens und Ableitung von Gestaltungsregeln",
-        "Ausschließlich die Optimierung der Produktionskosten in Fertigungsbetrieben",
-        "Die juristische Regelung von Arbeitsverträgen und Tarifverhandlungen",
-        "Die psychologische Auswahl geeigneter Bewerber für offene Stellen"
+        "Ausschließlich die Optimierung der Produktionskosten in Fertigungsbetrieben durch Reduktion von Personal- und Materialaufwand, unabhängig von gesundheitlichen oder organisatorischen Aspekten der Arbeit",
+        "Die juristische Regelung von Arbeitsverträgen, Tarifverhandlungen und arbeitsrechtlichen Streitigkeiten zwischen Arbeitgebenden und Arbeitnehmenden vor Gericht",
+        "Die psychologische Auswahl und Eignungsdiagnostik geeigneter Bewerber für offene Stellen mittels Testverfahren, unabhängig von der späteren Gestaltung des Arbeitsplatzes"
       ], correct: 0, explain: "Gegenstand der Arbeitswissenschaft: Analyse bestehender Arbeitsbedingungen, systematische Aufbereitung des gewonnenen Wissens und Ableitung von Gestaltungsregeln." },
     { le: 'le01', q: "Wie lauten die Zielsetzungen der Arbeitswissenschaft?", opts: [
         "Optimierung von effektivitätsorientierten UND humanitären Aspekten der Arbeit",
-        "Ausschließlich Maximierung der Produktivität",
-        "Ausschließlich Minimierung physischer Belastung",
+        "Ausschließlich Maximierung der Produktivität und des Ausstoßes, unabhängig von gesundheitlichen oder sozialen Folgen für die Beschäftigten",
+        "Ausschließlich Minimierung physischer Belastung durch Reduktion der Arbeitszeit, ohne Berücksichtigung wirtschaftlicher Zielgrößen",
         "Ausschließlich Erhöhung der Arbeitszufriedenheit ohne wirtschaftlichen Bezug"
       ], correct: 0, explain: "Wesentliches Ziel der Arbeitswissenschaft ist die Optimierung von effektivitätsorientierten UND humanitären Aspekten der Arbeit – beide Dimensionen gemeinsam, nicht nur eine." },
     { le: 'le01', q: "Wie wird ein Arbeitssystem definiert?", opts: [
         "Ein System, welches das Zusammenwirken eines einzelnen oder mehrerer Arbeitender/Benutzer mit den Arbeitsmitteln umfasst, um die Funktion des Systems innerhalb eines Arbeitsraumes und der Arbeitsumgebung unter den durch die Arbeitsaufgaben vorgegebenen Bedingungen zu erfüllen",
-        "Eine Maschine, die ohne menschliches Zutun Produkte herstellt",
-        "Die Gesamtheit aller Mitarbeitenden eines Unternehmens",
-        "Ein rein organisatorisches Konstrukt ohne physische Komponenten"
+        "Ein Arbeitssystem ist eine vollautomatisierte Maschine oder Anlage, die ohne jegliches menschliches Zutun eigenständig Produkte herstellt, Materialien transformiert und den gesamten Produktionsprozess autonom steuert und überwacht",
+        "Ein Arbeitssystem bezeichnet die Gesamtheit aller Mitarbeitenden eines Unternehmens einschließlich ihrer Qualifikationen, unabhängig von den eingesetzten Arbeitsmitteln, dem Arbeitsraum oder der konkreten Arbeitsaufgabe",
+        "Ein Arbeitssystem ist ein rein organisatorisches, immaterielles Konstrukt aus Regeln und Zuständigkeiten ohne physische Komponenten wie Arbeitsmittel, Arbeitsraum oder Arbeitsumgebung"
       ], correct: 0, explain: "Arbeitssystem: umfasst das Zusammenwirken von Arbeitenden mit Arbeitsmitteln zur Erfüllung der Systemfunktion innerhalb Arbeitsraum/-umgebung unter vorgegebenen Arbeitsaufgaben. Grundfunktion: Transformation von Materie, Information oder Energie von einem Ausgangs- in einen Zielzustand." },
     { le: 'le01', q: "In der Bewertungshierarchie von Arbeitsgestaltungsmaßnahmen (nach Hacker & Sachse) – welche Ebene bildet die UNTERSTE, grundlegendste Stufe?", opts: [
         "Ausführbarkeit",
@@ -639,9 +639,9 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "Die Bewertungshierarchie (modifiziert nach Hacker & Sachse) baut von unten nach oben auf: 1. Ausführbarkeit → 2. Schädigungslosigkeit/Erträglichkeit → 3. Beeinträchtigungsfreiheit/Zumutbarkeit → 4. Persönlichkeitsentfaltung. Jede höhere Stufe setzt die Erfüllung der darunterliegenden voraus." },
     { le: 'le01', q: "Was beschreibt das Belastungs-Beanspruchungs-Konzept?", opts: [
         "Belastung = Gesamtheit der äußeren Einwirkungen auf den Menschen (Anforderungen); Beanspruchung = individuelle, aus Belastung UND persönlichen Voraussetzungen resultierende innere Reaktion",
-        "Belastung und Beanspruchung sind Synonyme für dieselbe objektive Größe",
-        "Belastung ist die subjektive Erfahrung, Beanspruchung die objektive Messgröße",
-        "Beanspruchung bestimmt die Belastung, nicht umgekehrt"
+        "Belastung und Beanspruchung sind laut dem Konzept vollständig synonyme Begriffe für dieselbe objektive, von außen messbare Größe, die unabhängig von individuellen Voraussetzungen der jeweiligen Person immer identisch ausfällt",
+        "Belastung bezeichnet die subjektive, individuell gefühlte Erfahrung eines Menschen bei der Arbeit, während Beanspruchung die objektiv von außen messbare Größe der einwirkenden Anforderungen darstellt – also genau umgekehrt zur üblichen Definition",
+        "Die individuelle Beanspruchung eines Menschen bestimmt ursächlich die Höhe der von außen einwirkenden Belastung, sodass leistungsstarke Personen automatisch höheren Anforderungen ausgesetzt werden als weniger leistungsstarke"
       ], correct: 0, explain: "Belastung = äußere Einwirkungen/Anforderungen (Aufgabe, Umgebungsbedingungen) – die 'gering/hoch'-Skala von außen. Beanspruchung = die daraus resultierende innere Reaktion, abhängig von individuellen Ressourcen/Voraussetzungen (Fähigkeiten, Fertigkeiten). Gleiche Belastung kann bei unterschiedlichen Personen zu unterschiedlicher Beanspruchung führen." },
     { le: 'le01', q: "Welche Herausforderungen, vor denen die Arbeitswelt derzeit steht, werden in LE01 genannt? (mehrere richtig)", multi: true, opts: [
         "Globalisierung (weltweite Vernetzung, internationaler Wettbewerb)",
@@ -651,45 +651,45 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Die LE01 nennt drei zentrale Herausforderungen: Globalisierung (weltweite Vernetzung, internationale Arbeitsteilung, wachsender Wettbewerbsdruck), Digitalisierung (neue Möglichkeiten für Produktion/Logistik/Organisation – körperliche Belastungen sinken, informatorische steigen) und demografischer/gesellschaftlicher Wandel (Mangel an Arbeitskräften, insbesondere Fachkräften)." },
     { le: 'le02', q: "Was versteht man unter Arbeitsorganisation?", opts: [
         "Die betriebliche Mikro- oder Meso-Struktur eines Systems dauerhafter Maßnahmen und Regelungen, welche die funktionale und prozedurale Verknüpfung der Aufgaben in einem Arbeitssystem festlegen sowie die damit verbundenen Handlungsspielräume der Arbeitspersonen und die optimale Aufgabenerfüllung gewährleisten",
-        "Die räumliche Anordnung von Maschinen in einer Fertigungshalle",
-        "Ausschließlich die Hierarchieebenen eines Unternehmens im Organigramm",
-        "Die zeitliche Taktung von Schichtplänen"
+        "Arbeitsorganisation bezeichnet ausschließlich die räumliche Anordnung von Maschinen, Werkbänken und Lagerflächen innerhalb einer Fertigungshalle, um kurze Transportwege und einen reibungslosen Materialfluss zu gewährleisten",
+        "Arbeitsorganisation beschreibt ausschließlich die formalen Hierarchieebenen eines Unternehmens, wie sie im Organigramm dargestellt werden, einschließlich der Weisungsbefugnisse zwischen den einzelnen Führungsebenen",
+        "Arbeitsorganisation bezeichnet die zeitliche Taktung von Schichtplänen und Pausenregelungen, mit dem alleinigen Ziel, die tägliche Betriebszeit möglichst lückenlos auszunutzen"
       ], correct: 0, explain: "Arbeitsorganisation beschreibt die betriebliche Mikro-/Meso-Struktur eines Systems dauerhafter Maßnahmen und Regelungen, die funktionale/prozedurale Verknüpfung der Aufgaben sowie Tätigkeits-, Entscheidungs- und Gestaltungsspielräume der Arbeitspersonen festlegen." },
     { le: 'le02', q: "In welcher chronologischen Reihenfolge entwickelten sich die Menschenbilder in der Arbeitsorganisation?", opts: [
         "Economic Man (Taylorismus, ~1900) → Social Man (Hawthorne-Studie, ~1930) → Self-actualizing Man (Differenzieller Ansatz, ~1960) → Complex Man (~1990) → Virtual Man (Netzwerkbildung, ~2010)",
-        "Virtual Man → Complex Man → Self-actualizing Man → Social Man → Economic Man",
-        "Social Man → Economic Man → Complex Man → Virtual Man → Self-actualizing Man",
-        "Alle fünf Menschenbilder entstanden gleichzeitig in den 1980er Jahren"
+        "Virtual Man (Netzwerkbildung) → Complex Man → Self-actualizing Man (Differenzieller Ansatz) → Social Man (Hawthorne-Studie) → Economic Man (Taylorismus) – also in exakt umgekehrter chronologischer Reihenfolge zur tatsächlichen Entwicklung",
+        "Social Man (Hawthorne-Studie, soziales System) → Economic Man (Taylorismus, technisches System) → Complex Man → Virtual Man (Netzwerkbildung) → Self-actualizing Man, da sich die soziale Dimension historisch zuerst durchsetzte",
+        "Alle fünf Menschenbilder (Economic, Social, Self-actualizing, Complex und Virtual Man) entstanden gleichzeitig in den 1980er Jahren als Reaktion auf die aufkommende Computertechnik in Unternehmen"
       ], correct: 0, explain: "Historische Entwicklung: Economic Man (Taylorismus/Fordismus, techn. System) → Social Man (Hawthorne-Studie, soziales System) → Self-actualizing Man (Differenzieller Ansatz, Human-Ressourcen-Ansatz, sozio-technisches System) → Complex Man → Virtual Man (Netzwerkbildung, sozio-digitales System)." },
     { le: 'le02', q: "Was ist der Unterschied zwischen Aufgabenanalyse und Aufgabensynthese?", opts: [
         "Aufgabenanalyse zerlegt die Gesamtaufgabe eines Betriebs mehrstufig in Teil- und Elementaraufgaben; Aufgabensynthese fasst die identifizierten Elementar-/Teilaufgaben zielgerichtet zu Stellen und Abteilungen zusammen",
-        "Aufgabenanalyse und Aufgabensynthese sind identisch und werden synonym verwendet",
-        "Aufgabensynthese erfolgt vor der Aufgabenanalyse",
-        "Aufgabenanalyse betrifft nur maschinelle, Aufgabensynthese nur menschliche Tätigkeiten"
+        "Aufgabenanalyse und Aufgabensynthese bezeichnen exakt denselben Vorgang und werden in der Arbeitsorganisation synonym für die Zerlegung der Gesamtaufgabe eines Betriebs in Teilaufgaben verwendet",
+        "Aufgabensynthese erfolgt zeitlich vor der Aufgabenanalyse, da zunächst Stellen und Abteilungen gebildet werden müssen, bevor die ihnen zugeordneten Aufgaben im Detail analysiert werden können",
+        "Aufgabenanalyse betrifft ausschließlich maschinelle, automatisierte Tätigkeiten in der Fertigung, während sich die Aufgabensynthese ausschließlich auf rein menschliche, nicht automatisierbare Tätigkeiten in der Verwaltung bezieht"
       ], correct: 0, explain: "Aufgabenanalyse: systematische Durchdringung der zu verteilenden Aufgaben, mehrstufige Zergliederung von der Gesamtaufgabe bis zu Elementaraufgaben. Aufgabensynthese: systematische, zielgerichtete Zusammenfassung der durch die Analyse identifizierten Elementar-/Teilaufgaben zu Stellen und Abteilungen, wodurch die organisatorische Aufbaustruktur entsteht." },
     { le: 'le02', q: "Welche zwei Dimensionen umfasst der Handlungsspielraum?", opts: [
         "Tätigkeitsspielraum (Grad der Vielseitigkeit) und Entscheidungs-/Kontrollspielraum (Ausmaß selbstständiger Planungs-, Organisations- und Kontrollbefugnisse)",
-        "Zeitspielraum und Raumspielraum",
-        "Finanzieller Spielraum und rechtlicher Spielraum",
-        "Nur eine Dimension: der Tätigkeitsspielraum"
+        "Der Handlungsspielraum umfasst den Zeitspielraum (freie Einteilung der Arbeitszeit ohne Taktbindung) und den Raumspielraum (freie Wahl des Arbeitsortes innerhalb des Betriebsgeländes), unabhängig von Entscheidungs- oder Kontrollbefugnissen",
+        "Der Handlungsspielraum setzt sich aus dem finanziellen Spielraum (eigenständige Verfügung über ein Budget) und dem rechtlichen Spielraum (Befugnis zum Abschluss von Verträgen) zusammen",
+        "Der Handlungsspielraum umfasst laut arbeitswissenschaftlicher Definition nur eine einzige Dimension, den Tätigkeitsspielraum, während Entscheidungs- und Kontrollbefugnisse keinen Einfluss auf den Handlungsspielraum haben"
       ], correct: 0, explain: "1. Tätigkeitsspielraum: Grad der Vielseitigkeit der Tätigkeiten (Zahl unterschiedlicher Operationen, deren Häufigkeit und qualitative Unterschiedlichkeit/Distanz). 2. Entscheidungs- und Kontrollspielraum: Ausmaß selbstständiger Planungs-, Organisations- und Kontrollbefugnisse, korreliert mit der Komplexität der Aufgabe." },
     { le: 'le02', q: "Welche Prinzipien der Arbeitsteilung werden unterschieden?", opts: [
         "Arbeitsteilung nach dem Verrichtungsprinzip (Arteilung), nach dem Objektprinzip (Mengenteilung) und nach Verrichtungs-/Objektprinzip kombiniert",
-        "Nur räumliche und zeitliche Arbeitsteilung",
-        "Nur horizontale Arbeitsteilung zwischen Abteilungen",
-        "Ausschließlich Arbeitsteilung nach Qualifikationsstufen"
+        "Es wird ausschließlich zwischen räumlicher Arbeitsteilung (Aufteilung nach Standorten) und zeitlicher Arbeitsteilung (Aufteilung nach Schichten) unterschieden, unabhängig von der Art der ausgeführten Tätigkeiten",
+        "Arbeitsteilung erfolgt ausschließlich horizontal zwischen gleichrangigen Abteilungen eines Unternehmens, eine Aufteilung innerhalb einer einzelnen Abteilung oder Person ist nicht vorgesehen",
+        "Arbeitsteilung richtet sich ausschließlich nach der formalen Qualifikationsstufe der Beschäftigten, sodass höher qualifizierte Personen automatisch mehr unterschiedliche Tätigkeiten übernehmen als geringer qualifizierte"
       ], correct: 0, explain: "Arten der Arbeitsteilung: Verrichtungsprinzip / Arteilung (jede Arbeitsperson übernimmt ein artverschiedenes Arbeitspensum, z.B. Person A sägt, Person B dreht), Objektprinzip / Mengenteilung (jede Person übernimmt ein artgleiches Arbeitspensum, z.B. beide sägen UND drehen je 300 Wellen) sowie eine Kombination aus beiden Prinzipien." },
     { le: 'le02', q: "Was versteht man unter Arbeitsgestaltung (nach Nerdinger et al., 2011)?", opts: [
         "Alle technischen, organisatorischen und ergonomischen Maßnahmen, die sich auf die Gestaltung des Arbeitsplatzes, des Arbeitsablaufes, der Arbeitsorganisation und des Aufgabeninhalts beziehen",
-        "Ausschließlich die Auswahl der Arbeitskleidung",
-        "Nur die Gestaltung der Bürofläche in Quadratmetern",
-        "Die Festlegung des Gehalts pro Arbeitsplatz"
+        "Arbeitsgestaltung bezeichnet nach Nerdinger et al. (2011) ausschließlich die Auswahl geeigneter Arbeitskleidung und persönlicher Schutzausrüstung, unabhängig von Arbeitsablauf oder Aufgabeninhalt",
+        "Arbeitsgestaltung beschränkt sich nach Nerdinger et al. (2011) auf die reine Bemessung der Bürofläche in Quadratmetern pro Mitarbeitendem, ohne Berücksichtigung organisatorischer Aspekte",
+        "Arbeitsgestaltung bedeutet nach Nerdinger et al. (2011) primär die Festlegung des Gehalts je Arbeitsplatz auf Basis der Stellenbeschreibung, unabhängig von der tatsächlichen Tätigkeitsgestaltung"
       ], correct: 0, explain: "Arbeitsgestaltung umfasst alle technischen, organisatorischen und ergonomischen Maßnahmen, die sich auf Arbeitsplatz-, Arbeitsablauf-, Arbeitsorganisations- und Aufgabeninhaltsgestaltung beziehen (Nerdinger et al., 2011)." },
     { le: 'le01', q: "Welche zentrale Frage wird auf der Bewertungsebene „Beeinträchtigungsfreiheit“ gestellt?", opts: [
         "Sind geringe und kurzfristige Fehlbeanspruchungen ohne Auswirkungen auf die Gesundheit gegeben? (z.B. Befindlichkeitsbeeinträchtigungen, Leistungsminderung)",
-        "Sind körperliche und psychische Gesundheitsschäden ausgeschlossen?",
-        "Wird der Zeitanteil für selbstständige/schöpferische Verrichtungen gefördert?",
-        "Sind die Voraussetzungen für ein zuverlässiges, forderungsgerechtes Ausführen gegeben?"
+        "Sind körperliche und psychische Gesundheitsschäden durch die Tätigkeit vollständig und dauerhaft ausgeschlossen, etwa durch Vermeidung von Gefahrstoffen, Lärm oder Strahlung am Arbeitsplatz?",
+        "Wird ausreichend Zeitanteil für selbstständige, schöpferische und persönlichkeitsfördernde Verrichtungen innerhalb der Arbeitsaufgabe bereitgestellt und aktiv gefördert?",
+        "Sind die grundlegenden Voraussetzungen für ein zuverlässiges, den Anforderungen entsprechendes Ausführen der Arbeitsaufgabe ohne Störungen und Fehlbeanspruchungen gegeben?"
       ], correct: 0, explain: "Beeinträchtigungsfreiheit fragt: sind geringe, kurzfristige Fehlbeanspruchungen ohne Auswirkung auf die Gesundheit gegeben (z.B. Befindlichkeitsbeeinträchtigungen, Leistungsminderung)? Das ist die zweitniedrigste Stufe – zu unterscheiden von Schädigungslosigkeit (körperliche/psychische Gesundheitsschäden ausgeschlossen, z.B. Vermeidung von Gasen/Lärm/Strahlung) und Persönlichkeitsentfaltung (Zeitanteil für schöpferische Verrichtungen)." },
     { le: 'le03', q: "Welche Ziele verfolgt man mit der Modellierung und Optimierung von Arbeitsprozessen? (mehrere richtig)", multi: true, opts: [
         "Optimierung der Ablauforganisation (Kapazitätsauslastung, Durchlaufzeit, Kosten)",
@@ -699,45 +699,45 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Ziele der Prozessmodellierung: Optimierung der Ablauforganisation (Kapazitätsauslastung, Durchlaufzeit, Kosten, Qualität), Verbesserung von Prozesstransparenz und -sicherheit (Standards), Verbesserung der Kundenzufriedenheit, Förderung organisationalen Lernens, Verringerung von Belastung und Beanspruchung der Mitarbeiter, Entwurf von Workflow-Management-Systemen." },
     { le: 'le03', q: "Worin unterscheiden sich Kaizen (Kontinuierlicher Verbesserungsprozess) und Business Process Reengineering (BPR)?", opts: [
         "BPR bezeichnet die grundlegende, radikale Neugestaltung auf der Makroebene zur Erreichung strategischer Geschäftsziele; Kaizen verbessert bestehende Prozesse fortlaufend in kleinen, kleinsten Schritten und stellt den Menschen in den Mittelpunkt",
-        "Kaizen ist radikaler und schneller als BPR",
-        "BPR und Kaizen sind identische Methoden mit unterschiedlichem Namen",
-        "Kaizen wird nur einmalig zu Projektbeginn angewendet, BPR kontinuierlich"
+        "Kaizen verfolgt einen radikaleren und schnelleren Veränderungsansatz als BPR, da es auf der Makroebene grundlegende Strukturen in kurzer Zeit vollständig neu gestaltet, während BPR nur kleine, langsame Detailanpassungen vornimmt",
+        "Business Process Reengineering und Kaizen bezeichnen exakt dieselbe Methodik zur Prozessverbesserung, lediglich mit unterschiedlicher Namensgebung in der angelsächsischen bzw. japanischen Managementliteratur",
+        "Kaizen wird nur einmalig zu Beginn eines Verbesserungsprojekts angewendet und danach nicht weiterverfolgt, während Business Process Reengineering als fortlaufender, kontinuierlicher Prozess über die gesamte Projektlaufzeit läuft"
       ], correct: 0, explain: "Business Process Reengineering: grundlegende, strukturelle Neugestaltung auf Makroebene, ausgerichtet an Kundenanforderungen zur Erreichung strategischer Ziele – hoher Grad der Veränderung. Kaizen/KVP: kontinuierliche Verbesserung in kleinen/kleinsten Schritten, Mensch im Mittelpunkt, Probleme werden als 'Schätze' begriffen (Anstoß zur Verbesserung) – niedriger, stetiger Grad der Veränderung." },
     { le: 'le03', q: "Welche heuristischen Prozessverbesserungsmaßnahmen werden u.a. genannt? (mehrere richtig)", multi: true, opts: [
         "Reihenfolge von Aktivitäten ändern / Prioritäten setzen",
         "Parallelisieren und Zusammenfassen von Aktivitäten",
         "Auslagern (Outsourcen) von Aktivitäten und Abbau von Schnittstellen",
-        "Ausschließlich Verdoppelung der eingesetzten Mitarbeiterzahl"
+        "Ausschließlich Verdoppelung der eingesetzten Mitarbeiterzahl bei gleichbleibender Aufgabenverteilung, ohne Änderung an Reihenfolge, Zuständigkeiten oder Schnittstellen des Prozesses"
       ], correct: [0,1,2], explain: "Heuristische Prozessverbesserungsmaßnahmen (8 genannt): Reihenfolge ändern/Prioritäten setzen, Eliminieren von Aktivitäten, Vereinfachen von Aktivitäten, Parallelisieren von Aktivitäten, Zusammenfassen von Aktivitäten, Auslagern ('Outsourcen'), Abbau von Schnittstellen, Entflechtung/Überlappen sequentiell leistungsabhängiger Aktivitäten." },
     { le: 'le03', q: "Welche grundlegenden Flussprinzipien der Ablaufmodellierung gibt es?", opts: [
         "Sequenz von Aktivitäten, nebenläufige/simultane Aktivitäten, alternative Aktivitäten und funktional gekoppelte (reziprok leistungsinterdependente) Aktivitäten",
-        "Nur sequentielle Aktivitäten – Alternativen existieren nicht in der Ablaufmodellierung",
-        "Ausschließlich zyklische Endlosschleifen",
-        "Nur binäre Entscheidungsbäume ohne Parallelität"
+        "Die Ablaufmodellierung kennt ausschließlich sequentielle Aktivitäten, bei denen jeder Schritt zwingend auf den vorherigen folgt – Alternativen, Verzweigungen oder parallele Abläufe existieren im Modellierungskonzept nicht",
+        "Grundlegend für die Ablaufmodellierung sind ausschließlich zyklische Endlosschleifen, bei denen sich dieselbe Abfolge von Aktivitäten wiederholt, bis ein externes Ereignis den Kreislauf unterbricht",
+        "Die Ablaufmodellierung kennt ausschließlich binäre Entscheidungsbäume mit genau zwei Verzweigungsoptionen je Knoten, eine gleichzeitige/parallele Ausführung mehrerer Aktivitäten ist nicht vorgesehen"
       ], correct: 0, explain: "Grundlegende Flussprinzipien: Sequenz von Aktivitäten (1→2→...), nebenläufige/simultane Aktivitäten (Synchronisation), alternative Aktivitäten (Ja/Nein-Verzweigung), funktional gekoppelte Aktivitäten (reziproke Leistungsinterdependenz, z.B. Produktanforderungen und Produktfunktionen wechselseitig festlegen)." },
     { le: 'le03', q: "Wie unterscheiden sich die Sinnbilder von eEPK und DIN 66001 für „Verzweigung“ bzw. „Kontrollfluss“?", opts: [
         "Bei der eEPK heißen die entsprechenden Elemente Konnektoren (exklusives/oder-Oder, UND) bzw. Kontrollfluss; bei DIN 66001 heißt das analoge Element schlicht Verzweigung bzw. Kontrollfluss – die grafischen Sinnbilder unterscheiden sich (Raute vs. andere Symbolik)",
-        "eEPK und DIN 66001 verwenden identische Sinnbilder ohne jeden Unterschied",
-        "DIN 66001 kennt keine Verzweigungen, nur die eEPK",
-        "Die eEPK wird nur für Softwareprozesse, DIN 66001 nur für Hardware verwendet"
+        "Die eEPK und DIN 66001 verwenden für Verzweigung und Kontrollfluss exakt identische grafische Sinnbilder und Benennungen, sodass Modelle aus beiden Notationen ohne jede Anpassung direkt ineinander überführt werden können",
+        "DIN 66001 kennt als reine Ablaufplan-Notation für Programme keinerlei Verzweigungselemente – Entscheidungen und alternative Pfade lassen sich ausschließlich mit den Konnektoren der eEPK darstellen",
+        "Die eEPK-Notation wird ausschließlich zur Modellierung von Softwareprozessen in der IT-Entwicklung eingesetzt, während DIN 66001 ausschließlich für die Beschreibung von Hardware-Schaltplänen verwendet wird"
       ], correct: 0, explain: "eEPK-Sinnbilder: Ereignis (Sechseck), Funktion (Rechteck), Kontrollfluss (Pfeil, zeitlich-logischer Zusammenhang), Informationsobjekt (Dokument), Konnektoren (exklusives Oder / Oder / Und). DIN 66001: Verarbeitung allgemein (Rechteck inkl. Ein-/Ausgabe), Kontrollfluss (Pfeil), Dokument, Verzweigung (Raute). Beide modellieren ähnliche Konzepte mit unterschiedlicher Notation/Benennung." },
     { le: 'le03', q: "Was versteht man unter Business Process Reengineering (BPR)?", opts: [
         "Die grundlegende Neugestaltung und strukturelle Optimierung des Geschäftsprozesses auf Makroebene zur Erreichung der strategischen Geschäftsziele – ausgerichtet an den Anforderungen der Kunden, nicht der Organisation",
-        "Eine rein IT-technische Umstellung von Papierakten auf digitale Systeme",
-        "Ein Synonym für die Einführung von Robotic Process Automation (RPA)",
-        "Eine Methode ausschließlich zur Reduktion von Personalkosten"
+        "Business Process Reengineering bezeichnet eine rein IT-technische Umstellung von papierbasierten Akten auf digitale Dokumentenmanagementsysteme, ohne inhaltliche Veränderung der zugrundeliegenden Geschäftsprozesse selbst",
+        "Business Process Reengineering ist ein Synonym für die Einführung von Robotic Process Automation (RPA) zur automatisierten Ausführung standardisierter, regelbasierter Arbeitsschritte durch Software-Roboter",
+        "Business Process Reengineering ist eine Methode, die ausschließlich der kurzfristigen Reduktion von Personalkosten durch Stellenabbau dient, ohne strategische Neuausrichtung der zugrundeliegenden Geschäftsprozesse"
       ], correct: 0, explain: "Business Process Reengineering bezeichnet die grundlegende Neugestaltung und strukturelle Optimierung des Geschäftsprozesses auf der Makroebene zur Erreichung der strategischen Geschäftsziele. Die Arbeitsabläufe werden an den Anforderungen der Kunden (nicht an der bestehenden Organisation) ausgerichtet." },
     { le: 'le02', q: "[Übung LE02] Was ist der Unterschied zwischen RHIA und VERA?", opts: [
         "RHIA analysiert/bewertet/gestaltet Tätigkeiten mit kaum Freiräumen für Planungs-, Entscheidungs- oder Denkprozesse (v.a. Industrie/Fertigung); VERA untersucht die von einer Tätigkeit geforderten Denk-, Entscheidungs- und Planungsprozesse und ordnet den Arbeitsplatz einer Kategorie der Persönlichkeitsförderlichkeit zu",
-        "RHIA und VERA sind exakte Synonyme für dasselbe Verfahren",
-        "RHIA wird nur für Büroarbeit verwendet, VERA nur für Fertigung",
-        "VERA misst ausschließlich die Lautstärke am Arbeitsplatz"
+        "RHIA und VERA sind exakte Synonyme für dasselbe arbeitspsychologische Analyseverfahren und werden in der Literatur austauschbar verwendet, um sowohl Regulationshindernisse als auch Regulationserfordernisse einer Tätigkeit gleichermaßen zu erfassen",
+        "RHIA wird ausschließlich zur Analyse von Bürotätigkeiten mit hohem Handlungsspielraum eingesetzt, während VERA ausschließlich für körperlich belastende Fertigungstätigkeiten mit geringem Denkanteil konzipiert wurde",
+        "VERA misst ausschließlich die am Arbeitsplatz auftretende Lautstärke und weitere physikalische Umgebungsfaktoren wie Beleuchtung und Temperatur, ohne Bezug zu Denk-, Planungs- oder Entscheidungsprozessen der Tätigkeit"
       ], correct: 0, explain: "RHIA (Regulationshindernisse): Analyse, Bewertung und Gestaltung von Tätigkeiten, bei denen der arbeitenden Person kaum bis gar keine Freiräume für eigene Planungs-, Entscheidungs- oder Denkprozesse gegeben werden – vorwiegend in Industrie/Fertigung eingesetzt, aber auch für Bürotätigkeiten. VERA (Regulationserfordernisse): untersucht Denk-, Entscheidungs- und Planungsprozesse, die von der arbeitenden Person gefordert werden, und gibt Einblick, inwieweit die Aufgabe zur Persönlichkeitsförderlichkeit beiträgt – Ziel: Einordnung des Arbeitsplatzes in eine feste Kategorie. Regulationserfordernisse = psychische Anforderungen einer Arbeitsaufgabe; Regulationsbehinderungen = Belastungen, die eine Tätigkeit unnötig behindern und/oder die Gesundheit beeinträchtigen." },
     { le: 'le02', q: "[Übung LE02] Was ist das zentrale Prinzip der Methode KOMPASS und welche 3 Bewertungsebenen nutzt sie?", opts: [
         "Soziotechnischer Systemansatz mit Komplementarität zwischen Mensch und Technik; Bewertungsebenen: Arbeitssystem, Individuelle Arbeitsaufgabe, Mensch-Maschine-Funktionsteilung",
-        "Rein technischer Ansatz ohne Berücksichtigung des Menschen; nur eine Bewertungsebene: die Maschine",
-        "Rein finanzieller Ansatz zur Kostensenkung; Bewertungsebenen: Umsatz, Gewinn, Marktanteil",
-        "Ausschließlich psychologischer Ansatz ohne technischen Bezug"
+        "KOMPASS verfolgt einen rein technischen Ansatz, der die Leistungsfähigkeit der eingesetzten Maschinen optimiert, ohne die Fähigkeiten oder Bedürfnisse des Menschen zu berücksichtigen; einzige Bewertungsebene ist die Maschine selbst",
+        "KOMPASS ist ein rein finanzieller Ansatz zur systematischen Kostensenkung in der Produktion, mit den drei Bewertungsebenen Umsatz, Gewinn und Marktanteil, unabhängig von der konkreten Arbeitsteilung zwischen Mensch und Technik",
+        "KOMPASS verfolgt einen ausschließlich psychologischen Ansatz zur Analyse individueller Motivstrukturen der Beschäftigten, ohne jeden Bezug zu technischen Systemen oder der Mensch-Maschine-Funktionsteilung"
       ], correct: 0, explain: "KOMPASS (Komplementäre Analyse und Gestaltung von Produktionsaufgaben in soziotechnischen Systemen) fokussiert die optimale Arbeitsteilung von Mensch und Technik. Zentrales Prinzip: soziotechnischer Systemansatz – Komplementarität zwischen Mensch (Durchschaubarkeit, Vorhersehbarkeit, Beeinflussbarkeit) und Technik (Prozesstransparenz, dynamische Kopplung, flexible Autoritätsverteilung). 3 Bewertungsebenen: Arbeitssystem (z.B. Vollständigkeit der Aufgabe, Autonomie der Produktionsgruppen), Individuelle Arbeitsaufgabe (z.B. Denk-/Planungserfordernisse, Anforderungsvielfalt), Mensch-Maschine-Funktionsteilung (z.B. Prozesstransparenz, Autorität, Flexibilität). Vorgehen: Analyse (Beobachtung/Interviews/Fragebögen) → Evaluate (Bewertung nach den KOMPASS-Ebenen) → Design (techn./soziale/organisator. Maßnahmen)." },
     { le: 'le02', q: "[Übung LE02] Welche methodischen Zugänge nutzt KOMPASS zur Datenerhebung? (mehrere richtig)", multi: true, opts: [
         "Dokumentenanalyse (Organigramm, Arbeitsplatzbeschreibungen, Unfallstatistiken, ISO-9000-Zertifizierung)",
@@ -747,57 +747,57 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "KOMPASS nutzt zur Analyse: Dokumentenanalyse (Organigramm, Arbeitsplatzbeschreibungen, Berufsbeschreibungen, Unfallstatistiken, ISO-9000-Zertifizierung u.ä.), leitfadengestützte Interviews sowie geleitete Beobachtungsinterviews vor Ort." },
     { le: 'le03', q: "Welche Vor- und Nachteile hat Robotic Process Automation (RPA) aus arbeitswissenschaftlicher Sicht?", opts: [
         "Vorteile: beschleunigte Prozessabwicklung, Automatisierung von Routineaufgaben, Lohnkosteneinsparung, weniger Übertragungsfehler. Nachteile: hoher Initialaufwand, erfordert standardisierte Prozesse + digitale Infrastruktur, reduzierte Flexibilität",
-        "RPA hat ausschließlich Vorteile, keinerlei Nachteile",
-        "RPA ist nur für kreative, nicht-standardisierte Tätigkeiten geeignet",
-        "RPA erfordert keinerlei Initialaufwand und ist sofort flexibel einsetzbar"
+        "Robotic Process Automation bringt ausschließlich Vorteile mit sich, wie beschleunigte Prozessabwicklung und Kosteneinsparung, ohne dass in der arbeitswissenschaftlichen Literatur irgendwelche Nachteile oder Einschränkungen dokumentiert wären",
+        "Robotic Process Automation eignet sich ausschließlich für kreative, nicht-standardisierte Tätigkeiten, bei denen individuelle Entscheidungen situativ getroffen werden müssen, nicht jedoch für repetitive, regelbasierte Routineaufgaben",
+        "Robotic Process Automation erfordert keinerlei Initialaufwand bei der Einführung und ist von Beginn an vollständig flexibel an neue, sich ändernde Prozesse anpassbar, ohne dass standardisierte Abläufe vorausgesetzt würden"
       ], correct: 0, explain: "RPA (Robotic Process Automation): Vorteile sind beschleunigte Prozessabwicklung, Automatisierung von Routineaufgaben, Lohnkosteneinsparung und weniger Übertragungsfehler. Nachteile: hoher Initialaufwand, RPA erfordert standardisierte Prozesse und eine geeignete digitale Infrastruktur, sowie reduzierte Flexibilität gegenüber Prozessänderungen." },
     { le: 'le03', q: "Welche häufigen Fehler treten bei der Arbeitsprozessmodellierung auf? (mehrere richtig)", multi: true, opts: [
         "Unklare Zielsetzung (Analyse vs. Optimierung vs. Dokumentation wird nicht unterschieden)",
         "Zu grobe oder zu detaillierte Modellierung sowie unzureichende Datenbasis",
         "Werkzeugfixierung (formal korrekt, aber inhaltlich unbrauchbar) und fehlende Einbindung der Mitarbeitenden",
-        "Zu viele Mitarbeitende werden in die Modellierung eingebunden"
+        "Zu viele Mitarbeitende werden in die Modellierung eingebunden, wodurch der Konsensfindungsprozess unnötig verlangsamt und die Entscheidungsfindung im Projektteam erschwert wird"
       ], correct: [0,1,2], explain: "Häufige Fehler bei der Arbeitsprozessmodellierung: unklare Zielsetzung (Analyse/Optimierung/Dokumentation nicht unterschieden), zu grobe/zu detaillierte Modellierung, unzureichende Datenbasis, Werkzeugfixierung (formal korrekt, inhaltlich unbrauchbar), fehlende Einbindung von Mitarbeitenden (→ Akzeptanzprobleme, verpasste Optimierungspotenziale). NICHT: zu viel Mitarbeiterbeteiligung ist kein genannter Fehler." },
     { le: 'le01', q: "Welche Bereiche umfasst der Gegenstand der Arbeitssystemgestaltung nach DIN EN ISO 6385:2016? (mehrere richtig)", multi: true, opts: [
         "Arbeitsorganisation sowie Arbeitsaufgaben & Tätigkeiten",
         "Arbeitsmittel (Maschinen, Werkzeuge, Software etc.) und deren Schnittstellen sowie Arbeitsplatz/Arbeitsraum (Greifräume, Stühle, Tische etc.)",
         "Arbeitsumgebung (Beleuchtung, Gefahrstoffe, Lärm etc.)",
-        "Ausschließlich die Wahl des Firmenstandorts"
+        "Ausschließlich die Wahl des Firmenstandorts unter Berücksichtigung von Grundstückspreisen und Verkehrsanbindung, unabhängig von der konkreten Gestaltung der Arbeitsplätze"
       ], correct: [0,1,2], explain: "Gegenstand der Arbeitssystemgestaltung (DIN EN ISO 6385:2016): ergonomische Gestaltung von Arbeitsorganisation, Arbeitsaufgaben & Tätigkeiten, Arbeitsmitteln (inkl. Schnittstellen), Arbeitsplatz/-raum sowie Arbeitsumgebung. Ziel: leistungsfördernde Bedingungen durch menschengerechte Systemgestaltung." },
     { le: 'le01', q: "Warum wird Arbeitswissenschaft als interdisziplinäre Wissenschaft bezeichnet, und welche Disziplinbereiche sind beteiligt?", opts: [
         "Weil sie Erkenntnisse aus Humanwissenschaften (Medizin, Psychologie, Sportwissenschaft, Pädagogik), Ingenieurwissenschaften (Physik, Konstruktion, Mess- und Regelungstechnik) sowie Wirtschafts- und Sozialwissenschaften (BWL, VWL, Soziologie, Rechtswissenschaft) zu Regeln für die Gestaltung von Arbeitstechnologien, -plätzen, -umgebungen, Organisation und Arbeitsgruppen zusammenführt",
-        "Weil sie ausschließlich auf medizinischem Wissen basiert",
-        "Weil Arbeitswissenschaft komplett unabhängig von anderen Wissenschaftsdisziplinen entstanden ist",
-        "Weil nur Ingenieurwissenschaften zur Arbeitswissenschaft beitragen"
+        "Weil sie ausschließlich auf medizinischem Wissen basiert und Erkenntnisse aus Anatomie, Physiologie und Arbeitsmedizin zur alleinigen Grundlage aller arbeitswissenschaftlichen Gestaltungsregeln macht, ohne weitere Disziplinen einzubeziehen",
+        "Weil sich die Arbeitswissenschaft als eigenständige, komplett unabhängige Disziplin ohne jeden Rückgriff auf Erkenntnisse anderer etablierter Wissenschaftsbereiche wie Medizin, Technik oder Wirtschaftswissenschaften entwickelt hat",
+        "Weil ausschließlich die Ingenieurwissenschaften (Physik, Konstruktion, Mess- und Regelungstechnik) zur Arbeitswissenschaft beitragen, während Human- sowie Wirtschafts- und Sozialwissenschaften keinen Beitrag zu ihren Regeln leisten"
       ], correct: 0, explain: "Arbeitswissenschaft integriert drei Disziplinbereiche: Humanwissenschaften (Medizin, Psychologie, Sportwissenschaft, Pädagogik u.a.), Ingenieurwissenschaften (Physik, Konstruktion, Mess-/Regelungstechnik u.a.) und Wirtschafts-/Sozialwissenschaften (BWL, VWL, Soziologie, Rechtswissenschaft, Innovationsmanagement u.a.) – daraus leiten sich Regeln für die Gestaltung von Arbeitstechnologien, -plätzen, -umgebungen, Organisation & Betrieb sowie Arbeitsgruppen ab." },
     { le: 'le01', q: "Was unterscheidet Industrie 4.0 und Industrie 5.0 als Leitbilder der Arbeitsgestaltung?", opts: [
         "Industrie 4.0 steht für eine technikzentrierte Arbeitsgestaltung; Industrie 5.0 für eine menschzentrierte Arbeitsgestaltung, bei der neue Technologien genutzt werden sollen, um Wohlstand zu schaffen, der über Arbeitsplätze und Wachstum hinausgeht, während planetarische Grenzen respektiert und das Wohlergehen des Menschen in den Mittelpunkt des Produktionsprozesses gestellt werden",
-        "Industrie 4.0 und Industrie 5.0 sind identische Konzepte mit unterschiedlichem Namen",
-        "Industrie 5.0 bezeichnet lediglich eine schnellere Version der Automatisierung von Industrie 4.0 ohne inhaltliche Neuausrichtung",
-        "Industrie 4.0 ist menschzentriert, Industrie 5.0 technikzentriert"
+        "Industrie 4.0 und Industrie 5.0 bezeichnen exakt dasselbe technologiegetriebene Leitbild, lediglich mit einer neueren, marketingorientierten Namensgebung ohne inhaltliche Unterschiede in der zugrundeliegenden Arbeitsgestaltung",
+        "Industrie 5.0 bezeichnet lediglich eine technisch schnellere und stärker automatisierte Version von Industrie 4.0, ohne dass damit eine inhaltliche Neuausrichtung hin zu mehr Nachhaltigkeit oder menschlichem Wohlergehen verbunden wäre",
+        "Industrie 4.0 stellt bereits das menschzentrierte Leitbild dar, das individuelles Wohlergehen in den Mittelpunkt rückt, während Industrie 5.0 als rein technikzentrierte Weiterentwicklung ausschließlich auf Automatisierungsgrad und Vernetzung fokussiert"
       ], correct: 0, explain: "Industrie 4.0: technikzentrierte Arbeitsgestaltung (Automatisierung, Vernetzung). Industrie 5.0 (EU-Definition, Breque et al. 2021): menschzentrierte Arbeitsgestaltung – neue Technologien sollen Wohlstand jenseits von Arbeitsplätzen/Wachstum schaffen, planetarische Grenzen respektieren und das menschliche Wohlergehen in den Mittelpunkt des Produktionsprozesses stellen. „Menschzentriert“ wirkt auf drei Ebenen: Individuum (Arbeitszufriedenheit, Work-Life-Balance, lebenslanges Lernen), Organisation (Produktivität, Innovationsfähigkeit) und Wirtschaft & Gesellschaft (Resilienz des Arbeitsmarktes, Nachhaltigkeit)." },
     { le: 'le03', q: "Was bezeichnet der „kritische Pfad“ bei der Optimierung von Arbeitsprozessen (Reihenfolge von Aktivitäten ändern)?", opts: [
         "Den Pfad, der Anfangs- und Endaktivität einschließt und ausschließlich Aktivitäten enthält, deren freie Pufferzeit (zeitlicher Spielraum) gleich Null ist",
-        "Den kürzesten überhaupt möglichen Pfad durch den Prozess, unabhängig von Pufferzeiten",
-        "Einen beliebigen Pfad mit maximaler Pufferzeit",
-        "Ausschließlich den Pfad mit den meisten beteiligten Personen"
+        "Den kürzesten theoretisch überhaupt möglichen Pfad durch den gesamten Prozess, unabhängig davon, ob die enthaltenen Aktivitäten über Pufferzeiten verfügen oder nicht, und unabhängig von Anfangs- oder Endaktivität",
+        "Einen beliebigen Pfad durch den Prozess, der sich durch eine besonders große freie Pufferzeit bzw. einen großzügigen zeitlichen Spielraum bei allen enthaltenen Aktivitäten auszeichnet und daher wenig zeitkritisch ist",
+        "Ausschließlich den Pfad durch den Prozess, an dem die meisten unterschiedlichen Personen oder Abteilungen beteiligt sind, unabhängig von der Dauer der einzelnen Aktivitäten oder deren Pufferzeiten"
       ], correct: 0, explain: "Der kritische Pfad umfasst Anfangs- und Endaktivität und ausschließlich solche Aktivitäten, deren freie Pufferzeit/zeitlicher Spielraum gleich Null ist – jede Verzögerung auf diesem Pfad verzögert direkt den gesamten Prozess. Er ist zentral für die Prozessverbesserungsmaßnahme „Reihenfolge von Aktivitäten ändern/parallelisieren“." },
     { le: 'le03', q: "Was versteht man unter Concurrent Engineering als Prozessverbesserungsmaßnahme?", opts: [
         "Die Parallelisierung eigentlich nacheinander ablaufender Aktivitäten (z.B. Produktentwicklung und Produktionsmittelplanung), um die Gesamtdurchlaufzeit zu verkürzen – sobald genug Informationen aus einem Arbeitsschritt vorliegen, beginnt der nächste bereits parallel, bei ständigem Informationsaustausch",
-        "Die vollständige serielle Trennung aller Prozessschritte ohne jegliche Überlappung",
-        "Ausschließlich die Auslagerung von Aktivitäten an externe Dienstleister",
-        "Ein Verfahren, das nur in der IT-Branche angewendet wird"
+        "Die vollständige serielle Trennung aller Prozessschritte ohne jegliche zeitliche Überlappung, sodass jede nachfolgende Aktivität erst beginnen darf, wenn die vorherige vollständig und mit endgültigem Informationsstand abgeschlossen ist",
+        "Ausschließlich die Auslagerung von Entwicklungs- und Planungsaktivitäten an externe Dienstleister, um interne Kapazitäten zu entlasten, unabhängig von einer zeitlichen Parallelisierung der beteiligten Prozessschritte",
+        "Ein Verfahren zur Prozessoptimierung, das ausschließlich in der IT-Branche zur parallelen Entwicklung von Softwaremodulen angewendet wird und sich nicht auf klassische Produktentwicklung oder Produktionsmittelplanung übertragen lässt"
       ], correct: 0, explain: "Concurrent Engineering parallelisiert eigentlich sequenzielle Aktivitäten (klassisches Beispiel: Produktentwicklung und Produktionsmittelplanung), um die Gesamtzeit zu verkürzen. Nachteil: da nicht mit dem endgültigen Informationsstand gearbeitet wird, kann zusätzlicher Arbeitsaufwand durch spätere Änderungen entstehen – daher ist ständiger Informationsaustausch zwischen den Bereichen nötig." },
     { le: 'le03', q: "Welche Prozessverbesserungsmaßnahmen zielen auf den „Abbau von Schnittstellen“ ab? (mehrere richtig)", multi: true, opts: [
         "Einsatz eines Process Owner (eine Person als verantwortlicher Ansprechpartner) oder eines Case-Teams (möglichst wenige Personen bearbeiten den gesamten Prozess selbstständig)",
         "Räumliche Zusammenführung aller Prozessbeteiligten sowie Beseitigen von Puffern zwischen Prozessschritten",
         "Vermeidung von Medienbrüchen (Wechsel des informationstragenden Mediums, der zu Verlangsamung/Qualitätsminderung führt)",
-        "Möglichst viele unterschiedliche Software-Systeme in jedem Prozessschritt einsetzen"
+        "Möglichst viele unterschiedliche Software-Systeme und Formate in jedem einzelnen Prozessschritt einsetzen, um für jede Teilaufgabe die technisch spezialisierteste verfügbare Lösung nutzen zu können"
       ], correct: [0,1,2], explain: "Abbau von Schnittstellen: Process Owner oder Case-Team als alleinverantwortliche Stelle, räumliche Zusammenführung der Beteiligten, Beseitigung von Puffern zwischen Schritten sowie Vermeidung von Medienbrüchen (Wechsel des informationstragenden Mediums, z.B. Papier→Software, der den Prozess verlangsamt und die Informationsqualität mindern kann). Das Gegenteil – viele unterschiedliche Systeme je Schritt – begünstigt gerade Medienbrüche und ist keine Verbesserungsmaßnahme." },
     { le: 'le03', q: "Was bezeichnet Outsourcing als Prozessverbesserungsmaßnahme, und wodurch grenzt es sich von sonstigen Partnerschaften ab?", opts: [
         "Die Abgabe von Unternehmensaufgaben und -strukturen an Drittunternehmen als spezielle Form des Fremdbezugs vormals intern erbrachter Leistung – abgegrenzt durch Verträge, die Dauer und Gegenstand der Leistung fixieren",
-        "Den kompletten Verzicht auf jegliche externe Zusammenarbeit",
-        "Eine rein interne Umstrukturierung ohne Beteiligung externer Unternehmen",
-        "Outsourcing ist rechtlich nicht von anderen Partnerschaften unterscheidbar"
+        "Den kompletten Verzicht auf jegliche externe Zusammenarbeit zugunsten einer vollständig internen Leistungserbringung durch eigene Mitarbeitende, um die Abhängigkeit von Drittunternehmen dauerhaft zu vermeiden",
+        "Eine rein interne Umstrukturierung von Zuständigkeiten und Abteilungen ohne jede Beteiligung externer Unternehmen, bei der lediglich bestehende Aufgaben innerhalb des eigenen Betriebs neu verteilt werden",
+        "Outsourcing ist rechtlich nicht von anderen, freieren Formen der Unternehmenspartnerschaft unterscheidbar, da in beiden Fällen keinerlei vertragliche Fixierung von Leistungsdauer oder Leistungsgegenstand erforderlich ist"
       ], correct: 0, explain: "Outsourcing = Abgabe von Unternehmensaufgaben/-strukturen an Drittunternehmen, eine spezielle Form des Fremdbezugs bisher intern erbrachter Leistung. Verträge, die Dauer und Gegenstand der Leistung fixieren, grenzen Outsourcing von sonstigen (freieren) Partnerschaften ab." }
   ]},
   B: { label: 'Teil B · LE04–06', sub: 'REFA-Zeitwirtschaft, MTM, Arbeitsschutz', questions: [
@@ -809,9 +809,9 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Zeitdaten dienen mitarbeiterbezogenen (Betriebsleitung: Investitionsplanung, Personalbedarfsplanung, Ablaufplanung), produktbezogenen (techn. Vertrieb: Kalkulation, Angebotserstellung; Entwicklung; Konstruktion) und produktionsbezogenen Zwecken (Auftragseingang, Produktionsprogrammplanung, Ablaufplanung, Auftragsveranlassung, Fertigung, Auftragsüberwachung, Versand)." },
     { le: 'le04', q: "Wie sind die REFA-Ablaufarten grundsätzlich gegliedert?", opts: [
         "Nach Bezug auf den Menschen (→ Auftragszeit), auf Arbeits-/Betriebsmittel (→ Belegungszeit) und auf das Arbeitsobjekt (→ Durchlaufzeit)",
-        "Nur nach Bezug auf den Menschen – Betriebsmittel und Arbeitsobjekt spielen keine Rolle",
-        "Nach Wochentagen (Werktag vs. Wochenende)",
-        "Nach Betriebsgröße (Klein-, Mittel-, Großbetrieb)"
+        "Ausschließlich nach Bezug auf den Menschen, da nur seine Tätigkeitszeiten arbeitswissenschaftlich relevant sind – Betriebsmittel und Arbeitsobjekt werden in der REFA-Systematik grundsätzlich nicht gesondert erfasst",
+        "Nach Wochentagen (Werktag vs. Wochenende), da sich die Ablaufarten je nach Kalendertag systematisch in Art und Umfang unterscheiden",
+        "Nach der Betriebsgröße (Klein-, Mittel-, Großbetrieb), da REFA für jede Unternehmensgröße eine eigene Ablaufartensystematik mit unterschiedlicher Gliederungstiefe vorsieht"
       ], correct: 0, explain: "Bei der Ablaufgliederung bezogen auf den Menschen werden die Tätigkeiten einer Arbeitsperson zeitlich erfasst → Auftragszeit. Bezogen auf Arbeitsmittel werden die Prozesse von Maschinen/Anlagen/Apparaten analysiert → Belegungszeit. Bezogen auf das Arbeitsobjekt wird der Durchlauf eines Bauteils durch die Fertigungsstufen beschrieben → Durchlaufzeit." },
     { le: 'le04', q: "Wie untergliedert sich die Auftragszeit (Vorgabezeit für den Menschen) auf oberster Ebene?", opts: [
         "In Ausführungszeit (tₐ = m · tₑ) und Rüstzeit (tᵣ)",
@@ -833,21 +833,21 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "Die Zeitstrukturanalyse nach REFA beinhaltet die Ermittlung von Soll-Zeiten durch die Messung und Auswertung von Ist-Zeiten – i.d.R. mittels Stoppuhr direkt am Arbeitsplatz." },
     { le: 'le04', q: "Wie ist der Leistungsgrad definiert?", opts: [
         "Leistungsgrad = Intensität (Bewegungsgeschwindigkeit, körperliche Anstrengung) × Effektivität (rhythmisch, harmonisch, zügig)",
-        "Leistungsgrad = ausschließlich die Bewegungsgeschwindigkeit",
-        "Leistungsgrad = erzielte Stückzahl geteilt durch die Anzahl Beschäftigter",
-        "Leistungsgrad = Ist-Zeit dividiert durch die Rüstzeit"
+        "Leistungsgrad = ausschließlich die Bewegungsgeschwindigkeit der Arbeitsperson, unabhängig davon, wie rhythmisch, harmonisch oder zügig die Bewegungen tatsächlich ausgeführt werden",
+        "Leistungsgrad = die insgesamt erzielte Stückzahl geteilt durch die Anzahl der an der Fertigung beteiligten Beschäftigten, unabhängig von Bewegungsgeschwindigkeit oder Anstrengung",
+        "Leistungsgrad = die gemessene Ist-Zeit dividiert durch die vorab festgelegte Rüstzeit des jeweiligen Arbeitsauftrags"
       ], correct: 0, explain: "Leistungsgrad (Erscheinungsbild) = Intensität · Effektivität. Intensität äußert sich in Bewegungsgeschwindigkeit und körperlichen Anstrengungen; Effektivität wird danach bewertet, wie rhythmisch, harmonisch und zügig gearbeitet wird." },
     { le: 'le04', q: "Was sind wesentliche Merkmale einer Multimomentaufnahme (Multimoment-Studie)?", opts: [
         "Ein Stichprobenverfahren, das Schätzungen über die relative Häufigkeit bzw. Dauer von vorwiegend unregelmäßig auftretenden Tätigkeiten bei frei wählbarer Genauigkeit f und statistischer Irrtumswahrscheinlichkeit α liefert",
-        "Eine lückenlose Videoaufzeichnung des gesamten Arbeitstags jedes einzelnen Mitarbeiters",
-        "Eine einmalige Befragung der Mitarbeitenden zu ihrer geschätzten Auslastung",
-        "Eine Methode, die ausschließlich für vollautomatisierte Anlagen ohne Personal geeignet ist"
+        "Eine lückenlose Videoaufzeichnung des gesamten Arbeitstags jedes einzelnen Mitarbeiters, die anschließend Bild für Bild manuell ausgewertet wird, um jede einzelne Tätigkeit exakt zeitlich zu erfassen",
+        "Eine einmalige Befragung der Mitarbeitenden zu ihrer subjektiv geschätzten Auslastung am Arbeitsplatz, ohne dass dabei tatsächliche Beobachtungen vor Ort stattfinden",
+        "Eine Methode, die ausschließlich für vollautomatisierte Anlagen ohne jegliches beteiligtes Personal geeignet ist und daher keine Tätigkeiten von Arbeitspersonen erfassen kann"
       ], correct: 0, explain: "Eine Multimoment-Studie ist ein Stichprobenverfahren, das Schätzungen über die relative Häufigkeit bzw. über die Dauer von vorwiegend unregelmäßig auftretenden Tätigkeiten oder Größen vergleichbarer Art bei einer frei wählbaren Genauigkeit f und einer statistischen Irrtumswahrscheinlichkeit von α liefert." },
     { le: 'le04', q: "In welche zwei Verfahren gliedert sich das Multimoment-Verfahren?", opts: [
         "Multimoment-Häufigkeits-Zählverfahren (MMH, liefert Zählwerte → absolute/relative Häufigkeiten) und Multimoment-Zeitmessverfahren (MMZ, liefert Messwerte → Absolut-/Relativzeiten)",
-        "Nur ein einziges einheitliches Verfahren ohne weitere Unterteilung",
-        "Video-Verfahren und Audio-Verfahren",
-        "Vorwärts- und Rückwärtsverfahren"
+        "Es existiert nur ein einziges, einheitliches Multimoment-Verfahren ohne jede weitere methodische Unterteilung in Häufigkeits- oder Zeitmessvarianten",
+        "Ein Video-Verfahren, bei dem der gesamte Rundgang gefilmt wird, sowie ein Audio-Verfahren, bei dem die Beobachtungen mündlich diktiert und später verschriftlicht werden",
+        "Ein Vorwärtsverfahren, bei dem chronologisch beobachtet wird, sowie ein Rückwärtsverfahren, bei dem die Reihenfolge der Rundgänge nachträglich umgekehrt ausgewertet wird"
       ], correct: 0, explain: "Multimoment-Häufigkeits-Zählverfahren (MMH): liefert Zählwerte, daraus absolute und relative Häufigkeiten. Multimoment-Zeitmessverfahren (MMZ): liefert Messwerte, daraus Absolut- und Relativzeiten." },
     { le: 'le04', q: "Was sind Vorteile der Multimomentaufnahme gegenüber der klassischen Zeitstudie? (mehrere richtig)", multi: true, opts: [
         "Repräsentatives Abbild des Ist-Zustandes bei vergleichsweise geringem Aufwand",
@@ -881,21 +881,21 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "Da bei jedem Rundgang alle beobachteten Objekte (Arbeitsplätze/Personen) gleichzeitig einmal erfasst werden, teilt man den benötigten Gesamt-Stichprobenumfang n durch die Anzahl der Objekte, um die nötige Anzahl an Rundgängen zu erhalten." },
     { le: 'le05', q: "Welche fünf Grundbewegungen des Finger-, Hand- und Armsystems werden im MTM-Grundverfahren unterschieden?", opts: [
         "Hinlangen (Reach), Greifen (Grasp), Bringen (Move), Fügen (Position), Loslassen (Release)",
-        "Heben, Senken, Tragen, Ziehen, Schieben",
-        "Sehen, Hören, Tasten, Riechen, Schmecken",
-        "Gehen, Stehen, Sitzen, Bücken, Strecken"
+        "Heben, Senken, Tragen, Ziehen, Schieben – als klassische Grundbewegungen der Lastenhandhabung im gesamten Körperbereich",
+        "Sehen, Hören, Tasten, Riechen, Schmecken – als die fünf sensorischen Grundmodalitäten, über die Bewegungsinformationen aufgenommen werden",
+        "Gehen, Stehen, Sitzen, Bücken, Strecken – als grundlegende Körperhaltungen, die im MTM-Grundverfahren zeitlich bewertet werden"
       ], correct: 0, explain: "Der Bewegungszyklus im MTM-Grundverfahren: Hinlangen (Reach) → Greifen (Grasp) → Bringen (Move) → Fügen (Position) → Loslassen (Release)." },
     { le: 'le05', q: "Wie wurde bei der Entwicklung des MTM-Grundverfahrens vorgegangen?", opts: [
         "Erfassen von Bewegungsabläufen mittels Filmaufnahmen (16 Bilder/s) → Ermittlung von Ist-Zeiten durch Auszählen einzelner Bilder → Ausgleich interpersoneller Leistungsstreuungen (LMS-Verfahren) → Ausgleich weiterer Streuungen durch Regressionsrechnung → MTM-Normzeitwertkarte",
-        "Direkte Befragung von Arbeitern zu ihrer subjektiv empfundenen Bewegungsgeschwindigkeit",
-        "Rein theoretische Herleitung ohne empirische Beobachtung",
-        "Computersimulation von Bewegungsabläufen ohne reale Filmaufnahmen"
+        "Direkte Befragung der Arbeitspersonen zu ihrer subjektiv empfundenen Bewegungsgeschwindigkeit, ohne jede objektive Messung oder Filmauswertung der tatsächlich ausgeführten Bewegungen",
+        "Eine rein theoretische, mathematische Herleitung der Zeitwerte am Schreibtisch, ganz ohne empirische Beobachtung realer Arbeitspersonen bei der Ausführung von Bewegungen",
+        "Eine frühe Computersimulation von Bewegungsabläufen anhand physikalischer Modelle des menschlichen Körpers, ohne dass dafür reale Filmaufnahmen von Arbeitspersonen nötig gewesen wären"
       ], correct: 0, explain: "Entwicklung: Erfassen von Bewegungsabläufen und deren Einflussgrößen bei unterschiedlichen Arbeitsaufgaben anhand von Filmaufnahmen (Einzelbilder, 16 Bilder/s) → Ermittlung von Ist-Zeiten mittels Auszählen einzelner Bilder → Ausgleich interpersoneller Leistungsstreuungen durch Anwendung des Lowry-Maynard-Stegemerten-Verfahrens (LMS) → Ausgleich von Streuungen durch Regressionsrechnung → Ergebnis: MTM-Normzeitwertkarte." },
     { le: 'le05', q: "Wie ist die Vorgehensweise bei Anwendung der MTM-Methode?", opts: [
         "Bewegungsanalyse (Zerlegung des Bewegungsablaufs in Elemente) → Zeitanalyse (Bestimmung der Zeiteinflussgrößen je Element) → Kodierung → Auswertung (Entnahme der Elementarzeiten aus den Normzeitwertkarten) → Gesamtbewertung (Addition der Elementarzeiten)",
-        "Nur eine einzelne Schätzung der Gesamtzeit ohne Zwischenschritte",
-        "Kodierung → Bewegungsanalyse → Gesamtbewertung → Zeitanalyse → Auswertung (beliebige Reihenfolge)",
-        "Ausschließlich Auswertung vorhandener REFA-Zeitstudien ohne eigene Bewegungsanalyse"
+        "Es genügt eine einzelne, ganzheitliche Schätzung der Gesamtzeit für die komplette Arbeitsaufgabe, ohne dass Zwischenschritte wie Bewegungs- oder Zeitanalyse erforderlich wären",
+        "Kodierung → Bewegungsanalyse → Gesamtbewertung → Zeitanalyse → Auswertung, wobei die Reihenfolge dieser fünf Schritte beliebig vertauscht werden kann, ohne das Ergebnis zu verändern",
+        "Ausschließlich die Auswertung bereits vorhandener REFA-Zeitstudien am Schreibtisch, ohne dass eine eigene Bewegungsanalyse der konkreten Arbeitsaufgabe durchgeführt werden müsste"
       ], correct: 0, explain: "MTM-Methodik: 1. Bewegungsanalyse (Zerlegung des Bewegungsablaufs, z.B. Gehen/Hinlangen/Greifen), 2. Zeitanalyse (Bestimmung der Zeiteinflussgrößen je Bewegungselement, z.B. Bewegungslänge, Gewicht), 3. Kodierung (des Bewegungselements + der Einflussgrößen, z.B. M30B), 4. Auswertung (Entnahme der zugehörigen Elementarbewegungszeit aus den Normzeitwertkarten), 5. Gesamtbewertung (Addition der Elementarzeiten zur gesuchten Grundbewegungszeit)." },
     { le: 'le05', q: "Was sind Voraussetzungen zur Anwendung des MTM-Grundverfahrens? (mehrere richtig)", multi: true, opts: [
         "Mengenfertigung in großen Losen, geringe Variantenvielfalt",
@@ -905,21 +905,21 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Voraussetzungen für das MTM-Grundverfahren: Mengenfertigung in großen Losen, geringe Variantenvielfalt, kurzzyklische Abläufe, exakt definierte Rahmenbedingungen, routinierte Mitarbeiter mit hoher Fertigkeit. Hohe Variantenvielfalt/Einzelfertigung widerspricht diesen Voraussetzungen." },
     { le: 'le05', q: "Aus welchen Gründen wurden verdichtete MTM-Verfahren entwickelt?", opts: [
         "Um den Analyseaufwand zu reduzieren – die Verdichtung erfolgt ausgehend vom MTM-Grundsystem über eine Höher- oder Querverdichtung der Daten",
-        "Um die Normzeitwerte grundsätzlich zu verändern und zu verdoppeln",
-        "Weil das MTM-Grundverfahren gesetzlich verboten wurde",
-        "Um MTM auf vollautomatisierte, personenlose Prozesse anwendbar zu machen"
+        "Um die im Grundverfahren ermittelten Normzeitwerte grundsätzlich inhaltlich zu verändern und für alle Bewegungsarten pauschal zu verdoppeln, unabhängig vom tatsächlichen Analyseaufwand",
+        "Weil das MTM-Grundverfahren aus arbeitsrechtlichen Gründen gesetzlich verboten wurde und durch ein zulässiges Ersatzverfahren abgelöst werden musste",
+        "Um MTM auch auf vollautomatisierte, vollständig personenlose Fertigungsprozesse anwendbar zu machen, in denen keinerlei menschliche Bewegungsabläufe mehr vorkommen"
       ], correct: 0, explain: "Verdichtete MTM-Verfahren wurden entwickelt, um den mit dem Grundverfahren verbundenen hohen Analyseaufwand zu reduzieren. Die Verdichtung erfolgt ausgehend vom MTM-Grundsystem über eine Höher- oder Querverdichtung der Daten (z.B. MEK, UAS als verdichtete Analysiersysteme)." },
     { le: 'le05', q: "Wonach richtet sich die Wahl des MTM-Analysiersystems in der betrieblichen Praxis?", opts: [
         "Nach dem Datenverdichtungsgrad in Abhängigkeit vom Fertigungstyp: niedrige Verdichtung/Grundverfahren für Einzel-/Kleinserienfertigung, hohe Verdichtung/Fertigungsbereichswerte für Massenfertigung",
-        "Ausschließlich nach der Betriebsgröße, unabhängig vom Fertigungstyp",
-        "Nach dem Alter der beschäftigten Mitarbeiter",
-        "Zufällig, da alle Analysiersysteme identische Ergebnisse liefern"
+        "Ausschließlich nach der Betriebsgröße des Unternehmens, unabhängig davon, ob Einzel-, Serien- oder Massenfertigung vorliegt",
+        "Nach dem Lebensalter der beschäftigten Mitarbeitenden, da jüngere Beschäftigte mit einem anderen Analysiersystem bewertet werden als ältere",
+        "Rein zufällig, da laut Vorlesung alle MTM-Analysiersysteme unabhängig vom Verdichtungsgrad identische Zeitwerte und Ergebnisse liefern"
       ], correct: 0, explain: "Das passende MTM-Analysiersystem richtet sich nach dem benötigten Datenverdichtungsgrad: bei niedrigem Methodenniveau/Einzel- und Kleinserienfertigung eher Grundverfahren bzw. MEK (MTM für Einzel- und Kleinserienfertigung); bei hohem Methodenniveau/Massenfertigung eher verdichtete Fertigungsbereichswerte bzw. UAS (Universelles Analysiersystem)." },
     { le: 'le05', q: "Was ist das Prinzip von MTM-HWD?", opts: [
         "Verschmelzung von Zeit- und Ergonomiebewertung in einem Schritt (integrierte Prozessbeschreibung) – vom Menschen abgeleitetes Bewegungsmodell mit Piktogrammen statt Kodierung, unterstützt prospektive Ergonomie schon in der Planung",
-        "MTM-HWD ist ein reines Zeitermittlungsverfahren ohne jeden ergonomischen Bezug",
-        "MTM-HWD ersetzt ausschließlich die Kodierung durch Farbcodes, ohne inhaltliche Änderung",
-        "MTM-HWD wird nur zur nachträglichen Kontrolle bereits abgeschlossener Prozesse eingesetzt"
+        "MTM-HWD ist ein reines Zeitermittlungsverfahren ohne jeden ergonomischen Bezug, das ausschließlich die zeitliche Dauer von Bewegungen erfasst, unabhängig von körperlicher Belastung",
+        "MTM-HWD ersetzt bei ansonsten unveränderter Methodik lediglich die klassische alphanumerische Kodierung durch reine Farbcodes, ohne dass sich dadurch inhaltlich etwas am Verfahren ändert",
+        "MTM-HWD wird ausschließlich zur nachträglichen Kontrolle bereits abgeschlossener, in der Vergangenheit liegender Fertigungsprozesse eingesetzt, nicht zur Planung neuer Arbeitssysteme"
       ], correct: 0, explain: "MTM-HWD verschmilzt Zeit- und Ergonomiebewertung in einem Schritt (integrierte Prozessbeschreibung) – es handelt sich um ein vom Menschen abgeleitetes Bewegungsmodell, das mit Piktogrammen statt klassischer Kodierung arbeitet und dadurch bereits in der Planungsphase prospektive Ergonomie unterstützt." },
     { le: 'le06', q: "Welche ökonomischen Effekte hat der Arbeitsschutz? (mehrere richtig)", multi: true, opts: [
         "Direkt monetär quantifizierbar: Verringerung der Lohnfortzahlung im Krankheitsfall durch weniger Arbeitsunfähigkeitstage",
@@ -929,51 +929,51 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Direkte monetär quantifizierbare Faktoren: Verringerung der Lohnfortzahlung im Krankheitsfall durch Reduzierung von Arbeitsunfähigkeitstagen. Indirekte monetär quantifizierbare: Erhöhung der Produktivität durch Verringerung von Ausfallzeiten/Arbeitsunfähigkeit, Sicherung der Produktqualität durch Vermeidung von Störungen/Unfällen. Indirekte schwer quantifizierbare: Erhöhung der Flexibilität (Personaleinsatzflexibilität), Erhöhung des Unternehmensprestiges am Arbeitsmarkt, Erhöhung der Arbeitsmotivation und Verbesserung des Betriebsklimas." },
     { le: 'le06', q: "Wie ist das grundlegende Prinzip des deutschen dualen Arbeitsschutz-Rechtssystems aufgebaut?", opts: [
         "Staatliches Arbeitsschutzrecht (Artikelgesetz Arbeitsschutz: ArbSchG, ArbStättV, BildscharbV, BetrSichV u.a.) NEBEN dem autonomen Unfallverhütungsrecht der Unfallversicherungsträger (SGB VII, DGUV-Vorschriften)",
-        "Nur staatliches Recht – die Unfallversicherungsträger haben keine eigene Regelungskompetenz",
-        "Nur autonomes Recht der Berufsgenossenschaften – der Staat regelt Arbeitsschutz nicht",
-        "Ein rein privatrechtliches System ohne staatliche Beteiligung"
+        "Es existiert ausschließlich staatliches Recht – die Berufsgenossenschaften und gesetzlichen Unfallversicherungsträger besitzen im deutschen System keinerlei eigene Regelungskompetenz im Arbeitsschutz",
+        "Es existiert ausschließlich das autonome Recht der Berufsgenossenschaften – der Staat erlässt in Deutschland keine eigenen gesetzlichen Regelungen zum Arbeitsschutz",
+        "Es handelt sich um ein rein privatrechtliches System auf Basis individueller Arbeitsverträge, ohne jede staatliche Beteiligung oder Regelungskompetenz der Sozialversicherungsträger"
       ], correct: 0, explain: "Duales System: Staatliches Arbeitsschutzrecht (Artikelgesetz Arbeitsschutz mit ArbSchG, ArbStättV, BildscharbV, BetrSichV, ArbSichG, ProdSG, ChemG, GefStoffV, MPG u.a.) UND das autonome Unfallverhütungsrecht der gesetzlichen Unfallversicherungsträger (Gesetz zur Einordnung des Rechts der gesetzlichen Unfallversicherung ins SGB VII, DGUV-Vorschriften/-Regeln/-Informationen/-Grundsätze)." },
     { le: 'le06', q: "Was ist die Kernaussage des TOP-Modells in Bezug auf Arbeitssicherheit?", opts: [
         "Arbeitssicherheit wird durch technische, organisatorische und persönliche Voraussetzungen geschaffen – in dieser Rangfolge (Technisch vor Organisatorisch vor Persönlich)",
-        "TOP steht für „Total Optimierte Produktion“ und hat nichts mit Sicherheit zu tun",
-        "Persönliche Maßnahmen (PSA) haben immer Vorrang vor technischen Maßnahmen",
-        "Organisatorische Maßnahmen ersetzen vollständig technische Maßnahmen"
+        "TOP steht für „Total Optimierte Produktion“ und beschreibt ein rein wirtschaftliches Effizienzkonzept, das keinen direkten inhaltlichen Bezug zur Arbeitssicherheit hat",
+        "Persönliche Maßnahmen wie das Tragen von PSA haben laut TOP-Modell grundsätzlich Vorrang vor technischen Maßnahmen an der Gefahrenquelle selbst",
+        "Organisatorische Maßnahmen wie räumliche oder zeitliche Trennung ersetzen im TOP-Modell vollständig die Notwendigkeit technischer Schutzmaßnahmen"
       ], correct: 0, explain: "Das TOP-Modell zur Schaffung von Arbeitssicherheit basiert auf technischen, organisatorischen und persönlichen Voraussetzungen – in genau dieser Rangfolge: technische Maßnahmen (an der Quelle) haben Vorrang vor organisatorischen, diese vor persönlichen (PSA/Verhalten)." },
     { le: 'le06', q: "In welche Rangfolge lassen sich die Arbeitsschutzmaßnahmen gliedern?", opts: [
         "1. Gefahrenquelle vermeiden/beseitigen/reduzieren (T), 2. Sicherheitstechnische Maßnahmen an der Quelle (T), 3. Organisatorische Maßnahmen (O), 4. Persönliche Schutzausrüstung (P), 5. Verhaltensbezogene Maßnahmen (P)",
-        "1. PSA, 2. Verhaltensmaßnahmen, 3. Organisatorische Maßnahmen, 4. Technische Maßnahmen, 5. Gefahrenquelle beseitigen",
-        "Alle fünf Maßnahmenarten sind gleichrangig und beliebig austauschbar",
-        "Nur eine einzige Maßnahmenart existiert: die persönliche Schutzausrüstung"
+        "1. Persönliche Schutzausrüstung, 2. Verhaltensbezogene Maßnahmen, 3. Organisatorische Maßnahmen, 4. Technische Maßnahmen an der Quelle, 5. Beseitigung der Gefahrenquelle – also in exakt umgekehrter Reihenfolge",
+        "Alle fünf Maßnahmenarten sind laut Vorlesung gleichrangig zu behandeln und können in beliebiger Reihenfolge je nach betrieblicher Präferenz ausgewählt und kombiniert werden",
+        "Es existiert nur eine einzige, universelle Maßnahmenart: die persönliche Schutzausrüstung, alle anderen Kategorien sind ihr organisatorisch untergeordnet"
       ], correct: 0, explain: "Rangfolge (von höchster zu niedrigster Priorität): 1. Gefahrenquelle vermeiden/beseitigen/reduzieren, potentiell gefährdende Eigenschaften der Quelle verändern (T), 2. Sicherheitstechnische Maßnahmen – Kapselung der Quelle, Schutzorgane/-systeme (T), 3. Organisatorische Maßnahmen – räumliche/zeitliche Trennung von Faktor und Mensch (O), 4. Nutzung persönlicher Schutzausrüstung – räumliche Trennung am Menschen (P), 5. Verhaltensbezogene Maßnahmen (P)." },
     { le: 'le06', q: "Welcher Grundsatz gilt bei der Verwendung persönlicher Schutzausrüstung (PSA)?", opts: [
         "PSA sollte erst verwendet werden, wenn trotz Umsetzung aller geeigneten sicherheitstechnischen und organisatorischen Maßnahmen kein ausreichender Schutz gegeben ist",
-        "PSA sollte immer als erste und einzige Maßnahme eingesetzt werden",
-        "PSA ersetzt die Notwendigkeit einer Gefährdungsbeurteilung vollständig",
-        "PSA ist gesetzlich nicht vorgeschrieben und liegt im freien Ermessen der Beschäftigten"
+        "PSA sollte grundsätzlich als allererste und alleinige Maßnahme eingesetzt werden, noch bevor sicherheitstechnische oder organisatorische Maßnahmen überhaupt geprüft werden",
+        "Der Einsatz von PSA ersetzt vollständig die gesetzlich vorgeschriebene Durchführung einer Gefährdungsbeurteilung nach § 5 ArbSchG",
+        "PSA ist in Deutschland arbeitsrechtlich nicht vorgeschrieben und liegt vollständig im freien Ermessen der einzelnen Beschäftigten"
       ], correct: 0, explain: "Grundsatz: Erst wenn trotz Umsetzung aller geeigneten sicherheitstechnischen und organisatorischen Maßnahmen kein ausreichender Schutz der Mitarbeiter gegeben ist, sollten persönliche Schutzausrüstungen verwendet werden – PSA stellt je nach Auslegung/Beschaffenheit eine zusätzliche Belastung für den Mitarbeiter dar und steht daher am Ende der Rangfolge." },
     { le: 'le06', q: "Wie unterscheiden sich trennende und nichttrennende Schutzeinrichtungen an Maschinen?", opts: [
         "Trennende Schutzeinrichtungen sind feste mechanische Barrieren (z.B. Verkleidung); nichttrennende Schutzeinrichtungen wirken situativ bei Bedarf (z.B. Lichtschranke, Zweihandschaltung)",
-        "Trennende Schutzeinrichtungen wirken nur situativ, nichttrennende sind feste Barrieren",
-        "Beide Arten sind identisch und unterscheiden sich nur im Namen",
-        "Nichttrennende Schutzeinrichtungen sind gesetzlich verboten"
+        "Trennende Schutzeinrichtungen wirken nur situativ bei Bedarf ohne physische Barriere, während nichttrennende Schutzeinrichtungen als feste mechanische Barrieren wie Verkleidungen ausgeführt sind – also genau umgekehrt zur üblichen Definition",
+        "Beide Arten von Schutzeinrichtungen sind funktional und rechtlich identisch und unterscheiden sich in Normen und Vorschriften ausschließlich in ihrer Bezeichnung, nicht in ihrer tatsächlichen Wirkungsweise",
+        "Nichttrennende Schutzeinrichtungen wie Lichtschranken sind nach deutschem Arbeitsschutzrecht grundsätzlich verboten und dürfen an Maschinen nicht eingesetzt werden"
       ], correct: 0, explain: "Trennende Schutzeinrichtungen sind feste mechanische Barrieren zwischen Mensch und Gefahrenquelle (z.B. eine Verkleidung/Umzäunung). Nichttrennende Schutzeinrichtungen wirken situativ bei Bedarf, ohne dauerhafte physische Barriere zu sein (z.B. Lichtschranke, die die Maschine stoppt, oder Zweihandschaltung, die verhindert, dass eine Hand im Gefahrenbereich ist während die Maschine läuft)." },
     { le: 'le06', q: "Welche Zielsetzung hat eine Gefährdungsbeurteilung und welche Arten werden unterschieden?", opts: [
         "Ziel: Untersuchung von Arbeitssystemen zur Erkennung von Gefahren, die den Verletzungseintritt begünstigen; unterschieden werden faktorspezifische (Listen mit Gefährdungs-/Belastungsfaktoren) und objektspezifische Gefährdungsbeurteilung (systematisches Erkennen/Bewerten von Gestaltungsdefiziten an konkreten Arbeitssystemen)",
-        "Gefährdungsbeurteilungen dienen ausschließlich der nachträglichen Unfalldokumentation",
-        "Es wird nur eine einzige, universelle Art der Gefährdungsbeurteilung unterschieden",
-        "Gefährdungsbeurteilungen sind freiwillig und rechtlich nicht vorgeschrieben"
+        "Gefährdungsbeurteilungen dienen ausschließlich der nachträglichen Dokumentation bereits eingetretener Arbeitsunfälle, nicht der vorausschauenden Erkennung potenzieller Gefahren im Vorfeld",
+        "Es wird laut Vorlesung nur eine einzige, für alle Branchen und Arbeitssysteme universell gültige Art der Gefährdungsbeurteilung unterschieden, ohne weitere Differenzierung",
+        "Gefährdungsbeurteilungen sind für Arbeitgebende in Deutschland rein freiwillig und weder im Arbeitsschutzgesetz noch in anderen Vorschriften rechtlich vorgeschrieben"
       ], correct: 0, explain: "Gefährdungsbeurteilungen sind Untersuchungen von Arbeitssystemen mit dem Ziel, die Gefahren zu erkennen, die den Verletzungseintritt begünstigen. Arten: faktorspezifisch (anhand von Listen mit Gefährdungs-/Belastungsfaktoren, Haupt- und Unterfaktoren) und objektspezifisch (systematisches Erkennen und Bewerten von Gestaltungsdefiziten an Arbeitssystemen und deren Elementen, z.B. mittels Checklisten nach BetrSichV)." },
     { le: 'le06', q: "Wie berechnet sich die Risikoprioritätszahl (RPZ) in der FMEA (Fehlermöglichkeits- und Einflussanalyse)?", opts: [
         "RPZ = A × B × E, mit A = Auftrittswahrscheinlichkeit, B = Bedeutung, E = Entdeckungswahrscheinlichkeit",
-        "RPZ = A + B + E",
-        "RPZ = A ÷ B ÷ E",
-        "RPZ = (A + B) × E²"
+        "RPZ = A + B + E, also die einfache Summe aus Auftrittswahrscheinlichkeit, Bedeutung und Entdeckungswahrscheinlichkeit auf jeweils gleicher Skala",
+        "RPZ = A ÷ B ÷ E, also die schrittweise Division der Auftrittswahrscheinlichkeit durch Bedeutung und anschließend durch Entdeckungswahrscheinlichkeit",
+        "RPZ = (A + B) × E², also die Summe aus Auftrittswahrscheinlichkeit und Bedeutung multipliziert mit dem Quadrat der Entdeckungswahrscheinlichkeit"
       ], correct: 0, explain: "FMEA: RPZ (Risikoprioritätszahl) = A × B × E, mit A = Auftrittswahrscheinlichkeit, B = Bedeutung, E = Entdeckungswahrscheinlichkeit. Ergänzend allgemeiner: Risiko R = Σ P(eᵢ)·S(eᵢ), mit eᵢ = Teilrisiko/auslösendes Ereignis, P = Eintrittswahrscheinlichkeit, S = Schadensausmaß." },
     { le: 'le06', q: "Was sind häufige Schwierigkeiten in der Identifikation von Risiken?", opts: [
         "Attribution Bias – Urteilsfehler durch den Einsatz von Heuristiken, z.B. Fundamental Attribution Error, Availability Bias, Anchoring Bias, Just World Hypothesis",
-        "Zu viele objektive Messinstrumente stehen zur Verfügung",
-        "Die Gefährdungsbeurteilung ist gesetzlich zu detailliert vorgeschrieben",
-        "Risiken lassen sich immer vollständig und fehlerfrei identifizieren"
+        "Es stehen in der betrieblichen Praxis grundsätzlich zu viele objektive, standardisierte Messinstrumente zur Risikoerfassung zur Verfügung, was die Identifikation eher erleichtert als erschwert",
+        "Die gesetzlichen Vorgaben zur Gefährdungsbeurteilung sind so detailliert formuliert, dass praktisch keine Risiken mehr übersehen werden können",
+        "Risiken lassen sich laut arbeitspsychologischer Forschung grundsätzlich immer vollständig, objektiv und ohne systematische Wahrnehmungsfehler identifizieren"
       ], correct: 0, explain: "Ein zentrales Problem ist der Attribution Bias (Zuordnung kausaler Zusammenhänge, Urteilsfehler durch Einsatz von Heuristiken): u.a. Fundamental Attribution Error, Actor-Observer Bias, False Consensus Bias, Self-Serving Bias, Availability Bias, Small Numbers Bias, Anchoring Bias, The Just World Hypothesis." },
     { le: 'le06', q: "[Übung LE06] In der Gefährdungsbeurteilungs-Fallstudie: In welche vier Bereiche werden Mängel/Fehlverhalten typischerweise eingeteilt?", opts: [
         "Arbeitsmittel, Arbeitsgegenstand, Arbeitsperson, Arbeitsumgebung",
@@ -983,27 +983,27 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "In den Gefährdungsbeurteilungs-Fallstudien werden Mängel/Fehlverhalten systematisch nach vier Bereichen gegliedert: Arbeitsmittel (z.B. Maschine, Werkzeug), Arbeitsgegenstand (das bearbeitete Objekt), Arbeitsperson (Verhalten/Qualifikation) und Arbeitsumgebung (Lärm, Beleuchtung, Klima etc.). Für jeden identifizierten Mangel werden anschließend passende Maßnahmen nach dem TOP-Modell (Technisch/Organisatorisch/Personenbezogen) abgeleitet." },
     { le: 'le06', q: "[Übung LE06] Was bedeutet das TOP-Modell bei der Ableitung von Arbeitsschutz-Maßnahmen aus einer Gefährdungsbeurteilung?", opts: [
         "Technische, Organisatorische und Personenbezogene Maßnahmen – in dieser Rangfolge zu prüfen",
-        "Total, Optimal, Präventiv – drei Bewertungsstufen des Risikos",
-        "Technik, Ort, Person – drei Orte der Gefahrenentstehung",
-        "Team, Objekt, Prozess – drei Analyseeinheiten der FMEA"
+        "Total, Optimal, Präventiv – drei allgemeine Bewertungsstufen zur Klassifizierung des Restrisikos nach Durchführung beliebiger Schutzmaßnahmen",
+        "Technik, Ort, Person – drei mögliche Orte, an denen laut Modell eine Gefahr grundsätzlich entstehen kann, unabhängig von konkreten Maßnahmen",
+        "Team, Objekt, Prozess – drei Analyseeinheiten, die bei der Durchführung einer FMEA jeweils gesondert bewertet und dokumentiert werden müssen"
       ], correct: 0, explain: "TOP-Modell = Technische, Organisatorische, Personenbezogene Maßnahmen. Es gilt die Rangfolge T vor O vor P (analog zur allgemeinen Maßnahmenhierarchie: Gefahrenquelle beseitigen/technisch sichern, erst danach organisatorisch trennen, erst zuletzt personenbezogen z.B. PSA/Verhalten)." },
     { le: 'le06', q: "Wie ist der Arbeitsschutz begrifflich gegliedert – aus welchen zwei Säulen besteht er, und was umfasst jede davon?", opts: [
         "Arbeitsschutz gliedert sich in Gesundheitsschutz (menschengerechte Arbeitsgestaltung, Unfallprävention) und Arbeitssicherheit (Sicherheitstechnik, Betriebssicherheit)",
-        "Arbeitsschutz besteht nur aus einer einzigen, unteilbaren Säule",
-        "Arbeitsschutz umfasst ausschließlich finanzielle Absicherung bei Arbeitsunfällen",
-        "Gesundheitsschutz und Arbeitssicherheit sind exakte Synonyme ohne inhaltlichen Unterschied"
+        "Arbeitsschutz besteht laut Vorlesung nur aus einer einzigen, unteilbaren Säule, die sämtliche gesundheitlichen, sicherheitstechnischen und organisatorischen Aspekte gleichermaßen ohne weitere Untergliederung umfasst",
+        "Arbeitsschutz umfasst ausschließlich die finanzielle Absicherung von Beschäftigten bei bereits eingetretenen Arbeitsunfällen, etwa über die gesetzliche Unfallversicherung",
+        "Gesundheitsschutz und Arbeitssicherheit sind exakte Synonyme ohne inhaltlichen Unterschied und werden in der Vorlesung austauschbar für denselben Sachverhalt verwendet"
       ], correct: 0, explain: "Arbeitsschutz gliedert sich (in Anlehnung an Schmauder & Spanner-Ulmer, 2014) in zwei Säulen: Gesundheitsschutz (menschengerechte Arbeitsgestaltung, Unfallprävention) und Arbeitssicherheit (Sicherheitstechnik, Betriebssicherheit). Gesundheitsschutz-Maßnahmen lassen sich zudem nach Verhältnisprävention (Arbeitsbedingungen) und Verhaltensprävention (individuelles Verhalten) unterscheiden." },
     { le: 'le06', q: "Wie unterscheiden sich Umweltsicherheit, Arbeitssicherheit und Betriebssicherheit voneinander?", opts: [
         "Umweltsicherheit: Einschränkung von Schädigungen im Umfeld technischer Systeme; Arbeitssicherheit: Beherrschung/Minimierung von Gefahren des Menschen bei der Arbeit (auch außerhalb, z.B. Sport/Freizeit); Betriebssicherheit: Einschränkung von Gefährdungen beim Betrieb technischer Systeme, sodass diese selbst und ihre unmittelbare Umgebung keinen Schaden nehmen",
-        "Die drei Begriffe sind vollständig synonym",
-        "Betriebssicherheit betrifft ausschließlich die Sicherheit von Bürogebäuden",
-        "Arbeitssicherheit bezieht sich nur auf Maschinen, nie auf Menschen"
+        "Die drei Begriffe sind laut Pahl (1985) vollständig synonym und werden in der Fachliteratur beliebig austauschbar für denselben Sachverhalt der technischen Sicherheit verwendet",
+        "Betriebssicherheit betrifft nach dieser Systematik ausschließlich die bauliche und brandschutztechnische Sicherheit von Bürogebäuden, nicht die Sicherheit technischer Systeme im Betrieb",
+        "Arbeitssicherheit bezieht sich in dieser Systematik ausschließlich auf die Zuverlässigkeit von Maschinen und Anlagen, nie auf Gefahren, denen der Mensch selbst ausgesetzt ist"
       ], correct: 0, explain: "Nach Pahl (1985/2005): Umweltsicherheit (Schädigungen im Umfeld technischer Systeme), Arbeitssicherheit (Gefahren des Menschen bei der Arbeit bzw. Nutzung technischer Systeme, auch privat), Betriebssicherheit (Gefährdungen beim Betrieb technischer Systeme selbst und ihrer unmittelbaren Umgebung). Alle drei setzen die Zuverlässigkeit (Bauteil-/Funktionszuverlässigkeit) der beteiligten technischen Systeme voraus – ohne sie ist keine der drei Sicherheitsarten erreichbar." },
     { le: 'le06', q: "Woraus setzt sich die Zuverlässigkeit eines technischen Systems (nach Pahl 1985) zusammen?", opts: [
         "Korrektheit (Systemausgaben erfüllen die Anforderungen des gewünschten Gebrauchs), Robustheit (Unempfindlichkeit gegen Störungen) und Ausfallsicherheit (sinnvolles/sicheres Verhalten auch bei nicht vorgesehener Verwendung)",
-        "Ausschließlich aus dem Anschaffungspreis des Systems",
-        "Nur aus der Häufigkeit von Wartungsintervallen",
-        "Zuverlässigkeit lässt sich nicht in Teilkomponenten zerlegen"
+        "Ausschließlich aus dem Anschaffungspreis des Systems, da teurere Systeme laut Pahl grundsätzlich als zuverlässiger gelten als günstigere Systeme mit identischer Funktion",
+        "Ausschließlich aus der Häufigkeit der vorgeschriebenen Wartungsintervalle, unabhängig von der tatsächlichen Funktionserfüllung oder Störanfälligkeit des Systems",
+        "Zuverlässigkeit lässt sich laut Pahl grundsätzlich nicht in einzelne Teilkomponenten zerlegen, sondern ist ausschließlich als nicht weiter analysierbare Gesamtgröße zu betrachten"
       ], correct: 0, explain: "Zuverlässigkeit = Umfang, in dem ein System die beabsichtigte Funktion mit erforderlicher Geschwindigkeit/Genauigkeit ausführt. Sie umfasst Korrektheit (funktionale Korrektheit: Ausgaben erfüllen Anforderungen), Robustheit (Unempfindlichkeit gegen Störungen) und Ausfallsicherheit (sicheres Verhalten bei nicht vorgesehener Verwendung)." },
     { le: 'le06', q: "Welche Funktionsprinzipien zur Gewährleistung der Betriebssicherheit werden unterschieden? (mehrere richtig)", multi: true, opts: [
         "Sicheres Bestehen (safe-life): Auslegung, sodass alle wahrscheinlichen/möglichen Vorkommnisse ohne Versagen überstanden werden (z.B. mechanisches Lenkgestänge)",
@@ -1013,53 +1013,53 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Drei Funktionsprinzipien der Betriebssicherheit: sicheres Bestehen/safe-life (alle möglichen Vorkommnisse ohne Versagen überstehen), beschränktes Versagen/fail-safe (Störung erlaubt, aber sicherer Endzustand, z.B. über Sollbruchstellen), Redundanz (funktionell: gleiche Systeme doppelt; diversitär: unterschiedliche Wirkprinzipien zur Vermeidung systematischer Fehler)." },
     { le: 'le06', q: "Was besagt der Dunning-Kruger-Effekt, und welche Relevanz hat er für die Risikoidentifikation im Arbeitsschutz?", opts: [
         "Menschen überschätzen systematisch ihr eigenes Wissen/ihre Kompetenz in nahezu allen Bereichen und sind sich dabei sehr sicher – inkompetente Personen können ihre eigene Inkompetenz nicht erkennen. Im Arbeitsschutz kann das dazu führen, dass Risiken unterschätzt oder die Wirksamkeit von Maßnahmen überschätzt wird",
-        "Der Effekt beschreibt, dass Experten grundsätzlich ihr Wissen unterschätzen",
-        "Der Dunning-Kruger-Effekt hat keinerlei Bezug zur Risikobewertung",
-        "Der Effekt tritt ausschließlich bei technischen Systemen auf, nie bei Menschen"
+        "Der Effekt beschreibt umgekehrt, dass hochkompetente Expertinnen und Experten ihr tatsächliches Wissen und Können systematisch unterschätzen und daher übervorsichtig agieren, was im Arbeitsschutz zu unnötig strengen Maßnahmen führt",
+        "Der Dunning-Kruger-Effekt ist ein rein statistisches Phänomen aus der Qualitätssicherung technischer Systeme und hat laut Vorlesung keinerlei Bezug zur menschlichen Risikowahrnehmung oder -bewertung",
+        "Der Effekt tritt ausschließlich bei automatisierten technischen Systemen und deren Sensorik auf, nicht bei der subjektiven Selbsteinschätzung von Menschen im Arbeitsschutzkontext"
       ], correct: 0, explain: "Dunning-Kruger-Effekt (David Dunning, „We are all confident idiots“, 2014): Menschen überschätzen ihr Wissen in fast allen Bereichen und sind sich dabei sehr sicher, da inkompetente Personen ihre eigene Inkompetenz nicht erkennen können. Für den Arbeitsschutz relevant, weil dies zur Unterschätzung von Risiken oder Überschätzung der Wirksamkeit von Schutzmaßnahmen bei der Risikoidentifikation führen kann." },
     { le: 'le06', q: "Was ist das Ziel des AI Act der EU, und welchen Bezug hat er zum Arbeitsschutz?", opts: [
         "Der AI Act legt rechtliche Standards für Entwicklung und Nutzung von KI-Technologien fest (risikobasierter Ansatz, Hersteller müssen Risiken identifizieren/bewerten). Wird ein KI-System als neues Betriebsmittel in einem Unternehmen eingeführt, hat dies direkte Auswirkungen auf den Arbeitsschutz und erfordert eine neue Gefährdungsbeurteilung nach § 5 ArbSchG",
-        "Der AI Act regelt ausschließlich den Datenschutz, hat aber keinen Bezug zum Arbeitsschutz",
-        "Der AI Act verbietet grundsätzlich den Einsatz von KI-Systemen in Unternehmen",
-        "Der AI Act gilt nur für Privatpersonen, nicht für Unternehmen"
+        "Der AI Act regelt nach seiner Zielsetzung ausschließlich den Datenschutz personenbezogener Daten bei der Verarbeitung durch KI-Systeme, ohne jeden inhaltlichen Bezug zum betrieblichen Arbeitsschutz oder zur Gefährdungsbeurteilung",
+        "Der AI Act verbietet nach seiner Zielsetzung grundsätzlich jeden unternehmerischen Einsatz von KI-Systemen innerhalb der Europäischen Union, unabhängig vom jeweiligen Risikoniveau der Anwendung",
+        "Der AI Act gilt seiner Zielsetzung nach ausschließlich für Privatpersonen im nicht-gewerblichen Kontext, nicht jedoch für Unternehmen, die KI-Systeme betrieblich als Arbeitsmittel einsetzen"
       ], correct: 0, explain: "Der AI Act zielt auf rechtliche Standards für KI-Entwicklung/-Nutzung im Einklang mit ethischen Grundsätzen und Menschenrechten (risikobasierter Ansatz, Risikoidentifikation/-bewertung durch Hersteller). Wird ein KI-System als neues Betriebsmittel eingeführt, verlangt dies auch bei anwendenden Unternehmen eine neue Risikobeurteilung nach § 5 ArbSchG – die Verbreitung von KI erhöht damit die Anforderungen an Risikoanalyse und Gefährdungsbeurteilung." }
   ] },
   C: { label: 'Teil C · LE07–10', sub: 'Arbeitsökologie, Produktions- & Produktergonomie', questions: [
     { le: 'le07', q: "Welche Erkrankungen zählen zu den am häufigsten anerkannten Berufskrankheiten?", opts: [
         "Lärmschwerhörigkeit (2301), Hautkrebs durch UV-Strahlung (5103), Asbestose (4103), Infektionskrankheiten (3101)",
-        "Ausschließlich Rückenerkrankungen",
-        "Ausschließlich psychische Erkrankungen wie Burnout",
-        "Karies und andere Zahnerkrankungen"
+        "Vor allem chronische Rückenerkrankungen durch Fehlhaltung, da diese laut Statistik der häufigste Grund für Berufsunfähigkeit sind und alle anderen Krankheitsbilder nur eine untergeordnete Rolle spielen",
+        "In erster Linie psychische Erkrankungen wie Burnout und Depression, da diese seit einigen Jahren die mit Abstand am häufigsten anerkannte Kategorie von Berufskrankheiten darstellen",
+        "Vorwiegend Karies und andere Zahnerkrankungen, die durch den Kontakt mit zuckerhaltigen Kantinenspeisen am Arbeitsplatz begünstigt werden"
       ], correct: 0, explain: "Zu den am häufigsten anerkannten Berufskrankheiten zählen: Lärmschwerhörigkeit (BK-Nr. 2301), Hautkrebs durch UV-Strahlung (5103), Asbestose (4103) und Infektionskrankheiten (3101)." },
     { le: 'le07', q: "Wie wird Lärm definiert (im Unterschied zu Schall allgemein)?", opts: [
         "Lärm = unerwünschtes, belästigendes oder gehörschädigendes Schallereignis",
-        "Lärm ist ein Synonym für Schall – jeder Schall ist automatisch Lärm",
-        "Lärm bezeichnet nur Schall oberhalb von 140 dB",
-        "Lärm ist ausschließlich industriell erzeugter Schall"
+        "Lärm ist letztlich nur ein anderes Wort für Schall im Allgemeinen, sodass jede Schallwelle unabhängig von Lautstärke oder Kontext automatisch als Lärm gilt",
+        "Lärm bezeichnet ausschließlich extrem laute Schallereignisse oberhalb von etwa 140 dB, wie sie z.B. bei Explosionen auftreten, während leisere Geräusche nie als Lärm gelten",
+        "Lärm ist ausschließlich industriell erzeugter Schall aus Maschinen und Anlagen, während Verkehrslärm oder Freizeitlärm per Definition nicht dazu zählen"
       ], correct: 0, explain: "Schall stellt die Ausbreitung kleinster Druck- und Dichtestörungen in einem elastischen Medium (Gas, Flüssigkeit, Festkörper) dar. Lärm ist definiert als unerwünschtes, belästigendes oder gehörschädigendes Schallereignis – eine subjektive/bewertende Zuschreibung zu Schall." },
     { le: 'le07', q: "Wie wird Schall klassifiziert?", opts: [
         "In Luftschall (durch die Luft weitergeleitete Schallwellen, Druckschwankungen) und Körperschall (Schwingungen in festen Körpern, in Luft/Flüssigkeiten nur Longitudinalwellen, in Festkörpern auch Transversalwellen)",
-        "Nur in hörbaren und unhörbaren Schall ohne weitere Unterteilung",
-        "In natürlichen und künstlichen Schall",
-        "Ausschließlich nach der Lautstärke in Dezibel-Klassen"
+        "Schall wird lediglich in hörbaren und unhörbaren Schall unterteilt, wobei diese grobe Zweiteilung als einzige relevante Klassifikation in der Arbeitswissenschaft gilt",
+        "Schall wird primär danach klassifiziert, ob er natürlichen Ursprungs (z.B. Wind, Wasser) oder künstlich durch Maschinen erzeugt ist, unabhängig vom Ausbreitungsmedium",
+        "Schall wird ausschließlich anhand fester Dezibel-Klassen eingeteilt, wobei die Art des Ausbreitungsmediums (Luft oder Festkörper) für die Klassifikation keine Rolle spielt"
       ], correct: 0, explain: "Schall klassifiziert sich in Luftschall (Druck- und Dichteschwankungen, die durch die Luft weitergeleitet werden, cLuft ≈ 343 m/s bei 20°C) und Körperschall (Schwingungen in festen Körpern, cStahl ≈ 5.920 m/s). Physikalisch ist Schall eine Welle: in Gasen/Flüssigkeiten immer eine Longitudinalwelle, in Festkörpern zusätzlich Transversalwellen möglich." },
     { le: 'le07', q: "Welche physikalischen Größen werden zur Bewertung von Schall verwendet?", opts: [
         "Effektiver Schalldruck p_eff [Pa], Schallleistung P [W] und Schallintensität I [W/m²]",
-        "Ausschließlich die Frequenz in Hertz",
-        "Ausschließlich die Raumtemperatur",
-        "Ausschließlich die zurückgelegte Distanz in Metern"
+        "Ausschließlich die Frequenz in Hertz, da alle weiteren physikalischen Größen wie Schalldruck oder Schallleistung für die Bewertung von Schall keine Rolle spielen",
+        "Ausschließlich die Raumtemperatur am Messort, da diese laut Norm den entscheidenden Einfluss auf die Schallausbreitung und -bewertung hat",
+        "Ausschließlich die vom Schall zurückgelegte Distanz in Metern, unabhängig von Schalldruck, Schallleistung oder Frequenz"
       ], correct: 0, explain: "Physikalische Bewertungsgrößen: effektiver Schalldruck p_eff(T) = √[(1/T)∫p²(t)dt] [Pa], Schallleistung P(t) ~ p²_eff(t) [W], Schallintensität I(t) = P(t)/A [W/m²]." },
     { le: 'le07', q: "Was zeigen Kurven gleicher Lautstärke (Isophone)?", opts: [
         "Die Empfindungsstärke hängt sowohl vom Schalldruckpegel als auch von der Frequenz ab – bei gleicher gefühlter Lautstärke sind bei tiefen/hohen Frequenzen höhere Schalldruckpegel nötig als im mittleren Frequenzbereich",
-        "Die Empfindungsstärke hängt ausschließlich vom Schalldruckpegel ab, die Frequenz spielt keine Rolle",
-        "Bei allen Frequenzen ist für dieselbe gefühlte Lautstärke exakt derselbe Schalldruckpegel nötig",
-        "Isophone beschreiben ausschließlich die maximale Schmerzgrenze des Gehörs"
+        "Die subjektiv empfundene Lautstärke hängt ausschließlich vom physikalischen Schalldruckpegel ab; die Frequenz des Schallereignisses hat laut Isophonen-Kurven keinerlei Einfluss auf die Wahrnehmung",
+        "Isophone zeigen, dass bei allen Frequenzen exakt derselbe Schalldruckpegel nötig ist, um dieselbe gefühlte Lautstärke zu erzeugen, da das menschliche Gehör frequenzunabhängig gleich empfindlich ist",
+        "Isophone beschreiben ausschließlich die maximale Schmerzgrenze des menschlichen Gehörs bei sehr hohen Schalldrücken und treffen keine Aussage über die Wahrnehmung leiserer Töne"
       ], correct: 0, explain: "Isophone (Kurven gleicher Lautstärke) zeigen: die menschliche Empfindungsstärke hängt sowohl vom Schalldruckpegel als auch von der Frequenz ab. Bei gleicher subjektiv empfundener Lautstärke sind bei tiefen und sehr hohen Frequenzen deutlich höhere Schalldruckpegel nötig als im mittleren, für das Gehör empfindlichsten Frequenzbereich (ca. 2–5 kHz)." },
     { le: 'le07', q: "Welche Arten von Gehörschädigung werden durch Lärm verursacht?", opts: [
         "Akute Lärmschäden (Knalltrauma, reparabel oder irreparabel bei sehr hohen Pegeln) und chronische Lärmschäden (TTS – Temporary Threshold Shift, reversibel, klingt nach 12–14h Ruhe ab; PTS – Permanent Threshold Shift, bleibende Hörschwellenverschiebung)",
-        "Nur eine einzige Art von Gehörschädigung existiert",
-        "Ausschließlich Schäden am äußeren Ohr, nie am Innenohr",
-        "Gehörschädigungen durch Lärm sind grundsätzlich immer vollständig reversibel"
+        "Es existiert nur eine einzige, einheitliche Art von Gehörschädigung durch Lärm, die unabhängig von Pegelhöhe und Einwirkdauer stets denselben Verlauf nimmt",
+        "Lärm verursacht ausschließlich Schäden am äußeren Ohr wie Verletzungen der Ohrmuschel, während das Innenohr und die Haarzellen durch Schalldruck grundsätzlich nicht beeinträchtigt werden können",
+        "Gehörschädigungen durch Lärm sind grundsätzlich immer vollständig reversibel und bilden sich unabhängig von Dauer und Intensität der Einwirkung nach kurzer Zeit vollständig zurück"
       ], correct: 0, explain: "Akute Lärmschäden: reparabel (Knalltrauma bei explosionsartigen Druckanstiegen 140–200 dB) oder irreparabel (schwere Trommelfell-/Innenohrschäden). Chronische Lärmschäden: TTS (Temporary Threshold Shift) – zeitlich begrenzte Hörschwellenverschiebung durch mangelnde Sauerstoffversorgung der Haarzellen, bildet sich nach 12–14h Ruhe zurück; PTS (Permanent Threshold Shift) – bleibende Hörschwellenverschiebung, Degeneration der Haarzellen." },
     { le: 'le07', q: "Welche Faktoren beeinflussen die Wirkung von Schadstoffen im Körper? (mehrere richtig)", multi: true, opts: [
         "Bei Stäuben: Gewebeveränderungen, Krebs (kanzerogener Staub), Giftwirkung auf Körperorgane",
@@ -1069,87 +1069,87 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Stäube: Gewebeveränderungen (z.B. fibrogener Staub), Krebs (kanzerogener Staub, z.B. Arsen/Nickel), Giftwirkung auf Organe (toxischer Staub, z.B. Blei/Zink/Cadmium), Bildung gewebezerstörender Basen/Säuren, Beeinträchtigung der Lungenfunktion. Gase: Erstickung, Lungenschäden durch Säurebildung, Vergiftung, Kanzerogenität. Dämpfe: Rausch/Konzentrationsschwäche, Leber-/Nierenschäden, Blutbildung/Krebs/Haut, Schäden am ZNS." },
     { le: 'le07', q: "Welche technischen, organisatorischen und persönlichen Schutzmaßnahmen im Bereich von Schadstoffen gibt es, in Rangfolge?", opts: [
         "1. Eliminierung schädlicher Stoffe (T), 2. Abschrankung/Abschirmung (T), 3. Reduktion der Aufenthaltszeit in der Gefahrstoffumgebung (O), 4. Ausgabe von Schutzausrüstung (P), 5. Information über die Gefahren (P)",
-        "Nur eine einzige universelle Schutzmaßnahme: das Tragen einer Atemschutzmaske",
-        "Information über Gefahren hat immer die höchste Priorität vor technischen Maßnahmen",
-        "Reduktion der Aufenthaltszeit ist die einzig wirksame Maßnahme"
+        "Es existiert nur eine einzige, universell wirksame Schutzmaßnahme gegen Schadstoffe: das durchgängige Tragen einer Atemschutzmaske, unabhängig von Stoffart und Konzentration",
+        "Die Information der Beschäftigten über die Gefahren von Schadstoffen hat gemäß der Rangfolge stets höchste Priorität und ist noch vor technischen Maßnahmen wie Eliminierung oder Abschirmung umzusetzen",
+        "Die Reduktion der Aufenthaltszeit im Gefahrstoffbereich ist die einzig wirksame Maßnahme, während technische Eliminierung oder Abschirmung praktisch keine Wirkung zeigen"
       ], correct: 0, explain: "Rangfolge analog zum allgemeinen TOP-Modell: 1. Eliminierung von schädlichen Stoffen (T), 2. Abschrankung/Abschirmung (T), 3. Reduktion der Zeit, die Mitarbeitende in der Umgebung von Gefahrstoffen verbringen (O), 4. Ausgabe von Handschuhen, Mund-Nase-Schutzmasken (P), 5. Information über die Gefahren von Schadstoffen (P)." },
     { le: 'le08', q: "Wie ist Ergonomie definiert (nach IEA)?", opts: [
         "Die wissenschaftliche Disziplin, die sich mit dem Verständnis der Wechselwirkungen zwischen Menschen und anderen Elementen eines Systems beschäftigt, und der Beruf, der Theorie, Prinzipien, Daten und Methoden anwendet, um das menschliche Wohlbefinden und die allgemeine Systemleistung zu optimieren",
-        "Ergonomie ist ausschließlich die Lehre von der optimalen Bürostuhlhöhe",
-        "Ergonomie beschäftigt sich nur mit der Reduktion von Lärm am Arbeitsplatz",
-        "Ergonomie ist ein Synonym für Arbeitssicherheit"
+        "Ergonomie ist ausschließlich die Lehre von der optimalen Bürostuhl- und Tischhöhe und befasst sich nicht mit anderen Aspekten der Mensch-System-Interaktion",
+        "Ergonomie beschäftigt sich laut IEA-Definition nur mit der Reduktion von Lärm am Arbeitsplatz und klammert kognitive oder organisationale Aspekte vollständig aus",
+        "Ergonomie ist inhaltlich ein reines Synonym für Arbeitssicherheit und unterscheidet sich in Zielsetzung und Methodik nicht von klassischem Arbeitsschutz"
       ], correct: 0, explain: "Ergonomie ist die wissenschaftliche Disziplin, die sich mit dem Verständnis der Wechselwirkungen zwischen Menschen und anderen Elementen eines Systems beschäftigt, sowie der Beruf, der Theorie, Prinzipien, Daten und Methoden anwendet, um das menschliche Wohlbefinden und die allgemeine Systemleistung zu optimieren." },
     { le: 'le08', q: "Welche drei Arten anthropometrischer Werte werden unterschieden?", opts: [
         "Statische Anthropometrie (Körpermaße, z.B. Armlänge), dynamische Anthropometrie (Bewegungsmaße, z.B. Armreichweite) und Biomechanik (Kräfte/Geschwindigkeiten, z.B. Maximalkraft)",
-        "Nur eine einzige Art: die statische Körperhöhe",
-        "Nationale und internationale Anthropometrie",
-        "Männliche und weibliche Anthropometrie ohne weitere Unterteilung"
+        "Es wird nur eine einzige Art anthropometrischer Werte unterschieden: die statische Körperhöhe im Stehen, alle anderen Maße gelten als nachrangig",
+        "Anthropometrische Werte werden primär in nationale und internationale Normwerte unterteilt, abhängig vom jeweiligen Herkunftsland der Messreihe",
+        "Anthropometrische Werte werden ausschließlich nach männlicher und weiblicher Anthropometrie unterschieden, ohne dass es weitere Kategorien wie statische, dynamische oder biomechanische Maße gäbe"
       ], correct: 0, explain: "Drei Arten anthropometrischer Werte: statische Anthropometrie (Körpermaße im Stillstand, z.B. Armlänge, Beinlänge), dynamische Anthropometrie (Bewegungsmaße, z.B. Armreichweite, Schrittweite) und Biomechanik (Kräfte/Geschwindigkeiten, z.B. Maximalkraft, Bewegungsgeschwindigkeit)." },
     { le: 'le08', q: "Warum sollten Zwangshaltungen bei der Arbeit vermieden werden?", opts: [
         "Mögliche Folgen sind rasche Ermüdung, Schmerzen, frühzeitiger Verschleiß, Entzündung von Sehnen/Muskeln und Behinderung der Durchblutung von Extremitäten",
-        "Zwangshaltungen haben keinerlei gesundheitliche Auswirkungen",
-        "Zwangshaltungen erhöhen ausschließlich die Produktivität ohne Nachteile",
-        "Zwangshaltungen sind gesetzlich vorgeschrieben und daher unvermeidbar"
+        "Zwangshaltungen haben keinerlei nachweisbare gesundheitliche Auswirkungen, da der menschliche Körper sich laut Vorlesung an jede Haltung dauerhaft anpassen kann",
+        "Zwangshaltungen erhöhen ausschließlich die Produktivität, ohne dass dabei Nachteile wie Ermüdung, Verschleiß oder Durchblutungsstörungen entstehen",
+        "Zwangshaltungen sind in der Regel gesetzlich vorgeschrieben und müssen daher unabhängig von den gesundheitlichen Folgen beibehalten werden"
       ], correct: 0, explain: "Mögliche gesundheitliche Auswirkungen von Zwangshaltungen: rasche Ermüdung, Schmerzen, frühzeitiger Verschleiß, Entzündung von Sehnen und Muskeln, Behinderung der Durchblutung von Extremitäten." },
     { le: 'le08', q: "Was zeichnet eine neutrale Körperhaltung aus und warum ist Haltungswechsel wichtig?", opts: [
         "Neutrale Haltung = möglichst gelenkschonend mit geringer Muskelaktivität; regelmäßiger Haltungswechsel verhindert einseitige Dauerbelastung und fördert die Durchblutung",
-        "Neutrale Haltung bedeutet, immer exakt dieselbe Position ohne jeden Wechsel einzunehmen",
-        "Haltungswechsel ist schädlich und sollte möglichst vermieden werden",
-        "Neutrale Haltung ist irrelevant, solange die Aufgabe erledigt wird"
+        "Neutrale Haltung bedeutet, während der gesamten Arbeitszeit exakt dieselbe Körperposition beizubehalten, da jeder Positionswechsel die Gelenke zusätzlich belastet",
+        "Regelmäßiger Haltungswechsel ist grundsätzlich schädlich für Muskeln und Gelenke und sollte deshalb so weit wie möglich vermieden werden",
+        "Die Wahl einer neutralen Körperhaltung ist für die Gesundheit irrelevant, solange die Arbeitsaufgabe termingerecht erledigt wird"
       ], correct: 0, explain: "Neutrale Haltung ist eine möglichst gelenkschonende Körperhaltung mit geringer Muskelaktivität. Regelmäßiger Haltungswechsel ist wichtig, weil er einseitige Dauerbelastung von Muskeln/Gelenken verhindert und die Durchblutung fördert – anders als eine dauerhaft gehaltene (auch 'neutrale') Position." },
     { le: 'le08', q: "Welche energetischen Arbeitsformen werden unterschieden?", opts: [
         "Mechanisch/motorisch (Muskelkraft/-bewegung) sowie reaktiv (Reflex), kombinativ (mehrere Anforderungen gleichzeitig) und kreativ (Problemlösung)",
-        "Nur eine einzige Arbeitsform: die rein körperliche Arbeit",
-        "Ausschließlich geistige und ausschließlich körperliche Arbeit als einzige zwei Formen",
-        "Automatisierte und manuelle Arbeit als einzige Unterscheidung"
+        "Es wird nur eine einzige energetische Arbeitsform unterschieden: die rein körperliche, muskuläre Arbeit ohne weitere Differenzierung",
+        "Energetische Arbeitsformen werden ausschließlich in geistige und körperliche Arbeit unterteilt, eine weitere Unterscheidung nach reaktivem, kombinativem oder kreativem Charakter existiert nicht",
+        "Die einzige relevante Unterscheidung energetischer Arbeitsformen ist die zwischen automatisierter (maschineller) und manueller (von Hand ausgeführter) Arbeit"
       ], correct: 0, explain: "Energetische Arbeitsformen: mechanisch/motorisch (Muskelkraft/-bewegung), reaktiv (Reflexverhalten), kombinativ (mehrere Anforderungen gleichzeitig zu bewältigen) und kreativ (Problemlösung)." },
     { le: 'le08', q: "Wie unterscheiden sich statische und dynamische Muskelarbeit hinsichtlich Blutbedarf und Durchblutung?", opts: [
         "Dynamische Arbeit: hoher Blutbedarf UND hohe Durchblutung (im Wechsel). Statische Arbeit: hoher Blutbedarf, aber geringe/behinderte Durchblutung (Muskel bleibt angespannt, komprimiert Gefäße). Ruhe: geringer Blutbedarf und geringe Durchblutung",
-        "Statische Arbeit hat immer die höchste Durchblutung von allen Zuständen",
-        "Es gibt keinen Unterschied zwischen statischer und dynamischer Muskelarbeit bzgl. Durchblutung",
-        "Dynamische Arbeit hat geringeren Blutbedarf als Ruhe"
+        "Statische Muskelarbeit weist von allen Zuständen (Ruhe, dynamische Arbeit, statische Arbeit) grundsätzlich die höchste Durchblutung auf, da der angespannte Muskel den Blutfluss aktiv verstärkt",
+        "Zwischen statischer und dynamischer Muskelarbeit besteht hinsichtlich Blutbedarf und Durchblutung kein relevanter Unterschied, beide Arbeitsformen verhalten sich physiologisch identisch",
+        "Dynamische Muskelarbeit hat einen geringeren Blutbedarf als vollständige Ruhe, weshalb sie als besonders erholsam für das Herz-Kreislauf-System gilt"
       ], correct: 0, explain: "Bei dynamischer Arbeit wechseln sich Anspannung und Entspannung ab, wodurch trotz hohem Blutbedarf auch eine hohe Durchblutung möglich ist (Muskelpumpe). Bei statischer Arbeit bleibt der Muskel dauerhaft angespannt: hoher Blutbedarf bei gleichzeitig geringer/behinderter Durchblutung, da die Gefäße komprimiert werden – das begünstigt schnellere Ermüdung." },
     { le: 'le08', q: "Wie hängen Muskelarbeit und Muskelermüdung zusammen?", opts: [
         "Muskelarbeit ohne ausreichende Erholung führt zu Ermüdung (reversible Leistungsminderung) – bei Dauerüberlastung zu chronischer Erschöpfung/Schädigung",
-        "Muskelermüdung tritt ausschließlich bei völliger Bewegungslosigkeit auf",
-        "Muskelarbeit führt niemals zu Ermüdung, solange die Person motiviert ist",
-        "Ermüdung ist immer irreversibel, unabhängig von der Erholungszeit"
+        "Muskelermüdung tritt ausschließlich bei völliger Bewegungslosigkeit und Inaktivität auf, aktive Muskelarbeit selbst kann laut Vorlesung keine Ermüdung verursachen",
+        "Muskelarbeit führt niemals zu Ermüdung, solange die ausführende Person ausreichend motiviert und konzentriert ist, unabhängig von Belastungsdauer und Erholungszeit",
+        "Muskelermüdung ist grundsätzlich immer irreversibel und bleibt bestehen, unabhängig davon, wie lange die anschließende Erholungsphase dauert"
       ], correct: 0, explain: "Muskelarbeit ohne ausreichende Erholung führt zu Ermüdung – einer zunächst reversiblen Leistungsminderung. Bei anhaltender Dauerüberlastung ohne ausreichende Erholungsphasen kann sich daraus eine chronische Erschöpfung bzw. dauerhafte Schädigung entwickeln." },
     { le: 'le08', q: "Welche Gestaltungsgrundsätze gelten für die Lastenhandhabung?", opts: [
         "Lasten möglichst körpernah halten, Hebelarme minimieren, Hilfsmittel nutzen, Heben aus der Hocke statt mit gebeugtem Rücken, Last- und Bewegungshäufigkeit begrenzen",
-        "Lasten sollten immer möglichst weit vom Körper entfernt gehalten werden",
-        "Der Rücken sollte beim Heben stets maximal gebeugt werden",
-        "Hilfsmittel sollten grundsätzlich vermieden werden, um Kraft zu trainieren"
+        "Lasten sollten beim Heben und Tragen möglichst weit vom Körper entfernt gehalten werden, da dies laut Gestaltungsgrundsätzen die Belastung auf die Wirbelsäule reduziert",
+        "Beim Heben von Lasten sollte der Rücken stets maximal gebeugt werden, um die Beinmuskulatur zu entlasten und die Hebekraft zu erhöhen",
+        "Hilfsmittel zur Lastenhandhabung sollten grundsätzlich vermieden werden, damit die Beschäftigten ihre Muskelkraft durch regelmäßiges Heben trainieren"
       ], correct: 0, explain: "Gestaltungsgrundsätze der Lastenhandhabung: Lasten möglichst körpernah halten (reduziert Hebelwirkung auf die Wirbelsäule), Hebelarme minimieren, geeignete Hilfsmittel nutzen, Heben aus der Hocke (mit geradem Rücken) statt mit gebeugtem Rücken, sowie Last- und Bewegungshäufigkeit begrenzen." },
     { le: 'le08', q: "Wie sind Pausen im Arbeitsablauf zu gestalten, um eine optimale Erholungswirkung zu erzielen?", opts: [
         "Statt seltener, langer Pausen sind kurzzyklische Arbeits- und Erholungszeiten zu bevorzugen",
-        "Möglichst wenige, dafür sehr lange Pausen sind immer optimal",
-        "Pausen sollten komplett vermieden werden, um die Produktivität zu maximieren",
-        "Die Pausengestaltung hat keinen Einfluss auf die Erholungswirkung"
+        "Möglichst wenige, dafür besonders lange Einzelpausen sind für die Erholungswirkung grundsätzlich optimaler als mehrere kurze Unterbrechungen über den Arbeitstag verteilt",
+        "Pausen sollten im Arbeitsablauf möglichst vollständig vermieden werden, um die Produktivität über die gesamte Schicht hinweg zu maximieren",
+        "Die konkrete Gestaltung der Pausen (Häufigkeit, Länge, Verteilung) hat keinerlei messbaren Einfluss auf die tatsächliche Erholungswirkung für den Körper"
       ], correct: 0, explain: "Gestaltungsempfehlung: statt seltener, langer Pausen sind kurzzyklische Arbeits- und Erholungszeiten für eine optimale Erholungswirkung zu bevorzugen." },
     { le: 'le08', q: "Warum ist die Wirbelsäule bei körperlicher Arbeit besonders gefährdet?", opts: [
         "Weil (1) das mögliche Krafterzeugungsvermögen der Skelettmuskulatur die Schädigungsgrenze der Wirbelsäule in der Regel übersteigt und (2) die Belastung der Wirbelkörper und Bandscheiben nicht direkt wahrnehmbar ist",
-        "Weil die Wirbelsäule grundsätzlich das schwächste Organ des menschlichen Körpers ist",
-        "Weil Wirbelsäulenschäden immer sofort und stark schmerzhaft spürbar sind",
-        "Weil die Wirbelsäule nur bei sitzenden Tätigkeiten belastet wird"
+        "Weil die Wirbelsäule grundsätzlich das schwächste Organ des gesamten menschlichen Körpers ist und daher bei praktisch jeder Belastungsart als Erstes Schaden nimmt",
+        "Weil Schäden an der Wirbelsäule stets sofort und stark schmerzhaft spürbar sind, sodass Betroffene frühzeitig gewarnt werden und rechtzeitig gegensteuern können",
+        "Weil die Wirbelsäule ausschließlich bei sitzenden Tätigkeiten im Büro belastet wird, während körperliche Arbeit im Stehen oder Gehen sie praktisch nicht beansprucht"
       ], correct: 0, explain: "Zwei Gründe: 1) Die mögliche Krafterzeugung der Skelettmuskulatur übersteigt in der Regel die Schädigungsgrenze der Wirbelsäule. 2) Die Belastung der Wirbelkörper und Bandscheiben ist nicht direkt wahrnehmbar – Überbelastungen werden erst bei Schädigung, i.d.R. nach längerer Belastungszeit, deutlich (starke Schmerzen, ohne dass vorher medizinische Maßnahmen zur Schädigungsminderung ergriffen wurden)." },
     { le: 'le08', q: "Wie ist die Leitmerkmalmethode aufgebaut und welche Risikobereiche gibt es?", opts: [
         "Berechnung: Zeitwichtung × Summe aller anderen Wichtungen (Lastgewicht, Lastaufnahmebedingungen, Körperhaltung, Ausführungsbedingungen, Arbeitsorganisation). Risikobereiche: <20 Punkte kein Handlungsbedarf, 20–49 Maßnahmen bei verminderter Belastungsfähigkeit sinnvoll, 50–99 Maßnahmen sind zu prüfen, >100 Gestaltungsmaßnahmen erforderlich",
-        "Die Leitmerkmalmethode liefert ausschließlich eine Ja/Nein-Aussage ohne Punktesystem",
-        "Risikobereich wird allein durch das Körpergewicht der Arbeitsperson bestimmt",
-        "Es gibt nur zwei Risikobereiche: akzeptabel und nicht akzeptabel"
+        "Die Leitmerkmalmethode liefert ausschließlich eine pauschale Ja/Nein-Aussage darüber, ob eine Tätigkeit zulässig ist, ohne ein differenziertes Punktesystem oder abgestufte Risikobereiche",
+        "Der ermittelte Risikobereich wird bei der Leitmerkmalmethode allein durch das Körpergewicht der ausführenden Arbeitsperson bestimmt, unabhängig von Lastgewicht, Haltung oder Ausführungsbedingungen",
+        "Die Leitmerkmalmethode unterscheidet lediglich zwei Risikobereiche – akzeptabel und nicht akzeptabel – ohne weitere Abstufung nach Punktwerten"
       ], correct: 0, explain: "Leitmerkmalmethode: Berechnung = Zeitwichtung × (Summe aller anderen Wichtungen: wirksames Lastgewicht + Lastaufnahmebedingungen + Summe Körperhaltung + ungünstige Ausführungsbedingungen + Arbeitsorganisation/zeitliche Verteilung). Risikobereiche: Bereich 1 <20 Punkte (kein Handlungsbedarf), Bereich 2 20–49 (Maßnahmen sinnvoll bei verminderter Belastungsfähigkeit), Bereich 3 50–99 (Maßnahmen sind zu prüfen), Bereich 4 >100 (Gestaltungsmaßnahmen erforderlich)." },
     { le: 'le09', q: "In welchem Zusammenhang stehen prospektive und korrektive Ergonomie?", opts: [
         "Prospektive Ergonomie verwirklicht ergonomische Forderungen bereits während des Gestaltungsprozesses eines neuen Produkts; korrektive Ergonomie korrigiert nachträglich ergonomische Probleme an einem bereits vorhandenen Produkt – aufwendig und häufig mit begrenztem Erfolg",
-        "Prospektive und korrektive Ergonomie sind identisch und austauschbar",
-        "Korrektive Ergonomie wird immer VOR der Produktentwicklung angewendet",
-        "Prospektive Ergonomie befasst sich ausschließlich mit der Vergangenheit"
+        "Prospektive und korrektive Ergonomie sind inhaltlich identisch und können in der betrieblichen Praxis beliebig austauschbar verwendet werden",
+        "Korrektive Ergonomie wird grundsätzlich immer VOR Beginn der Produktentwicklung angewendet, um spätere Probleme von vornherein zu vermeiden",
+        "Prospektive Ergonomie befasst sich ausschließlich mit der nachträglichen Analyse bereits vergangener, abgeschlossener Produktentwicklungsprozesse"
       ], correct: 0, explain: "Prospektive Ergonomie: Verwirklichung ergonomischer Forderungen im laufenden Gestaltungsprozess (Planen/Klären der Aufgabe → Konzipieren → Entwerfen → Ausarbeiten, jeweils mit ergonomischer Bewertung). Korrektive Ergonomie: nachträgliche Korrektur ergonomischer Probleme am vorhandenen Produkt – aufwendig und häufig mit begrenztem Erfolg." },
     { le: 'le09', q: "Welche Ebenen ergonomischer Gestaltungskriterien werden auf Produktebene unterschieden (analog zur Bewertungshierarchie aus LE01)?", opts: [
         "Ausführbarkeit → Erträglichkeit → Zumutbarkeit → Persönlichkeitsentfaltung",
-        "Nur zwei Ebenen: sicher und unsicher",
-        "Preis → Design → Funktion → Nachhaltigkeit",
-        "Ausführbarkeit ist die höchste, Persönlichkeitsentfaltung die niedrigste Ebene"
+        "Es werden nur zwei grobe Ebenen unterschieden: sicher und unsicher, eine weitere Abstufung nach Ausführbarkeit, Erträglichkeit oder Zumutbarkeit existiert auf Produktebene nicht",
+        "Die Gestaltungskriterien folgen der Reihenfolge Preis → Design → Funktion → Nachhaltigkeit, orientiert an wirtschaftlichen statt ergonomischen Prioritäten",
+        "Ausführbarkeit bildet die höchste, Persönlichkeitsentfaltung die niedrigste Ebene der Hierarchie – also genau umgekehrt zur eigentlichen Bewertungsreihenfolge"
       ], correct: 0, explain: "Analog zur allgemeinen Bewertungshierarchie aus LE01 gilt auf Produktebene: Ausführbarkeit → Erträglichkeit → Zumutbarkeit → Persönlichkeitsentfaltung, aufeinander aufbauend von unten (Grundvoraussetzung) nach oben (höchster Anspruch)." },
     { le: 'le09', q: "Welche Kategorien anthropometrischer Maße werden unterschieden? (mehrere richtig)", multi: true, opts: [
         "Körpermaße/Längen (z.B. Körperhöhe)",
@@ -1165,21 +1165,21 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Einflussgrößen der Maßverteilung: Geschlecht, Alter, säkulare Akzeleration (das Wachstum der Körpermaße über Generationen hinweg, ca. 1 mm/Jahr bei der Körperhöhe), ethnische Unterschiede, proportionale Unterschiede, Region/Kultur sowie Kleidung (beeinflusst z.B. bekleidete vs. unbekleidete Maße)." },
     { le: 'le09', q: "Was ist ein Perzentil (im anthropometrischen Kontext)?", opts: [
         "Anthropometrische/biomechanische Daten werden in Form von Perzentilen angegeben, d.h. die Bevölkerung wird bezüglich einer bestimmten Körperdimension in 100 Prozent-Kategorien eingeteilt",
-        "Ein Perzentil ist der Mittelwert einer Körpermessreihe",
-        "Ein Perzentil beschreibt ausschließlich das Körpergewicht",
-        "Perzentile werden nur bei Kindern, nie bei Erwachsenen verwendet"
+        "Ein Perzentil ist schlicht der arithmetische Mittelwert einer anthropometrischen Körpermessreihe und beschreibt somit die durchschnittliche Ausprägung eines Merkmals",
+        "Ein Perzentil beschreibt im anthropometrischen Kontext ausschließlich das Körpergewicht einer Person und lässt sich nicht auf andere Körpermaße wie Größe oder Reichweite übertragen",
+        "Perzentile werden im anthropometrischen Kontext ausschließlich bei Kindern zur Wachstumsbeurteilung verwendet und finden bei Erwachsenen keinerlei Anwendung"
       ], correct: 0, explain: "Perzentile: die Bevölkerung wird bezüglich einer bestimmten Körperdimension in 100 Prozent-Kategorien eingeteilt. Das 5. Perzentil bedeutet z.B., dass 5 % der Bevölkerung diesen Wert oder einen kleineren aufweisen." },
     { le: 'le09', q: "Wie sollten Produktmaße nach der klassischen ergonomischen Auslegungsregel je nach Zweck gewählt werden?", opts: [
         "Sicherheitskritische Elemente nach dem 1./99. Perzentil; Außenmaße/Erreichbarkeit nach dem 5. Perzentil Frau (kleinste zu berücksichtigende Person); Innenmaße/Platzbedarf nach dem 95. Perzentil Mann (größte zu berücksichtigende Person)",
-        "Alle Produktmaße werden ausnahmslos nach dem 50. Perzentil (Durchschnittsperson) ausgelegt",
-        "Es wird immer nur das 99. Perzentil Mann für alle Maße verwendet",
-        "Perzentile spielen bei der Produktauslegung keine Rolle"
+        "Alle Produktmaße werden ausnahmslos einheitlich nach dem 50. Perzentil, also der statistischen Durchschnittsperson, ausgelegt, unabhängig davon, ob es sich um sicherheitskritische Elemente, Außen- oder Innenmaße handelt",
+        "Es wird für sämtliche Produktmaße – sicherheitskritische Elemente, Außenmaße und Innenmaße gleichermaßen – stets nur das 99. Perzentil Mann als alleiniger Bezugswert herangezogen",
+        "Perzentile spielen bei der ergonomischen Produktauslegung praktisch keine Rolle, da Produktmaße in der Praxis frei nach gestalterischem Ermessen festgelegt werden"
       ], correct: 0, explain: "Klassische Regel (bestätigt durch Altklausur-Aufgaben): sicherheitskritische Elemente werden nach dem 1./99. Perzentil bestimmt (extremste Fälle). Außenmaße/Erreichbarkeit (z.B. wie weit muss ein Bedienelement höchstens entfernt sein) nach dem 5. Perzentil Frau – der kleinsten zu berücksichtigenden Person. Innenmaße/Platzbedarf (z.B. Kopffreiheit) nach dem 95. Perzentil Mann – der größten zu berücksichtigenden Person." },
     { le: 'le09', q: "Wo liegen die Einsatzbereiche virtueller Menschmodelle und welche Vorteile bieten sie im Produktentstehungsprozess?", opts: [
         "Z.B. bei der Auslegung des Arbeitsplatzes oder eines Fahrersitzes im Auto – so kann vorab, ohne physischen Prototyp, eine Sicht- und Haltungsanalyse durchgeführt werden",
-        "Virtuelle Menschmodelle werden ausschließlich in der Filmindustrie eingesetzt",
-        "Virtuelle Menschmodelle ersetzen vollständig alle späteren realen Nutzertests",
-        "Virtuelle Menschmodelle sind nur für die Beleuchtungsplanung relevant"
+        "Virtuelle Menschmodelle werden ausschließlich in der Filmindustrie zur Animation von Charakteren eingesetzt und finden im industriellen Produktentstehungsprozess keine Anwendung",
+        "Der Einsatz virtueller Menschmodelle macht sämtliche späteren realen Nutzertests mit physischen Prototypen vollständig überflüssig, da die Simulation stets exakte Ergebnisse liefert",
+        "Virtuelle Menschmodelle sind ausschließlich für die Planung der Beleuchtung am Arbeitsplatz relevant und bieten für Sicht- oder Haltungsanalysen keinen Mehrwert"
       ], correct: 0, explain: "Virtuelle Menschmodelle kommen z.B. bei der Auslegung des Arbeitsplatzes oder eines Fahrersitzes im Auto zum Einsatz. Vorteil: bereits vorab, ohne aufwendigen physischen Prototyp, kann eine Sicht- und Haltungsanalyse durchgeführt werden." },
     { le: 'le10', q: "Was sind mögliche Folgen mangelnder Berücksichtigung kognitiver Ergonomie in der Produktentwicklung? (mehrere richtig)", multi: true, opts: [
         "Erhöhte Fehlerwahrscheinlichkeit und Unfallgefahr",
@@ -1189,21 +1189,21 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Mangelnde Berücksichtigung kognitiver Ergonomie kann führen zu: erhöhter Fehlerwahrscheinlichkeit, erhöhter Unfallgefahr, psychischer Fehlbeanspruchung, reduzierter Gebrauchstauglichkeit und reduzierter Nutzerakzeptanz." },
     { le: 'le10', q: "Was unterscheidet Bottom-up- von Top-down-Verarbeitung bei der Informationsaufnahme?", opts: [
         "Bottom-up: Informationsverarbeitung erfolgt nur aufgrund der Analyse der Reizmerkmale selbst (z.B. Helligkeit, Farbe, Ausrichtung). Top-down: kognitive Einflüsse (Vorwissen, bedeutungshaltiger Kontext) beeinflussen die Wahrnehmung",
-        "Bottom-up und Top-down sind Synonyme für denselben Prozess",
-        "Top-down-Verarbeitung findet nur im Rückenmark statt, nicht im Gehirn",
-        "Bottom-up-Verarbeitung hängt ausschließlich vom Vorwissen der Person ab"
+        "Bottom-up- und Top-down-Verarbeitung sind lediglich zwei unterschiedliche Bezeichnungen für ein und denselben kognitiven Prozess der Informationsaufnahme",
+        "Top-down-Verarbeitung findet ausschließlich im Rückenmark statt und ist am eigentlichen Wahrnehmungsprozess im Gehirn nicht beteiligt",
+        "Bottom-up-Verarbeitung hängt ausschließlich vom Vorwissen und den Erwartungen der wahrnehmenden Person ab, unabhängig von den tatsächlichen physikalischen Reizmerkmalen"
       ], correct: 0, explain: "Informationsverarbeitung, die nur aufgrund der Analyse der Reizmerkmale (z.B. Helligkeit, Farbe, Ausrichtung) geschieht, wird als Bottom-up bezeichnet. Kognitive Einflüsse auf die Wahrnehmung (z.B. durch Vorwissen oder bedeutungshaltigen Kontext) werden als Top-down bezeichnet." },
     { le: 'le10', q: "Was besagt das Weber'sche Gesetz?", opts: [
         "k = ΔR/R — die Unterschiedsschwelle ΔR steht in einem konstanten Verhältnis (Weber-Konstante k) zur angebotenen Reizstärke R (dem Standardreiz)",
-        "k = R/ΔR — je größer der Reiz, desto kleiner muss der Unterschied sein, um bemerkt zu werden",
-        "Das Weber'sche Gesetz beschreibt ausschließlich die Farbwahrnehmung",
-        "k = ΔR + R"
+        "k = R/ΔR — das Weber'sche Gesetz besagt, dass die Unterschiedsschwelle mit zunehmender Reizstärke immer kleiner werden muss, damit ein Unterschied überhaupt bemerkt wird",
+        "Das Weber'sche Gesetz beschreibt ausschließlich die menschliche Farbwahrnehmung und lässt sich nicht auf andere Sinnesmodalitäten wie Gewicht oder Lautstärke übertragen",
+        "k = ΔR + R — die Weber-Konstante ergibt sich additiv aus der Unterschiedsschwelle und der Reizstärke des Standardreizes"
       ], correct: 0, explain: "Weber'sches Gesetz: k = ΔR/R. Die Unterschiedsschwelle (just noticeable difference) steht in einem konstanten Verhältnis zum Standardreiz – je stärker der Reiz, desto größer muss der absolute Reizunterschied sein, um bemerkt zu werden." },
     { le: 'le10', q: "Was besagt das Weber-Fechner'sche Gesetz und worin unterscheidet es sich von der Stevens'schen Potenzfunktion?", opts: [
         "Weber-Fechner: E = c·ln(R/R0) – die Empfindungsstärke wächst logarithmisch mit der Reizstärke (indirekte Skalierung über Unterschiedsschwellen). Stevens: E = k(R−R0)ⁿ – eine Potenzfunktion, basierend auf direkter Skalierung/Einschätzung der Empfindungsstärke durch die Versuchsperson",
-        "Beide Gesetze sind identisch und liefern immer dieselben Werte",
-        "Weber-Fechner beschreibt eine Potenzfunktion, Stevens eine logarithmische Funktion – also genau umgekehrt",
-        "Beide Gesetze gelten nur für die Geschmackswahrnehmung"
+        "Das Weber-Fechner'sche Gesetz und die Stevens'sche Potenzfunktion sind mathematisch identisch und liefern für jede Reizstärke exakt dieselben Empfindungswerte",
+        "Das Weber-Fechner'sche Gesetz beschreibt eine Potenzfunktion, während die Stevens'sche Funktion einen logarithmischen Zusammenhang abbildet – also genau umgekehrt zur tatsächlichen Zuordnung",
+        "Beide Gesetze wurden ausschließlich für die Geschmackswahrnehmung entwickelt und lassen sich nicht auf visuelle oder akustische Reize übertragen"
       ], correct: 0, explain: "Weber-Fechner'sches Gesetz: E = c·ln(R/R0) – bei linearem Anstieg der relativen Reizstärke wächst die Empfindungsstärke nur logarithmisch (indirekte Skalierung, über Unterschiedsschwellen/JND ermittelt). Stevens'sche Potenzfunktion: E = k(R−R0)ⁿ – basiert auf direkter Skalierung, bei der die Versuchsperson die Reizstärke direkt einschätzt; der Exponent n ist rezeptorspezifisch (z.B. Helligkeit n≈0,33, elektrische Schocks n≈3,5)." },
     { le: 'le10', q: "Welche sensorischen Modalitäten der Informationsaufnahme werden u.a. unterschieden? (mehrere richtig)", multi: true, opts: [
         "Visuell (Auge), auditiv (Innenohr), taktil (Haut)",
@@ -1213,21 +1213,21 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Sensorische Modalitäten (mind. 9 nach Schönpflug & Schönpflug): visuell, auditiv, taktil, kinästhetisch, thermisch, Schmerzwahrnehmung, olfaktorisch, gustatorisch, vestibulär – jede mit eigenem Organ, Reiztyp, Empfindungsbereich und Rezeptoren." },
     { le: 'le10', q: "Welche Anzeigenarten gibt es und wofür eignen sie sich jeweils?", opts: [
         "Analoganzeigen (kontinuierliche Werte, gut für Trends/Tendenzen und schnelles Erkennen von Abweichungen) vs. Digitalanzeigen (exakte Werte, gut für präzises Ablesen konkreter Zahlen)",
-        "Nur eine einzige universelle Anzeigenart für alle Anwendungsfälle",
-        "Digitalanzeigen eignen sich ausschließlich für Trendabweichungen, Analoganzeigen nur für exakte Zahlenwerte",
-        "Die Wahl der Anzeigenart hat keinen Einfluss auf die Ablesegeschwindigkeit"
+        "Es existiert nur eine einzige universelle Anzeigenart, die für alle Anwendungsfälle gleichermaßen geeignet ist – eine Unterscheidung zwischen analog und digital ist ergonomisch irrelevant",
+        "Digitalanzeigen eignen sich ausschließlich zum schnellen Erkennen von Trends und Abweichungen, während Analoganzeigen nur für das präzise Ablesen exakter Zahlenwerte geeignet sind – also genau umgekehrt zur tatsächlichen Eignung",
+        "Die Wahl zwischen Analog- und Digitalanzeige hat keinerlei Einfluss auf die Geschwindigkeit oder Genauigkeit, mit der ein Wert abgelesen werden kann"
       ], correct: 0, explain: "Analoganzeigen (z.B. Zeigerinstrumente) zeigen kontinuierliche Werte und eignen sich gut, um Trends/Tendenzen zu erkennen und Abweichungen schnell wahrzunehmen. Digitalanzeigen zeigen exakte Werte und eignen sich gut, um konkrete Zahlen präzise abzulesen. Die passende Anzeigenart hängt von der jeweiligen Aufgabe ab." },
     { le: 'le10', q: "Was unterscheidet photopisches von skotopischem Sehen?", opts: [
         "Photopisches Sehen erfolgt bei ausreichender Helligkeit mit den Zapfen (Farbwahrnehmung); skotopisches Sehen erfolgt bei geringer Helligkeit komplett mit den Stäbchen",
-        "Photopisches Sehen findet nur nachts statt",
-        "Skotopisches Sehen ermöglicht schärferes Farbsehen als photopisches Sehen",
-        "Beide Begriffe beschreiben denselben Vorgang"
+        "Photopisches Sehen findet ausschließlich nachts bei geringer Helligkeit statt und wird dabei vollständig von den Stäbchen der Netzhaut übernommen",
+        "Skotopisches Sehen ermöglicht bei Dunkelheit ein schärferes und farbintensiveres Sehen als das photopische Sehen bei Tageslicht, da die Stäbchen für Farbwahrnehmung optimiert sind",
+        "Photopisches und skotopisches Sehen beschreiben denselben physiologischen Vorgang und unterscheiden sich lediglich in der Bezeichnung, nicht im zugrunde liegenden Mechanismus"
       ], correct: 0, explain: "Sehen bei geringer Helligkeit wird als skotopisches Sehen bezeichnet – es erfolgt komplett mit den Stäbchen. Das Sehen mit den Zapfen bei ausreichender Helligkeit heißt photopisches Sehen. Die Fovea centralis (Netzhautgrube, ca. 0,5 mm) ist die Stelle des schärfsten Sehens; scharfes Sehen ist nur bei zentraler Betrachtung möglich (Sehfeld ca. 1°)." },
     { le: 'le10', q: "Welche Kompatibilitätsarten werden bei der ergonomischen Gestaltung von Anzeigen-/Bedienkonzepten unterschieden?", opts: [
         "Räumliche (statische) Kompatibilität (Anordnung von Stellteilen zu Anzeigen), Bewegungskompatibilität (dynamische Kompatibilität: Stellteilbewegung ↔ Messwertveränderung bzw. mechanisch gesteuerte Maschinenteile) und modalitätsbezogene Kompatibilität (zwischen Darbietungs-, Verarbeitungs- und Reaktionsmodalität)",
-        "Nur eine einzige Kompatibilitätsart: die Farbkompatibilität",
-        "Zeitliche und finanzielle Kompatibilität",
-        "Kompatibilität spielt bei der Anzeigengestaltung keine Rolle"
+        "Es wird ausschließlich eine einzige Kompatibilitätsart unterschieden – die Farbkompatibilität zwischen Anzeige- und Bedienelementen –, alle anderen Aspekte sind für die ergonomische Gestaltung unerheblich",
+        "Bei der ergonomischen Gestaltung werden primär zeitliche Kompatibilität (Reaktionsgeschwindigkeit) und finanzielle Kompatibilität (Anschaffungskosten der Anzeigeelemente) unterschieden",
+        "Kompatibilität zwischen Stellteilen und Anzeigen spielt bei der ergonomischen Gestaltung praktisch keine Rolle, solange alle Elemente funktionsfähig und beschriftet sind"
       ], correct: 0, explain: "Drei Kompatibilitätsarten: 1) Räumliche/statische Kompatibilität – Anordnung der Stellteile bezogen auf Anzeigen (nach Wichtigkeit, Häufigkeit, Funktionsprinzip, Benutzungsabfolge). 2) Bewegungskompatibilität/dynamische Kompatibilität – zwischen Stellteilbewegung und angezeigter Messwertveränderung bzw. Bewegung mechanisch gesteuerter Maschinenteile. 3) Modalitätsbezogene Kompatibilität – zwischen Darbietungsmodalität (verbal/visuell), Verarbeitungsmodalität (sprachlich/räumlich-analog) und geforderter Reaktion (sprachlich/manuell)." },
     { le: 'le08', q: "Welche 6 Leitmerkmale werden bei der Leitmerkmalmethode (LMM) der BAuA zur Beurteilung von Heben, Halten und Tragen (HHT) herangezogen? (mehrere richtig)", multi: true, opts: [
         "Zeitdauer/Häufigkeit",
@@ -1241,101 +1241,101 @@ const QUIZ_DATA = {
       ], correct: [0,1,2,3,4,5], explain: "Die 6 Leitmerkmale der LMM-HHT: Zeitdauer/Häufigkeit, Lastgewicht, Lastaufnahmebedingungen, Körperhaltung, Ausführungsbedingungen, Arbeitsorganisation. „Maximalkraft“ und „physische Beanspruchung“ sind KEINE eigenständigen Leitmerkmale der LMM-HHT (typische Klausur-Distraktoren). Es gibt außerdem weitere LMM-Varianten für Ziehen/Schieben, Körperzwangshaltungen, manuelle Arbeitsprozesse, Körperfortbewegung und Ausüben von Ganzkörperkräften." },
     { le: 'le08', q: "Was ist ein zentraler Vorteil der Leitmerkmalmethode (LMM) gegenüber rechnerisch-biomechanischen Verfahren wie DIN EN 1005-2?", opts: [
         "Praxisorientierte Analyse mit geringem Bedarf an ergonomischen/sicherheitstechnischen Kenntnissen und geringem Erhebungsaufwand",
-        "Die LMM liefert exaktere physikalische Grenzwerte als DIN EN 1005-2",
-        "Die LMM benötigt keinerlei Kenntnis der bewerteten Tätigkeit",
-        "Die LMM ist gesetzlich vorgeschrieben, DIN EN 1005-2 ist optional"
+        "Die LMM liefert grundsätzlich exaktere und physikalisch genauere Grenzwerte als das rechnerisch-biomechanische Verfahren nach DIN EN 1005-2, da sie auf einem differenzierteren Punktesystem beruht",
+        "Die LMM benötigt zur Anwendung keinerlei Kenntnis der zu bewertenden Tätigkeit, da sie ausschließlich auf allgemeinen statistischen Durchschnittswerten basiert",
+        "Die LMM ist im Gegensatz zu DIN EN 1005-2 gesetzlich verpflichtend vorgeschrieben, während die Anwendung der DIN-Norm freiwillig und optional bleibt"
       ], correct: 0, explain: "Die LMM ist ein praxisorientiertes Verfahren zur Analyse der objektiv vorhandenen Arbeitsbelastung: der Bedarf an ergonomischen/sicherheitstechnischen Kenntnissen ist gering und der Aufwand für die Datenerfassung gering – Voraussetzung ist lediglich eine gute Kenntnis der bewerteten Aktivität. Das macht sie in der betrieblichen Praxis leichter anwendbar als eine detaillierte biomechanische Berechnung." },
     { le: 'le09', q: "Welche drei Klassen anthropometrischer Größen werden grob unterschieden?", opts: [
         "Statische Anthropometrie (Maße am ruhenden Körper, z.B. für Sitzen am Tisch), dynamische Anthropometrie/Funktionsmaße (Messung von Menschen in Bewegung, z.B. Aktionsräume/Greifräume) und biomechanische Anthropometrie (Kräfte/Belastbarkeit des Körpers)",
-        "Nur eine einzige Klasse: die statische Anthropometrie",
-        "Klein, Mittel, Groß – als einzige Klassifikation der Körpergröße",
-        "Anthropometrie kennt keine Klasseneinteilung"
+        "Es wird grob nur eine einzige Klasse anthropometrischer Größen unterschieden – die statische Anthropometrie –, dynamische oder biomechanische Aspekte werden nicht gesondert erfasst",
+        "Anthropometrische Größen werden grob in die drei Klassen Klein, Mittel und Groß unterteilt, orientiert allein an der Körpergröße der jeweiligen Person",
+        "Die Anthropometrie kennt grundsätzlich keine Einteilung in unterschiedliche Klassen oder Kategorien von Körpermaßen"
       ], correct: 0, explain: "Anthropometrische Größen werden grob drei Klassen zugeordnet: statische Anthropometrie (Maße am ruhenden Körper, z.B. um komfortables Sitzen sicherzustellen), dynamische Anthropometrie/Funktionsmaße (Messung von Menschen in Bewegung, z.B. Aktionsräume, Wirkraum des Hand-Arm-Systems, Sichtgeometrie) und biomechanische Anthropometrie (Kräfte, die der Körper aufbringen/ertragen kann)." },
     { le: 'le09', q: "Welche rechnergestützten digitalen Menschmodelle werden in der Produktergonomie eingesetzt, und wofür stehen sie beispielhaft?", opts: [
         "RAMSIS (weltweit führendes 3D-CAD-Ergonomiewerkzeug für Package-/Sichtfeldanalysen, v.a. Automobilindustrie), JACK (Herkunft aus der Computergrafik, Nutzer wird über Hardware in virtuellen Umgebungen abgebildet, Perzentilpersonen, Sicht-/Erreichbarkeitsanalysen), DELMIA Human (Bestandteil der Digitalen Fabrik von Dassault Systèmes, u.a. Fahrzeuggestaltung)",
-        "RAMSIS, JACK und DELMIA sind austauschbare Namen für dasselbe Softwareprodukt",
-        "Digitale Menschmodelle werden ausschließlich in der Medizin eingesetzt, nie in der Produktergonomie",
-        "Diese Modelle simulieren fehlerfrei jede menschliche Bewegung und Haltung"
+        "RAMSIS, JACK und DELMIA Human sind lediglich unterschiedliche Marktnamen für ein und dasselbe zugrunde liegende Softwareprodukt eines einzigen Herstellers",
+        "Digitale Menschmodelle werden ausschließlich in der Medizin zur Diagnostik eingesetzt und finden in der industriellen Produktergonomie keinerlei Anwendung",
+        "Diese digitalen Menschmodelle simulieren jede menschliche Bewegung und Körperhaltung vollständig fehlerfrei, weshalb ihre Ergebnisse ohne weitere Prüfung direkt übernommen werden können"
       ], correct: 0, explain: "Rechnergestützte Menschmodelle ermöglichen frühzeitige, kostengünstige ergonomische Bewertung ohne physischen Prototyp: RAMSIS (führendes 3D-CAD-Werkzeug, v.a. Automobilindustrie), JACK (Ursprung Computergrafik, Abbildung als Perzentilpersonen, Sicht-/Reichweitenanalysen), DELMIA Human (Teil der Digitalen Fabrik, Dassault Systèmes). Wichtiger Hinweis der Vorlesung: auch Menschmodelle simulieren Bewegungen/Haltungen nicht immer korrekt – Vorsicht bei der Interpretation der Ergebnisse ist geboten." }
   ] },
   D: { label: 'Teil D · LE11–13', sub: 'Büroarbeit, Motivation, Psychische Gefährdungen', questions: [
     { le: 'le11', q: "Welche lichttechnischen Grundgrößen kennen Sie?", opts: [
         "Lichtstrom Φ [Im], mittlere Lichtstärke I [cd], Beleuchtungsstärke E [Lux], Leuchtdichte L [cd/m²]",
-        "Nur die Raumtemperatur in Grad Celsius",
-        "Nur der Stromverbrauch der Beleuchtungsanlage in Watt",
-        "Nur die Farbtemperatur in Kelvin"
+        "Ausschließlich die Raumtemperatur in Grad Celsius, da diese laut Vorlesung die entscheidende lichttechnische Grundgröße für die Arbeitsplatzgestaltung darstellt",
+        "Ausschließlich der Stromverbrauch der Beleuchtungsanlage in Watt, unabhängig von Lichtstrom, Lichtstärke oder Beleuchtungsstärke",
+        "Ausschließlich die Farbtemperatur in Kelvin, da alle anderen photometrischen Größen wie Lichtstrom oder Leuchtdichte für die Bewertung irrelevant sind"
       ], correct: 0, explain: "Lichttechnische Grundgrößen: Lichtstrom Φ = I·Ω [Im], mittlere Lichtstärke I = Φ/Ω [cd], Beleuchtungsstärke E = Φ/A = IΩ/A = I/r² [Lux = Lumen/m²], Leuchtdichte L = I/A = ρ·E/π [cd/m²] (für Lambert-Strahler), Raumwinkel Ω = 2π(1−cos(ω/2)) = A/r² [sr]." },
     { le: 'le11', q: "Was ist bei der Ermittlung der optimalen Schriftgröße für Bildschirmarbeitende zu beachten?", opts: [
         "Die Zeichenhöhe h berechnet sich aus dem Sehabstand d und dem Sehwinkel α: h = 2d·tan(α/2). Als Faustformel für die optimale Zeichenhöhe gilt h = d/155",
-        "Die Schriftgröße hat keinen Einfluss auf die Lesbarkeit am Bildschirm",
-        "Es gilt ausschließlich eine feste Mindestschriftgröße von 12pt unabhängig vom Sehabstand",
-        "Die Zeichenhöhe ist unabhängig vom Betrachtungsabstand konstant zu wählen"
+        "Die Schriftgröße hat nachweislich keinerlei Einfluss auf die Lesbarkeit von Text am Bildschirm, da das menschliche Auge sich automatisch an jede Zeichenhöhe anpasst",
+        "Es gilt ausschließlich eine feste, gesetzlich vorgeschriebene Mindestschriftgröße von 12pt, unabhängig vom individuellen Sehabstand der Bildschirmarbeitenden",
+        "Die optimale Zeichenhöhe ist unabhängig vom Betrachtungsabstand stets konstant zu wählen, da der Sehwinkel keine relevante Einflussgröße darstellt"
       ], correct: 0, explain: "Zeichenhöhe h = 2d·tan(α/2), mit d = Sehabstand, α = Sehwinkel. Faustformel für die optimale Zeichenhöhe: h = d/155 (Sehabstand geteilt durch 155)." },
     { le: 'le11', q: "Welche Grundsätze der Dialoggestaltung nennt die DIN EN ISO 9241-110? (mehrere richtig)", multi: true, opts: [
         "Aufgabenangemessenheit (geeignete Funktionalität, Minimierung unnötiger Interaktion) und Selbstbeschreibungsfähigkeit (Verständlichkeit durch Rückmeldung)",
         "Lernförderlichkeit, Steuerbarkeit, Individualisierbarkeit",
         "Fehlertoleranz und Erwartungskonformität (Anpassung an das mentale Modell der Nutzenden)",
-        "Maximale visuelle Reizüberflutung zur Steigerung der Aufmerksamkeit"
+        "Maximale visuelle Reizüberflutung der Nutzenden durch möglichst viele gleichzeitig sichtbare Interaktionselemente, unabhängig von Aufgabenrelevanz oder Übersichtlichkeit, zur Steigerung der Aufmerksamkeit"
       ], correct: [0,1,2], explain: "Die 7 Grundsätze der Dialoggestaltung nach DIN EN ISO 9241-110: Aufgabenangemessenheit, Selbstbeschreibungsfähigkeit, Lernförderlichkeit, Steuerbarkeit, Individualisierbarkeit, Fehlertoleranz, Erwartungskonformität." },
     { le: 'le11', q: "Was ist der Unterschied zwischen Usability und User Experience (UX)?", opts: [
         "Usability ist das Ausmaß, in dem ein System effektiv, effizient und zufriedenstellend genutzt werden kann; UX umfasst zusätzlich zur tatsächlichen Nutzung (Usability) auch die antizipierte Nutzung sowie die Verarbeitung der Nutzungssituation im Anschluss",
-        "Usability und User Experience sind vollständig synonym",
-        "User Experience bezieht sich ausschließlich auf die Verpackung eines Produkts",
-        "Usability berücksichtigt nur die Nutzung nach dem Kauf, UX nur davor"
+        "Usability und User Experience sind vollständig synonym und beschreiben in der Norm DIN EN ISO 9241-110 exakt denselben Sachverhalt ohne inhaltlichen Unterschied",
+        "User Experience bezieht sich ausschließlich auf die äußere Verpackung und Optik eines Produkts, während Usability sich mit der inneren Technik befasst",
+        "Usability berücksichtigt ausschließlich die Nutzung eines Produkts nach dem Kauf, während sich User Experience ausschließlich auf die Phase davor bezieht"
       ], correct: 0, explain: "Usability (DIN EN ISO 9241-110): Ausmaß, in dem ein technisches System durch bestimmte Benutzer in einem bestimmten Nutzungskontext verwendet werden kann, um Ziele effektiv, effizient und zufriedenstellend zu erreichen. User Experience umfasst neben der tatsächlichen Nutzung (Usability) auch die antizipierte Nutzung sowie die Verarbeitung der Nutzungssituation im Anschluss." },
     { le: 'le11', q: "Welche Kriterien sind bei der ergonomischen Gestaltung von Büroarbeitsplätzen u.a. zu berücksichtigen?", opts: [
         "Bildschirmposition und Blickwinkel, Beleuchtung/Blendfreiheit, Möblierung nach anthropometrischen Maßen, Vermeidung von Zwangshaltungen, ausreichende Bewegungsfläche",
-        "Ausschließlich die Wandfarbe des Büros",
-        "Ausschließlich die Marke des verwendeten Computers",
-        "Kriterien der Arbeitsplatzgestaltung spielen im Büro keine Rolle, da keine körperliche Arbeit stattfindet"
+        "Ausschließlich die Wandfarbe des Büros, da diese laut den einschlägigen Normen den entscheidenden Faktor für die ergonomische Qualität eines Arbeitsplatzes darstellt",
+        "Ausschließlich die Marke und das Modell des verwendeten Computers, unabhängig von Bildschirmposition, Beleuchtung oder Möblierung",
+        "Kriterien der ergonomischen Arbeitsplatzgestaltung spielen im Büro grundsätzlich keine Rolle, da bei Bildschirmarbeit keine relevante körperliche Belastung entsteht"
       ], correct: 0, explain: "Relevante Normen: DIN EN ISO 9241 (Ergonomische Anforderungen für Bürotätigkeiten mit Bildschirmgeräten), DIN EN 527-1 (Büro-Arbeitstische), DIN 4543-1 (Flächen für Büromöbel), DIN EN ISO 12464-1 (Beleuchtung von Arbeitsstätten). Wichtige Kriterien: Bildschirmposition/Blickwinkel, Beleuchtung, Möblierung nach anthropometrischen Maßen, Vermeidung von Zwangshaltungen, ausreichende Bewegungsfläche." },
     { le: 'le11', q: "Welche gesundheitlichen Beeinträchtigungen können durch Bildschirmarbeit entstehen?", opts: [
         "U.a. Augenbeschwerden (asthenopische Beschwerden), Verspannungen im Nacken-/Schulterbereich durch Zwangshaltungen, sowie psychische Fehlbeanspruchung durch schlecht gestaltete Dialoge/Software",
-        "Bildschirmarbeit hat nachweislich keinerlei gesundheitliche Auswirkungen",
-        "Ausschließlich Hörschäden durch Lüftergeräusche des Computers",
-        "Ausschließlich Vergiftungserscheinungen durch Bildschirmstrahlung"
+        "Bildschirmarbeit hat laut aktueller arbeitswissenschaftlicher Forschung nachweislich keinerlei gesundheitliche Auswirkungen, unabhängig von Dauer, Haltung oder Bildschirmposition",
+        "Bildschirmarbeit verursacht ausschließlich Hörschäden durch die Lüftergeräusche des Computers, während Augen- oder Haltungsbeschwerden dabei keine Rolle spielen",
+        "Bildschirmarbeit verursacht ausschließlich Vergiftungserscheinungen durch angebliche Bildschirmstrahlung, ein wissenschaftlich widerlegtes Phänomen ohne reale gesundheitliche Relevanz"
       ], correct: 0, explain: "Durch Bildschirmarbeit können u.a. Augenbeschwerden (asthenopische Beschwerden durch Naharbeit, Blendung, ungünstige Beleuchtung), muskuloskelettale Beschwerden (Verspannungen durch Zwangshaltungen) sowie psychische Fehlbeanspruchung (z.B. durch schlecht gestaltete Software-Dialoge, Zeitdruck) entstehen." },
     { le: 'le12', q: "Wie lauten die fünf Ebenen der Maslowschen Bedürfnispyramide (von unten nach oben)?", opts: [
         "Physiologische Bedürfnisse → Sicherheitsbedürfnisse → Soziale Bedürfnisse → Ich-Bedürfnisse/Wertschätzung → Selbstverwirklichung",
-        "Selbstverwirklichung → Wertschätzung → Soziale Bedürfnisse → Sicherheit → Physiologische Bedürfnisse (von unten nach oben in dieser Reihenfolge)",
-        "Es gibt nur drei Ebenen: Grundbedürfnisse, soziale Bedürfnisse, Luxusbedürfnisse",
-        "Alle fünf Ebenen sind gleichrangig ohne Hierarchie"
+        "Selbstverwirklichung → Wertschätzung → Soziale Bedürfnisse → Sicherheit → Physiologische Bedürfnisse, wobei diese Reihenfolge laut Maslow von unten nach oben in der Pyramide angeordnet ist – also genau umgekehrt zur eigentlichen Hierarchie",
+        "Es gibt bei Maslow grundsätzlich nur drei grobe Ebenen: Grundbedürfnisse, soziale Bedürfnisse und Luxusbedürfnisse, eine feinere Unterteilung in fünf Stufen existiert nicht",
+        "Alle fünf Ebenen der Bedürfnispyramide sind laut Maslow vollkommen gleichrangig und ohne jede hierarchische Abfolge zu befriedigen"
       ], correct: 0, explain: "Maslow (1954), von unten nach oben: 1. Physiologische Bedürfnisse (Durst, Hunger, Ruhe), 2. Sicherheitsbedürfnisse (Stabilität, Schutz, Ordnung), 3. Soziale Bedürfnisse (Zuneigung, Gemeinschaft), 4. Ich-Bedürfnisse/Wertschätzung (Erfolg, Anerkennung, Macht), 5. Selbstverwirklichung (Verwirklichung dessen, was man in sich fühlt). Untere Ebenen müssen zuerst befriedigt sein, bevor die nächsthöhere Bedeutung erlangt; Selbstverwirklichung kann nie vollständig gesättigt werden." },
     { le: 'le12', q: "Was besagt die Zwei-Faktoren-Theorie nach Herzberg?", opts: [
         "Hygienefaktoren (z.B. Gehalt, Status, Arbeitsbedingungen, Sicherheit) können bei unzureichender Ausprägung zu Unzufriedenheit führen, erzeugen aber kaum Zufriedenheit; Motivatoren (z.B. Leistung, Anerkennung, Verantwortung), die den Arbeitsinhalt betreffen, können bei positiver Ausprägung Zufriedenheit/Leistungsmotivation hervorrufen",
-        "Hygienefaktoren und Motivatoren wirken identisch auf Zufriedenheit und Unzufriedenheit",
-        "Nur das Gehalt beeinflusst laut Herzberg die Arbeitsmotivation",
-        "Die Zwei-Faktoren-Theorie wurde nie empirisch untersucht"
+        "Hygienefaktoren und Motivatoren wirken laut Herzberg vollkommen identisch auf Zufriedenheit und Unzufriedenheit und lassen sich daher nicht sinnvoll voneinander unterscheiden",
+        "Nach Herzberg beeinflusst ausschließlich das Gehalt die Arbeitsmotivation, während Anerkennung, Verantwortung oder Arbeitsbedingungen keine relevante Rolle spielen",
+        "Die Zwei-Faktoren-Theorie wurde rein theoretisch entwickelt und nie empirisch untersucht oder durch Studien wie die Pittsburgh-Studie überprüft"
       ], correct: 0, explain: "Herzberg et al. (1959, Pittsburgh-Studie): Hygienefaktoren (Arbeitskontext: Gehalt, Status, Arbeitsbedingungen, Sicherheit, Firmenpolitik) können bei unzureichender Ausprägung zu Unzufriedenheit führen, erzeugen aber kaum Zufriedenheit. Motivatoren (Arbeitsinhalt: Leistung, Anerkennung, Verantwortung, Aufstieg, Entfaltung) können bei positiver Ausprägung Leistungsmotivation und Zufriedenheit hervorrufen. Kritik: übermäßige Vereinfachung, ein Faktor kann bei verschiedenen Personen unterschiedlich wirken." },
     { le: 'le12', q: "Wie lautet die Equity Theory (Adams, 1965) formal, und was folgt aus negativen Diskrepanzen?", opts: [
         "Os/Is = Oa/Ia (eigenes Output/Input-Verhältnis = Output/Input-Verhältnis der Vergleichsperson). Negative Diskrepanzen (subjektiv benachteiligt) bewirken ein Absenken der Anstrengung, positive Diskrepanzen eine Erhöhung der Anstrengung",
-        "Os·Is = Oa·Ia",
-        "Negative Diskrepanzen führen laut Equity Theory immer zu einer Erhöhung der Anstrengung",
-        "Die Equity Theory berücksichtigt nur objektive, nie subjektive Vergleiche"
+        "Os·Is = Oa·Ia — die Equity Theory beschreibt das Verhältnis von Output und Input als multiplikative statt als proportionale Beziehung zwischen eigener Person und Vergleichsperson",
+        "Negative Diskrepanzen (subjektiv wahrgenommene Benachteiligung) führen laut Equity Theory immer zu einer Erhöhung der eingesetzten Anstrengung, um die Ungerechtigkeit auszugleichen",
+        "Die Equity Theory berücksichtigt ausschließlich objektiv messbare Vergleiche zwischen Personen und lässt subjektive Wahrnehmungen der eigenen Situation vollständig außer Acht"
       ], correct: 0, explain: "Equity Theory: Os/Is = Oa/Ia, mit Is=Input Selbst (z.B. Erfahrung, Mühe), Ia=Input Anderer, Os=Output Selbst (z.B. Gehalt, Anerkennung), Oa=Output Anderer. Wichtig: die SUBJEKTIVE Bewertung zählt, nicht der objektiv errechnete Wert. Negative Diskrepanzen (wahrgenommene Benachteiligung) bewirken ein Absenken der Anstrengung, positive Diskrepanzen eine Erhöhung. Handlungsoptionen bei Ungleichheit: Output anpassen, Input anpassen, kognitives Reframing, oder Vergleichsbasis ändern." },
     { le: 'le12', q: "Welche fünf Aufgabenmerkmale enthält das Job Characteristics Model (Hackman & Oldham, 1975) und wie lautet die MPS-Formel?", opts: [
         "Anforderungsvielfalt, Ganzheitlichkeit der Aufgabe, Bedeutsamkeit der Aufgabe, Autonomie, Rückmeldung. MPS = [(Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit)/3] × Autonomie × Rückmeldung",
-        "MPS = Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit + Autonomie + Rückmeldung (einfache Summe aller 5 Merkmale)",
-        "Das JCM kennt nur zwei Aufgabenmerkmale: Gehalt und Arbeitszeit",
-        "MPS = Autonomie ÷ Rückmeldung"
+        "MPS = Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit + Autonomie + Rückmeldung – eine einfache additive Summe aller fünf Merkmale ohne besondere Gewichtung von Autonomie oder Rückmeldung",
+        "Das Job Characteristics Model kennt laut Hackman & Oldham nur zwei relevante Aufgabenmerkmale – Gehalt und Arbeitszeit –, alle anderen Aspekte der Tätigkeit spielen für die Motivation keine Rolle",
+        "MPS = Autonomie ÷ Rückmeldung – der Motivation Potential Score ergibt sich laut Modell allein aus dem Verhältnis dieser beiden Merkmale zueinander, unabhängig von Anforderungsvielfalt, Ganzheitlichkeit oder Bedeutsamkeit"
       ], correct: 0, explain: "5 Aufgabenmerkmale: Anforderungsvielfalt (skill variety), Ganzheitlichkeit der Aufgabe (task identity), Bedeutsamkeit der Aufgabe (task significance), Autonomie, Rückmeldung durch die Tätigkeit. Motivation Potential Score MPS = [(Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit)/3] × Autonomie × Rückmeldung. Da Autonomie und Rückmeldung multiplikativ eingehen, führt ein Wert von 0 bei einem der beiden zu einem MPS von 0 – sie sind besonders kritisch." },
     { le: 'le12', q: "Wie könnten sich neue Formen der Führung wie Algorithmic Management auf die Motivation auswirken?", opts: [
         "Algorithmische Steuerung (z.B. automatisierte Auftragszuweisung, Bewertungssysteme in der Gig-Economy) kann u.a. Autonomie und Rückmeldungsqualität verändern und dadurch – je nach Gestaltung – Motivation, Wahrgenommene Gerechtigkeit (Equity) und Zufriedenheit sowohl fördern als auch beeinträchtigen",
-        "Algorithmic Management hat nachweislich keinerlei Einfluss auf die menschliche Motivation",
-        "Algorithmic Management erhöht die Motivation immer und ausnahmslos",
-        "Algorithmic Management betrifft ausschließlich die Bezahlung, nie die Aufgabengestaltung"
+        "Algorithmic Management hat laut aktuellem Forschungsstand nachweislich keinerlei Einfluss auf die menschliche Motivation, unabhängig von Autonomie- oder Rückmeldungsgestaltung",
+        "Algorithmische Steuerung erhöht die Motivation der Beschäftigten immer und ausnahmslos, unabhängig davon, wie die konkreten Systeme gestaltet sind oder wahrgenommen werden",
+        "Algorithmic Management betrifft in der Gig-Economy ausschließlich die Höhe der Bezahlung und hat keinerlei Einfluss auf Autonomie, Rückmeldung oder die eigentliche Aufgabengestaltung"
       ], correct: 0, explain: "Algorithmic Management (z.B. in der Gig-Economy/Plattformarbeit) kann Autonomie und Handlungsspielraum reduzieren, aber auch neue Formen von Rückmeldung liefern. Effekte auf Motivation hängen stark von der konkreten Gestaltung ab und lassen sich mit den Motivationstheorien (JCM: Autonomie/Rückmeldung; Equity Theory: wahrgenommene Gerechtigkeit der algorithmischen Entscheidungen) analysieren." },
     { le: 'le12', q: "Welche traditionellen und neueren Entgeltformen der leistungsabhängigen Entgeltdifferenzierung werden unterschieden?", opts: [
         "Traditionell (Entgelt wird nach erbrachter Leistung, rückwirkend ermittelt): Zeitentgelt mit Leistungszulage, Akkordentgelt, Prämienentgelt. Neuer (Entgelt nach erwarteter Leistung, wirkt nicht rückwirkend): Bonussysteme, Programmentgelt",
-        "Es gibt nur eine einzige Entgeltform: das feste Monatsgehalt",
-        "Akkordentgelt ist eine neuere Entgeltform aus den 2010er Jahren",
-        "Traditionelle und neuere Entgeltformen unterscheiden sich nicht in der zeitlichen Zuordnung der Leistung"
+        "Es gibt grundsätzlich nur eine einzige leistungsabhängige Entgeltform, das feste Monatsgehalt, das unabhängig von individueller Leistung ausgezahlt wird",
+        "Akkordentgelt zählt zu den neueren Entgeltformen, die erst seit den 2010er Jahren im Zuge der Digitalisierung eingeführt wurden, im Gegensatz zu traditionelleren Bonussystemen",
+        "Traditionelle und neuere Entgeltformen unterscheiden sich inhaltlich nicht hinsichtlich der zeitlichen Zuordnung der bewerteten Leistung, beide beziehen sich stets auf bereits erbrachte Arbeit"
       ], correct: 0, explain: "Bei traditionellen Entgeltformen (Zeitentgelt mit Leistungszulage, Akkord-, Prämienentgelt) wird die tatsächlich erbrachte Leistung erst nach Abschluss eines Arbeitsauftrags/am Ende einer Abrechnungsperiode ermittelt (variables Entgelt NACH erbrachter Leistung). Bei neueren Formen (Bonussysteme, Programmentgelt) wird die Entgelthöhe für eine ZUKÜNFTIGE Periode festgelegt; Über-/Unterschreiten wirkt nicht rückwirkend, sondern erst in späteren Perioden." },
     { le: 'le12', q: "Was sind Voraussetzungen für Akkordentgelt?", opts: [
         "Akkordfähigkeit (Mengen/Zeiten sind beeinflussbar, Arbeitsverfahren im Voraus bekannt) und Akkordreife (Arbeitende ist eingearbeitet, Arbeitsabläufe sind effizient gestaltet und störungsfrei ausführbar)",
-        "Akkordentgelt setzt keinerlei Voraussetzungen voraus und ist immer anwendbar",
-        "Akkordentgelt erfordert ausschließlich eine Mindestbetriebsgröße von 500 Mitarbeitenden",
-        "Akkordentgelt kann nur bei rein geistiger, nie bei körperlicher Arbeit angewendet werden"
+        "Akkordentgelt setzt keinerlei besondere Voraussetzungen voraus und kann unabhängig von Akkordfähigkeit oder Akkordreife jederzeit uneingeschränkt angewendet werden",
+        "Akkordentgelt erfordert zwingend eine Mindestbetriebsgröße von 500 Mitarbeitenden und ist in kleineren Unternehmen grundsätzlich nicht anwendbar",
+        "Akkordentgelt kann ausschließlich bei rein geistiger Tätigkeit eingesetzt werden und ist bei körperlicher, manueller Arbeit grundsätzlich ungeeignet"
       ], correct: 0, explain: "Akkordfähigkeit: Mengen bzw. Zeiten der Arbeitsverrichtung sind beeinflussbar, Arbeitsverfahren und -methoden sind im Voraus bekannt. Akkordreife: der Arbeitende ist eingearbeitet, die Arbeitsabläufe sind effizient gestaltet, sodass die Arbeit ohne Störungen ausgeführt werden kann. Vorteile: Leistungsanreiz, kein Betriebsrisiko für Minderleistung, konstante Lohnstückkosten. Nachteile: Übersteigerung des Arbeitstempos, erhöhter Betriebsmittelverschleiß, kein Anreiz für umsichtiges Arbeiten." },
     { le: 'le12', q: "Welche Probleme können bei monetären Anreizsystemen auftreten? (mehrere richtig)", multi: true, opts: [
         "Verdrängung intrinsischer Motivation (Crowding-out-Effekt)",
@@ -1345,27 +1345,27 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Probleme monetärer Anreizsysteme: Verdrängung intrinsischer Motivation (Crowding-out-Effekt – externe Belohnung untergräbt die innere Motivation), Fokussierung nur auf gemessene/incentivierte Kennzahlen (Zielverzerrung, andere wichtige Aspekte werden vernachlässigt), Ungerechtigkeitsempfinden bei unfairer Verteilung (vgl. Equity Theory) sowie kurzfristiges statt nachhaltiges Verhalten (Optimierung auf den Anreizzeitraum statt langfristigen Erfolg)." },
     { le: 'le13', q: "Wie sind psychische Belastung und Beanspruchung im Belastungs-Beanspruchungs-Modell definiert?", opts: [
         "Belastung = Gesamtheit aller erfassbaren Einflüsse, die von außen auf den Menschen zukommen und psychisch auf ihn einwirken. Beanspruchung = die unmittelbare Auswirkung der psychischen Belastung im Individuum, abhängig auch von persönlichen Ressourcen (individuelle Voraussetzungen, Fähigkeiten, Fertigkeiten)",
-        "Belastung und Beanspruchung sind identisch und beschreiben dieselbe objektive Größe",
-        "Beanspruchung ist immer unabhängig von der individuellen Person",
-        "Psychische Belastung tritt ausschließlich in Führungspositionen auf"
+        "Belastung und Beanspruchung sind im Belastungs-Beanspruchungs-Modell identisch und beschreiben dieselbe rein objektive, von der Person unabhängige Größe",
+        "Beanspruchung ist laut Modell grundsätzlich immer unabhängig von der individuellen Person und wird ausschließlich durch die äußere Belastung bestimmt, ohne Einfluss persönlicher Ressourcen",
+        "Psychische Belastung tritt ausschließlich in Führungspositionen mit hoher Verantwortung auf, während operative Tätigkeiten grundsätzlich frei von psychischer Belastung sind"
       ], correct: 0, explain: "Belastung: „Die Gesamtheit aller erfassbaren Einflüsse, die von außen auf den Menschen zukommen und psychisch auf ihn einwirken.“ Beanspruchung: unmittelbare Auswirkung der psychischen Belastung im Individuum – abhängig von persönlichen Ressourcen (individuelle Voraussetzungen, Fähigkeiten, Fertigkeiten, aufgaben- und umgebungsbezogene Anforderungen). Psychische Belastung findet sich grundsätzlich in JEDER Tätigkeit; ob sie positive oder negative gesundheitliche Auswirkungen hat, hängt von der Arbeitsgestaltung ab." },
     { le: 'le13', q: "Wie sehen die gesetzlichen Vorgaben hinsichtlich der Beurteilung psychischer Gefährdungen aus?", opts: [
         "Seit einer Novellierung 2013 fordert das Arbeitsschutzgesetz (ArbSchG) explizit die Berücksichtigung psychischer Belastungen in der Gefährdungsbeurteilung (§5 ArbSchG), basierend auf der allgemeinen Handlungspflicht des §4 ArbSchG",
-        "Psychische Gefährdungen sind gesetzlich bis heute explizit ausgeschlossen und dürfen nicht beurteilt werden",
-        "Die Berücksichtigung psychischer Belastungen ist rein freiwillig und nirgends kodifiziert",
-        "Das ArbSchG regelt ausschließlich physische, nie psychische Gefährdungen"
+        "Psychische Gefährdungen sind im deutschen Arbeitsschutzrecht bis heute explizit ausgeschlossen und dürfen im Rahmen der Gefährdungsbeurteilung nicht berücksichtigt oder bewertet werden",
+        "Die Berücksichtigung psychischer Belastungen in der betrieblichen Gefährdungsbeurteilung ist rein freiwillig und in keinem Gesetz oder keiner Verordnung kodifiziert",
+        "Das Arbeitsschutzgesetz (ArbSchG) regelt ausschließlich physische Gefährdungen am Arbeitsplatz und klammert psychische Belastungen vollständig aus seinem Anwendungsbereich aus"
       ], correct: 0, explain: "Das Arbeitsschutzgesetz (ArbSchG) ist die nationale Umsetzung der EU-Rahmenrichtlinie. Seit einer Novellierung im Jahr 2013 fordert das ArbSchG explizit die Berücksichtigung psychischer Belastungen in der Gefährdungsbeurteilung (konkretisiert in §5 ArbSchG, aufbauend auf der allgemeinen Verpflichtung aus §4 ArbSchG)." },
     { le: 'le13', q: "Welche Kategorien häufiger psychischer Belastungsfaktoren nennt die GDA-Leitlinie? (mehrere richtig)", multi: true, opts: [
         "Arbeitsinhalt & Arbeitsaufgabe (z.B. Arbeitsintensität, Handlungsspielraum) sowie Arbeitsorganisation (z.B. Arbeitszeit, Arbeitsunterbrechungen)",
         "Arbeitsumgebung (z.B. Arbeitsmittel, physikalische Faktoren) sowie soziale Beziehungen (z.B. Konflikte, Emotionsarbeit)",
         "Neue Arbeitsformen (z.B. räumliche Mobilität, Entgrenzung von Arbeits- und Privatleben)",
-        "Ausschließlich die Raumtemperatur am Arbeitsplatz"
+        "Ausschließlich die Raumtemperatur am Arbeitsplatz, da diese laut GDA-Leitlinie die einzige relevante Kategorie psychischer Belastungsfaktoren darstellt und Arbeitsinhalt, -organisation oder soziale Beziehungen keine Rolle spielen"
       ], correct: [0,1,2], explain: "GDA-Leitlinie „Beratung und Überwachung bei psychischer Belastung am Arbeitsplatz“: 5 Kategorien: Arbeitsinhalt & Arbeitsaufgabe (Arbeitsintensität, Handlungsspielraum, Vollständigkeit), Arbeitsorganisation (Arbeitszeit, -abläufe, -unterbrechungen, Kommunikation, Führungsverhalten), Arbeitsumgebung (Arbeitsmittel, Arbeitsplatzgestaltung, chemische/physikalische/physische Faktoren), soziale Beziehungen (Konflikte, Emotionsarbeit, Unterstützung), neue Arbeitsformen (räumliche Mobilität, atypische Arbeitsverhältnisse, zeitliche Flexibilisierung/Entgrenzung)." },
     { le: 'le13', q: "Welche Methodengruppen zur Erfassung psychischer Belastung/Beanspruchung werden unterschieden?", opts: [
         "BO-Verfahren (bedingungsbezogen-objektiv: Beobachtung/Bewertung der Arbeitsmerkmale durch Expert*innen, z.B. RHIA/VERA), BS-Verfahren (bedingungsbezogen-subjektiv: Befragung zu Arbeitsmerkmalen, z.B. COPSOQ), PO-Verfahren (personenbezogen-objektiv: psychophysiologische Messungen), PS-Verfahren (personenbezogen-subjektiv: Befragung zu Beanspruchungsfolgen, z.B. Stresserleben)",
-        "Es existiert nur eine einzige standardisierte Erfassungsmethode für alle Zwecke",
-        "Ausschließlich Blutdruckmessung ist wissenschaftlich anerkannt",
-        "Erfassungsmethoden unterscheiden sich nicht nach Ziel der Untersuchung"
+        "Es existiert zur Erfassung psychischer Belastung und Beanspruchung nur eine einzige standardisierte Methode, die für alle Untersuchungsziele und Kontexte gleichermaßen geeignet ist",
+        "Ausschließlich die Blutdruckmessung gilt als wissenschaftlich anerkanntes Verfahren zur Erfassung psychischer Beanspruchung, während Beobachtungs- oder Befragungsverfahren keine valide Aussagekraft besitzen",
+        "Die Wahl der Erfassungsmethode unterscheidet sich grundsätzlich nicht nach dem Ziel der Untersuchung, sodass bedingungs- und personenbezogene sowie objektive und subjektive Verfahren stets austauschbar eingesetzt werden können"
       ], correct: 0, explain: "Vier Verfahrensgruppen entlang zweier Achsen (bedingungs-/personenbezogen × objektiv/subjektiv): BO-Verfahren (bedingungsbezogen-objektiv, z.B. RHIA/VERA-Beobachtung durch Expert*innen), BS-Verfahren (bedingungsbezogen-subjektiv, z.B. COPSOQ-Fragebogen zu Arbeitsmerkmalen), PO-Verfahren (personenbezogen-objektiv, z.B. psychophysiologische Messungen wie Blutdruck), PS-Verfahren (personenbezogen-subjektiv, Befragung zu Beanspruchungsfolgen wie Stresserleben). Die Methodenwahl ist abhängig vom Ziel der Untersuchung." },
     { le: 'le13', q: "Welche Mindestgröße sollte eine Gruppe haben, über die im Rahmen einer Mitarbeiterbefragung zur psychischen Gefährdungsbeurteilung Aussagen gemacht werden, aus Datenschutz-/Anonymitätsgründen?", opts: [
         "Mindestens fünf Personen", "Mindestens 50 Personen", "Genau eine Person (Einzelinterview reicht)", "Mindestens 500 Personen"
@@ -1378,77 +1378,77 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Anforderungen an menschengerechte Gestaltung hochautomatisierter Systeme: Transparenz über Automatisierungsentscheidungen, Erhalt von Handlungsspielräumen, Vermeidung von Überwachungsdruck, Qualifizierung der Mitarbeitenden für neue Rollen sowie menschliche Kontrolle über kritische Entscheidungen ('Human-in-the-loop') – NICHT die vollständige Entfernung des Menschen aus jeder Entscheidung." },
     { le: 'le13', q: "Was besagt das Job-Demand-Resources-Modell (JD-R, Bakker & Demerouti, 2007), und worauf baut es auf?", opts: [
         "Es unterscheidet Arbeitsanforderungen (Aspekte der Arbeit, die anhaltende physische/psychische Anstrengung erfordern) von Arbeitsressourcen (Aspekte, die funktional für Arbeitsziele sind, Anforderungen/Kosten reduzieren oder persönliches Wachstum/Lernen stimulieren); es baut auf dem Anforderungs-Kontroll-Modell auf und bietet höhere Spezifität, da Anforderungen/Ressourcen kontextabhängig definiert werden",
-        "Das JD-R-Modell kennt nur Anforderungen, keine Ressourcen",
-        "Ressourcen und Anforderungen stehen laut JD-R-Modell in keinerlei Wechselwirkung zueinander",
-        "Das Modell wurde unabhängig von allen vorherigen Stressmodellen entwickelt"
+        "Das Job-Demand-Resources-Modell kennt laut Bakker & Demerouti (2007) ausschließlich Arbeitsanforderungen, während Arbeitsressourcen im Modell keine eigenständige Rolle spielen",
+        "Ressourcen und Anforderungen stehen im JD-R-Modell in keinerlei Wechselwirkung zueinander und wirken vollständig unabhängig voneinander auf das Beanspruchungserleben",
+        "Das JD-R-Modell wurde völlig unabhängig von allen vorherigen Stressmodellen wie dem Anforderungs-Kontroll-Modell entwickelt und baut auf keinerlei bestehenden theoretischen Grundlagen auf"
       ], correct: 0, explain: "Das JD-R-Modell (Bakker & Demerouti, 2007) baut auf dem Anforderungs-Kontroll-Modell auf und bietet höhere Spezifität/Flexibilität, da Anforderungen und Ressourcen kontextabhängig definiert werden. Arbeitsanforderungen erfordern anhaltende physische/psychische (kognitive, emotionale) Anstrengung und sind mit Kosten verbunden – können aber auch herausfordernden statt nur negativen Charakter haben. Arbeitsressourcen (physisch, psychisch, sozial, organisational) sind funktional für Arbeitsziele, reduzieren Anforderungen/Kosten oder stimulieren persönliches Wachstum, Lernen und Entwicklung. Anforderungen und Ressourcen stehen in Interaktion: hohe Ressourcen bei geringen Anforderungen → niedriges Stressniveau; das alleinige Vorhandensein von Ressourcen fördert die Motivation." }
   ] },
   E: { label: 'Teil E · Altklausuren', sub: 'Reale Klausuraufgaben aus WS22/23, WS23/24 & SS2024', questions: [
     { le: 'le02', q: "Was ist der Unterschied zwischen Aufbau- und Ablauforganisation?", opts: [
         "Aufbauorganisation beschreibt die Gliederung eines Betriebs in ein System arbeitsteiliger Organisationseinheiten und deren Beziehungen zueinander; Ablauforganisation regelt das räumliche, zeitliche und prozedurale Zusammenwirken von Elementen eines oder mehrerer Arbeitssysteme",
-        "Aufbauorganisation und Ablauforganisation sind Synonyme für denselben Sachverhalt",
-        "Ablauforganisation beschreibt ausschließlich die Hierarchieebenen eines Unternehmens",
-        "Aufbauorganisation regelt nur die zeitliche Reihenfolge von Arbeitsschritten"
+        "Aufbauorganisation und Ablauforganisation sind Synonyme für denselben Sachverhalt und werden in der Arbeitswissenschaft austauschbar verwendet, ohne inhaltlichen Unterschied zwischen statischer Struktur und dynamischem Prozessablauf",
+        "Ablauforganisation beschreibt ausschließlich die Hierarchieebenen und Weisungsbefugnisse eines Unternehmens, während zeitliche oder räumliche Abläufe keine Rolle spielen",
+        "Aufbauorganisation regelt ausschließlich die zeitliche Reihenfolge von Arbeitsschritten innerhalb eines Prozesses, nicht jedoch die Gliederung in Organisationseinheiten"
       ], correct: 0, explain: "Aufbauorganisation = statische Struktur: Gliederung eines Betriebs in arbeitsteilige Organisationseinheiten (z.B. Abteilungen) und deren Beziehungen zueinander (Hierarchie, Weisungsbefugnisse). Ablauforganisation = dynamischer Prozessablauf: regelt das räumliche, zeitliche und prozedurale Zusammenwirken von Elementen eines oder mehrerer Arbeitssysteme. (Altklausur SS2024)" },
     { le: 'le02', q: "Welche Merkmale kennzeichnen laut Nerdinger et al. (2014) eine persönlichkeitsförderliche Arbeitsgestaltung? (mehrere richtig)", multi: true, opts: [
-        "Möglichkeit der sozialen Interaktion", "Agilität", "Anforderungsvielfalt", "Komplexität"
+        "Möglichkeit der sozialen Interaktion", "Agilität der Organisation als übergeordnetes Unternehmensmerkmal, unabhängig von der konkreten Gestaltung einzelner Arbeitsplätze oder Tätigkeiten", "Anforderungsvielfalt", "Komplexität der Aufgabe als alleinstehendes Merkmal, unabhängig davon, ob sie mit Abwechslung, Lernmöglichkeiten oder Zielklarheit verbunden ist"
       ], correct: [0,2], explain: "Nach Nerdinger et al. (2014) zählen u.a. Möglichkeit der sozialen Interaktion und Anforderungsvielfalt zu den Merkmalen persönlichkeitsförderlicher Arbeitsgestaltung – NICHT Agilität oder (bloße) Komplexität als solche. (Altklausur SS2024)" },
     { le: 'le03', q: "Wie unterscheiden sich Primär- und Sekundärprozesse in einem Unternehmen?", opts: [
         "Primärprozesse erzeugen den Wettbewerbsvorteil eines Unternehmens und sind unternehmensspezifisch (schwer zu imitieren); Sekundärprozesse sichern den reibungslosen Ablauf der Geschäftstätigkeit, ohne selbst den Wettbewerbsvorteil zu erzeugen",
-        "Primär- und Sekundärprozesse sind identisch und nur unterschiedlich benannt",
-        "Sekundärprozesse erzeugen immer den größten Umsatz eines Unternehmens",
-        "Primärprozesse sind austauschbar und leicht von der Konkurrenz zu imitieren"
+        "Primär- und Sekundärprozesse sind inhaltlich identisch und lediglich unterschiedlich benannt, ohne dass sich Wertschöpfungsbeitrag oder Wettbewerbsrelevanz unterscheiden",
+        "Sekundärprozesse wie IT oder Personalverwaltung erzeugen laut Definition immer den größten Umsatzanteil eines Unternehmens, mehr als die eigentlichen Kernprozesse",
+        "Primärprozesse sind grundsätzlich leicht austauschbar und von der Konkurrenz problemlos zu imitieren, da sie keine unternehmensspezifischen Fähigkeiten erfordern"
       ], correct: 0, explain: "Primärprozesse (Kernprozesse) sind wertschöpfend, unternehmensspezifisch, schwer zu imitieren und erzeugen den Wettbewerbsvorteil. Sekundärprozesse (Unterstützungsprozesse, z.B. IT, Personalverwaltung) sichern den reibungslosen Ablauf der Geschäftstätigkeit, tragen aber nicht direkt zum Wettbewerbsvorteil bei. (Altklausur SS2024)" },
     { le: 'le03', q: "Welche der folgenden Aussagen beschreiben typische Modellierungsfehler in eEPK-Diagrammen (z.B. Fallstudie „Urlaubsantrag“), die in den Altklausuren wiederholt abgefragt wurden? (mehrere richtig)", multi: true, opts: [
         "Nach einer Verzweigung mit N möglichen Entscheidungsausgängen müssen genau N Verarbeitungselemente mit N Entscheidungsmöglichkeiten folgen – nicht mehr und nicht weniger",
         "Ein Verarbeitungselement, das zwei sich gegenseitig ausschließende Ergebnisse bündelt (z.B. „Genehmigen und/oder Ablehnen Urlaub“ als eine Funktion), ist fehlerhaft modelliert – die Alternative gehört über einen XOR-Konnektor nach einem eigenen Ereignis getrennt abgebildet",
         "Swimlanes (Organisationseinheiten) stellen Personen bzw. Rollen dar, nicht Tätigkeiten",
-        "Je mehr Verarbeitungselemente ein Modell enthält, desto korrekter ist es modelliert"
+        "Je mehr Verarbeitungselemente und Verzweigungen ein eEPK-Modell insgesamt enthält, desto korrekter und vollständiger gilt es grundsätzlich als modelliert, unabhängig von der tatsächlichen Übereinstimmung mit dem realen Ablauf"
       ], correct: [0,1,2], explain: "Wiederkehrende Fehlerarten in den eEPK-Fallstudien (z.B. Urlaubsantrag) der Altklausuren: (1) die Anzahl der Folgeelemente nach einer Verzweigung muss zur Anzahl der Entscheidungsmöglichkeiten passen, (2) sich ausschließende Ergebnisse dürfen nicht in einer Funktion gebündelt werden, sondern gehören über einen XOR-Konnektor getrennt, (3) Swimlanes bilden Organisationseinheiten/Rollen ab, keine Tätigkeiten. Die Anzahl an Elementen ist kein Qualitätsmerkmal per se – entscheidend ist die korrekte, eindeutige Abbildung des realen Ablaufs. (Altklausuren WS22/23, WS23/24, SS2024)" },
     { le: 'le04', q: "Wie unterscheiden sich Haupt-, Neben- und Störzeit eines Betriebsmittels in der REFA-Zeitartensystematik?", opts: [
         "Hauptnutzungszeit: das Betriebsmittel arbeitet bestimmungsgemäß am Arbeitsgegenstand (z.B. automatischer Bearbeitungsvorgang); Nebennutzungszeit: notwendige Vorbereitungs-/Folgetätigkeiten ohne direkte Bearbeitung (z.B. Abkühlen, Entfernen des Werkstücks); Störzeit: ungeplante Unterbrechung (z.B. außerplanmäßiger Wechsel des Kühlschmiermittels)",
-        "Haupt-, Neben- und Störzeit sind bei jedem Betriebsmittel immer identisch lang",
-        "Störzeit bezeichnet die planmäßige Rüstzeit vor Produktionsbeginn",
-        "Nebennutzungszeit umfasst ausschließlich die Zeit, in der das Betriebsmittel repariert wird"
+        "Haupt-, Neben- und Störzeit sind bei jedem Betriebsmittel unabhängig vom konkreten Bearbeitungsvorgang immer exakt identisch lang und lassen sich daher nicht getrennt erfassen",
+        "Störzeit bezeichnet die planmäßige, im Voraus eingeplante Rüstzeit vor Produktionsbeginn, die zur Vorbereitung des Betriebsmittels notwendig ist",
+        "Nebennutzungszeit umfasst ausschließlich die Zeit, in der das Betriebsmittel aufgrund eines technischen Defekts repariert wird, nicht jedoch Vorbereitungs- oder Folgetätigkeiten"
       ], correct: 0, explain: "REFA-Zeitartensystematik für Betriebsmittel: Hauptnutzungszeit t_BH (bestimmungsgemäße Bearbeitung, z.B. automatischer CNC-Anschnitt), Nebennutzungszeit t_BN (notwendige Begleittätigkeiten ohne Bearbeitung, z.B. Abkühlen, Entfernen des Werkstücks), Störzeit t_BS (ungeplante Unterbrechung, z.B. außerplanmäßiger Kühlschmiermittelwechsel). (Altklausur SS2024)" },
     { le: 'le04', q: "Wie ist die REFA-Auftragszeit T grundsätzlich aufgebaut?", calc: true, opts: [
         "T = Rüstzeit (t_r) + Anzahl Einheiten (m) × Zeit je Einheit (t_e); dabei ist t_e = Grundzeit (t_g) + Erholzeit (t_er) + Verteilzeit (t_v), und t_r = Rüstgrundzeit (t_rg) + Rüstverteilzeit (t_rv)",
-        "T ist unabhängig von der produzierten Stückzahl m",
-        "T = Grundzeit − Verteilzeit",
-        "Die Rüstzeit wird bei der Auftragszeit grundsätzlich nicht berücksichtigt"
+        "Die Auftragszeit T ist grundsätzlich unabhängig von der produzierten Stückzahl m und bleibt bei jeder Losgröße konstant",
+        "T = Grundzeit − Verteilzeit, wobei die Rüst- und Erholzeit bei dieser vereinfachten Berechnung keine Rolle spielen",
+        "Die Rüstzeit wird bei der Berechnung der Auftragszeit grundsätzlich nicht berücksichtigt, da sie als vernachlässigbar gilt"
       ], correct: 0, explain: "Auftragszeit T = t_r + m·t_e. Zeit je Einheit t_e = t_g + t_er + t_v (Grundzeit + Erholzeit + Verteilzeit). Rüstzeit t_r = t_rg + t_rv (Rüstgrundzeit + Rüstverteilzeit, wobei t_rv = (z_rv/100)·t_rg mit Rüstverteilzeitprozentsatz z_rv). Analog gilt t_v = t_g·(z_v/100) über den Verteilzeitprozentsatz z_v. (Altklausur SS2024)" },
     { le: 'le05', q: "Welche Aussagen treffen auf die MTM-Methodik (Methods-Time Measurement) zu? (mehrere richtig)", multi: true, opts: [
         "Leistungsbeeinträchtigungen (Leistungsgrad) werden nicht berücksichtigt – die Normzeiten gelten für eine Bezugsleistung",
         "Arbeitsablauf und Ausführungszeiten lassen sich bereits in der Planungsphase eines Arbeitssystems detailliert festlegen",
         "Die Codierung der Bewegungen ermöglicht eine international vergleichbare Beschreibung des Arbeitsablaufs",
-        "Die Methode ermöglicht eine vollständig objektive Beurteilung von Arbeitsabläufen"
+        "Die MTM-Methodik ermöglicht durch ihre standardisierte Bewegungscodierung eine vollständig objektive, frei von jeglichem Analystenermessen beeinflusste Beurteilung von Arbeitsabläufen"
       ], correct: [0,1,2], explain: "MTM berücksichtigt keine Leistungsgradbeurteilung (Zeiten gelten für eine definierte Bezugsleistung), ermöglicht die Vorausbestimmung von Zeiten bereits in der Planungsphase (vor Existenz des realen Arbeitsplatzes) und liefert durch die standardisierte Bewegungscodierung international vergleichbare Ablaufbeschreibungen. NICHT zutreffend: vollständige Objektivität – die Zerlegung in Grundbewegungen und deren Zuordnung enthält weiterhin Analystenermessen. Die Anwendung beschränkt sich zudem weitgehend auf manuelle, von den Ausführenden voll beeinflussbare Arbeiten. (Altklausur SS2024)" },
     { le: 'le05', q: "Wie unterscheiden sich „kombinierte Bewegungen“ und „gleichzeitige Bewegungen“ bei der Beidhandarbeit nach MTM-1?", opts: [
         "Kombinierte Bewegungen werden von einem Körperteil gleichzeitig ausgeführt (z.B. Hinlangen kombiniert mit Greifen in einer Bewegung); gleichzeitige Bewegungen werden von verschiedenen Körperteilen gleichzeitig ausgeführt (z.B. linke und rechte Hand parallel)",
-        "Kombinierte und gleichzeitige Bewegungen sind dasselbe und werden synonym verwendet",
-        "Gleichzeitige Bewegungen können ausschließlich mit einer Hand ausgeführt werden",
-        "Kombinierte Bewegungen betreffen immer zwei unterschiedliche Körperteile"
+        "Kombinierte und gleichzeitige Bewegungen sind nach MTM-1 inhaltlich dasselbe Konzept und werden in der Fachliteratur durchgehend synonym verwendet",
+        "Gleichzeitige Bewegungen können nach Definition ausschließlich mit einer einzigen Hand ausgeführt werden, eine Beteiligung beider Hände ist begrifflich ausgeschlossen",
+        "Kombinierte Bewegungen betreffen laut MTM-1 immer zwei unterschiedliche Körperteile, die parallel, aber unabhängig voneinander agieren"
       ], correct: 0, explain: "Kombinierte Bewegungen: von einem Körperteil gleichzeitig ausgeführte Bewegungen (z.B. Hinlangen mit gleichzeitigem Greifen). Gleichzeitige Bewegungen: von verschiedenen Körperteilen gleichzeitig ausgeführte Bewegungen (z.B. beide Hände arbeiten parallel bei der Beidhandarbeit). (Altklausur SS2024)" },
     { le: 'le06', q: "Was sind laut ArbSchG wesentliche Schritte einer Gefährdungsbeurteilung? (mehrere richtig)", multi: true, opts: [
         "Festlegung von Schutzzielen", "Ableitung von Schutzmaßnahmen", "Durchführung von Schutzmaßnahmen", "Ausbildung eines Arbeitssicherheitsbeauftragten"
       ], correct: [0,1,2], explain: "Wesentliche Schritte der Gefährdungsbeurteilung: Festlegung von Schutzzielen, Ableitung geeigneter Schutzmaßnahmen und deren Durchführung (sowie i.d.R. Wirksamkeitskontrolle und Dokumentation). Die Ausbildung eines Arbeitssicherheitsbeauftragten sowie eine reine Arbeitsprozessbeschreibung sind keine eigenständigen Kernschritte der Gefährdungsbeurteilung selbst. (Altklausur SS2024)" },
     { le: 'le06', q: "Ein System besteht aus zwei redundanten (parallelen) Subsystemen U1, U2, deren kombinierter Ausgang mit den verketteten (seriellen) Subsystemen U3 und U4 verbunden ist. Wie berechnet sich die Wahrscheinlichkeit der Nichtverfügbarkeit U des Gesamtsystems?", calc: true, opts: [
         "U12 = U1 · U2 (redundante/parallele Subsysteme: Nichtverfügbarkeit multipliziert sich, da beide gleichzeitig ausfallen müssen); U34 = 1 − (1−U3)·(1−U4) (verkettete/serielle Subsysteme: bereits ein Ausfall genügt); Gesamt: U = 1 − (1−U12)·(1−U34)",
-        "U = U1 + U2 + U3 + U4, unabhängig von Redundanz oder Verkettung",
-        "Redundanz und Verkettung wirken sich identisch auf die Nichtverfügbarkeit aus",
-        "U = U1 · U2 · U3 · U4 für jede Systemarchitektur"
+        "U = U1 + U2 + U3 + U4 — die Gesamt-Nichtverfügbarkeit ergibt sich unabhängig von Redundanz oder Verkettung stets durch einfache Addition der Einzel-Nichtverfügbarkeiten",
+        "Redundanz (parallele Anordnung) und Verkettung (serielle Anordnung) wirken sich identisch auf die Gesamt-Nichtverfügbarkeit des Systems aus, eine Unterscheidung in der Berechnung ist nicht erforderlich",
+        "U = U1 · U2 · U3 · U4 gilt als allgemeine Formel für jede Systemarchitektur, unabhängig davon, ob Subsysteme redundant oder verkettet angeordnet sind"
       ], correct: 0, explain: "Bei redundanten (parallelen) Subsystemen müssen BEIDE ausfallen, damit der Block ausfällt → Nichtverfügbarkeiten multiplizieren sich (U12 = U1·U2), was die Gesamt-Nichtverfügbarkeit senkt. Bei verketteten (seriellen) Subsystemen genügt bereits EIN Ausfall → U34 = 1−(1−U3)(1−U4). Beispielrechnung (Altklausur SS2024): U1=0,2, U2=0,5 → U12=0,1; U3=U4=0,5 → U34=1−0,5·0,5=0,75; Gesamt U = 1−(1−0,1)(1−0,75) = 1−0,9·0,25 = 0,73." },
     { le: 'le07', q: "Welches Messintervall ist je nach Charakteristik des Schallpegelverlaufs zur Beurteilung der Lärmbelastung angemessen zu wählen?", opts: [
         "Bei periodischem Verlauf genügt die Messung über eine Periode; bei unregelmäßig schwankendem (nicht-periodischem) Verlauf muss über die gesamte Messdauer gemessen werden; bei nahezu konstantem Verlauf reicht ein sehr kleines Messintervall",
-        "Es ist immer, unabhängig vom Verlauf, ein einheitliches, festes Messintervall zu verwenden",
-        "Bei periodischem Verlauf muss immer die gesamte Messdauer erfasst werden",
-        "Bei konstantem Schallpegel ist grundsätzlich die längste mögliche Messdauer erforderlich"
+        "Es ist unabhängig von der Charakteristik des Schallpegelverlaufs stets ein einheitliches, fest vorgegebenes Messintervall zu verwenden, das sich nicht an periodischen, unregelmäßigen oder konstanten Verläufen orientiert",
+        "Bei periodischem Schallpegelverlauf muss grundsätzlich immer die gesamte Messdauer vollständig erfasst werden, obwohl sich das Muster wiederholt und eine Periode repräsentativ wäre",
+        "Bei nahezu konstantem Schallpegel ist grundsätzlich die längstmögliche Messdauer erforderlich, obwohl sich der Pegel über die Zeit kaum verändert"
       ], correct: 0, explain: "Das erforderliche Messintervall richtet sich nach dem Verlaufstyp: periodisch wiederkehrende Verläufe → eine Periode genügt (repräsentativ für alle weiteren); unregelmäßig/stochastisch schwankende Verläufe → die gesamte Messdauer muss erfasst werden, da kein sich wiederholendes Muster vorliegt; nahezu konstante Verläufe → ein sehr kleines Messintervall reicht, da sich der Pegel kaum ändert. (Altklausur SS2024)" },
     { le: 'le08', q: "Welche drei Teilgebiete der Ergonomie unterscheidet die IEA-Definition (International Ergonomics Association, 2003), und was umfassen sie?", opts: [
         "Physische Ergonomie (anatomische, anthropometrische, physiologische und biomechanische Eigenschaften des Menschen bzgl. körperlicher Aktivität, z.B. Arbeitshaltungen, Anthropometrie), kognitive Ergonomie (mentale Prozesse wie Wahrnehmung, Gedächtnis, Sprache, die die Mensch-System-Interaktion beeinflussen, z.B. kognitive Arbeitsbelastung, menschliche Zuverlässigkeit) und organisationale/soziale Ergonomie (Optimierung soziotechnischer Systeme, z.B. Kommunikation, Arbeitsabläufe, Teamarbeit, Qualitätsmanagement)",
-        "Physische, prospektive und kognitive Ergonomie als drei gleichrangige Teilgebiete",
-        "Kognitive Ergonomie bezieht sich ausschließlich auf die Beleuchtung am Arbeitsplatz",
-        "Es gibt laut IEA nur ein einziges, unteilbares Ergonomie-Teilgebiet"
+        "Physische, prospektive und kognitive Ergonomie als drei gleichrangige IEA-Teilgebiete, wobei prospektiv als eigenständige dritte Kategorie neben physisch und kognitiv gilt statt als separate zeitliche Unterscheidung",
+        "Kognitive Ergonomie bezieht sich laut IEA-Definition ausschließlich auf die Beleuchtung und visuelle Gestaltung des Arbeitsplatzes, nicht auf mentale Prozesse wie Wahrnehmung oder Gedächtnis",
+        "Es gibt laut IEA-Definition nur ein einziges, unteilbares Ergonomie-Teilgebiet, das sämtliche körperlichen, kognitiven und organisationalen Aspekte undifferenziert zusammenfasst"
       ], correct: 0, explain: "IEA-Definition (2003): Ergonomie als Disziplin, die sich mit den Wechselwirkungen zwischen Menschen und anderen Systemelementen befasst. Drei Teilgebiete: physische Ergonomie (körperliche/anthropometrische/biomechanische Aspekte), kognitive Ergonomie (mentale Prozesse: Wahrnehmung, Gedächtnis, Arbeitsstress, Training), organisationale/soziale Ergonomie (soziotechnische Systeme: Kommunikation, Teamarbeit, Qualitätsmanagement). Davon zu unterscheiden ist die zeitliche Einordnung prospektive vs. korrektive Ergonomie (Entwurfsphase vs. nachträgliche Anpassung) – das ist eine andere, unabhängige Unterscheidung auf derselben LE08-Folie, keine vierte Kategorie der IEA-Trias. (LE08-Vorlesungsfolie, korrigiert nach Altklausur-Cross-Check)" },
     { le: 'le08', q: "Welcher Bewertungsebene nach Hacker (1998) sind folgende konkrete Gestaltungskriterien zuzuordnen: Vermeidung schädlicher Körperhaltungen (I), Komfortbetrachtungen (II), Berücksichtigung von Maximalkräften sowie Erreichbarkeit von Stellteilen (III), Individualisierung des Informationsflusses (IV)?", opts: [
         "I = Schädigungslosigkeit, II = Beeinträchtigungsfreiheit, III = Ausführbarkeit, IV = Persönlichkeitsförderlichkeit",
@@ -1458,24 +1458,24 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "Konkrete Anwendung der Bewertungshierarchie: Schädigungslosigkeit → Vermeidung schädlicher/schädigender Körperhaltungen; Beeinträchtigungsfreiheit → Komfortbetrachtungen; Ausführbarkeit → Berücksichtigung von Maximalkräften, Erreichbarkeit von Stellteilen, Sichtbarkeit von Instrumenten; Persönlichkeitsförderlichkeit → Individualisierung des Informationsflusses (Handlungsspielraum/Gestaltungsfreiheit). (Altklausur SS2024)" },
     { le: 'le08', q: "Fließbandarbeiten nach DIN EN 1005-2: Eine Arbeitsperson hebt Bauteile (Masse 6,7 kg, Lasthöhe 30 cm) von einem Antransportband (Übergabehöhe V_A = 51 cm) zu einer Ziellage (V_Z = 77 cm), mit einer Drehung von 43° und einhändiger Arbeit ohne Nebenarbeiten oder Zusatzkraft. Es ergeben sich R_MLA ≈ 12,12 kg und R_MLZ ≈ 11,22 kg. Wie hoch ist der Risikoindex R_I für die Ziellage (gerundet)?", calc: true, opts: [
         "R_IZ = 6,7 kg / R_MLZ ≈ 6,7 / 11,22 ≈ 0,6 – deutlich unter 1, also rechnerisch unkritisch",
-        "R_IZ ≈ 2,5 – das Bauteil überschreitet die Massegrenze deutlich",
-        "R_IZ ist bei Fließbandarbeiten grundsätzlich nicht berechenbar",
-        "R_IZ = 1,0 exakt, da die Ausgangslage stets als Referenz dient"
+        "R_IZ ≈ 2,5 – das Bauteil überschreitet damit die zulässige Massegrenze nach DIN EN 1005-2 deutlich und die Tätigkeit gilt als klar kritisch einzustufen",
+        "R_IZ ist bei Fließbandarbeiten grundsätzlich nicht berechenbar, da sich die Übergabehöhen und Drehwinkel ständig ändern und keine feste Referenzgröße existiert",
+        "R_IZ = 1,0 exakt, da bei der Berechnung nach DIN EN 1005-2 die Ausgangslage stets unabhängig vom tatsächlichen Lastgewicht als feste Referenzgröße definiert wird"
       ], correct: 0, explain: "R_MLA = M_ref·V_MA·D_M·H_M·A_MA·C_M·O_M·P_M·A_T = 25·0,92·0,99·0,71·1·1·1·1·1 ≈ 12,12 kg (V_MA = 1−0,003·|51−75| = 0,92). R_MLZ = 25·0,99·0,99·0,71·0,86·1·1·1·1 ≈ 11,22 kg (V_MZ = 1−0,003·|77−75| = 0,99). R_IA = 6,7/12,12 ≈ 0,56, R_IZ = 6,7/11,22 ≈ 0,6. Beide Risikoindizes liegen unter 1 → rechnerisch unkritisch (Zwischenergebnisse müssen jeweils auf zwei Nachkommastellen gerundet werden, was das Endergebnis beeinflusst). (Altklausur SS2024)" },
     { le: 'le11', q: "Welche der folgenden Arbeitsplatzbestimmungen entsprechen einem ergonomisch optimierten Bildschirm-/Computerarbeitsplatz? (mehrere richtig)", multi: true, opts: [
         "Der Bildschirm ist neig- und drehbar", "Es gibt eine Abstützmöglichkeit für die Füße", "Der Mindestabstand zwischen Augen und Bildschirm beträgt 100 mm", "Die Bürostuhlhöhe ermöglicht eine Sitzhaltung, bei der die Oberschenkel leicht abfallen und die Unterschenkel senkrecht stehen"
       ], correct: [0,1,3], explain: "Ergonomisch optimiert: neig-/drehbarer Bildschirm, Fußabstützung, angepasste Sitzhöhe (Oberschenkel leicht abfallend, Unterschenkel senkrecht). Bedenklich dagegen: ein Augen-Bildschirm-Abstand von nur 100 mm (viel zu gering – üblich sind ca. 50–70 cm), reine Steharbeit am Stehpult ohne Wechsel sowie Pausen erst alle 2 Stunden (zu selten). (Altklausur SS2024)" },
     { le: 'le12', q: "Welchem Bedürfnis bzw. welcher Ebene der Maslowschen Bedürfnispyramide entsprechen folgende Maßnahmen: (a) Mitarbeitende dürfen eigene Ideen in ihre Arbeit einbringen, (b) Mitarbeitenden werden Festverträge angeboten, (c) das Unternehmen setzt auf Teamarbeit und Zusammenarbeit?", opts: [
         "(a) Selbstverwirklichung/Wachstumsbedürfnisse, (b) Sicherheitsbedürfnisse/Defizitbedürfnisse, (c) soziale Bedürfnisse/Defizitbedürfnisse",
-        "(a) Sicherheitsbedürfnisse, (b) Selbstverwirklichung, (c) physiologische Bedürfnisse",
-        "Alle drei Maßnahmen entsprechen derselben Bedürfnisebene",
-        "(a) soziale Bedürfnisse, (b) Selbstverwirklichung, (c) Sicherheitsbedürfnisse"
+        "(a) Sicherheitsbedürfnisse, weil eigene Ideen einzubringen vor allem Stabilität vermittelt; (b) Selbstverwirklichung, weil ein Festvertrag als höchste Form persönlicher Entfaltung gilt; (c) physiologische Bedürfnisse, weil Teamarbeit primär der körperlichen Grundversorgung dient",
+        "Alle drei genannten Maßnahmen – eigene Ideen einbringen, Festverträge und Teamarbeit – entsprechen laut Maslow derselben einzelnen Bedürfnisebene und lassen sich nicht unterschiedlichen Stufen der Pyramide zuordnen",
+        "(a) soziale Bedürfnisse, weil eigene Ideen einzubringen vor allem dem Gemeinschaftsgefühl dient; (b) Selbstverwirklichung, weil ein Festvertrag als höchste Entfaltungsform gilt; (c) Sicherheitsbedürfnisse, weil Teamarbeit in erster Linie Stabilität vermittelt"
       ], correct: 0, explain: "Eigene Ideen einbringen können → Selbstverwirklichung (Wachstumsbedürfnis). Festverträge → Sicherheitsbedürfnisse (Defizitbedürfnis, Job-/Existenzsicherheit). Fokus auf Teamarbeit/Zusammenarbeit → soziale Bedürfnisse (Defizitbedürfnis, Zugehörigkeit). Die unteren vier Ebenen gelten als Defizitbedürfnisse, die oberste Ebene (Selbstverwirklichung) als Wachstumsbedürfnis. (Altklausur SS2024)" },
     { le: 'le12', q: "Wie sind Firmenpolitik, Verantwortung, Anerkennung, Status, Arbeitsinhalt und Gehalt gemäß der Zwei-Faktoren-Theorie (Herzberg et al., 1959) zu klassifizieren?", opts: [
         "Hygienefaktoren: Firmenpolitik, Status, Gehalt; Motivatoren: Verantwortung, Anerkennung, Arbeitsinhalt",
-        "Alle sechs Faktoren sind Motivatoren",
-        "Alle sechs Faktoren sind Hygienefaktoren",
-        "Hygienefaktoren: Verantwortung, Anerkennung, Arbeitsinhalt; Motivatoren: Firmenpolitik, Status, Gehalt"
+        "Alle sechs genannten Faktoren – Firmenpolitik, Verantwortung, Anerkennung, Status, Arbeitsinhalt und Gehalt – zählen laut Herzberg gleichermaßen zu den Motivatoren, eine Unterscheidung in zwei Kategorien ist nicht vorgesehen",
+        "Alle sechs genannten Faktoren – Firmenpolitik, Verantwortung, Anerkennung, Status, Arbeitsinhalt und Gehalt – zählen laut Herzberg gleichermaßen zu den Hygienefaktoren, da sie sämtlich den äußeren Arbeitskontext betreffen",
+        "Hygienefaktoren: Verantwortung, Anerkennung, Arbeitsinhalt; Motivatoren: Firmenpolitik, Status, Gehalt – also genau umgekehrt zur eigentlichen Klassifikation nach Herzberg"
       ], correct: 0, explain: "Hygienefaktoren (kontextbezogen, verhindern Unzufriedenheit, schaffen aber keine Zufriedenheit): Firmenpolitik, Status, Gehalt. Motivatoren (inhaltsbezogen, schaffen aktiv Zufriedenheit): Verantwortung, Anerkennung, Arbeitsinhalt. (Altklausur SS2024)" }
   ] }
 };
