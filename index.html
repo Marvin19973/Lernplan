@@ -583,8 +583,7 @@ function quizBuildExprOptions(correctExpr, distractorExprs) {
   const correct = values.indexOf(correctExpr);
   return { opts: values, correct };
 }
-function quizShuffleOptions(item) {
-  const idxs = quizShuffle(item.opts.map((_, i) => i));
+function quizShuffleOptions(item, idxs) {
   const newCorrect = item.multi
     ? item.correct.map(oldIdx => idxs.indexOf(oldIdx))
     : idxs.indexOf(item.correct);
@@ -592,6 +591,15 @@ function quizShuffleOptions(item) {
     q: item.q, opts: idxs.map(i => item.opts[i]), correct: newCorrect,
     explain: item.explain, calc: item.calc, multi: item.multi, diagramKey: item.diagramKey, formula: item.formula
   };
+}
+// Liefert die (einmal pro Frage feste) Options-Reihenfolge, damit sich die Zuordnung
+// zwischen Klick und Anzeige des Ergebnisses nicht durch erneutes Mischen verschiebt.
+function quizGetOptOrder(key, srcIdx, item) {
+  const ck = key + '_' + srcIdx;
+  if (!quizState.optOrder[ck]) {
+    quizState.optOrder[ck] = quizShuffle(item.opts.map((_, i) => i));
+  }
+  return quizState.optOrder[ck];
 }
 
 /* ============================================================
@@ -1474,7 +1482,7 @@ const QUIZ_DATA = {
 
 const quizState = {
   active: null,
-  order: {}, index: {}, answer: {}, stats: {}, filterLE: {}
+  order: {}, index: {}, answer: {}, stats: {}, filterLE: {}, optOrder: {}
 };
 // Liefert die Indizes der Fragen eines Teils, die zum aktuell gewählten LE-Filter passen
 // (oder alle, falls Filter = 'all'). Reihenfolge = Original-Reihenfolge im Array.
@@ -1557,14 +1565,17 @@ function renderQuizPanel() {
         <span class="quiz-reset-btn" id="quizRestartBtn">Neu mischen &amp; nochmal üben</span>
       </div>`;
     document.getElementById('quizRestartBtn').onclick = () => {
-      quizState.order[key] = null; quizState.index[key] = 0; quizState.answer[key] = null; renderQuiz();
+      quizState.order[key] = null; quizState.index[key] = 0; quizState.answer[key] = null;
+      Object.keys(quizState.optOrder).forEach(ck => { if (ck.startsWith(key + '_')) delete quizState.optOrder[ck]; });
+      renderQuiz();
     };
     return;
   }
 
   const srcIdx = order[idx];
   const raw = QUIZ_DATA[key].questions[srcIdx];
-  const q = quizShuffleOptions(raw);
+  const optIdxs = quizGetOptOrder(key, srcIdx, raw);
+  const q = quizShuffleOptions(raw, optIdxs);
   const baseId = quizBaseId(key, srcIdx);
   const answer = quizState.answer[key];
 
@@ -1664,6 +1675,7 @@ function renderQuizPanel() {
     nextWrap.className = 'flashcard-actions';
     nextWrap.innerHTML = `<button class="flashcard-btn show">Nächste Frage →</button>`;
     nextWrap.querySelector('button').onclick = () => {
+      delete quizState.optOrder[key + '_' + srcIdx];
       quizState.index[key] = idx + 1;
       quizState.answer[key] = null;
       quizState.answer[key + '_multi'] = [];
