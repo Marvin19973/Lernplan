@@ -97,6 +97,8 @@
   .quiz-opt.correct .quiz-dot { background: var(--green); color: #06251c; }
   .quiz-opt.wrong { border-color: #f16565; background: rgba(241,101,101,0.1); }
   .quiz-opt.wrong .quiz-dot { background: #f16565; color: #350a0a; }
+  .quiz-opt.selected { border-color: var(--accent); background: rgba(91,141,239,0.12); }
+  .quiz-opt.selected .quiz-dot { background: var(--accent); color: #0d1524; }
   .quiz-explain { display: none; margin-top: 1rem; font-size: 13px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 10px; padding: 0.8rem 0.9rem; line-height: 1.5; }
   .quiz-explain.show { display: block; }
   .quiz-summary { text-align: center; padding: 2rem 1rem; font-size: 15px; color: var(--text-secondary); }
@@ -1680,7 +1682,7 @@ function renderQuizPanel() {
         if (q.correct.includes(oi)) cls += ' correct';
         else if (isSelected) cls += ' wrong';
       } else if (isSelected) {
-        cls += ' correct';
+        cls += ' selected';
       }
       optDiv.className = cls;
       const letter = String.fromCharCode(65 + oi);
