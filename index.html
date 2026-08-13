@@ -1571,8 +1571,12 @@ function quizFilteredIndices(key) {
 }
 function quizEnsureOrder(key) {
   if (!quizState.order[key]) {
-    quizState.order[key] = quizShuffle(quizFilteredIndices(key));
     if (!quizStats[key]) quizStats[key] = {};
+    const idxs = quizFilteredIndices(key);
+    const stats = quizStats[key];
+    const wrongFirst = idxs.filter(i => stats[quizBaseId(key, i)] && stats[quizBaseId(key, i)].lastWrong);
+    const rest = idxs.filter(i => !(stats[quizBaseId(key, i)] && stats[quizBaseId(key, i)].lastWrong));
+    quizState.order[key] = quizShuffle(wrongFirst).concat(quizShuffle(rest));
   }
   return quizState.order[key];
 }
@@ -1709,7 +1713,8 @@ function renderQuizPanel() {
         const selSet = new Set(selectedMulti);
         const isRight = correctSet.size === selSet.size && [...correctSet].every(x => selSet.has(x));
         if (!quizStats[key][baseId]) quizStats[key][baseId] = { correct: 0, wrong: 0 };
-        if (isRight) quizStats[key][baseId].correct++; else quizStats[key][baseId].wrong++;
+        if (isRight) { quizStats[key][baseId].correct++; quizStats[key][baseId].lastWrong = false; }
+        else { quizStats[key][baseId].wrong++; quizStats[key][baseId].lastWrong = true; }
         quizState.answer[key] = selectedMulti.slice();
         saveStats();
         renderQuiz();
@@ -1737,7 +1742,8 @@ function renderQuizPanel() {
         optDiv.onclick = () => {
           quizState.answer[key] = oi;
           if (!quizStats[key][baseId]) quizStats[key][baseId] = { correct: 0, wrong: 0 };
-          if (oi === q.correct) quizStats[key][baseId].correct++; else quizStats[key][baseId].wrong++;
+          if (oi === q.correct) { quizStats[key][baseId].correct++; quizStats[key][baseId].lastWrong = false; }
+          else { quizStats[key][baseId].wrong++; quizStats[key][baseId].lastWrong = true; }
           saveStats();
           renderQuiz();
         };
@@ -2123,11 +2129,17 @@ const AWI_FORMULA_QUIZ = {
 
 const ebwlCardState = {
   active: null,
-  order: {}, instance: {}, index: {}, answer: {}, stats: {}
+  order: {}, instance: {}, index: {}, answer: {}, stats: {}, qstats: {}
 };
+// Fragen (bzw. Formel-Vorlagen), die beim letzten Versuch falsch beantwortet wurden,
+// kommen bei einer neuen Runde zuerst dran.
 function ebwlEnsureOrder(key) {
   if (!ebwlCardState.order[key]) {
-    ebwlCardState.order[key] = quizShuffle(AWI_FORMULA_QUIZ[key].questions.map((_, i) => i));
+    const all = AWI_FORMULA_QUIZ[key].questions.map((_, i) => i);
+    const qs = ebwlCardState.qstats[key] || {};
+    const wrongFirst = all.filter(i => qs[i] && qs[i].lastWrong);
+    const rest = all.filter(i => !(qs[i] && qs[i].lastWrong));
+    ebwlCardState.order[key] = quizShuffle(wrongFirst).concat(quizShuffle(rest));
     ebwlCardState.instance[key] = {};
   }
   return ebwlCardState.order[key];
@@ -2179,7 +2191,8 @@ function renderEbwlCardsPanel() {
     return;
   }
 
-  const q = ebwlGetQuestion(key, order[idx]);
+  const srcIdx = order[idx];
+  const q = ebwlGetQuestion(key, srcIdx);
   const answer = ebwlCardState.answer[key];
 
   const progressText = document.createElement('div');
@@ -2212,7 +2225,10 @@ function renderEbwlCardsPanel() {
     if (answer === null) {
       optDiv.onclick = () => {
         ebwlCardState.answer[key] = oi;
-        if (oi === q.correct) stats.correct++; else stats.wrong++;
+        if (!ebwlCardState.qstats[key]) ebwlCardState.qstats[key] = {};
+        if (!ebwlCardState.qstats[key][srcIdx]) ebwlCardState.qstats[key][srcIdx] = {};
+        if (oi === q.correct) { stats.correct++; ebwlCardState.qstats[key][srcIdx].lastWrong = false; }
+        else { stats.wrong++; ebwlCardState.qstats[key][srcIdx].lastWrong = true; }
         renderEbwlCards();
       };
     }
