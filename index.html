@@ -1662,15 +1662,27 @@ const QUIZ_DATA = {
 
 const quizState = {
   active: null,
-  order: {}, index: {}, answer: {}, stats: {}, filterLE: {}, optOrder: {}
+  order: {}, index: {}, answer: {}, stats: {}, filterLE: {}, optOrder: {}, onlyWrong: {}
 };
 // Liefert die Indizes der Fragen eines Teils, die zum aktuell gewählten LE-Filter passen
 // (oder alle, falls Filter = 'all'). Reihenfolge = Original-Reihenfolge im Array.
 function quizFilteredIndices(key) {
   const filter = quizState.filterLE[key] || 'all';
-  const idxs = QUIZ_DATA[key].questions.map((_, i) => i);
-  if (filter === 'all') return idxs;
-  return idxs.filter(i => QUIZ_DATA[key].questions[i].le === filter);
+  let idxs = QUIZ_DATA[key].questions.map((_, i) => i);
+  if (filter !== 'all') idxs = idxs.filter(i => QUIZ_DATA[key].questions[i].le === filter);
+  if (quizState.onlyWrong[key]) {
+    const stats = quizStats[key] || {};
+    idxs = idxs.filter(i => stats[quizBaseId(key, i)] && stats[quizBaseId(key, i)].lastWrong);
+  }
+  return idxs;
+}
+// Anzahl der zuletzt falsch beantworteten Fragen im aktuellen LE-Filter (unabhängig vom onlyWrong-Toggle selbst)
+function quizWrongCount(key) {
+  const filter = quizState.filterLE[key] || 'all';
+  let idxs = QUIZ_DATA[key].questions.map((_, i) => i);
+  if (filter !== 'all') idxs = idxs.filter(i => QUIZ_DATA[key].questions[i].le === filter);
+  const stats = quizStats[key] || {};
+  return idxs.filter(i => stats[quizBaseId(key, i)] && stats[quizBaseId(key, i)].lastWrong).length;
 }
 function quizEnsureOrder(key) {
   if (!quizState.order[key]) {
@@ -1717,12 +1729,23 @@ function renderQuizControls() {
   const filter = quizState.filterLE[key] || 'all';
   const leOptions = les.map(le => `<option value="${le}" ${filter === le ? 'selected' : ''}>${quizLETitle(le)}</option>`).join('');
   const count = quizFilteredIndices(key).length;
+  const wrongCount = quizWrongCount(key);
+  const onlyWrong = !!quizState.onlyWrong[key];
   wrap.innerHTML = `
     <select id="quizLeSelect"><option value="all" ${filter === 'all' ? 'selected' : ''}>Alle ${QUIZ_DATA[key].label.replace('Teil ' + key + ' · ', '')} (${QUIZ_DATA[key].questions.length} Fragen)</option>${leOptions}</select>
+    <label><input type="checkbox" id="quizOnlyWrongCheck" ${onlyWrong ? 'checked' : ''} ${wrongCount === 0 && !onlyWrong ? 'disabled' : ''}> Nur falsche wiederholen (${wrongCount})</label>
     <span class="kk-progress-inline">${count} Frage${count === 1 ? '' : 'n'} in dieser Auswahl</span>
   `;
   document.getElementById('quizLeSelect').addEventListener('change', (e) => {
     quizState.filterLE[key] = e.target.value;
+    quizState.order[key] = null;
+    quizState.index[key] = 0;
+    quizState.answer[key] = null;
+    quizState.answer[key + '_multi'] = [];
+    renderQuiz();
+  });
+  document.getElementById('quizOnlyWrongCheck').addEventListener('change', (e) => {
+    quizState.onlyWrong[key] = e.target.checked;
     quizState.order[key] = null;
     quizState.index[key] = 0;
     quizState.answer[key] = null;
@@ -1739,6 +1762,20 @@ function renderQuizPanel() {
   const idx = quizState.index[key] || 0;
   if (!quizStats[key]) quizStats[key] = {};
   const total = QUIZ_DATA[key].questions.length;
+
+  if (order.length === 0 && quizState.onlyWrong[key]) {
+    panel.innerHTML = `
+      <div class="quiz-summary">
+        🎉 Keine offenen Fehler in dieser Auswahl – alles zuletzt richtig beantwortet!<br>
+        <span class="quiz-reset-btn" id="quizAllBtn">Zurück zu allen Fragen</span>
+      </div>`;
+    document.getElementById('quizAllBtn').onclick = () => {
+      quizState.onlyWrong[key] = false;
+      quizState.order[key] = null; quizState.index[key] = 0; quizState.answer[key] = null;
+      renderQuiz();
+    };
+    return;
+  }
 
   if (idx >= order.length) {
     let c = 0, w = 0;
@@ -2228,15 +2265,27 @@ const AWI_FORMULA_QUIZ = {
 
 const ebwlCardState = {
   active: null,
-  order: {}, instance: {}, index: {}, answer: {}, stats: {}, qstats: {}, filterLE: {}
+  order: {}, instance: {}, index: {}, answer: {}, stats: {}, qstats: {}, filterLE: {}, onlyWrong: {}
 };
 // Fragen (bzw. Formel-Vorlagen), die beim letzten Versuch falsch beantwortet wurden,
 // kommen bei einer neuen Runde zuerst dran.
 function ebwlFilteredIndices(key) {
   const filter = ebwlCardState.filterLE[key] || 'all';
-  const idxs = AWI_FORMULA_QUIZ[key].questions.map((_, i) => i);
-  if (filter === 'all') return idxs;
-  return idxs.filter(i => AWI_FORMULA_QUIZ[key].questions[i].le === filter);
+  let idxs = AWI_FORMULA_QUIZ[key].questions.map((_, i) => i);
+  if (filter !== 'all') idxs = idxs.filter(i => AWI_FORMULA_QUIZ[key].questions[i].le === filter);
+  if (ebwlCardState.onlyWrong[key]) {
+    const qs = ebwlCardState.qstats[key] || {};
+    idxs = idxs.filter(i => qs[i] && qs[i].lastWrong);
+  }
+  return idxs;
+}
+// Anzahl der zuletzt falsch beantworteten Aufgaben im aktuellen LE-Filter (unabhängig vom onlyWrong-Toggle selbst)
+function ebwlWrongCount(key) {
+  const filter = ebwlCardState.filterLE[key] || 'all';
+  let idxs = AWI_FORMULA_QUIZ[key].questions.map((_, i) => i);
+  if (filter !== 'all') idxs = idxs.filter(i => AWI_FORMULA_QUIZ[key].questions[i].le === filter);
+  const qs = ebwlCardState.qstats[key] || {};
+  return idxs.filter(i => qs[i] && qs[i].lastWrong).length;
 }
 function ebwlLEsInTeil(key) {
   const seen = [];
@@ -2286,12 +2335,22 @@ function renderEbwlCardsControls() {
   const filter = ebwlCardState.filterLE[key] || 'all';
   const leOptions = les.map(le => `<option value="${le}" ${filter === le ? 'selected' : ''}>${quizLETitle(le)}</option>`).join('');
   const count = ebwlFilteredIndices(key).length;
+  const wrongCount = ebwlWrongCount(key);
+  const onlyWrong = !!ebwlCardState.onlyWrong[key];
   wrap.innerHTML = `
     <select id="ebwlLeSelect"><option value="all" ${filter === 'all' ? 'selected' : ''}>Alle ${AWI_FORMULA_QUIZ[key].label.replace('Formeln ', '')} (${AWI_FORMULA_QUIZ[key].questions.length} Aufgaben)</option>${leOptions}</select>
+    <label><input type="checkbox" id="ebwlOnlyWrongCheck" ${onlyWrong ? 'checked' : ''} ${wrongCount === 0 && !onlyWrong ? 'disabled' : ''}> Nur falsche wiederholen (${wrongCount})</label>
     <span class="kk-progress-inline">${count} Aufgabe${count === 1 ? '' : 'n'} in dieser Auswahl</span>
   `;
   document.getElementById('ebwlLeSelect').addEventListener('change', (e) => {
     ebwlCardState.filterLE[key] = e.target.value;
+    ebwlCardState.order[key] = null;
+    ebwlCardState.index[key] = 0;
+    ebwlCardState.answer[key] = null;
+    renderEbwlCards();
+  });
+  document.getElementById('ebwlOnlyWrongCheck').addEventListener('change', (e) => {
+    ebwlCardState.onlyWrong[key] = e.target.checked;
     ebwlCardState.order[key] = null;
     ebwlCardState.index[key] = 0;
     ebwlCardState.answer[key] = null;
@@ -2307,6 +2366,20 @@ function renderEbwlCardsPanel() {
   const idx = ebwlCardState.index[key] || 0;
   const stats = ebwlCardState.stats[key];
   const total = AWI_FORMULA_QUIZ[key].questions.length;
+
+  if (order.length === 0 && ebwlCardState.onlyWrong[key]) {
+    panel.innerHTML = `
+      <div class="quiz-summary">
+        🎉 Keine offenen Fehler in dieser Auswahl – alles zuletzt richtig gerechnet!<br>
+        <span class="quiz-reset-btn" id="ebwlAllBtn">Zurück zu allen Aufgaben</span>
+      </div>`;
+    document.getElementById('ebwlAllBtn').onclick = () => {
+      ebwlCardState.onlyWrong[key] = false;
+      ebwlCardState.order[key] = null; ebwlCardState.index[key] = 0; ebwlCardState.answer[key] = null;
+      renderEbwlCards();
+    };
+    return;
+  }
 
   if (idx >= order.length) {
     panel.innerHTML = `
