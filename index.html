@@ -184,6 +184,7 @@
   <div class="view" id="view-formeln">
     <div class="info-box"><b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.</div>
     <div class="quiz-tab-row" id="ebwlTabs"></div>
+    <div class="kk-controls" id="ebwlControls"></div>
     <div id="ebwlPanel"></div>
   </div>
 
@@ -1968,200 +1969,42 @@ const AWI_CALC_GENERATORS = {
 };
 
 const AWI_FORMULA_QUIZ = {
-  zeit: { label: 'REFA & MTM · Zeitwirtschaft', sub: 'Auftragszeit, Belegungszeit, Multimomentformel', questions: [
-    { genKey: 'auftragszeit' },
-    { genKey: 'belegungszeit' },
-    { genKey: 'multimoment' },
-    { genKey: 'multimomentF' },
-    { q: "[Übung LE04] Rechenaufgabe (Multimomentstudie, Anzahl Rundgänge): Der erforderliche Stichprobenumfang wurde mit n = 960 Beobachtungen ermittelt. Bei jedem Rundgang werden 12 Arbeitsplätze (Objekte) gleichzeitig erfasst. Welche Rechnung liefert die nötige Anzahl an Rundgängen?",
+  B: { label: 'Formeln Teil B · LE04–06', sub: 'Zeitwirtschaft, MTM-Zeitwertkarten, Nichtverfügbarkeit & FMEA', questions: [
+    { genKey: 'auftragszeit', le: 'le04' },
+    { genKey: 'belegungszeit', le: 'le04' },
+    { genKey: 'multimoment', le: 'le04' },
+    { genKey: 'multimomentF', le: 'le04' },
+    { le: 'le04', q: "[Übung LE04] Rechenaufgabe (Multimomentstudie, Anzahl Rundgänge): Der erforderliche Stichprobenumfang wurde mit n = 960 Beobachtungen ermittelt. Bei jedem Rundgang werden 12 Arbeitsplätze (Objekte) gleichzeitig erfasst. Welche Rechnung liefert die nötige Anzahl an Rundgängen?",
       opts: ["960 ÷ 12","960 · 12","960 − 12","√960 ÷ 12"],
       correct: 0, calc: true,
       explain: "Anzahl Rundgänge = n ÷ Anzahl der beobachteten Objekte = 960 ÷ 12 = 80 Rundgänge. Bei jedem Rundgang wird jedes der 12 Objekte einmal beobachtet, sodass n/Anzahl Objekte die Anzahl der nötigen Wiederholungen (Rundgänge) ergibt." },
-    { q: "Wie lautet die Formel der Belegungszeit (Vorgabezeit für Arbeits-/Betriebsmittel)?", opts: [
+    { le: 'le04', q: "Wie lautet die Formel der Belegungszeit (Vorgabezeit für Arbeits-/Betriebsmittel)?", opts: [
         "T = trB + m · teB, mit trB = Rüstzeit für das Betriebsmittel, m = Menge, teB = Zeit je Einheit (Betriebsmittel)",
         "T = trB ÷ m · teB",
         "T = trB − m · teB",
         "T = m ÷ (trB + teB)"
       ], correct: 0, explain: "Belegungszeit T = trB + m·teB — vollkommen analog zur Auftragszeit (T = tr + m·te), nur bezogen auf das Arbeits-/Betriebsmittel statt auf den Menschen. teB = tgB + tvB (Grundzeit + Verteilzeit, bezogen auf Betriebsmittel)." },
-    { q: "Formel (Rüstzeit nach REFA): Wie setzt sich die Rüstzeit tr vollständig zusammen?", opts: [
+    { le: 'le04', q: "Formel (Rüstzeit nach REFA): Wie setzt sich die Rüstzeit tr vollständig zusammen?", opts: [
         "tr = trg + trv + trer (Rüstgrundzeit + Rüstverteilzeit + Rüsterholungszeit)",
         "tr = trg − trv − trer",
         "tr = trg · trv · trer",
         "tr = trg ÷ (trv + trer)"
       ], correct: 0, explain: "Rüstzeit tr = Rüstgrundzeit trg + Rüstverteilzeit trv (= (zrv/100%)·trg) + Rüsterholungszeit trer. In vielen Übungsaufgaben wird trer vereinfacht = 0 gesetzt (bzw. tr = 0 ganz weggelassen), offiziell gehört sie aber zur vollständigen Formel der Formelsammlung." },
-    { q: "Formel (REFA-Leistungsgradermittlung): Wie wird der mengenbezogene Leistungsgrad grundsätzlich bestimmt?", opts: [
+    { le: 'le04', q: "Formel (REFA-Leistungsgradermittlung): Wie wird der mengenbezogene Leistungsgrad grundsätzlich bestimmt?", opts: [
         "Leistungsgrad LG = (Ist-Mengenleistung Mi ÷ Bezugsmengenleistung MB) · 100%",
         "Leistungsgrad LG = Ist-Mengenleistung Mi · Bezugsmengenleistung MB",
         "Leistungsgrad LG = Bezugsmengenleistung MB ÷ Ist-Mengenleistung Mi · 100%",
         "Leistungsgrad LG = Ist-Mengenleistung Mi − Bezugsmengenleistung MB"
       ], correct: 0, explain: "LG = (Mi/MB)·100% drückt das Verhältnis der (beeinflussbaren) Ist-Mengenleistung zu einer vorgestellten Bezugsmengenleistung (100%-Standard) aus. Wichtig: Leistungsgrad wird nicht gemessen, sondern von geschulten Zeitaufnehmenden beurteilt." },
-    { q: "Rechenaufgabe (Leistungsgrad): Eine Arbeitsperson produziert in der beobachteten Zeit Mi = 92 Stück, die Bezugsleistung (100%-Standard) beträgt MB = 80 Stück. Welche Rechnung liefert den Leistungsgrad?",
+    { le: 'le04', q: "Rechenaufgabe (Leistungsgrad): Eine Arbeitsperson produziert in der beobachteten Zeit Mi = 92 Stück, die Bezugsleistung (100%-Standard) beträgt MB = 80 Stück. Welche Rechnung liefert den Leistungsgrad?",
       opts: ["(92 ÷ 80) · 100%", "(80 ÷ 92) · 100%", "92 · 80", "92 − 80"],
       correct: 0, calc: true,
-      explain: "LG = (Mi/MB)·100% = (92/80)·100% = 115%. Die Arbeitsperson arbeitet also 15% schneller als die Bezugsleistung (Normalleistung = 100%). Die Soll-Zeit ergibt sich anschließend aus Ist-Zeit × Leistungsgrad/100%." }
-  ]},
-  sicherheit: { label: 'Arbeitsschutz, Ergonomie & Schall', sub: 'Nichtverfügbarkeit, Leitmerkmalmethode, Gefahrstoffe, Schallpegel', questions: [
-    { q: "Rechenaufgabe (Nichtverfügbarkeit verkettetes System): Drei Komponenten sind verkettet (in Reihe geschaltet) mit Nichtverfügbarkeiten U1 = 0,02, U2 = 0,03, U3 = 0,01. Welche Rechnung liefert die Gesamt-Nichtverfügbarkeit Uges?",
-      opts: ["1 − (1−0,02)·(1−0,03)·(1−0,01)","(1−0,02)·(1−0,03)·(1−0,01)","0,02 · 0,03 · 0,01","1 − (0,02 + 0,03 + 0,01)"],
-      correct: 0, calc: true,
-      explain: "Für verkettete (in Reihe geschaltete) Systeme: Uges = 1 − ∏(1−Ui) = 1 − (1−0,02)·(1−0,03)·(1−0,01) ≈ 1 − 0,9412 ≈ 0,0588 (≈5,9 %). Ein verkettetes System fällt aus, sobald EINE Komponente ausfällt – daher steigt die Gesamt-Nichtverfügbarkeit mit jeder zusätzlichen Komponente. Achtung: (1−0,02)·(1−0,03)·(1−0,01) allein wäre die Verfügbarkeit, nicht die Nichtverfügbarkeit – die '1 − ...' Klammer nicht vergessen." },
-    { q: "Rechenaufgabe (Nichtverfügbarkeit redundantes System): Zwei redundante (parallel geschaltete) Komponenten haben Nichtverfügbarkeiten U1 = 0,05 und U2 = 0,08. Welche Rechnung liefert die Gesamt-Nichtverfügbarkeit Uges?",
-      opts: ["0,05 · 0,08","1 − (1−0,05)·(1−0,08)","0,05 + 0,08","1 − 0,05·0,08"],
-      correct: 0, calc: true,
-      explain: "Für redundante (parallel geschaltete) Systeme: Uges = ∏Ui = 0,05 · 0,08 = 0,004 (0,4 %). Ein redundantes System fällt nur aus, wenn ALLE Komponenten gleichzeitig ausfallen – daher ist die Gesamt-Nichtverfügbarkeit viel kleiner als bei einem verketteten System. Nicht mit der Formel für verkettete Systeme verwechseln!" },
-    { q: "Rechenaufgabe (DIN EN 1005-2, Risikoindex): Die zulässige Massegrenze beträgt RML = 8,5 kg, die tatsächlich gehandhabte Masse M = 10 kg. Welche Rechnung liefert den Risikoindex RI?",
-      opts: ["10 ÷ 8,5","8,5 ÷ 10","10 − 8,5","10 · 8,5"],
-      correct: 0, calc: true,
-      explain: "Risikoindex RI = M ÷ RML = 10 ÷ 8,5 ≈ 1,18. Da RI ≥ 1,0 ist, ist eine Um-/Neugestaltung erforderlich (bei RI ≤ 0,85: vertretbares Risiko; 0,85 < RI < 1,0: signifikantes Risiko, Um-/Neugestaltung empfohlen; RI ≥ 1,0: Um-/Neugestaltung erforderlich)." },
-    { q: "Rechenaufgabe (mittlere Gefahrstoffkonzentration): Die Emissionsrate eines Gefahrstoffs beträgt E = 0,002 kg/s, der Volumenstrom Q = 0,5 m³/s. Welche Rechnung liefert die mittlere Gefahrstoffkonzentration C in der Luft?",
-      opts: ["0,002 ÷ 0,5","0,5 ÷ 0,002","0,002 · 0,5","0,002 + 0,5"],
-      correct: 0, calc: true,
-      explain: "C = E ÷ Q = 0,002 kg/s ÷ 0,5 m³/s = 0,004 kg/m³. C = mittlere Gefahrstoffkonzentration in der Luft, E = Emissionsrate während der Expositionszeit, Q = Volumenstrom (Fläche × Luftgeschwindigkeit)." },
-    { q: "Formel (DIN EN 1005-2, Massegrenze RML): Welche Formel bestimmt die Massegrenze RML für ein bestimmtes Set an Arbeitsbedingungen?",
-      opts: [
-        "RML = Mref · VM · DM · HM · AM · CM · FM · OM · PM · AT",
-        "RML = Mref ÷ (VM · DM · HM · AM · CM · FM · OM · PM · AT)",
-        "RML = Mref + VM + DM + HM + AM + CM + FM + OM + PM + AT",
-        "RML = Mref · (VM + DM + HM + AM + CM + FM + OM + PM + AT)"
-      ],
-      correct: 0,
-      explain: "RML = Mref · VM · DM · HM · AM · CM · FM · OM · PM · AT: multiplikative Verknüpfung der Bezugsmasse Mref (z.B. 25 kg für 85 % der erwachsenen Arbeitsbevölkerung) mit neun dimensionslosen Multiplikatoren (jeweils ≤ 1): Höhen- (VM), Hub- (DM), Abstands- (HM), Asymmetrie- (AM), Greif- (CM), Frequenz- (FM), Multiplikator für einhändiges Arbeiten (OM), für Arbeiten zu zweit (PM) und für Nebenarbeiten (AT). Jeder Multiplikator reduziert RML gegenüber Mref, wenn die Bedingungen von der Idealsituation abweichen. Risikoindex danach: RI = M ÷ RML." },
-    { q: "Formel (FMEA, Risikoprioritätszahl): Wie berechnet sich die Risikoprioritätszahl (RPZ) in der Fehlermöglichkeits- und -einflussanalyse?",
-      opts: [
-        "RPZ = Bedeutung (B) · Auftretenswahrscheinlichkeit (A) · Entdeckungswahrscheinlichkeit (E)",
-        "RPZ = Bedeutung (B) + Auftretenswahrscheinlichkeit (A) + Entdeckungswahrscheinlichkeit (E)",
-        "RPZ = Bedeutung (B) ÷ (Auftretenswahrscheinlichkeit (A) · Entdeckungswahrscheinlichkeit (E))",
-        "RPZ = Auftretenswahrscheinlichkeit (A) − Entdeckungswahrscheinlichkeit (E)"
-      ],
-      correct: 0,
-      explain: "RPZ = B (Bedeutung des Fehlers für den Kunden) × A (Auftretenswahrscheinlichkeit) × E (Entdeckungswahrscheinlichkeit, bevor der Fehler beim Kunden ankommt) – jeder Faktor wird typischerweise auf einer Skala von 1–10 bewertet, die RPZ liegt also zwischen 1 und 1000. Je höher die RPZ, desto dringlicher der Handlungsbedarf." },
-    { q: "Formel (Leitmerkmalmethode LMM-HHT): Wie wird der Gesamtpunktwert der LMM berechnet?", opts: [
-        "Punktwert = Zeitwichtung × (Summe aller anderen Wichtungen: Lastgewicht + Lastaufnahmebedingungen + Körperhaltung + Ausführungsbedingungen + Arbeitsorganisation)",
-        "Punktwert = Zeitwichtung + Summe aller anderen Wichtungen",
-        "Punktwert = Summe aller Wichtungen ÷ Zeitwichtung",
-        "Punktwert = Zeitwichtung ÷ (Summe aller anderen Wichtungen)"
-      ], correct: 0, explain: "Berechnung der LMM: Punktwert = Zeitwichtung × (Summe aller anderen Wichtungen). Die Zeitwichtung wirkt also multiplikativ auf die Summe der übrigen 5 Leitmerkmal-Wichtungen (Lastgewicht, Lastaufnahmebedingungen, Körperhaltung, Ausführungsbedingungen, Arbeitsorganisation)." },
-    { q: "Rechenaufgabe (LMM-HHT, Punktwert + Risikobereich): Zeitwichtung = 2, Lastgewicht-Wichtung = 4, Lastaufnahmebedingungen = 1, Körperhaltung = 2, Ausführungsbedingungen = 1, Arbeitsorganisation = 2. Welche Rechnung liefert den Gesamtpunktwert, und in welchem Risikobereich liegt er?",
-      opts: [
-        "2 · (4+1+2+1+2) = 20 → Bereich 2 (Maßnahmen sinnvoll bei verminderter Belastungsfähigkeit)",
-        "2 + (4+1+2+1+2) = 12 → Bereich 1 (kein Handlungsbedarf)",
-        "2 · (4+1+2+1+2) = 20 → Bereich 1 (kein Handlungsbedarf)",
-        "(4+1+2+1+2) ÷ 2 = 5 → Bereich 1 (kein Handlungsbedarf)"
-      ], correct: 0, calc: true,
-      explain: "Punktwert = Zeitwichtung × Summe = 2 × (4+1+2+1+2) = 2 × 10 = 20 Punkte. Risikobereiche: Bereich 1 <20 (kein Handlungsbedarf), Bereich 2 20–49 (Maßnahmen sinnvoll bei verminderter Belastungsfähigkeit), Bereich 3 50–99 (Maßnahmen sind zu prüfen), Bereich 4 >100 (Gestaltungsmaßnahmen erforderlich). 20 Punkte fällt genau in Bereich 2." },
-    { q: "Wie sind die Risikobereiche des Risikoindex RI (DIN EN 1005-2) definiert?", opts: [
-        "RI ≤ 0,85 vertretbares Risiko; 0,85 < RI < 1,0 signifikantes Risiko (Um-/Neugestaltung empfohlen); RI ≥ 1,0 Um-/Neugestaltung erforderlich",
-        "RI ≤ 1,0 immer unkritisch, unabhängig vom genauen Wert",
-        "RI ≥ 0,5 bedeutet bereits immer, dass eine Um-/Neugestaltung zwingend erforderlich ist",
-        "Die Risikobereiche sind bei DIN EN 1005-2 nicht klar festgelegt und liegen im Ermessen der Arbeitsperson"
-      ], correct: 0, explain: "DIN EN 1005-2, Risikoindex RI = M/RML: RI ≤ 0,85 → vertretbares Risiko. 0,85 < RI < 1,0 → signifikantes Risiko, Um-/Neugestaltung empfohlen. RI ≥ 1,0 → Um-/Neugestaltung erforderlich." },
-    { q: "Formel (Schalldruckpegel): Wie berechnet sich der Schalldruckpegel Lp aus dem effektiven Schalldruck peff?", opts: [
-        "Lp = 20 · log10(peff ÷ p0) dB, mit Bezugsschalldruck p0 = 20 µPa",
-        "Lp = 10 · log10(peff ÷ p0) dB",
-        "Lp = peff ÷ p0 dB (ohne Logarithmus)",
-        "Lp = 20 · peff ÷ p0 dB (ohne Logarithmus)"
-      ], correct: 0, explain: "Schalldruckpegel Lp = 20·log10(peff/p0) [dB], Bezugsschalldruck p0 = 20 µPa (Hörschwelle bei 1000 Hz). Der Faktor 20 (statt 10 wie bei Leistungs-/Intensitätspegel) kommt daher, dass der Schalldruck quadratisch in die Energie eingeht: log(p²) = 2·log(p)." },
-    { q: "Rechenaufgabe (Schalldruckpegel): Der effektive Schalldruck einer Maschine beträgt peff = 2 Pa. Welche Rechnung liefert den Schalldruckpegel Lp (p0 = 20 µPa = 0,00002 Pa)?",
-      opts: ["20 · log10(2 ÷ 0,00002)", "10 · log10(2 ÷ 0,00002)", "2 ÷ 0,00002", "20 · log10(0,00002 ÷ 2)"],
-      correct: 0, calc: true,
-      explain: "Lp = 20·log10(peff/p0) = 20·log10(2/0,00002) = 20·log10(100.000) = 20·5 = 100 dB." },
-    { q: "Formel (Schallleistungs- und Schallintensitätspegel): Wie unterscheidet sich deren Berechnung von der des Schalldruckpegels?", opts: [
-        "LW = 10·log10(P÷P0) dB (P0=10⁻¹²W) und LI = 10·log10(I÷I0) dB (I0=10⁻¹²W/m²) — Faktor 10 statt 20, da P und I bereits energieproportional (~peff²) sind",
-        "LW und LI werden ebenfalls mit Faktor 20 berechnet, exakt wie Lp",
-        "LW und LI werden linear, also ganz ohne Logarithmus, berechnet",
-        "LW und LI existieren als eigenständige Bewertungsmaße nicht, nur Lp wird in der Praxis verwendet"
-      ], correct: 0, explain: "Schallleistung P und Schallintensität I sind bereits proportional zu peff² (energetische Größen) → Faktor 10 statt 20: LW = 10·log10(P/P0) mit P0 = 10⁻¹²W, LI = 10·log10(I/I0) mit I0 = 10⁻¹²W/m². Bei ebener Wellenausbreitung bzw. Kugelwellen im Fernfeld sind Lp, LW und LI zahlenmäßig gleich." },
-    { q: "Formel (Pegeladdition mehrerer Schallquellen): Wie werden die Schalldruckpegel von n gleichzeitig wirkenden Quellen korrekt zum Gesamtpegel zusammengefasst?", opts: [
-        "Lpges = 10 · log10(Σ 10^(Lpi/10)) dB — energetische (logarithmische) Addition, NICHT algebraisches Aufsummieren der dB-Werte",
-        "Lpges = Lp1 + Lp2 + ... + Lpn (einfache Summe der dB-Werte)",
-        "Lpges = Mittelwert aller Lpi",
-        "Lpges = das Maximum aller Lpi, alle anderen Quellen werden ignoriert"
-      ], correct: 0, explain: "Wegen der logarithmischen Skalierung dürfen Schalldruckpegel NICHT algebraisch addiert werden. Stattdessen: Lpges = 10·log10(Σ10^(Lpi/10)) dB — zurückrechnen auf die energetische (lineare) Ebene, dort addieren, dann erneut logarithmieren. Faustregel: eine Verdopplung der Schallleistung erhöht den Pegel um ca. 3 dB." },
-    { q: "Rechenaufgabe (Pegeladdition): Zwei Maschinen erzeugen jeweils einen Schalldruckpegel von 80 dB. Welche Rechnung liefert den Gesamtschalldruckpegel (NICHT einfach 160 dB!)?",
-      opts: ["10 · log10(10^(80/10) + 10^(80/10))", "80 + 80", "80 · 2", "10 · log10(80+80)"],
-      correct: 0, calc: true,
-      explain: "Lpges = 10·log10(10⁸ + 10⁸) = 10·log10(2·10⁸) = 10·(8 + log10(2)) ≈ 10·8,301 ≈ 83 dB. Zwei gleich laute Quellen erhöhen den Pegel um ca. 3 dB – NICHT auf 160 dB verdoppeln, das ist der klassische Klausur-Fallstrick." }
-  ]},
-  wahrnehmung: { label: 'Wahrnehmung & Licht', sub: "Weber'sches Gesetz, Beleuchtungsstärke, Zeichenhöhe", questions: [
-    { q: "Rechenaufgabe (Weber'sches Gesetz): Der Standardreiz (z.B. ein Gewicht) beträgt R = 200 g, die Unterschiedsschwelle ΔR = 6 g. Welche Rechnung liefert die Weber-Konstante k?",
-      opts: ["6 ÷ 200","200 ÷ 6","6 · 200","200 − 6"],
-      correct: 0, calc: true,
-      explain: "Weber'sches Gesetz: k = ΔR ÷ R = 6 ÷ 200 = 0,03. Die Unterschiedsschwelle steht in einem konstanten Verhältnis zum Standardreiz – dieses Verhältnis ist die Weber-Konstante k." },
-    { q: "Rechenaufgabe (Beleuchtungsstärke): Eine Lichtquelle hat eine Lichtstärke I = 800 cd, der Abstand zur beleuchteten Fläche beträgt r = 4 m. Welche Rechnung liefert die Beleuchtungsstärke E?",
-      opts: ["800 ÷ 4²","800 ÷ 4","800 · 4²","4² ÷ 800"],
-      correct: 0, calc: true,
-      explain: "Beleuchtungsstärke E = I ÷ r² = 800 ÷ 4² = 800 ÷ 16 = 50 Lux. Achtung: der Abstand r geht quadratisch ein (E = Φ/A = IΩ/A = I/r²) – nicht linear." },
-    { q: "Rechenaufgabe (Zeichenhöhe, Faustformel): Der Sehabstand zum Bildschirm beträgt d = 62 cm. Welche Rechnung liefert die optimale Zeichenhöhe h nach der Faustformel?",
-      opts: ["62 ÷ 155","155 ÷ 62","62 · 155","62 + 155"],
-      correct: 0, calc: true,
-      explain: "Faustformel für die optimale Zeichenhöhe: h = d ÷ 155 = 62 ÷ 155 ≈ 0,4 cm ≈ 4 mm. Für exaktere Berechnungen (unter Berücksichtigung des Sehwinkels α): h = 2d·tan(α/2)." },
-    { q: "Rechenaufgabe (Lichtstrom): Mittlere Lichtstärke I = 250 cd, Raumwinkel Ω = 3 sr. Welche Rechnung liefert den Lichtstrom Φ?",
-      opts: ["250 · 3","250 ÷ 3","250 + 3","3 ÷ 250"],
-      correct: 0, calc: true,
-      explain: "Lichtstrom Φ [lm] = I · Ω = 250 · 3 = 750 lm. Der Lichtstrom ist die von einer Quelle abgestrahlte Lichtmenge, gemessen als Produkt aus Lichtstärke und Raumwinkel." },
-    { q: "Rechenaufgabe (mittlere Lichtstärke): Lichtstrom Φ = 900 lm, Raumwinkel Ω = 6 sr. Welche Rechnung liefert die mittlere Lichtstärke I?",
-      opts: ["900 ÷ 6","900 · 6","6 ÷ 900","900 − 6"],
-      correct: 0, calc: true,
-      explain: "Mittlere Lichtstärke I [cd] = Φ ÷ Ω = 900 ÷ 6 = 150 cd — die Umkehrung von Φ = I·Ω." },
-    { q: "Formel (Raumwinkel): Wie berechnet sich der Raumwinkel Ω aus dem Öffnungswinkel ω bzw. aus Fläche A und Abstand r?", opts: [
-        "Ω = 2π · (1 − cos(ω/2)) = A / r²",
-        "Ω = 2π · cos(ω/2) = A · r²",
-        "Ω = π · ω² = A + r²",
-        "Ω = A / r (linear, nicht quadratisch im Abstand)"
-      ], correct: 0, explain: "Raumwinkel Ω [sr] = 2π·(1−cos(ω/2)) = A/r² — analog zur Beleuchtungsstärke geht der Abstand r auch hier quadratisch ein." },
-    { q: "Rechenaufgabe (Leuchtdichte, Lambert-Strahler): Beleuchtungsstärke E = 300 lx, Reflexionsgrad ρ = 0,6. Welche Rechnung liefert die Leuchtdichte L einer diffus reflektierenden Fläche?",
-      opts: ["(0,6 · 300) ÷ π","300 ÷ (0,6 · π)","0,6 · 300 · π","300 ÷ 0,6"],
-      correct: 0, calc: true,
-      explain: "Leuchtdichte L [cd/m²] = ρ·E/π (für einen Lambert-Strahler, d.h. eine ideal diffus reflektierende Fläche) = (0,6·300)/π ≈ 57,3 cd/m². Alternativ allgemein: L = I/A." },
-    { q: "Wie ist der Reflexionsgrad ρ definiert?", opts: [
-        "ρ = reflektierter Lichtstrom ÷ einfallender Lichtstrom",
-        "ρ = einfallender Lichtstrom ÷ reflektierter Lichtstrom",
-        "ρ = reflektierter Lichtstrom · einfallender Lichtstrom",
-        "ρ = reflektierter Lichtstrom − einfallender Lichtstrom"
-      ], correct: 0, explain: "Reflexionsgrad ρ = reflektierter Lichtstrom ÷ einfallender Lichtstrom — ein dimensionsloser Wert zwischen 0 (kein Rückwurf, komplett absorbierend) und 1 (vollständige Reflexion)." }
-  ]},
-  motivation: { label: 'Motivation & Entgelt', sub: 'MPS-Formel, Equity Theory', questions: [
-    { q: "Rechenaufgabe (Motivation Potential Score): Für eine Tätigkeit gilt Anforderungsvielfalt = 6, Ganzheitlichkeit = 4, Bedeutsamkeit = 5, Autonomie = 3, Rückmeldung = 7 (jeweils auf einer Bewertungsskala). Welche Rechnung liefert den MPS?",
-      opts: ["((6+4+5) ÷ 3) · 3 · 7","(6+4+5) ÷ 3 + 3 + 7","((6+4+5) ÷ 3) · (3+7)","(6·4·5) ÷ 3 · 3 · 7"],
-      correct: 0, calc: true,
-      explain: "MPS = [(Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit) ÷ 3] × Autonomie × Rückmeldung = [(6+4+5)/3] × 3 × 7 = 5 × 3 × 7 = 105. Wichtig: die ersten drei Merkmale werden gemittelt (addiert und durch 3 geteilt), Autonomie und Rückmeldung werden separat MULTIPLIZIERT – nicht addiert. Ist einer der beiden Faktoren 0, wird der gesamte MPS 0." },
-    { q: "Rechenaufgabe (Equity Theory): Herr K. hat einen Input von Is = 8 (Erfahrung/Mühe) und erhält einen Output von Os = 1.600 € (Gehalt+Bonus). Sein Kollege Herr S. hat Input Ia = 6 und Output Oa = 1.500 €. Welche Rechnung prüft korrekt, ob das Verhältnis für Herrn K. gerecht im Sinne der Equity Theory ist?",
-      opts: ["1.600 ÷ 8 im Vergleich zu 1.500 ÷ 6","1.600 · 8 im Vergleich zu 1.500 · 6","1.600 + 8 im Vergleich zu 1.500 + 6","8 ÷ 1.600 im Vergleich zu 6 ÷ 1.500 · (−1)"],
-      correct: 0, calc: true,
-      explain: "Equity Theory: Os/Is verglichen mit Oa/Ia. Herr K.: 1.600/8 = 200. Herr S.: 1.500/6 = 250. Da 200 < 250, ist Herrn K.s Output/Input-Verhältnis schlechter als das seines Kollegen → negative Diskrepanz → wahrgenommene Ungerechtigkeit, die laut Theorie ein Absenken seiner Anstrengung bewirken kann." },
-    { q: "[Übung LE12] Rechenaufgabe (Akkordentgelt, lineare Lohnlinie): Bei Normalleistung (180 Brötchen/h) soll das Akkordentgelt dem Zeitentgelt (11 €/h) entsprechen, bei 240 Brötchen/h soll es 13,50 €/h betragen (proportionaler Anstieg dazwischen). Welche Formel liefert den Stundenverdienst y in Abhängigkeit der Stückzahl x?",
-      opts: [
-        "y = [(13,5 − 11) ÷ (240 − 180)] · x + b, mit b als Achsenabschnitt aus einem der beiden Punkte bestimmt",
-        "y = (13,5 + 11) ÷ (240 + 180) · x",
-        "y = (13,5 − 11) · (240 − 180) · x",
-        "y = 11 + 13,5 · x, unabhängig von der Stückzahl 180/240"
-      ], correct: 0, calc: true,
-      explain: "Akkordentgelt ist eine lineare Funktion (Lohnlinie) y = m·x + b zwischen den zwei bekannten Punkten (180 B/h, 11 €/h) und (240 B/h, 13,50 €/h): Steigung m = Δy/Δx = (13,5−11)/(240−180) = 2,5/60 ≈ 0,0417 €/Brötchen. Den Achsenabschnitt b erhält man durch Einsetzen eines Punktes, z.B. 11 = 0,0417·180 + b → b ≈ 3,5. Ergebnis: y ≈ 0,0417·x + 3,5. Klassisches Muster: 'linear zwischen zwei gegebenen Punkten interpolieren', analog zu jeder Zwei-Punkte-Geradengleichung." },
-    { q: "[Übung LE12] Rechenaufgabe (Prämienentgelt, stufenförmig): Basisentgelt 9,50 €/h, Normalleistung 180 Brötchen/h. Für jede volle Stufe von 5 Brötchen oberhalb der Normalleistung gibt es 0,20 € Prämie. Welche Formel liefert den Stundenverdienst y bei x ≥ 180 Brötchen/h?",
-      opts: [
-        "y = 9,50 + ⌊(x − 180) ÷ 5⌋ · 0,20 €, mit ⌊⌋ = Abrunden auf ganze Stufen (div)",
-        "y = 9,50 · (x − 180) ÷ 5 · 0,20",
-        "y = 9,50 + (x − 180) · 0,20, ohne Stufenbildung",
-        "y = 9,50 − ⌊(x − 180) ÷ 5⌋ · 0,20 €"
-      ], correct: 0, calc: true,
-      explain: "Prämienentgelt = Basisentgelt (9,50 €/h) + Anzahl VOLLER Stufen × Prämie pro Stufe. Stufengröße = 5 Brötchen, Prämie pro Stufe = 0,20 €. Anzahl Stufen = ganzzahlige Division (div, abgerundet!) von (x − Normalleistung) durch die Stufengröße: ⌊(x−180)/5⌋. Für x < 180 gibt es keine Prämie (0 Stufen). Wichtig: es wird auf volle Stufen ABGERUNDET, nicht linear interpoliert wie beim Akkordentgelt – daher ist der Prämienlohn eine Treppenfunktion, keine Gerade." }
-  ]},
-  tabellen: { label: 'Tabellen-Lookup: MTM & Perzentile', sub: 'Normzeitwertkarte Hinlangen, Körpermaß-Perzentile (DIN 33402)', questions: [
-    { q: "Rechenaufgabe (MTM, TMU-Umrechnung): Eine Bewegung dauert laut MTM-Analyse 45 TMU. Welche Rechnung liefert die Zeit in Sekunden?",
+      explain: "LG = (Mi/MB)·100% = (92/80)·100% = 115%. Die Arbeitsperson arbeitet also 15% schneller als die Bezugsleistung (Normalleistung = 100%). Die Soll-Zeit ergibt sich anschließend aus Ist-Zeit × Leistungsgrad/100%." },
+    { le: 'le05', q: "Rechenaufgabe (MTM, TMU-Umrechnung): Eine Bewegung dauert laut MTM-Analyse 45 TMU. Welche Rechnung liefert die Zeit in Sekunden?",
       opts: ["45 · 0,036", "45 ÷ 0,036", "45 · 100.000", "45 ÷ 100.000"],
       correct: 0, calc: true,
       explain: "1 TMU = 0,036 s (= 1/100.000 Std.). Zeit in Sekunden = TMU-Wert × 0,036 = 45 × 0,036 = 1,62 s." },
-    { q: "Formel (Perzentil aus Mittelwert und Standardabweichung, für normalverteilte Körpermaße): Wie berechnen sich das 5. und 95. Perzentil?", opts: [
-        "P5 = Mittelwert − 1,96 · Standardabweichung; P95 = Mittelwert + 1,96 · Standardabweichung",
-        "P5 = Mittelwert · 0,05; P95 = Mittelwert · 0,95",
-        "P5 = Mittelwert − Standardabweichung; P95 = Mittelwert + Standardabweichung (Faktor 1,96 wird nicht benötigt)",
-        "P5 und P95 lassen sich grundsätzlich nicht aus Mittelwert/Standardabweichung berechnen, nur aus Tabellen ablesen"
-      ], correct: 0, explain: "Für normalverteilte Maße (z.B. Körperhöhe) entspricht der Mittelwert dem 50. Perzentil (Median). Das 5. bzw. 95. Perzentil ergibt sich durch Subtraktion bzw. Addition des 1,96-fachen der Standardabweichung (z-Wert, der die mittleren 90% der Normalverteilung einschließt)." },
-    { q: "Rechenaufgabe (Perzentil aus Mittelwert/SD): Die Körperhöhe einer Population ist normalverteilt mit Mittelwert 1733 mm und Standardabweichung 65 mm. Welche Rechnung liefert das 95. Perzentil?",
-      opts: ["1733 + 1,96 · 65", "1733 − 1,96 · 65", "1733 · 1,96 · 65", "1733 + 65"],
-      correct: 0, calc: true,
-      explain: "P95 = Mittelwert + 1,96·Standardabweichung = 1733 + 1,96·65 = 1733 + 127,4 ≈ 1860 mm." },
-    { q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Hinlangen"): Nutze den Ausschnitt der offiziellen Normzeitwertkarte, um den TMU-Wert nachzuschlagen.
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Hinlangen"): Nutze den Ausschnitt der offiziellen Normzeitwertkarte, um den TMU-Wert nachzuschlagen.
       <div class="quiz-diagram-wrap"><table><tr><th>Beweg.-Länge [cm]</th><th>R-A</th><th>R-B</th><th>R-C/R-D</th><th>R-E</th></tr>
       <tr><td>10</td><td>6,1</td><td>6,3</td><td>8,4</td><td>6,8</td></tr>
       <tr><td>16</td><td>7,1</td><td>8,8</td><td>10,3</td><td>8,2</td></tr>
@@ -2172,7 +2015,7 @@ const AWI_FORMULA_QUIZ = {
       opts: ["8,8 TMU","7,1 TMU","10,3 TMU","8,2 TMU"],
       correct: 0, calc: true,
       explain: "Zeile 16 cm, Spalte R-B → 8,8 TMU. Achtung: die Spalten R-A, R-B, R-C/D und R-E haben bei gleicher Bewegungslänge unterschiedliche Werte, da der Bewegungsfall den sensomotorischen Kontrollgrad bestimmt (A/E = gering, B = mäßig, C/D = hoch → höherer TMU-Wert)." },
-    { q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Hinlangen"): gleicher Tabellenausschnitt wie zuvor.
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Hinlangen"): gleicher Tabellenausschnitt wie zuvor.
       <div class="quiz-diagram-wrap"><table><tr><th>Beweg.-Länge [cm]</th><th>R-A</th><th>R-B</th><th>R-C/R-D</th><th>R-E</th></tr>
       <tr><td>10</td><td>6,1</td><td>6,3</td><td>8,4</td><td>6,8</td></tr>
       <tr><td>16</td><td>7,1</td><td>8,8</td><td>10,3</td><td>8,2</td></tr>
@@ -2183,11 +2026,114 @@ const AWI_FORMULA_QUIZ = {
       opts: ["R40C — 16,8 TMU","R40A — 11,3 TMU","R40B — 15,6 TMU","R40E — 14,1 TMU"],
       correct: 0, calc: true,
       explain: "„Vermischt mit ähnlichen Gegenständen, muss ausgewählt werden“ = Bewegungsfall C (auswählendes Hinlangen), nicht A (automatisch, alleinstehend) oder B (suchend, an wechselndem Ort) oder E (gewohnheitsmäßig, kein Zielobjekt). Bei 40 cm → R40C = 16,8 TMU. Dies ist exakt das Beispiel aus der Vorlesung (Bolzen-Montage: Hinlangen R40C 16,8 TMU, Greifen G4B 9,1 TMU, Bringen M40C 18,5 TMU, Fügen P2SE 16,2 TMU, Loslassen RL1 2,0 TMU → Gesamt 62,6 TMU ≈ 2,25 s)." },
-    { q: "Tabellen-Aufgabe (MTM, vollständiger Bewegungszyklus): Ein Bolzen wird aus einer Box (vermischt, 40 cm entfernt) genommen und in eine Vorrichtung gefügt: Hinlangen R40C = 16,8 TMU, Greifen G4B = 9,1 TMU, Bringen M40C = 18,5 TMU, Fügen P2SE = 16,2 TMU, Loslassen RL1 = 2,0 TMU. Welche Rechnung liefert die Gesamtzeit in TMU?",
+    { le: 'le05', q: "Tabellen-Aufgabe (MTM, vollständiger Bewegungszyklus): Ein Bolzen wird aus einer Box (vermischt, 40 cm entfernt) genommen und in eine Vorrichtung gefügt: Hinlangen R40C = 16,8 TMU, Greifen G4B = 9,1 TMU, Bringen M40C = 18,5 TMU, Fügen P2SE = 16,2 TMU, Loslassen RL1 = 2,0 TMU. Welche Rechnung liefert die Gesamtzeit in TMU?",
       opts: ["16,8 + 9,1 + 18,5 + 16,2 + 2,0","16,8 · 9,1 · 18,5 · 16,2 · 2,0","(16,8 + 9,1 + 18,5) ÷ (16,2 + 2,0)","16,8 + 9,1 − 18,5 + 16,2 − 2,0"],
       correct: 0, calc: true,
       explain: "Gesamtbewertung im MTM-Grundverfahren = Addition der Elementarzeiten des Grundbewegungszyklus: 16,8 + 9,1 + 18,5 + 16,2 + 2,0 = 62,6 TMU. Umrechnung in Sekunden: 1 TMU = 0,036 s → 62,6 · 0,036 ≈ 2,25 s." },
-    { q: `Tabellen-Aufgabe (Anthropometrie, DIN 33402): Nutze den Ausschnitt der Körpermaßtabelle (16-60-jährige Deutsche, unbekleidet).
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Greifen"): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>TMU</th><th>Beschreibung der Fälle</th></tr>
+      <tr><td>G1A</td><td>2,0</td><td>Zufassungsgriff: Greifen eines leicht zu fassenden, allein liegenden Gegenstandes</td></tr>
+      <tr><td>G1B</td><td>3,5</td><td>Ankantgriff: Greifen eines sehr kleinen Gegenstandes oder eines Gegenstandes, der flach auf einer Ebene liegt</td></tr>
+      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø 6 bis 12 mm</td></tr>
+      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einem Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
+      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Greifen eines mit anderen vermischten Gegenstandes, der ausgesucht und ausgewählt werden muss</td></tr></table></div>
+      Ein länglicher Bolzen liegt allein (nicht vermischt) auf einer ebenen Fläche und ist leicht zu fassen. Welcher Code + TMU-Wert ist korrekt?`,
+      opts: ["G1A — 2,0 TMU","G1B — 3,5 TMU","G1C2 — 8,7 TMU","G4B — 9,1 TMU"],
+      correct: 0, calc: true,
+      explain: "'Allein liegend, leicht zu fassen' = Zufassungsgriff G1A (2,0 TMU) – der einfachste und häufigste Greiffall. G1B gilt für sehr kleine oder flach aufliegende Gegenstände, G1C2 für zylindrische Gegenstände (Abrollgriff), G4B für Gegenstände, die erst aus einer Vermischung mit anderen ausgewählt werden müssen (Auswählgriff, wie im Altklausur-Bolzenbeispiel). (Altklausuren WS22/23, WS23/24)" },
+    { le: 'le06', q: "Rechenaufgabe (Nichtverfügbarkeit verkettetes System): Drei Komponenten sind verkettet (in Reihe geschaltet) mit Nichtverfügbarkeiten U1 = 0,02, U2 = 0,03, U3 = 0,01. Welche Rechnung liefert die Gesamt-Nichtverfügbarkeit Uges?",
+      opts: ["1 − (1−0,02)·(1−0,03)·(1−0,01)","(1−0,02)·(1−0,03)·(1−0,01)","0,02 · 0,03 · 0,01","1 − (0,02 + 0,03 + 0,01)"],
+      correct: 0, calc: true,
+      explain: "Für verkettete (in Reihe geschaltete) Systeme: Uges = 1 − ∏(1−Ui) = 1 − (1−0,02)·(1−0,03)·(1−0,01) ≈ 1 − 0,9412 ≈ 0,0588 (≈5,9 %). Ein verkettetes System fällt aus, sobald EINE Komponente ausfällt – daher steigt die Gesamt-Nichtverfügbarkeit mit jeder zusätzlichen Komponente. Achtung: (1−0,02)·(1−0,03)·(1−0,01) allein wäre die Verfügbarkeit, nicht die Nichtverfügbarkeit – die '1 − ...' Klammer nicht vergessen." },
+    { le: 'le06', q: "Rechenaufgabe (Nichtverfügbarkeit redundantes System): Zwei redundante (parallel geschaltete) Komponenten haben Nichtverfügbarkeiten U1 = 0,05 und U2 = 0,08. Welche Rechnung liefert die Gesamt-Nichtverfügbarkeit Uges?",
+      opts: ["0,05 · 0,08","1 − (1−0,05)·(1−0,08)","0,05 + 0,08","1 − 0,05·0,08"],
+      correct: 0, calc: true,
+      explain: "Für redundante (parallel geschaltete) Systeme: Uges = ∏Ui = 0,05 · 0,08 = 0,004 (0,4 %). Ein redundantes System fällt nur aus, wenn ALLE Komponenten gleichzeitig ausfallen – daher ist die Gesamt-Nichtverfügbarkeit viel kleiner als bei einem verketteten System. Nicht mit der Formel für verkettete Systeme verwechseln!" },
+    { le: 'le06', q: "Formel (FMEA, Risikoprioritätszahl): Wie berechnet sich die Risikoprioritätszahl (RPZ) in der Fehlermöglichkeits- und -einflussanalyse?",
+      opts: [
+        "RPZ = Bedeutung (B) · Auftretenswahrscheinlichkeit (A) · Entdeckungswahrscheinlichkeit (E)",
+        "RPZ = Bedeutung (B) + Auftretenswahrscheinlichkeit (A) + Entdeckungswahrscheinlichkeit (E)",
+        "RPZ = Bedeutung (B) ÷ (Auftretenswahrscheinlichkeit (A) · Entdeckungswahrscheinlichkeit (E))",
+        "RPZ = Auftretenswahrscheinlichkeit (A) − Entdeckungswahrscheinlichkeit (E)"
+      ],
+      correct: 0,
+      explain: "RPZ = B (Bedeutung des Fehlers für den Kunden) × A (Auftretenswahrscheinlichkeit) × E (Entdeckungswahrscheinlichkeit, bevor der Fehler beim Kunden ankommt) – jeder Faktor wird typischerweise auf einer Skala von 1–10 bewertet, die RPZ liegt also zwischen 1 und 1000. Je höher die RPZ, desto dringlicher der Handlungsbedarf." }
+  ]},
+  C: { label: 'Formeln Teil C · LE07–10', sub: 'Gefahrstoffe & Schall, Leitmerkmalmethode, Anthropometrie, Wahrnehmung', questions: [
+    { le: 'le07', q: "Rechenaufgabe (mittlere Gefahrstoffkonzentration): Die Emissionsrate eines Gefahrstoffs beträgt E = 0,002 kg/s, der Volumenstrom Q = 0,5 m³/s. Welche Rechnung liefert die mittlere Gefahrstoffkonzentration C in der Luft?",
+      opts: ["0,002 ÷ 0,5","0,5 ÷ 0,002","0,002 · 0,5","0,002 + 0,5"],
+      correct: 0, calc: true,
+      explain: "C = E ÷ Q = 0,002 kg/s ÷ 0,5 m³/s = 0,004 kg/m³. C = mittlere Gefahrstoffkonzentration in der Luft, E = Emissionsrate während der Expositionszeit, Q = Volumenstrom (Fläche × Luftgeschwindigkeit)." },
+    { le: 'le07', q: "Formel (Schalldruckpegel): Wie berechnet sich der Schalldruckpegel Lp aus dem effektiven Schalldruck peff?", opts: [
+        "Lp = 20 · log10(peff ÷ p0) dB, mit Bezugsschalldruck p0 = 20 µPa",
+        "Lp = 10 · log10(peff ÷ p0) dB",
+        "Lp = peff ÷ p0 dB (ohne Logarithmus)",
+        "Lp = 20 · peff ÷ p0 dB (ohne Logarithmus)"
+      ], correct: 0, explain: "Schalldruckpegel Lp = 20·log10(peff/p0) [dB], Bezugsschalldruck p0 = 20 µPa (Hörschwelle bei 1000 Hz). Der Faktor 20 (statt 10 wie bei Leistungs-/Intensitätspegel) kommt daher, dass der Schalldruck quadratisch in die Energie eingeht: log(p²) = 2·log(p)." },
+    { le: 'le07', q: "Rechenaufgabe (Schalldruckpegel): Der effektive Schalldruck einer Maschine beträgt peff = 2 Pa. Welche Rechnung liefert den Schalldruckpegel Lp (p0 = 20 µPa = 0,00002 Pa)?",
+      opts: ["20 · log10(2 ÷ 0,00002)", "10 · log10(2 ÷ 0,00002)", "2 ÷ 0,00002", "20 · log10(0,00002 ÷ 2)"],
+      correct: 0, calc: true,
+      explain: "Lp = 20·log10(peff/p0) = 20·log10(2/0,00002) = 20·log10(100.000) = 20·5 = 100 dB." },
+    { le: 'le07', q: "Formel (Schallleistungs- und Schallintensitätspegel): Wie unterscheidet sich deren Berechnung von der des Schalldruckpegels?", opts: [
+        "LW = 10·log10(P÷P0) dB (P0=10⁻¹²W) und LI = 10·log10(I÷I0) dB (I0=10⁻¹²W/m²) — Faktor 10 statt 20, da P und I bereits energieproportional (~peff²) sind",
+        "LW und LI werden ebenfalls mit Faktor 20 berechnet, exakt wie Lp",
+        "LW und LI werden linear, also ganz ohne Logarithmus, berechnet",
+        "LW und LI existieren als eigenständige Bewertungsmaße nicht, nur Lp wird in der Praxis verwendet"
+      ], correct: 0, explain: "Schallleistung P und Schallintensität I sind bereits proportional zu peff² (energetische Größen) → Faktor 10 statt 20: LW = 10·log10(P/P0) mit P0 = 10⁻¹²W, LI = 10·log10(I/I0) mit I0 = 10⁻¹²W/m². Bei ebener Wellenausbreitung bzw. Kugelwellen im Fernfeld sind Lp, LW und LI zahlenmäßig gleich." },
+    { le: 'le07', q: "Formel (Pegeladdition mehrerer Schallquellen): Wie werden die Schalldruckpegel von n gleichzeitig wirkenden Quellen korrekt zum Gesamtpegel zusammengefasst?", opts: [
+        "Lpges = 10 · log10(Σ 10^(Lpi/10)) dB — energetische (logarithmische) Addition, NICHT algebraisches Aufsummieren der dB-Werte",
+        "Lpges = Lp1 + Lp2 + ... + Lpn (einfache Summe der dB-Werte)",
+        "Lpges = Mittelwert aller Lpi",
+        "Lpges = das Maximum aller Lpi, alle anderen Quellen werden ignoriert"
+      ], correct: 0, explain: "Wegen der logarithmischen Skalierung dürfen Schalldruckpegel NICHT algebraisch addiert werden. Stattdessen: Lpges = 10·log10(Σ10^(Lpi/10)) dB — zurückrechnen auf die energetische (lineare) Ebene, dort addieren, dann erneut logarithmieren. Faustregel: eine Verdopplung der Schallleistung erhöht den Pegel um ca. 3 dB." },
+    { le: 'le07', q: "Rechenaufgabe (Pegeladdition): Zwei Maschinen erzeugen jeweils einen Schalldruckpegel von 80 dB. Welche Rechnung liefert den Gesamtschalldruckpegel (NICHT einfach 160 dB!)?",
+      opts: ["10 · log10(10^(80/10) + 10^(80/10))", "80 + 80", "80 · 2", "10 · log10(80+80)"],
+      correct: 0, calc: true,
+      explain: "Lpges = 10·log10(10⁸ + 10⁸) = 10·log10(2·10⁸) = 10·(8 + log10(2)) ≈ 10·8,301 ≈ 83 dB. Zwei gleich laute Quellen erhöhen den Pegel um ca. 3 dB – NICHT auf 160 dB verdoppeln, das ist der klassische Klausur-Fallstrick." },
+    { le: 'le08', q: "Rechenaufgabe (DIN EN 1005-2, Risikoindex): Die zulässige Massegrenze beträgt RML = 8,5 kg, die tatsächlich gehandhabte Masse M = 10 kg. Welche Rechnung liefert den Risikoindex RI?",
+      opts: ["10 ÷ 8,5","8,5 ÷ 10","10 − 8,5","10 · 8,5"],
+      correct: 0, calc: true,
+      explain: "Risikoindex RI = M ÷ RML = 10 ÷ 8,5 ≈ 1,18. Da RI ≥ 1,0 ist, ist eine Um-/Neugestaltung erforderlich (bei RI ≤ 0,85: vertretbares Risiko; 0,85 < RI < 1,0: signifikantes Risiko, Um-/Neugestaltung empfohlen; RI ≥ 1,0: Um-/Neugestaltung erforderlich)." },
+    { le: 'le08', q: "Formel (DIN EN 1005-2, Massegrenze RML): Welche Formel bestimmt die Massegrenze RML für ein bestimmtes Set an Arbeitsbedingungen?",
+      opts: [
+        "RML = Mref · VM · DM · HM · AM · CM · FM · OM · PM · AT",
+        "RML = Mref ÷ (VM · DM · HM · AM · CM · FM · OM · PM · AT)",
+        "RML = Mref + VM + DM + HM + AM + CM + FM + OM + PM + AT",
+        "RML = Mref · (VM + DM + HM + AM + CM + FM + OM + PM + AT)"
+      ],
+      correct: 0,
+      explain: "RML = Mref · VM · DM · HM · AM · CM · FM · OM · PM · AT: multiplikative Verknüpfung der Bezugsmasse Mref (z.B. 25 kg für 85 % der erwachsenen Arbeitsbevölkerung) mit neun dimensionslosen Multiplikatoren (jeweils ≤ 1): Höhen- (VM), Hub- (DM), Abstands- (HM), Asymmetrie- (AM), Greif- (CM), Frequenz- (FM), Multiplikator für einhändiges Arbeiten (OM), für Arbeiten zu zweit (PM) und für Nebenarbeiten (AT). Jeder Multiplikator reduziert RML gegenüber Mref, wenn die Bedingungen von der Idealsituation abweichen. Risikoindex danach: RI = M ÷ RML." },
+    { le: 'le08', q: "Formel (Leitmerkmalmethode LMM-HHT): Wie wird der Gesamtpunktwert der LMM berechnet?", opts: [
+        "Punktwert = Zeitwichtung × (Summe aller anderen Wichtungen: Lastgewicht + Lastaufnahmebedingungen + Körperhaltung + Ausführungsbedingungen + Arbeitsorganisation)",
+        "Punktwert = Zeitwichtung + Summe aller anderen Wichtungen",
+        "Punktwert = Summe aller Wichtungen ÷ Zeitwichtung",
+        "Punktwert = Zeitwichtung ÷ (Summe aller anderen Wichtungen)"
+      ], correct: 0, explain: "Berechnung der LMM: Punktwert = Zeitwichtung × (Summe aller anderen Wichtungen). Die Zeitwichtung wirkt also multiplikativ auf die Summe der übrigen 5 Leitmerkmal-Wichtungen (Lastgewicht, Lastaufnahmebedingungen, Körperhaltung, Ausführungsbedingungen, Arbeitsorganisation)." },
+    { le: 'le08', q: "Rechenaufgabe (LMM-HHT, Punktwert + Risikobereich): Zeitwichtung = 2, Lastgewicht-Wichtung = 4, Lastaufnahmebedingungen = 1, Körperhaltung = 2, Ausführungsbedingungen = 1, Arbeitsorganisation = 2. Welche Rechnung liefert den Gesamtpunktwert, und in welchem Risikobereich liegt er?",
+      opts: [
+        "2 · (4+1+2+1+2) = 20 → Bereich 2 (Maßnahmen sinnvoll bei verminderter Belastungsfähigkeit)",
+        "2 + (4+1+2+1+2) = 12 → Bereich 1 (kein Handlungsbedarf)",
+        "2 · (4+1+2+1+2) = 20 → Bereich 1 (kein Handlungsbedarf)",
+        "(4+1+2+1+2) ÷ 2 = 5 → Bereich 1 (kein Handlungsbedarf)"
+      ], correct: 0, calc: true,
+      explain: "Punktwert = Zeitwichtung × Summe = 2 × (4+1+2+1+2) = 2 × 10 = 20 Punkte. Risikobereiche: Bereich 1 <20 (kein Handlungsbedarf), Bereich 2 20–49 (Maßnahmen sinnvoll bei verminderter Belastungsfähigkeit), Bereich 3 50–99 (Maßnahmen sind zu prüfen), Bereich 4 >100 (Gestaltungsmaßnahmen erforderlich). 20 Punkte fällt genau in Bereich 2." },
+    { le: 'le08', q: "Wie sind die Risikobereiche des Risikoindex RI (DIN EN 1005-2) definiert?", opts: [
+        "RI ≤ 0,85 vertretbares Risiko; 0,85 < RI < 1,0 signifikantes Risiko (Um-/Neugestaltung empfohlen); RI ≥ 1,0 Um-/Neugestaltung erforderlich",
+        "RI ≤ 1,0 immer unkritisch, unabhängig vom genauen Wert",
+        "RI ≥ 0,5 bedeutet bereits immer, dass eine Um-/Neugestaltung zwingend erforderlich ist",
+        "Die Risikobereiche sind bei DIN EN 1005-2 nicht klar festgelegt und liegen im Ermessen der Arbeitsperson"
+      ], correct: 0, explain: "DIN EN 1005-2, Risikoindex RI = M/RML: RI ≤ 0,85 → vertretbares Risiko. 0,85 < RI < 1,0 → signifikantes Risiko, Um-/Neugestaltung empfohlen. RI ≥ 1,0 → Um-/Neugestaltung erforderlich." },
+    { le: 'le09', q: "Formel (Perzentil aus Mittelwert und Standardabweichung, für normalverteilte Körpermaße): Wie berechnen sich das 5. und 95. Perzentil?", opts: [
+        "P5 = Mittelwert − 1,96 · Standardabweichung; P95 = Mittelwert + 1,96 · Standardabweichung",
+        "P5 = Mittelwert · 0,05; P95 = Mittelwert · 0,95",
+        "P5 = Mittelwert − Standardabweichung; P95 = Mittelwert + Standardabweichung (Faktor 1,96 wird nicht benötigt)",
+        "P5 und P95 lassen sich grundsätzlich nicht aus Mittelwert/Standardabweichung berechnen, nur aus Tabellen ablesen"
+      ], correct: 0, explain: "Für normalverteilte Maße (z.B. Körperhöhe) entspricht der Mittelwert dem 50. Perzentil (Median). Das 5. bzw. 95. Perzentil ergibt sich durch Subtraktion bzw. Addition des 1,96-fachen der Standardabweichung (z-Wert, der die mittleren 90% der Normalverteilung einschließt)." },
+    { le: 'le09', q: "Rechenaufgabe (Perzentil aus Mittelwert/SD): Die Körperhöhe einer Population ist normalverteilt mit Mittelwert 1733 mm und Standardabweichung 65 mm. Welche Rechnung liefert das 95. Perzentil?",
+      opts: ["1733 + 1,96 · 65", "1733 − 1,96 · 65", "1733 · 1,96 · 65", "1733 + 65"],
+      correct: 0, calc: true,
+      explain: "P95 = Mittelwert + 1,96·Standardabweichung = 1733 + 1,96·65 = 1733 + 127,4 ≈ 1860 mm." },
+    { le: 'le09', q: `Tabellen-Aufgabe (Anthropometrie, DIN 33402): Nutze den Ausschnitt der Körpermaßtabelle (16-60-jährige Deutsche, unbekleidet).
       <div class="quiz-diagram-wrap"><table><tr><th>Maß</th><th>Geschl.</th><th>5. Perz.</th><th>50. Perz.</th><th>95. Perz.</th></tr>
       <tr><td rowspan="2">Körperhöhe</td><td>F</td><td>1510</td><td>1619</td><td>1725</td></tr>
       <tr><td>M</td><td>1629</td><td>1733</td><td>1841</td></tr>
@@ -2199,7 +2145,7 @@ const AWI_FORMULA_QUIZ = {
       opts: ["1179 mm","1100 mm","1096 mm","1021 mm"],
       correct: 0, calc: true,
       explain: "Zeile Ellenbogenhöhe, Geschlecht Mann (M), Spalte 95. Perzentil → 1179 mm. Merke die Auslegungsregel: für den Platzbedarf/die maximale Höhe (damit auch große Personen bequem stehen/nicht anstoßen) wird der 95. Perzentil Mann verwendet – die Tischhöhe müsste zusätzlich einen Greifraum/Bewegungsspielraum oberhalb dieses Werts berücksichtigen." },
-    { q: `Tabellen-Aufgabe (Anthropometrie, DIN 33402): gleicher Tabellenausschnitt wie zuvor.
+    { le: 'le09', q: `Tabellen-Aufgabe (Anthropometrie, DIN 33402): gleicher Tabellenausschnitt wie zuvor.
       <div class="quiz-diagram-wrap"><table><tr><th>Maß</th><th>Geschl.</th><th>5. Perz.</th><th>50. Perz.</th><th>95. Perz.</th></tr>
       <tr><td rowspan="2">Körperhöhe</td><td>F</td><td>1510</td><td>1619</td><td>1725</td></tr>
       <tr><td>M</td><td>1629</td><td>1733</td><td>1841</td></tr>
@@ -2211,44 +2157,107 @@ const AWI_FORMULA_QUIZ = {
       opts: ["1402 mm","1502 mm","1509 mm","957 mm"],
       correct: 0, calc: true,
       explain: "Zeile Augenhöhe, Geschlecht Frau (F), Spalte 5. Perzentil → 1402 mm. Für die Erreichbarkeit/Anordnung von Anzeigen wird typischerweise die kleinste zu berücksichtigende Person (5. Perzentil Frau) herangezogen, damit auch sie die Anzeigen noch gut sehen bzw. erreichen kann." },
-    { q: "Tabellen-Aufgabe (Anthropometrie, Perzentil-Spannweite): Körperhöhe Frauen: 5. Perzentil = 1510 mm, 95. Perzentil = 1725 mm. Welche Rechnung liefert die Spannweite (den Verstellbereich), den ein Arbeitsmittel mindestens abdecken muss, um vom 5. Perzentil bis zum 95. Perzentil Frau zu passen?",
+    { le: 'le09', q: "Tabellen-Aufgabe (Anthropometrie, Perzentil-Spannweite): Körperhöhe Frauen: 5. Perzentil = 1510 mm, 95. Perzentil = 1725 mm. Welche Rechnung liefert die Spannweite (den Verstellbereich), den ein Arbeitsmittel mindestens abdecken muss, um vom 5. Perzentil bis zum 95. Perzentil Frau zu passen?",
       opts: ["1725 − 1510","1725 + 1510","1725 ÷ 1510","(1725 + 1510) ÷ 2"],
       correct: 0, calc: true,
       explain: "Spannweite = 95. Perzentil − 5. Perzentil = 1725 − 1510 = 215 mm. Perzentile sind nicht additiv und nicht zu mitteln – für einen Verstellbereich wird die Differenz zwischen der größten und kleinsten zu berücksichtigenden Ausprägung gebildet." },
-    { q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Greifen"): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
-      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>TMU</th><th>Beschreibung der Fälle</th></tr>
-      <tr><td>G1A</td><td>2,0</td><td>Zufassungsgriff: Greifen eines leicht zu fassenden, allein liegenden Gegenstandes</td></tr>
-      <tr><td>G1B</td><td>3,5</td><td>Ankantgriff: Greifen eines sehr kleinen Gegenstandes oder eines Gegenstandes, der flach auf einer Ebene liegt</td></tr>
-      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø 6 bis 12 mm</td></tr>
-      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einem Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
-      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Greifen eines mit anderen vermischten Gegenstandes, der ausgesucht und ausgewählt werden muss</td></tr></table></div>
-      Ein länglicher Bolzen liegt allein (nicht vermischt) auf einer ebenen Fläche und ist leicht zu fassen. Welcher Code + TMU-Wert ist korrekt?`,
-      opts: ["G1A — 2,0 TMU","G1B — 3,5 TMU","G1C2 — 8,7 TMU","G4B — 9,1 TMU"],
+    { le: 'le10', q: "Rechenaufgabe (Weber'sches Gesetz): Der Standardreiz (z.B. ein Gewicht) beträgt R = 200 g, die Unterschiedsschwelle ΔR = 6 g. Welche Rechnung liefert die Weber-Konstante k?",
+      opts: ["6 ÷ 200","200 ÷ 6","6 · 200","200 − 6"],
       correct: 0, calc: true,
-      explain: "'Allein liegend, leicht zu fassen' = Zufassungsgriff G1A (2,0 TMU) – der einfachste und häufigste Greiffall. G1B gilt für sehr kleine oder flach aufliegende Gegenstände, G1C2 für zylindrische Gegenstände (Abrollgriff), G4B für Gegenstände, die erst aus einer Vermischung mit anderen ausgewählt werden müssen (Auswählgriff, wie im Altklausur-Bolzenbeispiel). (Altklausuren WS22/23, WS23/24)" }
+      explain: "Weber'sches Gesetz: k = ΔR ÷ R = 6 ÷ 200 = 0,03. Die Unterschiedsschwelle steht in einem konstanten Verhältnis zum Standardreiz – dieses Verhältnis ist die Weber-Konstante k." }
+  ]},
+  D: { label: 'Formeln Teil D · LE11–12', sub: 'Lichttechnik, Motivation & Entgelt', questions: [
+    { le: 'le11', q: "Rechenaufgabe (Beleuchtungsstärke): Eine Lichtquelle hat eine Lichtstärke I = 800 cd, der Abstand zur beleuchteten Fläche beträgt r = 4 m. Welche Rechnung liefert die Beleuchtungsstärke E?",
+      opts: ["800 ÷ 4²","800 ÷ 4","800 · 4²","4² ÷ 800"],
+      correct: 0, calc: true,
+      explain: "Beleuchtungsstärke E = I ÷ r² = 800 ÷ 4² = 800 ÷ 16 = 50 Lux. Achtung: der Abstand r geht quadratisch ein (E = Φ/A = IΩ/A = I/r²) – nicht linear." },
+    { le: 'le11', q: "Rechenaufgabe (Zeichenhöhe, Faustformel): Der Sehabstand zum Bildschirm beträgt d = 62 cm. Welche Rechnung liefert die optimale Zeichenhöhe h nach der Faustformel?",
+      opts: ["62 ÷ 155","155 ÷ 62","62 · 155","62 + 155"],
+      correct: 0, calc: true,
+      explain: "Faustformel für die optimale Zeichenhöhe: h = d ÷ 155 = 62 ÷ 155 ≈ 0,4 cm ≈ 4 mm. Für exaktere Berechnungen (unter Berücksichtigung des Sehwinkels α): h = 2d·tan(α/2)." },
+    { le: 'le11', q: "Rechenaufgabe (Lichtstrom): Mittlere Lichtstärke I = 250 cd, Raumwinkel Ω = 3 sr. Welche Rechnung liefert den Lichtstrom Φ?",
+      opts: ["250 · 3","250 ÷ 3","250 + 3","3 ÷ 250"],
+      correct: 0, calc: true,
+      explain: "Lichtstrom Φ [lm] = I · Ω = 250 · 3 = 750 lm. Der Lichtstrom ist die von einer Quelle abgestrahlte Lichtmenge, gemessen als Produkt aus Lichtstärke und Raumwinkel." },
+    { le: 'le11', q: "Rechenaufgabe (mittlere Lichtstärke): Lichtstrom Φ = 900 lm, Raumwinkel Ω = 6 sr. Welche Rechnung liefert die mittlere Lichtstärke I?",
+      opts: ["900 ÷ 6","900 · 6","6 ÷ 900","900 − 6"],
+      correct: 0, calc: true,
+      explain: "Mittlere Lichtstärke I [cd] = Φ ÷ Ω = 900 ÷ 6 = 150 cd — die Umkehrung von Φ = I·Ω." },
+    { le: 'le11', q: "Formel (Raumwinkel): Wie berechnet sich der Raumwinkel Ω aus dem Öffnungswinkel ω bzw. aus Fläche A und Abstand r?", opts: [
+        "Ω = 2π · (1 − cos(ω/2)) = A / r²",
+        "Ω = 2π · cos(ω/2) = A · r²",
+        "Ω = π · ω² = A + r²",
+        "Ω = A / r (linear, nicht quadratisch im Abstand)"
+      ], correct: 0, explain: "Raumwinkel Ω [sr] = 2π·(1−cos(ω/2)) = A/r² — analog zur Beleuchtungsstärke geht der Abstand r auch hier quadratisch ein." },
+    { le: 'le11', q: "Rechenaufgabe (Leuchtdichte, Lambert-Strahler): Beleuchtungsstärke E = 300 lx, Reflexionsgrad ρ = 0,6. Welche Rechnung liefert die Leuchtdichte L einer diffus reflektierenden Fläche?",
+      opts: ["(0,6 · 300) ÷ π","300 ÷ (0,6 · π)","0,6 · 300 · π","300 ÷ 0,6"],
+      correct: 0, calc: true,
+      explain: "Leuchtdichte L [cd/m²] = ρ·E/π (für einen Lambert-Strahler, d.h. eine ideal diffus reflektierende Fläche) = (0,6·300)/π ≈ 57,3 cd/m². Alternativ allgemein: L = I/A." },
+    { le: 'le11', q: "Wie ist der Reflexionsgrad ρ definiert?", opts: [
+        "ρ = reflektierter Lichtstrom ÷ einfallender Lichtstrom",
+        "ρ = einfallender Lichtstrom ÷ reflektierter Lichtstrom",
+        "ρ = reflektierter Lichtstrom · einfallender Lichtstrom",
+        "ρ = reflektierter Lichtstrom − einfallender Lichtstrom"
+      ], correct: 0, explain: "Reflexionsgrad ρ = reflektierter Lichtstrom ÷ einfallender Lichtstrom — ein dimensionsloser Wert zwischen 0 (kein Rückwurf, komplett absorbierend) und 1 (vollständige Reflexion)." },
+    { le: 'le12', q: "Rechenaufgabe (Motivation Potential Score): Für eine Tätigkeit gilt Anforderungsvielfalt = 6, Ganzheitlichkeit = 4, Bedeutsamkeit = 5, Autonomie = 3, Rückmeldung = 7 (jeweils auf einer Bewertungsskala). Welche Rechnung liefert den MPS?",
+      opts: ["((6+4+5) ÷ 3) · 3 · 7","(6+4+5) ÷ 3 + 3 + 7","((6+4+5) ÷ 3) · (3+7)","(6·4·5) ÷ 3 · 3 · 7"],
+      correct: 0, calc: true,
+      explain: "MPS = [(Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit) ÷ 3] × Autonomie × Rückmeldung = [(6+4+5)/3] × 3 × 7 = 5 × 3 × 7 = 105. Wichtig: die ersten drei Merkmale werden gemittelt (addiert und durch 3 geteilt), Autonomie und Rückmeldung werden separat MULTIPLIZIERT – nicht addiert. Ist einer der beiden Faktoren 0, wird der gesamte MPS 0." },
+    { le: 'le12', q: "Rechenaufgabe (Equity Theory): Herr K. hat einen Input von Is = 8 (Erfahrung/Mühe) und erhält einen Output von Os = 1.600 € (Gehalt+Bonus). Sein Kollege Herr S. hat Input Ia = 6 und Output Oa = 1.500 €. Welche Rechnung prüft korrekt, ob das Verhältnis für Herrn K. gerecht im Sinne der Equity Theory ist?",
+      opts: ["1.600 ÷ 8 im Vergleich zu 1.500 ÷ 6","1.600 · 8 im Vergleich zu 1.500 · 6","1.600 + 8 im Vergleich zu 1.500 + 6","8 ÷ 1.600 im Vergleich zu 6 ÷ 1.500 · (−1)"],
+      correct: 0, calc: true,
+      explain: "Equity Theory: Os/Is verglichen mit Oa/Ia. Herr K.: 1.600/8 = 200. Herr S.: 1.500/6 = 250. Da 200 < 250, ist Herrn K.s Output/Input-Verhältnis schlechter als das seines Kollegen → negative Diskrepanz → wahrgenommene Ungerechtigkeit, die laut Theorie ein Absenken seiner Anstrengung bewirken kann." },
+    { le: 'le12', q: "[Übung LE12] Rechenaufgabe (Akkordentgelt, lineare Lohnlinie): Bei Normalleistung (180 Brötchen/h) soll das Akkordentgelt dem Zeitentgelt (11 €/h) entsprechen, bei 240 Brötchen/h soll es 13,50 €/h betragen (proportionaler Anstieg dazwischen). Welche Formel liefert den Stundenverdienst y in Abhängigkeit der Stückzahl x?",
+      opts: [
+        "y = [(13,5 − 11) ÷ (240 − 180)] · x + b, mit b als Achsenabschnitt aus einem der beiden Punkte bestimmt",
+        "y = (13,5 + 11) ÷ (240 + 180) · x",
+        "y = (13,5 − 11) · (240 − 180) · x",
+        "y = 11 + 13,5 · x, unabhängig von der Stückzahl 180/240"
+      ], correct: 0, calc: true,
+      explain: "Akkordentgelt ist eine lineare Funktion (Lohnlinie) y = m·x + b zwischen den zwei bekannten Punkten (180 B/h, 11 €/h) und (240 B/h, 13,50 €/h): Steigung m = Δy/Δx = (13,5−11)/(240−180) = 2,5/60 ≈ 0,0417 €/Brötchen. Den Achsenabschnitt b erhält man durch Einsetzen eines Punktes, z.B. 11 = 0,0417·180 + b → b ≈ 3,5. Ergebnis: y ≈ 0,0417·x + 3,5. Klassisches Muster: 'linear zwischen zwei gegebenen Punkten interpolieren', analog zu jeder Zwei-Punkte-Geradengleichung." },
+    { le: 'le12', q: "[Übung LE12] Rechenaufgabe (Prämienentgelt, stufenförmig): Basisentgelt 9,50 €/h, Normalleistung 180 Brötchen/h. Für jede volle Stufe von 5 Brötchen oberhalb der Normalleistung gibt es 0,20 € Prämie. Welche Formel liefert den Stundenverdienst y bei x ≥ 180 Brötchen/h?",
+      opts: [
+        "y = 9,50 + ⌊(x − 180) ÷ 5⌋ · 0,20 €, mit ⌊⌋ = Abrunden auf ganze Stufen (div)",
+        "y = 9,50 · (x − 180) ÷ 5 · 0,20",
+        "y = 9,50 + (x − 180) · 0,20, ohne Stufenbildung",
+        "y = 9,50 − ⌊(x − 180) ÷ 5⌋ · 0,20 €"
+      ], correct: 0, calc: true,
+      explain: "Prämienentgelt = Basisentgelt (9,50 €/h) + Anzahl VOLLER Stufen × Prämie pro Stufe. Stufengröße = 5 Brötchen, Prämie pro Stufe = 0,20 €. Anzahl Stufen = ganzzahlige Division (div, abgerundet!) von (x − Normalleistung) durch die Stufengröße: ⌊(x−180)/5⌋. Für x < 180 gibt es keine Prämie (0 Stufen). Wichtig: es wird auf volle Stufen ABGERUNDET, nicht linear interpoliert wie beim Akkordentgelt – daher ist der Prämienlohn eine Treppenfunktion, keine Gerade." }
   ]}
 };
 
 const ebwlCardState = {
   active: null,
-  order: {}, instance: {}, index: {}, answer: {}, stats: {}, qstats: {}
+  order: {}, instance: {}, index: {}, answer: {}, stats: {}, qstats: {}, filterLE: {}
 };
 // Fragen (bzw. Formel-Vorlagen), die beim letzten Versuch falsch beantwortet wurden,
 // kommen bei einer neuen Runde zuerst dran.
+function ebwlFilteredIndices(key) {
+  const filter = ebwlCardState.filterLE[key] || 'all';
+  const idxs = AWI_FORMULA_QUIZ[key].questions.map((_, i) => i);
+  if (filter === 'all') return idxs;
+  return idxs.filter(i => AWI_FORMULA_QUIZ[key].questions[i].le === filter);
+}
+function ebwlLEsInTeil(key) {
+  const seen = [];
+  AWI_FORMULA_QUIZ[key].questions.forEach(q => { if (q.le && !seen.includes(q.le)) seen.push(q.le); });
+  return seen;
+}
 function ebwlEnsureOrder(key) {
   if (!ebwlCardState.order[key]) {
-    const all = AWI_FORMULA_QUIZ[key].questions.map((_, i) => i);
+    const all = ebwlFilteredIndices(key);
     const qs = ebwlCardState.qstats[key] || {};
     const wrongFirst = all.filter(i => qs[i] && qs[i].lastWrong);
     const rest = all.filter(i => !(qs[i] && qs[i].lastWrong));
     ebwlCardState.order[key] = quizShuffle(wrongFirst).concat(quizShuffle(rest));
-    ebwlCardState.instance[key] = {};
+    if (!ebwlCardState.instance[key]) ebwlCardState.instance[key] = {};
   }
   return ebwlCardState.order[key];
 }
 function ebwlGetQuestion(key, srcIdx) {
   const src = AWI_FORMULA_QUIZ[key].questions[srcIdx];
   if (src.genKey) {
+    if (!ebwlCardState.instance[key]) ebwlCardState.instance[key] = {};
     if (!ebwlCardState.instance[key][srcIdx]) {
       ebwlCardState.instance[key][srcIdx] = AWI_CALC_GENERATORS[src.genKey]();
     }
@@ -2267,6 +2276,26 @@ function renderEbwlCardsTabs() {
     div.innerHTML = `<p class="quiz-tab-title">${AWI_FORMULA_QUIZ[key].label}</p><p class="quiz-tab-sub">${AWI_FORMULA_QUIZ[key].sub}</p>`;
     div.onclick = () => { ebwlCardState.active = key; renderEbwlCards(); };
     el.appendChild(div);
+  });
+}
+function renderEbwlCardsControls() {
+  const wrap = document.getElementById('ebwlControls');
+  const key = ebwlCardState.active;
+  if (!key) { wrap.innerHTML = ''; return; }
+  const les = ebwlLEsInTeil(key);
+  const filter = ebwlCardState.filterLE[key] || 'all';
+  const leOptions = les.map(le => `<option value="${le}" ${filter === le ? 'selected' : ''}>${quizLETitle(le)}</option>`).join('');
+  const count = ebwlFilteredIndices(key).length;
+  wrap.innerHTML = `
+    <select id="ebwlLeSelect"><option value="all" ${filter === 'all' ? 'selected' : ''}>Alle ${AWI_FORMULA_QUIZ[key].label.replace('Formeln ', '')} (${AWI_FORMULA_QUIZ[key].questions.length} Aufgaben)</option>${leOptions}</select>
+    <span class="kk-progress-inline">${count} Aufgabe${count === 1 ? '' : 'n'} in dieser Auswahl</span>
+  `;
+  document.getElementById('ebwlLeSelect').addEventListener('change', (e) => {
+    ebwlCardState.filterLE[key] = e.target.value;
+    ebwlCardState.order[key] = null;
+    ebwlCardState.index[key] = 0;
+    ebwlCardState.answer[key] = null;
+    renderEbwlCards();
   });
 }
 function renderEbwlCardsPanel() {
@@ -2369,6 +2398,7 @@ function renderEbwlCards() {
     if (!ebwlCardState.stats[k]) ebwlCardState.stats[k] = { correct: 0, wrong: 0 };
   });
   renderEbwlCardsTabs();
+  renderEbwlCardsControls();
   renderEbwlCardsPanel();
 }
 
