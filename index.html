@@ -2363,6 +2363,11 @@ function ebwlCardsNext(key) {
 }
 function renderEbwlCards() {
   if (!ebwlCardState.active) ebwlCardState.active = Object.keys(AWI_FORMULA_QUIZ)[0];
+  Object.keys(AWI_FORMULA_QUIZ).forEach(k => {
+    if (!(k in ebwlCardState.index)) ebwlCardState.index[k] = 0;
+    if (!(k in ebwlCardState.answer)) ebwlCardState.answer[k] = null;
+    if (!ebwlCardState.stats[k]) ebwlCardState.stats[k] = { correct: 0, wrong: 0 };
+  });
   renderEbwlCardsTabs();
   renderEbwlCardsPanel();
 }
