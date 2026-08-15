@@ -1082,7 +1082,16 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Der deutsche Arbeitsschutz beruht auf zwei Säulen: staatlichem Recht (u.a. ArbSchG) und dem autonomen Regelwerk der Unfallversicherungsträger (DGUV-Vorschriften). Nach §5 ArbSchG ist der Arbeitgeber zur Gefährdungsbeurteilung verpflichtet. Die neue europäische Maschinenverordnung löst ab dem 20.1.2027 die bisherige Maschinenrichtlinie (2006/42/EG) ab. Arbeitsschutzpflichten gelten unabhängig von der Unternehmensgröße für alle Arbeitgeber." },
     { le: 'le06', q: "Welche Maßnahmen sind Beispiele für die Ebenen Technik, Organisation bzw. Person im TOP-Modell der Arbeitssicherheit? (mehrere richtig)", multi: true, opts: [
         "Zweihandschaltung als technische Sicherheitseinrichtung", "Vermeidung von Zeitzwängen durch organisatorische Gestaltung des Arbeitstakts", "Persönliche Schutzausrüstung (PSA) als nachrangige Maßnahme, wenn technische und organisatorische Maßnahmen nicht ausreichen", "Das TOP-Modell kennt laut Definition keine feste Rangfolge zwischen Technik, Organisation und Person – alle drei Ebenen sind stets gleichrangig zu wählen"
-      ], correct: [0,1,2], explain: "Beispiele nach dem TOP-Modell: technischer Arbeitsschutz (z.B. Zweihandschaltung), organisatorischer Arbeitsschutz (z.B. Vermeidung von Zeitzwängen durch Taktgestaltung), persönlicher Arbeitsschutz (z.B. PSA). Das TOP-Modell folgt einer festen Rangfolge Technik vor Organisation vor Person – PSA soll erst greifen, wenn technische/organisatorische Maßnahmen das Risiko nicht ausreichend reduzieren." }
+      ], correct: [0,1,2], explain: "Beispiele nach dem TOP-Modell: technischer Arbeitsschutz (z.B. Zweihandschaltung), organisatorischer Arbeitsschutz (z.B. Vermeidung von Zeitzwängen durch Taktgestaltung), persönlicher Arbeitsschutz (z.B. PSA). Das TOP-Modell folgt einer festen Rangfolge Technik vor Organisation vor Person – PSA soll erst greifen, wenn technische/organisatorische Maßnahmen das Risiko nicht ausreichend reduzieren." },
+    { le: 'le06', q: "Welche wesentlichen Aussagen trifft das Arbeitsschutzgesetz (ArbSchG)? (mehrere richtig)", multi: true, opts: [
+        "Maßnahmen des Arbeitsschutzes zur Verbesserung von Sicherheit und Gesundheitsschutz der Beschäftigten gehören zu den Grundpflichten des Arbeitgebers", "Der Arbeitgeber ist verpflichtet, die Wirksamkeit der Arbeitsschutzmaßnahmen zu überprüfen und zu dokumentieren", "Arbeitsschutz ist eine Führungsaufgabe", "Arbeitsschutz ist laut ArbSchG eine rein freiwillige Zusatzleistung des Arbeitgebers ohne rechtliche Verpflichtung"
+      ], correct: [0,1,2], explain: "Wesentliche Aussagen des ArbSchG laut Klausurbesprechung: Arbeitsschutzmaßnahmen zur Verbesserung von Sicherheit und Gesundheitsschutz gehören zu den Grundpflichten des Arbeitgebers, der Arbeitgeber muss die Wirksamkeit dieser Maßnahmen überprüfen und dokumentieren, und Arbeitsschutz ist explizit als Führungsaufgabe zu verstehen – keineswegs eine freiwillige, rechtlich unverbindliche Zusatzleistung." },
+    { le: 'le06', q: "Wann ist eine Gefährdungsbeurteilung durchzuführen bzw. zu aktualisieren? (mehrere richtig)", multi: true, opts: [
+        "An jedem Arbeitsplatz ist zunächst eine Erstbeurteilung durchzuführen", "Eine Aktualisierung ist erforderlich, wenn neue Maschinen/Geräte/Einrichtungen beschafft oder neue Arbeitsstoffe eingeführt werden", "Eine Aktualisierung ist auch erforderlich, wenn sich Arbeits-/Verkehrsbereiche, die Betriebsorganisation oder die Technik ändern, oder nach Unfällen/Beinaheunfällen/Berufskrankheiten", "Eine einmal durchgeführte Gefährdungsbeurteilung gilt dauerhaft und muss unter keinen Umständen jemals aktualisiert werden"
+      ], correct: [0,1,2], explain: "An jedem Arbeitsplatz ist eine Erstbeurteilung durchzuführen. Eine Aktualisierung ist u.a. erforderlich bei neuen Maschinen/Geräten/Einrichtungen, neuen Arbeitsstoffen, Änderungen der Arbeits-/Verkehrsbereiche, der Betriebsorganisation oder der Technik, sowie nach Unfällen, Beinaheunfällen, Berufskrankheiten oder anderen Erkrankungen. Eine Gefährdungsbeurteilung ist also kein einmaliger, dauerhaft gültiger Vorgang." },
+    { le: 'le06', q: "Welche Arten von Gefährdungen werden bei der Gefährdungsbeurteilung unterschieden? (mehrere richtig)", multi: true, opts: [
+        "Mechanische, elektrische und thermische Gefährdung sowie Gefahrstoffe", "Brand-/Explosionsgefährdung sowie biologische und physikalische Einwirkung", "Physische Belastung/Arbeitsschwere, Belastung durch Arbeitsumgebung sowie psychische Faktoren", "Es wird bei der Gefährdungsbeurteilung ausschließlich zwischen mechanischer und elektrischer Gefährdung unterschieden, weitere Kategorien existieren laut Vorlesung nicht"
+      ], correct: [0,1,2], explain: "Arten von Gefährdungen laut Vorlesung: mechanische, elektrische, thermische Gefährdung, Gefahrstoffe, Brand-/Explosionsgefährdung, biologische Gefährdung, physikalische Einwirkung, physische Belastung/Arbeitsschwere, Belastung durch Arbeitsumgebung, psychische Faktoren sowie weitere Gefährdungen – also deutlich mehr als nur zwei Kategorien." }
   ] },
   C: { label: 'Teil C · LE07–10', sub: 'Arbeitsökologie, Produktions- & Produktergonomie', questions: [
     { le: 'le07', q: "Welche der folgenden zählen zu den am häufigsten anerkannten Berufskrankheiten? (mehrere richtig)", multi: true, opts: [
@@ -1361,7 +1370,29 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "Vorteil eines Vordesigns: neben der Markenidentifikation erleichtert es den Übergang von einem Fahrzeug-/Gerätetyp zum nächsten, was Trainingszeit minimiert und Zuverlässigkeit erhöht; zudem werden bekannte, an großen Nutzerstichproben entdeckte Fehler vermieden. In der Praxis erfolgt daher häufig eine kontinuierliche Modifikation bestehender Arbeitsplätze (Mischform verschiedener ergonomischer Ansätze), statt jedes Mal komplett neu zu entwickeln." },
     { le: 'le09', q: "Welche Vor- bzw. Nachteile ergeben sich bei den zwei Integrationsansätzen von Menschmodellen in CAD-Umgebungen? (mehrere richtig)", multi: true, opts: [
         "Bei Integration als Modul der CAD-Umgebung entfallen Transferverluste, dafür kann die Berechnung des CAD-Modells langsamer werden", "Bei einer separaten Menschmodell-Umgebung sind Berechnungen meist schneller, dafür können beim Design-Transfer aus dem CAD Probleme auftreten", "Beide Integrationsansätze sind hinsichtlich Rechengeschwindigkeit und Transferqualität identisch und unterscheiden sich in keinem Aspekt", "Menschmodelle werden grundsätzlich nie direkt als Modul in eine CAD-Umgebung integriert, sondern ausschließlich in vollständig separaten Programmen betrieben"
-      ], correct: [0,1], explain: "Integration als CAD-Modul: Design liegt immer vollständig/im korrekten Layer-Format vor, Änderungen direkt in der Urversion möglich, keine Transferverluste – Nachteil ist eine ggf. langsamere CAD-Berechnung. Separate Menschmodell-Umgebung: schnellere Berechnungen (da nicht die gesamte CAD-Umgebung mitläuft), aber Nachteil sind mögliche Probleme beim Transfer des Designs aus dem CAD in das Menschmodell." }
+      ], correct: [0,1], explain: "Integration als CAD-Modul: Design liegt immer vollständig/im korrekten Layer-Format vor, Änderungen direkt in der Urversion möglich, keine Transferverluste – Nachteil ist eine ggf. langsamere CAD-Berechnung. Separate Menschmodell-Umgebung: schnellere Berechnungen (da nicht die gesamte CAD-Umgebung mitläuft), aber Nachteil sind mögliche Probleme beim Transfer des Designs aus dem CAD in das Menschmodell." },
+    { le: 'le07', q: "Welche Aussagen zu den Auslösewerten für Lärm nach LärmVibrationsArbSchV treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Ab den unteren Auslösewerten (LEx,8h = 80 dB(A)) müssen u.a. Gehörschutzmittel bereitgestellt und arbeitsmedizinische Vorsorge angeboten werden", "Ab den oberen Auslösewerten (LEx,8h = 85 dB(A)) besteht Tragepflicht für Gehörschutzmittel sowie Kennzeichnungspflicht des Lärmbereichs", "Der unter dem Gehörschutz am Ohr wirksame Tages-Lärmexpositionspegel darf die maximal zulässigen Expositionswerte nicht überschreiten", "Auslösewerte für Lärm existieren laut LärmVibrationsArbSchV nicht – Maßnahmen sind vollständig dem Ermessen des Arbeitgebers überlassen"
+      ], correct: [0,1,2], explain: "Untere Auslösewerte (LEx,8h = 80 dB(A), Lpeak = 135 dB(C)): Bereitstellung von Gehörschutzmitteln, Unterrichtung/Unterweisung, allgemeine arbeitsmedizinische Beratung, Angebot arbeitsmedizinischer Vorsorge. Obere Auslösewerte (LEx,8h = 85 dB(A), Lpeak = 137 dB(C)): zusätzlich Tragepflicht von Gehörschutzmitteln, Kennzeichnungspflicht des Lärmbereichs, arbeitsmedizinische Pflichtvorsorge, Lärmminderungsprogramme. Der unter dem Gehörschutz wirksame Pegel darf die zulässigen Werte nicht überschreiten." },
+    { le: 'le07', q: "Wie ist die Kennzeichnung von Gefahrstoffen nach der europäischen CLP-Verordnung aufgebaut?", opts: [
+        "Die CLP-Verordnung (Classification, Labeling and Packaging) schreibt neun Gefahrenpiktogramme vor, die sich den drei Kategorien physikalische Gefahren, Gesundheitsgefahren und Umweltgefahren zuordnen lassen", "Die CLP-Verordnung kennt nur ein einziges, einheitliches Gefahrenpiktogramm für sämtliche Gefahrstoffe unabhängig von der Art der Gefahr", "Die CLP-Verordnung unterscheidet ausschließlich zwischen 'gefährlich' und 'ungefährlich', ohne weitere Piktogramme oder Kategorien", "Die CLP-Verordnung regelt ausschließlich den Transport von Gefahrstoffen, nicht deren Kennzeichnung am Arbeitsplatz"
+      ], correct: 0, explain: "Die europäische CLP-Verordnung (Classification, Labeling and Packaging of Substances and Mixtures) schreibt neun Gefahrenpiktogramme vor, gegliedert in drei Kategorien: physikalische Gefahren, Gesundheitsgefahren und Umweltgefahren." },
+    { le: 'le08', q: "Wie ist der stufenweise Prüfprozess der Risikobeurteilung manueller Lastenhandhabung nach DIN EN 1005-2 aufgebaut?", opts: [
+        "Detailstufe 1 (Grobanalyse des vorgesehenen Designs) → bei Nichterfüllung Maßnahme zur Verbesserung, sonst Detailstufe 2 (detaillierte Risikobeurteilung) → bei Nichterfüllung Maßnahme, sonst Detailstufe 3 (weitere Einflussgrößen beachten) → bei Nichterfüllung ist eine Um-/Neugestaltung erforderlich, sonst liegt das Risiko innerhalb annehmbarer Grenzen", "Die Norm sieht nur eine einzige, immer identische Prüfstufe vor, unabhängig vom Ergebnis der Analyse", "Detailstufe 3 wird immer zuerst durchlaufen, Detailstufe 1 kommt erst am Ende zur abschließenden Grobkontrolle zum Einsatz", "Bei Nichterfüllung der Kriterien einer Detailstufe endet die Prüfung sofort ohne weitere Detailstufen oder Maßnahmen"
+      ], correct: 0, explain: "DIN EN 1005-2 sieht ein dreistufiges Vorgehen vor: Detailstufe 1 (Grobanalyse des vorgesehenen Designs) – sind die Kriterien nicht erfüllt, folgt eine Maßnahme zur Verbesserung der ergonomischen Gestaltung, dann erneute Prüfung in Detailstufe 2 (detaillierte Risikobeurteilung), ggf. weiter zu Detailstufe 3 (weitere Einflussgrößen beachten). Sind bei Detailstufe 3 die Kriterien nicht erfüllt, ist eine Um-/Neugestaltung erforderlich; andernfalls liegt das Risiko innerhalb annehmbarer Grenzen." },
+    { le: 'le08', q: "Welche Aussagen zu unterschiedlichen Belastungsarten (nach Beispiel aus der Vorlesung) treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Energetische Belastung wird u.a. anhand der Schwere einer Arbeit beurteilt, mit Körperstellungen/Haltungen als qualitativem und physikalischen Größen (z.B. Gewicht, Kraft) als quantitativem Belastungsmaß", "Informatorische Belastung wird u.a. anhand der Schwierigkeit der Informationsverarbeitung beurteilt, mit Art/Veränderung von Signalen als qualitativem und Informationsgehalt von Anzeigen als quantitativem Maß", "Belastung aus der physikalischen/chemischen Arbeitsumgebung wird u.a. anhand der Intensität eines Umgebungseinflusses beurteilt (z.B. Schalldruck, Beleuchtungsstärke als quantitative Größen)", "Es wird bei der Beurteilung von Arbeitsbelastung ausschließlich zwischen energetischer und informatorischer Belastung unterschieden, weitere Belastungsarten existieren laut Vorlesung nicht"
+      ], correct: [0,1,2], explain: "Die Vorlesung unterscheidet mehrere Belastungsarten: energetische Belastung (Schwere der Arbeit; Körperstellungen/Haltungen qualitativ, physikalische Größen wie Gewicht/Kraft/Weg quantitativ), informatorische Belastung (Schwierigkeit/Genauigkeit/Geschwindigkeit der Informationsverarbeitung; Art/Veränderung von Signalen qualitativ, Informationsgehalt von Anzeigen quantitativ), Belastung aus der physikalischen/chemischen Arbeitsumgebung (Intensität eines Umgebungseinflusses, z.B. Schalldruck/Beleuchtungsstärke) sowie Belastung aus der sozialen Umgebung (Unterstellungsverhältnisse, Betriebsklima, Soziogramme) – also deutlich mehr als nur zwei Kategorien." },
+    { le: 'le09', q: "Rechenaufgabe (additive Perzentil-Berechnung mit Zuschlägen): Die Öffnungshöhe x einer Flügeltür soll so ausgelegt werden, dass der 95. Perzentil Mann (Körperhöhe = 1795 mm) unter Berücksichtigung eines Federwegs von 20 mm und einer Absatzdicke von 30 mm gerade noch bequem hindurchgehen kann. Welche Rechnung liefert die erforderliche Öffnungshöhe x?",
+      opts: ["20 + 1795 + 30", "1795 − 20 − 30", "1795 · 20 · 30", "(20 + 30) ÷ 1795"],
+      correct: 0, calc: true,
+      explain: "x = Federweg + Perzentilmaß + Absatzdicke = 20 mm + 1795 mm + 30 mm = 1845 mm. Bei additiven Perzentil-Berechnungen mit Sicherheits-/Bewegungszuschlägen (hier Federweg der Tür und Absatzdicke von Schuhen) werden alle Zuschläge auf das relevante Perzentilmaß aufaddiert, um die tatsächlich benötigte Auslegungsgröße zu erhalten." },
+    { le: 'le10', q: "Wofür eignen sich Analog- bzw. Digitalanzeigen besonders gut, wenn es um „Überwachen und Regeln“ bzw. „Einstellen von Werten“ geht? (mehrere richtig)", multi: true, opts: [
+        "Für das Überwachen und Regeln eignet sich der bewegte Zeiger besonders gut, da die Zeigerstellung leicht zu überwachen und die Beziehung zwischen Stellteil und Anzeige leicht verständlich ist", "Für das Einstellen von Werten eignen sich sowohl Digitalanzeigen (sehr genau) als auch der bewegte Zeiger (schnell einstellbar, gute Kontrolle durch Zeigerstellung) gut", "Digitalanzeigen eignen sich für das Überwachen und Regeln, da Änderungen dort besonders leicht bemerkbar sind", "Es gibt laut Vorlesung keinerlei Unterschiede zwischen Anzeigenarten hinsichtlich Eignung für Überwachen/Regeln oder Einstellen von Werten"
+      ], correct: [0,1], explain: "Für Überwachen und Regeln eignet sich der bewegte Zeiger gut (Zeigerstellung leicht zu überwachen/regeln, verständliche Stellteil-Anzeige-Beziehung) – Digitalanzeigen sind hier ungünstig, da Änderungen schlecht bemerkbar sind und die Stellteil-Anzeige-Beziehung unklar bleibt. Für das Einstellen von Werten eignen sich sowohl Digitalanzeigen (sehr genau, aber bei schnellen Einstellungen schwer ablesbar) als auch der bewegte Zeiger (schnell einstellbar, gute Kontrolle) gut." },
+    { le: 'le10', q: "Wie ist die semantische Skala zur Bewertung der Eignung von Stellteilen beim konzeptiven Vorgehen aufgebaut?", opts: [
+        "Fünfstufige Skala von 0 (ungeeignet) über 1 (nur für geringe Anforderungen geeignet) und 2/3 (für mittlere/hohe Anforderungen geeignet) bis 4 (uneingeschränkt geeignet für hohe und höchste Anforderungen)", "Eine reine Ja/Nein-Skala ohne Zwischenstufen: ein Stellteil ist entweder vollständig geeignet oder vollständig ungeeignet", "Eine rein numerische Skala von 1 bis 100 ohne verbale Bedeutungszuordnung zu den einzelnen Werten", "Eine dreistufige Skala mit den Stufen 'schlecht', 'mittel' und 'gut', ohne weitere Differenzierung nach Anforderungsniveau"
+      ], correct: 0, explain: "Die semantische Skala zur Bewertung von Stellteilen ist fünfstufig codiert (0-4): 0 = ungeeignet, 1 = nur für geringe Anforderungen geeignet, 2 = für geringe Anforderungen gut / für mittlere Anforderungen noch geeignet, 3 = für mittlere Anforderungen gut / für hohe Anforderungen noch geeignet, 4 = für hohe und höchste Anforderungen geeignet (uneingeschränkt geeignet)." }
   ] },
   D: { label: 'Teil D · LE11–13', sub: 'Büroarbeit, Motivation, Psychische Gefährdungen', questions: [
     { le: 'le11', q: "Welche lichttechnischen Grundgrößen kennen Sie?", opts: [
@@ -1522,7 +1553,10 @@ const QUIZ_DATA = {
       ], correct: [0,1], explain: "Zeitentgelt: Vorteile sind eine für Arbeitspersonen wie Betrieb leicht durchschaubare Entgeltabrechnung und ein konstantes Entgelt (kein Anreiz für überhöhtes Arbeitstempo); Nachteil ist der fehlende Leistungsanreiz (Mehrleistung wird nicht honoriert, Lohnstückkosten variabel für den Betrieb). Akkordentgelt: Vorteile sind Leistungsanreiz und konstante Lohnstückkosten für den Betrieb (kein Risiko für Minderleistung); Nachteile sind die Gefahr übersteigerten Arbeitstempos, erhöhter Betriebsmittelverschleiß, fehlender Anreiz für umsichtiges Arbeiten und aufwendige Entgeltabrechnung." },
     { le: 'le12', q: "Welche Vor- bzw. Nachteile werden für Leistungszulagen und Prämienentgelt genannt? (mehrere richtig)", multi: true, opts: [
         "Leistungszulagen können als Anerkennung empfunden werden, bergen aber wegen ihrer Subjektivität Konfliktpotenzial und sind wenig nachvollziehbar/steuerbar für Betriebe", "Prämienentgelt bietet einen Leistungsanreiz und beteiligt Mitarbeitende am Leistungsergebnis, ist jedoch mit schwankendem Entgelt und aufwendiger Leistungserfassung verbunden", "Sowohl Leistungszulage als auch Prämienentgelt sind für Mitarbeitende hinsichtlich ihrer Entgeltabrechnung stets vollständig transparent und leicht nachvollziehbar", "Leistungszulagen und Prämienentgelt sind laut Vorlesung völlig frei von jeglichem Konfliktpotenzial oder Nachvollziehbarkeitsproblem"
-      ], correct: [0,1], explain: "Leistungszulagen (Anerkennung bes. Eigenschaften wie Fleiß, Sorgfalt) können als Wertschätzung empfunden werden, sind aber subjektiv (abhängig von der Führungskraft) und bergen daher Konfliktpotenzial sowie geringe Nachvollziehbarkeit/Steuerbarkeit für Betriebe. Prämienentgelt bietet Leistungsanreiz und Beteiligung am Leistungsergebnis, ist aber mit schwankendem Entgelt sowie aufwendiger, für Mitarbeitende nicht leicht nachvollziehbarer Leistungserfassung/Entgeltabrechnung verbunden." }
+      ], correct: [0,1], explain: "Leistungszulagen (Anerkennung bes. Eigenschaften wie Fleiß, Sorgfalt) können als Wertschätzung empfunden werden, sind aber subjektiv (abhängig von der Führungskraft) und bergen daher Konfliktpotenzial sowie geringe Nachvollziehbarkeit/Steuerbarkeit für Betriebe. Prämienentgelt bietet Leistungsanreiz und Beteiligung am Leistungsergebnis, ist aber mit schwankendem Entgelt sowie aufwendiger, für Mitarbeitende nicht leicht nachvollziehbarer Leistungserfassung/Entgeltabrechnung verbunden." },
+    { le: 'le11', q: "Wie ist der menschzentrierte Gestaltungsprozess (Nutzerintegration) nach DIN EN ISO 9241-210 aufgebaut? (mehrere richtig)", multi: true, opts: [
+        "Der Prozess beginnt mit der Planung des menschzentrierten Gestaltungsprozesses und dem Verstehen/Beschreiben des Nutzungskontexts", "Es folgen die Spezifikation der Nutzungsanforderungen sowie die Entwicklung von Gestaltungslösungen, die diese Anforderungen erfüllen", "Die Gestaltungslösungen werden aus Benutzerperspektive evaluiert; erfüllen sie die Anforderungen nicht, wird iteriert, ansonsten ist der Prozess abgeschlossen", "Der Prozess nach DIN EN ISO 9241-210 ist strikt linear und sieht unter keinen Umständen eine Iteration oder Wiederholung einzelner Schritte vor"
+      ], correct: [0,1,2], explain: "Der menschzentrierte Gestaltungsprozess nach DIN EN ISO 9241-210 ist ein iterativer Zyklus: (1) den Prozess planen, (2) den Nutzungskontext verstehen und beschreiben, (3) Nutzungsanforderungen spezifizieren, (4) Gestaltungslösungen entwickeln, die die Anforderungen erfüllen, (5) Gestaltungslösungen aus Benutzerperspektive evaluieren – erfüllt die Lösung die Anforderungen nicht, wird iteriert; andernfalls ist der Prozess abgeschlossen. Iteration ist ein zentrales, explizit vorgesehenes Element des Prozesses." }
   ] },
   E: { label: 'Teil E · Altklausuren', sub: 'Reale Klausuraufgaben aus WS22/23, WS23/24 & SS2024', questions: [
     { le: 'le02', q: "Was ist der Unterschied zwischen Aufbau- und Ablauforganisation?", opts: [
@@ -2094,13 +2128,128 @@ const AWI_FORMULA_QUIZ = {
         "RPZ = Auftretenswahrscheinlichkeit (A) − Entdeckungswahrscheinlichkeit (E)"
       ],
       correct: 0,
-      explain: "RPZ = B (Bedeutung des Fehlers für den Kunden) × A (Auftretenswahrscheinlichkeit) × E (Entdeckungswahrscheinlichkeit, bevor der Fehler beim Kunden ankommt) – jeder Faktor wird typischerweise auf einer Skala von 1–10 bewertet, die RPZ liegt also zwischen 1 und 1000. Je höher die RPZ, desto dringlicher der Handlungsbedarf." }
+      explain: "RPZ = B (Bedeutung des Fehlers für den Kunden) × A (Auftretenswahrscheinlichkeit) × E (Entdeckungswahrscheinlichkeit, bevor der Fehler beim Kunden ankommt) – jeder Faktor wird typischerweise auf einer Skala von 1–10 bewertet, die RPZ liegt also zwischen 1 und 1000. Je höher die RPZ, desto dringlicher der Handlungsbedarf." },
+    { le: 'le04', q: "Rechenaufgabe (Multimomentformel in Prozent-Notation, aus der Klausurbesprechung): Für eine Multimomentstudie soll eine Irrtumswahrscheinlichkeit von max. 5 % (z = 1,96) gelten, die maximal tolerierte Gesamtabweichung f' beträgt 1,5 %. Bei der letzten Erhebung hatte die betrachtete Tätigkeit einen Anteil von p = 15 %. Welche Rechnung liefert die nötige Anzahl Notierungen N (mit p und f' in Prozent, NICHT als Dezimalzahl)?",
+      opts: ["(1,96² · 15 · (100−15)) ÷ 1,5²", "(1,96 · 15 · (100−15)) ÷ 1,5²", "(1,96² · 15 · 85) ÷ 1,5", "1,96² · 15 · 85 · 1,5²"],
+      correct: 0, calc: true,
+      explain: "In Prozent-Notation lautet die Multimomentformel N = z²·p·(100−p) / (f')², mit p und f' direkt in Prozent (nicht als Dezimalzahl 0,15 bzw. 0,015). N = 1,96² · 15 · 85 / 1,5² ≈ 3,8416 · 1275 / 2,25 ≈ 2177 Notierungen. Diese Prozent-Schreibweise ist mathematisch identisch zur Dezimalform n = z²·θ(1−θ)/f² – wichtig ist, p und f' konsistent entweder beide als Prozentzahl oder beide als Dezimalzahl einzusetzen, sonst verschiebt sich das Ergebnis um den Faktor 10.000." },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Bringen"/Move): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Beweg.-Länge [cm]</th><th>M-A</th><th>M-B</th><th>M-C</th></tr>
+      <tr><td>10</td><td>6,0</td><td>6,8</td><td>7,9</td></tr>
+      <tr><td>20</td><td>9,6</td><td>10,5</td><td>11,7</td></tr>
+      <tr><td>30</td><td>12,7</td><td>13,3</td><td>15,1</td></tr>
+      <tr><td>40</td><td>15,8</td><td>15,6</td><td>18,5</td></tr></table></div>
+      Gesucht: Bewegungsfall M-C ('Bringen in eine genau bestimmte Lage'), Bewegungslänge = 40 cm. Welcher TMU-Wert ist korrekt?`,
+      opts: ["18,5 TMU","15,8 TMU","15,6 TMU","12,7 TMU"],
+      correct: 0, calc: true,
+      explain: "Zeile 40 cm, Spalte M-C → 18,5 TMU. Bewegungsfall A = Gegenstand zur anderen Hand/gegen Anschlag bringen, B = in ungefähre/unbestimmte Lage bringen (Spiel >25 mm), C = in eine genau bestimmte Lage bringen (Spiel 12-25 mm) – dieser Bewegungsfall erfordert die meiste Kontrolle und hat daher bei gleicher Bewegungslänge tendenziell den höchsten TMU-Wert." },
+    { le: 'le06', q: "Formel (allgemeine sicherheitswissenschaftliche Risikoformel): Wie berechnet sich das Risiko R eines Systems aus den Teilrisiken?",
+      opts: ["R = Σ P(eᵢ) · S(eᵢ), summiert über alle auslösenden Ereignisse eᵢ", "R = Σ P(eᵢ) + S(eᵢ)", "R = P(eᵢ) ÷ S(eᵢ), gemittelt über alle Ereignisse", "R = max(P(eᵢ)) · min(S(eᵢ))"],
+      correct: 0,
+      explain: "R = Σ P(eᵢ)·S(eᵢ), mit eᵢ = das Teilrisiko i auslösende Ereignis, P(.) = Eintrittswahrscheinlichkeit des Schadensereignisses, S(.) = Schadensausmaß des Schadensereignisses. Das Grenzrisiko RG entspricht dem gerade noch vertretbaren Risiko; ist R ≤ RG, verbleibt nur das (akzeptierte) Restrisiko." },
+    { le: 'le06', q: "Rechenaufgabe (FMEA-Handlungsbedarf anhand der RPZ): Für einen Fehler ergibt sich eine Risikoprioritätszahl von RPZ = 75. Welcher Handlungsbedarf besteht laut der in der Vorlesung gezeigten Bewertungstabelle?",
+      opts: ["Mittleres Fehlerrisiko (50 ≤ RPZ ≤ 100) → Handlungsbedarf, Maßnahmen sollten formuliert und umgesetzt werden", "Hohes Fehlerrisiko (100 ≤ RPZ ≤ 1000) → dringender Handlungsbedarf, Maßnahmen müssen formuliert und umgesetzt werden", "Akzeptables Fehlerrisiko (2 ≤ RPZ ≤ 20) → kein zwingender Handlungsbedarf", "RPZ = 75 fällt außerhalb aller definierten Bewertungsbereiche, sodass keine Aussage zum Handlungsbedarf möglich ist"
+      ], correct: 0, calc: true,
+      explain: "RPZ-Bewertungstabelle: 100 ≤ RPZ ≤ 1000 → hohes Risiko, dringender Handlungsbedarf, Maßnahmen MÜSSEN formuliert/umgesetzt werden. 50 ≤ RPZ ≤ 100 → mittleres Risiko, Handlungsbedarf, Maßnahmen SOLLTEN formuliert/umgesetzt werden. 2 ≤ RPZ ≤ 20 → akzeptables Risiko, kein zwingender Handlungsbedarf, Maßnahmen KÖNNEN formuliert werden. RPZ = 1 → kein Risiko, keine Maßnahmen. Bei RPZ = 75 liegt ein mittleres Risiko mit Handlungsbedarf vor." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Grundzeit tg): Wie lautet die Grundzeit-Formel exakt?", opts: [
+        "tg = tt + tw = ΣtMH + ΣtMN + ΣtMA (Tätigkeitszeit + Wartezeit = Summe Haupt-, Neben- und Ausfallzeit bezogen auf den Menschen)",
+        "tg = tt − tw = ΣtMH − ΣtMN − ΣtMA",
+        "tg = tt · tw = ΣtMH · ΣtMN · ΣtMA",
+        "tg = tt + tw + tv (die Verteilzeit ist bereits Teil der Grundzeit)"
+      ], correct: 0, explain: "Grundzeit tg = Tätigkeitszeit tt + Wartezeit tw = ΣtMH (Hauptzeit) + ΣtMN (Nebenzeit) + ΣtMA (Ausfallzeit), jeweils bezogen auf den Menschen (M). Die Verteilzeit tv ist NICHT Teil von tg, sondern wird separat berechnet und zur Zeit je Einheit te addiert." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Verteilzeit tv): Wie lautet die Verteilzeit-Formel exakt?", opts: [
+        "tv = (zv/100%) · tg",
+        "tv = zv · tg",
+        "tv = (100%/zv) · tg",
+        "tv = (zv/100%) + tg"
+      ], correct: 0, explain: "Verteilzeit tv = (Verteilzeitzuschlag zv in % / 100%) × Grundzeit tg. zv ist ein Prozentsatz der Grundzeit, kein absoluter Wert – deshalb muss erst durch 100% geteilt werden, bevor mit tg multipliziert wird." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Zeit je Einheit te): Wie lautet die Formel exakt?", opts: [
+        "te = tg + ter + tv",
+        "te = tg − ter − tv",
+        "te = tg · ter · tv",
+        "te = tg + tv (Erholungszeit ter wird nicht berücksichtigt)"
+      ], correct: 0, explain: "Zeit je Einheit te = Grundzeit tg + Erholungszeit ter + Verteilzeit tv. Alle drei Bestandteile werden addiert; ter wird in vielen vereinfachten Übungsaufgaben = 0 gesetzt, gehört aber offiziell zur vollständigen Formel der Formelsammlung." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Rüstgrundzeit trg): Wie lautet die Formel exakt?", opts: [
+        "trg = ΣtMHR + ΣtMNR + ΣtMAR",
+        "trg = ΣtMHR − ΣtMNR − ΣtMAR",
+        "trg = ΣtMHR · ΣtMNR · ΣtMAR",
+        "trg = ΣtMH + ΣtMN + ΣtMA (identisch zur normalen Grundzeit, ohne R-Kennzeichnung)"
+      ], correct: 0, explain: "Rüstgrundzeit trg = Σ Rüst-Hauptzeit tMHR + Σ Rüst-Nebenzeit tMNR + Σ Rüst-Ausfallzeit tMAR – analog zur Grundzeit tg, aber mit dem Zusatz 'R' für den Rüstvorgang statt für das Ausführen." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Rüstverteilzeit trv): Wie lautet die Formel exakt?", opts: [
+        "trv = (zrv/100%) · trg",
+        "trv = zrv · trg",
+        "trv = (100%/zrv) · trg",
+        "trv = (zrv/100%) + trg"
+      ], correct: 0, explain: "Rüstverteilzeit trv = (Rüstverteilzeitzuschlag zrv / 100%) × Rüstgrundzeit trg – exakt analog zur normalen Verteilzeit tv, nur bezogen auf die Rüstgrundzeit statt auf die Grundzeit." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Auftragszeit T): Wie lautet die Formel exakt?", opts: [
+        "T = tr + m · te",
+        "T = tr · m · te",
+        "T = tr − m · te",
+        "T = m · (tr + te)"
+      ], correct: 0, explain: "Auftragszeit T = Rüstzeit tr + Losgröße m × Zeit je Einheit te. Die Rüstzeit fällt einmalig pro Auftrag an, die Zeit je Einheit wird mit der Menge multipliziert." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Grundzeit tgB der Belegungszeit): Wie lautet die Formel exakt?", opts: [
+        "tgB = ΣtBH + ΣtBN + ΣtBA + ΣtBE",
+        "tgB = ΣtBH + ΣtBN + ΣtBA (ohne ΣtBE)",
+        "tgB = ΣtBH − ΣtBN − ΣtBA − ΣtBE",
+        "tgB = ΣtBH · ΣtBN · ΣtBA · ΣtBE"
+      ], correct: 0, explain: "Grundzeit der Belegungszeit tgB = ΣtBH (Hauptnutzungszeit) + ΣtBN (Nebennutzungszeit) + ΣtBA (Ausfallzeit) + ΣtBE (Brachzeit), jeweils bezogen auf das Betriebsmittel (B). tBE ist Teil von tgB, wird aber bei der Verteilzeitberechnung tvB wieder herausgerechnet." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Verteilzeit tvB der Belegungszeit): Wie lautet die Formel exakt?", opts: [
+        "tvB = (zvB/100%) · (tgB − ΣtBE)",
+        "tvB = (zvB/100%) · tgB (ohne Abzug von ΣtBE)",
+        "tvB = (zvB/100%) · tgB + ΣtBE",
+        "tvB = (100%/zvB) · (tgB − ΣtBE)"
+      ], correct: 0, explain: "Verteilzeit der Belegungszeit tvB = (Verteilzeitzuschlag zvB/100%) × (tgB − ΣtBE). Anders als bei der 'einfachen' Verteilzeit tv wird hier zuerst die Brachzeit ΣtBE von tgB abgezogen, bevor der Prozentsatz angewendet wird – ein häufig übersehenes Detail der offiziellen Formelsammlung." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Zeit je Einheit teB der Belegungszeit): Wie lautet die Formel exakt?", opts: [
+        "teB = tgB + tvB",
+        "teB = tgB + tvB + ter (mit Erholungszeit wie beim Menschen)",
+        "teB = tgB − tvB",
+        "teB = tgB · tvB"
+      ], correct: 0, explain: "Zeit je Einheit (Belegungszeit) teB = tgB + tvB. Im Gegensatz zur menschbezogenen te = tg + ter + tv entfällt hier die Erholungszeit ter vollständig – Betriebsmittel benötigen keine Erholung." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Rüstgrundzeit trgB der Belegungszeit): Wie lautet die Formel exakt?", opts: [
+        "trgB = ΣtBHR + ΣtBNR + ΣtBAR + ΣtBER",
+        "trgB = ΣtBHR + ΣtBNR + ΣtBAR (ohne ΣtBER)",
+        "trgB = ΣtBHR − ΣtBNR − ΣtBAR − ΣtBER",
+        "trgB = ΣtBH + ΣtBN + ΣtBA + ΣtBE (ohne R-Kennzeichnung)"
+      ], correct: 0, explain: "Rüstgrundzeit der Belegungszeit trgB = ΣtBHR + ΣtBNR + ΣtBAR + ΣtBER – die vier REFA-Betriebsmittel-Zeitkategorien, diesmal jeweils mit dem Zusatz 'R' für den Rüstvorgang." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Rüstverteilzeit trvB der Belegungszeit): Wie lautet die Formel exakt?", opts: [
+        "trvB = (zrvB/100%) · (trgB − ΣtBER)",
+        "trvB = (zrvB/100%) · trgB (ohne Abzug von ΣtBER)",
+        "trvB = (zrvB/100%) · trgB + ΣtBER",
+        "trvB = (100%/zrvB) · (trgB − ΣtBER)"
+      ], correct: 0, explain: "Rüstverteilzeit der Belegungszeit trvB = (Rüstverteilzeitzuschlag zrvB/100%) × (trgB − ΣtBER) – wie bei tvB wird auch hier zuerst die Rüst-Brachzeit ΣtBER von der Rüstgrundzeit trgB abgezogen." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Rüstzeit trB der Belegungszeit): Wie lautet die Formel exakt?", opts: [
+        "trB = trgB + trvB",
+        "trB = trgB + trvB + trer (mit Rüsterholungszeit wie beim Menschen)",
+        "trB = trgB − trvB",
+        "trB = trgB · trvB"
+      ], correct: 0, explain: "Rüstzeit der Belegungszeit trB = trgB + trvB. Im Unterschied zur menschbezogenen Rüstzeit tr = trg + trv + trer entfällt bei trB die Rüsterholungszeit trer, da Betriebsmittel sich nicht erholen müssen." },
+    { le: 'le04', q: "Formel 1:1 (Formelsammlung, Multimomenthauptformel): Wie lautet die Formel für den nötigen Stichprobenumfang n exakt?", opts: [
+        "n = z²α/2 · θi · (1−θi) / fi²",
+        "n = zα/2 · θi · (1−θi) / fi²  (ohne Quadrieren von z)",
+        "n = z²α/2 · θi · (1−θi) / fi  (fi nicht quadriert)",
+        "n = z²α/2 / (θi · (1−θi) · fi²)  (im Nenner statt im Zähler)"
+      ], correct: 0, explain: "n = z²α/2 · θi(1−θi) / fi², mit n = Stichprobenumfang, z = standardisierter Wert (z.B. 1,96 bei 95% Sicherheit), θi = geschätzte Wahrscheinlichkeit des Vorgangs i, fi = geforderte Schätzgenauigkeit in Prozent. Sowohl z als auch fi gehen QUADRIERT ein – ein häufiger Merkfehler." },
+    { le: 'le06', q: "Formel 1:1 (Formelsammlung, Nichtverfügbarkeit verkettete Systeme): Wie lautet die Formel für Uges exakt?", opts: [
+        "Uges = 1 − ∏ᵢ₌₁ⁿ (1 − Ui)",
+        "Uges = ∏ᵢ₌₁ⁿ (1 − Ui)",
+        "Uges = 1 − Σᵢ₌₁ⁿ Ui",
+        "Uges = ∏ᵢ₌₁ⁿ Ui"
+      ], correct: 0, explain: "Für verkettete (seriell verbundene) Systeme: Uges = 1 − ∏(1−Ui), i=1..n. Das Produkt ∏(1−Ui) ist die Gesamt-VERFÜGBARKEIT; '1 minus' davon ergibt die Nichtverfügbarkeit, da schon eine ausgefallene Komponente das gesamte verkettete System ausfallen lässt." },
+    { le: 'le06', q: "Formel 1:1 (Formelsammlung, Nichtverfügbarkeit redundante Systeme): Wie lautet die Formel für Uges exakt?", opts: [
+        "Uges = ∏ᵢ₌₁ⁿ Ui",
+        "Uges = 1 − ∏ᵢ₌₁ⁿ Ui",
+        "Uges = Σᵢ₌₁ⁿ Ui",
+        "Uges = 1 − ∏ᵢ₌₁ⁿ (1 − Ui)"
+      ], correct: 0, explain: "Für redundante (parallel verbundene) Systeme: Uges = ∏Ui, i=1..n. Da ALLE parallelen Komponenten gleichzeitig ausfallen müssen, damit das Gesamtsystem ausfällt, werden die Einzel-Nichtverfügbarkeiten einfach multipliziert – ohne '1 minus'-Umformung wie bei verketteten Systemen." }
   ]},
   C: { label: 'Formeln Teil C · LE07–10', sub: 'Gefahrstoffe & Schall, Leitmerkmalmethode, Anthropometrie, Wahrnehmung', questions: [
     { le: 'le07', q: "Rechenaufgabe (mittlere Gefahrstoffkonzentration): Die Emissionsrate eines Gefahrstoffs beträgt E = 0,002 kg/s, der Volumenstrom Q = 0,5 m³/s. Welche Rechnung liefert die mittlere Gefahrstoffkonzentration C in der Luft?",
       opts: ["0,002 ÷ 0,5","0,5 ÷ 0,002","0,002 · 0,5","0,002 + 0,5"],
       correct: 0, calc: true,
       explain: "C = E ÷ Q = 0,002 kg/s ÷ 0,5 m³/s = 0,004 kg/m³. C = mittlere Gefahrstoffkonzentration in der Luft, E = Emissionsrate während der Expositionszeit, Q = Volumenstrom (Fläche × Luftgeschwindigkeit)." },
+    { le: 'le07', q: "Formel (A-bewerteter Mittelungspegel / Beurteilungspegel nach DIN 45645): Wie werden einzelne Schallpegelmessungen über eine Beurteilungszeit T zu einem Mittelungspegel LpAm(T) zusammengefasst?", opts: [
+        "LpAm(T) = 10·log10[(1/T)·Σ tᵢ·10^(LpAi/10)] dB(A), mit tᵢ = Teildauer der Messung i, LpAi = zugehöriger A-bewerteter Pegel", "LpAm(T) = (1/T)·Σ LpAi, also der einfache arithmetische Mittelwert aller Einzelpegel ohne Logarithmierung", "LpAm(T) = max(LpAi), also stets der lauteste gemessene Einzelpegel über die gesamte Beurteilungszeit", "LpAm(T) = T · Σ LpAi, also die mit der Beurteilungszeit multiplizierte Summe aller Einzelpegel"
+      ], correct: 0, explain: "LpAm(T) = 10·log10[(1/T)·Σtᵢ·10^(LpAi/10)] dB(A) – die energetische (logarithmische) Mittelung mehrerer Schallpegelmessungen über die Beurteilungszeit T, analog zur Pegeladdition. Für eine Beurteilungszeit von 8 Stunden wird dieser Mittelungspegel als Beurteilungspegel LAr bezeichnet; er entspricht dem Tages-Lärmexpositionspegel LEx,8h nach LärmVibrationsArbSchV, der alle am Arbeitsplatz auftretenden Schallereignisse über eine Achtstundenschicht gemittelt umfasst." },
     { le: 'le07', q: "Formel (Schalldruckpegel): Wie berechnet sich der Schalldruckpegel Lp aus dem effektiven Schalldruck peff?", opts: [
         "Lp = 20 · log10(peff ÷ p0) dB, mit Bezugsschalldruck p0 = 20 µPa",
         "Lp = 10 · log10(peff ÷ p0) dB",
@@ -2146,6 +2295,29 @@ const AWI_FORMULA_QUIZ = {
         "Punktwert = Summe aller Wichtungen ÷ Zeitwichtung",
         "Punktwert = Zeitwichtung ÷ (Summe aller anderen Wichtungen)"
       ], correct: 0, explain: "Berechnung der LMM: Punktwert = Zeitwichtung × (Summe aller anderen Wichtungen). Die Zeitwichtung wirkt also multiplikativ auf die Summe der übrigen 5 Leitmerkmal-Wichtungen (Lastgewicht, Lastaufnahmebedingungen, Körperhaltung, Ausführungsbedingungen, Arbeitsorganisation)." },
+    { le: 'le08', q: `Tabellen-Aufgabe (LMM-HHT, Bestimmung der Zeitwichtung): Nutze den Ausschnitt der offiziellen Zeitwichtungs-Tabelle für Hebe-/Umsetzvorgänge (< 5 s).
+      <div class="quiz-diagram-wrap"><table><tr><th>Anzahl am Arbeitstag</th><th>Zeitwichtung</th></tr>
+      <tr><td>&lt; 10</td><td>1</td></tr>
+      <tr><td>10 bis &lt; 40</td><td>2</td></tr>
+      <tr><td>40 bis &lt; 200</td><td>4</td></tr>
+      <tr><td>200 bis &lt; 500</td><td>6</td></tr>
+      <tr><td>500 bis &lt; 1000</td><td>8</td></tr>
+      <tr><td>≥ 1000</td><td>10</td></tr></table></div>
+      Ein Mitarbeiter führt pro Schicht (8h) im Takt von 1 Hub/min Hebevorgänge durch (480 Hübe/Schicht). Welche Zeitwichtung ist korrekt?`,
+      opts: ["10 (da ≥ 1000 Hübe/Schicht bei durchgehendem Takt über die gesamte Schicht, hier 480 Hübe liegt in der Kategorie 200 bis < 500)", "6", "8", "4"],
+      correct: 0, calc: true,
+      explain: "1 Hub/min × 8 h/Schicht × 60 min/h = 480 Hübe/Schicht. In der Zeitwichtungs-Tabelle fällt 480 in die Kategorie '200 bis < 500' → Zeitwichtung 6. (Hinweis: die Musterlösung der Klausurbesprechung ordnet diesem Beispielwert die Zeitwichtung 6 zu – bei der Ablesung ist immer die Zeile zu wählen, in deren Intervall die berechnete Anzahl fällt.)" },
+    { le: 'le08', q: `Tabellen-Aufgabe (LMM-HHT, Bestimmung der Lastwichtung): Nutze den Ausschnitt der offiziellen Lastwichtungs-Tabelle für Männer.
+      <div class="quiz-diagram-wrap"><table><tr><th>Wirksame Last für Männer</th><th>Lastwichtung</th></tr>
+      <tr><td>&lt; 10 kg</td><td>1</td></tr>
+      <tr><td>10 bis &lt; 20 kg</td><td>2</td></tr>
+      <tr><td>20 bis &lt; 30 kg</td><td>4</td></tr>
+      <tr><td>30 bis &lt; 40 kg</td><td>7</td></tr>
+      <tr><td>≥ 40 kg</td><td>25</td></tr></table></div>
+      Ein Mitarbeiter hebt Lasten mit einer wirksamen Last von 8,7 kg. Welche Lastwichtung ist korrekt?`,
+      opts: ["1 (da 8,7 kg < 10 kg)","2","4","7"],
+      correct: 0, calc: true,
+      explain: "8,7 kg liegt in der Kategorie '< 10 kg' → Lastwichtung 1. Die Lastwichtungs-Tabellen unterscheiden sich zwischen Männern und Frauen (bei Frauen liegen die kg-Grenzen niedriger), da die durchschnittliche Kraftfähigkeit unterschiedlich ist." },
     { le: 'le08', q: "Rechenaufgabe (LMM-HHT, Punktwert + Risikobereich): Zeitwichtung = 2, Lastgewicht-Wichtung = 4, Lastaufnahmebedingungen = 1, Körperhaltung = 2, Ausführungsbedingungen = 1, Arbeitsorganisation = 2. Welche Rechnung liefert den Gesamtpunktwert, und in welchem Risikobereich liegt er?",
       opts: [
         "2 · (4+1+2+1+2) = 20 → Bereich 2 (Maßnahmen sinnvoll bei verminderter Belastungsfähigkeit)",
@@ -2201,7 +2373,19 @@ const AWI_FORMULA_QUIZ = {
     { le: 'le10', q: "Rechenaufgabe (Weber'sches Gesetz): Der Standardreiz (z.B. ein Gewicht) beträgt R = 200 g, die Unterschiedsschwelle ΔR = 6 g. Welche Rechnung liefert die Weber-Konstante k?",
       opts: ["6 ÷ 200","200 ÷ 6","6 · 200","200 − 6"],
       correct: 0, calc: true,
-      explain: "Weber'sches Gesetz: k = ΔR ÷ R = 6 ÷ 200 = 0,03. Die Unterschiedsschwelle steht in einem konstanten Verhältnis zum Standardreiz – dieses Verhältnis ist die Weber-Konstante k." }
+      explain: "Weber'sches Gesetz: k = ΔR ÷ R = 6 ÷ 200 = 0,03. Die Unterschiedsschwelle steht in einem konstanten Verhältnis zum Standardreiz – dieses Verhältnis ist die Weber-Konstante k." },
+    { le: 'le08', q: "Formel 1:1 (Formelsammlung, DIN EN 1005-2 Risikoindex RI): Wie lautet die Formel exakt?", opts: [
+        "RI = M / RML",
+        "RI = RML / M",
+        "RI = M · RML",
+        "RI = M − RML"
+      ], correct: 0, explain: "Risikoindex RI = tatsächlich gehandhabte Masse M ÷ zulässige Massegrenze RML. RI < 1 bedeutet, die gehandhabte Masse liegt unter der zulässigen Grenze; RI ≥ 1,0 bedeutet, sie wird überschritten → Um-/Neugestaltung erforderlich." },
+    { le: 'le10', q: "Formel 1:1 (Formelsammlung, Weber'sches Gesetz): Wie lautet die Formel exakt?", opts: [
+        "k = ΔR / R",
+        "k = R / ΔR",
+        "k = ΔR · R",
+        "k = ΔR + R"
+      ], correct: 0, explain: "Weber'sches Gesetz: k = ΔR/R, mit ΔR = Unterschiedsschwelle (just noticeable difference) und R = Standardreiz. Die Weber-Konstante k ist über einen weiten Reizbereich näherungsweise konstant." }
   ]},
   D: { label: 'Formeln Teil D · LE11–12', sub: 'Lichttechnik, Motivation & Entgelt', questions: [
     { le: 'le11', q: "Rechenaufgabe (Beleuchtungsstärke): Eine Lichtquelle hat eine Lichtstärke I = 800 cd, der Abstand zur beleuchteten Fläche beträgt r = 4 m. Welche Rechnung liefert die Beleuchtungsstärke E?",
@@ -2259,7 +2443,55 @@ const AWI_FORMULA_QUIZ = {
         "y = 9,50 + (x − 180) · 0,20, ohne Stufenbildung",
         "y = 9,50 − ⌊(x − 180) ÷ 5⌋ · 0,20 €"
       ], correct: 0, calc: true,
-      explain: "Prämienentgelt = Basisentgelt (9,50 €/h) + Anzahl VOLLER Stufen × Prämie pro Stufe. Stufengröße = 5 Brötchen, Prämie pro Stufe = 0,20 €. Anzahl Stufen = ganzzahlige Division (div, abgerundet!) von (x − Normalleistung) durch die Stufengröße: ⌊(x−180)/5⌋. Für x < 180 gibt es keine Prämie (0 Stufen). Wichtig: es wird auf volle Stufen ABGERUNDET, nicht linear interpoliert wie beim Akkordentgelt – daher ist der Prämienlohn eine Treppenfunktion, keine Gerade." }
+      explain: "Prämienentgelt = Basisentgelt (9,50 €/h) + Anzahl VOLLER Stufen × Prämie pro Stufe. Stufengröße = 5 Brötchen, Prämie pro Stufe = 0,20 €. Anzahl Stufen = ganzzahlige Division (div, abgerundet!) von (x − Normalleistung) durch die Stufengröße: ⌊(x−180)/5⌋. Für x < 180 gibt es keine Prämie (0 Stufen). Wichtig: es wird auf volle Stufen ABGERUNDET, nicht linear interpoliert wie beim Akkordentgelt – daher ist der Prämienlohn eine Treppenfunktion, keine Gerade." },
+    { le: 'le11', q: "Formel 1:1 (Formelsammlung, Lichtstrom Φ): Wie lautet die Formel exakt?", opts: [
+        "Φ = I · Ω  [lm]",
+        "Φ = I / Ω  [lm]",
+        "Φ = I + Ω  [lm]",
+        "Φ = I² · Ω  [lm]"
+      ], correct: 0, explain: "Lichtstrom Φ [lm] = mittlere Lichtstärke I × Raumwinkel Ω. Der Lichtstrom beschreibt die insgesamt von einer Quelle in den Raumwinkel Ω abgestrahlte Lichtmenge." },
+    { le: 'le11', q: "Formel 1:1 (Formelsammlung, mittlere Lichtstärke I): Wie lautet die Formel exakt?", opts: [
+        "I = Φ / Ω  [cd]",
+        "I = Φ · Ω  [cd]",
+        "I = Ω / Φ  [cd]",
+        "I = Φ − Ω  [cd]"
+      ], correct: 0, explain: "Mittlere Lichtstärke I [cd] = Lichtstrom Φ ÷ Raumwinkel Ω — die Umkehrung von Φ = I·Ω." },
+    { le: 'le11', q: "Formel 1:1 (Formelsammlung, Beleuchtungsstärke E): Wie lauten alle drei äquivalenten Formen exakt?", opts: [
+        "E = Φ/A = I·Ω/A = I/r²  [Lux]",
+        "E = Φ·A = I·Ω·A = I·r²  [Lux]",
+        "E = Φ/A = I/Ω/A = I·r²  [Lux]",
+        "E = A/Φ = A/(I·Ω) = r²/I  [Lux]"
+      ], correct: 0, explain: "Beleuchtungsstärke E [Lux = Lumen/m²] = Φ/A = I·Ω/A = I/r². Alle drei Formen sind äquivalent: Lichtstrom pro Fläche, Lichtstärke×Raumwinkel pro Fläche, oder direkt Lichtstärke pro Abstand² bei punktförmiger Quelle. Der Abstand r geht quadratisch ein." },
+    { le: 'le11', q: "Formel 1:1 (Formelsammlung, Leuchtdichte L): Wie lauten beide Formen exakt?", opts: [
+        "L = I/A = ρ·(E/π)  [cd/m²] (Lambert-Strahler)",
+        "L = I·A = ρ·(E·π)  [cd/m²]",
+        "L = I/A = ρ·E·π  [cd/m²]",
+        "L = A/I = (E/π)/ρ  [cd/m²]"
+      ], correct: 0, explain: "Leuchtdichte L [cd/m²] = I/A = ρ·(E/π), wobei die zweite Form für einen Lambert-Strahler (ideal diffus reflektierende Fläche) gilt: Reflexionsgrad ρ mal Beleuchtungsstärke E, geteilt durch π." },
+    { le: 'le11', q: "Formel 1:1 (Formelsammlung, Zeichenhöhe h, exakte Formel): Wie lautet sie?", opts: [
+        "h = 2d · tan(α/2)",
+        "h = 2d · tan(α)",
+        "h = d · tan(α/2)",
+        "h = 2d / tan(α/2)"
+      ], correct: 0, explain: "Zeichenhöhe h = 2d · tan(α/2), mit d = Sehabstand und α = Sehwinkel. Der Faktor 2 und die Halbierung des Winkels (α/2) ergeben sich daraus, dass tan(α/2) nur die halbe Zeichenhöhe bis zur Sehachse liefert." },
+    { le: 'le11', q: "Formel 1:1 (Formelsammlung, Faustformel optimale Zeichenhöhe): Wie lautet sie exakt?", opts: [
+        "h = d / 155",
+        "h = d / 100",
+        "h = d · 155",
+        "h = 155 / d"
+      ], correct: 0, explain: "Faustformel optimale Zeichenhöhe: h = d ÷ 155, mit d = Sehabstand. Diese vereinfachte Formel ersetzt die exakte Berechnung h = 2d·tan(α/2) für einen typischen Sehwinkel." },
+    { le: 'le12', q: "Formel 1:1 (Formelsammlung, Equity Theory nach Adams): Wie lautet die Formel exakt?", opts: [
+        "Os/Is = Oa/Ia",
+        "Os·Is = Oa·Ia",
+        "Os−Is = Oa−Ia",
+        "Os/Is = Ia/Oa"
+      ], correct: 0, explain: "Equity Theory: Os/Is = Oa/Ia, mit Is = Input Selbst, Ia = Input Anderer, Os = Output Selbst, Oa = Output Anderer. Wichtig laut Formelsammlung: die SUBJEKTIVE Bewertung dieser Gleichung zählt, nicht der objektiv errechnete Wert." },
+    { le: 'le12', q: "Formel 1:1 (Formelsammlung, Motivation Potential Score MPS): Wie lautet die Formel exakt?", opts: [
+        "MPS = [(Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit) / 3] × Autonomie × Rückmeldung",
+        "MPS = (Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit + Autonomie + Rückmeldung) / 3",
+        "MPS = [(Anforderungsvielfalt + Ganzheitlichkeit + Bedeutsamkeit) / 3] + Autonomie + Rückmeldung",
+        "MPS = (Anforderungsvielfalt × Ganzheitlichkeit × Bedeutsamkeit) / 3 × Autonomie × Rückmeldung"
+      ], correct: 0, explain: "MPS = [(Anforderungsvielfalt + Ganzheitlichkeit der Aufgabe + Bedeutsamkeit der Aufgabe) / 3] × Autonomie × Rückmeldung. Die ersten drei Merkmale werden gemittelt, Autonomie und Rückmeldung gehen multiplikativ ein – bei einem Wert von 0 bei Autonomie ODER Rückmeldung wird der gesamte MPS 0." }
   ]}
 };
 
