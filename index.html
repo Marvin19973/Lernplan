@@ -99,6 +99,15 @@
   .quiz-opt.wrong .quiz-dot { background: #f16565; color: #350a0a; }
   .quiz-opt.selected { border-color: var(--accent); background: rgba(91,141,239,0.12); }
   .quiz-opt.selected .quiz-dot { background: var(--accent); color: #0d1524; }
+  .quiz-match-badge { flex-shrink: 0; background: var(--pill-bg); color: #a78bfa; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+  .quiz-match-rows { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-match-row { display: flex; align-items: center; gap: 12px; background: var(--pill-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 0.65rem 0.85rem; }
+  .quiz-match-def { flex: 1; font-size: 13.5px; line-height: 1.4; }
+  .quiz-match-select { flex-shrink: 0; min-width: 190px; max-width: 260px; background: var(--card); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: 8px; padding: 0.4rem 0.5rem; font-size: 13px; }
+  .quiz-match-row.correct { border-color: var(--green); background: rgba(52,211,153,0.12); }
+  .quiz-match-row.wrong { border-color: #f16565; background: rgba(241,101,101,0.1); }
+  .quiz-match-row.wrong .quiz-match-select { border-color: #f16565; }
+  .quiz-match-correct-hint { font-size: 12px; color: var(--green); margin-top: 4px; }
   .quiz-explain { display: none; margin-top: 1rem; font-size: 13px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 10px; padding: 0.8rem 0.9rem; line-height: 1.5; }
   .quiz-explain.show { display: block; }
   .quiz-summary { text-align: center; padding: 2rem 1rem; font-size: 15px; color: var(--text-secondary); }
@@ -544,6 +553,7 @@ function quizBuildExprOptions(correctExpr, distractorExprs) {
   return { opts: values, correct };
 }
 function quizShuffleOptions(item, idxs) {
+  if (item.type === 'match') return item;
   const newCorrect = item.multi
     ? item.correct.map(oldIdx => idxs.indexOf(oldIdx))
     : idxs.indexOf(item.correct);
@@ -555,9 +565,20 @@ function quizShuffleOptions(item, idxs) {
 // Liefert die (einmal pro Frage feste) Options-Reihenfolge, damit sich die Zuordnung
 // zwischen Klick und Anzeige des Ergebnisses nicht durch erneutes Mischen verschiebt.
 function quizGetOptOrder(key, srcIdx, item) {
+  if (item.type === 'match') return [];
   const ck = key + '_' + srcIdx;
   if (!quizState.optOrder[ck]) {
     quizState.optOrder[ck] = quizShuffle(item.opts.map((_, i) => i));
+  }
+  return quizState.optOrder[ck];
+}
+// Liefert die (einmal pro Frage feste) gemischte Reihenfolge der Begriffe (Dropdown-Optionen)
+// einer Zuordnungsaufgabe – eindeutige Begriffe aus item.pairs, ggf. + extraTerms als Distraktoren.
+function quizGetMatchTermOrder(key, srcIdx, item) {
+  const ck = key + '_' + srcIdx + '_terms';
+  if (!quizState.optOrder[ck]) {
+    const terms = [...new Set(item.pairs.map(p => p.term))].concat(item.extraTerms || []);
+    quizState.optOrder[ck] = quizShuffle(terms);
   }
   return quizState.optOrder[ck];
 }
@@ -782,7 +803,40 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "In der eEPK-Notation werden Ereignisse als Sechsecke (beschreiben einen eingetretenen Zustand) und Funktionen als abgerundete Rechtecke (beschreiben eine auszuführende Tätigkeit) dargestellt. Konnektoren (UND/ODER/XOR) verknüpfen mehrere Elemente logisch. Ein eEPK-Modell beginnt UND endet grundsätzlich mit einem Ereignis, nicht mit einer Funktion." },
     { le: 'le02', q: "Welche Vor- bzw. Nachteile werden für Job Rotation genannt? (mehrere richtig)", multi: true, opts: [
         "Vorteile bzgl. Anforderungsvielfalt, Belastungswechsel, Kompetenzentwicklung, Arbeitsmotivation und Personalflexibilität", "Gegebenenfalls erhöhte Aufwände für Koordination und Qualifizierung", "Bei vertikalem Positionswechsel muss u.U. mit Motivationsverlusten gerechnet werden (z.B. bei Verlust anspruchsvollerer Aufgaben)", "Job Rotation hat laut Vorlesung ausschließlich Vorteile und keinerlei potenzielle Nachteile oder Zielkonflikte"
-      ], correct: [0,1,2], explain: "Den potenziellen Vorteilen von Job Rotation (Anforderungsvielfalt, Belastungswechsel, Kompetenzentwicklung, Arbeitsmotivation, Personalflexibilität; korreliert zudem mit objektiv niedrigeren Fehlzeiten) stehen ggf. erhöhte Koordinations- und Qualifizierungsaufwände gegenüber. Bei vertikalem Positionswechsel muss u.U. mit Motivationsverlusten gerechnet werden, z.B. wenn zuvor dauerhaft anspruchsvollere Aufgaben zugeordnet waren." }
+      ], correct: [0,1,2], explain: "Den potenziellen Vorteilen von Job Rotation (Anforderungsvielfalt, Belastungswechsel, Kompetenzentwicklung, Arbeitsmotivation, Personalflexibilität; korreliert zudem mit objektiv niedrigeren Fehlzeiten) stehen ggf. erhöhte Koordinations- und Qualifizierungsaufwände gegenüber. Bei vertikalem Positionswechsel muss u.U. mit Motivationsverlusten gerechnet werden, z.B. wenn zuvor dauerhaft anspruchsvollere Aufgaben zugeordnet waren." },
+    { le: 'le02', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie den folgenden Beschreibungen den passenden Begriff der Arbeitsorganisation zu.",
+      pairs: [
+        { term: 'Aufbauorganisation', def: 'Beschreibt die Gliederung eines Betriebs in ein System arbeitsteiliger Organisationseinheiten und stellt deren Beziehungen zueinander dar.' },
+        { term: 'Ablauforganisation', def: 'Regelt das räumliche, zeitliche und prozedurale Zusammenwirken von Elementen eines oder mehrerer Arbeitssysteme.' }
+      ],
+      explain: "Aufbauorganisation = statische Struktur (Organigramm, Zuständigkeiten, Hierarchien). Ablauforganisation = dynamischer Prozessablauf (Reihenfolge, Ort, Zeit der Aufgabenerfüllung). Beide Begriffe sind ein klassisches Zuordnungspaar in Altklausuren – hier bewusst im Zuordnungsformat geübt, wie es in der echten Klausur vorkommt." },
+    { le: 'le02', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden Merkmale dem passenden Prozesstyp zu.",
+      pairs: [
+        { term: 'Primärprozess', def: 'Erzeugt den Wettbewerbsvorteil eines Unternehmens, ist unternehmensspezifisch und daher schwer zu imitieren.' },
+        { term: 'Sekundärprozess', def: 'Sichert den reibungslosen Ablauf der Geschäftstätigkeit, erzeugt aber keinen direkten Wettbewerbsvorteil.' }
+      ],
+      explain: "Primärprozesse (Kernprozesse) schaffen den direkten Wettbewerbsvorteil und sind unternehmensspezifisch – schwer für Konkurrenten zu kopieren. Sekundärprozesse (Unterstützungsprozesse) sind notwendig für einen reibungslosen Betrieb, tragen aber nicht direkt zum Wettbewerbsvorteil bei (z.B. IT-Support, Facility Management)." },
+    { le: 'le02', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die Ergonomie-Herangehensweise der passenden Beschreibung zu.",
+      pairs: [
+        { term: 'Prospektive Ergonomie', def: 'Berücksichtigung ergonomischer Bewertungskriterien bereits im Planungs- und Entwicklungsprozess.' },
+        { term: 'Korrektive Ergonomie', def: 'Nachträgliche Anpassung eines bereits bestehenden, nicht ergonomisch gestalteten Arbeitssystems.' }
+      ],
+      explain: "Prospektive Ergonomie = vorausschauend, bereits in der Planungsphase berücksichtigt (deutlich effektiver und kostengünstiger). Korrektive Ergonomie = nachträgliche Korrektur bereits bestehender Mängel – meist aufwendiger und teurer als eine prospektive Gestaltung von Anfang an." },
+    { le: 'le03', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die klassischen Arbeitsstrukturierungsmaßnahmen ihrer Beschreibung zu.",
+      pairs: [
+        { term: 'Job Rotation', def: 'Planmäßiger Arbeitsplatzwechsel zwischen gleichwertigen Tätigkeiten, ohne Ausweitung des Entscheidungs- oder Tätigkeitsspielraums.' },
+        { term: 'Job Enlargement', def: 'Zusammenfassung mehrerer gleichrangiger Teilaufgaben zu einer umfangreicheren Tätigkeit (horizontale Erweiterung des Tätigkeitsspielraums, aber kein größerer Entscheidungsspielraum).' },
+        { term: 'Job Enrichment', def: 'Anreicherung der Tätigkeit um planende und kontrollierende (dispositive) Aufgaben – vertikale Erweiterung von Tätigkeits- UND Entscheidungsspielraum.' }
+      ],
+      explain: "Job Rotation = horizontaler Wechsel zwischen gleichwertigen Tätigkeiten (kein größerer Spielraum). Job Enlargement = horizontale Erweiterung (mehr gleichartige Aufgaben, gleicher Entscheidungsspielraum). Job Enrichment = vertikale Erweiterung (zusätzlich planende/kontrollierende Aufgaben, größerer Entscheidungsspielraum). Die drei Maßnahmen unterscheiden sich klar in Richtung und Umfang der Spielraum-Erweiterung." },
+    { le: 'le03', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden Beschreibungen der passenden heuristischen Prozessverbesserungsmaßnahme zu.",
+      pairs: [
+        { term: 'Entflechtung', def: 'Es werden gezielt Vorabinformationen zu nachfolgenden Aktivitäten frühzeitig bereitgestellt, sodass diese früher begonnen werden können.' },
+        { term: 'Abbau von Schnittstellen', def: 'Um Medienbrüche zu vermeiden, wird eine von allen Teammitgliedern zu nutzende gemeinsame Software eingeführt.' },
+        { term: 'Vereinfachen', def: 'Es werden Standardmethoden genutzt, die eine schnellere Bearbeitung der Vorgänge ermöglichen.' },
+        { term: 'Auslagern', def: 'Sekundärprozesse werden einem externen Dienstleister übertragen (Outsourcing).' }
+      ],
+      explain: "Die 8 heuristischen Prozessverbesserungsmaßnahmen: Reihenfolge ändern, Eliminieren, Vereinfachen (Standardmethoden), Parallelisieren, Zusammenfassen, Auslagern (Outsourcing), Abbau von Schnittstellen (gemeinsame Systeme/Software), Entflechtung/Überlappen sequentiell abhängiger Aktivitäten (Vorabinformationen für frühzeitigen Start)." }
   ]},
   B: { label: 'Teil B · LE04–06', sub: 'REFA-Zeitwirtschaft, MTM, Arbeitsschutz', questions: [
     { le: 'le04', q: "Welche Verwendungszwecke haben Zeitdaten in Betrieben? (mehrere richtig)", multi: true, opts: [
@@ -1048,7 +1102,38 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "An jedem Arbeitsplatz ist eine Erstbeurteilung durchzuführen. Eine Aktualisierung ist u.a. erforderlich bei neuen Maschinen/Geräten/Einrichtungen, neuen Arbeitsstoffen, Änderungen der Arbeits-/Verkehrsbereiche, der Betriebsorganisation oder der Technik, sowie nach Unfällen, Beinaheunfällen, Berufskrankheiten oder anderen Erkrankungen. Eine Gefährdungsbeurteilung ist also kein einmaliger, dauerhaft gültiger Vorgang." },
     { le: 'le06', q: "Welche Arten von Gefährdungen werden bei der Gefährdungsbeurteilung unterschieden? (mehrere richtig)", multi: true, opts: [
         "Mechanische, elektrische und thermische Gefährdung sowie Gefahrstoffe", "Brand-/Explosionsgefährdung sowie biologische und physikalische Einwirkung", "Physische Belastung/Arbeitsschwere, Belastung durch Arbeitsumgebung sowie psychische Faktoren", "Es wird bei der Gefährdungsbeurteilung ausschließlich zwischen mechanischer und elektrischer Gefährdung unterschieden, weitere Kategorien existieren laut Vorlesung nicht"
-      ], correct: [0,1,2], explain: "Arten von Gefährdungen laut Vorlesung: mechanische, elektrische, thermische Gefährdung, Gefahrstoffe, Brand-/Explosionsgefährdung, biologische Gefährdung, physikalische Einwirkung, physische Belastung/Arbeitsschwere, Belastung durch Arbeitsumgebung, psychische Faktoren sowie weitere Gefährdungen – also deutlich mehr als nur zwei Kategorien." }
+      ], correct: [0,1,2], explain: "Arten von Gefährdungen laut Vorlesung: mechanische, elektrische, thermische Gefährdung, Gefahrstoffe, Brand-/Explosionsgefährdung, biologische Gefährdung, physikalische Einwirkung, physische Belastung/Arbeitsschwere, Belastung durch Arbeitsumgebung, psychische Faktoren sowie weitere Gefährdungen – also deutlich mehr als nur zwei Kategorien." },
+    { le: 'le04', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie den folgenden Beispieltätigkeiten die passende REFA-Ablaufart bezogen auf den Menschen zu.",
+      pairs: [
+        { term: 'MH (Haupttätigkeit)', def: 'Ein Programmierer schreibt Code zur Implementierung einer neuen Funktion.' },
+        { term: 'MN (Nebentätigkeit)', def: 'Ein Techniker stellt ein Werkzeug für den nächsten Arbeitsschritt bereit.' },
+        { term: 'MZ (Zusätzliche Tätigkeit)', def: 'Eine Mitarbeiterin führt nach Abschluss der Haupttätigkeit eine unerwartete Nacharbeit an einem fehlerhaften Produkt durch.' }
+      ], explain: "MH = Haupttätigkeit (dient unmittelbar der Aufgabenerfüllung, z.B. das eigentliche Programmieren). MN = Nebentätigkeit (unterstützt/ergänzt die Haupttätigkeit, z.B. Werkzeug bereitstellen). MZ = Zusätzliche (nicht vorgesehene) Tätigkeit, z.B. ungeplante Nacharbeit an einem Fehlerprodukt." },
+    { le: 'le04', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden Verwendungsbeispiele der passenden Kategorie von Zeitdaten-Verwendungszwecken zu.",
+      pairs: [
+        { term: 'Produktbezogen', def: 'Kalkulation und Angebotserstellung im technischen Vertrieb.' },
+        { term: 'Mitarbeiterbezogen', def: 'Gestaltung von Anreizsystemen für Mitarbeitende.' },
+        { term: 'Produktionsbezogen', def: 'Fertigungsplanung und Auftragsüberwachung.' }
+      ], explain: "Zeitdaten aus der REFA-Zeitstrukturanalyse dienen je nach Bezug unterschiedlichen Zwecken: produktbezogen (Kalkulation, Angebote), mitarbeiterbezogen (Entgeltgestaltung, Anreizsysteme), produktionsbezogen (Arbeitsplanung, Kapazitäts-/Auftragssteuerung)." },
+    { le: 'le06', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden Beispiele der passenden Schutzeinrichtungsart zu.",
+      pairs: [
+        { term: 'Trennende Schutzeinrichtung', def: 'Umzäunung der Gefahrenstelle.' },
+        { term: 'Nichttrennende Schutzeinrichtung', def: 'Lichtschranke, die bei Unterbrechung die Maschine stoppt.' },
+        { term: 'Trennende Schutzeinrichtung', def: 'Feste Maschinenverkleidung.' },
+        { term: 'Nichttrennende Schutzeinrichtung', def: 'Zweihandschaltung.' }
+      ], explain: "Trennende Schutzeinrichtungen bilden eine physische Barriere zur Gefahrenstelle (Zaun, Verkleidung). Nichttrennende Schutzeinrichtungen wirken ohne physische Barriere, meist sensorisch/steuerungstechnisch (Lichtschranke, Zweihandschaltung)." },
+    { le: 'le06', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden Gefährdungsbeispiele der passenden Gefährdungsart zu.",
+      pairs: [
+        { term: 'Psychische Gefährdung', def: 'Zeitdruck bei der Aufgabenbearbeitung.' },
+        { term: 'Mechanische Gefährdung', def: 'Unkontrolliert bewegte Teile einer Maschine.' },
+        { term: 'Elektrische Gefährdung', def: 'Unter elektrischer Spannung stehende Teile.' }
+      ], explain: "Gefährdungsarten laut Vorlesung u.a.: mechanisch (bewegte Teile), elektrisch (spannungsführende Teile), psychisch (z.B. Zeitdruck) – neben thermischen, chemischen, biologischen und weiteren Kategorien." },
+    { le: 'le05', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden MTM-Weiterentwicklungen ihrer Hauptcharakteristik zu.",
+      pairs: [
+        { term: 'MTM-1', def: 'Grundverfahren mit höchster Detailtiefe, ursprünglich für die Massenfertigung konzipiert.' },
+        { term: 'MTM-MEK', def: 'Verdichtetes Analysiersystem mit höherer Geschwindigkeit, vorwiegend für die Serienfertigung verbreitet.' },
+        { term: 'MTM-HWD', def: 'System zur integrierten Modellierung von Zeitaufwand und ergonomischen Einflussgrößen, nutzt Piktogramme statt alphanumerischer Symbole.' }
+      ], explain: "MTM-1 = Grundverfahren, feinste Detailtiefe, hoher Analyseaufwand (Massenfertigung). MTM-MEK = verdichtetes System für schnellere Analyse (Serienfertigung). MTM-HWD = verknüpft Zeit- mit ergonomischer Belastungsbewertung, piktogrammbasiert." }
   ] },
   C: { label: 'Teil C · LE07–10', sub: 'Arbeitsökologie, Produktions- & Produktergonomie', questions: [
     { le: 'le07', q: "Welche der folgenden zählen zu den am häufigsten anerkannten Berufskrankheiten? (mehrere richtig)", multi: true, opts: [
@@ -1352,6 +1437,25 @@ const QUIZ_DATA = {
       ], correct: 0, explain: "Die semantische Skala zur Bewertung von Stellteilen ist fünfstufig codiert (0-4): 0 = ungeeignet, 1 = nur für geringe Anforderungen geeignet, 2 = für geringe Anforderungen gut / für mittlere Anforderungen noch geeignet, 3 = für mittlere Anforderungen gut / für hohe Anforderungen noch geeignet, 4 = für hohe und höchste Anforderungen geeignet (uneingeschränkt geeignet)." }
   ] },
   D: { label: 'Teil D · LE11–13', sub: 'Büroarbeit, Motivation, Psychische Gefährdungen', questions: [
+    { le: 'le08', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die vier ergonomischen Gestaltungskriterien (Hacker) der passenden Leitfrage zu.",
+      pairs: [
+        { term: 'Ausführbarkeit', def: 'Sind die Voraussetzungen für ein zuverlässiges, forderungsgerechtes, langfristiges Ausführen der Tätigkeit gegeben?' },
+        { term: 'Schädigungslosigkeit / Erträglichkeit', def: 'Sind körperliche und psychische Gesundheitsschäden durch die Tätigkeit ausgeschlossen?' },
+        { term: 'Beeinträchtigungsfreiheit / Zumutbarkeit', def: 'Bleiben Fehlbeanspruchungen gering und kurzfristig, ohne Auswirkungen auf die Gesundheit?' },
+        { term: 'Persönlichkeitsentfaltung / -förderlichkeit', def: 'Wird die Entwicklung und Entfaltung der Persönlichkeit durch die Tätigkeit gefördert?' }
+      ], explain: "Die vier Bewertungskriterien der Arbeitsgestaltung (aufsteigend anspruchsvoller): Ausführbarkeit (grundlegend möglich?), Schädigungslosigkeit/Erträglichkeit (keine Gesundheitsschäden?), Beeinträchtigungsfreiheit/Zumutbarkeit (keine relevanten Fehlbeanspruchungen?), Persönlichkeitsentfaltung/-förderlichkeit (fördert die Tätigkeit die Persönlichkeit?)." },
+    { le: 'le08', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die Begriffe der Anthropometrie/Biomechanik der passenden Beschreibung zu.",
+      pairs: [
+        { term: 'Statische Anthropometrie', def: 'Messung von Menschen in starrer, standardisierter Position, z.B. statische Armlänge.' },
+        { term: 'Dynamische Anthropometrie', def: 'Messung von Menschen bei der Arbeit bzw. in Bewegung, z.B. funktionale Armreichweitenkurven.' },
+        { term: 'Biomechanik', def: 'Messung von Kraft, Ausdauer, Geschwindigkeit und Genauigkeit menschlicher Bewegungen.' }
+      ], explain: "Statische Anthropometrie = Körpermaße in starrer Haltung. Dynamische Anthropometrie = Maße bei Bewegung/Arbeit (z.B. Reichweiten). Biomechanik = bewegungsbezogene Leistungsgrößen wie Kraft, Ausdauer, Geschwindigkeit, Genauigkeit." },
+    { le: 'le08', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die drei Detailstufen der Risikobeurteilung bei manueller Lastenhandhabung (DIN EN 1005-2) ihrer Beschreibung zu.",
+      pairs: [
+        { term: 'Detailstufe 1', def: 'Grobanalyse, ob vorgegebene Kriterien erfüllt sind.' },
+        { term: 'Detailstufe 2', def: 'Detaillierte Risikoanalyse.' },
+        { term: 'Detailstufe 3', def: 'Berücksichtigung weiterer Einflussgrößen.' }
+      ], explain: "Die Risikobeurteilung nach DIN EN 1005-2 läuft gestuft ab: Stufe 1 = Grobanalyse gegen feste Kriterien, Stufe 2 = detaillierte Risikoanalyse, Stufe 3 = Berücksichtigung zusätzlicher Einflussgrößen. Werden die Kriterien einer Stufe nicht erfüllt, ist eine ergonomische Umgestaltung notwendig." },
     { le: 'le11', q: "Welche lichttechnischen Grundgrößen kennen Sie?", opts: [
         "Lichtstrom Φ [Im], mittlere Lichtstärke I [cd], Beleuchtungsstärke E [Lux], Leuchtdichte L [cd/m²]",
         "Ausschließlich die Raumtemperatur in Grad Celsius, da diese laut Vorlesung die entscheidende lichttechnische Grundgröße für die Arbeitsplatzgestaltung darstellt",
@@ -1516,6 +1620,21 @@ const QUIZ_DATA = {
       ], correct: [0,1,2], explain: "Der menschzentrierte Gestaltungsprozess nach DIN EN ISO 9241-210 ist ein iterativer Zyklus: (1) den Prozess planen, (2) den Nutzungskontext verstehen und beschreiben, (3) Nutzungsanforderungen spezifizieren, (4) Gestaltungslösungen entwickeln, die die Anforderungen erfüllen, (5) Gestaltungslösungen aus Benutzerperspektive evaluieren – erfüllt die Lösung die Anforderungen nicht, wird iteriert; andernfalls ist der Prozess abgeschlossen. Iteration ist ein zentrales, explizit vorgesehenes Element des Prozesses." }
   ] },
   E: { label: 'Teil E · Altklausuren', sub: 'Reale Klausuraufgaben aus WS22/23, WS23/24 & SS2024', questions: [
+    { le: 'le12', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden Beispiele der passenden Kategorie der Zwei-Faktoren-Theorie (Herzberg) zu.",
+      pairs: [
+        { term: 'Motivator', def: 'Übertragung von mehr Verantwortung und Aufstiegsmöglichkeiten für eine Mitarbeiterin.' },
+        { term: 'Hygienefaktor', def: 'Höheres Gehalt und sichererer Arbeitsplatz für einen Mitarbeiter.' },
+        { term: 'Motivator', def: 'Anerkennung für eine besonders gute Leistung.' },
+        { term: 'Hygienefaktor', def: 'Verbesserung des Führungsstils der Vorgesetzten.' }
+      ], explain: "Motivatoren betreffen den Inhalt der Arbeit (Verantwortung, Anerkennung, Aufstiegsmöglichkeiten) und steigern bei Vorhandensein die Zufriedenheit. Hygienefaktoren betreffen das Arbeitsumfeld (Gehalt, Arbeitsplatzsicherheit, Führungsstil) – ihr Fehlen erzeugt Unzufriedenheit, ihre Erfüllung motiviert aber nicht dauerhaft." },
+    { le: 'le12', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die Stufen der Maslowschen Bedürfnispyramide (aufsteigend von der Basis) der passenden Beschreibung zu.",
+      pairs: [
+        { term: 'Physiologische Bedürfnisse', def: 'Grundlegende Bedürfnisse wie Nahrung, Schlaf und Atmung – die Basis der Pyramide.' },
+        { term: 'Sicherheitsbedürfnisse', def: 'Bedürfnis nach Schutz, Ordnung und einem sicheren Arbeitsplatz.' },
+        { term: 'Soziale Bedürfnisse', def: 'Bedürfnis nach Zugehörigkeit, Freundschaft und sozialen Beziehungen im Team.' },
+        { term: 'Individualbedürfnisse (Wertschätzung)', def: 'Bedürfnis nach Anerkennung, Status und Selbstachtung.' },
+        { term: 'Selbstverwirklichung', def: 'Bedürfnis, das eigene Potenzial voll auszuschöpfen – die Spitze der Pyramide.' }
+      ], explain: "Maslows Bedürfnispyramide (von der Basis zur Spitze): physiologische Bedürfnisse, Sicherheitsbedürfnisse, soziale Bedürfnisse, Individualbedürfnisse/Wertschätzung, Selbstverwirklichung. Erst wenn untere Stufen erfüllt sind, gewinnen höhere Stufen an motivationaler Bedeutung." },
     { le: 'le02', q: "Was ist der Unterschied zwischen Aufbau- und Ablauforganisation?", opts: [
         "Aufbauorganisation beschreibt die Gliederung eines Betriebs in ein System arbeitsteiliger Organisationseinheiten und deren Beziehungen zueinander; Ablauforganisation regelt das räumliche, zeitliche und prozedurale Zusammenwirken von Elementen eines oder mehrerer Arbeitssysteme",
         "Aufbauorganisation und Ablauforganisation sind Synonyme für denselben Sachverhalt und werden in der Arbeitswissenschaft austauschbar verwendet, ohne inhaltlichen Unterschied zwischen statischer Struktur und dynamischem Prozessablauf",
@@ -1795,6 +1914,77 @@ function renderQuizPanel() {
   progressText.className = 'flashcard-progress-text';
   progressText.textContent = `Frage ${idx + 1} von ${order.length} (von ${total} in diesem Teil)`;
   panel.appendChild(progressText);
+
+  if (q.type === 'match') {
+    const termOrder = quizGetMatchTermOrder(key, srcIdx, q);
+    const matchAnswer = quizState.answer[key + '_match'] || {};
+    const submitted = answer !== null;
+
+    const mcard = document.createElement('div');
+    mcard.className = 'quiz-card';
+    mcard.innerHTML = `
+      <div class="quiz-q-head"><div>${q.q}</div><span class="quiz-match-badge">Zuordnung</span></div>
+      <div class="quiz-match-rows"></div>
+      <div class="quiz-explain ${submitted ? 'show' : ''}">${q.explain}</div>
+    `;
+    const rowsWrap = mcard.querySelector('.quiz-match-rows');
+    q.pairs.forEach((pair, pi) => {
+      const row = document.createElement('div');
+      let cls = 'quiz-match-row';
+      const chosen = matchAnswer[pi];
+      if (submitted) cls += (chosen === pair.term) ? ' correct' : ' wrong';
+      row.className = cls;
+      const optionsHtml = ['<option value="">– wählen –</option>'].concat(
+        termOrder.map(t => `<option value="${t.replace(/"/g, '&quot;')}" ${chosen === t ? 'selected' : ''}>${t}</option>`)
+      ).join('');
+      row.innerHTML = `<span class="quiz-match-def">${pair.def}</span><select class="quiz-match-select" ${submitted ? 'disabled' : ''}>${optionsHtml}</select>`;
+      if (!submitted) {
+        row.querySelector('select').addEventListener('change', (e) => {
+          matchAnswer[pi] = e.target.value;
+          quizState.answer[key + '_match'] = matchAnswer;
+          renderQuiz();
+        });
+      } else if (chosen !== pair.term) {
+        const hint = document.createElement('div');
+        hint.className = 'quiz-match-correct-hint';
+        hint.textContent = 'Richtig: ' + pair.term;
+        row.appendChild(hint);
+      }
+      rowsWrap.appendChild(row);
+    });
+    panel.appendChild(mcard);
+
+    if (!submitted) {
+      const allAnswered = q.pairs.every((_, pi) => matchAnswer[pi]);
+      const submitWrap = document.createElement('div');
+      submitWrap.className = 'flashcard-actions';
+      submitWrap.innerHTML = `<button class="flashcard-btn show" ${allAnswered ? '' : 'disabled'}>Antwort prüfen</button>`;
+      submitWrap.querySelector('button').onclick = () => {
+        if (!q.pairs.every((_, pi) => matchAnswer[pi])) return;
+        const isRight = q.pairs.every((pair, pi) => matchAnswer[pi] === pair.term);
+        if (!quizStats[key][baseId]) quizStats[key][baseId] = { correct: 0, wrong: 0 };
+        if (isRight) { quizStats[key][baseId].correct++; quizStats[key][baseId].lastWrong = false; }
+        else { quizStats[key][baseId].wrong++; quizStats[key][baseId].lastWrong = true; }
+        quizState.answer[key] = true;
+        saveStats();
+        renderQuiz();
+      };
+      panel.appendChild(submitWrap);
+    } else {
+      const nextWrap = document.createElement('div');
+      nextWrap.className = 'flashcard-actions';
+      nextWrap.innerHTML = `<button class="flashcard-btn show">Nächste Frage →</button>`;
+      nextWrap.querySelector('button').onclick = () => {
+        delete quizState.optOrder[key + '_' + srcIdx + '_terms'];
+        quizState.index[key] = idx + 1;
+        quizState.answer[key] = null;
+        quizState.answer[key + '_match'] = {};
+        renderQuiz();
+      };
+      panel.appendChild(nextWrap);
+    }
+    return;
+  }
 
   const card = document.createElement('div');
   card.className = 'quiz-card';
