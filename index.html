@@ -1129,6 +1129,14 @@ const QUIZ_DATA = {
         { term: 'Mechanische Gefährdung', def: 'Unkontrolliert bewegte Teile einer Maschine.' },
         { term: 'Elektrische Gefährdung', def: 'Unter elektrischer Spannung stehende Teile.' }
       ], explain: "Gefährdungsarten laut Vorlesung u.a.: mechanisch (bewegte Teile), elektrisch (spannungsführende Teile), psychisch (z.B. Zeitdruck) – neben thermischen, chemischen, biologischen und weiteren Kategorien." },
+    { le: 'le07', type: 'match', q: "Zuordnungsaufgabe (CLP-Verordnung, Altklausur SS2025): Ordnen Sie den folgenden GHS-Gefahrenpiktogrammen die richtige Bedeutung zu.",
+      pairs: [
+        { term: 'Lebensbedrohliche Vergiftung (akute Toxizität)', def: '<svg viewBox="0 0 60 60" width="56" height="56"><polygon points="30,2 58,30 30,58 2,30" fill="#fff" stroke="#c0272d" stroke-width="4"/><circle cx="30" cy="24" r="9" fill="none" stroke="#000" stroke-width="2.2"/><circle cx="26" cy="22" r="1.6" fill="#000"/><circle cx="34" cy="22" r="1.6" fill="#000"/><path d="M27,29 L27,33 M30,29 L30,35 M33,29 L33,33" stroke="#000" stroke-width="2" fill="none"/><path d="M18,42 L24,36 M24,42 L18,36 M36,42 L42,36 M42,42 L36,36" stroke="#000" stroke-width="2.2"/></svg>' },
+        { term: 'Schwere Gesundheitsschäden mit verzögert einsetzendem Verlauf (z.B. krebserzeugend, atemwegssensibilisierend)', def: '<svg viewBox="0 0 60 60" width="56" height="56"><polygon points="30,2 58,30 30,58 2,30" fill="#fff" stroke="#c0272d" stroke-width="4"/><circle cx="30" cy="21" r="7" fill="#000"/><path d="M30,28 C22,28 18,36 18,44 L42,44 C42,36 38,28 30,28 Z" fill="#000"/><path d="M22,38 L20,44 M26,36 L24,44 M30,35 L30,44 M34,36 L36,44 M38,38 L40,44" stroke="#fff" stroke-width="1.3"/></svg>' },
+        { term: 'Gewässergefährdend (umweltgefährlich)', def: '<svg viewBox="0 0 60 60" width="56" height="56"><polygon points="30,2 58,30 30,58 2,30" fill="#fff" stroke="#c0272d" stroke-width="4"/><path d="M30,10 L30,30 M24,16 L30,10 L36,16 M22,24 L30,18 L38,24" stroke="#000" stroke-width="2.2" fill="none"/><path d="M14,38 C18,35 22,41 26,38 C30,35 34,41 38,38 C42,35 46,41 46,41" stroke="#000" stroke-width="2.2" fill="none"/><path d="M20,47 C24,44 30,44 34,47 C31,50 23,50 20,47 Z" fill="#000"/></svg>' },
+        { term: 'Entzündbar (leicht- oder hochentzündliche Stoffe)', def: '<svg viewBox="0 0 60 60" width="56" height="56"><polygon points="30,2 58,30 30,58 2,30" fill="#fff" stroke="#c0272d" stroke-width="4"/><path d="M30,12 C24,20 22,26 26,32 C24,30 23,34 26,38 C28,41 33,41 35,37 C38,32 36,27 33,25 C35,29 33,31 32,29 C30,25 33,22 30,12 Z" fill="#000"/></svg>' },
+        { term: 'Ätzwirkung (verursacht Verätzungen von Haut/Augen, wirkt korrosiv auf Metalle)', def: '<svg viewBox="0 0 60 60" width="56" height="56"><polygon points="30,2 58,30 30,58 2,30" fill="#fff" stroke="#c0272d" stroke-width="4"/><path d="M20,10 L20,20 L24,26 L24,34" stroke="#000" stroke-width="2" fill="none"/><path d="M30,10 L30,20 L34,26 L34,34" stroke="#000" stroke-width="2" fill="none"/><rect x="14" y="34" width="24" height="4" fill="#000"/><path d="M16,42 C20,38 24,46 28,42" stroke="#000" stroke-width="2" fill="none"/><path d="M34,40 C36,44 32,48 36,50" stroke="#000" stroke-width="2" fill="none"/></svg>' }
+      ], explain: "Die neun GHS-Piktogramme der CLP-Verordnung gliedern sich in physikalische Gefahren, Gesundheitsgefahren und Umweltgefahren. Totenkopf mit gekreuzten Knochen (GHS06) = akute Toxizität/lebensbedrohliche Vergiftung. Die Silhouette mit 'Sprung' auf der Brust (GHS08, Gesundheitsgefahr) = schwere, oft verzögert auftretende Gesundheitsschäden wie Karzinogenität, Mutagenität, Reproduktionstoxizität oder Atemwegssensibilisierung – nicht zu verwechseln mit dem Ausrufezeichen (GHS07), das für leichtere, akute Gesundheitsschäden (reizend, gesundheitsschädlich) steht. Baum und Fisch (GHS09) = gewässergefährdend/umweltgefährlich. Die Flamme (GHS02) = entzündbar. Die Reagenzgläser, die auf Hand und Fläche tropfen (GHS05) = ätzend. (Altklausur SS2025)" },
     { le: 'le05', type: 'match', q: "Zuordnungsaufgabe: Ordnen Sie die folgenden MTM-Weiterentwicklungen ihrer Hauptcharakteristik zu.",
       pairs: [
         { term: 'MTM-1', def: 'Grundverfahren mit höchster Detailtiefe, ursprünglich für die Massenfertigung konzipiert.' },
@@ -2397,13 +2405,70 @@ const AWI_FORMULA_QUIZ = {
       <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>TMU</th><th>Beschreibung der Fälle</th></tr>
       <tr><td>G1A</td><td>2,0</td><td>Zufassungsgriff: Greifen eines leicht zu fassenden, allein liegenden Gegenstandes</td></tr>
       <tr><td>G1B</td><td>3,5</td><td>Ankantgriff: Greifen eines sehr kleinen Gegenstandes oder eines Gegenstandes, der flach auf einer Ebene liegt</td></tr>
-      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø 6 bis 12 mm</td></tr>
-      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einem Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
-      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Greifen eines mit anderen vermischten Gegenstandes, der ausgesucht und ausgewählt werden muss</td></tr></table></div>
+      <tr><td>G1C1</td><td>7,3</td><td>Abrollgriff: Ø &gt; 12 bis ≤ 25 mm (ungefähr zylindrischer Gegenstand, durch Hindernisse von einer Seite und von unten erschwert)</td></tr>
+      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø ≥ 6 bis ≤ 12 mm</td></tr>
+      <tr><td>G1C3</td><td>10,8</td><td>Abrollgriff: Ø &lt; 6 mm</td></tr>
+      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einen Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
+      <tr><td>G3</td><td>5,6</td><td>Übergabegriff: Eine Hand übernimmt die Kontrolle über einen Gegenstand, während die andere Hand diese aufgibt</td></tr>
+      <tr><td>G4A</td><td>7,3</td><td>Auswählgriff: Gegenstand &gt; 25×25×25 mm, mit anderen vermischt, muss ausgesucht/ausgewählt werden</td></tr>
+      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Gegenstand ≥ 6×6×3 bis ≤ 25×25×25 mm, mit anderen vermischt</td></tr>
+      <tr><td>G4C</td><td>12,9</td><td>Auswählgriff: Gegenstand &lt; 6×6×3 mm, mit anderen vermischt</td></tr>
+      <tr><td>G5</td><td>0</td><td>Berührungsgriff: Durch Berührung genügend Kontrolle über einen Gegenstand erhalten, sodass die nachfolgende Grundbewegung ausgeführt werden kann</td></tr></table></div>
       Ein länglicher Bolzen liegt allein (nicht vermischt) auf einer ebenen Fläche und ist leicht zu fassen. Welcher Code + TMU-Wert ist korrekt?`,
       opts: ["G1A — 2,0 TMU","G1B — 3,5 TMU","G1C2 — 8,7 TMU","G4B — 9,1 TMU"],
       correct: 0, calc: true,
       explain: "'Allein liegend, leicht zu fassen' = Zufassungsgriff G1A (2,0 TMU) – der einfachste und häufigste Greiffall. G1B gilt für sehr kleine oder flach aufliegende Gegenstände, G1C2 für zylindrische Gegenstände (Abrollgriff), G4B für Gegenstände, die erst aus einer Vermischung mit anderen ausgewählt werden müssen (Auswählgriff, wie im Altklausur-Bolzenbeispiel). (Altklausuren WS22/23, WS23/24)" },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Greifen", Altklausur WS21/22): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>TMU</th><th>Beschreibung der Fälle</th></tr>
+      <tr><td>G1A</td><td>2,0</td><td>Zufassungsgriff: Greifen eines leicht zu fassenden, allein liegenden Gegenstandes</td></tr>
+      <tr><td>G1B</td><td>3,5</td><td>Ankantgriff: Greifen eines sehr kleinen Gegenstandes oder eines Gegenstandes, der flach auf einer Ebene liegt</td></tr>
+      <tr><td>G1C1</td><td>7,3</td><td>Abrollgriff: Ø &gt; 12 bis ≤ 25 mm (ungefähr zylindrischer Gegenstand, durch Hindernisse von einer Seite und von unten erschwert)</td></tr>
+      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø ≥ 6 bis ≤ 12 mm</td></tr>
+      <tr><td>G1C3</td><td>10,8</td><td>Abrollgriff: Ø &lt; 6 mm</td></tr>
+      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einen Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
+      <tr><td>G3</td><td>5,6</td><td>Übergabegriff: Eine Hand übernimmt die Kontrolle über einen Gegenstand, während die andere Hand diese aufgibt</td></tr>
+      <tr><td>G4A</td><td>7,3</td><td>Auswählgriff: Gegenstand &gt; 25×25×25 mm, mit anderen vermischt, muss ausgesucht/ausgewählt werden</td></tr>
+      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Gegenstand ≥ 6×6×3 bis ≤ 25×25×25 mm, mit anderen vermischt</td></tr>
+      <tr><td>G4C</td><td>12,9</td><td>Auswählgriff: Gegenstand &lt; 6×6×3 mm, mit anderen vermischt</td></tr>
+      <tr><td>G5</td><td>0</td><td>Berührungsgriff: Durch Berührung genügend Kontrolle über einen Gegenstand erhalten, sodass die nachfolgende Grundbewegung ausgeführt werden kann</td></tr></table></div>
+      Wie wird das Greifen eines runden Bleistiftes mit 6 mm Durchmesser und einer Länge von 12 cm, der sich allein liegend auf dem Tisch befindet, kodiert?`,
+      opts: ["G1A — 2,0 TMU","G1C2 — 8,7 TMU","G1C3 — 10,8 TMU","G4C — 12,9 TMU"],
+      correct: 0, calc: true,
+      explain: "Klassischer Klausur-Fallstrick: Der Bleistift ist rund/zylindrisch, aber er liegt ALLEIN auf dem Tisch (nicht vermischt) und ist ohne Hindernisse leicht zu fassen – daher zählt hier NICHT der Abrollgriff (G1C, der ist für erschwerte Fälle mit Hindernissen von der Seite/unten vorgesehen), sondern der einfache Zufassungsgriff G1A = 2,0 TMU. Der Durchmesser (6 mm) ist eine Ablenkung, die nur bei einem Abroll- oder Auswählgriff relevant wäre. (Altklausur WS21/22)" },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Greifen", Altklausur SS2022): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>TMU</th><th>Beschreibung der Fälle</th></tr>
+      <tr><td>G1A</td><td>2,0</td><td>Zufassungsgriff: Greifen eines leicht zu fassenden, allein liegenden Gegenstandes</td></tr>
+      <tr><td>G1B</td><td>3,5</td><td>Ankantgriff: Greifen eines sehr kleinen Gegenstandes oder eines Gegenstandes, der flach auf einer Ebene liegt</td></tr>
+      <tr><td>G1C1</td><td>7,3</td><td>Abrollgriff: Ø &gt; 12 bis ≤ 25 mm (ungefähr zylindrischer Gegenstand, durch Hindernisse von einer Seite und von unten erschwert)</td></tr>
+      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø ≥ 6 bis ≤ 12 mm</td></tr>
+      <tr><td>G1C3</td><td>10,8</td><td>Abrollgriff: Ø &lt; 6 mm</td></tr>
+      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einen Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
+      <tr><td>G3</td><td>5,6</td><td>Übergabegriff: Eine Hand übernimmt die Kontrolle über einen Gegenstand, während die andere Hand diese aufgibt</td></tr>
+      <tr><td>G4A</td><td>7,3</td><td>Auswählgriff: Gegenstand &gt; 25×25×25 mm, mit anderen vermischt, muss ausgesucht/ausgewählt werden</td></tr>
+      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Gegenstand ≥ 6×6×3 bis ≤ 25×25×25 mm, mit anderen vermischt</td></tr>
+      <tr><td>G4C</td><td>12,9</td><td>Auswählgriff: Gegenstand &lt; 6×6×3 mm, mit anderen vermischt</td></tr>
+      <tr><td>G5</td><td>0</td><td>Berührungsgriff: Durch Berührung genügend Kontrolle über einen Gegenstand erhalten, sodass die nachfolgende Grundbewegung ausgeführt werden kann</td></tr></table></div>
+      Wie wird das Greifen einer mit anderen Schrauben vermischten Schraube (Durchmesser 6 mm, Länge 20 mm) kodiert?`,
+      opts: ["G4B — 9,1 TMU","G1C2 — 8,7 TMU","G4C — 12,9 TMU","G1A — 2,0 TMU"],
+      correct: 0, calc: true,
+      explain: "Die Schraube ist mit anderen Schrauben VERMISCHT → Auswählgriff (G4). Für die Größenklasse zählt die kleinste Abmessung: Durchmesser 6 mm, Länge 20 mm → das entspricht der Klasse ≥ 6×6×3 bis ≤ 25×25×25 mm (nicht der Kleinstklasse < 6×6×3 mm) → G4B = 9,1 TMU. G1C2 wäre falsch, weil der Gegenstand hier vermischt ist (Auswählgriff nötig), nicht einzeln liegt. (Altklausur SS2022)" },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Greifen", Altklausur SS2025): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>TMU</th><th>Beschreibung der Fälle</th></tr>
+      <tr><td>G1A</td><td>2,0</td><td>Zufassungsgriff: Greifen eines leicht zu fassenden, allein liegenden Gegenstandes</td></tr>
+      <tr><td>G1B</td><td>3,5</td><td>Ankantgriff: Greifen eines sehr kleinen Gegenstandes oder eines Gegenstandes, der flach auf einer Ebene liegt</td></tr>
+      <tr><td>G1C1</td><td>7,3</td><td>Abrollgriff: Ø &gt; 12 bis ≤ 25 mm (ungefähr zylindrischer Gegenstand, durch Hindernisse von einer Seite und von unten erschwert)</td></tr>
+      <tr><td>G1C2</td><td>8,7</td><td>Abrollgriff: Ø ≥ 6 bis ≤ 12 mm</td></tr>
+      <tr><td>G1C3</td><td>10,8</td><td>Abrollgriff: Ø &lt; 6 mm</td></tr>
+      <tr><td>G2</td><td>5,6</td><td>Nachgreifen: Verlegen des Kontrollpunktes an einen Gegenstand, ohne die Kontrolle über diesen zu verlieren</td></tr>
+      <tr><td>G3</td><td>5,6</td><td>Übergabegriff: Eine Hand übernimmt die Kontrolle über einen Gegenstand, während die andere Hand diese aufgibt</td></tr>
+      <tr><td>G4A</td><td>7,3</td><td>Auswählgriff: Gegenstand &gt; 25×25×25 mm, mit anderen vermischt, muss ausgesucht/ausgewählt werden</td></tr>
+      <tr><td>G4B</td><td>9,1</td><td>Auswählgriff: Gegenstand ≥ 6×6×3 bis ≤ 25×25×25 mm, mit anderen vermischt</td></tr>
+      <tr><td>G4C</td><td>12,9</td><td>Auswählgriff: Gegenstand &lt; 6×6×3 mm, mit anderen vermischt</td></tr>
+      <tr><td>G5</td><td>0</td><td>Berührungsgriff: Durch Berührung genügend Kontrolle über einen Gegenstand erhalten, sodass die nachfolgende Grundbewegung ausgeführt werden kann</td></tr></table></div>
+      Wie wird das Greifen eines schmalen Blechs mit einer Länge von 12 cm, welches sich allein liegend auf dem Tisch befindet, kodiert?`,
+      opts: ["G1B — 3,5 TMU","G1A — 2,0 TMU","G1C1 — 7,3 TMU","G4A — 7,3 TMU"],
+      correct: 0, calc: true,
+      explain: "Ein SCHMALES, flach auf einer Ebene liegendes Blech ist trotz Alleinlage kein einfacher Zufassungsgriff (G1A) – da es flach/dünn ist und nicht bequem von oben gegriffen werden kann, benötigt man den Ankantgriff G1B (3,5 TMU), bei dem der Gegenstand erst an der Kante angehoben/angekantet werden muss. Die Länge (12 cm) ist hier eine Ablenkung, entscheidend ist die flache Form. (Altklausur SS2025)" },
     { le: 'le06', q: "Rechenaufgabe (Nichtverfügbarkeit verkettetes System): Drei Komponenten sind verkettet (in Reihe geschaltet) mit Nichtverfügbarkeiten U1 = 0,02, U2 = 0,03, U3 = 0,01. Welche Rechnung liefert die Gesamt-Nichtverfügbarkeit Uges?",
       opts: ["1 − (1−0,02)·(1−0,03)·(1−0,01)","(1−0,02)·(1−0,03)·(1−0,01)","0,02 · 0,03 · 0,01","1 − (0,02 + 0,03 + 0,01)"],
       correct: 0, calc: true,
@@ -2435,6 +2500,62 @@ const AWI_FORMULA_QUIZ = {
       opts: ["18,5 TMU","15,8 TMU","15,6 TMU","12,7 TMU"],
       correct: 0, calc: true,
       explain: "Zeile 40 cm, Spalte M-C → 18,5 TMU. Bewegungsfall A = Gegenstand zur anderen Hand/gegen Anschlag bringen, B = in ungefähre/unbestimmte Lage bringen (Spiel >25 mm), C = in eine genau bestimmte Lage bringen (Spiel 12-25 mm) – dieser Bewegungsfall erfordert die meiste Kontrolle und hat daher bei gleicher Bewegungslänge tendenziell den höchsten TMU-Wert." },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM, Bringen mit anschließendem Nachgreifen, Altklausur SS2025): Nutze den Ausschnitt der offiziellen Normzeitwertkarte „Bringen".
+      <div class="quiz-diagram-wrap"><table><tr><th>Beweg.-Länge [cm]</th><th>M-A</th><th>M-B</th><th>M-C</th></tr>
+      <tr><td>15</td><td>7,5</td><td>8,3</td><td>9,4</td></tr>
+      <tr><td>18</td><td>9,0</td><td>9,8</td><td>10,9</td></tr>
+      <tr><td>20</td><td>9,6</td><td>10,5</td><td>11,7</td></tr></table></div>
+      <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">Bewegungsfälle: A = zur anderen Hand oder gegen einen Anschlag bringen. B = in eine ungefähre/unbestimmte Lage bringen (Spiel &gt; 25 mm). C = in eine genau bestimmte Lage bringen (Spiel &gt; 12 bis ≤ 25 mm).</div>
+      Ein Bolzen (Ø = 5 cm) soll in ein Loch (Ø = 7 cm) in 18 cm Entfernung gebracht werden, anschließend ist ein Nachgreifen (Kontrollpunkt neu ansetzen) nötig. Welcher Code + TMU-Wert ist korrekt (nur die Bringen-Bewegung, ohne Nachgreif-TMU)?`,
+      opts: ["M18C — 10,9 TMU, danach G2","M18B — 9,8 TMU, danach G2","M18A — 9,0 TMU, danach G5","M18C — 10,9 TMU, kein weiterer Code nötig"],
+      correct: 0, calc: true,
+      explain: "Die Spielweite zwischen Bolzen (Ø5 cm) und Loch (Ø7 cm) beträgt 2 cm = 20 mm auf den Gesamtdurchmesser, was einem radialen Spiel von 10 mm entspricht – das erfordert präzises Positionieren, also Bewegungsfall C (in eine genau bestimmte Lage bringen). Bei 18 cm → M18C = 10,9 TMU. Da anschließend der Kontrollpunkt an das gebrachte Teil neu angesetzt werden muss (Nachgreifen), wird zusätzlich der Code G2 (Nachgreifen, 5,6 TMU) vergeben. (Altklausuren WS21/22, SS2022, SS2025 – jeweils mit leicht abweichenden Entfernungen)" },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Fügen"): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>Passungsklasse</th><th>Beschreibung</th><th>Anfügetoleranz</th><th>Symmetriefall</th><th>TMU (einfach zu handhaben)</th><th>TMU (schwer zu handhaben)</th></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>S</td><td>5,6</td><td>11,2</td></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>SS</td><td>9,1</td><td>14,7</td></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>NS</td><td>10,4</td><td>16,0</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>S</td><td>16,2</td><td>21,8</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>SS</td><td>19,7</td><td>25,3</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>NS</td><td>21,0</td><td>26,6</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>S</td><td>43,0</td><td>48,6</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>SS</td><td>46,5</td><td>52,1</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>NS</td><td>47,8</td><td>53,4</td></tr></table></div>
+      <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">Symmetriefall: S = symmetrisch, SS = leicht symmetrisch, NS = nicht symmetrisch. Code-Aufbau: P{Passungsklasse}{Symmetriefall}{E=einfach/D=schwer zu handhaben, z.B. durch Sichtbehinderung}.</div>
+      Wie wird das Fügen eines zylindrischen (also symmetrischen) Bolzens mit leichtem Druck auf die Anfügestelle kodiert (einfach zu handhaben, keine Sichtbehinderung)?`,
+      opts: ["P2SE — 16,2 TMU","P1SE — 5,6 TMU","P3SE — 43,0 TMU","P2SD — 21,8 TMU"],
+      correct: 0, calc: true,
+      explain: "Leichter Druck notwendig = Passungsklasse P2 (eng). Der Bolzen ist zylindrisch → symmetrisch (S). Keine Sichtbehinderung/Erschwernis → einfach zu handhaben (E). Zusammengesetzt: P2SE = 16,2 TMU. Genau dieses Beispiel taucht auch im vollständigen MTM-Bewegungszyklus der Vorlesung auf (Bolzen-Montage)." },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Fügen", Altklausur SS2025): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>Passungsklasse</th><th>Beschreibung</th><th>Anfügetoleranz</th><th>Symmetriefall</th><th>TMU (einfach zu handhaben)</th><th>TMU (schwer zu handhaben)</th></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>S</td><td>5,6</td><td>11,2</td></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>SS</td><td>9,1</td><td>14,7</td></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>NS</td><td>10,4</td><td>16,0</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>S</td><td>16,2</td><td>21,8</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>SS</td><td>19,7</td><td>25,3</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>NS</td><td>21,0</td><td>26,6</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>S</td><td>43,0</td><td>48,6</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>SS</td><td>46,5</td><td>52,1</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>NS</td><td>47,8</td><td>53,4</td></tr></table></div>
+      Wie wird das Fügen eines Bolzens mit starkem Druck UND Sichtbehinderung auf die Anfügestelle kodiert (Bolzen ist symmetrisch)?`,
+      opts: ["P3SD — 48,6 TMU","P3SE — 43,0 TMU","P2SD — 21,8 TMU","P1SD — 11,2 TMU"],
+      correct: 0, calc: true,
+      explain: "Starker Druck notwendig = Passungsklasse P3 (fest). Symmetrisch = S. Sichtbehinderung erschwert die Ausführung → schwer zu handhaben (D), nicht einfach (E). Zusammengesetzt: P3SD = 48,6 TMU. Merke den Code-Aufbau: P(Passungsklasse 1-3)(Symmetriefall S/SS/NS)(E oder D). (Altklausur SS2025)" },
+    { le: 'le05', q: `Tabellen-Aufgabe (MTM-Normzeitwertkarte „Fügen", Altklausur WS21/22): Nutze den Ausschnitt der offiziellen Normzeitwertkarte.
+      <div class="quiz-diagram-wrap"><table><tr><th>Kode</th><th>Passungsklasse</th><th>Beschreibung</th><th>Anfügetoleranz</th><th>Symmetriefall</th><th>TMU (einfach zu handhaben)</th><th>TMU (schwer zu handhaben)</th></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>S</td><td>5,6</td><td>11,2</td></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>SS</td><td>9,1</td><td>14,7</td></tr>
+      <tr><td>P1</td><td>lose</td><td>Kein Druck notwendig</td><td>&gt; ±1,5 bis ≤ ±6,0 mm</td><td>NS</td><td>10,4</td><td>16,0</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>S</td><td>16,2</td><td>21,8</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>SS</td><td>19,7</td><td>25,3</td></tr>
+      <tr><td>P2</td><td>eng</td><td>Leichter Druck notwendig</td><td>&gt; ±0,4 bis ≤ ±1,5 mm</td><td>NS</td><td>21,0</td><td>26,6</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>S</td><td>43,0</td><td>48,6</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>SS</td><td>46,5</td><td>52,1</td></tr>
+      <tr><td>P3</td><td>fest</td><td>Starker Druck notwendig</td><td>&gt; 0 bis ≤ ±0,4 mm</td><td>NS</td><td>47,8</td><td>53,4</td></tr></table></div>
+      Wie wird das Fügen eines quadratischen (also nicht-symmetrischen) Bolzens mit leichtem Druck und Sichtbehinderung auf die Anfügestelle kodiert?`,
+      opts: ["P2ND — 26,6 TMU","P2SD — 21,8 TMU","P2SSD — 25,3 TMU","P3ND — 53,4 TMU"],
+      correct: 0, calc: true,
+      explain: "Ein quadratischer Bolzen ist nicht symmetrisch (er lässt sich nicht beliebig gedreht einführen wie ein Zylinder) → Symmetriefall NS. Leichter Druck = P2. Sichtbehinderung → schwer zu handhaben (D). Zusammengesetzt: P2ND = 26,6 TMU. Klassischer Fallstrick: nicht automatisch S annehmen, nur weil keine Asymmetrie explizit genannt wird – die Objektform (quadratisch vs. zylindrisch) selbst bestimmt den Symmetriefall. (Altklausur WS21/22)" },
     { le: 'le06', q: "Formel (allgemeine sicherheitswissenschaftliche Risikoformel): Wie berechnet sich das Risiko R eines Systems aus den Teilrisiken?",
       opts: ["R = Σ P(eᵢ) · S(eᵢ), summiert über alle auslösenden Ereignisse eᵢ", "R = Σ P(eᵢ) + S(eᵢ)", "R = P(eᵢ) ÷ S(eᵢ), gemittelt über alle Ereignisse", "R = max(P(eᵢ)) · min(S(eᵢ))"],
       correct: 0,
