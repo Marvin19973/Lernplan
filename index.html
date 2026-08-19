@@ -2101,6 +2101,124 @@ function renderQuiz() {
   renderQuizPanel();
 }
 
+const LE09_ANTHRO_DIAGRAM = `
+<div class="quiz-diagram-wrap" style="display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start;">
+  <svg viewBox="0 0 380 380" width="230" style="background:var(--card); border-radius:8px;">
+    <line x1="15" y1="350" x2="365" y2="350" stroke="var(--text-muted)" stroke-width="2"/>
+    <text x="18" y="365" font-size="9" fill="var(--text-muted)">Boden</text>
+    <circle cx="290" cy="40" r="15" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="290" y1="55" x2="290" y2="65" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="260" y1="65" x2="320" y2="65" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="290" y1="65" x2="290" y2="170" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="260" y1="65" x2="255" y2="175" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="320" y1="65" x2="325" y2="200" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="320" y1="65" x2="345" y2="25" stroke="var(--accent)" stroke-width="2"/>
+    <circle cx="346" cy="20" r="4" fill="var(--accent)"/>
+    <line x1="265" y1="170" x2="315" y2="170" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="275" y1="170" x2="275" y2="350" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="305" y1="170" x2="305" y2="350" stroke="var(--text-primary)" stroke-width="2"/>
+    <g stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="3,2">
+      <line x1="40" y1="20" x2="345" y2="20"/>
+      <line x1="40" y1="25" x2="290" y2="25"/>
+      <line x1="40" y1="45" x2="290" y2="45"/>
+      <line x1="40" y1="65" x2="320" y2="65"/>
+      <line x1="40" y1="140" x2="323" y2="140"/>
+      <line x1="40" y1="200" x2="325" y2="200"/>
+    </g>
+    <g font-size="10" fill="var(--text-primary)" font-weight="700">
+      <text x="4" y="23">⑥</text>
+      <text x="4" y="28">①</text>
+      <text x="4" y="48">②</text>
+      <text x="4" y="68">③</text>
+      <text x="4" y="143">④</text>
+      <text x="4" y="203">⑤</text>
+    </g>
+    <text x="60" y="378" font-size="11" fill="var(--text-secondary)" font-weight="600">Stehend</text>
+  </svg>
+  <svg viewBox="0 0 380 320" width="230" style="background:var(--card); border-radius:8px;">
+    <line x1="15" y1="290" x2="365" y2="290" stroke="var(--text-muted)" stroke-width="2"/>
+    <text x="18" y="305" font-size="9" fill="var(--text-muted)">Boden</text>
+    <rect x="140" y="205" width="110" height="8" fill="var(--pill-bg)" stroke="var(--text-muted)" stroke-width="1.5"/>
+    <text x="255" y="212" font-size="9" fill="var(--text-muted)">Sitzfläche</text>
+    <circle cx="190" cy="55" r="15" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="190" y1="70" x2="190" y2="80" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="165" y1="80" x2="215" y2="80" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="190" y1="80" x2="190" y2="205" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="165" y1="80" x2="150" y2="150" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="150" y1="150" x2="172" y2="195" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="215" y1="80" x2="240" y2="25" stroke="var(--accent)" stroke-width="2"/>
+    <circle cx="241" cy="20" r="4" fill="var(--accent)"/>
+    <line x1="190" y1="205" x2="240" y2="205" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="240" y1="205" x2="240" y2="290" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="240" y1="290" x2="262" y2="294" stroke="var(--text-primary)" stroke-width="2"/>
+    <g stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="3,2">
+      <line x1="30" y1="20" x2="240" y2="20"/>
+      <line x1="30" y1="50" x2="190" y2="50"/>
+      <line x1="30" y1="80" x2="215" y2="80"/>
+      <line x1="30" y1="150" x2="150" y2="150"/>
+      <line x1="30" y1="205" x2="140" y2="205"/>
+      <line x1="30" y1="192" x2="240" y2="192"/>
+    </g>
+    <g font-size="10" fill="var(--text-primary)" font-weight="700">
+      <text x="4" y="23">⑦</text>
+      <text x="4" y="53">⑧</text>
+      <text x="4" y="83">⑨</text>
+      <text x="4" y="153">⑩</text>
+      <text x="4" y="208">⑪</text>
+      <text x="4" y="188">⑫</text>
+    </g>
+    <text x="290" y="150" font-size="9" fill="var(--text-secondary)">⑦–⑩: ab Sitzfläche</text>
+    <text x="290" y="163" font-size="9" fill="var(--text-secondary)">⑪–⑫: ab Boden</text>
+    <text x="60" y="315" font-size="11" fill="var(--text-secondary)" font-weight="600">Sitzend (Seitenansicht)</text>
+  </svg>
+  <svg viewBox="0 0 200 220" width="150" style="background:var(--card); border-radius:8px;">
+    <rect x="60" y="40" width="80" height="120" rx="24" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+    <line x1="30" y1="55" x2="170" y2="55" stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="30" y1="50" x2="30" y2="60" stroke="var(--text-secondary)" stroke-width="1"/>
+    <line x1="170" y1="50" x2="170" y2="60" stroke="var(--text-secondary)" stroke-width="1"/>
+    <text x="82" y="48" font-size="10" fill="var(--text-primary)" font-weight="700">⑭</text>
+    <line x1="45" y1="100" x2="155" y2="100" stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="45" y1="95" x2="45" y2="105" stroke="var(--text-secondary)" stroke-width="1"/>
+    <line x1="155" y1="95" x2="155" y2="105" stroke="var(--text-secondary)" stroke-width="1"/>
+    <text x="92" y="96" font-size="10" fill="var(--text-primary)" font-weight="700">⑬</text>
+    <text x="20" y="195" font-size="10" fill="var(--text-secondary)" font-weight="600">Rückansicht:</text>
+    <text x="20" y="207" font-size="9" fill="var(--text-secondary)">⑬ Hüftbreite, ⑭ Ellbogen-Ellbogen-Breite</text>
+  </svg>
+  <table style="width:100%; margin-top:8px;">
+    <tr><th>Nr.</th><th>Maß</th><th>Geschl.</th><th>5.Perz.</th><th>50.Perz.</th><th>95.Perz.</th></tr>
+    <tr><td>①</td><td>Körperhöhe</td><td>F</td><td>1510</td><td>1619</td><td>1725</td></tr>
+    <tr><td></td><td></td><td>M</td><td>1629</td><td>1733</td><td>1841</td></tr>
+    <tr><td>②</td><td>Augenhöhe stehend</td><td>F</td><td>1402</td><td>1502</td><td>1596</td></tr>
+    <tr><td></td><td></td><td>M</td><td>1509</td><td>1613</td><td>1721</td></tr>
+    <tr><td>③</td><td>Schulterhöhe stehend</td><td>F</td><td>1230</td><td>1325</td><td>1415</td></tr>
+    <tr><td></td><td></td><td>M</td><td>1330</td><td>1425</td><td>1520</td></tr>
+    <tr><td>④</td><td>Ellbogenhöhe stehend</td><td>F</td><td>957</td><td>1030</td><td>1100</td></tr>
+    <tr><td></td><td></td><td>M</td><td>1021</td><td>1096</td><td>1179</td></tr>
+    <tr><td>⑤</td><td>Handgelenkhöhe stehend</td><td>F</td><td>730</td><td>790</td><td>850</td></tr>
+    <tr><td></td><td></td><td>M</td><td>790</td><td>850</td><td>915</td></tr>
+    <tr><td>⑥</td><td>Greifhöhe hoch, stehend</td><td>F</td><td>1830</td><td>1985</td><td>2135</td></tr>
+    <tr><td></td><td></td><td>M</td><td>1985</td><td>2130</td><td>2280</td></tr>
+    <tr><td>⑦</td><td>Greifhöhe hoch, sitzend (ab Sitzfläche)</td><td>F</td><td>980</td><td>1050</td><td>1120</td></tr>
+    <tr><td></td><td></td><td>M</td><td>1055</td><td>1125</td><td>1195</td></tr>
+    <tr><td>⑧</td><td>Augenhöhe sitzend (ab Sitzfläche)</td><td>F</td><td>695</td><td>745</td><td>795</td></tr>
+    <tr><td></td><td></td><td>M</td><td>750</td><td>800</td><td>850</td></tr>
+    <tr><td>⑨</td><td>Schulterhöhe sitzend (ab Sitzfläche)</td><td>F</td><td>490</td><td>530</td><td>565</td></tr>
+    <tr><td></td><td></td><td>M</td><td>525</td><td>565</td><td>605</td></tr>
+    <tr><td>⑩</td><td>Ellbogenhöhe sitzend (ab Sitzfläche)</td><td>F</td><td>185</td><td>220</td><td>255</td></tr>
+    <tr><td></td><td></td><td>M</td><td>195</td><td>230</td><td>265</td></tr>
+    <tr><td>⑪</td><td>Sitzhöhe / Popliteahöhe (ab Boden)</td><td>F</td><td>355</td><td>395</td><td>435</td></tr>
+    <tr><td></td><td></td><td>M</td><td>395</td><td>435</td><td>475</td></tr>
+    <tr><td>⑫</td><td>Kniehöhe sitzend (ab Boden)</td><td>F</td><td>465</td><td>500</td><td>535</td></tr>
+    <tr><td></td><td></td><td>M</td><td>495</td><td>530</td><td>565</td></tr>
+    <tr><td>⑬</td><td>Hüftbreite sitzend</td><td>F</td><td>330</td><td>365</td><td>405</td></tr>
+    <tr><td></td><td></td><td>M</td><td>320</td><td>355</td><td>395</td></tr>
+    <tr><td>⑭</td><td>Ellbogen-Ellbogen-Breite (Sitzbreite)</td><td>F</td><td>400</td><td>450</td><td>500</td></tr>
+    <tr><td></td><td></td><td>M</td><td>420</td><td>470</td><td>530</td></tr>
+  </table>
+  <div style="font-size:11px; color:var(--text-secondary); margin-top:6px;">20–60 Jahre, in mm · Auslegungsregel: Erreichbarkeit/Außenmaß → 5. Perzentil Frau · Platzbedarf/Innenmaß → 95. Perzentil Mann · sicherheitskritisch → 1./99. Perzentil</div>
+</div>
+`;
+
 /* ============================================================
    AWI_FORMULA_QUIZ – Rechenaufgaben (Formelkarten)
    ============================================================ */
@@ -2536,7 +2654,37 @@ const AWI_FORMULA_QUIZ = {
         "k = R / ΔR",
         "k = ΔR · R",
         "k = ΔR + R"
-      ], correct: 0, explain: "Weber'sches Gesetz: k = ΔR/R, mit ΔR = Unterschiedsschwelle (just noticeable difference) und R = Standardreiz. Die Weber-Konstante k ist über einen weiten Reizbereich näherungsweise konstant." }
+      ], correct: 0, explain: "Weber'sches Gesetz: k = ΔR/R, mit ΔR = Unterschiedsschwelle (just noticeable difference) und R = Standardreiz. Die Weber-Konstante k ist über einen weiten Reizbereich näherungsweise konstant." },
+    { le: 'le09', q: `${LE09_ANTHRO_DIAGRAM}
+Ergonomische Gestaltung eines Fahrzeug-Cockpits (LE09): Über dem Kopf der sitzenden Person soll ein Bedienelement für die Innenraumbeleuchtung angebracht werden. Ermitteln Sie den Abstand A zur Sitzfläche, sodass die kleinste zu berücksichtigende Person (5. Perzentil Frau) das Element im Sitzen noch bequem erreichen kann.`,
+      opts: ["Maß ⑦ (Greifhöhe hoch sitzend), 5. Perzentil Frau = 980 mm", "Maß ⑦ (Greifhöhe hoch sitzend), 95. Perzentil Mann = 1195 mm", "Maß ⑨ (Schulterhöhe sitzend), 5. Perzentil Frau = 490 mm", "Maß ⑪ (Sitzhöhe), 5. Perzentil Frau = 355 mm"],
+      correct: 0, calc: true,
+      explain: "Für die Erreichbarkeit gilt: kleinste zu berücksichtigende Person → 5. Perzentil Frau. Das relevante Maß ist ⑦ Greifhöhe hoch, sitzend (ab Sitzfläche gemessen, da das Bedienelement im Sitzen erreicht werden muss) = 980 mm. Genau wie im Altklausur-Beispiel (A1 = Maß 2.0, 5. Perzentil Frau) wird kein Zuschlag addiert, da hier keine zusätzliche Sicherheitsanforderung genannt ist." },
+    { le: 'le09', q: `${LE09_ANTHRO_DIAGRAM}
+Ergonomische Gestaltung eines Kabinengangs (LE09): Der Gang eines Fahrzeugs soll so hoch ausgelegt werden, dass auch große Personen im Stehen nicht anstoßen. Berücksichtigen Sie dabei einen Sicherheitszuschlag von 40 mm für Kopffreiheit und Schuhwerk. Welche Rechnung liefert die erforderliche Durchgangshöhe x?`,
+      opts: ["Maß ① (Körperhöhe), 95. Perzentil Mann + 40 mm = 1841 + 40", "Maß ① (Körperhöhe), 5. Perzentil Frau + 40 mm = 1510 + 40", "Maß ① (Körperhöhe), 95. Perzentil Mann − 40 mm = 1841 − 40", "Maß ⑥ (Greifhöhe hoch stehend), 95. Perzentil Mann + 40 mm = 2280 + 40"],
+      correct: 0, calc: true,
+      explain: "Für den Platzbedarf/die maximale Höhe (damit auch große Personen nicht anstoßen) gilt: größte zu berücksichtigende Person → 95. Perzentil Mann. Relevantes Maß: ① Körperhöhe = 1841 mm. Zuzüglich des genannten Sicherheitszuschlags von 40 mm ergibt sich x = 1841 + 40 = 1881 mm." },
+    { le: 'le09', q: `${LE09_ANTHRO_DIAGRAM}
+Sitzreihen-Auslegung (LE09, analog zur Flugzeugkabine aus der Altklausur SS2025): In einer Fahrzeugreihe sollen drei Sitze nebeneinander platziert werden, sodass sich der Großteil der Nutzenden beim Sitzen seitlich nicht berührt. Berücksichtigen Sie einen Mindestabstand von 80 mm zwischen den Personen. Welche Rechnung liefert die Gesamtbreite B?`,
+      opts: ["3 · 530 + 2 · 80 (Maß ⑭, 95. Perzentil Mann, + 2 Mindestabstände)", "3 · 530 + 3 · 80", "3 · 500 + 2 · 80 (Maß ⑭, 95. Perzentil Frau)", "3 · 355 + 2 · 80 (Maß ⑪ statt ⑭)"],
+      correct: 0, calc: true,
+      explain: "Relevantes Maß für den Platzbedarf in der Breite: ⑭ Ellbogen-Ellbogen-Breite (Sitzbreite), größte zu berücksichtigende Person → 95. Perzentil Mann = 530 mm. Bei drei nebeneinander sitzenden Personen entstehen zwischen ihnen 2 Zwischenräume à 80 mm (nicht 3, da der Mindestabstand nur zwischen benachbarten Personen anfällt, nicht an den Außenrändern). B = 3 · 530 + 2 · 80 = 1590 + 160 = 1750 mm." },
+    { le: 'le09', q: `${LE09_ANTHRO_DIAGRAM}
+Tischhöhe für einen Sitzarbeitsplatz (LE09): Die Tischhöhe soll für eine durchschnittliche Person (50. Perzentil Frau) so ausgelegt werden, dass die Arbeitsfläche auf Ellbogenhöhe liegt (ergonomisch neutrale Armhaltung). Welche Rechnung liefert die Tischhöhe (gemessen ab Boden)?`,
+      opts: ["Maß ⑪ (Sitzhöhe) + Maß ⑩ (Ellbogenhöhe sitzend), beide 50. Perzentil Frau = 395 + 220", "Maß ⑩ (Ellbogenhöhe sitzend) allein, 50. Perzentil Frau = 220", "Maß ⑪ (Sitzhöhe) − Maß ⑩ (Ellbogenhöhe sitzend) = 395 − 220", "Maß ⑧ (Augenhöhe sitzend), 50. Perzentil Frau = 745"],
+      correct: 0, calc: true,
+      explain: "Die Ellbogenhöhe sitzend (Maß ⑩) ist relativ zur Sitzfläche definiert, nicht zum Boden. Um die Tischhöhe ab Boden zu erhalten, muss daher die Sitzhöhe (Maß ⑪, Popliteahöhe ab Boden) addiert werden: Tischhöhe = Sitzhöhe + Ellbogenhöhe sitzend = 395 + 220 = 615 mm. Dieses additive Vorgehen (zwei Maße aus unterschiedlichen Bezugsebenen kombinieren) ist ein klassisches Klausur-Fallstrick-Muster." },
+    { le: 'le09', q: `${LE09_ANTHRO_DIAGRAM}
+Beinraumhöhe unter einem Schreibtisch (LE09): Damit auch große Personen im Sitzen ausreichend Beinfreiheit haben, soll die Unterkante der Tischplatte mindestens der Kniehöhe der größten zu berücksichtigenden Person zzgl. eines Bewegungszuschlags von 30 mm entsprechen. Welche Rechnung liefert die erforderliche Beinraumhöhe (ab Boden)?`,
+      opts: ["Maß ⑫ (Kniehöhe sitzend), 95. Perzentil Mann + 30 mm = 565 + 30", "Maß ⑫ (Kniehöhe sitzend), 5. Perzentil Frau + 30 mm = 465 + 30", "Maß ⑪ (Sitzhöhe), 95. Perzentil Mann + 30 mm = 475 + 30", "Maß ⑫ (Kniehöhe sitzend), 95. Perzentil Mann − 30 mm = 565 − 30"],
+      correct: 0, calc: true,
+      explain: "Für die Beinfreiheit (Platzbedarf) gilt: größte zu berücksichtigende Person → 95. Perzentil Mann. Relevantes Maß: ⑫ Kniehöhe sitzend (ab Boden) = 565 mm, zuzüglich des Bewegungszuschlags von 30 mm: 565 + 30 = 595 mm." },
+    { le: 'le09', q: `${LE09_ANTHRO_DIAGRAM}
+Verstellbereich eines Bürostuhls (LE09, Perzentil-Spannweite): Ein höhenverstellbarer Bürostuhl soll so ausgelegt werden, dass er von der kleinsten bis zur größten zu berücksichtigenden Person passt. Welche Rechnung liefert den nötigen Verstellbereich der Sitzhöhe?`,
+      opts: ["475 − 355 (Maß ⑪, 95. Perzentil Mann − 5. Perzentil Frau)", "475 + 355", "475 − 395 (95. Perzentil Mann − 50. Perzentil Frau)", "435 − 395 (95. Perzentil Frau − 50. Perzentil Frau)"],
+      correct: 0, calc: true,
+      explain: "Der Verstellbereich muss die kleinste (5. Perzentil Frau) bis zur größten (95. Perzentil Mann) zu berücksichtigende Person abdecken. Maß ⑪ Sitzhöhe: 95. Perzentil Mann = 475 mm, 5. Perzentil Frau = 355 mm. Verstellbereich = 475 − 355 = 120 mm." },
   ]},
   D: { label: 'Formeln Teil D · LE11–12', sub: 'Lichttechnik, Motivation & Entgelt', questions: [
     { le: 'le11', q: "Rechenaufgabe (Beleuchtungsstärke): Eine Lichtquelle hat eine Lichtstärke I = 800 cd, der Abstand zur beleuchteten Fläche beträgt r = 4 m. Welche Rechnung liefert die Beleuchtungsstärke E?",
