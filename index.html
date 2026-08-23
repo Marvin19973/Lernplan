@@ -802,6 +802,12 @@ const QUIZ_DATA = {
     { le: 'le03', q: "Welche Aussagen zu den Elementen einer erweiterten Ereignisgesteuerten Prozesskette (eEPK) treffen zu? (mehrere richtig)", multi: true, opts: [
         "Ereignisse werden als Sechsecke dargestellt und beschreiben einen eingetretenen Zustand", "Funktionen werden als abgerundete Rechtecke dargestellt und beschreiben eine Tätigkeit", "Konnektoren (UND/ODER/XOR) verknüpfen mehrere Ereignisse oder Funktionen logisch miteinander", "Ein eEPK-Modell darf laut Notation niemals mit einem Ereignis enden, sondern ausschließlich mit einer Funktion"
       ], correct: [0,1,2], explain: "In der eEPK-Notation werden Ereignisse als Sechsecke (beschreiben einen eingetretenen Zustand) und Funktionen als abgerundete Rechtecke (beschreiben eine auszuführende Tätigkeit) dargestellt. Konnektoren (UND/ODER/XOR) verknüpfen mehrere Elemente logisch. Ein eEPK-Modell beginnt UND endet grundsätzlich mit einem Ereignis, nicht mit einer Funktion." },
+    { le: 'le03', q: "Diagrammaufgabe (Altklausur-Stil, Fallstudie \u201eUrlaubsantrag genehmigen\u201c): Betrachten Sie den \u201enein\u201c-Zweig der Verzweigung \u201eAnfrage vollst\u00e4ndig?\u201c im folgenden eEPK-Modell. Welche Modellierungsfehler liegen an dieser Stelle vor? (mehrere richtig)" + LE03_EEPK_DIAGRAM, multi: true, opts: [
+        "Der rückläufige Kontrollfluss aus dem „nein“-Zweig müsste über einen logischen Operator zurück in die Funktion „Urlaubsantrag vorbereiten“ fließen, statt offen zu enden", "Das Informationsobjekt „Urlaubsantrag“ müsste bei einer erneuten Vorbereitung des Antrags auch erneut in die Funktion „Prüfen auf Vollständigkeit“ fließen", "Diese Stelle der Modellierung ist vollständig korrekt und bedarf keiner Korrektur", "Der „nein“-Zweig darf laut eEPK-Notation grundsätzlich nie zu einem früheren Prozessschritt zurückführen, ein Rücksprung ist notationswidrig"
+      ], correct: [0,1], explain: "Genau dieser Fehlertyp wird in mehreren Altklausuren (u.a. WS21/22, SS22) an der Urlaubsantrag-Fallstudie abgefragt: der „nein“-Zweig (Antrag unvollständig) muss den Kontrollfluss über einen logischen Operator zurück in die Funktion „Urlaubsantrag vorbereiten“ führen, damit der Prozess korrekt von vorne beginnt – im Diagramm oben bricht der Pfeil offen ab. Zusätzlich fehlt der passende Informationsfluss: das Dokument „Urlaubsantrag“ muss bei jeder (auch wiederholten) Vorbereitung erneut in „Prüfen auf Vollständigkeit“ fließen. Rücksprünge zu früheren Prozessschritten sind in der eEPK-Notation ausdrücklich zulässig und in Schleifen (z.B. Nacharbeit, erneute Prüfung) sogar üblich." },
+    { le: 'le03', q: "Diagrammaufgabe (Altklausur-Stil, Fallstudie \u201eUrlaubsantrag genehmigen\u201c): Betrachten Sie die Funktion \u201eGenehmigen und/oder ablehnen Urlaub\u201c nach der Verzweigung \u201eIn den Zeitraum bereits Urlaube?\u201c im obigen eEPK-Modell. Welche Aussagen dazu treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Zwei sich gegenseitig ausschließende Ergebnisse (Genehmigen ODER Ablehnen) dürfen nicht in einer einzigen Funktion gebündelt werden", "Nach einer Verzweigung mit zwei Entscheidungsmöglichkeiten (ja/nein) müssen zwei separate Funktionen mit jeweils einem eigenen Ergebnis folgen, nicht eine gebündelte Funktion", "Die Modellierung an dieser Stelle ist korrekt, da beide Fälle thematisch zusammengehören und daher sinnvollerweise in einer Funktion zusammengefasst werden dürfen", "Nach der Verzweigung müssten stattdessen vier separate Funktionen mit vier Entscheidungsmöglichkeiten folgen"
+      ], correct: [0,1], explain: "Klassischer, wiederkehrender eEPK-Modellierungsfehler (u.a. SS22, WS22/23, WS23/24, SS2024 jeweils an der Urlaubsantrag-Fallstudie geprüft): eine Verzweigung mit N Entscheidungsmöglichkeiten muss von genau N separaten Funktionen gefolgt werden – hier sind es zwei (ja/nein → „In den Zeitraum bereits Urlaube?“), also müssen „Urlaub genehmigen“ und „Urlaub ablehnen“ als zwei getrennte Funktionen (jeweils mit eigenem nachfolgendem Ereignis) modelliert werden, nicht als eine gebündelte Funktion „Genehmigen und/oder ablehnen“. Vier Funktionen wären nur bei einer Verzweigung mit vier Entscheidungsmöglichkeiten korrekt – hier liegen aber nur zwei vor." },
     { le: 'le02', q: "Welche Vor- bzw. Nachteile werden für Job Rotation genannt? (mehrere richtig)", multi: true, opts: [
         "Vorteile bzgl. Anforderungsvielfalt, Belastungswechsel, Kompetenzentwicklung, Arbeitsmotivation und Personalflexibilität", "Gegebenenfalls erhöhte Aufwände für Koordination und Qualifizierung", "Bei vertikalem Positionswechsel muss u.U. mit Motivationsverlusten gerechnet werden (z.B. bei Verlust anspruchsvollerer Aufgaben)", "Job Rotation hat laut Vorlesung ausschließlich Vorteile und keinerlei potenzielle Nachteile oder Zielkonflikte"
       ], correct: [0,1,2], explain: "Den potenziellen Vorteilen von Job Rotation (Anforderungsvielfalt, Belastungswechsel, Kompetenzentwicklung, Arbeitsmotivation, Personalflexibilität; korreliert zudem mit objektiv niedrigeren Fehlzeiten) stehen ggf. erhöhte Koordinations- und Qualifizierungsaufwände gegenüber. Bei vertikalem Positionswechsel muss u.U. mit Motivationsverlusten gerechnet werden, z.B. wenn zuvor dauerhaft anspruchsvollere Aufgaben zugeordnet waren." },
@@ -2258,6 +2264,105 @@ const LE09_ANTHRO_DIAGRAM = `
   <div style="font-size:12.5px; color:var(--text-secondary); line-height:1.5;">20–60 Jahre, in mm · Auslegungsregel: Erreichbarkeit/Außenmaß → 5. Perzentil Frau · Platzbedarf/Innenmaß → 95. Perzentil Mann · sicherheitskritisch → 1./99. Perzentil</div>
 </div>
 `;
+const LE03_EEPK_DIAGRAM = `
+<div class="quiz-diagram-wrap" style="padding:1rem;">
+  <svg viewBox="0 0 740 700" width="100%" style="max-width:640px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <marker id="eepkArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+        <polygon points="0,0 8,3.5 0,7" fill="var(--text-primary)"/>
+      </marker>
+      <marker id="eepkArrowMuted" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+        <polygon points="0,0 8,3.5 0,7" fill="var(--text-muted)"/>
+      </marker>
+    </defs>
+
+    <!-- Swimlane headers + dividers -->
+    <rect x="10" y="10" width="230" height="34" rx="6" fill="var(--pill-bg)"/>
+    <text x="125" y="32" font-size="13" font-weight="700" fill="var(--text-primary)" text-anchor="middle">Mitarbeiter</text>
+    <rect x="250" y="10" width="230" height="34" rx="6" fill="var(--pill-bg)"/>
+    <text x="365" y="32" font-size="13" font-weight="700" fill="var(--text-primary)" text-anchor="middle">Sekretariat</text>
+    <rect x="490" y="10" width="240" height="34" rx="6" fill="var(--pill-bg)"/>
+    <text x="610" y="32" font-size="13" font-weight="700" fill="var(--text-primary)" text-anchor="middle">Abteilungsleiter</text>
+    <line x1="250" y1="10" x2="250" y2="680" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="490" y1="10" x2="490" y2="680" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4,3"/>
+
+    <!-- 1: Startereignis -->
+    <polygon points="125,60 165,75 165,105 125,120 85,105 85,75" fill="var(--pill-bg)" stroke="var(--text-primary)" stroke-width="1.6"/>
+    <text x="125" y="86" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">Urlaubsanspruch</text>
+    <text x="125" y="99" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">geprüft</text>
+    <line x1="125" y1="120" x2="125" y2="150" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+
+    <!-- 2: Funktion Urlaubsantrag vorbereiten -->
+    <rect x="55" y="150" width="140" height="46" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="125" y="169" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">Urlaubsantrag</text>
+    <text x="125" y="182" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">vorbereiten</text>
+    <line x1="125" y1="196" x2="125" y2="226" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+
+    <!-- 3: Dokument Urlaubsantrag -->
+    <rect x="65" y="226" width="120" height="38" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
+    <line x1="65" y1="234" x2="185" y2="234" stroke="var(--text-secondary)" stroke-width="1"/>
+    <text x="125" y="250" font-size="10" fill="var(--text-secondary)" text-anchor="middle">Urlaubsantrag</text>
+    <text x="125" y="220" font-size="9" fill="var(--text-muted)" text-anchor="middle">Informationsobjekt</text>
+    <line x1="185" y1="245" x2="300" y2="245" stroke="var(--text-secondary)" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#eepkArrowMuted)"/>
+
+    <!-- 4: Funktion Prüfen auf Vollständigkeit -->
+    <rect x="300" y="220" width="140" height="46" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="370" y="239" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">Prüfen auf</text>
+    <text x="370" y="252" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">Vollständigkeit</text>
+    <line x1="370" y1="266" x2="370" y2="296" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+
+    <!-- 5: XOR Anfrage vollständig? -->
+    <circle cx="370" cy="326" r="26" fill="var(--pill-bg)" stroke="var(--text-primary)" stroke-width="1.6"/>
+    <text x="370" y="323" font-size="14" font-weight="700" fill="var(--text-primary)" text-anchor="middle">✕</text>
+    <text x="370" y="368" font-size="10" fill="var(--text-secondary)" text-anchor="middle">Anfrage vollständig?</text>
+
+    <!-- nein branch: dead-ends, does NOT reconnect to "Urlaubsantrag vorbereiten" (Fehler!) -->
+    <path d="M 344,326 C 260,326 200,300 200,220 C 200,200 205,190 208,182" fill="none" stroke="var(--text-muted)" stroke-width="1.6" stroke-dasharray="5,4"/>
+    <text x="215" y="270" font-size="10" fill="var(--text-muted)" text-anchor="middle">nein</text>
+    <circle cx="208" cy="180" r="3.5" fill="none" stroke="var(--text-muted)" stroke-width="1.6"/>
+    <text x="192" y="177" font-size="14" fill="var(--text-muted)" text-anchor="middle">?</text>
+
+    <!-- ja branch to Abteilungsleiter -->
+    <path d="M 396,326 C 470,326 500,326 555,326" fill="none" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+    <text x="480" y="317" font-size="10" fill="var(--text-secondary)" text-anchor="middle">ja</text>
+
+    <!-- 6: Funktion Prüfung bereits genehmigter Urlaube -->
+    <rect x="540" y="300" width="150" height="52" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="615" y="320" font-size="10" fill="var(--text-primary)" text-anchor="middle">Prüfung bereits</text>
+    <text x="615" y="333" font-size="10" fill="var(--text-primary)" text-anchor="middle">genehmigter</text>
+    <text x="615" y="346" font-size="10" fill="var(--text-primary)" text-anchor="middle">Urlaube</text>
+    <line x1="615" y1="352" x2="615" y2="382" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+
+    <!-- 7: XOR In den Zeitraum bereits Urlaube? -->
+    <circle cx="615" cy="412" r="26" fill="var(--pill-bg)" stroke="var(--text-primary)" stroke-width="1.6"/>
+    <text x="615" y="409" font-size="14" font-weight="700" fill="var(--text-primary)" text-anchor="middle">✕</text>
+    <text x="615" y="452" font-size="9.5" fill="var(--text-secondary)" text-anchor="middle">In den Zeitraum</text>
+    <text x="615" y="464" font-size="9.5" fill="var(--text-secondary)" text-anchor="middle">bereits Urlaube?</text>
+
+    <path d="M 601,428 C 570,460 555,480 555,500" fill="none" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+    <text x="545" y="470" font-size="10" fill="var(--text-secondary)" text-anchor="middle">ja</text>
+    <path d="M 629,428 C 660,460 675,480 675,500" fill="none" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+    <text x="685" y="470" font-size="10" fill="var(--text-secondary)" text-anchor="middle">nein</text>
+
+    <!-- 8: EIN gebündeltes Funktionselement für BEIDE Ausgänge (Fehler!) -->
+    <rect x="540" y="500" width="150" height="56" rx="14" fill="var(--card)" stroke="#e0954e" stroke-width="2.2"/>
+    <text x="615" y="520" font-size="9.5" fill="var(--text-primary)" text-anchor="middle">Genehmigen und /</text>
+    <text x="615" y="533" font-size="9.5" fill="var(--text-primary)" text-anchor="middle">oder ablehnen</text>
+    <text x="615" y="546" font-size="9.5" fill="var(--text-primary)" text-anchor="middle">Urlaub</text>
+
+    <line x1="615" y1="556" x2="615" y2="600" stroke="var(--text-primary)" stroke-width="1.6"/>
+    <path d="M 615,600 C 615,630 250,650 145,650" fill="none" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#eepkArrow)"/>
+
+    <!-- 9: Endereignis Erhalt Informationen -->
+    <polygon points="125,624 165,639 165,669 125,684 85,669 85,639" fill="var(--pill-bg)" stroke="var(--text-primary)" stroke-width="1.6"/>
+    <text x="125" y="650" font-size="10" fill="var(--text-primary)" text-anchor="middle">Erhalt</text>
+    <text x="125" y="663" font-size="10" fill="var(--text-primary)" text-anchor="middle">Informationen</text>
+
+    <text x="20" y="695" font-size="9" fill="var(--text-muted)">— durchgezogen = Kontrollfluss · – – – = Informationsfluss (Dokument) · ✕ = XOR-Konnektor</text>
+  </svg>
+</div>
+`;
+
 
 
 /* ============================================================
