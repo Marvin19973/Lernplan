@@ -274,62 +274,64 @@ const MODULES_STAT = [
   ]},
 ];
 const DAYPLAN_STAT = [
-  { title: 'Phase 1 · Teil A + B kompakt auffrischen (schon stark, keine Neulernzeit nötig)', days: [
-    { date: '2026-08-27', label: 'Do 27.08.', tag: 'Teil A komplett (kompakt, an einem Tag)', tasks: [
-      '1) MODULE – Teil A komplett durchgehen: Grundbegriffe/Skalenniveaus, Lage-/Streuungsmaße, Histogramm/Boxplot, Indizes, Korrelation, lineare Regression',
-      '2) WICHTIG: empirische Varianz in Teil A hat Divisor n (nicht n-1!): s² = 1/n·Σ(xi-x̄)² – andere Formel als die Stichprobenvarianz in Teil D (dort n-1). Genau diese Verwechslung war dein Fehler in der letzten Klausur!',
-      '3) QUIZ Teil A – vollständige Runde (du kennst das meiste schon, das sollte schnell gehen)'
+  { title: 'Phase 1 · Teil A + B kompakt auffrischen (schon stark, keine Neulernzeit nötig) — Klausur ist open-book (Skript + Formelsammlung erlaubt): verstehen & anwenden üben statt auswendig lernen', days: [
+    { date: '2026-08-27', label: 'Do 27.08.', tag: 'Teil A komplett + Histogramm/Boxplot gezielt üben — Aufgabe 1 nur 4/12 letztes Mal', tasks: [
+      '1) SKRIPT (Kapitel A1–A4, A3+A4 heute mit Claude durchgehen) – Grundbegriffe/Skalenniveaus, Lage-/Streuungsmaße, klassierte Daten/Histogramm. Fokus heute: Histogramm-Höhe→Klassenhäufigkeit (Kap. A4) und Boxplot/Quartile (Kap. A3) – deine zwei Fehlerpunkte aus Aufgabe 1',
+      '2) WICHTIG: empirische Varianz in Kapitel A3 hat Divisor n, nicht n-1 wie in Teil D!',
+      '3) ÜBUNG (mit Skript + Formelsammlung griffbereit, wie in der Klausur) – Klausurtraining: A.I.1, A.I.2, A.I.4, A.I.7, A.I.8, A.I.10, A.I.11, A.I.14–A.I.18, A.I.20(a), A.I.22, A.I.24 | Buch: A 10.1–A 10.3',
+      '4) Bei jeder falsch gelösten Aufgabe: nicht nur Ergebnis korrigieren, sondern nachschlagen WO im Skript/der Formelsammlung die richtige Formel steht'
     ]},
-    { date: '2026-08-29', label: 'Sa 29.08.', tag: 'Teil B komplett (kompakt, an einem Tag)', tasks: [
-      '1) MODULE – Teil B komplett durchgehen: Ereignisse/Wahrscheinlichkeitsmaß, diskrete Verteilungen (Binomial/Poisson/geometrisch/hypergeometrisch), stetige Verteilungen (Riemann-Dichte), bedingte Wahrscheinlichkeit/Bayes, Unabhängigkeit',
-      '2) FORMELN – Dichte↔Verteilungsfunktion-Umrechnung (Integration/Ableitung) einmal durchgehen',
-      '3) QUIZ Teil B – vollständige Runde'
+    { date: '2026-08-29', label: 'Sa 29.08.', tag: 'Teil B komplett + Mengenoperationen gezielt üben — Aufgabe 2 nur 1/5 letztes Mal (0/4 bei Mengenoperationen)', tasks: [
+      '1) SKRIPT (Kapitel B1–B6, mit Claude durchgehen) – Grundlagen/Kombinatorik, diskrete & stetige Verteilungen, Eigenschaften von WK-Maßen (Siebformel = Mengenoperationen!), bedingte WK/Bayes, Unabhängigkeit. Fokus heute: Mengenoperationen (∩, ∪, \\, Komplement) und Mächtigkeiten – 0 von 4 Punkten letztes Mal',
+      '2) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.II.4, A.II.5, A.II.7, A.II.12–A.II.14 (Siebformel/Sylvester-Poincaré → genau deine Lücke!) | Buch: B 7.1–B 7.6',
+      '3) Formelsammlung-Check: Siebformel und Dichte↔Verteilungsfunktion-Umrechnung genau lokalisieren – im Ernstfall schnell auffindbar'
     ]},
   ]},
   { title: 'Phase 2 · Teil C gezielt vertiefen (Momente & Kovarianz waren deine zweite Fehlerquelle)', days: [
     { date: '2026-09-02', label: 'Mi 02.09.', tag: 'C1-C4 kurz + C5 Momente stetiger Verteilungen — VERTIEFEN', tasks: [
-      '1) MODULE – C1-C4 nur kurz überfliegen: Zufallsvariablen, Verteilungs-/Quantilfunktion, mehrdimensionale ZV, Transformationen (das sitzt schon)',
-      '2) VERTIEFEN – C5 Erwartungswert/Varianz gründlich: E(X) = ∫x·f(x)dx und Var(X) = E(X²) − (E(X))² bei unbeschränktem Träger (0/7 Punkte letztes Mal – Vorzeichenfehler!)',
-      '3) FORMELN – mind. 5 Rechenaufgaben zu Momenten stetiger Verteilungen komplett durchrechnen, bis der Ablauf sitzt'
+      '1) SKRIPT (Kapitel C1–C4, kurz überfliegen) – Zufallsvariablen, Verteilungs-/Quantilfunktion, mehrdimensionale ZV, Transformationen (das sitzt schon)',
+      '2) MIT CLAUDE DURCHGEHEN (Kapitel C5, Momente) – E(X) und Var(X) bei unbeschränktem Träger (Pareto-artige Dichte, uneigentliches Integral), Schritt für Schritt mit Seitenverweis – 0/7 Punkte letztes Mal, klarer Vorzeichenfehler',
+      '3) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.II.21, A.II.23, A.II.30(c), A.II.32(a)(b), A.II.34(a)(b), A.II.35(a), A.II.36(a), A.II.38(a), A.II.39(a), A.II.41, A.II.42(a)(b) | Buch: C 9.1(a)(b), C 9.4, C 9.6(a)(b)(d)(e)'
     ]},
     { date: '2026-09-05', label: 'Sa 05.09.', tag: 'C5 Kovarianz/Korrelation — VERTIEFEN + C6-C8 kurz', tasks: [
-      '1) VERTIEFEN – Kovarianz, Korrelation, Var(X+Y) = Var(X)+Var(Y)+2Cov(X,Y) (dein zweiter Fehler letztes Mal – gezielt mehrfach üben)',
-      '2) MODULE – C6-C8 kurz überfliegen: erzeugende Funktionen, bedingte Verteilungen, Grenzwertsätze (GGZ, Zentraler Grenzwertsatz – wichtig für Teil D)',
-      '3) QUIZ Teil C – vollständige Runde, danach "Nur falsche wiederholen"'
+      '1) MIT CLAUDE DURCHGEHEN (Kapitel C5) – Kovarianz, Korrelation, Var(X+Y) = Var(X)+Var(Y)+2Cov(X,Y) an Zahlenbeispielen mit Seitenverweis – dein zweiter Fehler letztes Mal',
+      '2) SKRIPT (Kapitel C6–C8, kurz überfliegen) – erzeugende Funktionen, bedingte Verteilungen, Grenzwertsätze (GGZ, Zentraler Grenzwertsatz – wichtig für Teil D)',
+      '3) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.II.8, A.II.9, A.II.16–A.II.20, A.II.24, A.II.32(c), A.II.33, A.II.34(c), A.II.35, A.II.36, A.II.38(b)(c)(d), A.II.39(b)(c), A.II.42(c), A.II.43–A.II.45 | Buch: C 9.1(c), C 9.2, C 9.3'
     ]},
   ]},
   { title: 'Phase 3 · Teil D — Hauptfokus (größte Schwachstellen aus deiner letzten Klausur)', days: [
     { date: '2026-09-08', label: 'Di 08.09.', tag: 'D1-D2 kurz + D3 Maximum-Likelihood-Schätzung — 0/9 letztes Mal', tasks: [
-      '1) MODULE – D1-D2 kurz: Grundbegriffe (Stichprobe/Parameter/Stichprobenmodelle), Punktschätzungen (Erwartungstreue, Konsistenz, MSE)',
-      '2) VERTIEFEN – D3 ML-Schätzung Schritt für Schritt: Likelihood-Funktion aufstellen → Log-Likelihood → ableiten & Nullsetzen → ML-Schätzer',
-      '3) FORMELN – die ersten 3 MLE-Rechenaufgaben (verschiedene Verteilungen) komplett durchrechnen'
+      '1) SKRIPT (Kapitel D1–D2, kurz) – Grundbegriffe (Stichprobe/Parameter/Stichprobenmodelle), Punktschätzungen (Erwartungstreue, Konsistenz, MSE)',
+      '2) MIT CLAUDE DURCHGEHEN (Kapitel D3) – ML-Schätzung Schritt für Schritt mit Seitenverweis: Likelihood-Funktion → Log-Likelihood → ableiten & Nullsetzen → ML-Schätzer, an 2-3 Verteilungen',
+      '3) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.III.2, A.III.3, A.III.5, A.III.10, A.III.12 | Buch: D 9.1, D 9.3, D 9.6(a)(b)'
     ]},
     { date: '2026-09-09', label: 'Mi 09.09.', tag: 'D3 Maximum-Likelihood — weiter vertiefen', tasks: [
-      '1) VERTIEFEN – D3 weiter: Invarianzeigenschaft der ML-Schätzung üben (Schätzer für γ(ϑ) aus Schätzer für ϑ)',
-      '2) FORMELN – restliche MLE-Rechenaufgaben (Exponential-, Normal-, Poisson-, Riemann-Dichte) komplett durchrechnen, bis 0 Fehler übrig bleiben',
-      '3) QUIZ Teil D – erste Runde'
+      '1) MIT CLAUDE DURCHGEHEN (Kapitel D3) – Invarianzeigenschaft der ML-Schätzung (Schätzer für γ(ϑ) aus Schätzer für ϑ) mit Seitenverweis',
+      '2) ÜBUNG (mit Skript + Formelsammlung) – restliche MLE-Rechenaufgaben (Exponential-, Normal-, Poisson-, Riemann-Dichte): Klausurtraining A.III.16(a), A.III.17, A.III.25, A.III.27, A.III.28, A.III.31, A.III.35, A.III.48(a) | Buch: D 9.2, D 9.4–D 9.6(c)'
     ]},
     { date: '2026-09-10', label: 'Do 10.09.', tag: 'D4-D5 Konfidenzintervalle — 0/8 letztes Mal', tasks: [
-      '1) VERTIEFEN – D4 Konfidenzintervalle (Exponential-, Binomialverteilung), D5 Schätzungen bei Normalverteilung',
-      '2) WICHTIG: einseitige vs. zweiseitige KI unterscheiden, nötigen Stichprobenumfang bei vorgegebener Intervalllänge berechnen',
-      '3) FORMELN – Formelkarten KI-Fragen komplett + E1-Quantiltabelle (Standardnormalverteilung) auswendig können'
+      '1) MIT CLAUDE DURCHGEHEN (Kapitel D4–D5) – Konfidenzintervalle (Exponential-, Binomialverteilung), Schätzungen bei Normalverteilung, einseitig vs. zweiseitig, Stichprobenumfang bei vorgegebener Intervalllänge – mit Seitenverweis',
+      '2) SKRIPT-CHECK – E1-Quantiltabelle (Standardnormalverteilung) im Skript-Anhang finden und den Umgang üben (kommt so in der Klausur als Anhang)',
+      '3) ÜBUNG (mit Skript + Formelsammlung) – Buch: D 9.5 | Klausurtraining A.III.16(a)/A.III.35 falls noch offen'
     ]},
-    { date: '2026-09-11', label: 'Fr 11.09.', tag: 'D6.1-D6.2 Hypothesentests: Gauß-Test & t-Test — 1/8 letztes Mal!', tasks: [
-      '1) VERTIEFEN – D6.1 Einführung (H0/H1, Fehler 1./2. Art, Signifikanzniveau, Ablehnbereich)',
-      '2) VERTIEFEN – D6.2 Gauß-Test (σ² bekannt) UND t-Test (σ² unbekannt) – Teststatistik X* = √n·(x̄-µ₀)/σ genau einüben',
-      '3) FORMELN – mind. 6 Gauß-/t-Test-Rechenaufgaben (einseitig ja/nein, welche kritische Schranke) komplett durchrechnen'
+    { date: '2026-09-11', label: 'Fr 11.09.', tag: 'D6.1-D6.2 Hypothesentests: Gauß-Test & t-Test + Var(X+Y) — 1/8 letztes Mal!', tasks: [
+      '1) SKRIPT (Kapitel D6.1) – Grundlagen (H0/H1, Fehler 1./2. Art, Signifikanzniveau, Ablehnbereich)',
+      '2) MIT CLAUDE DURCHGEHEN (Kapitel D6.2) – Gauß-Test (σ² bekannt) und t-Test (σ² unbekannt, Freiheitsgrade n-1) mit Seitenverweis. Deine Fehler letztes Mal: -17,25 statt -18 beim Gauß-Test, und 0 von 3 Punkten beim t-Test (kompletter Blackout)',
+      '3) MIT CLAUDE DURCHGEHEN – Var(X+Y) bei negativer Kovarianz: Vorzeichen von Cov(X,Y) immer zuerst explizit hinschreiben (Fehler letztes Mal: 41 statt 27, weil Cov=-5 als +5 behandelt wurde)',
+      '4) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.III.41, A.III.43, A.III.44, A.III.46, A.III.48, A.III.50, A.III.51(a)(b), A.III.54 | Buch: D 9.8, D 9.9'
     ]},
-    { date: '2026-09-12', label: 'Sa 12.09.', tag: 'D6 Rest (gepaarter/Binomialtest) + D7-D8 kurz + Wiederholung', tasks: [
-      '1) MODULE – gepaarter t-Test (verbundene Stichproben) vs. t-Test bei unabhängigen Stichproben unterscheiden (Rechenaufgabe wie Aufgabe 7 Teil 2 letzte Klausur), D6.3 Binomialtests',
-      '2) MODULE – D7 lineares Regressionsmodell (Punktschätzung/KI/Tests), D8 Bayes-Statistik nur grob überfliegen (Nebenthema)',
-      '3) QUIZ + FORMELN Teil D – komplette Runde "Nur falsche wiederholen"'
+    { date: '2026-09-12', label: 'Sa 12.09.', tag: 'D7 Lineare Regression — 0/7 letztes Mal, komplett neu aufbauen!', tasks: [
+      '1) MIT CLAUDE DURCHGEHEN (Kapitel A7–A8 + D7) – Regressionsmodell Yi = a + b·xi + εi: â, b̂ (KQ-Schätzer), sxy, s²y von Grund auf mit Seitenverweis – letztes Mal 0 von 7 Punkten, nichts saß',
+      '2) MIT CLAUDE DURCHGEHEN – s²y aus ȳ² (Verschiebungssatz), Bestimmtheitsmaß Bxy und Regressionsgerade (Steigung/Achsenabschnitt aus x̄, ȳ, sxy, s²x) an mind. 3 Zahlenbeispielen',
+      '3) SKRIPT (Kapitel D6.3, D8) – gepaarter vs. unabhängiger t-Test kurz wiederholen; Binomialtests und Bayes-Statistik nur grob überfliegen (Nebenthemen)',
+      '4) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.I.34, A.I.35, A.I.36, A.I.40, A.I.41, A.III.59–A.III.63 | Buch: A 10.6, D 9.10–D 9.12'
     ]},
   ]},
   { title: 'Phase 4 · Finale', days: [
     { date: '2026-09-13', label: 'So 13.09.', tag: 'Probeklausur unter Zeitdruck + letzte Fehler ausbügeln', tasks: [
-      '1) Eine komplette Altklausur unter Zeitdruck (90-120 Min., wie im echten Format) durchrechnen',
-      '2) Gezielt die Aufgaben nachrechnen, die beim letzten Versuch 0 Punkte gaben (KI, MLE, Testverfahren)',
-      '3) FORMELN + QUIZ – finale "Nur falsche wiederholen"-Runde über alle 4 Teile',
+      '1) Eine komplette Altklausur unter echten Bedingungen durchrechnen: nur mit Skript + Formelsammlung, unter Zeitdruck (90-120 Min.)',
+      '2) Gezielt die Aufgaben nachrechnen, die 0 Punkte gaben (KI, MLE, Testverfahren, Regression) + von jedem der 11 Themenblöcke 1-2 noch offene Klausurtraining-Aufgaben nachholen',
+      '3) MIT CLAUDE DURCHGEHEN – letzte offene Fragen/Unsicherheiten aus der Probeklausur klären',
       '4) Früh schlafen – morgen ist die Klausur!'
     ]},
   ]},
@@ -546,6 +548,8 @@ const MODULES_MV = [
     { id: 'konsum-5', text: 'Was ist ein Buying Center und welche 6 Rollen gibt es darin?', a: 'Gesamtheit der an einer organisationalen Kaufentscheidung beteiligten Personen/Gruppen. Rollen: Initiator, Informationsselektierer (Gatekeeper), Benutzer (User), Beeinflusser (Influencer), Entscheider (Decider), Einkäufer (Buyer).' },
     { id: 'konsum-6', text: 'Nenne die 4 Geschäftstypen im B2B-Marketing (Matrix aus Beziehungs- und Leistungsdimension) mit Beispiel.', a: 'Produktgeschäft/Spotgeschäft (niedrige Kontinuität, niedrige Individualität, z.B. Würth), Anlagengeschäft/Projektgeschäft (niedrige Kontinuität, hohe Individualität, z.B. SIG), Zuliefergeschäft (hohe Kontinuität, hohe Individualität, z.B. Magna), Systemgeschäft (hohe Kontinuität, hohe Individualität, z.B. SAP/John Deere).' },
     { id: 'konsum-7', text: 'Was besagt das Elaboration Likelihood Model?', a: 'Bei hoher Motivation UND Fähigkeit verarbeitet der Konsument Informationen über die zentrale Route (Qualität der Argumente entscheidend); bei niedriger Motivation/Fähigkeit über die periphere Route (periphere Reize wie Attraktivität des Senders entscheidend).' },
+    { id: 'konsum-8', text: 'Was ist die Means-End-Analyse und wozu dient sie?', a: 'Methode, die konkrete Produkteigenschaften (Means) mit den zugrundeliegenden terminalen Werten/Motiven des Konsumenten (Ends) in Verbindung bringt – über die Kette Eigenschaft → funktionaler/psychosozialer Nutzen → instrumenteller/terminaler Wert. Nicht zu verwechseln mit der Conjoint-Analyse, die Präferenzen/Teilnutzenwerte aus Gesamturteilen schätzt.' },
+    { id: 'konsum-9', text: 'Erkläre das Einstellungsmodell von Fishbein und seine Erweiterung durch Ajzen (Theory of Reasoned Action).', a: 'Fishbein: Einstellung Eij = Σk aijk·pijk (Summe aus Eigenschaftsbewertung aijk mal Eigenschaftswahrscheinlichkeit pijk über alle Eigenschaften k). Ajzen-Erweiterung: die Verhaltensabsicht ergibt sich aus dem Zusammenspiel von (1) Einstellung zum Verhalten (Ergebnis × Bewertung) UND (2) subjektiver Norm (soziale Erwünschtheit × soziale Motivation) – NICHT aus einer "Entscheidung". Die Verhaltensabsicht führt zusammen mit der Situation zum tatsächlichen Verhalten.' },
   ] },
   { id: 'mafo', title: 'Marktforschung & Datenanalyse', sub: 'Prozess der Marktforschung, Gütekriterien, Lage-/Streuungsparameter, Korrelation, Regression, Cluster-/Faktorenanalyse', lernplan: [
     { id: 'mafo-1', text: 'Nenne die 3 Gütekriterien der Marktforschung.', a: 'Objektivität (Ergebnisse unabhängig vom Durchführenden), Reliabilität (frei von Zufallsfehlern, bei Wiederholung gleiches Ergebnis), Validität (frei von systematischen Fehlern, misst tatsächlich das Interessierende).' },
@@ -558,6 +562,8 @@ const MODULES_MV = [
     { id: 'mafo-8', text: 'Was ist die Faktorenanalyse und wofür wird sie genutzt?', a: 'Reduziert eine größere Zahl beobachteter (Indikator-)Variablen auf wenige dahinterliegende, nicht direkt messbare (latente) Faktoren. Ablauf: Datenmatrix → Korrelationsmatrix → Faktorbestimmung → Rotation/Interpretation.' },
     { id: 'mafo-9', text: 'Was ist die Clusteranalyse und wie wird die Clusterzahl bestimmt?', a: 'Fasst Objekte (z.B. Kunden) anhand ausgewählter Variablen zu Gruppen/Clustern zusammen (z.B. Kundensegmente), basierend auf Distanzen (z.B. quadrierte euklidische Distanz) und einem Clusteralgorithmus (z.B. Single Linkage). Die optimale Clusterzahl wird anhand des "Elbow"-Kriteriums im Distanz-Diagramm bestimmt.' },
     { id: 'mafo-10', text: 'Was sind die 4 "V" von Big Data?', a: 'Volume (hohes Datenvolumen), Velocity (hohe Geschwindigkeit der Generierung/Übermittlung), Variety (große Bandbreite an Datentypen/-quellen, unstrukturiert), Veracity (Unsicherheit/potenzielle Fehlerhaftigkeit der Daten).' },
+    { id: 'mafo-11', text: 'Was ist der standardisierte Regressionskoeffizient (Beta) und wozu dient er?', a: 'Bj = bj · (Sj/Sy), also der (unstandardisierte) Regressionskoeffizient bj skaliert mit dem Verhältnis der Streuung der unabhängigen Variable j (Sj) zur Streuung der abhängigen Variable (Sy). Im Gegensatz zu bj ist Bj UNABHÄNGIG von der Skalierung/Maßeinheit der Variablen – dadurch werden bei multipler Regression die relativen Einflussstärken mehrerer unabhängiger Variablen direkt vergleichbar.' },
+    { id: 'mafo-12', text: 'Nach welchem Prinzip werden die Parameter a und b bei der Regressionsanalyse geschätzt?', a: 'Methode der kleinsten Quadrate (OLS): die Parameter werden so gewählt, dass die Summe der QUADRIERTEN Differenzen zwischen dem beobachteten und dem durch die Regressionsgerade geschätzten Wert der abhängigen Variable minimiert wird – NICHT zwischen Mittelwert und beobachtetem Wert.' },
   ] },
   { id: 'strategie', title: 'Marketingstrategie', sub: 'Strategieprozess, Segmentierung, Positionierung, Customer Lifetime Value, Erfahrungskurvenmodell, Wettbewerbsstrategien', lernplan: [
     { id: 'strategie-1', text: 'Nenne die Schritte im Prozess der Strategieentwicklung.', a: 'Vision und Mission → Interne Analyse & Externe Analyse (parallel) → Zielformulierung → Formulierung der Strategie und Positionierung → Umsetzung im Marketing-Mix (4 Ps) → Kontrolle und Feedback.' },
@@ -568,6 +574,8 @@ const MODULES_MV = [
     { id: 'strategie-6', text: 'Nenne 2 Schwächen/Kritikpunkte des Produktlebenszyklus- bzw. des Erfahrungskurvenmodells.', a: 'Lebenszyklus: extreme Vereinfachung (Zeit als einzige erklärende Variable), Absatzverlauf wird fälschlich als rein exogen betrachtet (Marketing kann Lebenszyklus verlängern). Erfahrungskurve: nur Kostensenkungspotenzial abgebildet, schwer operationalisierbar, keine Berücksichtigung von Erfahrungstransfers zwischen Produkten/Unternehmen.' },
     { id: 'strategie-7', text: 'Was sind die 2 grundlegenden Wettbewerbsstrategien nach Porter (im Kontext der Vorlesung)?', a: 'Kostenführerschaft vs. Differenzierung (auf Basis besserer Kundenbeziehungen ODER auf Basis überlegener Produkte).' },
     { id: 'strategie-8', text: 'Was ist der Unterschied zwischen Produktdifferenzierung und Produktvariation?', a: 'Produktvariation: Modifikation der Eigenschaften eines BESTEHENDEN Produkts ohne Änderung der Kernfunktion. Produktdifferenzierung: Ergänzung eines bereits eingeführten Produkts um einen NEUEN "Ableger"/eine neue Variante (vertikal = unterschiedliche Qualität/Preis, horizontal = unterschiedliche Funktionen bei vergleichbarer Qualität/Preis).' },
+    { id: 'strategie-9', text: 'Nenne die 5 Phasen des Produktlebenszyklus in Reihenfolge.', a: 'Einführung → Wachstum → Reife → Sättigung → Rückgang (Degeneration). Die vierte Phase ist die Sättigungsphase (Absatz stagniert auf hohem Niveau, Wettbewerbsintensität hoch).' },
+    { id: 'strategie-10', text: 'Nenne die 4 Phasen in der Entwicklung langfristiger Geschäftsbeziehungen.', a: 'Awareness (Wahrnehmung des potenziellen Partners) → Exploration (erste Testphase/Sondierung) → Expansion (zunehmende gegenseitige Abhängigkeit/Vertrauen) → Commitment (stabile, dauerhafte Bindung).' },
   ] },
   { id: 'produkt', title: 'Produktpolitik', sub: 'Produktbegriff, Innovationsprozess, Conjoint-Analyse, Produktprogramm, Bündelung', lernplan: [
     { id: 'produkt-1', text: 'Nenne die Phasen des Innovationsprozesses.', a: 'Gewinnung und Konkretisierung von Ideen → Konzeptdefinition → Konzeptbewertung und -selektion → Markteinführung.' },
@@ -577,6 +585,7 @@ const MODULES_MV = [
     { id: 'produkt-5', text: 'Nenne die 3 Strukturmerkmale eines Produktprogramms.', a: 'Breite (Anzahl der Produktlinien), Tiefe (Anzahl der Produkte/Varianten innerhalb einer Linie), Konsistenz (Angebots-/Nachfrageverbund zwischen den Produktlinien).' },
     { id: 'produkt-6', text: 'Nenne die 3 Arten der Bündelung von Produkten.', a: 'Reine Bündelung (nur im Bündel erhältlich), Gemischte Bündelung (auch einzeln erwerbbar), Mixed Components (einige Komponenten nur im Bündel erhältlich).' },
     { id: 'produkt-7', text: 'Was besagt die Gestaltungsempfehlung zur Referenzpreisbildung bei Bündelung?', a: 'Das Bündel sollte intensiver beworben werden als die Einzelprodukte, der Bündelpreis sollte unter der Summe der Einzelpreise liegen, Preisnachlässe auf Einzelprodukte sollten nur in Ausnahmefällen gewährt werden (sonst fällt der Referenzpreis des Bündels).' },
+    { id: 'produkt-8', text: 'Nenne die 3 Typen von Produkteigenschaften nach dem Zeitpunkt ihrer Beurteilbarkeit.', a: 'Sucheigenschaften (bereits VOR dem Kauf beurteilbar, z.B. Farbe/Größe), Erfahrungseigenschaften (erst NACH dem Kauf/Gebrauch beurteilbar, z.B. Geschmack/Haltbarkeit), Vertrauenseigenschaften (auch nach dem Kauf kaum/nicht vollständig beurteilbar, z.B. Nachhaltigkeit der Herstellung). Bei Erfahrungseigenschaften suchen Konsumenten häufig nach leistungsbezogenen Informationssubstituten (z.B. Marke, Testberichte).' },
   ] },
   { id: 'marke', title: 'Markenpolitik', sub: 'Markenfunktionen, Markenpositionierung, Markenarchitektur (Einzel-/Familien-/Dachmarke), Markentransfer', lernplan: [
     { id: 'marke-1', text: 'Nenne je 2 Markenfunktionen aus Konsumenten-, Unternehmens- und Händlersicht.', a: 'Konsument: Orientierungshilfe/Risikoreduktion (funktional), Erlebniswert/Selbstdarstellung (emotional). Unternehmen: Differenzierung vom Wettbewerb, Preispremium-Durchsetzung. Händler: Senkung des Absatzrisikos, geringere nötige Beratungsleistung.' },
@@ -594,6 +603,8 @@ const MODULES_MV = [
     { id: 'preis-6', text: 'Nenne die 5 Formen der Preisdifferenzierung mit je einem Beispiel.', a: 'Personenbezogen (Damen/Herren beim Friseur), räumlich (PKW-Preise je Land), zeitlich (Hotelpreise Haupt-/Nebensaison), leistungsbezogen (Bahn 1./2. Klasse), mengenbezogen (nichtlineare Mengenrabatte).' },
     { id: 'preis-7', text: 'Was besagt die Assimilations-Kontrast-Theorie für Preisänderungen?', a: 'Kleine Differenzen zwischen Referenz- und Stimuluspreis werden assimiliert (als gleichwertig wahrgenommen), große Differenzen werden kontrastiert (übersteigert wahrgenommen). Implikation: Preissenkungen in größeren Schritten, Preiserhöhungen in kleineren Schritten durchführen.' },
     { id: 'preis-8', text: 'Wann machen Freemium-Geschäftsmodelle Sinn?', a: 'Bei starken Netzwerkeffekten, sehr hohen Wechselkosten der Kunden, sehr geringen Grenzkosten des Unternehmens, "Winner takes all"-Märkten, guten Cross-Selling-Möglichkeiten.' },
+    { id: 'preis-9', text: 'Was unterscheidet absolute von relativen Preisschwellen?', a: 'Absolute Preisschwellen begrenzen den für einen Konsumenten grundsätzlich akzeptablen Preisbereich nach oben (Preis wird als zu teuer abgelehnt) und unten (Preis wird als Qualitätsindiz für ein minderwertiges Produkt abgelehnt). Relative Preisschwellen betreffen die wahrgenommene Signifikanz einer Preisänderung (ab welcher relativen Änderung eine Anpassung überhaupt bemerkt wird).' },
+    { id: 'preis-10', text: 'Was unterscheidet die Skimmingstrategie von der Penetrationsstrategie bei der Markteinführung?', a: 'Skimmingstrategie: relativ HOHER Einführungspreis, um die Zahlungsbereitschaft preisunempfindlicher Käuferschichten zunächst abzuschöpfen (danach schrittweise Preissenkung). Penetrationsstrategie: relativ NIEDRIGER Einführungspreis, um schnell hohe Marktanteile/Verbreitung zu erzielen (z.B. zur Nutzung von Netzwerkeffekten oder der Erfahrungskurve).' },
   ] },
   { id: 'komm', title: 'Kommunikationspolitik', sub: 'Kommunikationsziele (AIDA), Budgetierung, Werbewirkungsfunktionen, Mediaplanung, Social Media & Influencer Marketing', lernplan: [
     { id: 'komm-1', text: 'Was besagt das AIDA-Modell?', a: 'Kategorisiert kommunikationspolitische Ziele: Attention → Interest → Desire → Action. Die ersten drei sind potenzialbezogene Ziele (z.B. Bekanntheit), Action ist das markterfolgsbezogene Ziel (z.B. Marktanteil).' },
@@ -602,6 +613,7 @@ const MODULES_MV = [
     { id: 'komm-4', text: 'Was ist der Unterschied zwischen SEA und SEO?', a: 'SEA (Search Engine Advertising): bezahlte Platzierung im bezahlten Ergebnisbereich (Sponsored Links), Auktionsmechanismus über Keyword-Gebote. SEO (Search Engine Optimization): organische Platzierung durch On-Site- und Off-Site-Optimierung, keine direkte Bezahlung für die Platzierung.' },
     { id: 'komm-5', text: 'Nenne die 3 Kategorien von Medien nach Paid/Owned/Earned mit Beispiel.', a: 'Paid: klassische Medien, Sponsoring, SEA (bezahlte Platzierung). Owned: In-Store-Werbung, eigene Website/Apps, Social-Media-Profile (eigene Kanäle). Earned: Presseberichte, Mundpropaganda, Online-Rezensionen (unbezahlt durch Dritte generiert).' },
     { id: 'komm-6', text: 'Welche 3 Formen der zeitlichen Verteilung des Kommunikationsbudgets gibt es?', a: 'Konzentriert (hohe Ausgaben in kurzen Zeiträumen, für neue Produkte), konstant (gleichmäßig, für etablierte Produkte/Erinnerungsfunktion), pulsierend (hohe konzentrierte Aufwendungen in regelmäßigen Abständen, für saisonale Produkte).' },
+    { id: 'komm-7', text: 'Nenne die wichtigsten Kennzahlen zur Beurteilung von Medien im Rahmen der Mediaplanung.', a: 'Brutto-/Nettoreichweite (Anzahl erreichter Kontakte), Gross Rating Points (GRP = Bruttoreichweite/Anzahl Zielpersonen · 100), TKP/Tausenderkontaktpreis (Kosten für die Erreichung von 1.000 Kontakten: TKP = Anzeigepreis/Leserzahl · 1000), sowie im Online-Bereich Cost-per-Click/View/Lead/Order (Kosten je Online-Kontakt).' },
   ] },
   { id: 'vertrieb', title: 'Vertriebspolitik', sub: 'Vertriebsorgane, direkter/indirekter Vertrieb, Vertriebswege, Key Accounts, persönlicher Verkauf', lernplan: [
     { id: 'vertrieb-1', text: 'Was unterscheidet Absatzhelfer von Absatzmittlern?', a: 'Absatzhelfer (z.B. Handelsvertreter, Kommissionär, Makler) handeln im Namen/für Rechnung des Anbieters bzw. vermitteln nur, OHNE Eigentum am Produkt zu erwerben. Absatzmittler (Großhandel, Einzelhandel) kaufen Produkte im eigenen Namen und auf eigene Rechnung und verkaufen sie mit Gewinnabsicht weiter.' },
@@ -615,8 +627,10 @@ const MODULES_MV = [
 const DAYPLAN_MV = [
   { title: 'Phase 1 · Eigene Lerntage (ein Modul pro Tag, parallel zu Statistik verteilt)', days: [
     { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Modul 1: Konsumentenverhalten & B2B', tasks: [
-      '1) MODULE – Modul 1 komplett durchgehen: Konsumentenverhalten, Buying Center, B2B-Geschäftstypen',
-      '2) QUIZ – Teil konsum erste Runde'
+      '1) MODULE (Teil konsum, 9 Unterthemen) – jedes einzeln lesen und in eigenen Worten zusammenfassen: (1) Aktivierung & Lambda-Hypothese – optimaler mittlerer Aktivierungsgrad; (2) Low- vs. High-Involvement – Unterschiede in Kaufentscheidung; (3) Typologie der Kaufentscheidungen (4-Felder-Schema: impulsiv/extensiv/habitualisiert/rational); (4) Kognitive Dissonanz & Reduktionsstrategien; (5) Buying Center – alle 6 Rollen (Initiator, Gatekeeper, User, Influencer, Decider, Buyer) auswendig können; (6) 4 B2B-Geschäftstypen (Produkt-/Anlagen-/Zuliefer-/Systemgeschäft) je mit Beispiel; (7) Elaboration Likelihood Model – zentrale vs. periphere Route; (8) Means-End-Analyse; (9) Einstellungsmodell Fishbein/Ajzen inkl. Rechenformel',
+      '2) VERTIEFEN – Buying-Center-Rollen und die 4 Geschäftstypen aktiv abfragen (laut/schriftlich aufsagen), das sind die klassischen Verwechslungspunkte in der Klausur',
+      '3) QUIZ – Teil konsum, komplette erste Runde (10 Fragen: 5 Single-Choice, 3 Multiple-Choice, 1 Zuordnung, 1 Rechenaufgabe zu Fishbein)',
+      '4) Bei Fehlern: die betroffenen Unterthemen aus Schritt 1 noch einmal gezielt nachlesen, dann "Nur falsche wiederholen"'
     ]},
     { date: '2026-08-30', label: 'So 30.08.', tag: 'Modul 2: Marktforschung & Datenanalyse', tasks: [
       '1) MODULE – Modul 2 komplett durchgehen: Marktforschungsprozess, Erhebungsmethoden, Datenanalyse',
@@ -694,6 +708,15 @@ const QUIZ_DATA_MV = {
     { le: 'konsum', q: "Was beschreibt das 'abgeleitete' Charakteristikum der Nachfrage im organisationalen Kaufverhalten?", opts: [
         "Die Nachfrage nach einem Vorprodukt hängt von der Endkunden-Nachfrage nach dem fertigen Produkt ab", "Die Nachfrage wird ausschließlich von einer einzigen Person entschieden", "Die Nachfrage ist völlig unabhängig von nachgelagerten Marktstufen", "Organisationale Nachfrage ist immer geringer als private Konsumnachfrage"
       ], correct: 0, explain: "Abgeleiteter Charakter der Nachfrage: die Nachfrage nach z.B. Kunststoffchemikalien leitet sich letztlich von der Nachfrage der privaten Autokäufer nach dem fertigen Auto ab – sie ist entlang der Wertschöpfungskette 'abgeleitet'." },
+    { le: 'konsum', q: "Was verbindet die Means-End-Analyse miteinander?", opts: [
+        "Konkrete Produkteigenschaften mit den zugrundeliegenden terminalen Werten/Motiven des Konsumenten", "Ausschließlich den Gesamtnutzen mehrerer Produktkonzepte in einer Befragung", "Die Reichweite verschiedener Werbemedien", "Die Kosten und Erlöse einer Marketingmaßnahme"
+      ], correct: 0, explain: "Die Means-End-Analyse zeigt, wie konkrete Produkteigenschaften (Means) über funktionalen/psychosozialen Nutzen mit den terminalen Werten des Konsumenten (Ends) zusammenhängen – nicht zu verwechseln mit der Conjoint-Analyse, die Teilnutzenwerte aus Gesamturteilen schätzt." },
+    { le: 'konsum', q: "Nach dem Einstellungsmodell von Ajzen/Fishbein ergibt sich die Verhaltensabsicht aus dem Zusammenspiel von...", opts: [
+        "der Einstellung zum Verhalten UND der subjektiven Norm", "einer rein zufälligen Entscheidung ohne erkennbare Einflussfaktoren", "ausschließlich der sozialen Erwünschtheit", "ausschließlich dem tatsächlichen Verhalten in der Vergangenheit"
+      ], correct: 0, explain: "Die Verhaltensabsicht ergibt sich aus der Einstellung zum Verhalten (Ergebnis × Bewertung) UND der subjektiven Norm (soziale Erwünschtheit × soziale Motivation) – zusammen mit der Situation führt sie zum tatsächlichen Verhalten." },
+    { le: 'konsum', q: "Rechenaufgabe (Fishbein-Einstellungsmodell): Eigenschaftsbewertung a=9, Eigenschaftswahrscheinlichkeit p=0,6 für 'Hotelkomfort' bei Anbieter 1. Welche Rechnung liefert den Eindruckswert dieser Eigenschaft?", opts: [
+        "9 · 0,6 = 5,4", "9 + 0,6 = 9,6", "9 / 0,6 = 15", "9 − 0,6 = 8,4"
+      ], correct: 0, calc: true, explain: "Eindruckswert = Eigenschaftsbewertung aijk · Eigenschaftswahrscheinlichkeit pijk = 9 · 0,6 = 5,4. Die Gesamteinstellung Eij ergibt sich als Summe dieser Eindruckswerte über alle Eigenschaften k." },
   ] },
   mafo: { label: 'Marktforschung & Datenanalyse', sub: 'Gütekriterien, Untersuchungsdesigns, Skalenniveaus, Korrelation/Regression, Cluster-/Faktorenanalyse', questions: [
     { le: 'mafo', q: "Welches Gütekriterium der Marktforschung ist verletzt, wenn zwei unabhängige Personen bei derselben Messung zu unterschiedlichen Ergebnissen kommen?", opts: [
@@ -720,6 +743,12 @@ const QUIZ_DATA_MV = {
     { le: 'mafo', q: "Wie wird bei der Clusteranalyse die optimale Anzahl an Clustern typischerweise bestimmt?", opts: [
         "Anhand des 'Elbow'-Kriteriums im Diagramm der Distanzen über der Clusterzahl", "Immer exakt 3 Cluster, unabhängig von den Daten", "Durch zufällige Wahl vor Beginn der Analyse", "Anhand der Anzahl der ursprünglich erhobenen Variablen"
       ], correct: 0, explain: "Die optimale Clusterzahl wird anhand des 'Elbow' (Ellenbogen) im Diagramm der (Fusions-)Distanz über der Clusterzahl bestimmt – dort, wo der Distanzzuwachs sprunghaft abnimmt." },
+    { le: 'mafo', q: "Nach welchem Prinzip schätzt die Regressionsanalyse die Parameter a und b (Methode der kleinsten Quadrate)?", opts: [
+        "Minimierung der Summe der quadrierten Differenzen zwischen beobachtetem und geschätztem Wert der abhängigen Variable", "Minimierung der Differenz zwischen Mittelwert und beobachtetem Wert", "Maximierung der Anzahl der Datenpunkte auf der Regressionsgeraden", "Minimierung der Summe der unabhängigen Variablen"
+      ], correct: 0, explain: "Das OLS-Prinzip (Methode der kleinsten Quadrate) minimiert die Summe der QUADRIERTEN Differenzen zwischen beobachtetem und durch die Regressionsgerade geschätztem Wert der abhängigen Variable – nicht die Differenz zum Mittelwert." },
+    { le: 'mafo', q: "Rechenaufgabe (standardisierter Regressionskoeffizient): bj = 0,14, Sj (Streuung unabhängige Variable) = 1,17, Sy (Streuung abhängige Variable) = 1,87. Welche Rechnung liefert Bj?", opts: [
+        "Bj = 0,14 · (1,17/1,87) ≈ 0,088", "Bj = 0,14 + 1,17 − 1,87", "Bj = 0,14 · 1,17 · 1,87", "Bj = 1,87/0,14"
+      ], correct: 0, calc: true, explain: "Bj = bj · (Sj/Sy) = 0,14 · (1,17/1,87) ≈ 0,088. Im Gegensatz zu bj ist Bj unabhängig von der Skalierung der Variablen und erlaubt den direkten Vergleich der Einflussstärke mehrerer unabhängiger Variablen." },
   ] },
   strategie: { label: 'Marketingstrategie', sub: 'Strategieprozess, Segmentierung, CLV, Erfahrungskurve, Wettbewerbsstrategien', questions: [
     { le: 'strategie', q: "In welcher Reihenfolge läuft der Prozess der Strategieentwicklung laut Vorlesung ab?", opts: [
@@ -740,6 +769,15 @@ const QUIZ_DATA_MV = {
     { le: 'strategie', q: "Was ist eine zentrale Schwäche des Produktlebenszyklusmodells laut kritischer Würdigung in der Vorlesung?", opts: [
         "Der Absatzverlauf wird fälschlich als rein exogene Größe betrachtet, obwohl Marketing ihn beeinflussen kann", "Es berücksichtigt zu viele Variablen gleichzeitig und ist dadurch unübersichtlich", "Es kann nur bei digitalen Produkten angewendet werden", "Es liefert keinerlei normstrategische Aussagen"
       ], correct: 0, explain: "Kritikpunkt: extreme Vereinfachung der Realität (Zeit als einzige Erklärungsvariable) und die fälschliche Annahme, der Absatzverlauf sei rein exogen – tatsächlich kann der Lebenszyklus durch Marketingmaßnahmen verlängert werden." },
+    { le: 'strategie', q: "Welche Phase des Produktlebenszyklus folgt direkt auf die Wachstumsphase, bevor die Sättigungsphase beginnt?", opts: [
+        "Reifephase", "Einführungsphase", "Rückgangsphase", "Es gibt keine weitere Phase dazwischen"
+      ], correct: 0, explain: "Reihenfolge: Einführung → Wachstum → Reife → Sättigung → Rückgang. Die Reifephase folgt auf das Wachstum, bevor der Absatz in der vierten Phase (Sättigung) stagniert." },
+    { le: 'strategie', q: "Ordne die Phasen der Entwicklung langfristiger Geschäftsbeziehungen ihrer korrekten Reihenfolge/Beschreibung zu.", type: 'match', pairs: [
+        { term: 'Awareness', def: 'Erste Wahrnehmung eines potenziellen Partners' },
+        { term: 'Exploration', def: 'Erste Testphase/Sondierung der Beziehung' },
+        { term: 'Expansion', def: 'Zunehmendes gegenseitiges Vertrauen/Abhängigkeit' },
+        { term: 'Commitment', def: 'Stabile, dauerhafte Bindung' },
+      ], explain: "Die 4 Phasen laufen in der Reihenfolge Awareness → Exploration → Expansion → Commitment ab." },
   ] },
   produkt: { label: 'Produktpolitik', sub: 'Innovationsprozess, Conjoint-Analyse, Produktprogramm, Bündelung', questions: [
     { le: 'produkt', q: "In welcher Reihenfolge läuft der Innovationsprozess ab?", opts: [
@@ -757,6 +795,9 @@ const QUIZ_DATA_MV = {
     { le: 'produkt', q: "Was ist der Unterschied zwischen 'reiner Bündelung' und 'gemischter Bündelung'?", opts: [
         "Bei reiner Bündelung sind die Produkte nur im Bündel erhältlich, bei gemischter Bündelung auch einzeln", "Reine Bündelung bedeutet, dass nur 2 Produkte gebündelt werden, gemischte beliebig viele", "Bei gemischter Bündelung gibt es keinen Bündelpreis", "Reine und gemischte Bündelung sind identisch"
       ], correct: 0, explain: "Reine Bündelung: Produkte NUR im Bündel erhältlich. Gemischte Bündelung: Produkte können auch einzeln erworben werden. Mixed Components: nur einige Komponenten sind bündelexklusiv." },
+    { le: 'produkt', q: "Produkteigenschaften, die von Konsumenten weder vor noch nach dem Kauf vollständig beurteilt werden können (z.B. Nachhaltigkeit der Herstellung), nennt man...", opts: [
+        "Vertrauenseigenschaften", "Sucheigenschaften", "Erfahrungseigenschaften", "Lerneigenschaften"
+      ], correct: 0, explain: "Sucheigenschaften: schon vor dem Kauf beurteilbar. Erfahrungseigenschaften: erst nach dem Kauf/Gebrauch beurteilbar. Vertrauenseigenschaften: auch nach dem Kauf kaum/nicht vollständig beurteilbar ('Lerneigenschaften' ist kein Begriff aus dieser Typologie)." },
   ] },
   marke: { label: 'Markenpolitik', sub: 'Markenfunktionen, Positionierung, Markenarchitektur, Markentransfer', questions: [
     { le: 'marke', q: "Welche Facette der Markenpositionierung beantwortet die Frage 'Was biete ich an?'", opts: [
@@ -794,6 +835,12 @@ const QUIZ_DATA_MV = {
     { le: 'preis', q: "Was besagt die Assimilations-Kontrast-Theorie für die Gestaltung von Preisänderungen?", opts: [
         "Preissenkungen sollten in größeren Schritten erfolgen, Preiserhöhungen in kleineren Schritten", "Preissenkungen sollten in kleineren Schritten erfolgen, Preiserhöhungen in größeren Schritten", "Preisänderungen haben unabhängig von der Schrittgröße immer denselben Wahrnehmungseffekt", "Nur Preiserhöhungen unterliegen Assimilations-/Kontrasteffekten"
       ], correct: 0, explain: "Kleine Differenzen zum Referenzpreis werden assimiliert (nicht als relevant wahrgenommen) – deshalb sollten Preissenkungen in größeren Schritten erfolgen, damit sie als Abweichung wahrgenommen werden. Preiserhöhungen dagegen in kleineren Schritten, damit sie assimiliert werden." },
+    { le: 'preis', q: "Der Bereich der für einen Konsumenten grundsätzlich akzeptablen Preise wird begrenzt durch...", opts: [
+        "absolute Preisschwellen", "relative Preisschwellen", "die Amoroso-Robinson-Relation", "den Cournot-Preis"
+      ], correct: 0, explain: "Absolute Preisschwellen begrenzen den akzeptablen Preisbereich nach oben (zu teuer) und unten (Qualitätszweifel). Relative Preisschwellen betreffen dagegen, ab welcher relativen Änderung eine Preisanpassung überhaupt wahrgenommen wird." },
+    { le: 'preis', q: "Bei der Markteinführung eines neuen Produkts wird ein bewusst hoher Preis gewählt, um zunächst preisunempfindliche Käuferschichten abzuschöpfen. Wie heißt diese Strategie?", opts: [
+        "Skimmingstrategie", "Penetrationsstrategie", "Preisdifferenzierung", "Assimilationsstrategie"
+      ], correct: 0, explain: "Skimmingstrategie: hoher Einführungspreis zur Abschöpfung der Zahlungsbereitschaft. Penetrationsstrategie: niedriger Einführungspreis zur schnellen Erzielung hoher Marktanteile (Gegenteil)." },
   ] },
   komm: { label: 'Kommunikationspolitik', sub: 'AIDA, Budgetierung, Werbewirkungsfunktionen, Mediaplanung, Social Media', questions: [
     { le: 'komm', q: "Welche der 4 AIDA-Stufen ist das markterfolgsbezogene Ziel (im Gegensatz zu den potenzialbezogenen Zielen)?", opts: [
@@ -811,6 +858,12 @@ const QUIZ_DATA_MV = {
     { le: 'komm', q: "Welche Kriterien sind laut Vorlesung relevant für die Auswahl von Influencern? (mehrere richtig)", multi: true, opts: [
         "Reichweite im Zielmarkt", "Themen & Werte des Influencers passend zur Marke", "Ausschließlich die absolute Followerzahl, alle anderen Kriterien sind irrelevant", "Engagement-Rate"
       ], correct: [0,1,3], explain: "Quantitative Kriterien: Reichweite, Fan-Struktur, Engagement-Rate. Qualitative Kriterien: Themen/Werte-Fit, Anzahl bestehender Partnerschaften, Tone of Voice. Followerzahl allein ist NICHT das einzige relevante Kriterium." },
+    { le: 'komm', q: "Was gibt der TKP (Tausenderkontaktpreis) an?", opts: [
+        "Die Kosten für die Erreichung von 1.000 Kontakten mit einem Medium", "Die Gesamtzahl aller Kontakte über alle Medien hinweg", "Den prozentualen Anteil der Zielgruppe, der erreicht wurde", "Die Kosten pro Klick bei Online-Werbung"
+      ], correct: 0, explain: "TKP = Höhe der Kosten für die Erreichung von 1.000 Kontakten mit einem bestimmten Medium – zentrale Kennzahl zum Kostenvergleich verschiedener Werbeträger in der Mediaplanung." },
+    { le: 'komm', q: "Rechenaufgabe (Mediaplanung, TKP): Eine Zeitschrift hat einen Anzeigepreis von 3.200€ pro Ausgabe und erreicht 80.000 Leser pro Ausgabe. Welche Rechnung liefert den TKP?", opts: [
+        "TKP = (3.200 / 80.000) · 1000 = 40€", "TKP = 3.200 · 80.000 / 1000", "TKP = 80.000 / 3.200", "TKP = (3.200 + 80.000) / 1000"
+      ], correct: 0, calc: true, explain: "TKP = (Anzeigepreis / Anzahl der Leser) · 1000 = (3.200/80.000) · 1000 = 40€. Je niedriger der TKP, desto kosteneffizienter erreicht das Medium 1.000 Kontakte." },
   ] },
   vertrieb: { label: 'Vertriebspolitik', sub: 'Vertriebsorgane, direkter/indirekter Vertrieb, Key Accounts, persönlicher Verkauf', questions: [
     { le: 'vertrieb', q: "Was unterscheidet einen Handelsvertreter von einem Kommissionär?", opts: [
@@ -829,6 +882,14 @@ const QUIZ_DATA_MV = {
 };
 const AWI_CALC_GENERATORS_MV = {};
 const AWI_FORMULA_QUIZ_MV = {
+  konsum: { label: 'Formeln · Konsumentenverhalten', sub: 'Fishbein-Einstellungsmodell', questions: [
+    { le: 'konsum', q: "Formel 1:1 (Einstellungsmodell von Fishbein): Wie lautet die Formel exakt?", opts: [
+        "Eij = Σk (aijk · pijk)", "Eij = Σk (aijk + pijk)", "Eij = Σk aijk / pijk", "Eij = max(aijk) · Σpijk"
+      ], correct: 0, explain: "Eij = Σk aijk·pijk: die Einstellung wird als Summe der Eindruckswerte (Eigenschaftsbewertung aijk mal Eigenschaftswahrscheinlichkeit pijk) über alle Eigenschaften k berechnet." },
+    { le: 'konsum', q: "Rechenaufgabe (Fishbein-Einstellungsmodell): Für Anbieter 1 gilt: Hotelkomfort 9·0,6=5,4; Freizeitangebot 7·0,5=3,5; Nachtleben 6·0,9=5,4. Welche Rechnung liefert die Gesamteinstellung Ei1?", opts: [
+        "Ei1 = 5,4 + 3,5 + 5,4 = 14,3", "Ei1 = 5,4 · 3,5 · 5,4", "Ei1 = (5,4+3,5+5,4)/3", "Ei1 = max(5,4; 3,5; 5,4) = 5,4"
+      ], correct: 0, calc: true, explain: "Die Gesamteinstellung Eij ist die SUMME (nicht der Durchschnitt oder Maximalwert) der Eindruckswerte über alle Eigenschaften: 5,4+3,5+5,4 = 14,3." },
+  ] },
   mafo: { label: 'Formeln · Datenanalyse', sub: 'Mittelwert, Varianz, Korrelation, Regression, Bestimmtheitsmaß', questions: [
     { le: 'mafo', q: "Formel 1:1 (Arithmetisches Mittel): Wie lautet die Formel exakt?", opts: [
         "x̄ = (1/n)·(x1 + x2 + ... + xn)", "x̄ = x1 + x2 + ... + xn", "x̄ = n·(x1 + ... + xn)", "x̄ = (1/n)·(x1 · x2 · ... · xn)"
@@ -851,6 +912,12 @@ const AWI_FORMULA_QUIZ_MV = {
     { le: 'mafo', q: "Rechenaufgabe (Regression): n=6, Σ(xy)=2.671.382, Σx=301, Σy=45.409, Σx²=16.021. Welche Rechnung liefert b?", opts: [
         "b = (6·2.671.382 − 301·45.409) / (6·16.021 − 301²) = 2.360.183/5.525 ≈ 427,18", "b = (6·2.671.382 + 301·45.409) / (6·16.021 − 301²)", "b = (301·45.409) / (6·16.021)", "b = 6·2.671.382 / 301"
       ], correct: 0, calc: true, explain: "b = [n·Σxy − Σx·Σy] / [n·Σx² − (Σx)²] = [6·2.671.382 − 301·45.409] / [6·16.021 − 301²] = 2.360.183/5.525 ≈ 427,18 (aus dem Worksheet-Beispiel Alemannia Aachen)." },
+    { le: 'mafo', q: "Formel 1:1 (standardisierter Regressionskoeffizient Beta, bei mehreren unabhängigen Variablen): Wie lautet die Formel exakt?", opts: [
+        "Bj = bj · (Sj/Sy)", "Bj = bj + (Sj/Sy)", "Bj = bj / (Sj·Sy)", "Bj = Sj / bj"
+      ], correct: 0, explain: "Bj = bj·(Sj/Sy), mit Sj = Streuung der unabhängigen Variable j, Sy = Streuung der abhängigen Variable. Bj ist im Gegensatz zu bj unabhängig von der Skalierung und macht die Einflussstärke mehrerer unabhängiger Variablen direkt vergleichbar." },
+    { le: 'mafo', q: "Formel 1:1 (Methode der kleinsten Quadrate, OLS-Zielgröße): Was wird bei der Parameterschätzung minimiert?", opts: [
+        "Σ(yi − ŷi)² — die Summe der quadrierten Differenzen zwischen beobachtetem und geschätztem Wert", "Σ(yi − ȳ) — die Summe der Differenzen zum Mittelwert", "Σ(xi − x̄)² — die Summe der quadrierten Differenzen der unabhängigen Variable", "Σŷi — die Summe aller geschätzten Werte"
+      ], correct: 0, explain: "OLS minimiert Σ(yi−ŷi)², die Summe der quadrierten Differenzen zwischen dem beobachteten Wert yi und dem durch die Regressionsgerade geschätzten Wert ŷi." },
   ] },
   strategie: { label: 'Formeln · Strategie', sub: 'Customer Lifetime Value, Erfahrungskurvenmodell', questions: [
     { le: 'strategie', q: "Formel 1:1 (Customer Lifetime Value, vollständig): Wie lautet die Formel exakt?", opts: [
@@ -905,6 +972,17 @@ const AWI_FORMULA_QUIZ_MV = {
     { le: 'preis', q: "Rechenaufgabe (Preiselastizität multiplikative PAF): x = 5·p^-1,2. Welche Rechnung liefert die Elastizität ε?", opts: [
         "ε = -1,2 (konstant, unabhängig vom Preis)", "ε = -1,2·p", "ε = 5·(-1,2)", "ε = -1,2/5"
       ], correct: 0, calc: true, explain: "Bei der multiplikativen PAF x=a·p^-b ist die Elastizität ε=-b konstant und unabhängig vom Preisniveau: hier ε=-1,2." },
+  ] },
+  komm: { label: 'Formeln · Kommunikation/Mediaplanung', sub: 'TKP (Tausenderkontaktpreis), Gross Rating Points', questions: [
+    { le: 'komm', q: "Formel 1:1 (TKP, Tausenderkontaktpreis): Wie lautet die Formel exakt?", opts: [
+        "TKP = (Anzeigepreis / Anzahl der Leser/Kontakte) · 1000", "TKP = Anzeigepreis · Anzahl der Leser / 1000", "TKP = Anzahl der Leser / Anzeigepreis", "TKP = Anzeigepreis / 1000"
+      ], correct: 0, explain: "TKP = (Anzeigepreis / Reichweite/Leserzahl) · 1000 – die Kosten für die Erreichung von 1.000 Kontakten. Je niedriger der TKP, desto günstiger das Medium pro 1.000 erreichten Personen." },
+    { le: 'komm', q: "Formel 1:1 (Gross Rating Points, GRP): Wie lautet die Formel exakt?", opts: [
+        "GRP = (Bruttoreichweite / Anzahl der Zielpersonen) · 100", "GRP = Bruttoreichweite · Anzahl der Zielpersonen", "GRP = Anzahl der Zielpersonen / Bruttoreichweite", "GRP = Bruttoreichweite − Nettoreichweite"
+      ], correct: 0, explain: "GRP = (Bruttoreichweite / Anzahl der Zielpersonen) · 100 – ein prozentualer Kontaktmaßstab, der auch Mehrfachkontakte pro Person mitzählt (im Unterschied zur Nettoreichweite)." },
+    { le: 'komm', q: "Rechenaufgabe (Mediaplanung, TKP): Zeitschrift 'Lust auf Kochen' hat einen Anzeigepreis von 6.500€ und 25.000 Leser pro Ausgabe. Welche Rechnung liefert den TKP?", opts: [
+        "TKP = (6.500 / 25.000) · 1000 = 260€", "TKP = 6.500 · 25.000 / 1000", "TKP = 25.000 / 6.500", "TKP = 6.500 − 25.000"
+      ], correct: 0, calc: true, explain: "TKP = (6.500/25.000) · 1000 = 260€ – ein deutlich höherer (also teurerer) TKP als bei einer Zeitschrift mit größerer Reichweite zu ähnlichem Preis." },
   ] },
 };
 
@@ -1803,9 +1881,9 @@ const COURSES = {
     examDateISO: "2026-09-16T09:00:00",
     tabQuiz: "M&amp;V Quiz",
     tabFormeln: "M&amp;V Formelkarten",
-    infoModule: "<b>Eigener Zeitplan:</b> ab 28.8. bekommst du 8 eigene Lerntage für M&amp;V (ein Modul pro Tag, verteilt neben Statistik), bevor am 15.9. der volle Wiederholungstag und am 16.9. um 9 Uhr die Klausur ist. Kein Grund mehr, M&amp;V erst am letzten Tag anzufangen.",
+    infoModule: "<b>Diagnose aus deinen letzten Klausuren (SS22/SS23):</b> wiederkehrende Fehler bei Untersuchungsdesigns (deskriptiv/explorativ/explikativ – zweimal verwechselt), Gütekriterien (Reliabilität = frei von Zufallsfehlern, Validität = frei von systematischen Fehlern), Bestimmtheitsmaß vs. Korrelationskoeffizient, sowie bei der Conjoint-Rechenaufgabe mit Diagramm-Ablesen (nur 3,5/17 Punkten). Diese Themen sind in Quiz &amp; Formelkarten bewusst verstärkt vertreten. Zeitplan: ab 28.8. bekommst du 8 eigene Lerntage für M&amp;V (ein Modul pro Tag), bevor am 15.9. der volle Wiederholungstag und am 16.9. um 9 Uhr die Klausur ist.",
     infoTagesplan: "<b>Preispolitik hat die meisten Rechenaufgaben</b> (PAF-Regression, Preiselastizität, Cournot-Preis) – zusammen mit Erfahrungskurve und Conjoint-Analyse sind das die klausurrelevantesten Rechentypen laut Musterklausur.",
-    infoQuiz: "Dieser Kurs verwendet für die empirische Varianz durchgehend den Divisor <b>n−1</b> (anders als z.B. in Statistik Teil A, wo n verwendet wird) – nicht verwechseln!",
+    infoQuiz: "Dieser Kurs verwendet für die empirische Varianz durchgehend den Divisor <b>n−1</b> (anders als z.B. in Statistik Teil A, wo n verwendet wird) – nicht verwechseln! Achte außerdem auf die Unterscheidung von deskriptivem/explorativem/explikativem Untersuchungsdesign und von Reliabilität/Validität – beides kam in deinen letzten Klausuren wiederholt als Lückentext-Frage vor.",
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     lsProgress: "mv_progress",
     lsStats: "mv_quizStats",
