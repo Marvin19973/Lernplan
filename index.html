@@ -273,9 +273,9 @@ const MODULES_STAT = [
     { id: 'd-14', text: 'Lineares Regressionsmodell: Punktschätzung, KI und Tests im Überblick', a: 'Im linearen Regressionsmodell werden die Koeffizienten (Achsenabschnitt und Steigung) mittels Kleinste-Quadrate-Methode geschätzt (analog zu Teil A8, jetzt aber im stochastischen Modell mit Verteilungsannahmen für die Fehlerterme). Darauf aufbauend lassen sich Konfidenzintervalle für die Koeffizienten sowie Hypothesentests (z.B. auf Steigung = 0, d.h. kein linearer Zusammenhang) mit t-verteilten Teststatistiken konstruieren.' },
   ]},
 ];
-const DAYPLAN_STAT = [
+const DAYPLAN_STAT =  [
   { title: 'Phase 1 · Teil A + B kompakt auffrischen (schon stark, keine Neulernzeit nötig) — Klausur ist open-book (Skript + Formelsammlung erlaubt): verstehen & anwenden üben statt auswendig lernen', days: [
-    { date: '2026-08-27', label: 'Do 27.08.', tag: 'Teil A komplett + Histogramm/Boxplot gezielt üben — Aufgabe 1 nur 4/12 letztes Mal', tasks: [
+    { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Teil A komplett + Histogramm/Boxplot gezielt üben — Aufgabe 1 nur 4/12 letztes Mal', tasks: [
       '1) SKRIPT (Kapitel A1–A4, A3+A4 heute mit Claude durchgehen) – Grundbegriffe/Skalenniveaus, Lage-/Streuungsmaße, klassierte Daten/Histogramm. Fokus heute: Histogramm-Höhe→Klassenhäufigkeit (Kap. A4) und Boxplot/Quartile (Kap. A3) – deine zwei Fehlerpunkte aus Aufgabe 1',
       '2) WICHTIG: empirische Varianz in Kapitel A3 hat Divisor n, nicht n-1 wie in Teil D!',
       '3) ÜBUNG (mit Skript + Formelsammlung griffbereit, wie in der Klausur) – Klausurtraining: A.I.1, A.I.2, A.I.4, A.I.7, A.I.8, A.I.10, A.I.11, A.I.14–A.I.18, A.I.20(a), A.I.22, A.I.24 | Buch: A 10.1–A 10.3',
@@ -550,6 +550,7 @@ const MODULES_MV = [
     { id: 'konsum-7', text: 'Was besagt das Elaboration Likelihood Model?', a: 'Bei hoher Motivation UND Fähigkeit verarbeitet der Konsument Informationen über die zentrale Route (Qualität der Argumente entscheidend); bei niedriger Motivation/Fähigkeit über die periphere Route (periphere Reize wie Attraktivität des Senders entscheidend).' },
     { id: 'konsum-8', text: 'Was ist die Means-End-Analyse und wozu dient sie?', a: 'Methode, die konkrete Produkteigenschaften (Means) mit den zugrundeliegenden terminalen Werten/Motiven des Konsumenten (Ends) in Verbindung bringt – über die Kette Eigenschaft → funktionaler/psychosozialer Nutzen → instrumenteller/terminaler Wert. Nicht zu verwechseln mit der Conjoint-Analyse, die Präferenzen/Teilnutzenwerte aus Gesamturteilen schätzt.' },
     { id: 'konsum-9', text: 'Erkläre das Einstellungsmodell von Fishbein und seine Erweiterung durch Ajzen (Theory of Reasoned Action).', a: 'Fishbein: Einstellung Eij = Σk aijk·pijk (Summe aus Eigenschaftsbewertung aijk mal Eigenschaftswahrscheinlichkeit pijk über alle Eigenschaften k). Ajzen-Erweiterung: die Verhaltensabsicht ergibt sich aus dem Zusammenspiel von (1) Einstellung zum Verhalten (Ergebnis × Bewertung) UND (2) subjektiver Norm (soziale Erwünschtheit × soziale Motivation) – NICHT aus einer "Entscheidung". Die Verhaltensabsicht führt zusammen mit der Situation zum tatsächlichen Verhalten.' },
+    { id: 'konsum-10', text: 'Nenne die 8 Stufen des organisationalen Kaufprozesses (B2B) in Reihenfolge.', a: 'Bedarfserkennung → Festlegung der Eigenschaften (Anforderungen) → Anbietersuche → Angebotseinholung → Anbietervorauswahl → Verhandlung → Anbieterauswahl → Leistungserbringung. Bei einem identischen Wiederkauf (Rebuy) können die frühen Stufen entfallen, da Anforderungen und Anbieter bereits bekannt sind.' },
   ] },
   { id: 'mafo', title: 'Marktforschung & Datenanalyse', sub: 'Prozess der Marktforschung, Gütekriterien, Lage-/Streuungsparameter, Korrelation, Regression, Cluster-/Faktorenanalyse', lernplan: [
     { id: 'mafo-1', text: 'Nenne die 3 Gütekriterien der Marktforschung.', a: 'Objektivität (Ergebnisse unabhängig vom Durchführenden), Reliabilität (frei von Zufallsfehlern, bei Wiederholung gleiches Ergebnis), Validität (frei von systematischen Fehlern, misst tatsächlich das Interessierende).' },
@@ -576,6 +577,8 @@ const MODULES_MV = [
     { id: 'strategie-8', text: 'Was ist der Unterschied zwischen Produktdifferenzierung und Produktvariation?', a: 'Produktvariation: Modifikation der Eigenschaften eines BESTEHENDEN Produkts ohne Änderung der Kernfunktion. Produktdifferenzierung: Ergänzung eines bereits eingeführten Produkts um einen NEUEN "Ableger"/eine neue Variante (vertikal = unterschiedliche Qualität/Preis, horizontal = unterschiedliche Funktionen bei vergleichbarer Qualität/Preis).' },
     { id: 'strategie-9', text: 'Nenne die 5 Phasen des Produktlebenszyklus in Reihenfolge.', a: 'Einführung → Wachstum → Reife → Sättigung → Rückgang (Degeneration). Die vierte Phase ist die Sättigungsphase (Absatz stagniert auf hohem Niveau, Wettbewerbsintensität hoch).' },
     { id: 'strategie-10', text: 'Nenne die 4 Phasen in der Entwicklung langfristiger Geschäftsbeziehungen.', a: 'Awareness (Wahrnehmung des potenziellen Partners) → Exploration (erste Testphase/Sondierung) → Expansion (zunehmende gegenseitige Abhängigkeit/Vertrauen) → Commitment (stabile, dauerhafte Bindung).' },
+    { id: 'strategie-11', text: 'Nenne die 6 Value-Propositioning-Optionen (Preis-Leistungs-Positionierung) mit je einem Markenbeispiel.', a: 'More for More = Premiumangebot (BMW), More for the Same = klassische Markenstrategie (Nivea), The Same for Less = Preisangebot (Škoda), Less for Much Less = "Hard-Discount"-Angebot (Aldi), More for Less = Kategorie-Killer (Ikea). Die Basispositionierung erfolgt entlang der Achsen Preisvorteil vs. Leistungsvorteil.' },
+    { id: 'strategie-12', text: 'Nenne die 2 Arten der Differenzierung gegenüber dem Wettbewerb ("Kundennutzung und Positionierung").', a: 'Überlegene Produkte (kontinuierliche Optimierung/Pflege der Produkte, produktbegleitende Dienstleistungen, auf das Produktangebot fokussierte Kommunikation) vs. bessere Kundenbeziehung (hoher Individualisierungsgrad von Ansprache/Angebot, Aufbau persönlicher Beziehungen, umfassende Kundenorientierung der Mitarbeiter, systematische Ausschöpfung von Cross-Selling-Potenzialen).' },
   ] },
   { id: 'produkt', title: 'Produktpolitik', sub: 'Produktbegriff, Innovationsprozess, Conjoint-Analyse, Produktprogramm, Bündelung', lernplan: [
     { id: 'produkt-1', text: 'Nenne die Phasen des Innovationsprozesses.', a: 'Gewinnung und Konkretisierung von Ideen → Konzeptdefinition → Konzeptbewertung und -selektion → Markteinführung.' },
@@ -586,6 +589,9 @@ const MODULES_MV = [
     { id: 'produkt-6', text: 'Nenne die 3 Arten der Bündelung von Produkten.', a: 'Reine Bündelung (nur im Bündel erhältlich), Gemischte Bündelung (auch einzeln erwerbbar), Mixed Components (einige Komponenten nur im Bündel erhältlich).' },
     { id: 'produkt-7', text: 'Was besagt die Gestaltungsempfehlung zur Referenzpreisbildung bei Bündelung?', a: 'Das Bündel sollte intensiver beworben werden als die Einzelprodukte, der Bündelpreis sollte unter der Summe der Einzelpreise liegen, Preisnachlässe auf Einzelprodukte sollten nur in Ausnahmefällen gewährt werden (sonst fällt der Referenzpreis des Bündels).' },
     { id: 'produkt-8', text: 'Nenne die 3 Typen von Produkteigenschaften nach dem Zeitpunkt ihrer Beurteilbarkeit.', a: 'Sucheigenschaften (bereits VOR dem Kauf beurteilbar, z.B. Farbe/Größe), Erfahrungseigenschaften (erst NACH dem Kauf/Gebrauch beurteilbar, z.B. Geschmack/Haltbarkeit), Vertrauenseigenschaften (auch nach dem Kauf kaum/nicht vollständig beurteilbar, z.B. Nachhaltigkeit der Herstellung). Bei Erfahrungseigenschaften suchen Konsumenten häufig nach leistungsbezogenen Informationssubstituten (z.B. Marke, Testberichte).' },
+    { id: 'produkt-9', text: 'Beschreibe die Komponenten eines Produkts als Schalenmodell (von innen nach außen).', a: 'Produktkern (Kerneigenschaften) → Zusatzeigenschaften → Verpackung/Gestaltung des tangiblen Umfelds → Basisdienstleistungen → Zusatzdienstleistungen ("value added services") → Marke (äußerste Schale, umschließt alle inneren Komponenten).' },
+    { id: 'produkt-10', text: 'Nenne die 3 Entscheidungsoptionen zur Veränderung des Produktprogramms und ihre Unteroptionen.', a: 'Veränderung und Ausweitung (Variation = Modifikation bestehender Eigenschaften ohne Kernfunktionsänderung; Diversifikation = neue Produkte), Gestaltung der Verbundenheit (Differenzierung = neue Variante eines bestehenden Produkts), Reduktion (Elimination = Herausnahme aus dem Programm).' },
+    { id: 'produkt-11', text: 'Nenne 3 aktuelle Trends im Produktmanagement durch Digitalisierung.', a: 'Trend 1: Zusatzdienstleistungen ("value added services") – Fokus verschiebt sich vom Produktkern zu dynamischen, kontinuierlichen digitalen Zusatzleistungen. Trend 2: Subscription Models – Direct-to-Consumer(D2C)-Modelle mit kontinuierlichem Umsatz für den Anbieter statt Einmalkauf. Trend 3: Plattform-Modelle – nutzen eine Online-Plattform, um Angebot und Nachfrage verschiedener Marktteilnehmer zusammenzubringen (z.B. für Nachfrager: größere Auswahl; für Anbieter: bessere Erreichbarkeit von Nischenmärkten).' },
   ] },
   { id: 'marke', title: 'Markenpolitik', sub: 'Markenfunktionen, Markenpositionierung, Markenarchitektur (Einzel-/Familien-/Dachmarke), Markentransfer', lernplan: [
     { id: 'marke-1', text: 'Nenne je 2 Markenfunktionen aus Konsumenten-, Unternehmens- und Händlersicht.', a: 'Konsument: Orientierungshilfe/Risikoreduktion (funktional), Erlebniswert/Selbstdarstellung (emotional). Unternehmen: Differenzierung vom Wettbewerb, Preispremium-Durchsetzung. Händler: Senkung des Absatzrisikos, geringere nötige Beratungsleistung.' },
@@ -614,6 +620,15 @@ const MODULES_MV = [
     { id: 'komm-5', text: 'Nenne die 3 Kategorien von Medien nach Paid/Owned/Earned mit Beispiel.', a: 'Paid: klassische Medien, Sponsoring, SEA (bezahlte Platzierung). Owned: In-Store-Werbung, eigene Website/Apps, Social-Media-Profile (eigene Kanäle). Earned: Presseberichte, Mundpropaganda, Online-Rezensionen (unbezahlt durch Dritte generiert).' },
     { id: 'komm-6', text: 'Welche 3 Formen der zeitlichen Verteilung des Kommunikationsbudgets gibt es?', a: 'Konzentriert (hohe Ausgaben in kurzen Zeiträumen, für neue Produkte), konstant (gleichmäßig, für etablierte Produkte/Erinnerungsfunktion), pulsierend (hohe konzentrierte Aufwendungen in regelmäßigen Abständen, für saisonale Produkte).' },
     { id: 'komm-7', text: 'Nenne die wichtigsten Kennzahlen zur Beurteilung von Medien im Rahmen der Mediaplanung.', a: 'Brutto-/Nettoreichweite (Anzahl erreichter Kontakte), Gross Rating Points (GRP = Bruttoreichweite/Anzahl Zielpersonen · 100), TKP/Tausenderkontaktpreis (Kosten für die Erreichung von 1.000 Kontakten: TKP = Anzeigepreis/Leserzahl · 1000), sowie im Online-Bereich Cost-per-Click/View/Lead/Order (Kosten je Online-Kontakt).' },
+    { id: 'komm-8', text: 'Beschreibe das kommunikationspolitische Grundmodell (Wer sagt Was Wie zu Wem).', a: 'Wer = Kommunikationsobjekt (das Unternehmen, für das geworben wird). Was = Kommunikationsbotschaft (Inhalt, der an die Zielgruppe übermittelt wird). Wie = Kommunikationsträger (Medium zur Streuung der Werbemittel) UND Kommunikationsmittel (Gestaltung der Botschaft durch Wort/Bild/Ton). Zu wem = Zielgruppe.' },
+    { id: 'komm-9', text: 'Nenne den idealtypischen Prozess der Kommunikationspolitik (6 Schritte, zirkulär).', a: 'Bestimmung der Kommunikationsziele und -zielgruppen → Durchführung von Budgetierung und Mediaplanung → Gestaltung der Kommunikationsmaßnahmen → Durchführung der Kommunikation → Kontrolle des Kommunikationserfolgs → Kontrolle der Kommunikationswirkung (Pretest, rückgekoppelt zur Gestaltung).' },
+    { id: 'komm-10', text: 'Nenne die 2 Kategorien von Budgetierungsverfahren im Kommunikationsbudget.', a: 'Heuristische Verfahren (Budget der Vorperiode, Prozentsatz vom Umsatz/Gewinn, verfügbare Mittel, an Wettbewerbsaktivitäten orientiert, an Kommunikationszielen orientiert) vs. Analytische Verfahren (z.B. mittels Werbewirkungsfunktionen, hoher Aufwand aber genauere Budgetallokation).' },
+    { id: 'komm-11', text: 'Was misst die Werbeelastizität des Absatzes?', a: 'Das Verhältnis der relativen Änderung des Absatzes zu der sie verursachenden relativen Änderung des Kommunikationsbudgets: ε = (dx(W)/dW) · (W/x). Analog zur Preiselastizität, aber bezogen auf das Werbebudget statt den Preis.' },
+    { id: 'komm-12', text: 'Nenne je 2 Vor- und Nachteile von Fernsehwerbung und Außenwerbung.', a: 'Fernsehwerbung: + Kombination Sprache/Bild/Ton, hohe Reichweite; − geringe Aufmerksamkeit/Reaktanz der Zuschauer, hohe absolute Kosten. Außenwerbung: + hohe Kontaktfrequenz, geografisch steuerbar; − niedrige Informationsverarbeitungstiefe, kurze Erinnerungsdauer.' },
+    { id: 'komm-13', text: 'Was unterscheidet User Generated Content (UGC) von Brand Generated Content (BGC) im Social Media Content?', a: 'UGC: von Nutzern erstellt, unterteilt in Non-brand-related UGC und Brand-related UGC (weiter unterteilt in Non-sponsored/Sponsored Brand-related UGC). BGC: vom Unternehmen selbst erstellt, mit oder ohne Unternehmensbezug.' },
+    { id: 'komm-14', text: 'Nenne quantitative und qualitative Kriterien zur Auswahl von Influencern.', a: 'Quantitativ: Reichweite im Zielmarkt, Alters-/Struktur der Community, Engagement-Rate. Qualitativ: Themen & Werte, Anzahl bestehender Partnerschaften, Tone of Voice/Bildsprache, Hauptmedium (Bilder/Video/Text).' },
+    { id: 'komm-15', text: 'Nenne die 4 Formen des Sponsoring und 3 Grundsätze für erfolgreiches Sponsoring.', a: 'Formen: Sportsponsoring (Einzelsportler/Mannschaften/Veranstaltungen), Programmsponsoring (Sendungen/Spielfilme/Talkshows), Kultursponsoring (kulturelle Aktivitäten), Public Sponsoring (gemeinnützige/philanthropische Aktivitäten). Grundsätze: Imageaffinität (gesponsertes Objekt sollte zum Image passen), Kontinuität (langfristiger Betrieb für Glaubwürdigkeit), Zielgruppenintegration (Zielgruppe zur Teilnahme ermutigen) – Risiko: negativer Imagetransfer.' },
+    { id: 'komm-16', text: 'Nenne die 3 Funktionen der Verkaufsförderung (Promotion) und ihre kurz-/langfristigen Absatzwirkungen.', a: 'Funktionen: Informationsfunktion (Handzettel, Prospekte, Schulungen), Motivationsförderung (Gewinnspiele, Muster/Proben, Sonderaktionen), Verkaufsfunktion (Zugaben, Gutscheine, Displays im Handel). Kurzfristig: Erstkauf, Produktwechsel, Mehrkonsum. Langfristig: Vorverlegung von Produktkäufen, Steigerung der Loyalität zu Produkt/Geschäft.' },
   ] },
   { id: 'vertrieb', title: 'Vertriebspolitik', sub: 'Vertriebsorgane, direkter/indirekter Vertrieb, Vertriebswege, Key Accounts, persönlicher Verkauf', lernplan: [
     { id: 'vertrieb-1', text: 'Was unterscheidet Absatzhelfer von Absatzmittlern?', a: 'Absatzhelfer (z.B. Handelsvertreter, Kommissionär, Makler) handeln im Namen/für Rechnung des Anbieters bzw. vermitteln nur, OHNE Eigentum am Produkt zu erwerben. Absatzmittler (Großhandel, Einzelhandel) kaufen Produkte im eigenen Namen und auf eigene Rechnung und verkaufen sie mit Gewinnabsicht weiter.' },
@@ -622,62 +637,73 @@ const MODULES_MV = [
     { id: 'vertrieb-4', text: 'Was unterscheidet die Länge von der Breite eines Vertriebswegs?', a: 'Länge: Anzahl der Vertriebsstufen, die ein Produkt vom Anbieter zum Kunden durchläuft. Breite: Anzahl parallel eingesetzter Vertriebspartner innerhalb eines Vertriebswegs (exklusiver vs. intensiver vs. selektiver Vertrieb).' },
     { id: 'vertrieb-5', text: 'Was ist ein Key Account?', a: 'Kunden (i.d.R. Firmenkunden), die aufgrund ihres tatsächlichen oder potenziellen Einkaufsvolumens von großer Bedeutung für das Unternehmen sind. Kooperationsfelder: Produkte, Preise, Prozesse, Informationen, vertikales Marketing.' },
     { id: 'vertrieb-6', text: 'Was ist der Unterschied zwischen "Character Selling" und "Benefit Selling"?', a: 'Character Selling betont konkrete Produkteigenschaften ("Dieser Drucker druckt 10 Seiten/Min"). Benefit Selling betont den KONKRETEN NUTZEN für den Kunden ("Sie sparen viel Zeit"). Effektive Präsentation nutzt Benefit statt Character Selling.' },
+    { id: 'vertrieb-7', text: 'Nenne die 2 Arten unternehmensexterner Vertriebsorgane und je 2 Beispiele.', a: 'Absatzmittler (kaufen im eigenen Namen/auf eigene Rechnung, verkaufen mit Gewinnabsicht weiter: Großhandel, Einzelhandel) und Absatzhelfer (handeln im Namen/für Rechnung des Anbieters bzw. vermitteln nur: Handelsvertreter, Kommissionär, Makler, Vertragshändler, Franchise-Systempartner).' },
+    { id: 'vertrieb-8', text: 'Was unterscheidet Vertragshändler von Franchise-Systempartnern?', a: 'Vertragshändler sind rechtlich selbstständig, aber durch Verträge fest in die Vertriebsstrategie des Anbieters eingebunden. Bei Franchise-Systemen übernimmt der Franchise-Nehmer zusätzlich das Recht sowie die Pflicht zur Beteiligung am Markenauftritt des Anbieters und zur Nutzung von dessen komplettem Vertriebskonzept.' },
+    { id: 'vertrieb-9', text: 'Was ist Showrooming und was ist Webrooming (Multichannel-Kaufverhalten)?', a: 'Showroomer: informieren sich OFFLINE (im Laden) und kaufen ONLINE. Webroomer: informieren sich ONLINE und kaufen OFFLINE (im Laden). Beide Begriffe stammen aus der 2x2-Matrix "Durchführung des Kaufs" × "Ort der Informationssuche" (die anderen Felder: reine Online- bzw. reine Offline-Käufer).' },
+    { id: 'vertrieb-10', text: 'Was ist "Channel Hopping" und was ist "Research Shopping"?', a: 'Channel Hopping: das durch Digitalisierung verstärkte Verhalten von Kunden, entlang des Kaufprozesses bewusst auf verschiedene (On- und Offline-)Kommunikations- und Absatzkanäle zuzugreifen. Research Shopping: liegt vor, wenn Nachfrager die Informationssuche nach einer Leistung in einem anderen Absatzkanal vornehmen als dem später für den Kauf genutzten Kanal.' },
+    { id: 'vertrieb-11', text: 'Nenne die 4 Phasen des persönlichen Verkaufsgesprächs.', a: 'Vorbereitungsphase (Informationsbeschaffung zu Teilnehmern/Verhandlungshistorie/Kundenpotenzial) → Gesprächseröffnungsphase (positiver erster Eindruck, Atmosphäre) → Kernphase (Verhandlungstaktiken wie Gemeinsamkeits-/Gegenleistungsprinzip, Verkaufstechniken wie Präsentation/rhetorische Methoden/Closing-Techniken) → Gesprächsabschlussphase (Zusammenfassung, positive Abschlussatmosphäre).' },
+    { id: 'vertrieb-12', text: 'Nenne 3 Prinzipien für eine kundenorientierte, adaptive Verkaufsstrategie.', a: 'Adaptive Selling (Berücksichtigung individueller Kundenbedürfnisse, dynamische Anpassung des Verkäuferverhaltens), Kundenorientierung (Fokus auf Bedürfniserfüllung statt kurzfristige Verkaufsabschlüsse), Proaktive Kundenansprache (Schaffung häufiger Kundenkontakte, Erfassung potenzieller Bedürfnisse).' },
   ] },
 ];
 const DAYPLAN_MV = [
-  { title: 'Phase 1 · Eigene Lerntage (ein Modul pro Tag, parallel zu Statistik verteilt)', days: [
+  { title: 'Phase 1 · Eigene Lerntage (ein Modul pro Tag, parallel zu Statistik verteilt) — jetzt gegründet auf der vollständigen 125-seitigen Vorlesungszusammenfassung + 3 echte Altklausuren (SS22, SS23, 2024)', days: [
     { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Modul 1: Konsumentenverhalten & B2B', tasks: [
       '1) MODULE (Teil konsum, 9 Unterthemen) – jedes einzeln lesen und in eigenen Worten zusammenfassen: (1) Aktivierung & Lambda-Hypothese – optimaler mittlerer Aktivierungsgrad; (2) Low- vs. High-Involvement – Unterschiede in Kaufentscheidung; (3) Typologie der Kaufentscheidungen (4-Felder-Schema: impulsiv/extensiv/habitualisiert/rational); (4) Kognitive Dissonanz & Reduktionsstrategien; (5) Buying Center – alle 6 Rollen (Initiator, Gatekeeper, User, Influencer, Decider, Buyer) auswendig können; (6) 4 B2B-Geschäftstypen (Produkt-/Anlagen-/Zuliefer-/Systemgeschäft) je mit Beispiel; (7) Elaboration Likelihood Model – zentrale vs. periphere Route; (8) Means-End-Analyse; (9) Einstellungsmodell Fishbein/Ajzen inkl. Rechenformel',
-      '2) VERTIEFEN – Buying-Center-Rollen und die 4 Geschäftstypen aktiv abfragen (laut/schriftlich aufsagen), das sind die klassischen Verwechslungspunkte in der Klausur',
-      '3) QUIZ – Teil konsum, komplette erste Runde (10 Fragen: 5 Single-Choice, 3 Multiple-Choice, 1 Zuordnung, 1 Rechenaufgabe zu Fishbein)',
-      '4) Bei Fehlern: die betroffenen Unterthemen aus Schritt 1 noch einmal gezielt nachlesen, dann "Nur falsche wiederholen"'
+      '2) NEU – organisationaler Kaufprozess (8 Stufen): Bedarfserkennung → Festlegung der Eigenschaften → Anbietersuche → Angebotseinholung → Anbietervorauswahl → Verhandlung → Anbieterauswahl → Leistungserbringung. Diese Kette + Buying-Center-Rollen + Geschäftstypen sind die klassischen Verwechslungspunkte',
+      '3) DIAGRAMME ÜBEN – die 4 neuen Diagramm-Beschriftungsfragen (Fishbein/Ajzen-Modell, organisationaler Kaufprozess, ELM, Means-End-Kette) im Quiz lösen – genau dieser Fragetyp brachte in einer echten Klausur nur 5 von 22 Punkten!',
+      '4) QUIZ – Teil konsum komplett (14 Fragen inkl. 4 Diagramm-Zuordnungen)'
     ]},
     { date: '2026-08-30', label: 'So 30.08.', tag: 'Modul 2: Marktforschung & Datenanalyse', tasks: [
-      '1) MODULE – Modul 2 komplett durchgehen: Marktforschungsprozess, Erhebungsmethoden, Datenanalyse',
-      '2) FORMELN – Varianz-/Regressions-/Korrelations-Formeln aus diesem Modul einmal durchgehen',
-      '3) QUIZ – Teil mafo erste Runde'
+      '1) MODULE – Modul 2 komplett durchgehen: Gütekriterien (Objektivität/Reliabilität/Validität), Untersuchungsdesigns (deskriptiv/explorativ/explikativ), Erhebungsmethoden, Skalenniveaus (Nominal/Ordinal/Intervall/Ratio), Korrelation vs. Regression, Bestimmtheitsmaß, Faktoren-/Clusteranalyse, Big-Data-4V, Beta-Koeffizient, OLS-Prinzip',
+      '2) FORMELN – Mittelwert/Median/Modus, Varianz (Divisor n-1 in diesem Modul!), Korrelations-/Regressionsformeln, Bestimmtheitsmaß, Clusteranalyse-Distanzmaße gründlich durchgehen',
+      '3) QUIZ – Teil mafo komplett (9 Fragen)'
     ]},
-    { date: '2026-08-31', label: 'Mo 31.08.', tag: 'Modul 3: Strategie (CLV, Erfahrungskurve)', tasks: [
-      '1) MODULE – Modul 3 komplett durchgehen: Marketingstrategie, Customer Lifetime Value, Erfahrungskurve',
-      '2) FORMELN – CLV- und Erfahrungskurven-Formel gründlich üben (klausurrelevanter Rechentyp)',
-      '3) QUIZ – Teil strategie erste Runde'
+    { date: '2026-08-31', label: 'Mo 31.08.', tag: 'Modul 3: Strategie (CLV, Erfahrungskurve, Positionierung)', tasks: [
+      '1) MODULE – Modul 3 komplett durchgehen: Strategieentwicklungsprozess, Outside-in/Inside-out, Marktsegmentierung, CLV, Erfahrungskurve, Produktlebenszyklus (5 Phasen), Wettbewerbsstrategien, Produktvariation vs. -differenzierung, Geschäftsbeziehungsphasen (Awareness→Exploration→Expansion→Commitment)',
+      '2) NEU – Value-Propositioning (More for More/the Same/Less, Same for Less, Less for Much Less) mit Markenbeispielen, sowie die 2 Differenzierungsarten (überlegene Produkte vs. bessere Kundenbeziehung)',
+      '3) FORMELN – CLV (vollständig UND vereinfacht), CLV-Tabellen-Rechnung MIT Abzinsung/Zinssatz (echte Klausur-Schwachstelle: 8/16 Punkte), Erfahrungskurven-Formel gründlich üben',
+      '4) QUIZ – Teil strategie komplett (10 Fragen)'
     ]},
-    { date: '2026-09-01', label: 'Di 01.09.', tag: 'Modul 4: Produkt (Conjoint-Analyse)', tasks: [
-      '1) MODULE – Modul 4 komplett durchgehen: Produktpolitik, Conjoint-Analyse (Stimuli-Anzahl, Gesamtnutzen)',
-      '2) FORMELN – Conjoint-Analyse-Rechenaufgaben gründlich üben',
-      '3) QUIZ – Teil produkt erste Runde'
+    { date: '2026-09-01', label: 'Di 01.09.', tag: 'Modul 4: Produkt (Conjoint-Analyse, Produktprogramm)', tasks: [
+      '1) MODULE – Modul 4 komplett durchgehen: Innovationsprozess, Conjoint-Analyse (Stimuli-Anzahl, Gesamt-/Teilnutzen, absolute/relative Wichtigkeit), Produktprogramm (Breite/Tiefe/Konsistenz), Bündelung (rein/gemischt/Mixed Components), Sucheigenschaften/Erfahrungseigenschaften/Vertrauenseigenschaften',
+      '2) NEU – Schalenmodell des Produkts (Kern → Zusatzeigenschaften → Verpackung → Basisdienstleistungen → Zusatzdienstleistungen → Marke), Produktprogramm-Veränderungsoptionen (Variation/Diversifikation/Differenzierung/Elimination), digitale Produkttrends (Value Added Services, Subscription, Plattform-Modelle)',
+      '3) FORMELN – Conjoint-Analyse-Rechenaufgaben (Stimuli-Anzahl, Teilnutzenwerte, relative Wichtigkeit) gründlich üben',
+      '4) QUIZ – Teil produkt komplett (9 Fragen)'
     ]},
     { date: '2026-09-03', label: 'Do 03.09.', tag: 'Modul 5: Marke', tasks: [
-      '1) MODULE – Modul 5 komplett durchgehen: Markenarchitektur, Markenstrategien',
-      '2) QUIZ – Teil marke erste Runde'
+      '1) MODULE – Modul 5 komplett durchgehen: Markenfunktionen (Konsument/Unternehmen/Händler), Markenpositionierung (Markenkern/-nutzen/-persönlichkeit), Markenarchitektur (Einzel-/Dach-/Familienmarke), Markentransfer/Linienausweitung/Multibranding (2x2-Matrix bestehend/neu × Marke/Produktlinie)',
+      '2) QUIZ – Teil marke komplett (4 Fragen, inkl. Zuordnung Markenarchitektur-Beispiele)'
     ]},
     { date: '2026-09-04', label: 'Fr 04.09.', tag: 'Modul 6: Preispolitik — wichtigster Rechenteil!', tasks: [
-      '1) MODULE – Modul 6 gründlich durchgehen: Preisdifferenzierung, Preiselastizität, PAF-Regression, Cournot-Preis, Amoroso-Robinson-Relation',
-      '2) FORMELN – PAF-Formeln (linear/multiplikativ), Preiselastizität, Cournot-Preis mehrfach durchrechnen (punktereichster Rechenaufgaben-Typ laut Musterklausur)',
-      '3) QUIZ – Teil preis erste Runde'
+      '1) MODULE – Modul 6 gründlich durchgehen: Preisdifferenzierung, Preiselastizität, PAF-Regression, Cournot-Preis, Amoroso-Robinson-Relation, Skimming-/Penetrationsstrategie, Assimilations-Kontrast-Theorie, Preisschwellen, Freemium',
+      '2) FORMELN – PAF-Formeln (linear/multiplikativ/Gutenberg), Preiselastizität, Cournot-Preis, Amoroso-Robinson, Umsatzmaximierung mehrfach durchrechnen (punktereichster Rechenaufgaben-Typ laut Musterklausur)',
+      '3) QUIZ – Teil preis komplett (8 Fragen)'
     ]},
-    { date: '2026-09-06', label: 'So 06.09.', tag: 'Modul 7+8: Kommunikation & Vertrieb + Quiz Gesamtrunde', tasks: [
-      '1) MODULE – Modul 7 (Kommunikation) und Modul 8 (Vertrieb) komplett durchgehen',
-      '2) QUIZ – alle 8 Teile je eine Runde spielen (erster kompletter Durchlauf)',
-      '3) FORMELN – alle Formelkarten einmal durchgehen'
+    { date: '2026-09-06', label: 'So 06.09.', tag: 'Modul 7: Kommunikation — TKP/Mediaplanung war deine schwächste Aufgabe (2 von 17 Punkten!)', tasks: [
+      '1) MODULE – Modul 7 komplett durchgehen: AIDA, kommunikationspolitisches Grundmodell (Wer/Was/Wie/Zu wem), idealtypischer 6-Schritte-Prozess, Budgetierungsverfahren (heuristisch/analytisch), Werbewirkungsfunktionen (linear/degressiv/S-förmig) + Werbeelastizität, TV-/Außenwerbung Vor-/Nachteile, SEA/SEO, Social-Media-Content (UGC/BGC), Influencer-Kriterien, Sponsoring, Verkaufsförderung',
+      '2) VERTIEFEN – TKP/Mediaplanung: mehrfach mit UND ohne Kontaktqualität durchrechnen (Kontaktqualität wird zuerst mit der Reichweite multipliziert!), dazu Budgetallokation (Budget/TKP = Tausender-Kontakte) üben – das war mit 2 von 17 Punkten deine bei weitem schwächste Aufgabe in der letzten Klausur',
+      '3) FORMELN – TKP (mit/ohne Kontaktqualität), GRP, Werbewirkungsfunktionen + Werbeelastizität durchgehen',
+      '4) QUIZ – Teil komm komplett (14 Fragen, starker Fokus auf TKP-Rechnungen)'
     ]},
-    { date: '2026-09-07', label: 'Mo 07.09.', tag: 'Formelkarten Feinschliff + erste Musterklausur-Aufgabe', tasks: [
-      '1) FORMELN – "Nur falsche wiederholen" über alle Teile, bis die Rechenformeln sitzen',
-      '2) Die Preispolitik-Aufgabe (PAF-Regression) aus der Musterklausur unter Zeitdruck durchrechnen',
-      '3) Gezielt die Themen nachholen, bei denen im Quiz/den Formelkarten die meisten Fehler passiert sind'
+    { date: '2026-09-07', label: 'Mo 07.09.', tag: 'Modul 8: Vertrieb + Formelkarten-Feinschliff + erste Musterklausur-Aufgabe', tasks: [
+      '1) MODULE – Modul 8 komplett durchgehen: Vertriebsorgane (Absatzhelfer vs. Absatzmittler), direkter/indirekter Vertrieb, Länge/Breite des Vertriebswegs, Vertragshändler/Franchise, Showrooming/Webrooming/Channel Hopping, Key Accounts, Phasen des persönlichen Verkaufs, Character- vs. Benefit-Selling',
+      '2) QUIZ – Teil vertrieb komplett (7 Fragen)',
+      '3) DIAGRAMME – alle 4 Diagramm-Zuordnungsfragen aus Modul 1 nochmal wiederholen, bis sie sicher sitzen',
+      '4) FORMELN – "Nur falsche wiederholen" über alle Teile, bis die Rechenformeln sitzen',
+      '5) Die Preispolitik-Aufgabe (PAF-Regression) aus der Musterklausur unter Zeitdruck durchrechnen'
     ]},
   ]},
   { title: 'Phase 2 · Wiederholungstag + Klausurtag (14.9 ist Statistik-Klausur, 15.9 ist dein voller Wiederholungstag)', days: [
     { date: '2026-09-15', label: 'Di 15.09. — VOLLER WIEDERHOLUNGSTAG', tag: 'Kompletter zweiter Durchlauf + volle Musterklausur', tasks: [
       '1) VORMITTAG – MODULE alle 8 Module in kurzer Form wiederholen (nur die Punkte, die noch unsicher sind)',
-      '2) VORMITTAG – QUIZ: alle 8 Teile "Nur falsche wiederholen"',
-      '3) NACHMITTAG – FORMELN: alle Formelkarten (PAF, Elastizität, Cournot, CLV, Erfahrungskurve, Regression, Conjoint) "Nur falsche wiederholen"',
+      '2) VORMITTAG – QUIZ: alle 8 Teile "Nur falsche wiederholen", inkl. aller 4 Diagramm-Zuordnungsfragen',
+      '3) NACHMITTAG – FORMELN: alle Formelkarten (PAF, Elastizität, Cournot, CLV, Erfahrungskurve, Regression, Conjoint, TKP/GRP, Werbewirkung) "Nur falsche wiederholen"',
       '4) ABEND – vollständige Musterklausur (mit Musterlösung) komplett unter Zeitdruck (45 Min.) durchrechnen',
       '5) ABEND – letzte Lücken aus der Musterklausur gezielt nachholen'
     ]},
     { date: '2026-09-16', label: 'Mi 16.09. — KLAUSURTAG (9:00-10:00 Uhr)', tag: 'Letzter Schliff vor der Klausur', tasks: [
-      '1) FRÜH – FORMELN: "Nur falsche wiederholen" – letzte Runde durch alle Rechenformeln (PAF, Elastizität, Cournot-Preis, CLV, Erfahrungskurve, Regression b/a, Conjoint-Nutzen)',
-      '2) FRÜH – MODULE: kurz alle Definitionen/Vor-Nachteile-Listen überfliegen (Buying Center, Geschäftstypen, Markenarchitektur, Preisdifferenzierung, Vertriebswege)',
+      '1) FRÜH – FORMELN: "Nur falsche wiederholen" – letzte Runde durch alle Rechenformeln (PAF, Elastizität, Cournot-Preis, CLV, Erfahrungskurve, Regression b/a, Conjoint-Nutzen, TKP/GRP)',
+      '2) FRÜH – MODULE: kurz alle Definitionen/Vor-Nachteile-Listen und die 4 Diagramme (Fishbein/Ajzen, Kaufprozess, ELM, Means-End) überfliegen',
       '3) Klausur „Marketing und Vertrieb (Wiederholungsklausur)" 9:00-10:00 Uhr – Viel Erfolg!'
     ]},
   ]},
@@ -717,6 +743,28 @@ const QUIZ_DATA_MV = {
     { le: 'konsum', q: "Rechenaufgabe (Fishbein-Einstellungsmodell): Eigenschaftsbewertung a=9, Eigenschaftswahrscheinlichkeit p=0,6 für 'Hotelkomfort' bei Anbieter 1. Welche Rechnung liefert den Eindruckswert dieser Eigenschaft?", opts: [
         "9 · 0,6 = 5,4", "9 + 0,6 = 9,6", "9 / 0,6 = 15", "9 − 0,6 = 8,4"
       ], correct: 0, calc: true, explain: "Eindruckswert = Eigenschaftsbewertung aijk · Eigenschaftswahrscheinlichkeit pijk = 9 · 0,6 = 5,4. Die Gesamteinstellung Eij ergibt sich als Summe dieser Eindruckswerte über alle Eigenschaften k." },
+    { le: 'konsum', q: "DIAGRAMM-BESCHRIFTUNG (Ajzen/Fishbein-Modell): Das Modell zeigt 4 Bausteine: 'Soziale Erwünschtheit × A = B' und 'Ergebnis × C = D', wobei B und D gemeinsam über 'Verhaltensabsicht' zum 'Tatsächlichen Verhalten' führen. Ordne A, B, C, D den richtigen Begriffen zu.", type: 'match', pairs: [
+        { term: 'A (multipliziert mit Sozialer Erwünschtheit)', def: 'Soziale Motivation' },
+        { term: 'B (Ergebnis von Soziale Erwünschtheit × A)', def: 'Subjektive Norm' },
+        { term: 'C (multipliziert mit Ergebnis)', def: 'Bewertung' },
+        { term: 'D (Ergebnis von Ergebnis × C)', def: 'Einstellung zum Verhalten' },
+      ], explain: "Das Modell besteht aus 2 Strängen: (1) Soziale Erwünschtheit × Soziale Motivation = Subjektive Norm, (2) Ergebnis × Bewertung = Einstellung zum Verhalten. Beide zusammen ergeben die Verhaltensabsicht, die zusammen mit der Situation zum tatsächlichen Verhalten führt. Genau diese Zuordnung wurde in einer echten Klausur mit nur 1 von 4 Punkten sehr schlecht beantwortet – die zwei Stränge (sozial vs. individuell) sauber auseinanderhalten!" },
+    { le: 'konsum', q: "DIAGRAMM-BESCHRIFTUNG (organisationaler Kaufprozess, B2B): Der Prozess läuft ab als 'Bedarfserkennung → A → B → Angebotseinholung → C → Verhandlung → Anbieterauswahl → D'. Ordne A, B, C, D den richtigen Prozessschritten zu.", type: 'match', pairs: [
+        { term: 'A (nach Bedarfserkennung)', def: 'Festlegung der Eigenschaften (Anforderungen)' },
+        { term: 'B (vor Angebotseinholung)', def: 'Anbietersuche' },
+        { term: 'C (nach Angebotseinholung, vor Verhandlung)', def: 'Anbietervorauswahl' },
+        { term: 'D (nach Anbieterauswahl)', def: 'Leistungserbringung' },
+      ], explain: "Vollständiger 8-stufiger Prozess: Bedarfserkennung → Festlegung der Eigenschaften → Anbietersuche → Angebotseinholung → Anbietervorauswahl → Verhandlung → Anbieterauswahl → Leistungserbringung. Diese Reihenfolge war in einer echten Klausur eine Hauptfehlerquelle." },
+    { le: 'konsum', q: "DIAGRAMM-BESCHRIFTUNG (Elaboration Likelihood Model, ELM): Zwei Ellipsen A und B führen je nach 'hoch'/'niedrig' zu 'hohe Verarbeitungswahrscheinlichkeit = C' bzw. 'niedrige Verarbeitungswahrscheinlichkeit = D'. Ordne A, B, C, D den richtigen Begriffen zu.", type: 'match', pairs: [
+        { term: 'A (oberste Ellipse)', def: 'Motivation' },
+        { term: 'B (mittlere Ellipse, abhängig von A)', def: 'Fähigkeit' },
+        { term: 'C (bei hoher Motivation UND Fähigkeit)', def: 'Zentrale Route' },
+        { term: 'D (bei niedriger Motivation/Fähigkeit)', def: 'Periphere Route' },
+      ], explain: "Nur bei HOHER Motivation UND hoher Fähigkeit wird über die zentrale Route verarbeitet (Argumentqualität entscheidet); sonst über die periphere Route (periphere Reize wie Sender-Attraktivität entscheiden). Dieses exakte Diagramm kam in einer echten Klausur vor und wurde mit 0 von 4 Punkten komplett falsch beantwortet." },
+    { le: 'konsum', q: "DIAGRAMM-BESCHRIFTUNG (Means-End-Analyse): Die Kette lautet 'Konkrete Produkteigenschaften → (Warum?) → A → (Warum?) → B → (Warum?) → Werte'. Ordne A und B den richtigen Begriffen zu.", type: 'match', pairs: [
+        { term: 'A (direkt über Produkteigenschaften)', def: 'Funktionaler Nutzen' },
+        { term: 'B (zwischen A und Werten)', def: 'Psychosozialer Nutzen' },
+      ], explain: "Vollständige Kette: Konkrete Produkteigenschaften → Funktionaler Nutzen → Psychosozialer Nutzen → Werte. In einer echten Klausur wurde A (Funktionaler Nutzen) richtig erkannt, B jedoch mit 'Funktionaler Nutzen' verwechselt statt 'Psychosozialer Nutzen' – auf den Unterschied zwischen den beiden Nutzen-Ebenen achten!" },
   ] },
   mafo: { label: 'Marktforschung & Datenanalyse', sub: 'Gütekriterien, Untersuchungsdesigns, Skalenniveaus, Korrelation/Regression, Cluster-/Faktorenanalyse', questions: [
     { le: 'mafo', q: "Welches Gütekriterium der Marktforschung ist verletzt, wenn zwei unabhängige Personen bei derselben Messung zu unterschiedlichen Ergebnissen kommen?", opts: [
@@ -778,6 +826,15 @@ const QUIZ_DATA_MV = {
         { term: 'Expansion', def: 'Zunehmendes gegenseitiges Vertrauen/Abhängigkeit' },
         { term: 'Commitment', def: 'Stabile, dauerhafte Bindung' },
       ], explain: "Die 4 Phasen laufen in der Reihenfolge Awareness → Exploration → Expansion → Commitment ab." },
+    { le: 'strategie', q: "Rechenaufgabe (CLV mit Abzinsung): Der abgezinste Wert für t=1 beträgt 18.886,79€ bei einem Zinssatz von 6%. Welche Rechnung liefert den zugrundeliegenden Gesamtgewinn/-profit für t=1 (Wert vor Abzinsung)?", opts: [
+        "Gesamtgewinn = 18.886,79 · 1,06 = 20.020,00€", "Gesamtgewinn = 18.886,79 / 1,06²", "Gesamtgewinn = 18.886,79 − 1,06", "Gesamtgewinn = 18.886,79 · 0,06"
+      ], correct: 0, calc: true, explain: "Abgezinster Wert = Gesamtgewinn / (1+i)^t. Für t=1: 18.886,79 = Gesamtgewinn / 1,06 ⟹ Gesamtgewinn = 18.886,79 · 1,06 = 20.020,00€. Bei der CLV-Tabellenberechnung IMMER zuerst prüfen, ob nach dem Gesamtgewinn (undiskontiert) oder dem abgezinsten Wert gefragt ist – das war in einer echten Klausur eine häufige Verwechslungsquelle." },
+    { le: 'strategie', q: "Ordne die Value-Propositioning-Optionen den passenden Markenbeispielen zu.", type: 'match', pairs: [
+        { term: 'More for More', def: 'Premiumangebot (z.B. BMW)' },
+        { term: 'More for the Same', def: 'Klassische Markenqualität zum Marktpreis (z.B. Nivea)' },
+        { term: 'The Same for Less', def: 'Preisangebot bei vergleichbarer Leistung (z.B. Škoda)' },
+        { term: 'Less for Much Less', def: '"Hard-Discount"-Angebot (z.B. Aldi)' },
+      ], explain: "Die Value-Propositioning-Matrix ordnet Marken entlang von Preis- und Leistungsniveau relativ zum Wettbewerb ein – zusätzlich existiert 'More for Less' als Kategorie-Killer-Position (z.B. Ikea)." },
   ] },
   produkt: { label: 'Produktpolitik', sub: 'Innovationsprozess, Conjoint-Analyse, Produktprogramm, Bündelung', questions: [
     { le: 'produkt', q: "In welcher Reihenfolge läuft der Innovationsprozess ab?", opts: [
@@ -798,6 +855,18 @@ const QUIZ_DATA_MV = {
     { le: 'produkt', q: "Produkteigenschaften, die von Konsumenten weder vor noch nach dem Kauf vollständig beurteilt werden können (z.B. Nachhaltigkeit der Herstellung), nennt man...", opts: [
         "Vertrauenseigenschaften", "Sucheigenschaften", "Erfahrungseigenschaften", "Lerneigenschaften"
       ], correct: 0, explain: "Sucheigenschaften: schon vor dem Kauf beurteilbar. Erfahrungseigenschaften: erst nach dem Kauf/Gebrauch beurteilbar. Vertrauenseigenschaften: auch nach dem Kauf kaum/nicht vollständig beurteilbar ('Lerneigenschaften' ist kein Begriff aus dieser Typologie)." },
+    { le: 'produkt', q: "Ordne das Schalenmodell eines Produkts von innen (Kern) nach außen richtig zu.", type: 'match', pairs: [
+        { term: 'Innerste Schale', def: 'Produktkern (Kerneigenschaften)' },
+        { term: '2. Schale', def: 'Zusatzeigenschaften' },
+        { term: '3. Schale', def: 'Verpackung / Gestaltung des tangiblen Umfelds' },
+        { term: 'Äußerste Schale', def: 'Marke' },
+      ], explain: "Vollständiges Schalenmodell von innen nach außen: Produktkern → Zusatzeigenschaften → Verpackung/tangibles Umfeld → Basisdienstleistungen → Zusatzdienstleistungen ('value added services') → Marke (umschließt alles)." },
+    { le: 'produkt', q: "Welche 3 Entscheidungsoptionen zur Veränderung des Produktprogramms werden unterschieden?", opts: [
+        "Veränderung/Ausweitung, Gestaltung der Verbundenheit, Reduktion", "Nur Elimination oder Beibehaltung", "Ausschließlich Preiserhöhung oder Preissenkung", "Fusion, Übernahme, Neugründung"
+      ], correct: 0, explain: "3 Optionen: Veränderung und Ausweitung (Variation/Diversifikation), Gestaltung der Verbundenheit (Differenzierung), Reduktion (Elimination)." },
+    { le: 'produkt', q: "Was ist ein zentrales Merkmal digitaler Produkte, das die Gestaltung des Produktprogramms beeinflusst?", opts: [
+        "Hohe Fixkosten bei niedrigen variablen Kosten, wodurch die Grenzkosten gegen Null tendieren", "Digitale Produkte haben grundsätzlich eine geringere Reproduzierbarkeit als physische Produkte", "Digitale Produkte können nicht verändert oder angepasst werden", "Es gibt keinerlei Unterschiede zu physischen Produkten im Produktmanagement"
+      ], correct: 0, explain: "Digitale Produkte zeichnen sich aus durch: einfache Reproduzierbarkeit, hohe Fixkosten bei niedrigen variablen Kosten (Grenzkosten gegen Null), einfache Veränderbarkeit, fehlende Abnutzbarkeit, eingeschränkte Wahrnehmung." },
   ] },
   marke: { label: 'Markenpolitik', sub: 'Markenfunktionen, Positionierung, Markenarchitektur, Markentransfer', questions: [
     { le: 'marke', q: "Welche Facette der Markenpositionierung beantwortet die Frage 'Was biete ich an?'", opts: [
@@ -864,6 +933,30 @@ const QUIZ_DATA_MV = {
     { le: 'komm', q: "Rechenaufgabe (Mediaplanung, TKP): Eine Zeitschrift hat einen Anzeigepreis von 3.200€ pro Ausgabe und erreicht 80.000 Leser pro Ausgabe. Welche Rechnung liefert den TKP?", opts: [
         "TKP = (3.200 / 80.000) · 1000 = 40€", "TKP = 3.200 · 80.000 / 1000", "TKP = 80.000 / 3.200", "TKP = (3.200 + 80.000) / 1000"
       ], correct: 0, calc: true, explain: "TKP = (Anzeigepreis / Anzahl der Leser) · 1000 = (3.200/80.000) · 1000 = 40€. Je niedriger der TKP, desto kosteneffizienter erreicht das Medium 1.000 Kontakte." },
+    { le: 'komm', q: "Rechenaufgabe (TKP mit Kontaktqualität): Ein Podcast kostet 6.500€ pro Folge, hat 43.700 Downloads pro Folge und eine Kontaktqualität von 0,8. Welche Rechnung liefert den TKP UNTER BERÜCKSICHTIGUNG der Kontaktqualität?", opts: [
+        "TKP = 6.500 / (43.700 · 0,8) · 1000 = 185,93€", "TKP = 6.500 / 43.700 · 1000 = 148,74€", "TKP = 6.500 · 43.700 · 0,8 / 1000", "TKP = 6.500 / 0,8"
+      ], correct: 0, calc: true, explain: "Bei Berücksichtigung der Kontaktqualität wird die Reichweite ZUERST mit der Kontaktqualität multipliziert, dann erst in die TKP-Formel eingesetzt: TKP = Preis / (Reichweite · Kontaktqualität) · 1000 = 6.500/(43.700·0,8)·1000 ≈ 185,93€. Der häufigste Fehler ist, die Kontaktqualität zu vergessen (das ergäbe nur 148,74€) – TKP-Mediaplanungsaufgaben waren in einer echten Klausur mit nur 2 von 17 Punkten die mit Abstand schwächste Aufgabe!" },
+    { le: 'komm', q: "Rechenaufgabe (Mediaplanung, Budgetallokation): Für einen Podcast mit TKP=185,93€ steht ein Budget von 25.000€ zur Verfügung. Wie viele Tausender-Kontakte (gerundet) können damit erreicht werden?", opts: [
+        "25.000 / 185,93 ≈ 134,5 Tausender-Kontakte", "25.000 · 185,93", "185,93 / 25.000", "25.000 − 185,93"
+      ], correct: 0, calc: true, explain: "Anzahl Tausender-Kontakte = Budget / TKP = 25.000/185,93 ≈ 134,5 (also ca. 134.500 Kontakte). Immer die Einheiten prüfen: TKP bezieht sich auf 1.000 Kontakte, daher liefert Budget/TKP direkt die Anzahl an TAUSENDER-Einheiten." },
+    { le: 'komm', q: "Beschreibe das kommunikationspolitische Grundmodell 'Wer sagt Was Wie zu Wem' richtig.", opts: [
+        "Wer = Kommunikationsobjekt, Was = Botschaft, Wie = Träger/Mittel, Zu wem = Zielgruppe", "Wer = Zielgruppe, Was = Kommunikationsobjekt, Wie = Botschaft, Zu wem = Träger", "Wer = Budget, Was = Zielgruppe, Wie = Kontrolle, Zu wem = Botschaft", "Es gibt kein solches Grundmodell in der Kommunikationspolitik"
+      ], correct: 0, explain: "Wer sagt (Kommunikationsobjekt) Was (Kommunikationsbotschaft) Wie (Kommunikationsträger + -mittel) zu Wem (Zielgruppe)." },
+    { le: 'komm', q: "Welche Aussagen zu heuristischen vs. analytischen Budgetierungsverfahren treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Heuristische Verfahren orientieren sich z.B. am Umsatz der Vorperiode oder am Wettbewerb", "Analytische Verfahren nutzen z.B. Werbewirkungsfunktionen zur Budgetbestimmung", "Analytische Verfahren sind grundsätzlich mit weniger Aufwand verbunden als heuristische", "Es gibt in der Praxis nur heuristische Verfahren"
+      ], correct: [0,1], explain: "Heuristische Verfahren (Budget der Vorperiode, % vom Umsatz, verfügbare Mittel, Wettbewerbsorientierung) sind mit GERINGEREM Aufwand aber weniger Genauigkeit verbunden. Analytische Verfahren (z.B. Werbewirkungsfunktionen) sind aufwändiger, aber präziser." },
+    { le: 'komm', q: "Welche Aussagen zu Fernseh- und Außenwerbung treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Fernsehwerbung erlaubt eine gute Vermittlung von Emotionen durch Kombination von Sprache/Bild/Ton", "Außenwerbung eignet sich gut für kurze, einprägsame Botschaften", "Außenwerbung erreicht keine mobilen Zielgruppen", "Fernsehwerbung hat generell eine sehr niedrige Reichweite"
+      ], correct: [0,1], explain: "Fernsehwerbung: Vorteile u.a. Sprache/Bild/Ton-Kombination, hohe Reichweite, gute Emotionsvermittlung. Außenwerbung: Vorteile u.a. hohe Kontaktfrequenz, erreicht auch mobile Zielgruppen, geeignet für kurze einprägsame Botschaften (Bilder)." },
+    { le: 'komm', q: "Ordne die Social-Media-Content-Typen ihrer korrekten Definition zu.", type: 'match', pairs: [
+        { term: 'Non-brand-related UGC', def: 'Nutzergenerierter Inhalt ohne Bezug zu einer Marke' },
+        { term: 'Sponsored Brand-related UGC', def: 'Nutzergenerierter, markenbezogener Inhalt, der vom Unternehmen bezahlt/beauftragt wurde' },
+        { term: 'BGC ohne Unternehmensbezug', def: 'Vom Unternehmen erstellter Inhalt ohne direkten Bezug zu den eigenen Produkten' },
+        { term: 'BGC mit Unternehmensbezug', def: 'Vom Unternehmen erstellter, direkt produktbezogener Inhalt' },
+      ], explain: "Social Media Content gliedert sich in User Generated Content (UGC: non-brand-related, oder brand-related mit Unterscheidung sponsored/non-sponsored) und Brand Generated Content (BGC: mit oder ohne direkten Unternehmensbezug)." },
+    { le: 'komm', q: "Welche 3 Grundsätze gelten für erfolgreiches Sponsoring?", opts: [
+        "Imageaffinität, Kontinuität, Zielgruppenintegration", "Ausschließlich maximales Budget", "Nur kurzfristige, einmalige Aktionen", "Vollständige Vermeidung jeglichen Risikos"
+      ], correct: 0, explain: "Imageaffinität (Passung zum Unternehmensimage), Kontinuität (langfristiger Betrieb für Glaubwürdigkeit), Zielgruppenintegration (aktive Einbindung der Zielgruppe) – dabei besteht immer das Risiko eines negativen Imagetransfers." },
   ] },
   vertrieb: { label: 'Vertriebspolitik', sub: 'Vertriebsorgane, direkter/indirekter Vertrieb, Key Accounts, persönlicher Verkauf', questions: [
     { le: 'vertrieb', q: "Was unterscheidet einen Handelsvertreter von einem Kommissionär?", opts: [
@@ -878,6 +971,18 @@ const QUIZ_DATA_MV = {
     { le: 'vertrieb', q: "Was ist der Kern von 'Benefit Selling' im Gegensatz zu 'Character Selling'?", opts: [
         "Betonung des konkreten Kundennutzens statt der reinen Produkteigenschaften", "Aufzählung möglichst vieler technischer Spezifikationen", "Vollständiger Verzicht auf jede Produktbeschreibung", "Ausschließliche Fokussierung auf den Preis"
       ], correct: 0, explain: "Character Selling nennt Eigenschaften ('10 Seiten/Min'), Benefit Selling übersetzt diese in konkreten Kundennutzen ('Sie sparen viel Zeit'). Benefit Selling gilt als die effektivere Präsentationstechnik." },
+    { le: 'vertrieb', q: "Was unterscheidet einen Vertragshändler von einem Franchise-Systempartner?", opts: [
+        "Der Franchise-Systempartner übernimmt zusätzlich das Recht/die Pflicht zur Nutzung des kompletten Vertriebskonzepts des Anbieters, der Vertragshändler ist nur vertraglich in die Vertriebsstrategie eingebunden", "Beide Begriffe sind exakte Synonyme", "Der Vertragshändler ist rechtlich unselbstständig, der Franchise-Nehmer rechtlich selbstständig", "Es gibt keinen relevanten Unterschied bei der Markennutzung"
+      ], correct: 0, explain: "Vertragshändler: rechtlich selbstständig, vertraglich an die Vertriebsstrategie des Anbieters gebunden. Franchise-Systempartner: zusätzlich Recht UND Pflicht zur Beteiligung am Markenauftritt und Nutzung des kompletten Vertriebskonzepts des Anbieters." },
+    { le: 'vertrieb', q: "Ein Kunde informiert sich ONLINE über ein Produkt, kauft es dann aber im stationären Geschäft. Wie nennt man dieses Verhalten?", opts: [
+        "Webrooming", "Showrooming", "Channel Hopping", "Research Shopping"
+      ], correct: 0, explain: "Webrooming: online informieren, offline kaufen. Showrooming: offline informieren (im Laden), online kaufen – genau umgekehrt. Beide sind Ausprägungen von Multichannel-Kaufverhalten." },
+    { le: 'vertrieb', q: "Ordne die 4 Phasen des persönlichen Verkaufsgesprächs ihrer korrekten Beschreibung zu.", type: 'match', pairs: [
+        { term: 'Vorbereitungsphase', def: 'Beschaffung von Informationen zu Teilnehmern, Verhandlungshistorie und Kundenpotenzial' },
+        { term: 'Gesprächseröffnungsphase', def: 'Vermittlung eines positiven ersten Eindrucks, Herstellung der Gesprächsatmosphäre' },
+        { term: 'Kernphase', def: 'Nutzung von Verhandlungstaktiken und Verkaufstechniken (Präsentation, Closing)' },
+        { term: 'Gesprächsabschlussphase', def: 'Zusammenfassung der besprochenen Punkte und der nächsten Schritte' },
+      ], explain: "Reihenfolge: Vorbereitungsphase → Gesprächseröffnungsphase → Kernphase → Gesprächsabschlussphase." },
   ] },
 };
 const AWI_CALC_GENERATORS_MV = {};
@@ -918,6 +1023,12 @@ const AWI_FORMULA_QUIZ_MV = {
     { le: 'mafo', q: "Formel 1:1 (Methode der kleinsten Quadrate, OLS-Zielgröße): Was wird bei der Parameterschätzung minimiert?", opts: [
         "Σ(yi − ŷi)² — die Summe der quadrierten Differenzen zwischen beobachtetem und geschätztem Wert", "Σ(yi − ȳ) — die Summe der Differenzen zum Mittelwert", "Σ(xi − x̄)² — die Summe der quadrierten Differenzen der unabhängigen Variable", "Σŷi — die Summe aller geschätzten Werte"
       ], correct: 0, explain: "OLS minimiert Σ(yi−ŷi)², die Summe der quadrierten Differenzen zwischen dem beobachteten Wert yi und dem durch die Regressionsgerade geschätzten Wert ŷi." },
+    { le: 'mafo', q: "Formel 1:1 (Clusteranalyse, quadrierte euklidische Distanz): Wie lautet die Formel exakt?", opts: [
+        "D(A,B) = Σk (xAk − xBk)²", "D(A,B) = Σk |xAk − xBk|", "D(A,B) = Σk (xAk + xBk)²", "D(A,B) = √Σk xAk·xBk"
+      ], correct: 0, explain: "Quadrierte euklidische Distanz: D(A,B) = Σ(xAi−xBi)². Alternative: City-Block-Distanz D(A,B) = Σ|xAi−xBi| (Summe der absoluten Differenzen, ohne Quadrieren)." },
+    { le: 'mafo', q: "Was ist der Modus einer Verteilung?", opts: [
+        "Der Wert, der am häufigsten vorkommt", "Der mittlere Wert der geordneten Datenreihe", "Der arithmetische Durchschnitt aller Werte", "Die Differenz zwischen größtem und kleinstem Wert"
+      ], correct: 0, explain: "Modus = häufigster Wert (nicht eindeutig sein muss). Median = mittlerer Wert der geordneten Reihe. Mittelwert = arithmetischer Durchschnitt." },
   ] },
   strategie: { label: 'Formeln · Strategie', sub: 'Customer Lifetime Value, Erfahrungskurvenmodell', questions: [
     { le: 'strategie', q: "Formel 1:1 (Customer Lifetime Value, vollständig): Wie lautet die Formel exakt?", opts: [
@@ -983,6 +1094,18 @@ const AWI_FORMULA_QUIZ_MV = {
     { le: 'komm', q: "Rechenaufgabe (Mediaplanung, TKP): Zeitschrift 'Lust auf Kochen' hat einen Anzeigepreis von 6.500€ und 25.000 Leser pro Ausgabe. Welche Rechnung liefert den TKP?", opts: [
         "TKP = (6.500 / 25.000) · 1000 = 260€", "TKP = 6.500 · 25.000 / 1000", "TKP = 25.000 / 6.500", "TKP = 6.500 − 25.000"
       ], correct: 0, calc: true, explain: "TKP = (6.500/25.000) · 1000 = 260€ – ein deutlich höherer (also teurerer) TKP als bei einer Zeitschrift mit größerer Reichweite zu ähnlichem Preis." },
+    { le: 'komm', q: "Formel 1:1 (TKP UNTER Berücksichtigung der Kontaktqualität): Wie lautet die Formel exakt?", opts: [
+        "TKP = Anzeigepreis / (Reichweite · Kontaktqualität) · 1000", "TKP = Anzeigepreis / Reichweite · Kontaktqualität · 1000", "TKP = Anzeigepreis · Kontaktqualität / Reichweite", "TKP = (Anzeigepreis / Reichweite) − Kontaktqualität"
+      ], correct: 0, explain: "Bei gegebener Kontaktqualität wird die Reichweite ZUERST mit der Kontaktqualität multipliziert (effektive Reichweite), dann in den Nenner der normalen TKP-Formel eingesetzt: TKP = Preis / (Reichweite·Kontaktqualität) · 1000." },
+    { le: 'komm', q: "Formel 1:1 (degressive Werbewirkungsfunktion mit Sättigungsmenge): Wie lautet die Formel exakt?", opts: [
+        "x(W) = x0 + e^(a−bW) (a,b > 0)", "x(W) = x0 + a·W", "x(W) = xs / (1+e^(a−bW))", "x(W) = a·W^-b"
+      ], correct: 0, explain: "Degressive Werbewirkungsfunktion mit Sättigungsmenge x0: x(W) = x0 + e^(a−bW), a,b>0. a = Skalierungsparameter, b = Responseparameter." },
+    { le: 'komm', q: "Formel 1:1 (S-förmige Werbewirkungsfunktion mit Sättigungsgrenze): Wie lautet die Formel exakt?", opts: [
+        "x(W) = xs / (1 + e^(a−bW)) (a,b > 0)", "x(W) = xs · e^(a−bW)", "x(W) = xs − a·W^b", "x(W) = a − b·W"
+      ], correct: 0, explain: "S-förmiger Verlauf mit Sättigungsgrenze xs: x(W) = xs / (1+e^(a−bW)), a,b>0. Hat einen Wendepunkt, ab dem der Grenznutzen des Werbebudgets abnimmt." },
+    { le: 'komm', q: "Formel 1:1 (Werbeelastizität des Absatzes): Wie lautet die Formel exakt?", opts: [
+        "ε = (dx(W)/dW) · (W/x)", "ε = (dW/dx) · (x/W)", "ε = dx(W)/dW", "ε = x/W"
+      ], correct: 0, explain: "Analog zur Preiselastizität: ε = (dx(W)/dW)·(W/x), das Verhältnis der relativen Absatzänderung zur relativen Änderung des Kommunikationsbudgets W." },
   ] },
 };
 
