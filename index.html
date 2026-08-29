@@ -140,6 +140,19 @@
   .kk-controls select { background: var(--pill-bg); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: 8px; padding: 0.4rem 0.6rem; font-size: 13px; }
   .kk-controls label { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); cursor: pointer; }
   .kk-controls input[type=checkbox] { accent-color: var(--accent); cursor: pointer; }
+  .luecken-card { margin-bottom: 1.1rem; }
+  .luecken-text { font-size: 13.5px; line-height: 1.85; color: var(--text-secondary); margin: 0.6rem 0 0.9rem; }
+  .luecken-text p { margin: 0 0 0.8rem; }
+  .luecken-input { display: inline-block; min-width: 130px; max-width: 260px; background: var(--pill-bg); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: 6px; padding: 2px 8px; font-size: 13px; margin: 0 2px; }
+  .luecken-input:focus { outline: none; border-color: var(--accent); }
+  .luecken-input.luecken-correct { border-color: #34d399; background: rgba(52,211,153,0.12); }
+  .luecken-input.luecken-wrong { border-color: #f87171; background: rgba(248,113,113,0.12); }
+  .luecken-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .luecken-score { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  .luecken-solution { display: none; margin-top: 0.7rem; font-size: 12.5px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 8px; padding: 0.7rem 0.9rem; line-height: 1.6; }
+  .luecken-solution.show { display: block; }
+  .luecken-explain { display: block; margin-top: 6px; color: var(--text-muted); }
+
   .kk-shuffle-btn { background: var(--pill-bg); border: 1px solid var(--card-border); color: var(--text-primary); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 12.5px; font-weight: 600; cursor: pointer; }
   .kk-progress-text { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
   .kk-progress-inline { font-size: 12.5px; color: var(--text-muted); }
@@ -190,6 +203,7 @@
     <button class="tab-btn" id="tab-tagesplan">Tagesplan</button>
     <button class="tab-btn" id="tab-quiz"><span id="tabQuizLabel">Quiz</span></button>
     <button class="tab-btn" id="tab-formeln"><span id="tabFormelnLabel">Formelkarten</span></button>
+    <button class="tab-btn" id="tab-luecken"><span id="tabLueckenLabel">Lückentext</span></button>
   </div>
 
   <div class="view active" id="view-module">
@@ -214,6 +228,11 @@
     <div class="quiz-tab-row" id="ebwlTabs"></div>
     <div class="kk-controls" id="ebwlControls"></div>
     <div id="ebwlPanel"></div>
+  </div>
+
+  <div class="view" id="view-luecken">
+    <div class="info-box" id="infoLuecken"></div>
+    <div id="lueckenWrap"></div>
   </div>
 
 </div>
@@ -2207,8 +2226,88 @@ const AWI_FORMULA_QUIZ_PUO = {
   ] },
 };
 
-let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS;
+let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT;
 
+const LUECKENTEXT_STRAT = [
+  { id: 'lt1', title: 'Altklausur-Fallstudie: Apexstream Technologies (Hochgeschwindigkeitszug-Ausschreibung Ägypten)', text: `Der Vorstand von Apexstream Technologies, einem international führenden Konzern für Elektrotechnik und Energie, bittet Sie um die Ausarbeitung eines Strategiekonzepts zwecks Bewerbung auf die staatliche Ausschreibung zum Bau eines Hochgeschwindigkeits-Zugnetzes in Ägypten.
+
+Da Apexstream in den verschiedensten Geschäftsfeldern agiert, planen Sie zunächst in einem Meeting mit dem Strategiemanagement, welche Ressourcen auf die notwendigen Funktionsbereiche verteilt werden müssen. Diese Überarbeitung der {{1}} ist notwendig, um genügend Kapazitäten für die Umsetzung des milliardenschweren Auftrages zu gewährleisten. Im Strategieprozess müssen zwei Risikofaktoren besonders berücksichtigt werden. Zum einen müssen Sie sich der ungewissen politischen Lage im Land bewusst sein und so einen potenziellen {{2}} vermeiden. Auf der anderen Seite müssen Sie einem {{3}} vorbeugen, indem die formulierten Strategien auch zügig praktisch umgesetzt, erprobt und ggf. angepasst werden.
+
+Anschließend setzen Sie sich aus einer marktbasierten Perspektive mit den {{4}} nach Porter (1980) auseinander. Als deutsches Unternehmen befindet sich Apexstream mit internationalen Unternehmen aus China, Frankreich, der Schweiz und Südkorea im Pool der Kandidaten. Die {{5}} ist demnach groß. Die europäischen Unternehmen konkurrieren zudem um dieselben Rohstoffquellen für die Produktion ihrer Technologien. Somit ist die große {{6}} durch eine hohe Marktkonzentration innerhalb Europas entscheidend für die Branche. Apexstream muss daher prüfen, ob es die Möglichkeit einer {{7}} gibt, um Abhängigkeiten innerhalb der Lieferkette zu minimieren.
+
+Mit einem Blick auf die internen Ressourcen stellen Sie fest, dass alle Unternehmen auf dem Markt ähnliche Technologien besitzen. Apexstreams Vorteil liegt insbesondere in einer leistungsstarken Mitarbeiterbasis – somit sind Apexstreams {{8}} eine grundlegende Voraussetzung für die Umsetzung des Projekts. Hierfür soll Apexstream von den drei Wegen zur Fähigkeitsentwicklung auf externe Akquise verzichten und stattdessen {{9}} sowie interne Entwicklung verfolgen.
+
+Die konkurrierenden Wettbewerber setzen auf ein simples, fertigungsfreundliches Produktionsdesign sowie Skaleneffekte in der Fertigung, um möglichst preisgünstige Züge anbieten zu können. Dies entspricht der generischen Strategie der {{10}}. Apexstream hingegen plant den Bau hochmoderner, patentierter Züge mit deutlich mehr Komfort, Sicherheit und Energieeffizienz – Apexstream verfolgt also die generische Strategie der {{11}} basierend auf höherer Qualität und technologischen Innovationen.
+
+Mit über 1700 globalen Partnerunternehmen kann man Apexstream als eine in Netzwerken eingebettete Organisation bezeichnen. Der Fokus auf eine {{12}} ist daher wichtig, sodass Sie Apexstream stets aus einer {{13}} betrachten sollten. Unabhängig von der Ausschreibung strebt Apexstream zudem eine {{14}} mit einem Startup an, welches an Wasserstoffantrieben forscht – aufgrund des Fokus auf gemeinsame Forschung und Entwicklung lässt sich diese als {{15}} klassifizieren.
+
+Über die rechtliche Perspektive auf das Thema Ethik hinaus, möchte Apexstream in Zusammenarbeit mit der ägyptischen Regierung die Arbeitsbedingungen von angeworbenen Gastarbeitern vor Ort stärken. Dies entspricht der freiwilligen Selbstverpflichtung des Unternehmens, neben der ökonomischen und ökologischen Verantwortung auch die {{16}} gemäß des Konzepts der {{17}} zu tragen.`,
+    blanks: [
+      ['funktionale strategie','funktionalen strategie'],
+      ['vorhersage-trugschluss','trugschluss der vorhersage'],
+      ['formalisierungs-trugschluss','trugschluss der formalisierung','entkopplungs-trugschluss','trugschluss der entkopplung'],
+      ['fünf wettbewerbskräften','5 wettbewerbskräften','wettbewerbskräfte','fünf wettbewerbskräfte'],
+      ['rivalität der bestehenden wettbewerber','rivalität bestehender wettbewerber'],
+      ['verhandlungsmacht der lieferanten'],
+      ['rückwärtsintegration'],
+      ['humanen ressourcen','human-ressourcen','personellen ressourcen','personelle ressourcen'],
+      ['internes venturing'],
+      ['kostenführerschaft'],
+      ['differenzierung'],
+      ['kooperative strategie'],
+      ['netzwerkzentrierten perspektive','netzwerkzentrierte perspektive'],
+      ['vertikale allianz'],
+      ['explorativ','explorative allianz'],
+      ['soziale verantwortung'],
+      ['triple bottom line'],
+    ], explain: 'Basiert auf einer echten Altklausur (SS24, Teil 2) und deckt alle 6 Module ab: funktionale Strategie & Trugschlüsse (M1), Porters 5 Kräfte (M2), Ressourcen/Fähigkeiten (M3), generische Strategien (M4), Allianzen/Ökosysteme (M5), CSR/Triple Bottom Line (M6).' },
+  { id: 'lt2', title: 'Exploitation vs. Exploration (IBM-Fallstudie)', text: `Das Grundproblem, mit dem jede Organisation konfrontiert ist, besteht darin, genügend {{1}} zu betreiben, um ihre gegenwärtige Lebensfähigkeit zu sichern, und gleichzeitig genügend Energie für {{2}} aufzuwenden, um ihre zukünftige Lebensfähigkeit zu sichern. Ersteres verschafft Effizienz und gedeiht in stabilen, kontrollierten Umgebungen, kann aber strategische {{3}} mit sich bringen. Letzteres weckt Neuartigkeit und gedeiht in lockeren, flexiblen Umgebungen, kann aber {{4}} mit sich bringen. Am Beispiel der IBM-Fallstudie zeigt sich: Organisationen können {{5}} durch ganz konkrete Mechanismen aufbauen und weiter stärken, wobei Strategiekonzeption und Strategieumsetzung Hand in Hand gehen müssen.`,
+    blanks: [
+      ['exploitation'],
+      ['exploration'],
+      ['trägheit','strategische trägheit'],
+      ['effizienzverluste','effizienzverlusten'],
+      ['dynamische fähigkeiten'],
+    ], explain: 'Klassiker der Klausurfallen: Organisationen müssen Exploitation UND Exploration ausbalancieren, nicht sich auf eines konzentrieren.' },
+  { id: 'lt3', title: 'Porters 5 Kräfte – Determinanten', text: `Die Rivalität bestehender Wettbewerber ist besonders hoch, wenn die {{1}} hoch sind, der {{2}} hoch ist und ein hohes Niveau überschüssiger Kapazität besteht. Die Verhandlungsmacht der Lieferanten ist hoch, wenn Lieferanten stark {{3}} sind und die {{4}} für die fokale Organisation hoch sind. Die Bedrohung durch neue Marktteilnehmer ist dagegen gering, wenn ein hoher Kapital- und Wissensbedarf besteht und etablierte Anbieter über {{5}} verfügen. Die Bedrohung durch Substitute ist hoch, wenn Nutzerloyalität und {{6}} gering sind.`,
+    blanks: [
+      ['austrittsbarrieren'],
+      ['fixkostenanteil'],
+      ['konzentriert','marktkonzentriert'],
+      ['wechselkosten'],
+      ['skalenvorteile','reputationsvorteile','skalen- und lernvorteile','skalen-/lernvorteile'],
+      ['wechselkosten'],
+    ], explain: 'Die genauen "hoch wenn / gering wenn"-Bedingungen für alle 5(+1) Kräfte werden in der Klausur oft als Zuordnungsaufgabe abgefragt.' },
+  { id: 'lt4', title: 'CSR-Perspektiven & Carrolls Verantwortungspyramide', text: `Ein Unternehmen, das CSR primär als Mittel zur Erreichung langfristiger wirtschaftlicher Interessen versteht, nimmt die {{1}} ein. Ein Unternehmen, das dagegen alle Geschäftsprozesse ganzheitlich an der gesellschaftlichen Verantwortung der Organisation ausrichtet, nimmt die {{2}} ein. Unabhängig davon unterscheidet Carrolls CSR-Pyramide vier Verantwortungsebenen: von unten (gefordert) nach oben (erwünscht) die {{3}}, die {{4}}, die {{5}} und schließlich die {{6}}.`,
+    blanks: [
+      ['business-case-perspektive','business case perspektive'],
+      ['management-perspektive','management perspektive'],
+      ['ökonomische verantwortung'],
+      ['rechtliche verantwortung'],
+      ['moralische verantwortung'],
+      ['philanthropische verantwortung'],
+    ], explain: 'Achtung: die 4 CSR-Perspektiven (Management/Compliance/Philanthropisch/Business Case) sind ein ANDERES Framework als Carrolls 4 Verantwortungsebenen – beide werden gerne verwechselt.' },
+  { id: 'lt5', title: 'Ökosysteme & Allianzen', text: `Ein {{1}} ergibt sich aus der gemeinsamen Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden. Nach Dhanaraj und Parkhe (2006) muss ein Orchestrator drei Prozesse steuern: die Steuerung der {{2}}, die Steuerung der {{3}} und die Steuerung der {{4}}. Scheitert eine Allianz, zeigt sich dies u.a. darin, dass die {{5}} nicht erreicht wurden oder eine {{6}} zwischen den Partnern entsteht.`,
+    blanks: [
+      ['ökosystem'],
+      ['wissensmobilität'],
+      ['wert(ab)schöpfung','wertabschöpfung','wertschöpfung'],
+      ['ökosystemstabilität'],
+      ['ziele'],
+      ['ungleiche nutzenverteilung','nutzenverteilung'],
+    ], explain: 'Definition von Ökosystem, die 3 Ökosystem-Prozesse (Dhanaraj & Parkhe 2006) und die Facetten des Allianz-Scheiterns – drei separate, oft verwechselte Konzepte aus Modul 5.' },
+  { id: 'lt6', title: 'McKinsey- & BCG-Matrix', text: `Die McKinsey-Matrix verknüpft die {{1}} (marktbasierter Ansatz) mit dem {{2}} (ressourcenbasierter Ansatz) zu einem 9-Felder-Raster. Liegen beide Dimensionen hoch, lautet die typische Normstrategie "{{3}}". Die BCG-Matrix nutzt dagegen die Dimensionen Marktwachstum und relativer Marktanteil: ein Geschäftsfeld mit niedrigem Wachstum und hohem Marktanteil wird als {{4}} bezeichnet und erzielt typischerweise einen stark positiven {{5}}.`,
+    blanks: [
+      ['branchenattraktivität','attraktivität der branche'],
+      ['wettbewerbsvorteil'],
+      ['investition und wachstum'],
+      ['melkkuh','melkkühe'],
+      ['netto-cashflow','cashflow','netto cashflow'],
+    ], explain: 'McKinsey-Matrix (Branchenattraktivität × Wettbewerbsvorteil, 9 Felder mit Normstrategien) vs. BCG-Matrix (Marktwachstum × relativer Marktanteil, 4 Felder mit Cashflow-Eigenschaften) – zwei unterschiedliche Portfolio-Werkzeuge, die leicht verwechselt werden.' },
+];
+const LUECKENTEXT_STAT = [];
+const LUECKENTEXT_MV = [];
+const LUECKENTEXT_PUO = [];
 const COURSES = {
   stat: {
     label: "STATISTIK · RWTH AACHEN · WIEDERHOLUNGSKLAUSUR",
@@ -2223,6 +2322,8 @@ const COURSES = {
     infoTagesplan: "<b>Fokus Teil D:</b> die Schließende Statistik (MLE, Konfidenzintervalle, Hypothesentests) ist dein größter Schwachpunkt und bekommt im Plan die meiste Zeit – Teil A ist bereits stark und wird nur kurz aufgefrischt.",
     infoQuiz: "Achte besonders auf den Divisor bei Varianzformeln: Teil A (Beschreibende Statistik) nutzt <b>n</b>, Teil D (Schließende Statistik) nutzt <b>n−1</b> – genau diese Verwechslung war vermutlich ein Fehler in deiner letzten Klausur.",
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
+    tabLuecken: "Lückentext",
+    infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt (dort ein zentraler Klausurbestandteil). Für Statistik übst du Rechenwege am besten direkt in den Formelkarten.",
     lsProgress: "stat_progress",
     lsStats: "stat_quizStats",
     MODULES: MODULES_STAT,
@@ -2230,6 +2331,7 @@ const COURSES = {
     QUIZ_DATA: QUIZ_DATA_STAT,
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_STAT,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_STAT,
+    LUECKENTEXT: LUECKENTEXT_STAT,
   },
   mv: {
     label: "MARKETING UND VERTRIEB · RWTH AACHEN · WIEDERHOLUNGSKLAUSUR",
@@ -2244,6 +2346,8 @@ const COURSES = {
     infoTagesplan: "<b>Preispolitik hat die meisten Rechenaufgaben</b> (PAF-Regression, Preiselastizität, Cournot-Preis) – zusammen mit Erfahrungskurve und Conjoint-Analyse sind das die klausurrelevantesten Rechentypen laut Musterklausur.",
     infoQuiz: "Dieser Kurs verwendet für die empirische Varianz durchgehend den Divisor <b>n−1</b> (anders als z.B. in Statistik Teil A, wo n verwendet wird) – nicht verwechseln! Achte außerdem auf die Unterscheidung von deskriptivem/explorativem/explikativem Untersuchungsdesign und von Reliabilität/Validität – beides kam in deinen letzten Klausuren wiederholt als Lückentext-Frage vor.",
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
+    tabLuecken: "Lückentext",
+    infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt. Für M&V üben die Diagramm-Zuordnungsfragen im Quiz-Tab den gleichen Skill (Begriffe präzise zuordnen).",
     lsProgress: "mv_progress",
     lsStats: "mv_quizStats",
     MODULES: MODULES_MV,
@@ -2251,6 +2355,7 @@ const COURSES = {
     QUIZ_DATA: QUIZ_DATA_MV,
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_MV,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_MV,
+    LUECKENTEXT: LUECKENTEXT_MV,
   },
   strat: {
     label: "STRATEGISCHES MANAGEMENT · RWTH AACHEN · KLAUSUR",
@@ -2265,6 +2370,8 @@ const COURSES = {
     infoTagesplan: "<b>Klausurformat:</b> 60 Minuten, 60 Punkte, Bestehensgrenze 60%. 3 Teile: (1) Lückentext (präzises Fachvokabular, 0,5 Pkt/Lücke), (2) SC/MC/Klassifikationsaufgaben (MC = alles-oder-nichts, keine Teilpunkte), (3) Fallstudie (alle nötigen Infos stehen im Text – es geht um die richtige Anwendung der Lektions-Frameworks). Kein Taschenrechner, kein eigenes Papier.",
     infoQuiz: "Alle Fallstudien (Honda, Einzelhandel, IBM, Sadhu) sind Anwendungsbeispiele der jeweiligen Lektions-Frameworks – in der Klausur zählt die korrekte <b>Anwendung des Frameworks</b> auf den gegebenen Fall, nicht das Auswendiglernen der Fälle selbst.",
     infoFormeln: "<b>Statt Formeln: Rahmenwerke 1:1.</b> Strategisches Management ist ein qualitativer Kurs ohne Rechenformeln – hier trainierst du das exakte, wörtliche Erinnern zentraler Modelle (z.B. Porters 5 Kräfte, VRIN/VRIO, BCG-Felder), die im Lückentext-Teil der Klausur präzise Begriffe verlangen.",
+    tabLuecken: "Lückentext",
+    infoLuecken: "Genau wie in der echten Klausur: Teil 1 ist ein Fließtext mit Lücken, in die du das exakte Fachvokabular eintippst (0,5 Punkte pro Lücke, keine Multiple-Choice-Hilfe). Tipp/Groß-Kleinschreibung werden automatisch toleriert, aber der Begriff muss stimmen.",
     lsProgress: "strat_progress",
     lsStats: "strat_quizStats",
     MODULES: MODULES_STRAT,
@@ -2272,6 +2379,7 @@ const COURSES = {
     QUIZ_DATA: QUIZ_DATA_STRAT,
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_STRAT,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_STRAT,
+    LUECKENTEXT: LUECKENTEXT_STRAT,
   },
   puo: {
     label: "PERSONAL UND ORGANISATION · RWTH AACHEN · KLAUSUR",
@@ -2286,6 +2394,8 @@ const COURSES = {
     infoTagesplan: "<b>Achtung Klausurformat:</b> Laut den bisherigen Klausur-Screenshots (PT1/PT2, je 60 Punkte) besteht die Klausur aus <b>offenen Aufgaben</b> (\"Beschreiben Sie...\", \"Nennen Sie...\", Rechenaufgaben ohne Auswahlantworten) – kein Multiple Choice! Nutze das Quiz zum Einprägen der Inhalte, aber übe zusätzlich freies Formulieren und die Rechenaufgaben (Informationswert, Personalbedarf, Humankapital, Zuordnung/Markov) auf Papier.",
     infoQuiz: "12 Kapitel in 2 Teilen: <b>Teil A \"Organisation\"</b> (Kap. 1-5: Grundlagen, Neue Institutionenökonomik, Organisationsformen, Interne Strukturen, Informationsbewertung) und <b>Teil B \"Personal\"</b> (Kap. 6-12: Rekrutierung bis Personalfreisetzung).",
     infoFormeln: "<b>Echte Rechenformeln!</b> Anders als in manchen anderen Modulen hat P&amp;O reale Formeln (Informationswert/Bayes, Personalbedarf, Humankapital-Barwert, Markov-Ketten, Zuordnungsproblem, Akkordlohn) – diese kommen in der Klausur als offene Rechenaufgaben dran, hier zum Einprägen als Auswahlfrage.",
+    tabLuecken: "Lückentext",
+    infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt. P&O-Klausuren bestehen laut deinen Screenshots ohnehin aus offenen Aufgaben statt Lückentext.",
     lsProgress: "puo_progress",
     lsStats: "puo_quizStats",
     MODULES: MODULES_PUO,
@@ -2293,6 +2403,7 @@ const COURSES = {
     QUIZ_DATA: QUIZ_DATA_PUO,
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_PUO,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_PUO,
+    LUECKENTEXT: LUECKENTEXT_PUO,
   }
 };
 let EXAM_DATE;
@@ -3079,6 +3190,76 @@ function renderEbwlCards() {
   renderEbwlCardsPanel();
 }
 
+
+/* ============================================================
+   LUECKENTEXT TAB (Freitext-Lückentext-Übungen)
+   ============================================================ */
+function escapeHtmlLT(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function renderLuecken() {
+  const wrap = document.getElementById('lueckenWrap');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  if (!LUECKENTEXT || LUECKENTEXT.length === 0) {
+    wrap.innerHTML = '<div class="info-box">Für dieses Modul sind noch keine Lückentext-Übungen hinterlegt.</div>';
+    return;
+  }
+  LUECKENTEXT.forEach((item, itemIdx) => {
+    const card = document.createElement('div');
+    card.className = 'card luecken-card';
+    const parts = item.text.split(/\{\{(\d+)\}\}/g);
+    let html = '<p class="card-title">' + escapeHtmlLT(item.title) + '</p><div class="luecken-text"><p>';
+    for (let i = 0; i < parts.length; i++) {
+      if (i % 2 === 0) {
+        html += escapeHtmlLT(parts[i]).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+      } else {
+        const blankNum = parts[i];
+        html += `<input type="text" class="luecken-input" data-item="${itemIdx}" data-blank="${blankNum}" autocomplete="off" spellcheck="false">`;
+      }
+    }
+    html += '</p></div>';
+    html += `<div class="luecken-actions">
+      <button class="flashcard-btn show luecken-check-btn" data-item="${itemIdx}">Prüfen</button>
+      <button class="flashcard-btn show luecken-solution-btn" data-item="${itemIdx}">Musterlösung</button>
+      <span class="luecken-score" id="lueckenScore-${itemIdx}"></span>
+    </div>`;
+    html += `<div class="luecken-solution" id="lueckenSolution-${itemIdx}"><b>Musterlösung:</b> ${item.blanks.map((b,i2) => (i2+1) + '. ' + escapeHtmlLT(b[0])).join(' &middot; ')}<br><span class="luecken-explain">${escapeHtmlLT(item.explain || '')}</span></div>`;
+    card.innerHTML = html;
+    wrap.appendChild(card);
+  });
+
+  wrap.querySelectorAll('.luecken-check-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const itemIdx = btn.dataset.item;
+      const item = LUECKENTEXT[itemIdx];
+      const inputs = wrap.querySelectorAll('.luecken-input[data-item="' + itemIdx + '"]');
+      let correct = 0;
+      const norm = s => (s || '').toLowerCase().trim().replace(/[.,;:!?"'„“]/g,'').replace(/\s+/g,' ');
+      inputs.forEach(inp => {
+        const blankNum = parseInt(inp.dataset.blank, 10);
+        const accepted = item.blanks[blankNum - 1] || [];
+        const guess = norm(inp.value);
+        const ok = guess.length > 0 && accepted.some(a => {
+          const an = norm(a);
+          return guess === an || an.includes(guess) || guess.includes(an);
+        });
+        inp.classList.remove('luecken-correct','luecken-wrong');
+        inp.classList.add(ok ? 'luecken-correct' : 'luecken-wrong');
+        if (ok) correct++;
+      });
+      const scoreEl = document.getElementById('lueckenScore-' + itemIdx);
+      if (scoreEl) scoreEl.textContent = correct + ' / ' + inputs.length + ' richtig';
+    });
+  });
+  wrap.querySelectorAll('.luecken-solution-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById('lueckenSolution-' + btn.dataset.item);
+      if (el) el.classList.toggle('show');
+    });
+  });
+}
+
 /* ============================================================
    NAV / INIT
    ============================================================ */
@@ -3100,6 +3281,7 @@ function switchCourse(id) {
   QUIZ_DATA = c.QUIZ_DATA;
   AWI_FORMULA_QUIZ = c.AWI_FORMULA_QUIZ;
   AWI_CALC_GENERATORS = c.AWI_CALC_GENERATORS;
+  LUECKENTEXT = c.LUECKENTEXT;
   LS_PROGRESS = c.lsProgress;
   LS_STATS = c.lsStats;
   EXAM_DATE = new Date(c.examDateISO);
@@ -3115,6 +3297,8 @@ function switchCourse(id) {
   document.getElementById('infoModule').innerHTML = c.infoModule;
   document.getElementById('infoQuiz').innerHTML = c.infoQuiz;
   document.getElementById('infoFormeln').innerHTML = c.infoFormeln;
+  document.getElementById('tabLueckenLabel').innerHTML = c.tabLuecken;
+  document.getElementById('infoLuecken').innerHTML = c.infoLuecken;
 
   document.querySelectorAll('.course-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.course === id);
@@ -3127,6 +3311,7 @@ function switchCourse(id) {
   render();
   renderQuiz();
   renderEbwlCards();
+  renderLuecken();
   loadRemote();
 
   localStorage.setItem('dashboard_activeCourse', id);
@@ -3141,6 +3326,7 @@ document.getElementById('tab-module').addEventListener('click', () => { showView
 document.getElementById('tab-tagesplan').addEventListener('click', () => { showView('view-tagesplan', 'tab-tagesplan'); renderDayplan(); });
 document.getElementById('tab-quiz').addEventListener('click', () => { showView('view-quiz', 'tab-quiz'); renderQuiz(); });
 document.getElementById('tab-formeln').addEventListener('click', () => { showView('view-formeln', 'tab-formeln'); renderEbwlCards(); });
+document.getElementById('tab-luecken').addEventListener('click', () => { showView('view-luecken', 'tab-luecken'); renderLuecken(); });
 document.querySelectorAll('.course-btn').forEach(btn => {
   btn.addEventListener('click', () => switchCourse(btn.dataset.course));
 });
