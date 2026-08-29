@@ -704,54 +704,48 @@ const MV_FISHBEIN_DIAGRAM = `
   <svg viewBox="0 0 700 260" width="100%" style="max-width:620px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
     <defs>
       <marker id="fbArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
-        <polygon points="0,0 8,3.5 0,7" fill="var(--text-primary)"/>
+        <polygon points="0,0 8,3.5 0,7" fill="var(--accent)"/>
       </marker>
     </defs>
-    <rect x="15" y="25" width="150" height="44" rx="8" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
+    <rect x="15" y="25" width="150" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
     <text x="90" y="52" font-size="12" fill="var(--text-primary)" text-anchor="middle">Soziale Erwünschtheit</text>
-    <text x="180" y="52" font-size="16" fill="var(--text-secondary)" text-anchor="middle">×</text>
-    <rect x="200" y="25" width="60" height="44" rx="8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="230" y="52" font-size="16" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
-    <text x="278" y="52" font-size="16" fill="var(--text-secondary)" text-anchor="middle">=</text>
-    <rect x="296" y="25" width="60" height="44" rx="8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="326" y="52" font-size="16" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
+    <text x="180" y="52" font-size="16" fill="var(--text-primary)" text-anchor="middle">×</text>
+    <rect x="200" y="25" width="60" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+    <text x="230" y="52" font-size="17" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+    <text x="278" y="52" font-size="16" fill="var(--text-primary)" text-anchor="middle">=</text>
+    <rect x="296" y="25" width="60" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+    <text x="326" y="52" font-size="17" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
 
-    <rect x="15" y="130" width="150" height="44" rx="8" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
+    <rect x="15" y="130" width="150" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
     <text x="90" y="157" font-size="12" fill="var(--text-primary)" text-anchor="middle">Ergebnis</text>
-    <text x="180" y="157" font-size="16" fill="var(--text-secondary)" text-anchor="middle">×</text>
-    <rect x="200" y="130" width="60" height="44" rx="8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="230" y="157" font-size="16" font-weight="700" fill="var(--accent)" text-anchor="middle">C</text>
-    <text x="278" y="157" font-size="16" fill="var(--text-secondary)" text-anchor="middle">=</text>
-    <rect x="296" y="130" width="60" height="44" rx="8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="326" y="157" font-size="16" font-weight="700" fill="var(--accent)" text-anchor="middle">D</text>
+    <text x="180" y="157" font-size="16" fill="var(--text-primary)" text-anchor="middle">×</text>
+    <rect x="200" y="130" width="60" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+    <text x="230" y="157" font-size="17" font-weight="700" fill="var(--accent)" text-anchor="middle">C</text>
+    <text x="278" y="157" font-size="16" fill="var(--text-primary)" text-anchor="middle">=</text>
+    <rect x="296" y="130" width="60" height="44" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+    <text x="326" y="157" font-size="17" font-weight="700" fill="var(--accent)" text-anchor="middle">D</text>
 
-    <path d="M 356,47 C 400,47 400,90 440,95" fill="none" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
-    <path d="M 356,152 C 400,152 400,108 440,103" fill="none" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
+    <path d="M 356,47 L 400,47 L 400,92 L 438,97" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
+    <path d="M 356,152 L 400,152 L 400,107 L 438,102" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
 
-    <rect x="440" y="76" width="140" height="48" rx="10" fill="var(--card)" stroke="var(--text-primary)" stroke-width="1.6"/>
+    <rect x="440" y="76" width="140" height="48" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
     <text x="510" y="97" font-size="11.5" fill="var(--text-primary)" text-anchor="middle">Verhaltens-</text>
     <text x="510" y="111" font-size="11.5" fill="var(--text-primary)" text-anchor="middle">absicht</text>
-    <line x1="580" y1="100" x2="610" y2="100" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
+    <line x1="580" y1="100" x2="610" y2="100" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
 
-    <rect x="610" y="76" width="80" height="48" rx="10" fill="var(--card)" stroke="var(--text-primary)" stroke-width="1.6"/>
-    <text x="650" y="97" font-size="11" fill="var(--text-primary)" text-anchor="middle">Tatsäch-</text>
-    <text x="650" y="111" font-size="11" fill="var(--text-primary)" text-anchor="middle">liches</text>
-    <text x="650" y="123" font-size="10" fill="var(--text-primary)" text-anchor="middle" style="display:none"></text>
+    <rect x="610" y="76" width="80" height="48" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+    <text x="650" y="97" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">Tatsächliches</text>
+    <text x="650" y="111" font-size="10.5" fill="var(--text-primary)" text-anchor="middle">Verhalten</text>
 
-    <rect x="595" y="175" width="105" height="40" rx="8" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
+    <rect x="595" y="175" width="105" height="40" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.4"/>
     <text x="647" y="199" font-size="11.5" fill="var(--text-primary)" text-anchor="middle">Situation</text>
-    <line x1="647" y1="175" x2="650" y2="124" stroke="var(--text-primary)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
-    <text x="20" y="240" font-size="10" fill="var(--text-muted)">Gestrichelte Kästen A–D = die 4 zu bestimmenden Begriffe</text>
+    <line x1="647" y1="175" x2="650" y2="124" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#fbArrow)"/>
+    <text x="20" y="240" font-size="10" fill="var(--text-muted)">A–D (blau hervorgehoben) = die 4 zu bestimmenden Begriffe, exakt wie im Original</text>
   </svg>
 </div>`;
 const MV_KAUFPROZESS_DIAGRAM = `
 <div class="quiz-diagram-wrap" style="padding:1rem;">
-  <svg viewBox="0 0 800 130" width="100%" style="max-width:700px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
-    <defs>
-      <marker id="kpArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <polygon points="0,0 7,3 0,6" fill="var(--text-secondary)"/>
-      </marker>
-    </defs>
+  <svg viewBox="0 0 800 110" width="100%" style="max-width:700px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
     ${(() => {
       const steps = [
         { label: 'Bedarfs-\nerkennung', blank: false },
@@ -763,109 +757,114 @@ const MV_KAUFPROZESS_DIAGRAM = `
         { label: 'Anbieter-\nauswahl', blank: false },
         { label: 'D', blank: true },
       ];
-      const w = 84, gap = 14, h = 56, y = 37;
+      // Chevron ("Pfeil"-Kette) exakt wie im Original: tessellierte Pfeilformen ohne Lücken/Pfeillinien dazwischen
+      const w = 96, notch = 16, h = 56, y = 22;
       return steps.map((s, i) => {
-        const x = 10 + i * (w + gap);
+        const x = 10 + i * (w - notch);
         const lines = s.label.split('\n');
-        const fill = s.blank ? 'none' : 'var(--pill-bg)';
-        const stroke = s.blank ? 'var(--accent)' : 'var(--text-secondary)';
-        const dash = s.blank ? 'stroke-dasharray="4,3"' : '';
         const textColor = s.blank ? 'var(--accent)' : 'var(--text-primary)';
-        const fontSize = s.blank ? 17 : 10.5;
+        const fontSize = s.blank ? 18 : 10.5;
         const fontWeight = s.blank ? 700 : 500;
-        let svg = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="8" fill="' + fill + '" stroke="' + stroke + '" stroke-width="1.8" ' + dash + '/>';
+        const isFirst = i === 0, isLast = i === steps.length - 1;
+        // Polygon-Punkte im Uhrzeigersinn, beginnend oben-links (oben-links -> [Pfeilspitze rechts] -> unten-links -> [Kerbe links])
+        const P = [];
+        P.push([x, y]);
+        if (isLast) { P.push([x + w, y]); P.push([x + w, y + h]); }
+        else { P.push([x + w - notch, y]); P.push([x + w, y + h / 2]); P.push([x + w - notch, y + h]); }
+        P.push([x, y + h]);
+        if (!isFirst) { P.push([x + notch, y + h / 2]); }
+        const pointsAttr = P.map(p => p[0] + ',' + p[1]).join(' ');
+        let svg = '<polygon points="' + pointsAttr + '" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.6" stroke-linejoin="round"/>';
+        const cx = x + w / 2 + (isFirst ? notch / 4 : 0) - (isLast ? notch / 4 : 0);
         lines.forEach((line, li) => {
-          const ty = y + h/2 + (li - (lines.length-1)/2) * 13 + 4;
-          svg += '<text x="' + (x + w/2) + '" y="' + ty + '" font-size="' + fontSize + '" font-weight="' + fontWeight + '" fill="' + textColor + '" text-anchor="middle">' + line + '</text>';
+          const ty = y + h / 2 + (li - (lines.length - 1) / 2) * 13 + 4;
+          svg += '<text x="' + cx + '" y="' + ty + '" font-size="' + fontSize + '" font-weight="' + fontWeight + '" fill="' + textColor + '" text-anchor="middle">' + line + '</text>';
         });
-        if (i < steps.length - 1) {
-          const ax = x + w + 2, ax2 = x + w + gap - 2, ay = y + h/2;
-          svg += '<line x1="' + ax + '" y1="' + ay + '" x2="' + ax2 + '" y2="' + ay + '" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#kpArrow)"/>';
-        }
         return svg;
       }).join('');
     })()}
-    <text x="10" y="118" font-size="10" fill="var(--text-muted)">Gestrichelte Kästen A–D = die 4 zu bestimmenden Prozessschritte</text>
+    <text x="10" y="98" font-size="10" fill="var(--text-muted)">Blau hervorgehoben (A–D) = die 4 zu bestimmenden Prozessschritte, exakt wie im Original</text>
   </svg>
 </div>`;
 const MV_ELM_DIAGRAM = `
 <div class="quiz-diagram-wrap" style="padding:1rem;">
-  <svg viewBox="0 0 560 340" width="100%" style="max-width:480px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 0 640 320" width="100%" style="max-width:540px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
     <defs>
       <marker id="elmArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <polygon points="0,0 7,3 0,6" fill="var(--text-secondary)"/>
+        <polygon points="0,0 7,3 0,6" fill="var(--accent)"/>
       </marker>
     </defs>
-    <ellipse cx="120" cy="45" rx="42" ry="28" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="120" y="52" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+    <ellipse cx="90" cy="38" rx="46" ry="26" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="90" y="45" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
 
-    <ellipse cx="120" cy="150" rx="42" ry="28" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="120" y="157" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
+    <ellipse cx="90" cy="172" rx="46" ry="26" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="90" y="179" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
 
-    <line x1="120" y1="73" x2="120" y2="122" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
-    <text x="132" y="100" font-size="10.5" fill="var(--text-secondary)">hoch</text>
+    <line x1="90" y1="64" x2="90" y2="146" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
+    <text x="60" y="108" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="end">hoch</text>
 
-    <path d="M 158,35 C 280,20 340,35 340,55" fill="none" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
-    <text x="230" y="24" font-size="10.5" fill="var(--text-secondary)">niedrig</text>
+    <path d="M 136,22 L 470,22 L 470,66" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
+    <text x="300" y="16" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="middle">niedrig</text>
 
-    <path d="M 158,160 C 260,175 320,155 340,120" fill="none" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
-    <text x="200" y="185" font-size="10.5" fill="var(--text-secondary)">niedrig</text>
+    <rect x="170" y="68" width="180" height="56" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.4"/>
+    <text x="260" y="91" font-size="11" fill="var(--text-primary)" text-anchor="middle">hohe Verarbeitungs-</text>
+    <text x="260" y="106" font-size="11" fill="var(--text-primary)" text-anchor="middle">wahrscheinlichkeit</text>
 
-    <path d="M 158,140 C 280,110 380,95 400,85" fill="none" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
-    <text x="240" y="112" font-size="10.5" fill="var(--text-secondary)">hoch</text>
+    <rect x="380" y="68" width="180" height="56" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.4"/>
+    <text x="470" y="91" font-size="11" fill="var(--text-primary)" text-anchor="middle">niedrige Verarbeitungs-</text>
+    <text x="470" y="106" font-size="11" fill="var(--text-primary)" text-anchor="middle">wahrscheinlichkeit</text>
 
-    <rect x="330" y="30" width="190" height="50" rx="8" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
-    <text x="425" y="50" font-size="11" fill="var(--text-primary)" text-anchor="middle">niedrige Verarbeitungs-</text>
-    <text x="425" y="64" font-size="11" fill="var(--text-primary)" text-anchor="middle">wahrscheinlichkeit</text>
+    <path d="M 136,158 L 220,158 L 220,126" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
+    <text x="178" y="149" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="middle">hoch</text>
 
-    <rect x="330" y="95" width="190" height="50" rx="8" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
-    <text x="425" y="115" font-size="11" fill="var(--text-primary)" text-anchor="middle">hohe Verarbeitungs-</text>
-    <text x="425" y="129" font-size="11" fill="var(--text-primary)" text-anchor="middle">wahrscheinlichkeit</text>
+    <path d="M 136,186 L 420,186 L 420,126" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
+    <text x="280" y="199" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="middle">niedrig</text>
 
-    <line x1="425" y1="145" x2="425" y2="180" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
-    <rect x="370" y="180" width="110" height="48" rx="8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="425" y="210" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">C</text>
+    <line x1="300" y1="124" x2="300" y2="216" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
+    <rect x="230" y="216" width="140" height="56" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="300" y="251" font-size="19" font-weight="700" fill="var(--accent)" text-anchor="middle">C</text>
 
-    <line x1="425" y1="80" x2="425" y2="255" stroke="var(--text-secondary)" stroke-width="1.6" stroke-dasharray="2,3" marker-end="url(#elmArrow)"/>
-    <rect x="370" y="255" width="110" height="48" rx="8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="425" y="285" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">D</text>
+    <line x1="500" y1="124" x2="500" y2="216" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#elmArrow)"/>
+    <rect x="430" y="216" width="140" height="56" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="500" y="251" font-size="19" font-weight="700" fill="var(--accent)" text-anchor="middle">D</text>
 
-    <text x="15" y="320" font-size="10" fill="var(--text-muted)">Gestrichelte Formen A–D = die 4 zu bestimmenden Begriffe</text>
+    <text x="15" y="300" font-size="10" fill="var(--text-muted)">Blau hervorgehoben (A–D) = die 4 zu bestimmenden Begriffe, exakt wie im Original</text>
   </svg>
 </div>`;
 const MV_MEANSEND_DIAGRAM = `
 <div class="quiz-diagram-wrap" style="padding:1rem;">
-  <svg viewBox="0 0 700 110" width="100%" style="max-width:640px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
+  <svg viewBox="0 0 420 340" width="100%" style="max-width:360px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
     <defs>
-      <marker id="meArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <polygon points="0,0 7,3 0,6" fill="var(--text-secondary)"/>
+      <marker id="meArrow" markerWidth="9" markerHeight="9" refX="4.5" refY="0" orient="auto">
+        <polygon points="0,7 4.5,0 9,7" fill="var(--accent)"/>
       </marker>
     </defs>
-    <rect x="10" y="25" width="150" height="52" rx="9" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
-    <text x="85" y="47" font-size="11" fill="var(--text-primary)" text-anchor="middle">Konkrete Produkt-</text>
-    <text x="85" y="61" font-size="11" fill="var(--text-primary)" text-anchor="middle">eigenschaften</text>
+    <rect x="60" y="10" width="300" height="46" rx="4" fill="var(--accent)"/>
+    <text x="210" y="39" font-size="15" font-weight="500" fill="#fff" text-anchor="middle">Werte</text>
 
-    <line x1="160" y1="51" x2="220" y2="51" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#meArrow)"/>
-    <text x="190" y="41" font-size="10" fill="var(--text-muted)" text-anchor="middle">Warum?</text>
+    <line x1="210" y1="88" x2="210" y2="60" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#meArrow)"/>
+    <text x="228" y="78" font-size="11" fill="var(--text-secondary)">Warum?</text>
 
-    <rect x="222" y="25" width="120" height="52" rx="9" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="282" y="58" font-size="20" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+    <rect x="60" y="88" width="300" height="46" rx="4" fill="var(--accent)"/>
+    <text x="210" y="117" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">B</text>
 
-    <line x1="344" y1="51" x2="404" y2="51" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#meArrow)"/>
-    <text x="374" y="41" font-size="10" fill="var(--text-muted)" text-anchor="middle">Warum?</text>
+    <line x1="210" y1="166" x2="210" y2="138" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#meArrow)"/>
+    <text x="228" y="156" font-size="11" fill="var(--text-secondary)">Warum?</text>
 
-    <rect x="406" y="25" width="120" height="52" rx="9" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,3"/>
-    <text x="466" y="58" font-size="20" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
+    <rect x="60" y="166" width="300" height="46" rx="4" fill="var(--accent)"/>
+    <text x="210" y="195" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">A</text>
 
-    <line x1="528" y1="51" x2="588" y2="51" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#meArrow)"/>
-    <text x="558" y="41" font-size="10" fill="var(--text-muted)" text-anchor="middle">Warum?</text>
+    <line x1="210" y1="244" x2="210" y2="216" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#meArrow)"/>
+    <text x="228" y="234" font-size="11" fill="var(--text-secondary)">Warum?</text>
 
-    <rect x="590" y="25" width="100" height="52" rx="9" fill="var(--pill-bg)" stroke="var(--text-secondary)" stroke-width="1.4"/>
-    <text x="640" y="55" font-size="12.5" fill="var(--text-primary)" text-anchor="middle">Werte</text>
-    <text x="10" y="98" font-size="10" fill="var(--text-muted)">Gestrichelte Kästen A/B = die 2 zu bestimmenden Nutzen-Ebenen</text>
+    <rect x="30" y="244" width="360" height="46" rx="4" fill="var(--accent)"/>
+    <text x="210" y="272" font-size="13" font-weight="500" fill="#fff" text-anchor="middle">Konkrete Produkteigenschaften</text>
+
+    <text x="15" y="320" font-size="10" fill="var(--text-muted)">A, B = die 2 zu bestimmenden Nutzen-Ebenen, exakt wie im Original (Pfeile zeigen nach oben = "Warum?")</text>
   </svg>
 </div>`;
-const QUIZ_DATA_MV =  {
+
+const QUIZ_DATA_MV =   {
   konsum: { label: 'Konsumentenverhalten & B2B', sub: 'Aktivierung, Involvement, Dissonanz, Buying Center, Geschäftstypen', questions: [
     { le: 'konsum', q: "Was besagt die 'Lambda-Hypothese' im Zusammenhang mit Aktivierung und Leistungsfähigkeit?", opts: [
         "Es gibt einen optimalen (mittleren) Aktivierungsgrad, bei dem die Leistungsfähigkeit maximal ist", "Die Leistungsfähigkeit steigt linear mit dem Aktivierungsgrad, ohne Obergrenze", "Aktivierung hat keinerlei Einfluss auf die Leistungsfähigkeit", "Nur bei minimaler Aktivierung (Schlaf) ist die Leistungsfähigkeit maximal"
@@ -1281,6 +1280,8 @@ const MODULES_STRAT = [
     { id: 'm1-10', text: "Charakterisiere die Lernschule als Gegenpol zur Designschule.", a: 'Modell: Strategiebildung als emergenter Prozess. Annahme: Dynamik der Umwelt, kollektiver Fokus, organisationale Anpassungsfähigkeit. Ansatz: Lernen aus Feedback, inkrementelle Weiterentwicklung. Metapher: Stratege als Schüler.' },
     { id: 'm1-11', text: "Nenne 3 der 9 Unterscheidungsmerkmale zwischen Design- und Emergenzlogik (De Wit & Meyer 2014).", a: 'Z.B.: Strategieentstehung bewusst gestaltet vs. allmählich geformt; Zukunftsverständnis Verstehen vs. Herausfinden; Entscheidungsfindung hierarchisch vs. verteilt; Implementierungsfokus Planen vs. Lernen.' },
     { id: 'm1-12', text: "Welche 4 Arten von Strategie unterscheidet Mintzberg (intendiert/realisiert/emergent/nicht-realisiert)?", a: 'Intendierte Strategie → teilweise Realisierte Strategie (+ Emergente Strategie, die ungeplant entsteht) = tatsächlich Realisierte Strategie. Der nicht umgesetzte Teil der intendierten Strategie ist die Nicht-realisierte Strategie.' },
+    { id: 'm1-13', text: "Welche Strategieschule nutzen die Honda-Führungskräfte SELBST zur Erklärung ihres Erfolgs (Honda Super Cub), und welche nutzt BCG in der offiziellen Analyse?", a: 'Die Honda-Führungskräfte erklären ihren Erfolg über die Lernschule (emergent, durch Experimentieren und Anpassung vor Ort entstanden). BCGs offizielle Analyse erklärt ihn dagegen über die Designschule/Planungsschule (Top-down-Implementierung, Versuch die Zukunft zu prognostizieren, Fokus auf Planen) – ein klassisches Klausurbeispiel für unterschiedliche Strategieverständnisse.' },
+    { id: 'm1-14', text: "Nenne die 2 zentralen Erkenntnisse der Honda-Fallstudie.", a: '1) Strategieverständnisse können sich fundamental unterscheiden und sind eine Quelle tiefgehender Missverständnisse. 2) Die realisierte Strategie ist fast immer das Ergebnis von Design UND Emergenz zusammen – Strategieprozesse sollten daher beide Aspekte vereinen.' },
   ] },
   { id: 'm2', title: 'Modul 2 · Branchenstrukturen analysieren', sub: 'SCP-Paradigma, Porters 5(+1) Kräfte, Strategische Gruppen, Profit-Pool-Analyse', lernplan: [
     { id: 'm2-1', text: "Was besagt das SCP-Paradigma (Porter 2008)?", a: 'Industry Structure (Branchenstruktur) → Firm Conduct (Verhalten der Firma) → Firm Performance (Unternehmenserfolg). Die Branchenstruktur bestimmt maßgeblich das Gewinnpotenzial.' },
@@ -1294,6 +1295,12 @@ const MODULES_STRAT = [
     { id: 'm2-9', text: "Wie werden zentrale Erfolgsfaktoren (Key Success Factors) hergeleitet (2 Leitfragen)?", a: 'Analyse der Nachfrage: "Was wollen die Kunden?" und Analyse des Wettbewerbs: "Wie besteht die Organisation im Wettbewerb?"' },
     { id: 'm2-10', text: "Nenne die 3 Schritte der Profit-Pool-Analyse.", a: 'Profit-Pool definieren (wertschöpfende Aktivitäten entlang der Wertschöpfungskette identifizieren) → Größe der Pools schätzen (Umsätze/Gewinne quantifizieren) → Profit-Pool aufschlüsseln (nach wertschöpfender Aktivität).' },
     { id: 'm2-11', text: "Welche 2 Merkmale kategorisieren Segmentierungsvariablen für strategische Gruppen?", a: 'Merkmale des Käufers (z.B. B2B/B2C, Vertriebskanäle, geografischer Standort) und Merkmale des Produkts (z.B. Produktpalette, Preisniveau, Technologie/Design, Leistungsmerkmale).' },
+    { id: 'm2-12', text: "Wann ist die Rivalität bestehender Wettbewerber besonders hoch bzw. eher gering?", a: 'Hoch bei: hohen Austrittsbarrieren, hohem Fixkostenanteil, hohem Niveau überschüssiger Kapazität. Gering bei: hoher Marktkonzentration, diversen Wettbewerbern, hoher Produkt-/Dienstleistungsdifferenzierung.' },
+    { id: 'm2-13', text: "Wann ist die Verhandlungsmacht der Lieferanten besonders hoch bzw. eher gering?", a: 'Hoch bei: konzentrierten Lieferanten, hohem Organisationsgrad der Lieferanten, hohen Wechselkosten, Möglichkeit der Vorwärtsintegration der Lieferanten, hohem Wertbeitrag der Lieferanten. Gering bei: verfügbaren Ersatzlieferanten, Möglichkeit der Rückwärtsintegration durch die fokale Organisation.' },
+    { id: 'm2-14', text: "Wann ist die Verhandlungsmacht der Käufer besonders hoch bzw. eher gering?", a: 'Hoch bei: hoher Käuferkonzentration, verfügbaren Substituten, hoher Preisempfindlichkeit, Möglichkeit der Rückwärtsintegration der Käufer. Gering bei: hohen Wechselkosten für Käufer, Möglichkeit der Vorwärtsintegration der fokalen Organisation, hoher Differenzierung, hohem Wertbeitrag der fokalen Organisation.' },
+    { id: 'm2-15', text: "Wann ist die Bedrohung durch neue Marktteilnehmer besonders hoch bzw. eher gering?", a: 'Hoch bei: einfachem Zugang zu Vertriebskanälen. Gering bei: hohem Kapital-/Wissensbedarf, Skalenvorteilen bestehender Marktteilnehmer, Kosten-/Lernvorteilen bestehender Marktteilnehmer, Reputationsvorteilen, staatlichen/rechtlichen Hindernissen, Verteidigungsmöglichkeiten bestehender Wettbewerber.' },
+    { id: 'm2-16', text: "Wann ist die Bedrohung durch Substitute besonders hoch bzw. eher gering, und wann ist die Verhandlungsmacht der Komplemente (6. Kraft) besonders hoch bzw. eher gering?", a: 'Substitute: hoch bei Verfügbarkeit, guter Attraktivität/gutem Momentum, guter relativer Leistungsfähigkeit, relativem Preisvorteil; gering bei hoher Nutzerloyalität und hohen Wechselkosten. Komplemente: hohe Verhandlungsmacht bei hoher Differenzierung, hohem Wertbeitrag, starker Marktkonzentration, Systemfokus der Kunden; gering bei Substituierbarkeit und Integrationsmöglichkeit der Komplemente.' },
+    { id: 'm2-17', text: "Was ist die PESTEL-Analyse und wofür stehen die 6 Buchstaben?", a: 'Strategisches Werkzeug zur Untersuchung des Makro-Umfelds. Political (Regierungseinfluss), Economic (wirtschaftliche Lage), Social (gesellschaftliche Trends), Technological (neue Technologien), Environmental (Umweltauflagen), Legal (rechtliche Rahmenbedingungen).' },
   ] },
   { id: 'm3', title: 'Modul 3 · Interne Ressourcen entwickeln', sub: 'Ressourcenbasierter Ansatz, VRIN/VRIO, Wertschöpfungskette, dynamische Fähigkeiten', lernplan: [
     { id: 'm3-1', text: "Nenne die 3 Kernkonzepte des ressourcenbasierten Ansatzes (Barney 1991).", a: 'Wettbewerbsvorteil (wertschöpfende Strategie, die nicht implementiert/leicht imitiert wird), Ressourcen (verfügbare Faktoren im Besitz/unter Kontrolle der Organisation), Fähigkeiten (Kapazität für den Ressourceneinsatz in Produktions-/Dienstleistungsaktivitäten).' },
@@ -1307,6 +1314,9 @@ const MODULES_STRAT = [
     { id: 'm3-9', text: "Definiere dynamische Fähigkeiten nach Teece (2007) und nenne die 3 Bestandteile.", a: 'Definition: "Die Fähigkeit, neue Chancen zu erkennen und dann zu ergreifen sowie Wissensbestände, Kompetenzen und komplementäre Ressourcen neu zu konfigurieren und zu schützen, um nachhaltige Wettbewerbsvorteile zu erzielen." Bestandteile: Erkennen (Sensing), Ergreifen (Seizing), Rekonfigurieren.' },
     { id: 'm3-10', text: "Was unterscheidet die statische von der dynamischen Sichtweise auf Ressourcen (Teece 2007)?", a: 'Statisch: Fokus auf strategische Überlegenheit der Ressourcen in Quantität/Qualität, geringes Bewusstsein für Veralterung. Dynamisch: Fokus auf optimale Orchestrierung/Neukonfiguration in dynamischen Kontexten, nicht auf die Ressourcen an sich.' },
     { id: 'm3-11', text: "Wie hängt die Art der dynamischen Fähigkeiten vom Umfeldtyp ab (Ambrosini et al. 2009)?", a: 'Stabiles Umfeld → Inkrementelle dynamische Fähigkeiten (kontinuierliche Verbesserung). Dynamisches Umfeld → Erneuernde dynamische Fähigkeiten (regelmäßige Auffrischung). Transformierendes Umfeld → Regenerative dynamische Fähigkeiten (gelegentliche Änderung der Erneuerungsweise selbst).' },
+    { id: 'm3-12', text: "Welche 3 Ressourcenarten unterscheidet der ressourcenbasierte Ansatz, mit je einem Beispiel?", a: 'Materielle/tangible Ressourcen (physisch, z.B. Grundstücke und Gebäude), immaterielle/intangible Ressourcen (z.B. Marken = Reputation; Patente und wissenschaftlich-technologische Kompetenz = Technologie), personelle/humane Ressourcen (z.B. Ausbildung und Erfahrung der Mitarbeiter).' },
+    { id: 'm3-13', text: "Was unterscheidet Exploitation von Exploration, und was ist das Grundproblem jeder Organisation?", a: 'Exploitation: verschafft Effizienz, beinhaltet Verfeinerung/inkrementelles Lernen/Implementierung/Auswahl, gedeiht in stabilen Umgebungen, kann strategische Trägheit verursachen. Exploration: weckt Neuartigkeit, beinhaltet Suchen/Experimentieren/Entdecken/Risikobereitschaft, gedeiht in flexiblen Umgebungen, kann Effizienzverluste verursachen. Grundproblem: genug Exploitation für die GEGENWÄRTIGE Lebensfähigkeit betreiben, während gleichzeitig genug Energie in Exploration für die ZUKÜNFTIGE Lebensfähigkeit investiert wird – beide müssen ausbalanciert werden, keins darf vernachlässigt werden.' },
+    { id: 'm3-14', text: "Nenne 3 der 5 zentralen Erkenntnisse der IBM-Fallstudie.", a: 'Z.B.: Organisationen können dynamische Fähigkeiten durch konkrete Mechanismen aufbauen und stärken; Strategiekonzeption und Strategieumsetzung müssen Hand in Hand gehen; Organisationen müssen Exploitation und Exploration ausbalancieren, um aktuelle und zukünftige Lebensfähigkeit zu sichern; Strategie muss durch messbare Geschäftsanforderungen angetrieben werden; Strategieprozesse profitieren von einem kontinuierlichen, demokratischen und evolutionären Prozess, der vom Experimentieren und Lernen lebt.' },
   ] },
   { id: 'm4', title: 'Modul 4 · Organisationen positionieren', sub: 'Strategieportfolios (McKinsey/BCG), generische Strategien, Red vs. Blue Ocean', lernplan: [
     { id: 'm4-1', text: "Nenne die 2 Dimensionen der McKinsey-Matrix.", a: 'Außenansicht/MBV: Attraktivität der Branche (basiert auf Branchenanalyse). Innenansicht/RBV: Wettbewerbsvorteil (basiert auf Ressourcen-/Fähigkeitsanalyse).' },
@@ -1319,6 +1329,9 @@ const MODULES_STRAT = [
     { id: 'm4-8', text: "Nenne die 4 Aktionen des Blue-Ocean-Werkzeugkastens für Wertinnovation.", a: 'Eliminieren, Reduzieren, Steigern, Kreieren (bezogen auf Produktattribute im Vergleich zum Branchenstandard).' },
     { id: 'm4-9', text: "Nenne die 4 Pfade, über die Wertinnovationen durch Perspektivwechsel entstehen können.", a: 'Pfad 1: andere Branchen mit ähnlichen Herausforderungen betrachten. Pfad 2: andere strategische Gruppen betrachten. Pfad 3: ergänzende Produkte/Dienstleistungen betrachten. Pfad 4: andere Käufergruppen betrachten.' },
     { id: 'm4-10', text: "Was besagt Porters Zitat zum 'Kern einer Strategie' im Kontext der Organisationsstrategie?", a: '"Der Kern einer Strategie besteht darin zu entscheiden, was NICHT zu tun ist. Strategie bedeutet die Herstellung von Passung zwischen den verschiedenen Aktivitäten einer Organisation."' },
+    { id: 'm4-11', text: "Nenne 3 der Normstrategien der McKinsey-Matrix (9-Felder-Raster) mit ihrer jeweiligen Feld-Kombination.", a: 'Z.B.: "Investition und Wachstum" (hoher Wettbewerbsvorteil + hohe Branchenattraktivität), "Selektives Wachstum"/"Selektivität" (mittlere Kombinationen), "Ernten/Veräußern" (niedriger Wettbewerbsvorteil + niedrige Branchenattraktivität).' },
+    { id: 'm4-12', text: "Welche Netto-Cashflow-Eigenschaften haben die 4 BCG-Felder?", a: 'Melkkühe: stark positiver Netto-Cashflow (kein hoher Investitionsbedarf). Arme Hunde: negativer/neutraler Netto-Cashflow. Weder Sterne noch Fragezeichen haben einen sehr hohen positiven Netto-Cashflow (beide erfordern hohe Investitionen wegen des Marktwachstums).' },
+    { id: 'm4-13', text: "Nenne die 5 Kernerkenntnisse der Cirque-du-Soleil-Fallstudie.", a: '1) Branchenstrukturen sind nicht exogen – Organisationen können sie prägen und verändern. 2) Im besten Fall gelingt es, das eigene Spielfeld neu zu definieren und den Wettbewerb zunächst zu vermeiden. 3) Blaue Ozeane entstehen oft durch gleichzeitige Kostenreduktion UND Erhöhung des Kundennutzens. 4) Werkzeuge wie Wertkurve und die 4 Pfade unterstützen Entscheidungsträger dabei. 5) Blaue Ozeane sind schwer zu entdecken und noch schwerer zu verteidigen.' },
   ] },
   { id: 'm5', title: 'Modul 5 · Strategische Allianzen orchestrieren', sub: 'Allianztypologien, Nutzen & Scheitern von Allianzen, Ökosysteme, Offene Innovation', lernplan: [
     { id: 'm5-1', text: "Definiere strategische Allianzen (Gulati 1998).", a: '"Formale und freiwillige Vereinbarungen zwischen Organisationen, im Rahmen derer Produkte, Technologien oder Dienstleistungen ausgetauscht oder gemeinsam entwickelt und hergestellt werden." Können vertikaler sowie horizontaler Natur sein.' },
@@ -1330,6 +1343,12 @@ const MODULES_STRAT = [
     { id: 'm5-7', text: "Nenne die 3 Ökosystem-Prozesse nach Dhanaraj & Parkhe (2006).", a: 'Steuerung der Wissensmobilität, Steuerung der Wert(ab)schöpfung, Steuerung der Ökosystemstabilität.' },
     { id: 'm5-8', text: "Was unterscheidet geschlossene von offener Innovation (Chesbrough 2003)?", a: 'Geschlossen: eigene kluge Köpfe genügen, F&E muss selbst betrieben werden, geistiges Eigentum wird geschützt. Offen: auch mit externen Akteuren zusammenarbeiten, Forschung muss nicht selbst betrieben werden, Zugang zu eigenem geistigem Eigentum kann gewährt werden, wenn es das Geschäftsmodell unterstützt.' },
     { id: 'm5-9', text: "Nenne die 4 Typen offener Innovation (Dahlander & Gann 2010).", a: 'Nicht-monetär eingehend: Beschaffen. Monetär eingehend: Akquirieren. Nicht-monetär ausgehend: Teilen. Monetär ausgehend: Veräußern.' },
+    { id: 'm5-10', text: "Was unterscheidet die organisationszentrierte von der netzwerkzentrierten Perspektive auf Allianzen?", a: 'Organisationszentrierte Perspektive: Organisationen werden als isoliert agierende Einheiten betrachtet. Netzwerkzentrierte Perspektive: Organisationen werden als in ihr Umfeld/Netzwerk eingebettet verstanden – diese Perspektive ist notwendig, um Ökosysteme und Allianznetzwerke zu verstehen.' },
+    { id: 'm5-11', text: "Wie ist ein Ökosystem definiert, und was bedeutet 'Ausrichtung' (Alignment) in diesem Kontext?", a: 'Ein Ökosystem ergibt sich aus der gemeinsamen Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden. Ausrichtung ist das Ausmaß, in dem zwischen den Mitgliedern ein gemeinsames Verständnis hinsichtlich ihrer Positionen und Aktivitätsflüsse besteht.' },
+    { id: 'm5-12', text: "Nenne die 3 Dimensionen der Ökosystemzusammensetzung nach Dhanaraj & Parkhe (2006), mit je einem Beispielmerkmal.", a: 'Mitgliedschaft im Ökosystem (Größe, Vielfalt), Struktur des Ökosystems (Dichte, Autonomie), Position im Ökosystem (Zentralität, Status).' },
+    { id: 'm5-13', text: "Was unterscheidet die 6 Facetten, wie sich das Scheitern einer Allianz MANIFESTIERT, von den 4 Kategorien möglicher URSACHEN (De Rond 2007)?", a: 'Manifestation (wie es sich zeigt): Ziele nicht erreicht, Erwartungen nicht erfüllt, Unzufriedenheit der Partner, erwartete Lebensdauer nicht erreicht (vorzeitig aufgegeben), enttäuschend aus persönlicher aber erfolgreich aus ökonomischer Sicht, ungleiche Nutzenverteilung. Ursachen (warum es passiert): Umwelt, Strategie, Struktur, Verhalten.' },
+    { id: 'm5-14', text: "Nenne die 4 Spannungsfelder, die in Allianzen/Ökosystemen ausbalanciert werden müssen.", a: 'Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen.' },
+    { id: 'm5-15', text: "Welche Kernerkenntnisse liefert die Lufthansa/Ökosystem-Fallstudie (Modul 5)?", a: 'Strategische Partnerschaften eröffnen neue Möglichkeiten, gehen aber auch mit neuen Abhängigkeiten einher. Der Erfolg eines Ökosystems kann stark von seinem schwächsten Element abhängen. Die Ausrichtung aller Mitglieder am gemeinsamen Wertversprechen ist zentral.' },
   ] },
   { id: 'm6', title: 'Modul 6 · Soziale Verantwortung übernehmen', sub: 'CSR-Perspektiven, Triple Bottom Line, Wirtschaftsethik-Theorien', lernplan: [
     { id: 'm6-1', text: "Nenne die 3 Dimensionen der Triple Bottom Line.", a: 'Profit (ökonomische Verantwortung), Planet (ökologische Verantwortung), People (soziale Verantwortung).' },
@@ -1341,6 +1360,7 @@ const MODULES_STRAT = [
     { id: 'm6-7', text: "Was ist die primäre Frage der Gerechtigkeitsethik (Rawls)?", a: 'Sind Entscheidungsverfahren und -ergebnisse fair? Erhält jeder sein Recht/das, was er/sie verdient? (Prozedurale und distributive Gerechtigkeit.)' },
     { id: 'm6-8', text: "Was unterscheidet die Shareholder View von der Stakeholder View hinsichtlich der Prioritätensetzung?", a: 'Shareholder View: Profitabilität vor Verantwortung, Zweck = den Eigentümern dienen. Stakeholder View: Verantwortung vor Profitabilität, Zweck = allen Interessensgruppen dienen (De Wit & Meyer 2014).' },
     { id: 'm6-9', text: "Nenne 3 der 6 Schritte zur moralischen Bewertung von Handlungsalternativen.", a: 'Z.B.: 1) Ist die Handlung legal? 2) Stimmt sie mit unseren Werten überein? 3) Würden wir uns schlecht fühlen, sie umzusetzen? 4) Wie würde sie in der Zeitung aussehen? 5/6) Wissen wir insgeheim, dass es falsch ist / sind wir unsicher – dann weiterfragen.' },
+    { id: 'm6-10', text: "Nenne die 4 unterschiedlichen Perspektiven auf CSR, die Organisationen einnehmen können.", a: 'Management-Perspektive (CSR als ganzheitlicher Managementansatz, der alle Geschäftsprozesse an gesellschaftlicher Verantwortung ausrichtet), Compliance-Perspektive (CSR als Einhaltung von Gesetzen und moralischen Regeln), Philanthropische Perspektive (CSR als moralisch motivierter Beitrag zum Gemeinwohl über gesetzliche Anforderungen hinaus), Business-Case-Perspektive (CSR als Mittel zur Erreichung langfristiger wirtschaftlicher Interessen).' },
   ] },
 ];
 const DAYPLAN_STRAT = [
@@ -1435,6 +1455,9 @@ const QUIZ_DATA_STRAT = {
     { le: 'm1', q: "Welche der folgenden Strategieebenen gehört NICHT zur klassischen 3-Ebenen-Hierarchie (Wheelen & Hunger 2008)?", opts: [
         "Internationale Strategie", "Unternehmensstrategie", "Geschäftsfeldstrategie", "(Cross-)Funktionale Strategie"
       ], correct: 0, explain: "Die 3 Ebenen sind Unternehmensstrategie (Corporate), Geschäftsfeldstrategie (Business) und (Cross-)Funktionale Strategie (Functional). 'Internationale Strategie' ist keine eigene Hierarchieebene in diesem Modell." },
+    { le: 'm1', q: "Im SS24-Altklausur-Beispiel erklären die Honda-Führungskräfte SELBST den Erfolg des Honda Super Cub über welche Strategieschule – während BCGs offizielle Analyse eine andere Schule nutzt?", opts: [
+        "Führungskräfte: Lernschule (emergent) – BCG: Designschule/Planungsschule (top-down geplant)", "Führungskräfte: Designschule – BCG: Lernschule", "Beide nutzen die gleiche Schule: die Positionierungsschule", "Führungskräfte: Umweltschule – BCG: Unternehmertumsschule"
+      ], correct: 0, explain: "Klassische Klausurfrage: die Führungskräfte selbst betonen Lernen/Experimentieren vor Ort (Lernschule), während BCGs nachträgliche Analyse eine geplante, top-down umgesetzte Strategie unterstellt (Designschule/Planungsschule)." },
   ] },
   m2: { label: 'Modul 2 · Branchenstrukturen', sub: 'SCP-Paradigma, Porters 5(+1) Kräfte, strategische Gruppen, Profit-Pool, Einzelhandel-Fall', questions: [
     { le: 'm2', q: "Was besagt das SCP-Paradigma?", opts: [
@@ -1465,6 +1488,21 @@ const QUIZ_DATA_STRAT = {
     { le: 'm2', q: "Wie werden zentrale Erfolgsfaktoren (Key Success Factors) im Rahmen der strategischen Gruppenanalyse abgeleitet?", opts: [
         "Über 2 Leitfragen: 'Was wollen die Kunden?' (Nachfrage) und 'Wie besteht die Organisation im Wettbewerb?' (Wettbewerb)", "Ausschließlich über eine Analyse der Unternehmensbilanz", "Über eine reine Befragung der eigenen Mitarbeiter", "Über die BCG-Matrix"
       ], correct: 0, explain: "Zentrale Erfolgsfaktoren ergeben sich aus der Kombination von Nachfrageanalyse und Wettbewerbsanalyse je strategischer Gruppe (Grant 2015)." },
+    { le: 'm2', q: "Welche Bedingungen erhöhen typischerweise die Rivalität bestehender Wettbewerber? (mehrere richtig)", multi: true, opts: [
+        "Hohe Austrittsbarrieren", "Hoher Fixkostenanteil", "Hohe Marktkonzentration", "Hohes Niveau überschüssiger Kapazität"
+      ], correct: [0,1,3], explain: "Hohe Marktkonzentration SENKT tendenziell die Rivalität (weniger, aber größere Akteure) – die anderen drei Faktoren erhöhen sie." },
+    { le: 'm2', q: "Welche Bedingungen senken typischerweise die Verhandlungsmacht der Lieferanten? (mehrere richtig)", multi: true, opts: [
+        "Verfügbare Ersatzlieferanten", "Möglichkeit der Rückwärtsintegration der fokalen Organisation", "Hohe Wechselkosten für die fokale Organisation", "Konzentrierte Lieferanten"
+      ], correct: [0,1], explain: "Verfügbare Ersatzlieferanten und die Möglichkeit der Rückwärtsintegration SENKEN die Lieferantenmacht. Hohe Wechselkosten und konzentrierte Lieferanten ERHÖHEN sie." },
+    { le: 'm2', q: "Welcher der folgenden Faktoren ERHÖHT die Bedrohung durch neue Marktteilnehmer (die meisten klassischen Faktoren senken sie als Eintrittsbarriere)?", opts: [
+        "Einfacher Zugang zu Vertriebskanälen", "Hoher Kapital-/Wissensbedarf", "Starke Skalenvorteile bestehender Anbieter", "Staatliche/rechtliche Markteintrittshürden"
+      ], correct: 0, explain: "Nur der einfache Vertriebszugang ERHÖHT die Bedrohung durch neue Marktteilnehmer. Kapitalbedarf, Skalenvorteile und rechtliche Hürden sind Eintrittsbarrieren, die die Bedrohung SENKEN." },
+    { le: 'm2', q: "Ordne die PESTEL-Dimensionen ihrem Inhalt zu.", type: 'match', pairs: [
+        { term: 'Political', def: 'Regierungseinfluss' },
+        { term: 'Economic', def: 'Wirtschaftliche Lage' },
+        { term: 'Technological', def: 'Neue Technologien' },
+        { term: 'Legal', def: 'Rechtliche Rahmenbedingungen' },
+      ], explain: "PESTEL untersucht das Makro-Umfeld: Political, Economic, Social, Technological, Environmental, Legal." },
   ] },
   m3: { label: 'Modul 3 · Interne Ressourcen', sub: 'Ressourcenbasierter Ansatz, VRIN/VRIO, Wertschöpfungskette, dynamische Fähigkeiten, IBM-Fall', questions: [
     { le: 'm3', q: "Was besagt der ressourcenbasierte Ansatz im Gegensatz zum marktbasierten Ansatz?", opts: [
@@ -1494,6 +1532,15 @@ const QUIZ_DATA_STRAT = {
     { le: 'm3', q: "Nenne die 3 zentralen Ressourcenmerkmale, die nachhaltige Wettbewerbsvorteile ermöglichen.", opts: [
         "Heterogenität, unvollkommene Mobilität, strategische Relevanz", "Homogenität, hohe Mobilität, geringe Relevanz", "Sichtbarkeit, Standardisierung, Austauschbarkeit", "Preis, Menge, Verfügbarkeit"
       ], correct: 0, explain: "Zentrale Ressourcenmerkmale: Heterogenität (ungleiche Verteilung), unvollkommene Mobilität (schwer entwickel-/austauschbar), strategische Relevanz." },
+    { le: 'm3', q: "Welche 3 Ressourcenarten unterscheidet der ressourcenbasierte Ansatz?", opts: [
+        "Materiell (tangible), immateriell (intangible), personell (human)", "Finanziell, technisch, organisational", "Intern, extern, hybrid", "Statisch, dynamisch, adaptiv"
+      ], correct: 0, explain: "Die 3 klassischen Ressourcenarten: materiell/tangible (z.B. Grundstücke), immateriell/intangible (z.B. Marken, Patente), personell/human (z.B. Ausbildung/Erfahrung der Mitarbeiter)." },
+    { le: 'm3', q: "Welche Aussagen zu Exploitation und Exploration treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Exploitation gedeiht in stabilen, kontrollierten Umgebungen", "Exploration kann Effizienzverluste mit sich bringen", "Organisationen sollten sich nur auf eines von beiden konzentrieren", "Beide müssen für gegenwärtige UND zukünftige Lebensfähigkeit ausbalanciert werden"
+      ], correct: [0,1,3], explain: "Klassische Klausurfalle: 'nur auf eines konzentrieren' ist FALSCH – Organisationen müssen Exploitation (Gegenwart) und Exploration (Zukunft) ausbalancieren (vgl. IBM-Fallstudie)." },
+    { le: 'm3', q: "Welche gehören zu den Kernerkenntnissen der IBM-Fallstudie? (mehrere richtig)", multi: true, opts: [
+        "Dynamische Fähigkeiten lassen sich durch konkrete Mechanismen aufbauen", "Strategiekonzeption und -umsetzung müssen Hand in Hand gehen", "Strategische Annahmen sollten NICHT regelmäßig hinterfragt werden", "Strategieprozesse profitieren von einem kontinuierlichen, demokratischen, evolutionären Prozess"
+      ], correct: [0,1,3], explain: "Die dritte Option ist eine klassische Klausur-Falle – genau das Gegenteil ist richtig: strategische Annahmen SOLLTEN regelmäßig hinterfragt werden." },
   ] },
   m4: { label: 'Modul 4 · Positionierung', sub: 'McKinsey-/BCG-Matrix, generische Strategien, Red vs. Blue Ocean', questions: [
     { le: 'm4', q: "In der BCG-Matrix befindet sich ein Geschäftsfeld mit hohem Marktwachstum, aber niedrigem relativem Marktanteil. Wie wird es genannt?", opts: [
@@ -1523,6 +1570,15 @@ const QUIZ_DATA_STRAT = {
     { le: 'm4', q: "Welche 3 Tests müssen Diversifizierungsoptionen bestehen (Grant 2015)?", opts: [
         "Attraktivitätstest, Eintrittskostentest, Besserstellungstest", "Kostentest, Zeittest, Rentabilitätstest", "Marktanteilstest, Wachstumstest, Portfoliotest", "Fit-Test, Risikotest, Synergietest"
       ], correct: 0, explain: "Die 3 klassischen Diversifizierungstests: Attraktivitätstest (Branche attraktiv?), Eintrittskostentest (Kosten < zukünftige Gewinne?), Besserstellungstest (wechselseitiger Wettbewerbsvorteil?)." },
+    { le: 'm4', q: "Welche Aussage zu den Netto-Cashflow-Eigenschaften der BCG-Matrix ist korrekt?", opts: [
+        "Melkkühe haben einen stark positiven, arme Hunde einen negativen/neutralen Netto-Cashflow", "Alle 4 Felder haben den gleichen Netto-Cashflow", "Nur Sterne haben einen positiven Netto-Cashflow", "Fragezeichen haben den höchsten Netto-Cashflow aller Felder"
+      ], correct: 0, explain: "Melkkühe: stark positiver Cashflow (kein hoher Investitionsbedarf). Arme Hunde: negativ/neutral. Weder Sterne noch Fragezeichen haben einen sehr hohen positiven Cashflow, da beide hohe Investitionen erfordern." },
+    { le: 'm4', q: "Ein Geschäftsfeld hat hohen Wettbewerbsvorteil UND hohe Branchenattraktivität in der McKinsey-Matrix. Welche Normstrategie ist typisch?", opts: [
+        "Investition und Wachstum", "Ernten/Veräußern", "Selektives Wachstum", "Desinvestition"
+      ], correct: 0, explain: "Bei hoher Attraktivität UND hohem Wettbewerbsvorteil lautet die klassische Normstrategie 'Investition und Wachstum' (Dominanz aufbauen, Investition maximieren)." },
+    { le: 'm4', q: "Welche Aussage fasst die Kernerkenntnisse der Cirque-du-Soleil-Fallstudie korrekt zusammen?", opts: [
+        "Branchenstrukturen sind nicht exogen, und blaue Ozeane entstehen oft durch gleichzeitige Kostensenkung UND Nutzensteigerung", "Branchenstrukturen sind vollständig exogen vorgegeben und unveränderbar", "Blaue Ozeane sind leicht zu finden und zu verteidigen", "Kostenführerschaft ist bei Cirque du Soleil irrelevant für den Erfolg"
+      ], correct: 0, explain: "Cirque du Soleil zeigt: Organisationen können Branchenstrukturen aktiv prägen, und Wertinnovation entsteht durch gleichzeitige Kostensenkung und Nutzensteigerung. Blaue Ozeane sind aber schwer zu entdecken UND zu verteidigen." },
   ] },
   m5: { label: 'Modul 5 · Strategische Allianzen', sub: 'Allianztypologien, Nutzen & Scheitern, Ökosysteme, offene Innovation', questions: [
     { le: 'm5', q: "Wie definiert Gulati (1998) strategische Allianzen?", opts: [
@@ -1549,6 +1605,23 @@ const QUIZ_DATA_STRAT = {
     { le: 'm5', q: "Welcher der 4 Typen offener Innovation beschreibt die Lizenzierung externer Technologien gegen Bezahlung?", opts: [
         "Akquirieren (monetär, eingehend)", "Beschaffen (nicht-monetär, eingehend)", "Teilen (nicht-monetär, ausgehend)", "Veräußern (monetär, ausgehend)"
       ], correct: 0, explain: "Akquirieren = monetär + eingehend (z.B. Lizenznahme externer Technologie, Kauf von Know-how). Beschaffen = nicht-monetär eingehend. Teilen = nicht-monetär ausgehend. Veräußern = monetär ausgehend (Dahlander & Gann 2010)." },
+    { le: 'm5', q: "Welche Perspektive beschreibt Organisationen als in ihr Umfeld eingebettet statt isoliert agierend?", opts: [
+        "Netzwerkzentrierte Perspektive", "Organisationszentrierte Perspektive", "Interorganisationelle Perspektive", "Infrastrukturzentrierte Perspektive"
+      ], correct: 0, explain: "Die netzwerkzentrierte Perspektive versteht Organisationen als in ihr Umfeld/Netzwerk eingebettet – zentral für das Verständnis von Ökosystemen." },
+    { le: 'm5', q: "Wie ist ein Ökosystem definiert?", opts: [
+        "Gemeinsame Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden", "Eine rein vertikale Lieferkette ohne gemeinsames Wertversprechen", "Ein einzelnes Unternehmen mit mehreren Tochtergesellschaften", "Ein Kartell zur Preisabsprache"
+      ], correct: 0, explain: "Ein Ökosystem ergibt sich aus der gemeinsamen Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden." },
+    { le: 'm5', q: "Ordne die 3 Dimensionen der Ökosystemzusammensetzung (Dhanaraj & Parkhe 2006) ihren Beispielmerkmalen zu.", type: 'match', pairs: [
+        { term: 'Mitgliedschaft', def: 'Größe, Vielfalt' },
+        { term: 'Struktur', def: 'Dichte, Autonomie' },
+        { term: 'Position', def: 'Zentralität, Status' },
+      ], explain: "Die 3 Dimensionen der Ökosystemzusammensetzung nach Dhanaraj & Parkhe (2006)." },
+    { le: 'm5', q: "Welche der folgenden gehören zu den 6 Facetten, wie sich das Scheitern einer Allianz MANIFESTIEREN kann? (mehrere richtig)", multi: true, opts: [
+        "Ziele wurden nicht erreicht", "Ungleiche Nutzenverteilung zwischen den Partnern", "Unzureichendes Top-Management-Engagement", "Erwartungen wurden nicht erfüllt"
+      ], correct: [0,1,3], explain: "'Unzureichendes Top-Management-Engagement' ist eine URSACHE (Kategorie 'Verhalten' nach De Rond), keine der 6 Facetten der Manifestation des Scheiterns selbst." },
+    { le: 'm5', q: "Nenne die 4 Spannungsfelder, die in Allianzen/Ökosystemen ausbalanciert werden müssen.", opts: [
+        "Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen", "Profit vs. Verantwortung, Plan vs. Umsetzung, Risiko vs. Sicherheit, Wachstum vs. Stabilität", "Zentralisierung vs. Dezentralisierung, Innovation vs. Tradition, Global vs. Lokal, Kurzfristig vs. Langfristig", "Formalisierung vs. Flexibilität, Autonomie vs. Kooperation, Wettbewerb vs. Vertrauen, Kontrolle vs. Emergenz"
+      ], correct: 0, explain: "Die 4 zentralen Spannungsfelder in Allianzen/Ökosystemen: Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen." },
   ] },
   m6: { label: 'Modul 6 · Soziale Verantwortung', sub: 'CSR-Perspektiven, Triple Bottom Line, Ethiktheorien, Sadhu-Fall', questions: [
     { le: 'm6', q: "Ordne Carrolls (1991) 4 CSR-Verantwortungsebenen ihrem jeweiligen Motto zu.", type: 'match', pairs: [
@@ -1578,6 +1651,12 @@ const QUIZ_DATA_STRAT = {
     { le: 'm6', q: "Nenne die ersten beiden der 6 Schritte zur moralischen Bewertung von Handlungsalternativen (in der richtigen Reihenfolge).", opts: [
         "1) Ist die Handlung legal? 2) Stimmt sie mit unseren Werten überein?", "1) Wie würde es in der Zeitung aussehen? 2) Ist sie legal?", "1) Fühlen wir uns schlecht dabei? 2) Ist sie profitabel?", "1) Maximiert sie den Shareholder Value? 2) Ist sie legal?"
       ], correct: 0, explain: "Die 6-Schritte-Prüfung beginnt mit der Legalitätsfrage (Schritt 1), gefolgt von der Werteübereinstimmung (Schritt 2) – erst danach folgen Gefühls-, Öffentlichkeits- und Gewissensprüfung." },
+    { le: 'm6', q: "Welche 4 Perspektiven auf CSR wurden im Kurs unterschieden?", opts: [
+        "Management-, Compliance-, Philanthropische, Business-Case-Perspektive", "Shareholder-, Stakeholder-, Compliance-, Marketing-Perspektive", "Ökonomische, Rechtliche, Moralische, Philanthropische Perspektive (Carroll)", "Interne, externe, globale, lokale Perspektive"
+      ], correct: 0, explain: "Achtung Verwechslungsgefahr: die 4 CSR-PERSPEKTIVEN (Management/Compliance/Philanthropisch/Business Case) sind ein anderes Framework als Carrolls 4 CSR-VERANTWORTUNGSEBENEN (ökonomisch/rechtlich/moralisch/philanthropisch, Antwort C)." },
+    { le: 'm6', q: "Ein Unternehmen betrachtet CSR primär als Mittel, um langfristige wirtschaftliche Interessen zu sichern. Welche CSR-Perspektive liegt vor?", opts: [
+        "Business-Case-Perspektive", "Compliance-Perspektive", "Philanthropische Perspektive", "Management-Perspektive"
+      ], correct: 0, explain: "Die Business-Case-Perspektive versteht CSR als Mittel zur Erreichung der langfristigen wirtschaftlichen Interessen der Organisation." },
   ] },
 };
 const AWI_CALC_GENERATORS_STRAT = {};
