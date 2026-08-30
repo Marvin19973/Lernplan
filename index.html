@@ -173,8 +173,10 @@
   .kk-mastery-text { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
 
   .course-select { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-  .course-btn { background: var(--card); border: 1px solid var(--card-border); color: var(--text-secondary); padding: 0.5rem 0.9rem; border-radius: 10px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .course-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--card); border: 1px solid var(--card-border); color: var(--text-secondary); padding: 0.4rem 0.8rem 0.4rem 0.6rem; border-radius: 10px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
   .course-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .course-ring { width: 26px; height: 26px; flex-shrink: 0; display: block; }
+  .course-ring text { font-family: inherit; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -2414,6 +2416,54 @@ const COURSE_META = {
   strat: { short: 'Strat.' },
   puo: { short: 'P&O' },
 };
+
+/* ============================================================
+   COURSE-BUTTON PROGRESS BADGES (% Module-Fortschritt pro Kurs)
+   ============================================================ */
+const COURSE_LABELS = {
+  stat: 'Statistik',
+  mv: 'Marketing &amp; Vertrieb',
+  strat: 'Strat. Management',
+  puo: 'Personal &amp; Organisation',
+};
+const COURSE_RING_COLORS = {
+  stat: '#5b8def',
+  mv: '#34d399',
+  strat: '#f5a623',
+  puo: '#a78bfa',
+};
+function computeCoursePct(courseId) {
+  const c = COURSES[courseId];
+  if (!c) return 0;
+  let st;
+  try { st = JSON.parse(localStorage.getItem(c.lsProgress) || '{}'); } catch (e) { st = {}; }
+  let total = 0, done = 0;
+  c.MODULES.forEach(m => m.lernplan.forEach(item => {
+    total++;
+    if (st[item.id]) done++;
+  }));
+  return total ? Math.round((done / total) * 100) : 0;
+}
+function progressRingSVG(pct, color) {
+  const p = Math.max(0, Math.min(100, pct));
+  return `<svg class="course-ring" viewBox="0 0 36 36">
+    <path fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="3.2"
+      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+    <path fill="none" stroke="${color}" stroke-width="3.2" stroke-linecap="round"
+      stroke-dasharray="${p}, 100"
+      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+    <text x="18" y="20.3" text-anchor="middle" font-size="${p >= 100 ? 7.5 : 8.5}" fill="${color}">${p}%</text>
+  </svg>`;
+}
+function renderCourseButtons() {
+  document.querySelectorAll('.course-btn').forEach(btn => {
+    const id = btn.dataset.course;
+    const label = COURSE_LABELS[id] || id;
+    const pct = computeCoursePct(id);
+    const color = btn.classList.contains('active') ? '#ffffff' : (COURSE_RING_COLORS[id] || '#5b8def');
+    btn.innerHTML = progressRingSVG(pct, color) + '<span>' + label + '</span>';
+  });
+}
 function buildMasterDayplan() {
   const src = { stat: DAYPLAN_STAT, mv: DAYPLAN_MV, strat: DAYPLAN_STRAT, puo: DAYPLAN_PUO };
   const byDate = {};
@@ -2448,6 +2498,7 @@ function saveProgress() {
   if (sb) {
     sb.from('app_data').upsert({ key: LS_PROGRESS, value: state }, { onConflict: 'key' }).then(() => {});
   }
+  renderCourseButtons();
 }
 function saveStats() {
   localStorage.setItem(LS_STATS, JSON.stringify(quizStats));
@@ -2459,13 +2510,14 @@ async function loadRemote() {
   if (!sb) return;
   try {
     const { data } = await sb.from('app_data').select('value').eq('key', LS_PROGRESS).single();
-    if (data && data.value) { state = data.value; }
+    if (data && data.value) { state = data.value; localStorage.setItem(LS_PROGRESS, JSON.stringify(state)); }
   } catch (e) {}
   try {
     const { data } = await sb.from('app_data').select('value').eq('key', LS_STATS).single();
     if (data && data.value) { quizStats = data.value; }
   } catch (e) {}
   render();
+  renderCourseButtons();
 }
 const LS_TAGESPLAN = 'dashboard_tagesplan_progress';
 let tagesplanState = {};
@@ -3303,6 +3355,7 @@ function switchCourse(id) {
   document.querySelectorAll('.course-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.course === id);
   });
+  renderCourseButtons();
 
   resetQuizEngineState();
   loadLocal();
