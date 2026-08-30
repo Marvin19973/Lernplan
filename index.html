@@ -2435,13 +2435,16 @@ const COURSE_RING_COLORS = {
 function computeCoursePct(courseId) {
   const c = COURSES[courseId];
   if (!c) return 0;
-  let st;
-  try { st = JSON.parse(localStorage.getItem(c.lsProgress) || '{}'); } catch (e) { st = {}; }
   let total = 0, done = 0;
-  c.MODULES.forEach(m => m.lernplan.forEach(item => {
-    total++;
-    if (st[item.id]) done++;
-  }));
+  c.DAYPLAN.forEach(phase => {
+    phase.days.forEach(day => {
+      day.tasks.forEach((task, ti) => {
+        total++;
+        const id = 'day-' + courseId + '-' + day.date + '-' + ti;
+        if (tagesplanState[id]) done++;
+      });
+    });
+  });
   return total ? Math.round((done / total) * 100) : 0;
 }
 function progressRingSVG(pct, color) {
@@ -2529,6 +2532,7 @@ function saveTagesplanState() {
   if (sb) {
     sb.from('app_data').upsert({ key: LS_TAGESPLAN, value: tagesplanState }, { onConflict: 'key' }).then(() => {});
   }
+  renderCourseButtons();
 }
 async function loadTagesplanRemote() {
   if (!sb) return;
@@ -2537,6 +2541,7 @@ async function loadTagesplanRemote() {
     if (data && data.value) { tagesplanState = data.value; }
   } catch (e) {}
   renderDayplan();
+  renderCourseButtons();
 }
 
 /* ============================================================
