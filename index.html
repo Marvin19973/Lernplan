@@ -80,6 +80,13 @@
   .modprog-list { margin-top: 10px; }
   .modprog-date { font-size: 11px; color: var(--text-muted); margin-left: 8px; white-space: nowrap; }
   .modprog-empty { font-size: 12.5px; color: var(--text-secondary); padding: 6px 0; }
+  .modprog-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .modprog-chip { background: var(--pill-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 6px 10px; font-size: 11.5px; display: flex; flex-direction: column; gap: 2px; min-width: 130px; }
+  .modprog-chip.done { border-color: var(--green); }
+  .modprog-chip-title { font-weight: 700; color: var(--text-primary); }
+  .modprog-chip-pct { color: var(--text-secondary); }
+  .modprog-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+  .modprog-badge { font-size: 10px; font-weight: 700; background: var(--accent); color: #fff; border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
   .day-entry { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--card-border); }
   .day-entry:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
   .day-entry-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
@@ -233,7 +240,7 @@
   </div>
 
   <div class="view active" id="view-moduleprogress">
-    <div class="info-box">Hier siehst du pro Modul/Kapitel, wie viele Tagesplan-Aufgaben du schon abgehakt hast – auch wenn ein Tag im Tagesplan mehrere Module gleichzeitig behandelt. Die Häkchen sind mit dem Tagesplan verknüpft: was du hier abhakst, ist auch dort (und in der Prozentanzeige oben) direkt erledigt.</div>
+    <div class="info-box">Oben siehst du auf einen Blick den Fortschritt pro Modul/Kapitel. Darunter sind die Aufgaben – wie im Tagesplan – chronologisch nach Tagen sortiert, aber nur für dieses Fach, mit Badges, welches Modul jeweils dran ist. Die Häkchen sind mit dem Tagesplan verknüpft: was du hier abhakst, ist auch dort (und in der Prozentanzeige oben) direkt erledigt.</div>
     <div id="moduleProgressWrap"></div>
   </div>
 
@@ -2726,44 +2733,66 @@ function renderModuleProgress() {
   if (!wrap) return;
   wrap.innerHTML = '';
   const courseId = CURRENT_COURSE_ID;
+  const modulesById = {};
+  (MODULES || []).forEach(m => { modulesById[m.id] = m; });
+
+  // Übersichtsleiste: kompakte %-Chips pro Modul (Kurzüberblick)
+  const summary = document.createElement('div');
+  summary.className = 'modprog-summary';
   (MODULES || []).forEach(m => {
-    const matches = [];
+    let total = 0, done = 0;
     (DAYPLAN || []).forEach(phase => {
       phase.days.forEach(day => {
         if (day.mods && day.mods.includes(m.id)) {
-          day.tasks.forEach((task, ti) => matches.push({ day, ti, task }));
+          day.tasks.forEach((task, ti) => {
+            total++;
+            const id = 'day-' + courseId + '-' + day.date + '-' + ti;
+            if (tagesplanState[id]) done++;
+          });
         }
       });
     });
-    const total = matches.length;
-    const done = matches.filter(x => tagesplanState['day-' + courseId + '-' + x.day.date + '-' + x.ti]).length;
     const pct = total ? Math.round((done / total) * 100) : 0;
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <p class="card-title">${m.title}</p>
-      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
-      <div class="progress-pct">${done} / ${total} Tagesplan-Aufgaben erledigt (${pct}%)</div>
-      <div class="modprog-list"></div>
-    `;
-    const list = card.querySelector('.modprog-list');
-    if (!total) {
-      list.innerHTML = '<div class="modprog-empty">Für dieses Modul sind aktuell keine Tagesplan-Aufgaben eingeplant.</div>';
-    }
-    matches.forEach(({ day, ti, task }) => {
-      const id = 'day-' + courseId + '-' + day.date + '-' + ti;
-      const row = document.createElement('div');
-      row.className = 'day-task' + (tagesplanState[id] ? ' checked' : '');
-      row.innerHTML = `<input type="checkbox" id="chk-mp-${id}" ${tagesplanState[id] ? 'checked' : ''}><label for="chk-mp-${id}">${task}</label><span class="modprog-date">${day.label}</span>`;
-      row.querySelector('input').addEventListener('change', (e) => {
-        tagesplanState[id] = e.target.checked;
-        saveTagesplanState();
-        renderModuleProgress();
-        renderDayplan();
+    const chip = document.createElement('div');
+    chip.className = 'modprog-chip' + (total && done === total ? ' done' : '');
+    chip.innerHTML = `<span class="modprog-chip-title">${m.title}</span><span class="modprog-chip-pct">${done} / ${total} (${pct}%)</span>`;
+    summary.appendChild(chip);
+  });
+  wrap.appendChild(summary);
+
+  // Hauptliste: chronologisch nach Tagen, wie im Tagesplan, aber nur dieses Fach
+  (DAYPLAN || []).forEach(phase => {
+    const group = document.createElement('div');
+    group.className = 'day-group';
+    const titleEl = document.createElement('p');
+    titleEl.className = 'day-group-title';
+    titleEl.textContent = phase.title;
+    group.appendChild(titleEl);
+
+    phase.days.forEach(day => {
+      const badges = (day.mods || []).map(mid => {
+        const m = modulesById[mid];
+        return '<span class="modprog-badge">' + (m ? m.id : mid) + '</span>';
+      }).join('');
+      const card = document.createElement('div');
+      card.className = 'day-card';
+      card.innerHTML = `<div class="day-card-head"><span class="day-date">${day.label}</span><span class="modprog-badges">${badges}</span></div><div class="day-tag">${day.tag || ''}</div>`;
+      day.tasks.forEach((task, ti) => {
+        const id = 'day-' + courseId + '-' + day.date + '-' + ti;
+        const row = document.createElement('div');
+        row.className = 'day-task' + (tagesplanState[id] ? ' checked' : '');
+        row.innerHTML = `<input type="checkbox" id="chk-mp-${id}" ${tagesplanState[id] ? 'checked' : ''}><label for="chk-mp-${id}">${task}</label>`;
+        row.querySelector('input').addEventListener('change', (e) => {
+          tagesplanState[id] = e.target.checked;
+          saveTagesplanState();
+          renderModuleProgress();
+          renderDayplan();
+        });
+        card.appendChild(row);
       });
-      list.appendChild(row);
+      group.appendChild(card);
     });
-    wrap.appendChild(card);
+    wrap.appendChild(group);
   });
 }
 
