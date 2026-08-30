@@ -77,6 +77,9 @@
   .day-task input[type=checkbox] { margin-top: 2px; accent-color: var(--green); cursor: pointer; }
   .day-task label { cursor: pointer; flex: 1; }
   .day-task.checked label { color: var(--text-muted); text-decoration: line-through; }
+  .modprog-list { margin-top: 10px; }
+  .modprog-date { font-size: 11px; color: var(--text-muted); margin-left: 8px; white-space: nowrap; }
+  .modprog-empty { font-size: 12.5px; color: var(--text-secondary); padding: 6px 0; }
   .day-entry { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--card-border); }
   .day-entry:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
   .day-entry-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
@@ -151,6 +154,25 @@
   .luecken-score { font-size: 13px; font-weight: 600; color: var(--text-primary); }
   .luecken-solution { display: none; margin-top: 0.7rem; font-size: 12.5px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 8px; padding: 0.7rem 0.9rem; line-height: 1.6; }
   .luecken-solution.show { display: block; }
+  .freitext-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem 1.35rem 1.5rem; margin-bottom: 1rem; }
+  .freitext-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+  .freitext-cat { font-size: 11.5px; font-weight: 700; color: var(--accent); background: rgba(91,141,239,0.12); border-radius: 6px; padding: 3px 8px; }
+  .freitext-points { font-size: 11.5px; color: var(--text-secondary); font-weight: 600; }
+  .freitext-q { font-size: 14.5px; line-height: 1.6; margin-bottom: 12px; }
+  .freitext-answer { width: 100%; min-height: 110px; background: var(--pill-bg); border: 1px solid var(--card-border); border-radius: 10px; color: var(--text-primary); padding: 10px 12px; font-size: 13.5px; line-height: 1.5; font-family: inherit; resize: vertical; box-sizing: border-box; }
+  .freitext-actions { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+  .freitext-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 0.5rem 1rem; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .freitext-btn.secondary { background: var(--pill-bg); color: var(--text-primary); border: 1px solid var(--card-border); }
+  .freitext-solution { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--card-border); font-size: 13.5px; line-height: 1.65; color: var(--text-secondary); }
+  .freitext-solution.show { display: block; }
+  .freitext-solution b { color: var(--text-primary); }
+  .freitext-rate-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .freitext-rate-btn { border: 1px solid var(--card-border); background: var(--pill-bg); color: var(--text-secondary); border-radius: 8px; padding: 0.4rem 0.75rem; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .freitext-rate-btn.good.active { background: var(--green); color: #06281d; border-color: var(--green); }
+  .freitext-rate-btn.partial.active { background: var(--amber); color: #2b1c00; border-color: var(--amber); }
+  .freitext-rate-btn.bad.active { background: #f45b69; color: #2a0006; border-color: #f45b69; }
+  .freitext-progress { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 12px; }
+
   .luecken-explain { display: block; margin-top: 6px; color: var(--text-muted); }
 
   .kk-shuffle-btn { background: var(--pill-bg); border: 1px solid var(--card-border); color: var(--text-primary); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 12.5px; font-weight: 600; cursor: pointer; }
@@ -201,14 +223,21 @@
   </div>
 
   <div class="tabs">
-    <button class="tab-btn active" id="tab-module">Module</button>
+    <button class="tab-btn active" id="tab-moduleprogress">Module</button>
+    <button class="tab-btn" id="tab-module">Fragenzusammenfassung</button>
     <button class="tab-btn" id="tab-tagesplan">Tagesplan</button>
     <button class="tab-btn" id="tab-quiz"><span id="tabQuizLabel">Quiz</span></button>
     <button class="tab-btn" id="tab-formeln"><span id="tabFormelnLabel">Formelkarten</span></button>
     <button class="tab-btn" id="tab-luecken"><span id="tabLueckenLabel">Lückentext</span></button>
+    <button class="tab-btn" id="tab-freitext"><span id="tabFreitextLabel">Freitext</span></button>
   </div>
 
-  <div class="view active" id="view-module">
+  <div class="view active" id="view-moduleprogress">
+    <div class="info-box">Hier siehst du pro Modul/Kapitel, wie viele Tagesplan-Aufgaben du schon abgehakt hast – auch wenn ein Tag im Tagesplan mehrere Module gleichzeitig behandelt. Die Häkchen sind mit dem Tagesplan verknüpft: was du hier abhakst, ist auch dort (und in der Prozentanzeige oben) direkt erledigt.</div>
+    <div id="moduleProgressWrap"></div>
+  </div>
+
+  <div class="view" id="view-module">
     <div class="info-box" id="infoModule"></div>
     <div class="grid" id="moduleGrid"></div>
   </div>
@@ -235,6 +264,11 @@
   <div class="view" id="view-luecken">
     <div class="info-box" id="infoLuecken"></div>
     <div id="lueckenWrap"></div>
+  </div>
+
+  <div class="view" id="view-freitext">
+    <div class="info-box" id="infoFreitext"></div>
+    <div id="freitextWrap"></div>
   </div>
 
 </div>
@@ -296,52 +330,52 @@ const MODULES_STAT = [
 ];
 const DAYPLAN_STAT =  [
   { title: 'Phase 1 · Teil A + B kompakt auffrischen (schon stark, keine Neulernzeit nötig) — Klausur ist open-book (Skript + Formelsammlung erlaubt): verstehen & anwenden üben statt auswendig lernen', days: [
-    { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Teil A komplett + Histogramm/Boxplot gezielt üben — Aufgabe 1 nur 4/12 letztes Mal', tasks: [
+    { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Teil A komplett + Histogramm/Boxplot gezielt üben — Aufgabe 1 nur 4/12 letztes Mal', mods: ['a'], tasks: [
       '1) SKRIPT (Kapitel A1–A4, A3+A4 heute mit Claude durchgehen) – Grundbegriffe/Skalenniveaus, Lage-/Streuungsmaße, klassierte Daten/Histogramm. Fokus heute: Histogramm-Höhe→Klassenhäufigkeit (Kap. A4) und Boxplot/Quartile (Kap. A3) – deine zwei Fehlerpunkte aus Aufgabe 1',
       '2) WICHTIG: empirische Varianz in Kapitel A3 hat Divisor n, nicht n-1 wie in Teil D!',
       '3) ÜBUNG (mit Skript + Formelsammlung griffbereit, wie in der Klausur) – Klausurtraining: A.I.1, A.I.2, A.I.4, A.I.7, A.I.8, A.I.10, A.I.11, A.I.14–A.I.18, A.I.20(a), A.I.22, A.I.24 | Buch: A 10.1–A 10.3',
       '4) Bei jeder falsch gelösten Aufgabe: nicht nur Ergebnis korrigieren, sondern nachschlagen WO im Skript/der Formelsammlung die richtige Formel steht'
     ]},
-    { date: '2026-08-29', label: 'Sa 29.08.', tag: 'Teil B komplett + Mengenoperationen gezielt üben — Aufgabe 2 nur 1/5 letztes Mal (0/4 bei Mengenoperationen)', tasks: [
+    { date: '2026-08-29', label: 'Sa 29.08.', tag: 'Teil B komplett + Mengenoperationen gezielt üben — Aufgabe 2 nur 1/5 letztes Mal (0/4 bei Mengenoperationen)', mods: ['b'], tasks: [
       '1) SKRIPT (Kapitel B1–B6, mit Claude durchgehen) – Grundlagen/Kombinatorik, diskrete & stetige Verteilungen, Eigenschaften von WK-Maßen (Siebformel = Mengenoperationen!), bedingte WK/Bayes, Unabhängigkeit. Fokus heute: Mengenoperationen (∩, ∪, \\, Komplement) und Mächtigkeiten – 0 von 4 Punkten letztes Mal',
       '2) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.II.4, A.II.5, A.II.7, A.II.12–A.II.14 (Siebformel/Sylvester-Poincaré → genau deine Lücke!) | Buch: B 7.1–B 7.6',
       '3) Formelsammlung-Check: Siebformel und Dichte↔Verteilungsfunktion-Umrechnung genau lokalisieren – im Ernstfall schnell auffindbar'
     ]},
   ]},
   { title: 'Phase 2 · Teil C gezielt vertiefen (Momente & Kovarianz waren deine zweite Fehlerquelle)', days: [
-    { date: '2026-09-02', label: 'Mi 02.09.', tag: 'C1-C4 kurz + C5 Momente stetiger Verteilungen — VERTIEFEN', tasks: [
+    { date: '2026-09-02', label: 'Mi 02.09.', tag: 'C1-C4 kurz + C5 Momente stetiger Verteilungen — VERTIEFEN', mods: ['c'], tasks: [
       '1) SKRIPT (Kapitel C1–C4, kurz überfliegen) – Zufallsvariablen, Verteilungs-/Quantilfunktion, mehrdimensionale ZV, Transformationen (das sitzt schon)',
       '2) MIT CLAUDE DURCHGEHEN (Kapitel C5, Momente) – E(X) und Var(X) bei unbeschränktem Träger (Pareto-artige Dichte, uneigentliches Integral), Schritt für Schritt mit Seitenverweis – 0/7 Punkte letztes Mal, klarer Vorzeichenfehler',
       '3) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.II.21, A.II.23, A.II.30(c), A.II.32(a)(b), A.II.34(a)(b), A.II.35(a), A.II.36(a), A.II.38(a), A.II.39(a), A.II.41, A.II.42(a)(b) | Buch: C 9.1(a)(b), C 9.4, C 9.6(a)(b)(d)(e)'
     ]},
-    { date: '2026-09-05', label: 'Sa 05.09.', tag: 'C5 Kovarianz/Korrelation — VERTIEFEN + C6-C8 kurz', tasks: [
+    { date: '2026-09-05', label: 'Sa 05.09.', tag: 'C5 Kovarianz/Korrelation — VERTIEFEN + C6-C8 kurz', mods: ['c'], tasks: [
       '1) MIT CLAUDE DURCHGEHEN (Kapitel C5) – Kovarianz, Korrelation, Var(X+Y) = Var(X)+Var(Y)+2Cov(X,Y) an Zahlenbeispielen mit Seitenverweis – dein zweiter Fehler letztes Mal',
       '2) SKRIPT (Kapitel C6–C8, kurz überfliegen) – erzeugende Funktionen, bedingte Verteilungen, Grenzwertsätze (GGZ, Zentraler Grenzwertsatz – wichtig für Teil D)',
       '3) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.II.8, A.II.9, A.II.16–A.II.20, A.II.24, A.II.32(c), A.II.33, A.II.34(c), A.II.35, A.II.36, A.II.38(b)(c)(d), A.II.39(b)(c), A.II.42(c), A.II.43–A.II.45 | Buch: C 9.1(c), C 9.2, C 9.3'
     ]},
   ]},
   { title: 'Phase 3 · Teil D — Hauptfokus (größte Schwachstellen aus deiner letzten Klausur)', days: [
-    { date: '2026-09-08', label: 'Di 08.09.', tag: 'D1-D2 kurz + D3 Maximum-Likelihood-Schätzung — 0/9 letztes Mal', tasks: [
+    { date: '2026-09-08', label: 'Di 08.09.', tag: 'D1-D2 kurz + D3 Maximum-Likelihood-Schätzung — 0/9 letztes Mal', mods: ['d'], tasks: [
       '1) SKRIPT (Kapitel D1–D2, kurz) – Grundbegriffe (Stichprobe/Parameter/Stichprobenmodelle), Punktschätzungen (Erwartungstreue, Konsistenz, MSE)',
       '2) MIT CLAUDE DURCHGEHEN (Kapitel D3) – ML-Schätzung Schritt für Schritt mit Seitenverweis: Likelihood-Funktion → Log-Likelihood → ableiten & Nullsetzen → ML-Schätzer, an 2-3 Verteilungen',
       '3) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.III.2, A.III.3, A.III.5, A.III.10, A.III.12 | Buch: D 9.1, D 9.3, D 9.6(a)(b)'
     ]},
-    { date: '2026-09-09', label: 'Mi 09.09.', tag: 'D3 Maximum-Likelihood — weiter vertiefen', tasks: [
+    { date: '2026-09-09', label: 'Mi 09.09.', tag: 'D3 Maximum-Likelihood — weiter vertiefen', mods: ['d'], tasks: [
       '1) MIT CLAUDE DURCHGEHEN (Kapitel D3) – Invarianzeigenschaft der ML-Schätzung (Schätzer für γ(ϑ) aus Schätzer für ϑ) mit Seitenverweis',
       '2) ÜBUNG (mit Skript + Formelsammlung) – restliche MLE-Rechenaufgaben (Exponential-, Normal-, Poisson-, Riemann-Dichte): Klausurtraining A.III.16(a), A.III.17, A.III.25, A.III.27, A.III.28, A.III.31, A.III.35, A.III.48(a) | Buch: D 9.2, D 9.4–D 9.6(c)'
     ]},
-    { date: '2026-09-10', label: 'Do 10.09.', tag: 'D4-D5 Konfidenzintervalle — 0/8 letztes Mal', tasks: [
+    { date: '2026-09-10', label: 'Do 10.09.', tag: 'D4-D5 Konfidenzintervalle — 0/8 letztes Mal', mods: ['d'], tasks: [
       '1) MIT CLAUDE DURCHGEHEN (Kapitel D4–D5) – Konfidenzintervalle (Exponential-, Binomialverteilung), Schätzungen bei Normalverteilung, einseitig vs. zweiseitig, Stichprobenumfang bei vorgegebener Intervalllänge – mit Seitenverweis',
       '2) SKRIPT-CHECK – E1-Quantiltabelle (Standardnormalverteilung) im Skript-Anhang finden und den Umgang üben (kommt so in der Klausur als Anhang)',
       '3) ÜBUNG (mit Skript + Formelsammlung) – Buch: D 9.5 | Klausurtraining A.III.16(a)/A.III.35 falls noch offen'
     ]},
-    { date: '2026-09-11', label: 'Fr 11.09.', tag: 'D6.1-D6.2 Hypothesentests: Gauß-Test & t-Test + Var(X+Y) — 1/8 letztes Mal!', tasks: [
+    { date: '2026-09-11', label: 'Fr 11.09.', tag: 'D6.1-D6.2 Hypothesentests: Gauß-Test & t-Test + Var(X+Y) — 1/8 letztes Mal!', mods: ['c', 'd'], tasks: [
       '1) SKRIPT (Kapitel D6.1) – Grundlagen (H0/H1, Fehler 1./2. Art, Signifikanzniveau, Ablehnbereich)',
       '2) MIT CLAUDE DURCHGEHEN (Kapitel D6.2) – Gauß-Test (σ² bekannt) und t-Test (σ² unbekannt, Freiheitsgrade n-1) mit Seitenverweis. Deine Fehler letztes Mal: -17,25 statt -18 beim Gauß-Test, und 0 von 3 Punkten beim t-Test (kompletter Blackout)',
       '3) MIT CLAUDE DURCHGEHEN – Var(X+Y) bei negativer Kovarianz: Vorzeichen von Cov(X,Y) immer zuerst explizit hinschreiben (Fehler letztes Mal: 41 statt 27, weil Cov=-5 als +5 behandelt wurde)',
       '4) ÜBUNG (mit Skript + Formelsammlung) – Klausurtraining: A.III.41, A.III.43, A.III.44, A.III.46, A.III.48, A.III.50, A.III.51(a)(b), A.III.54 | Buch: D 9.8, D 9.9'
     ]},
-    { date: '2026-09-12', label: 'Sa 12.09.', tag: 'D7 Lineare Regression — 0/7 letztes Mal, komplett neu aufbauen!', tasks: [
+    { date: '2026-09-12', label: 'Sa 12.09.', tag: 'D7 Lineare Regression — 0/7 letztes Mal, komplett neu aufbauen!', mods: ['a', 'd'], tasks: [
       '1) MIT CLAUDE DURCHGEHEN (Kapitel A7–A8 + D7) – Regressionsmodell Yi = a + b·xi + εi: â, b̂ (KQ-Schätzer), sxy, s²y von Grund auf mit Seitenverweis – letztes Mal 0 von 7 Punkten, nichts saß',
       '2) MIT CLAUDE DURCHGEHEN – s²y aus ȳ² (Verschiebungssatz), Bestimmtheitsmaß Bxy und Regressionsgerade (Steigung/Achsenabschnitt aus x̄, ȳ, sxy, s²x) an mind. 3 Zahlenbeispielen',
       '3) SKRIPT (Kapitel D6.3, D8) – gepaarter vs. unabhängiger t-Test kurz wiederholen; Binomialtests und Bayes-Statistik nur grob überfliegen (Nebenthemen)',
@@ -349,7 +383,7 @@ const DAYPLAN_STAT =  [
     ]},
   ]},
   { title: 'Phase 4 · Finale', days: [
-    { date: '2026-09-13', label: 'So 13.09.', tag: 'Probeklausur unter Zeitdruck + letzte Fehler ausbügeln', tasks: [
+    { date: '2026-09-13', label: 'So 13.09.', tag: 'Probeklausur unter Zeitdruck + letzte Fehler ausbügeln', mods: ['a', 'b', 'c', 'd'], tasks: [
       '1) Eine komplette Altklausur unter echten Bedingungen durchrechnen: nur mit Skript + Formelsammlung, unter Zeitdruck (90-120 Min.)',
       '2) Gezielt die Aufgaben nachrechnen, die 0 Punkte gaben (KI, MLE, Testverfahren, Regression) + von jedem der 11 Themenblöcke 1-2 noch offene Klausurtraining-Aufgaben nachholen',
       '3) MIT CLAUDE DURCHGEHEN – letzte offene Fragen/Unsicherheiten aus der Probeklausur klären',
@@ -668,53 +702,53 @@ const MODULES_MV = [
 ];
 const DAYPLAN_MV =  [
   { title: 'Phase 1 · Eigene Lerntage (ein Modul pro Tag, parallel zu Statistik verteilt) — jetzt gegründet auf der vollständigen 125-seitigen Vorlesungszusammenfassung + 3 echte Altklausuren (SS22, SS23, 2024)', days: [
-    { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Modul 1: Konsumentenverhalten & B2B', tasks: [
+    { date: '2026-08-28', label: 'Fr 28.08.', tag: 'Modul 1: Konsumentenverhalten & B2B', mods: ['konsum'], tasks: [
       '1) MODULE – Teil konsum komplett lesen',
       '2) QUIZ – Teil konsum komplett spielen (14 Fragen, inkl. 4 Diagramm-Zuordnungen)'
     ]},
-    { date: '2026-08-30', label: 'So 30.08.', tag: 'Modul 2: Marktforschung & Datenanalyse', tasks: [
+    { date: '2026-08-30', label: 'So 30.08.', tag: 'Modul 2: Marktforschung & Datenanalyse', mods: ['mafo'], tasks: [
       '1) MODULE – Teil mafo komplett lesen',
       '2) QUIZ – Teil mafo komplett spielen',
       '3) FORMELN – Teil mafo spielen'
     ]},
-    { date: '2026-08-31', label: 'Mo 31.08.', tag: 'Modul 3: Strategie (CLV, Erfahrungskurve, Positionierung)', tasks: [
+    { date: '2026-08-31', label: 'Mo 31.08.', tag: 'Modul 3: Strategie (CLV, Erfahrungskurve, Positionierung)', mods: ['strategie'], tasks: [
       '1) MODULE – Teil strategie komplett lesen',
       '2) QUIZ – Teil strategie komplett spielen',
       '3) FORMELN – Teil strategie spielen'
     ]},
-    { date: '2026-09-01', label: 'Di 01.09.', tag: 'Modul 4: Produkt (Conjoint-Analyse, Produktprogramm)', tasks: [
+    { date: '2026-09-01', label: 'Di 01.09.', tag: 'Modul 4: Produkt (Conjoint-Analyse, Produktprogramm)', mods: ['produkt'], tasks: [
       '1) MODULE – Teil produkt komplett lesen',
       '2) QUIZ – Teil produkt komplett spielen',
       '3) FORMELN – Teil produkt spielen'
     ]},
-    { date: '2026-09-03', label: 'Do 03.09.', tag: 'Modul 5: Marke', tasks: [
+    { date: '2026-09-03', label: 'Do 03.09.', tag: 'Modul 5: Marke', mods: ['marke'], tasks: [
       '1) MODULE – Teil marke komplett lesen',
       '2) QUIZ – Teil marke komplett spielen'
     ]},
-    { date: '2026-09-04', label: 'Fr 04.09.', tag: 'Modul 6: Preispolitik — wichtigster Rechenteil!', tasks: [
+    { date: '2026-09-04', label: 'Fr 04.09.', tag: 'Modul 6: Preispolitik — wichtigster Rechenteil!', mods: ['preis'], tasks: [
       '1) MODULE – Teil preis komplett lesen',
       '2) QUIZ – Teil preis komplett spielen',
       '3) FORMELN – Teil preis spielen'
     ]},
-    { date: '2026-09-06', label: 'So 06.09.', tag: 'Modul 7: Kommunikation — TKP/Mediaplanung war deine schwächste Aufgabe (2 von 17 Punkten!)', tasks: [
+    { date: '2026-09-06', label: 'So 06.09.', tag: 'Modul 7: Kommunikation — TKP/Mediaplanung war deine schwächste Aufgabe (2 von 17 Punkten!)', mods: ['komm'], tasks: [
       '1) MODULE – Teil komm komplett lesen',
       '2) QUIZ – Teil komm komplett spielen',
       '3) FORMELN – Teil komm spielen (Fokus TKP)'
     ]},
-    { date: '2026-09-07', label: 'Mo 07.09.', tag: 'Modul 8: Vertrieb + Wiederholung', tasks: [
+    { date: '2026-09-07', label: 'Mo 07.09.', tag: 'Modul 8: Vertrieb + Wiederholung', mods: ['vertrieb'], tasks: [
       '1) MODULE – Teil vertrieb komplett lesen',
       '2) QUIZ – Teil vertrieb komplett spielen',
       '3) QUIZ + FORMELN – "Nur falsche wiederholen" über alle bisherigen Teile'
     ]},
   ]},
   { title: 'Phase 2 · Wiederholungstag + Klausurtag (14.9 ist Statistik-Klausur, 15.9 ist dein voller Wiederholungstag)', days: [
-    { date: '2026-09-15', label: 'Di 15.09. — VOLLER WIEDERHOLUNGSTAG', tag: 'Kompletter zweiter Durchlauf + volle Musterklausur', tasks: [
+    { date: '2026-09-15', label: 'Di 15.09. — VOLLER WIEDERHOLUNGSTAG', tag: 'Kompletter zweiter Durchlauf + volle Musterklausur', mods: ['konsum', 'mafo', 'strategie', 'produkt', 'marke', 'preis', 'komm', 'vertrieb'], tasks: [
       '1) MODULE – alle 8 Teile nochmal lesen',
       '2) QUIZ – alle 8 Teile "Nur falsche wiederholen"',
       '3) FORMELN – alle Teile "Nur falsche wiederholen"',
       '4) Musterklausur unter Zeitdruck durchrechnen'
     ]},
-    { date: '2026-09-16', label: 'Mi 16.09. — KLAUSURTAG (9:00-10:00 Uhr)', tag: 'Letzter Schliff vor der Klausur', tasks: [
+    { date: '2026-09-16', label: 'Mi 16.09. — KLAUSURTAG (9:00-10:00 Uhr)', tag: 'Letzter Schliff vor der Klausur', mods: ['konsum', 'mafo', 'strategie', 'produkt', 'marke', 'preis', 'komm', 'vertrieb'], tasks: [
       '1) QUIZ + FORMELN – "Nur falsche wiederholen"',
       '2) Klausur „Marketing und Vertrieb (Wiederholungsklausur)" 9:00-10:00 Uhr – Viel Erfolg!'
     ]},
@@ -1386,55 +1420,55 @@ const MODULES_STRAT = [
 ];
 const DAYPLAN_STRAT = [
   { title: 'Phase 1 · Parallel-Merken (nebenbei, während Statistik & Marketing Vorrang haben)', days: [
-    { date: '2026-08-30', label: 'So 30.08.', tag: '10 Min Modul 1 Kernbegriffe (nebenbei)', tasks: [
+    { date: '2026-08-30', label: 'So 30.08.', tag: '10 Min Modul 1 Kernbegriffe (nebenbei)', mods: ['m1'], tasks: [
       '1) Nur MODUL 1 – 10 Min: Mintzberg 4 Ps, 3 Strategieebenen, 5 Epochen der Strategieforschung überfliegen',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik/Marketing!'
     ]},
-    { date: '2026-09-03', label: 'Do 03.09.', tag: '10 Min Modul 2 Kernbegriffe (nebenbei)', tasks: [
+    { date: '2026-09-03', label: 'Do 03.09.', tag: '10 Min Modul 2 Kernbegriffe (nebenbei)', mods: ['m2'], tasks: [
       '1) Nur MODUL 2 – 10 Min: Porters 5(+1) Kräfte + SCP-Paradigma kurz auffrischen',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik/Marketing!'
     ]},
-    { date: '2026-09-07', label: 'Mo 07.09.', tag: '10 Min Modul 3 Kernbegriffe (nebenbei)', tasks: [
+    { date: '2026-09-07', label: 'Mo 07.09.', tag: '10 Min Modul 3 Kernbegriffe (nebenbei)', mods: ['m3'], tasks: [
       '1) Nur MODUL 3 – 10 Min: VRIN/VRIO-Kriterien + 3 Bestandteile dynamischer Fähigkeiten (Sensing/Seizing/Reconfiguring)',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik/Marketing!'
     ]},
-    { date: '2026-09-11', label: 'Fr 11.09.', tag: '10 Min Modul 4 Kernbegriffe (nebenbei)', tasks: [
+    { date: '2026-09-11', label: 'Fr 11.09.', tag: '10 Min Modul 4 Kernbegriffe (nebenbei)', mods: ['m4'], tasks: [
       '1) Nur MODUL 4 – 10 Min: Porters 3 generische Strategien + Red-vs-Blue-Ocean-Gegenüberstellung',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik (14.9) und Marketing (16.9)!'
     ]},
   ]},
   { title: 'Phase 2 · Intensivphase (17.–22.9, nach Statistik- und Marketing-Klausur)', days: [
-    { date: '2026-09-17', label: 'Do 17.09.', tag: 'Modul 1 + 2 komplett', tasks: [
+    { date: '2026-09-17', label: 'Do 17.09.', tag: 'Modul 1 + 2 komplett', mods: ['m1', 'm2'], tasks: [
       '1) MODUL – Modul 1 (Strategieprozesse) und Modul 2 (Branchenstrukturen) im Module-Tab komplett durchgehen',
       '2) QUIZ – Teil m1 und m2 je eine Runde spielen',
       '3) RAHMENWERKE – m1 und m2 je eine Runde spielen (Mintzberg 4 Ps, 3 Ebenen, 5 Kräfte, SCP, 5-Phasen-Prozess)'
     ]},
-    { date: '2026-09-18', label: 'Fr 18.09.', tag: 'Modul 3 + 4 komplett', tasks: [
+    { date: '2026-09-18', label: 'Fr 18.09.', tag: 'Modul 3 + 4 komplett', mods: ['m3', 'm4'], tasks: [
       '1) MODUL – Modul 3 (Ressourcen) und Modul 4 (Positionierung) im Module-Tab komplett durchgehen',
       '2) QUIZ – Teil m3 und m4 je eine Runde spielen',
       '3) RAHMENWERKE – m3 und m4 je eine Runde spielen (VRIN/VRIO, Wertschöpfungskette, BCG-Felder, ERSK-Raster)'
     ]},
-    { date: '2026-09-19', label: 'Sa 19.09.', tag: 'Modul 5 + 6 komplett', tasks: [
+    { date: '2026-09-19', label: 'Sa 19.09.', tag: 'Modul 5 + 6 komplett', mods: ['m5', 'm6'], tasks: [
       '1) MODUL – Modul 5 (Allianzen) und Modul 6 (Verantwortung) im Module-Tab komplett durchgehen',
       '2) QUIZ – Teil m5 und m6 je eine Runde spielen',
       '3) RAHMENWERKE – m5 und m6 je eine Runde spielen (Allianztypen, Ökosystem-Prozesse, CSR-Pyramide, Ethiktheorien)'
     ]},
-    { date: '2026-09-20', label: 'So 20.09.', tag: 'Fallstudien vertiefen + Quiz Runde 2', tasks: [
+    { date: '2026-09-20', label: 'So 20.09.', tag: 'Fallstudien vertiefen + Quiz Runde 2', mods: ['m1', 'm2', 'm3', 'm6'], tasks: [
       '1) FALLSTUDIEN – Honda (Modul 1, Design vs. Emergenz), Einzelhandel (Modul 2, strategische Gruppen), IBM (Modul 3, dynamische Fähigkeiten), Sadhu (Modul 6, Wirtschaftsethik) noch einmal in den Original-Fragen-PDFs durchgehen',
       '2) QUIZ – alle 6 Teile eine 2. Runde spielen, "Nur falsche wiederholen" nutzen',
       '3) Denk daran: die Fallstudie in der Klausur enthält alle nötigen Infos im Text selbst – es geht darum, die richtigen Lektions-Frameworks korrekt anzuwenden, nicht die Fälle auswendig zu kennen'
     ]},
-    { date: '2026-09-21', label: 'Mo 21.09.', tag: 'Wrap-Up-PDF + Probeklausur-Beispiel + Rahmenwerke', tasks: [
+    { date: '2026-09-21', label: 'Mo 21.09.', tag: 'Wrap-Up-PDF + Probeklausur-Beispiel + Rahmenwerke', mods: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'], tasks: [
       '1) WRAP-UP – StrategischesManagement_WrapUp_SS26_final.pdf noch einmal komplett lesen (Klausurformat + Gesamtbild-Grid)',
       '2) PROBEKLAUSUR – das im Wrap-Up enthaltene Aufgabenbeispiel (Lückentext + Fallstudie "In-Vitro Fleisch") unter Zeitdruck durchrechnen',
       '3) RAHMENWERKE – "Nur falsche wiederholen" durch alle 6 Teile'
     ]},
-    { date: '2026-09-22', label: 'Di 22.09.', tag: 'Volle Wiederholung + schwache Themen', tasks: [
+    { date: '2026-09-22', label: 'Di 22.09.', tag: 'Volle Wiederholung + schwache Themen', mods: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'], tasks: [
       '1) QUIZ + RAHMENWERKE – gezielt die Themen wiederholen, bei denen bisher die meisten Fehler passiert sind',
       '2) KLAUSURFORMAT im Kopf durchgehen: 60 Min, 60 Punkte, 3 Teile (Lückentext / SC+MC+Klassifikation / Fallstudie), MC = alles-oder-nichts (kein Teilpunkt), Bestehensgrenze 60%, kein Taschenrechner, kein eigenes Papier',
       '3) Sprache prüfen: Standard ist Deutsch (Wahl-Deadline war bereits Fr 10.08.) – falls du dich für Englisch angemeldet hast, entsprechend auf Englisch wiederholen'
     ]},
-    { date: '2026-09-23', label: 'Mi 23.09. — KLAUSURTAG', tag: 'Letzter Schliff vor der Klausur', tasks: [
+    { date: '2026-09-23', label: 'Mi 23.09. — KLAUSURTAG', tag: 'Letzter Schliff vor der Klausur', mods: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'], tasks: [
       '1) FRÜH – RAHMENWERKE: letzte "Nur falsche wiederholen"-Runde durch alle 6 Teile (v.a. die 5(+1) Kräfte, VRIN/VRIO, BCG-Felder, ERSK-Raster, CSR-Pyramide)',
       '2) FRÜH – kurz die 6 Lektions-Frameworks im Kopf durchgehen, damit du sie in der Fallstudie sicher anwenden kannst',
       '3) Klausur "Strategisches Management" – bitte genaue Uhrzeit im offiziellen Prüfungsplan prüfen. Viel Erfolg!'
@@ -1875,49 +1909,49 @@ const MODULES_PUO = [
 ];
 const DAYPLAN_PUO = [
   { title: 'Phase 1 · Parallel-Merken (nebenbei, während Statistik/Marketing/StratMgmt Vorrang haben)', days: [
-    { date: '2026-08-31', label: 'Mo 31.08.', tag: '10 Min Formelkarten Informationsbewertung (nebenbei)', tasks: [
+    { date: '2026-08-31', label: 'Mo 31.08.', tag: '10 Min Formelkarten Informationsbewertung (nebenbei)', mods: ['c5'], tasks: [
       '1) Nur FORMELN – Kap. 5: Informationswert-Formel (IW=E**-E*) und Satz von Bayes kurz anschauen',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf den anderen Klausuren!'
     ]},
-    { date: '2026-09-04', label: 'Fr 04.09.', tag: '10 Min Formelkarten Personalbedarf (nebenbei)', tasks: [
+    { date: '2026-09-04', label: 'Fr 04.09.', tag: '10 Min Formelkarten Personalbedarf (nebenbei)', mods: ['c6'], tasks: [
       '1) Nur FORMELN – Kap. 6: PB = Arbeitsmenge/Leistungsfähigkeit und Netto-Personalbedarf-Formel auffrischen',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf den anderen Klausuren!'
     ]},
-    { date: '2026-09-08', label: 'Di 08.09.', tag: '10 Min Formelkarten Humankapital (nebenbei)', tasks: [
+    { date: '2026-09-08', label: 'Di 08.09.', tag: '10 Min Formelkarten Humankapital (nebenbei)', mods: ['c8'], tasks: [
       '1) Nur FORMELN – Kap. 8: Humankapitalinvestitions-Bedingung (C0+J0 ≤ Barwert der Erträge) auffrischen',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf den anderen Klausuren!'
     ]},
-    { date: '2026-09-12', label: 'Sa 12.09.', tag: '10 Min Formelkarten Zuordnung/Markov (nebenbei)', tasks: [
+    { date: '2026-09-12', label: 'Sa 12.09.', tag: '10 Min Formelkarten Zuordnung/Markov (nebenbei)', mods: ['c7'], tasks: [
       '1) Nur FORMELN – Kap. 7: Eignungswert eij und Markov-Ketten-Prognose auffrischen',
       '2) Rest des Tages: Statistik hat Vorrang (Klausur 14.9)!'
     ]},
-    { date: '2026-09-19', label: 'Sa 19.09.', tag: '10 Min Formelkarten Entlohnung (nebenbei)', tasks: [
+    { date: '2026-09-19', label: 'Sa 19.09.', tag: '10 Min Formelkarten Entlohnung (nebenbei)', mods: ['c11'], tasks: [
       '1) Nur FORMELN – Kap. 11: Geldakkord/Zeitakkord-Formeln auffrischen',
       '2) Rest des Tages: Strategisches Management hat Vorrang (Klausur 23.9)!'
     ]},
-    { date: '2026-09-22', label: 'Di 22.09.', tag: '10 Min Modul-Überblick verschaffen (nebenbei)', tasks: [
+    { date: '2026-09-22', label: 'Di 22.09.', tag: '10 Min Modul-Überblick verschaffen (nebenbei)', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
       '1) Kurzer Überblick über alle 12 Kapitel im Module-Tab (nur überfliegen, noch nicht lernen)',
       '2) Rest des Tages: Strategisches Management hat Vorrang (Klausur 23.9)!'
     ]},
   ]},
   { title: 'Phase 2 · Intensivphase (26.–28.9, nach dem 23-25.9 Blackout, vor der Klausur am 29.9)', days: [
-    { date: '2026-09-26', label: 'Sa 26.09.', tag: 'Teil A komplett: Kap. 1-4 (Organisation)', tasks: [
+    { date: '2026-09-26', label: 'Sa 26.09.', tag: 'Teil A komplett: Kap. 1-4 (Organisation)', mods: ['c1', 'c2', 'c3', 'c4'], tasks: [
       '1) MODUL – Kap. 1 Grundlagen, Kap. 2 Neue Institutionenökonomik, Kap. 3 Organisationsformen, Kap. 4 Interne Organisationsstrukturen komplett durchgehen',
       '2) QUIZ – Teile c1-c4 je eine Runde spielen',
       '3) Denk daran: die echte Klausur besteht aus offenen Aufgaben ("Beschreiben Sie...", "Nennen Sie...") – übe daher auch, die Antworten frei zu formulieren, nicht nur die Quiz-Option zu erkennen'
     ]},
-    { date: '2026-09-27', label: 'So 27.09.', tag: 'Teil A Ende + Teil B Start: Kap. 5-8', tasks: [
+    { date: '2026-09-27', label: 'So 27.09.', tag: 'Teil A Ende + Teil B Start: Kap. 5-8', mods: ['c5', 'c6', 'c7', 'c8'], tasks: [
       '1) MODUL – Kap. 5 Informationsbewertung, Kap. 6 Rekrutierung, Kap. 7 Arbeitnehmer-Stellen-Matching, Kap. 8 Betriebliche Qualifizierung komplett durchgehen',
       '2) QUIZ – Teile c5-c8 je eine Runde spielen',
       '3) FORMELN – Kap. 5-8: Informationswert/Bayes, Personalbedarf, Markov/Zuordnung, Humankapital-Rechenaufgaben mehrfach üben (das sind die punktereichsten Rechenaufgaben-Typen laut Altklausur)'
     ]},
-    { date: '2026-09-28', label: 'Mo 28.09.', tag: 'Teil B Ende: Kap. 9-12 + volle Wiederholung', tasks: [
+    { date: '2026-09-28', label: 'Mo 28.09.', tag: 'Teil B Ende: Kap. 9-12 + volle Wiederholung', mods: ['c9', 'c10', 'c11', 'c12'], tasks: [
       '1) MODUL – Kap. 9 Leistungsbeurteilung, Kap. 10 Teams, Kap. 11 Entlohnung, Kap. 12 Personalfreisetzung komplett durchgehen',
       '2) QUIZ – Teile c9-c12 spielen, danach alle 12 Teile "Nur falsche wiederholen"',
       '3) FORMELN – alle Formelkarten (Kap. 5,6,7,8,10,11) "Nur falsche wiederholen"',
       '4) Falls vorhanden: die alten Klausuren/Übungen (PT1/PT2) nochmal unter Zeitdruck als offene Fragen üben – die echte Klausur läuft über offene Textantworten, nicht Multiple Choice'
     ]},
-    { date: '2026-09-29', label: 'Di 29.09. — KLAUSURTAG', tag: 'Letzter Schliff vor der Klausur', tasks: [
+    { date: '2026-09-29', label: 'Di 29.09. — KLAUSURTAG', tag: 'Letzter Schliff vor der Klausur', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
       '1) FRÜH – FORMELN: letzte "Nur falsche wiederholen"-Runde durch alle Rechenformeln (Informationswert, Personalbedarf, Humankapital, Zuordnung/Markov, Akkordlohn)',
       '2) FRÜH – MODULE: kurz alle 12 Kapitel-Zusammenfassungen überfliegen, insbesondere Definitionen (Koordination/Kooperation, TAK-Arten, Signaling/Screening, Turniertheorie)',
       '3) Klausur "Personal und Organisation" – bitte genaue Uhrzeit im offiziellen Prüfungsplan prüfen. Viel Erfolg!'
@@ -2228,7 +2262,8 @@ const AWI_FORMULA_QUIZ_PUO = {
   ] },
 };
 
-let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT;
+let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT, FREITEXT;
+let CURRENT_COURSE_ID = 'stat';
 
 const LUECKENTEXT_STRAT = [
   { id: 'lt1', title: 'Altklausur-Fallstudie: Apexstream Technologies (Hochgeschwindigkeitszug-Ausschreibung Ägypten)', text: `Der Vorstand von Apexstream Technologies, einem international führenden Konzern für Elektrotechnik und Energie, bittet Sie um die Ausarbeitung eines Strategiekonzepts zwecks Bewerbung auf die staatliche Ausschreibung zum Bau eines Hochgeschwindigkeits-Zugnetzes in Ägypten.
@@ -2310,6 +2345,121 @@ Mit über 1700 globalen Partnerunternehmen kann man Apexstream als eine in Netzw
 const LUECKENTEXT_STAT = [];
 const LUECKENTEXT_MV = [];
 const LUECKENTEXT_PUO = [];
+const FREITEXT_PUO = [
+  {
+    id: 'ft-puo-1', cat: 'Personalbedarf (Rosenkranz)', points: 3,
+    q: "Ermitteln Sie den für die Rosenkranzformel notwendigen <b>Verteilzeitfaktor (VZF)</b>. Gegeben: Nebenarbeitszuschlag 15%, Erholzeitenzuschlag 12%, nur 80% der bezahlten Arbeitszeit stehen tatsächlich zur Verfügung (Ausfallquote durch Urlaub/Krankheit). Runden Sie auf zwei Nachkommastellen.",
+    a: "<b>Lösungsweg:</b><br>VZF = (1 + Nebenarbeitszuschlag) × (1 + Erholzeitenzuschlag) × (1 / Nutzungsgrad)<br>VZF = 1,15 × 1,12 × (1 / 0,80) = 1,15 × 1,12 × 1,25<br><b>VZF ≈ 1,61</b><br><br><i>Punktelogik im Original:</i> 1P je korrekt eingesetztem Faktor, 1P fürs richtige Runden."
+  },
+  {
+    id: 'ft-puo-2', cat: 'Personalbedarf (Rosenkranz)', points: 3,
+    q: "Nutzen Sie den VZF = 1,61. Eine Abteilung mit 18 Angestellten (36 Std./Woche) hat pro Woche: 100 E-Mails à 16 Min., 200 Telefonanfragen à 10 Min., 160 Beratungsgespräche à 30 Min. sowie 400 Arbeitsstunden für sonstige Tätigkeiten. Errechnen Sie mittels der Rosenkranzformel den angemessenen Personalbestand (auf natürliche Zahl aufrunden).",
+    a: "<b>Lösungsweg:</b><br>1) Zeitbedarf Kernaufgaben: 100×16 + 200×10 + 160×30 = 1600 + 2000 + 4800 = 8400 Min. = 140 Std./Woche<br>2) Tätigkeitsverteilzeitfaktor (fTV) = (18×36 − 400) / 140 = (648−400)/140 = 1,77<br>3) Personalbedarf = (140 × 1,61)/36 + (400/36) × (1,61/1,77)<br>= 225,4/36 + 11,11×0,910 = 6,26 + 10,11 = 16,37<br><b>→ aufgerundet: 17 Mitarbeitende</b> (aktuell 18 → Personalbestand sollte reduziert werden)."
+  },
+  {
+    id: 'ft-puo-3', cat: 'Personalbedarf (Rosenkranz)', points: 2,
+    q: "Ein Bekannter hat letzten Monat ein Start-up gegründet, die Arbeitsabläufe sind noch nicht eingespielt und sehr provisorisch organisiert. Eignet sich die Rosenkranzformel zur Berechnung des Personalbedarfs in diesem Start-up? Begründen Sie anhand von zwei Argumenten.",
+    a: "<b>Nein.</b> Voraussetzungen der Rosenkranzformel sind u.a.:<br>• stabile, gut strukturierte, sich wiederholende Arbeitsabläufe mit belastbaren Erfahrungswerten (im neuen Start-up nicht gegeben – neues Aufgabenfeld ohne Erfahrungswerte)<br>• ein klarer, messbarer Bezug der Tätigkeiten zur Outputgröße (im provisorischen Start-up-Alltag i.d.R. nicht vorhanden)<br>→ je 1 Punkt pro stichhaltigem Argument."
+  },
+  {
+    id: 'ft-puo-4', cat: 'Spieltheorie & Prinzipal-Agent', points: 4,
+    q: "Definieren Sie die Begriffe „Nash-Gleichgewicht“ und „Pareto-Effizienz“.",
+    a: "<b>Nash-Gleichgewicht (2P):</b> Zustand eines strategischen Gleichgewichts in nichtkooperativen Spielen, von dem ausgehend kein einzelner Spieler für sich einen Vorteil erzielen kann, indem er einseitig von seiner Strategie abweicht – alle Spieler spielen eine „beste Antwort“ auf das Verhalten der Gegenspieler.<br><b>Pareto-Effizienz (2P):</b> Ein Zustand, in dem es nicht möglich ist, einen Spieler besserzustellen, ohne gleichzeitig einen anderen schlechterzustellen."
+  },
+  {
+    id: 'ft-puo-5', cat: 'Spieltheorie & Prinzipal-Agent', points: 6,
+    q: "Erläutern und unterscheiden Sie anhand der Begriffe Nash-Gleichgewicht/Pareto-Effizienz zwischen <b>Koordinationsspielen</b> und <b>Kooperationsspielen</b>.",
+    a: "<b>Koordinationsspiel (3P):</b> Es gibt mindestens zwei Nash-Gleichgewichte (Mehrdeutigkeit); mindestens eines davon ist pareto-optimal. Zu überwinden ist das <i>Nichtwissen</i> der Akteure, was zu tun ist. Beispiel: Battle of the Sexes.<br><b>Kooperationsspiel (3P):</b> Es gibt genau ein Nash-Gleichgewicht, das nicht pareto-optimal ist. Zu überwinden ist das <i>Nichtwollen</i> der pareto-optimalen Kooperation durch die Akteure. Beispiel: Gefangenendilemma."
+  },
+  {
+    id: 'ft-puo-6', cat: 'Informationsasymmetrie & Personalauswahl', points: 6,
+    q: "Erläutern Sie die mögliche Relevanz eines sogenannten <b>Market for Lemons</b> im Kontext der Personalauswahl.",
+    a: "Ausgangssituation: Hidden Information / asymmetrische Information vor Vertragsschluss (ASI). Der Arbeitnehmer kennt seine eigene Qualifikation/Qualität, der Arbeitgeber kann diese nicht beobachten.<br>Kreislauf: Da der AG die Qualität nicht unterscheiden kann, bietet er nur einen <b>Durchschnittslohn</b> an. Für hochqualifizierte Bewerber lohnt sich dieser Lohn nicht (er liegt unter ihrem tatsächlichen Wertgrenzprodukt) → sie ziehen sich aus dem Markt zurück (Adverse Selektion).<br>Endergebnis: Im Extremfall bleiben nur noch niedrigqualifizierte Bewerber übrig (‚Lemons') – der Markt für gute Arbeitskräfte bricht zusammen, es kommt zur Marktabsage (Marktversagen)."
+  },
+  {
+    id: 'ft-puo-7', cat: 'Informationsasymmetrie & Personalauswahl', points: 2,
+    q: "Was sind zwei Voraussetzungen für die Anwendung von <b>Signaling</b> als Lösung für Adverse Selektion?",
+    a: "1) Die Kosten der Signalerzeugung (z.B. Bildungsabschluss) müssen für den <b>hochqualifizierten</b> Bewerber hinreichend <b>geringer</b> sein als für den niedrigqualifizierten Bewerber (Selbstselektion).<br>2) Das Signal muss für die besser informierte Marktseite <b>beobachtbar/überprüfbar</b> und kostenintensiv genug sein, dass sich Fälschung nicht lohnt."
+  },
+  {
+    id: 'ft-puo-8', cat: 'Informationsasymmetrie & Personalauswahl', points: 6,
+    q: "Beschreiben Sie das Problem der asymmetrischen Informationsverteilung im Rahmen der Personalauswahl (2P) und erläutern Sie mögliche Lösungswege aus Sicht verschiedener Marktteilnehmer – inkl. je einem Beispiel (4P).",
+    a: "<b>Problem (2P):</b> Hidden Information zu Vertragsbeginn – der Arbeitgeber ist die schlechter informierte Marktseite bzgl. der tatsächlichen Fähigkeiten/Motivation des Bewerbers. Folge: Adverse Selektion, da nur ein Durchschnittslohn gezahlt werden kann.<br><b>Signaling (besser informierte Seite = AN):</b> Der Arbeitnehmer tätigt eine kostenintensive, überprüfbare Investition, die sich nur für hochqualifizierte Bewerber lohnt (Selbstselektion). Beispiel: Bildungsabschluss.<br><b>Screening (schlechter informierte Seite = AG/Dritte):</b> Der Arbeitgeber setzt Verfahren ein, die die Bewerber zur Selbstoffenbarung zwingen. Beispiel: Assessment-Center, Einstellungstests, umsatzabhängige Entlohnung."
+  },
+  {
+    id: 'ft-puo-9', cat: 'Spieltheorie & Prinzipal-Agent', points: 5,
+    q: "Diskutieren Sie, inwiefern im Falle eines Auktionsverfahrens das Problem des <b>Winner's Curse</b> auftreten kann.",
+    a: "Verschiedene Bieter bieten um ein Objekt (Höchstpreisauktion), dessen wahrer Wert unsicher ist (1P). Jeder Bieter bildet eine eigene, unabhängige Erwartung über den Wert des Objekts (1P). Der Zuschlag geht an den Bieter mit der höchsten (im Schnitt tendenziell überoptimistischen) Werteinschätzung. Gewinnt der Bieter die Auktion, erfährt er dadurch implizit, dass alle anderen niedriger geboten haben, und muss seine Werterwartung nach unten korrigieren (1P) → er hat den Wert des Objekts im Erwartungswert zu hoch eingeschätzt und (eventuell) zu viel geboten (Winner's Curse, 2P)."
+  },
+  {
+    id: 'ft-puo-10', cat: 'Franchise & Vertragsbeziehungen', points: 2,
+    q: "Beschreiben Sie das Zahlungsschema in einer Franchisebeziehung.",
+    a: "Der Franchisegeber (FG) überlässt dem Franchisenehmer (FN) das Franchisepaket (Markenname, Konzept, Unterstützung) sowie Weisungs-/Kontrollrechte. Im Gegenzug zahlt der FN dem FG ein Entgelt, meist eine Kombination aus fixer Eintrittsgebühr und/oder einem umsatzabhängigen Anteil (Residualanspruch des FG am Erfolg des FN)."
+  },
+  {
+    id: 'ft-puo-11', cat: 'Franchise & Vertragsbeziehungen', points: 4,
+    q: "Erläutern Sie mögliche <b>Hidden-Action-Problematiken</b> in Franchisebeziehungen.",
+    a: "Auf Seiten des Franchisegebers: unzureichende Ausbildung/unzureichender Service (mangelhaftes Franchisepaket) gegenüber dem FN; Rückfahren von Werbeaktivitäten, um Kosten zu sparen (v.a. gegen Ende des Produktlebenszyklus), was der FN nicht beobachten kann.<br>Auf Seiten des Franchisenehmers: Nichteinhaltung von Qualitätsnormen, da der FN selbst nicht direkt einem Reputationsrisiko ausgesetzt ist (v.a. ohne feste Stammkundschaft am Standort) – der FG trägt das Reputationsrisiko der ganzen Marke."
+  },
+  {
+    id: 'ft-puo-12', cat: 'Leistungsturniere & Anreizsysteme', points: 4,
+    q: "Nennen und erläutern Sie die zwei Ziele (Funktionen) von relativen Leistungsturnieren.",
+    a: "<b>Anreizfunktion (2P):</b> Durch den Turnierpreis bzw. die Preisdifferenz zwischen den Rängen sowie die Option, an weiteren Turnieren teilzunehmen, entsteht ein Leistungsanreiz für die Teilnehmer, sich stärker anzustrengen.<br><b>Selektionsfunktion (2P):</b> Die leistungsfähigsten Arbeitnehmer setzen sich im Turnier durch, sodass eine Allokation der besten AN auf die wichtigsten Stellen erfolgt."
+  },
+  {
+    id: 'ft-puo-13', cat: 'Leistungsturniere & Anreizsysteme', points: 4,
+    q: "Diskutieren Sie die Relevanz des möglichen <b>Kollusionsproblems</b> in relativen Leistungsturnieren.",
+    a: "Kollusion ≠ Sabotage! Kollusionsgefahr besteht zwischen den Arbeitnehmern selbst: Sie treffen Absprachen und legen den Turniersieger vorab gemeinsam fest (2P), z.B. durch abwechselndes „Gewinnenlassen“. Damit entfällt die eigentliche Anreizwirkung des Turniers, die Ergebnisse werden manipuliert und der Turnierpreis bringt dem Arbeitgeber keinen Mehrwert mehr (1P). Lösungsansätze: große, anonyme Gruppen bilden, Kombination mit absoluter Leistungsbeurteilung, externe Bewerber als zusätzliche Konkurrenz einbeziehen, Komprimierung der Lohnstruktur (1P)."
+  },
+  {
+    id: 'ft-puo-14', cat: 'Property Rights & Trauerspiel der Allmende', points: 6,
+    q: "Erläutern Sie verbal unterschiedliches rationales Verhalten von Akteuren bezüglich eines Gutes in <b>Privateigentum</b> vs. <b>Gemeinschaftseigentum</b> (Trauerspiel der Allmende).",
+    a: "<b>Privateigentum:</b> Ein Eigentümer besitzt die alleinige Kontrolle über die Ressource (z.B. Weideland). Im Optimum verhält sich ein rationaler Eigentümer so, dass Grenzkosten (z.B. Abnutzung der Fläche durch zusätzliches Weiden) = Grenznutzen (zusätzlicher Milchertrag) sind – er trägt Kosten und Nutzen seines Handelns vollständig selbst.<br><b>Gemeinschaftseigentum:</b> Die Ressource gehört allen gemeinsam. Für den einzelnen Nutzer lohnt sich das Weidenlassen weiterer Kühe, solange sein eigener Ertrag die eigenen Kosten übersteigt – er berücksichtigt dabei aber nicht, dass er den Nutzen (Milchleistung) aller anderen Nutzer reduziert (negativer externer Effekt).<br>→ Fehlgeleitete Anreize: Da individuelles Interesse dem Gemeinwohl entgegensteht, wird die Ressource tendenziell übernutzt (Trauerspiel der Allmende)."
+  },
+  {
+    id: 'ft-puo-15', cat: 'Strategie: Diversifikation & Partnerschaften', points: 8,
+    q: "Nennen und erläutern Sie jeweils anhand eines Beispiels 2 (von 3) verschiedene Arten (Klassifikationen) der Diversifikation und je ein Motiv dafür.",
+    a: "<b>Horizontale Diversifikation:</b> Aufnahme neuer, sachlich verwandter Produkte/Geschäftsfelder mit hohem Verwandtschaftsgrad zum bisherigen Angebot. Beispiel: Ein Autoproduzent nimmt auch Kleinlaster ins Programm auf. Motiv: Synergien zwischen den Bereichen nutzen.<br><b>Vertikale Diversifikation:</b> Erweiterung um vor- oder nachgelagerte Wertschöpfungsstufen. Beispiel: Ein Restaurant betreibt zusätzlich eigene Landwirtschaft. Motiv: Unabhängigkeit/Sicherheit im Produktionsprozess.<br><b>Laterale (konglomerate) Diversifikation:</b> Erweiterung um technologisch/inhaltlich unverbundene Geschäftsfelder, kein Bezug zum bisherigen Angebot. Beispiel: Ein Fahrradproduzent kauft einen Lebensmittelhersteller. Motiv: Risikostreuung.<br><i>(Bewertung: je 1P Nennung, 1P Beispiel, 1P Erläuterung, 1P Motiv pro genannter Art.)</i>"
+  },
+  {
+    id: 'ft-puo-16', cat: 'Strategie: Diversifikation & Partnerschaften', points: 2,
+    q: "Inwiefern weisen Partnerschaften gegenüber Einzelunternehmen Risikovorteile auf?",
+    a: "Partnerschaften basieren auf unbeschränkter, gesamtschuldnerischer Haftung / einem gemeinsamen Risikopool (1P) → Versicherungseffekt: positive und negative stochastische Einflüsse einzelner Partner gleichen sich aus, Verluste einzelner werden von der Gemeinschaft aufgefangen (1P). Dieser Effekt funktioniert vor allem dann gut, wenn die Fachgebiete der Partner nicht zu nah beieinanderliegen, d.h. ihre Risiken nicht stark korrelieren (Bonus)."
+  },
+  {
+    id: 'ft-puo-17', cat: 'Strategie: Diversifikation & Partnerschaften', points: 3,
+    q: "Erläutern Sie die Zweckmäßigkeit der Einführung einer <b>Up-or-Out-Regel</b> in Partnerschaften.",
+    a: "Angestellte werden zunächst regulär angestellt und müssen bis zu einem festgelegten Zeitpunkt entweder zum Partner befördert werden oder das Unternehmen verlassen (1P). Das erzeugt starken Motivations- und Leistungsdruck, da Angestellte die Beförderung in einem begrenzten Zeitfenster erreichen müssen (1P). Zugleich beugt die Regel moralischem Fehlverhalten (Moral Hazard) der bestehenden Partner vor: Ohne die Regel könnten Partner Angestellte mit einer scheinbar dauerhaft bestehenden, aber nie eingelösten Beförderungsoption ausbeuten – die Up-or-Out-Regel begrenzt diese Ausbeutungsmöglichkeit zeitlich (1P)."
+  },
+  {
+    id: 'ft-puo-18', cat: 'LEN-Modell', points: 2,
+    q: "Wofür steht die Abkürzung <b>LEN</b> bei der Bestimmung eines Arbeitsvertrages zwischen Prinzipal und Agent? Benennen Sie die drei Bestandteile und erläutern Sie kurz deren Aussage.",
+    a: "<b>L</b>inearität: linearer Entlohnungsvertrag (w = α + β·m).<br><b>E</b>xponentialnutzenfunktion: der Agent hat eine exponentielle (CARA-)Nutzenfunktion mit konstanter absoluter Risikoaversion.<br><b>N</b>ormalverteilungsannahme: der Störterm in der Produktionsfunktion (bzw. das Leistungsergebnis) ist normalverteilt.<br>Gemeinsam beschreiben diese drei Annahmen, wie unter Hidden Action eine anreizeffiziente, analytisch handhabbare Vertragsgestaltung zustande kommt."
+  },
+  {
+    id: 'ft-puo-19', cat: 'LEN-Modell', points: 4,
+    q: "Beschreiben Sie verbal die notwendigen Rechenschritte, um im LEN-Modell die optimale Second-Best-Lösung (e*, α*, β*) numerisch zu bestimmen.",
+    a: "1) <b>Anreizverträglichkeitsbedingung:</b> Der Agent maximiert seinen Sicherheitsäquivalent-Nutzen (SÄ) durch Wahl von e → SÄ nach e ableiten und Nullsetzen liefert e* in Abhängigkeit von β.<br>2) <b>Teilnahmebedingung (Partizipationsbedingung):</b> Der Prinzipal gestaltet den Vertrag so, dass der Agent gerade noch teilnimmt: SÄ = Reservationsnutzen → nach α umstellen (liefert α* in Abhängigkeit von β und e*).<br>3) <b>Gewinnmaximierung des Prinzipals:</b> e* und α* in die Gewinnfunktion des Prinzipals einsetzen, nach β ableiten und Nullsetzen → liefert β*.<br>4) β* zurück in e* und α* einsetzen, um alle drei numerischen Werte zu erhalten."
+  },
+  {
+    id: 'ft-puo-20', cat: 'Organisationsstruktur', points: 4,
+    q: "Beschreiben Sie verbal ein Beispiel für eine <b>divisionale Organisationsstruktur</b> und nennen Sie je einen Vorteil sowie ein Problem dieser Struktur.",
+    a: "<b>Beschreibung (2P):</b> Abteilungen werden nach Produktgruppen, Absatzmärkten oder Kundengruppen zu eigenständigen Divisionen zusammengefasst (z.B. ein Konzern mit getrennten Divisionen für PKW, LKW und Motorräder).<br><b>Vorteil (1P), z.B.:</b> Erfolg ist den einzelnen Divisionen direkt zurechenbar; gute Ausrichtung auf Markt- und Wettbewerbserfordernisse; Entlastung der Zentrale vom Tagesgeschäft.<br><b>Nachteil (1P), z.B.:</b> mögliche Doppelarbeiten, da gewisse Funktionsbereiche in jeder Division vorhanden sind; Konfliktpotential/„Divisionsegoismus“ zwischen Divisionsleitern um Ressourcenverteilung."
+  },
+  {
+    id: 'ft-puo-21', cat: 'Humankapital & Informationswert', points: 6,
+    q: "Erläutern Sie die Einflussfaktoren auf die Vorteilhaftigkeit von Humankapital-Investitionen aus Perspektive der Arbeitnehmer.",
+    a: "Allgemein vorteilhaft, wenn der Barwert der zukünftigen Erträge größer ist als der Barwert der Ausgaben (1P). Konkret steigt die Vorteilhaftigkeit, wenn:<br>• die Ausbildungs-/direkten Kosten sinken (1P)<br>• das Alternativeinkommen während der Investition (Opportunitätskosten) sinkt (1P)<br>• der Diskontfaktor/Zinssatz sinkt (1P)<br>• die Amortisationsdauer sinkt bzw. ein späterer Verrentungszeitpunkt vorliegt, sodass mehr Perioden von der Investition profitieren (1P)<br>• das zusätzliche Einkommen durch die Investition steigt (1P)."
+  },
+  {
+    id: 'ft-puo-22', cat: 'Humankapital & Informationswert', points: 6,
+    q: "Ein risikoneutraler Arbeitgeber muss über die beste Handlungsalternative unter Unsicherheit entscheiden. Berechnen Sie zunächst den a-priori-Erwartungswert E*. Gehen Sie danach von E* = 40 aus und berechnen Sie den a-posteriori-Erwartungswert E** = 71,25 sowie den Informationswert IW eines perfekten Informationssystems. Erläutern Sie abschließend, warum sich der Wert eines <i>nicht perfekten</i> Informationssystems zwischen einer risikoneutralen und einer risikoaversen Person unterscheidet.",
+    a: "<b>Informationswert (3P):</b> IW = E** − E* = 71,25 − 40 = <b>31,25</b> (der Erwartungswert steigt, weil man dank perfekter Information immer die für den jeweils eingetretenen Zustand beste Alternative wählen kann, statt vorab auf eine einzige Alternative festgelegt zu sein).<br><b>Risikoneutral vs. risikoavers (2P):</b> Eine risikoneutrale Person bewertet Alternativen nur nach ihrem Erwartungswert – der Wert eines Informationssystems ergibt sich rein aus der Verbesserung des erwarteten Ergebnisses. Eine risikoaverse Person zieht zusätzlich Nutzen aus der <b>Reduktion der Unsicherheit/Varianz</b> selbst (unabhängig vom Erwartungswert) – ein (auch unvollkommenes) Informationssystem ist für sie daher tendenziell <i>wertvoller</i>, weil es zusätzlich das Risiko senkt, das sie sonst mit einem Risikoabschlag bewerten müsste."
+  }
+];
+const FREITEXT_STAT = [];
+const FREITEXT_MV = [];
+const FREITEXT_STRAT = [];
 const COURSES = {
   stat: {
     label: "STATISTIK · RWTH AACHEN · WIEDERHOLUNGSKLAUSUR",
@@ -2326,6 +2476,8 @@ const COURSES = {
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     tabLuecken: "Lückentext",
     infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt (dort ein zentraler Klausurbestandteil). Für Statistik übst du Rechenwege am besten direkt in den Formelkarten.",
+    tabFreitext: "Freitext",
+    infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt (dort der zentrale Klausurbestandteil). Für Statistik sind die Formelkarten dein Freitext-Ersatz.",
     lsProgress: "stat_progress",
     lsStats: "stat_quizStats",
     MODULES: MODULES_STAT,
@@ -2334,6 +2486,7 @@ const COURSES = {
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_STAT,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_STAT,
     LUECKENTEXT: LUECKENTEXT_STAT,
+    FREITEXT: FREITEXT_STAT,
   },
   mv: {
     label: "MARKETING UND VERTRIEB · RWTH AACHEN · WIEDERHOLUNGSKLAUSUR",
@@ -2350,6 +2503,8 @@ const COURSES = {
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     tabLuecken: "Lückentext",
     infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt. Für M&V üben die Diagramm-Zuordnungsfragen im Quiz-Tab den gleichen Skill (Begriffe präzise zuordnen).",
+    tabFreitext: "Freitext",
+    infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt. M&amp;V ist hauptsächlich Multiple-Choice.",
     lsProgress: "mv_progress",
     lsStats: "mv_quizStats",
     MODULES: MODULES_MV,
@@ -2358,6 +2513,7 @@ const COURSES = {
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_MV,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_MV,
     LUECKENTEXT: LUECKENTEXT_MV,
+    FREITEXT: FREITEXT_MV,
   },
   strat: {
     label: "STRATEGISCHES MANAGEMENT · RWTH AACHEN · KLAUSUR",
@@ -2374,6 +2530,8 @@ const COURSES = {
     infoFormeln: "<b>Statt Formeln: Rahmenwerke 1:1.</b> Strategisches Management ist ein qualitativer Kurs ohne Rechenformeln – hier trainierst du das exakte, wörtliche Erinnern zentraler Modelle (z.B. Porters 5 Kräfte, VRIN/VRIO, BCG-Felder), die im Lückentext-Teil der Klausur präzise Begriffe verlangen.",
     tabLuecken: "Lückentext",
     infoLuecken: "Genau wie in der echten Klausur: Teil 1 ist ein Fließtext mit Lücken, in die du das exakte Fachvokabular eintippst (0,5 Punkte pro Lücke, keine Multiple-Choice-Hilfe). Tipp/Groß-Kleinschreibung werden automatisch toleriert, aber der Begriff muss stimmen.",
+    tabFreitext: "Freitext",
+    infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt. Für Strat. Management ist der Lückentext-Tab dein Pendant zu offenen Aufgaben.",
     lsProgress: "strat_progress",
     lsStats: "strat_quizStats",
     MODULES: MODULES_STRAT,
@@ -2382,6 +2540,7 @@ const COURSES = {
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_STRAT,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_STRAT,
     LUECKENTEXT: LUECKENTEXT_STRAT,
+    FREITEXT: FREITEXT_STRAT,
   },
   puo: {
     label: "PERSONAL UND ORGANISATION · RWTH AACHEN · KLAUSUR",
@@ -2398,6 +2557,8 @@ const COURSES = {
     infoFormeln: "<b>Echte Rechenformeln!</b> Anders als in manchen anderen Modulen hat P&amp;O reale Formeln (Informationswert/Bayes, Personalbedarf, Humankapital-Barwert, Markov-Ketten, Zuordnungsproblem, Akkordlohn) – diese kommen in der Klausur als offene Rechenaufgaben dran, hier zum Einprägen als Auswahlfrage.",
     tabLuecken: "Lückentext",
     infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt. P&O-Klausuren bestehen laut deinen Screenshots ohnehin aus offenen Aufgaben statt Lückentext.",
+    tabFreitext: "Freitext",
+    infoFreitext: "<b>22 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst – die Klausur besteht überwiegend aus genau diesem Aufgabentyp, plus ca. 10 Single-Choice-Fragen am Ende (dafür ist der Quiz-Tab da).",
     lsProgress: "puo_progress",
     lsStats: "puo_quizStats",
     MODULES: MODULES_PUO,
@@ -2406,6 +2567,7 @@ const COURSES = {
     AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_PUO,
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_PUO,
     LUECKENTEXT: LUECKENTEXT_PUO,
+    FREITEXT: FREITEXT_PUO,
   }
 };
 let EXAM_DATE;
@@ -2542,6 +2704,7 @@ async function loadTagesplanRemote() {
   } catch (e) {}
   renderDayplan();
   renderCourseButtons();
+  renderModuleProgress();
 }
 
 /* ============================================================
@@ -2556,7 +2719,56 @@ function renderCountdown() {
 }
 
 /* ============================================================
-   MODULE TAB
+   MODULE PROGRESS TAB (Tagesplan-Fortschritt pro Modul/Kapitel)
+   ============================================================ */
+function renderModuleProgress() {
+  const wrap = document.getElementById('moduleProgressWrap');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const courseId = CURRENT_COURSE_ID;
+  (MODULES || []).forEach(m => {
+    const matches = [];
+    (DAYPLAN || []).forEach(phase => {
+      phase.days.forEach(day => {
+        if (day.mods && day.mods.includes(m.id)) {
+          day.tasks.forEach((task, ti) => matches.push({ day, ti, task }));
+        }
+      });
+    });
+    const total = matches.length;
+    const done = matches.filter(x => tagesplanState['day-' + courseId + '-' + x.day.date + '-' + x.ti]).length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <p class="card-title">${m.title}</p>
+      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+      <div class="progress-pct">${done} / ${total} Tagesplan-Aufgaben erledigt (${pct}%)</div>
+      <div class="modprog-list"></div>
+    `;
+    const list = card.querySelector('.modprog-list');
+    if (!total) {
+      list.innerHTML = '<div class="modprog-empty">Für dieses Modul sind aktuell keine Tagesplan-Aufgaben eingeplant.</div>';
+    }
+    matches.forEach(({ day, ti, task }) => {
+      const id = 'day-' + courseId + '-' + day.date + '-' + ti;
+      const row = document.createElement('div');
+      row.className = 'day-task' + (tagesplanState[id] ? ' checked' : '');
+      row.innerHTML = `<input type="checkbox" id="chk-mp-${id}" ${tagesplanState[id] ? 'checked' : ''}><label for="chk-mp-${id}">${task}</label><span class="modprog-date">${day.label}</span>`;
+      row.querySelector('input').addEventListener('change', (e) => {
+        tagesplanState[id] = e.target.checked;
+        saveTagesplanState();
+        renderModuleProgress();
+        renderDayplan();
+      });
+      list.appendChild(row);
+    });
+    wrap.appendChild(card);
+  });
+}
+
+/* ============================================================
+   MODULE TAB (Fragenzusammenfassung)
    ============================================================ */
 function allIds() {
   const ids = [];
@@ -2630,6 +2842,7 @@ function renderDayplan() {
           tagesplanState[id] = e.target.checked;
           saveTagesplanState();
           renderDayplan();
+          renderModuleProgress();
         });
         sec.appendChild(row);
       });
@@ -3318,6 +3531,107 @@ function renderLuecken() {
 }
 
 /* ============================================================
+   FREITEXT (offene Aufgaben, Praxis-Modus)
+   ============================================================ */
+const LS_FREITEXT_RATINGS = 'dashboard_freitext_ratings';
+function loadFreitextRatings() {
+  try { return JSON.parse(localStorage.getItem(LS_FREITEXT_RATINGS)) || {}; } catch (e) { return {}; }
+}
+function saveFreitextRatings(r) {
+  localStorage.setItem(LS_FREITEXT_RATINGS, JSON.stringify(r));
+  if (sb) sb.from('app_data').upsert({ key: LS_FREITEXT_RATINGS, value: r }, { onConflict: 'key' }).then(() => {});
+}
+let freitextRatings = loadFreitextRatings();
+let freitextCatFilter = 'all';
+let freitextOnlyWeak = false;
+
+function escapeHtmlFT(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderFreitext() {
+  const wrap = document.getElementById('freitextWrap');
+  if (!wrap) return;
+  const list = (typeof FREITEXT !== 'undefined' ? FREITEXT : []);
+  if (!list.length) {
+    wrap.innerHTML = '';
+    return;
+  }
+  const cats = [...new Set(list.map(i => i.cat))];
+  let items = list.filter(i => freitextCatFilter === 'all' || i.cat === freitextCatFilter);
+  if (freitextOnlyWeak) {
+    items = items.filter(i => freitextRatings[i.id] !== 'good');
+  }
+  const doneGood = list.filter(i => freitextRatings[i.id] === 'good').length;
+
+  let html = '<div class="kk-controls">';
+  html += '<label>Kategorie: <select id="freitextCatSelect">';
+  html += '<option value="all"' + (freitextCatFilter === 'all' ? ' selected' : '') + '>Alle (' + list.length + ')</option>';
+  cats.forEach(c => {
+    const n = list.filter(i => i.cat === c).length;
+    html += '<option value="' + escapeHtmlFT(c) + '"' + (freitextCatFilter === c ? ' selected' : '') + '>' + escapeHtmlFT(c) + ' (' + n + ')</option>';
+  });
+  html += '</select></label>';
+  html += '<label><input type="checkbox" id="freitextWeakCheck"' + (freitextOnlyWeak ? ' checked' : '') + '> nur noch nicht „gut getroffen“</label>';
+  html += '</div>';
+  html += '<div class="freitext-progress">' + doneGood + ' von ' + list.length + ' Aufgaben als „gut getroffen“ markiert.</div>';
+
+  if (!items.length) {
+    html += '<div class="info-box">Keine Aufgaben in dieser Auswahl – Filter zurücksetzen?</div>';
+    wrap.innerHTML = html;
+    document.getElementById('freitextCatSelect').addEventListener('change', e => { freitextCatFilter = e.target.value; renderFreitext(); });
+    document.getElementById('freitextWeakCheck').addEventListener('change', e => { freitextOnlyWeak = e.target.checked; renderFreitext(); });
+    return;
+  }
+
+  items.forEach(item => {
+    const rating = freitextRatings[item.id];
+    html += '<div class="freitext-card">';
+    html += '  <div class="freitext-meta"><span class="freitext-cat">' + escapeHtmlFT(item.cat) + '</span><span class="freitext-points">' + item.points + ' Punkte (Original)</span></div>';
+    html += '  <div class="freitext-q">' + item.q + '</div>';
+    html += '  <textarea class="freitext-answer" placeholder="Schreib hier deine Antwort wie in der Klausur, dann Musterlösung aufdecken und vergleichen..." data-item="' + item.id + '"></textarea>';
+    html += '  <div class="freitext-actions">';
+    html += '    <button class="freitext-btn" data-reveal="' + item.id + '">Musterlösung anzeigen</button>';
+    html += '    <button class="freitext-btn secondary" data-clear="' + item.id + '">Antwort löschen</button>';
+    html += '  </div>';
+    html += '  <div class="freitext-solution" id="sol-' + item.id + '"><b>Musterlösung / Punktelogik:</b><br>' + item.a + '</div>';
+    html += '  <div class="freitext-rate-row" id="rate-' + item.id + '" style="display:none;">';
+    html += '    <button class="freitext-rate-btn good' + (rating === 'good' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="good">🟢 gut getroffen</button>';
+    html += '    <button class="freitext-rate-btn partial' + (rating === 'partial' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="partial">🟡 teilweise</button>';
+    html += '    <button class="freitext-rate-btn bad' + (rating === 'bad' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="bad">🔴 verfehlt</button>';
+    html += '  </div>';
+    html += '</div>';
+  });
+
+  wrap.innerHTML = html;
+
+  document.getElementById('freitextCatSelect').addEventListener('change', e => { freitextCatFilter = e.target.value; renderFreitext(); });
+  document.getElementById('freitextWeakCheck').addEventListener('change', e => { freitextOnlyWeak = e.target.checked; renderFreitext(); });
+
+  wrap.querySelectorAll('[data-reveal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.reveal;
+      document.getElementById('sol-' + id).classList.add('show');
+      document.getElementById('rate-' + id).style.display = 'flex';
+    });
+  });
+  wrap.querySelectorAll('[data-clear]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ta = wrap.querySelector('textarea[data-item="' + btn.dataset.clear + '"]');
+      if (ta) ta.value = '';
+    });
+  });
+  wrap.querySelectorAll('[data-rate]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.rate;
+      freitextRatings[id] = btn.dataset.val;
+      saveFreitextRatings(freitextRatings);
+      renderFreitext();
+    });
+  });
+}
+
+/* ============================================================
    NAV / INIT
    ============================================================ */
 function resetQuizEngineState() {
@@ -3333,12 +3647,14 @@ function switchCourse(id) {
   const c = COURSES[id];
   if (!c) return;
 
+  CURRENT_COURSE_ID = id;
   MODULES = c.MODULES;
   DAYPLAN = c.DAYPLAN;
   QUIZ_DATA = c.QUIZ_DATA;
   AWI_FORMULA_QUIZ = c.AWI_FORMULA_QUIZ;
   AWI_CALC_GENERATORS = c.AWI_CALC_GENERATORS;
   LUECKENTEXT = c.LUECKENTEXT;
+  FREITEXT = c.FREITEXT;
   LS_PROGRESS = c.lsProgress;
   LS_STATS = c.lsStats;
   EXAM_DATE = new Date(c.examDateISO);
@@ -3356,6 +3672,8 @@ function switchCourse(id) {
   document.getElementById('infoFormeln').innerHTML = c.infoFormeln;
   document.getElementById('tabLueckenLabel').innerHTML = c.tabLuecken;
   document.getElementById('infoLuecken').innerHTML = c.infoLuecken;
+  document.getElementById('tabFreitextLabel').innerHTML = c.tabFreitext;
+  document.getElementById('infoFreitext').innerHTML = c.infoFreitext;
 
   document.querySelectorAll('.course-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.course === id);
@@ -3364,12 +3682,14 @@ function switchCourse(id) {
 
   resetQuizEngineState();
   loadLocal();
-  showView('view-module', 'tab-module');
+  showView('view-moduleprogress', 'tab-moduleprogress');
   renderCountdown();
   render();
   renderQuiz();
   renderEbwlCards();
   renderLuecken();
+  renderFreitext();
+  renderModuleProgress();
   loadRemote();
 
   localStorage.setItem('dashboard_activeCourse', id);
@@ -3380,11 +3700,13 @@ function showView(viewId, tabId) {
   document.getElementById(viewId).classList.add('active');
   document.getElementById(tabId).classList.add('active');
 }
+document.getElementById('tab-moduleprogress').addEventListener('click', () => { showView('view-moduleprogress', 'tab-moduleprogress'); renderModuleProgress(); });
 document.getElementById('tab-module').addEventListener('click', () => { showView('view-module', 'tab-module'); renderModules(); });
 document.getElementById('tab-tagesplan').addEventListener('click', () => { showView('view-tagesplan', 'tab-tagesplan'); renderDayplan(); });
 document.getElementById('tab-quiz').addEventListener('click', () => { showView('view-quiz', 'tab-quiz'); renderQuiz(); });
 document.getElementById('tab-formeln').addEventListener('click', () => { showView('view-formeln', 'tab-formeln'); renderEbwlCards(); });
 document.getElementById('tab-luecken').addEventListener('click', () => { showView('view-luecken', 'tab-luecken'); renderLuecken(); });
+document.getElementById('tab-freitext').addEventListener('click', () => { showView('view-freitext', 'tab-freitext'); renderFreitext(); });
 document.querySelectorAll('.course-btn').forEach(btn => {
   btn.addEventListener('click', () => switchCourse(btn.dataset.course));
 });
