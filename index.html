@@ -424,7 +424,28 @@ const QUIZ_DATA_STAT = {
     { le: 'a', q: "Welche Aussagen zur Lorenz-Kurve treffen zu? (mehrere richtig)", multi: true, opts: [
         "Bei Gleichverteilung des Merkmals verläuft die Lorenz-Kurve auf der Diagonalen (Winkelhalbierenden)", "Die Lorenz-Kurve ist monoton wachsend und konvex", "Je weiter die Lorenz-Kurve von der Diagonalen entfernt ist, desto größer ist die Konzentration", "Die Lorenz-Kurve kann auch fallende Abschnitte besitzen"
       ], correct: [0,1,2], explain: "Bei perfekter Gleichverteilung liegt die Lorenz-Kurve auf der Diagonalen. Sie ist stets monoton wachsend und konvex (stückweise linear bei Einzeldaten). Der Abstand zur Diagonalen ist ein Maß für die Konzentration (Grundlage des Gini-Koeffizienten) – fallende Abschnitte sind bei einer korrekt konstruierten Lorenz-Kurve nicht möglich." },
-  ] },
+      { le: 'a', q: "Welche Formel definiert den Interquartilsabstand (IQR) einer Verteilung?", opts: [
+        "IQR = oberes Quartil (Q3) − unteres Quartil (Q1)", "IQR = Maximum − Minimum", "IQR = Median − arithmetisches Mittel", "IQR = Q3 + Q1"
+      ], correct: 0, explain: "Der Interquartilsabstand (Quartilsabstand) ist die Differenz zwischen oberem und unterem Quartil: IQR = Q3 − Q1. Er umfasst die mittleren 50% der Daten und ist – anders als die Spannweite (Max−Min) – robust gegenüber Ausreißern, da er nur auf den mittleren Bereich der Verteilung reagiert." },
+    { le: 'a', q: "Welche Formel liefert die empirische Kovarianz sxy zweier Merkmale x, y (Verschiebungssatz)?", opts: [
+        "sxy = (1/n)·Σ(xi·yi) − x̄·ȳ", "sxy = (1/n)·Σ(xi·yi) + x̄·ȳ", "sxy = x̄·ȳ", "sxy = (1/n)·Σxi − (1/n)·Σyi"
+      ], correct: 0, explain: "Analog zum Verschiebungssatz der Varianz gilt für die empirische Kovarianz: sxy = (1/n)·Σ(xi·yi) − x̄·ȳ. Das ist rechnerisch meist einfacher als die direkte Definition sxy = (1/n)·Σ(xi−x̄)(yi−ȳ), liefert aber denselben Wert." },
+    { le: 'a', q: "Rechenaufgabe: Für n=5 Wertepaare gilt Σ(xi·yi)=310, x̄=6, ȳ=10. Welche Rechnung liefert die empirische Kovarianz sxy?", opts: [
+        "310/5 − 6·10 = 62 − 60 = 2", "310/5 + 6·10 = 122", "310/5 = 62", "6·10 − 310/5 = −2"
+      ], correct: 0, calc: true, explain: "sxy = (1/n)Σ(xi·yi) − x̄·ȳ = 310/5 − 6·10 = 62 − 60 = 2. Eine positive Kovarianz (hier sxy=2) deutet auf einen tendenziell gleichsinnigen (positiven) Zusammenhang zwischen x und y hin." },
+    { le: 'a', q: "Welche Aussagen zum Bestimmtheitsmaß Bxy = sxy² / (sx²·sy²) treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Bxy liegt stets im Intervall [0,1]", "Bxy = 1 bedeutet perfekten linearen Zusammenhang (alle Punkte liegen auf der Regressionsgeraden)", "Bxy gibt an, welcher Anteil der Streuung von y durch die lineare Regression auf x erklärt wird", "Bxy kann negativ werden, wenn die Kovarianz negativ ist"
+      ], correct: [0,1,2], explain: "Das Bestimmtheitsmaß Bxy ist das Quadrat des Korrelationskoeffizienten und liegt daher immer in [0,1] – auch bei negativer Kovarianz, da diese quadriert wird. Bxy=1 heißt perfekte lineare Anpassung; allgemein gibt Bxy den durch die Regression erklärten Anteil der Gesamtstreuung von y an." },
+    { le: 'a', q: "Wie lauten die KQ-Schätzer (Regressionskoeffizienten) für das einfache lineare Regressionsmodell y = a + b·x?", opts: [
+        "b̂ = sxy / sx² und â = ȳ − b̂·x̄", "b̂ = sxy / sy² und â = x̄ − b̂·ȳ", "b̂ = sx² / sxy und â = ȳ", "b̂ = sxy und â = sx²"
+      ], correct: 0, explain: "Die Kleinste-Quadrate-Schätzer der einfachen linearen Regression lauten b̂ = sxy/sx² (Steigung) und â = ȳ − b̂·x̄ (Achsenabschnitt, damit die Regressionsgerade durch den Punkt (x̄,ȳ) verläuft)." },
+    { le: 'a', q: "Rechenaufgabe: Für eine Regression gilt sxy=8, sx²=4, x̄=5, ȳ=20. Welche Rechnung liefert die Regressionsgerade?", opts: [
+        "b̂=8/4=2, â=20−2·5=10  ⟹  ŷ = 10 + 2x", "b̂=4/8=0,5, â=20−0,5·5=17,5  ⟹  ŷ = 17,5 + 0,5x", "b̂=8·4=32, â=20  ⟹  ŷ = 20 + 32x", "b̂=8/4=2, â=20+2·5=30  ⟹  ŷ = 30 + 2x"
+      ], correct: 0, calc: true, explain: "b̂ = sxy/sx² = 8/4 = 2. â = ȳ − b̂·x̄ = 20 − 2·5 = 10. Die Regressionsgerade lautet ŷ = 10 + 2x. Achtung beim Vorzeichen bei â: es wird SUBTRAHIERT (ȳ − b̂x̄), nicht addiert." },
+    { le: 'a', q: "Ein Boxplot zeigt: der Median liegt deutlich näher am unteren Quartil als am oberen, und der obere Whisker ist deutlich länger als der untere. Wie wird diese Verteilung bezeichnet?", opts: [
+        "Rechtsschief (linkssteil) – die Verteilung hat einen langen rechten Ausläufer", "Linksschief (rechtssteil) – die Verteilung hat einen langen linken Ausläufer", "Symmetrisch", "Bimodal (zweigipflig)"
+      ], correct: 0, explain: "Liegt der Median näher am unteren Quartil und ist der obere Whisker (bzw. die obere Streuung) länger, spricht man von einer rechtsschiefen (linkssteilen) Verteilung – die 'Masse' der Daten konzentriert sich links, mit einem langen Ausläufer nach rechts. Bei Linksschiefe ist es umgekehrt." },
+] },
   B: { label: 'Teil B · Wahrscheinlichkeitsrechnung', sub: 'Grundlagen, Verteilungen, bedingte W\'keit, Unabhängigkeit', questions: [
     { le: 'b', q: "Welche drei Bestandteile umfasst ein Wahrscheinlichkeitsraum (Ω, A, P)?", opts: [
         "Ω = Ergebnismenge, A = Ereignisalgebra (System der betrachteten Ereignisse), P = Wahrscheinlichkeitsmaß", "Ω = Wahrscheinlichkeitsmaß, A = Ergebnismenge, P = Zufallsvariable", "Ω = Zufallsvariable, A = Verteilungsfunktion, P = Dichtefunktion", "Ω, A, P sind drei alternative Bezeichnungen für dieselbe Ergebnismenge"
@@ -444,7 +465,37 @@ const QUIZ_DATA_STAT = {
     { le: 'b', q: "Welche Aussagen zur stochastischen Unabhängigkeit von Ereignissen treffen zu? (mehrere richtig)", multi: true, opts: [
         "A und B sind unabhängig, wenn P(A∩B) = P(A)·P(B) gilt", "Bei drei oder mehr Ereignissen muss die Produktregel für JEDE Teilmenge der Ereignisse gelten, damit vollständige (stochastische) Unabhängigkeit vorliegt", "Paarweise Unabhängigkeit von drei Ereignissen impliziert automatisch auch die vollständige stochastische Unabhängigkeit aller drei", "Sind A und B unabhängig und P(B)>0, so gilt P(A|B) = P(A)"
       ], correct: [0,1,3], explain: "Unabhängigkeit: P(A∩B)=P(A)·P(B), äquivalent P(A|B)=P(A) für P(B)>0. Bei mehr als zwei Ereignissen ist paarweise Unabhängigkeit NICHT ausreichend für vollständige Unabhängigkeit – es gibt Gegenbeispiele, bei denen alle Paare unabhängig sind, das Tripel aber nicht (die Produktregel muss für jede Teilmenge gelten, nicht nur paarweise)." },
-  ] },
+      { le: 'b', q: "Welche Formel ist die Siebformel (Additionssatz) für zwei Ereignisse A, B?", opts: [
+        "P(A∪B) = P(A) + P(B) − P(A∩B)", "P(A∪B) = P(A) + P(B)", "P(A∪B) = P(A) + P(B) + P(A∩B)", "P(A∪B) = P(A)·P(B)"
+      ], correct: 0, explain: "Die Siebformel (Additionssatz, Poincaré-Sylvester für 2 Mengen) lautet P(A∪B) = P(A)+P(B)−P(A∩B). Der Term P(A∩B) muss subtrahiert werden, da er sonst doppelt gezählt würde (einmal in P(A), einmal in P(B)). Ohne Abzug erhält man nur bei disjunkten (sich ausschließenden) Ereignissen das korrekte Ergebnis." },
+    { le: 'b', q: "Rechenaufgabe (Siebformel für 3 Mengen): In einer Umfrage gilt P(A)=0,5, P(B)=0,4, P(C)=0,3, P(A∩B)=0,2, P(A∩C)=0,15, P(B∩C)=0,1, P(A∩B∩C)=0,05. Welche Rechnung liefert P(A∪B∪C)?", opts: [
+        "0,5+0,4+0,3 − 0,2−0,15−0,1 + 0,05 = 0,8", "0,5+0,4+0,3 − 0,2−0,15−0,1 − 0,05 = 0,7", "0,5+0,4+0,3 = 1,2", "0,5+0,4+0,3 + 0,2+0,15+0,1 − 0,05 = 1,6"
+      ], correct: 0, calc: true, explain: "Siebformel (Sylvester-Poincaré) für 3 Mengen: P(A∪B∪C) = ΣP(Einzelne) − ΣP(Paarschnitte) + P(Dreifachschnitt) = (0,5+0,4+0,3) − (0,2+0,15+0,1) + 0,05 = 1,2 − 0,45 + 0,05 = 0,8. Das alternierende Vorzeichen (+, −, +) bei wachsender Schnittmengen-Ordnung ist der Kern der Formel – genau dieser Aufgabentyp (Mengenoperationen/Siebformel) war zuletzt eine Fehlerquelle." },
+    { le: 'b', q: "Welche Aussagen zum Komplementärereignis Aᶜ treffen zu? (mehrere richtig)", multi: true, opts: [
+        "P(Aᶜ) = 1 − P(A)", "A und Aᶜ sind disjunkt (schließen sich gegenseitig aus)", "A ∪ Aᶜ = Ω (die gesamte Ergebnismenge)", "P(Aᶜ) hängt vom konkreten Wert von P(B) für ein beliebiges anderes Ereignis B ab"
+      ], correct: [0,1,2], explain: "Das Komplementärereignis Aᶜ enthält alle Ergebnisse, die NICHT in A liegen. Es gilt P(Aᶜ)=1−P(A), A und Aᶜ sind disjunkt, und zusammen ergeben sie die gesamte Ergebnismenge Ω. P(Aᶜ) hängt nur von P(A) ab, nicht von anderen Ereignissen." },
+    { le: 'b', q: "Wie ist die Laplace-Wahrscheinlichkeit für ein Ereignis A bei einem Laplace-Experiment (alle Elementarereignisse gleich wahrscheinlich) definiert?", opts: [
+        "P(A) = |A| / |Ω| (Anzahl der günstigen Ergebnisse geteilt durch Anzahl aller möglichen Ergebnisse)", "P(A) = |Ω| / |A|", "P(A) = |A| · |Ω|", "P(A) = |A| − |Ω|"
+      ], correct: 0, explain: "Bei einem Laplace-Experiment sind alle Elementarereignisse gleich wahrscheinlich. Die Wahrscheinlichkeit eines Ereignisses A ist dann das Verhältnis 'günstige durch mögliche Fälle': P(A) = |A|/|Ω| (Mächtigkeit von A geteilt durch Mächtigkeit von Ω)." },
+    { le: 'b', q: "Welche Formel liefert den Binomialkoeffizienten 'n über k' (Anzahl der k-elementigen Teilmengen einer n-elementigen Menge)?", opts: [
+        "n! / (k! · (n−k)!)", "n! / k!", "n! · k!", "n / k"
+      ], correct: 0, explain: "Der Binomialkoeffizient (n über k) = n!/(k!·(n−k)!) gibt die Anzahl der Möglichkeiten an, aus n Elementen k Elemente OHNE Berücksichtigung der Reihenfolge auszuwählen (Kombination ohne Wiederholung)." },
+    { le: 'b', q: "Rechenaufgabe (Kombinatorik): Aus einer Gruppe von 8 Personen soll ein Komitee mit 3 Mitgliedern gewählt werden (Reihenfolge egal). Wie viele mögliche Komitees gibt es?", opts: [
+        "(8 über 3) = 8!/(3!·5!) = 56", "8·7·6 = 336", "8³ = 512", "(8 über 3) = 8!/3! = 6720"
+      ], correct: 0, calc: true, explain: "Da die Reihenfolge der Komiteemitglieder keine Rolle spielt, ist der Binomialkoeffizient anzuwenden: (8 über 3) = 8!/(3!·5!) = (8·7·6)/(3·2·1) = 336/6 = 56. Die Variante 8·7·6=336 wäre richtig, wenn die Reihenfolge (z.B. 3 unterschiedliche Ämter) eine Rolle spielen würde – hier aber nicht der Fall." },
+    { le: 'b', q: "Welche Formel beschreibt den Multiplikationssatz für zwei Ereignisse A, B (mit P(B)>0)?", opts: [
+        "P(A∩B) = P(A|B) · P(B)", "P(A∩B) = P(A) + P(B)", "P(A∩B) = P(A|B) / P(B)", "P(A∩B) = P(A) − P(B)"
+      ], correct: 0, explain: "Der Multiplikationssatz folgt direkt aus der Definition der bedingten Wahrscheinlichkeit P(A|B)=P(A∩B)/P(B), umgestellt nach P(A∩B): P(A∩B) = P(A|B)·P(B). Analog gilt auch P(A∩B) = P(B|A)·P(A)." },
+    { le: 'b', q: "Was besagt der Satz von der totalen Wahrscheinlichkeit für eine Zerlegung von Ω in disjunkte Ereignisse B1,...,Bn?", opts: [
+        "P(A) = Σᵢ P(A|Bᵢ) · P(Bᵢ)", "P(A) = Σᵢ P(A|Bᵢ) + P(Bᵢ)", "P(A) = P(A|B1) allein", "P(A) = Πᵢ P(A|Bᵢ)"
+      ], correct: 0, explain: "Bilden B1,...,Bn eine vollständige, disjunkte Zerlegung von Ω, so lässt sich die Wahrscheinlichkeit eines Ereignisses A als gewichtete Summe der bedingten Wahrscheinlichkeiten zerlegen: P(A) = Σᵢ P(A|Bᵢ)·P(Bᵢ). Dieser Satz ist die Grundlage für den Nenner im Satz von Bayes." },
+    { le: 'b', q: "Für eine geometrisch verteilte Zufallsvariable X (Anzahl Versuche bis zum ersten Erfolg, Erfolgswahrscheinlichkeit p) gilt welcher Erwartungswert?", opts: [
+        "E(X) = 1/p", "E(X) = p", "E(X) = 1−p", "E(X) = n·p"
+      ], correct: 0, explain: "Bei der geometrischen Verteilung (Wartezeit bis zum ersten Erfolg) gilt E(X) = 1/p. Je kleiner die Erfolgswahrscheinlichkeit p, desto größer die im Mittel nötige Anzahl an Versuchen." },
+    { le: 'b', q: "Wie wird eine normalverteilte Zufallsvariable X ~ N(µ,σ²) standardisiert (in eine N(0,1)-verteilte Zufallsvariable Z transformiert)?", opts: [
+        "Z = (X − µ) / σ", "Z = X − µ", "Z = X / σ", "Z = (X + µ) · σ"
+      ], correct: 0, explain: "Die Standardisierung Z=(X−µ)/σ überführt jede normalverteilte Zufallsvariable X~N(µ,σ²) in eine standardnormalverteilte Zufallsvariable Z~N(0,1). Damit lassen sich Wahrscheinlichkeiten für beliebige Normalverteilungen über die tabellierte Standardnormalverteilung (Φ-Funktion) berechnen." },
+] },
   C: { label: 'Teil C · Zufallsvariablen', sub: 'Erwartungswert, Varianz, Kovarianz, mehrdim. ZV, Grenzwertsätze', questions: [
     { le: 'c', q: "Eine stetige Zufallsvariable X hat die Dichte f(x) = 3/x⁴ für x ≥ 1 (sonst 0). Welche Rechnung liefert E(X)?", opts: [
         "∫₁^∞ x · 3/x⁴ dx = ∫₁^∞ 3/x³ dx", "∫₁^∞ 3/x⁴ dx", "∫₁^∞ x² · 3/x⁴ dx", "3/x⁴ ausgewertet an der Stelle x=1"
@@ -467,7 +518,31 @@ const QUIZ_DATA_STAT = {
     { le: 'c', q: "Welche Aussagen zum Zentralen Grenzwertsatz (ZGS) treffen zu? (mehrere richtig)", multi: true, opts: [
         "Der ZGS besagt, dass √n·(X̄n−µ)/σ für großes n approximativ standardnormalverteilt ist", "Der ZGS gilt approximativ unabhängig von der zugrundeliegenden Verteilung der Xi (solange Erwartungswert und Varianz existieren)", "Der ZGS ist die theoretische Grundlage für approximative Konfidenzintervalle, z.B. bei einer Binomialverteilung mit großem n", "Der ZGS garantiert, dass X̄n für JEDES n exakt normalverteilt ist, unabhängig von der Verteilung der Xi"
       ], correct: [0,1,2], explain: "Der ZGS besagt, dass die standardisierte Summe/das standardisierte Mittel für wachsendes n approximativ standardnormalverteilt ist – unabhängig von der Ausgangsverteilung (solange Erwartungswert/Varianz existieren). Er ist Grundlage vieler approximativer Verfahren (z.B. Konfidenzintervalle für Anteilswerte bei großem n). Er liefert aber nur eine Approximation für großes n, keine exakte Aussage für jedes n." },
-  ] },
+      { le: 'c', q: "Für eine Zufallsvariable X und Konstanten a, b gilt welche Formel für E(aX+b)?", opts: [
+        "E(aX+b) = a·E(X) + b", "E(aX+b) = a·E(X)", "E(aX+b) = E(X) + b", "E(aX+b) = a + b·E(X)"
+      ], correct: 0, explain: "Der Erwartungswert ist linear: E(aX+b) = a·E(X) + b. Diese Rechenregel wird ständig gebraucht, z.B. bei Standardisierungen oder linearen Transformationen von Zufallsvariablen." },
+    { le: 'c', q: "Für eine Zufallsvariable X und Konstanten a, b gilt welche Formel für Var(aX+b)?", opts: [
+        "Var(aX+b) = a² · Var(X)", "Var(aX+b) = a · Var(X) + b", "Var(aX+b) = a · Var(X)", "Var(aX+b) = Var(X) + b²"
+      ], correct: 0, explain: "Für die Varianz gilt Var(aX+b) = a²·Var(X) – additive Konstanten b haben KEINEN Einfluss auf die Varianz (Verschiebung ändert die Streuung nicht), der Faktor a geht quadriert ein." },
+    { le: 'c', q: "Welche Formel ist der allgemeine Verschiebungssatz für die Varianz einer Zufallsvariable X?", opts: [
+        "Var(X) = E(X²) − (E(X))²", "Var(X) = E(X²) + (E(X))²", "Var(X) = E(X)² ", "Var(X) = E(X²) · E(X)"
+      ], correct: 0, explain: "Der Verschiebungssatz Var(X) = E(X²) − (E(X))² ist rechnerisch meist einfacher als die direkte Definition Var(X)=E[(X−E(X))²] und liefert stets denselben (nicht-negativen) Wert." },
+    { le: 'c', q: "Welche Aussagen zum Gesetz der großen Zahlen (GGZ) treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Das (schwache) GGZ besagt, dass das Stichprobenmittel X̄n für wachsendes n (stochastisch) gegen den wahren Erwartungswert µ konvergiert", "Das GGZ ist die theoretische Rechtfertigung dafür, relative Häufigkeiten bei vielen Wiederholungen als Schätzung für Wahrscheinlichkeiten zu verwenden", "Das GGZ setzt voraus, dass die einzelnen Xi unabhängig und identisch verteilt sind mit endlichem Erwartungswert", "Das GGZ garantiert, dass X̄n bei genau n=30 exakt gleich µ ist"
+      ], correct: [0,1,2], explain: "Das Gesetz der großen Zahlen besagt, dass sich das arithmetische Mittel X̄n bei wachsendem n dem wahren Erwartungswert µ annähert (Konvergenz in Wahrscheinlichkeit), unter der Annahme unabhängiger, identisch verteilter Zufallsvariablen mit endlichem Erwartungswert. Es macht KEINE Aussage über einen exakten, endlichen Stichprobenumfang." },
+    { le: 'c', q: "Was versteht man unter dem k-ten Moment E(Xᵏ) einer Zufallsvariable X?", opts: [
+        "Den Erwartungswert der k-ten Potenz von X; das 1. Moment ist E(X), das 2. Moment E(X²) (wird u.a. im Verschiebungssatz der Varianz benötigt)", "Die k-te Ableitung der Dichtefunktion", "Den Median der k-ten Potenz von X", "Das k-te Quantil der Verteilung von X"
+      ], correct: 0, explain: "Das k-te Moment einer Zufallsvariable ist definiert als E(Xᵏ). Das 1. Moment ist der Erwartungswert selbst, das 2. Moment wird im Verschiebungssatz zur Varianzberechnung gebraucht (Var(X)=E(X²)−E(X)²), höhere Momente (3., 4.) beschreiben u.a. Schiefe und Wölbung einer Verteilung." },
+    { le: 'c', q: "Welche Aussage zur Transformation von Zufallsvariablen Y=g(X) ist korrekt?", opts: [
+        "Ist g streng monoton und differenzierbar, lässt sich die Dichte von Y aus der Dichte von X über den Transformationssatz f_Y(y) = f_X(g⁻¹(y)) · |d/dy g⁻¹(y)| berechnen", "Y=g(X) hat immer dieselbe Dichte wie X, unabhängig von g", "Transformationen von Zufallsvariablen sind nur bei diskreten Verteilungen definiert", "Der Transformationssatz gilt nur für g(x)=x (die Identität)"
+      ], correct: 0, explain: "Für eine streng monotone, differenzierbare Transformation g gilt der Dichtetransformationssatz: f_Y(y) = f_X(g⁻¹(y))·|d/dy g⁻¹(y)|. Der Betrag der Ableitung der Umkehrfunktion (Jacobi-Term) korrigiert dabei die 'Stauchung/Streckung' der Skala durch die Transformation." },
+    { le: 'c', q: "Was versteht man unter dem bedingten Erwartungswert E(Y|X=x) bei zwei Zufallsvariablen X, Y?", opts: [
+        "Den Erwartungswert von Y, berechnet unter der bedingten bzw. eingeschränkten Verteilung von Y gegeben, dass X=x eingetreten ist", "Den unbedingten Erwartungswert von Y, unabhängig vom Wert von X", "Das Produkt E(X)·E(Y)", "Den Erwartungswert der Summe X+Y"
+      ], correct: 0, explain: "E(Y|X=x) ist der Erwartungswert von Y unter der bedingten Verteilung von Y gegeben X=x – er kann für unterschiedliche x-Werte unterschiedlich ausfallen (außer bei Unabhängigkeit von X und Y, dann gilt E(Y|X=x)=E(Y) für alle x)." },
+    { le: 'c', q: "Rechenaufgabe: Eine gemeinsame Verteilungstabelle liefert P(X=1,Y=1)=0,1, P(X=1,Y=2)=0,2, P(X=2,Y=1)=0,3, P(X=2,Y=2)=0,4. Welche Rechnung liefert die Randverteilung P(X=1)?", opts: [
+        "P(X=1,Y=1) + P(X=1,Y=2) = 0,1 + 0,2 = 0,3", "P(X=1,Y=1) · P(X=1,Y=2) = 0,02", "P(X=1,Y=1) − P(X=1,Y=2) = −0,1", "P(X=1,Y=1) = 0,1 (Rest wird ignoriert)"
+      ], correct: 0, calc: true, explain: "Die Randverteilung von X ergibt sich durch Summation über alle Werte von Y (Zeilensumme): P(X=1) = P(X=1,Y=1)+P(X=1,Y=2) = 0,1+0,2 = 0,3." },
+] },
   D: { label: 'Teil D · Schließende Statistik', sub: 'Punktschätzung, MLE, Konfidenzintervalle, Hypothesentests', questions: [
     { le: 'd', q: "Was bedeutet Erwartungstreue (Unverzerrtheit) eines Schätzers T̂ für einen Parameter ϑ?", opts: [
         "E(T̂) = ϑ für alle möglichen Werte von ϑ", "T̂ konvergiert für n→∞ gegen ϑ", "Var(T̂) = 0", "T̂ = ϑ mit Wahrscheinlichkeit 1 in jeder einzelnen Stichprobe"
@@ -514,7 +589,19 @@ const QUIZ_DATA_STAT = {
     { le: 'd', q: "Wann werden Binomialtests anstelle von Gauß-/t-Tests verwendet?", opts: [
         "Wenn die Stichprobenvariablen bin(1,p)-verteilt sind (0/1-Merkmal) und eine Hypothese über den unbekannten Anteil p getestet werden soll", "Wenn die Stichprobenvariablen normalverteilt sind mit bekannter Varianz", "Wenn ausschließlich stetige Merkmale mit unbekanntem Erwartungswert vorliegen", "Binomialtests und Gauß-Tests sind für alle Anwendungsfälle austauschbar"
       ], correct: 0, explain: "Binomialtests kommen zum Einsatz, wenn ein 0/1-Merkmal (bin(1,p)-verteilt) vorliegt und eine Hypothese über den Anteilswert p geprüft werden soll (z.B. Anteil defekter Teile). Da die Binomialverteilung diskret ist, werden die kritischen Schranken exakt aus ihrer Verteilungsfunktion bestimmt – bei sehr großem n kann alternativ die Normalapproximation über den ZGS verwendet werden." },
-  ] },
+      { le: 'd', q: "Was ist der p-Wert eines Hypothesentests?", opts: [
+        "Die Wahrscheinlichkeit, unter H0 einen mindestens so extremen Wert der Teststatistik zu beobachten wie den tatsächlich beobachteten", "Die Wahrscheinlichkeit, dass H0 wahr ist", "Das Signifikanzniveau α selbst", "Die Wahrscheinlichkeit des Fehlers 2. Art"
+      ], correct: 0, explain: "Der p-Wert ist die (unter der Annahme, dass H0 gilt) berechnete Wahrscheinlichkeit, einen mindestens so extremen Wert der Teststatistik zu beobachten wie den tatsächlich realisierten. Ist der p-Wert kleiner als α, wird H0 verworfen – der p-Wert ist NICHT die Wahrscheinlichkeit, dass H0 wahr ist (eine häufige Fehlinterpretation)." },
+    { le: 'd', q: "Welche Aussagen zur Gütefunktion (Power) eines Tests treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Die Macht (Power) eines Tests ist die Wahrscheinlichkeit, H0 korrekt zu verwerfen, wenn H1 tatsächlich wahr ist", "Power = 1 − β, wobei β die Wahrscheinlichkeit des Fehlers 2. Art ist", "Ein größerer Stichprobenumfang n erhöht bei sonst gleichen Bedingungen tendenziell die Power des Tests", "Die Power eines Tests ist immer identisch mit dem Signifikanzniveau α"
+      ], correct: [0,1,2], explain: "Die Gütefunktion/Power eines Tests gibt die Wahrscheinlichkeit an, H0 korrekt zu verwerfen, wenn tatsächlich H1 gilt: Power = 1−β (β = Fehler 2. Art). Größeres n erhöht (bei festem α) i.d.R. die Power, da die Teststatistik präziser wird. Power und α (Fehler 1. Art) sind unterschiedliche Größen." },
+    { le: 'd', q: "Rechenaufgabe (Binomialtest, approximativ): Bei n=100 unabhängigen 0/1-Beobachtungen und H0: p=0,5 wird X=62 Erfolge beobachtet. Welche Rechnung liefert (approximativ über den ZGS) die Realisation der Teststatistik?", opts: [
+        "Z = (62 − 100·0,5) / √(100·0,5·0,5) = 12/5 = 2,4", "Z = (62 − 50) / 50 = 0,24", "Z = 62/100 − 0,5 = 0,12", "Z = (100·0,5 − 62) / √(100·0,5·0,5) = −2,4"
+      ], correct: 0, calc: true, explain: "Approximation über die Normalverteilung (ZGS): Z = (X − n·p0) / √(n·p0·(1−p0)) = (62−50) / √25 = 12/5 = 2,4. Verglichen mit dem kritischen Wert z.B. u_0,975=1,96 (zweiseitig, α=5%) würde H0 hier verworfen, da 2,4 > 1,96." },
+    { le: 'd', q: "Wie hängen ein zweiseitiges (1−α)-Konfidenzintervall für µ und ein zweiseitiger Test H0: µ=µ0 gegen H1: µ≠µ0 zum Niveau α zusammen?", opts: [
+        "H0 wird genau dann NICHT verworfen, wenn µ0 im (1−α)-Konfidenzintervall liegt", "Konfidenzintervall und Hypothesentest sind völlig unabhängige, unverbundene Konzepte", "H0 wird immer verworfen, wenn µ0 im Konfidenzintervall liegt", "Das Konfidenzintervall gibt direkt den p-Wert des Tests an"
+      ], correct: 0, explain: "Es besteht eine Dualität zwischen Konfidenzintervallen und zweiseitigen Tests: Ein (1−α)-Konfidenzintervall für µ enthält genau die Werte µ0, für die der zugehörige Test H0:µ=µ0 zum Niveau α NICHT verworfen werden würde. Liegt µ0 außerhalb des KI, wird H0 verworfen." },
+] },
 };
 const AWI_CALC_GENERATORS_STAT = {};
 const AWI_FORMULA_QUIZ_STAT = {
@@ -1015,7 +1102,16 @@ const QUIZ_DATA_MV =   {
     { le: 'mafo', q: "Rechenaufgabe (standardisierter Regressionskoeffizient): bj = 0,14, Sj (Streuung unabhängige Variable) = 1,17, Sy (Streuung abhängige Variable) = 1,87. Welche Rechnung liefert Bj?", opts: [
         "Bj = 0,14 · (1,17/1,87) ≈ 0,088", "Bj = 0,14 + 1,17 − 1,87", "Bj = 0,14 · 1,17 · 1,87", "Bj = 1,87/0,14"
       ], correct: 0, calc: true, explain: "Bj = bj · (Sj/Sy) = 0,14 · (1,17/1,87) ≈ 0,088. Im Gegensatz zu bj ist Bj unabhängig von der Skalierung der Variablen und erlaubt den direkten Vergleich der Einflussstärke mehrerer unabhängiger Variablen." },
-  ] },
+      { le: 'mafo', q: "Was bedeutet das Gütekriterium Validität in der Marktforschung?", opts: [
+        "Das Messinstrument misst tatsächlich das, was es messen soll (inhaltliche Richtigkeit der Messung)", "Die Messung liefert bei Wiederholung immer exakt dasselbe Ergebnis", "Das Ergebnis ist unabhängig vom Durchführenden der Messung", "Die Stichprobe ist repräsentativ für die Grundgesamtheit"
+      ], correct: 0, explain: "Validität = misst das Instrument wirklich das intendierte Konstrukt (z.B. misst eine 'Kundenzufriedenheits'-Skala wirklich Zufriedenheit und nicht etwas anderes). Das ist zu unterscheiden von Reliabilität (Zuverlässigkeit/Wiederholbarkeit) und Objektivität (Unabhängigkeit vom Durchführenden)." },
+    { le: 'mafo', q: "Was ist der zentrale Unterschied zwischen deskriptivem und explikativem Untersuchungsdesign?", opts: [
+        "Das deskriptive Design beschreibt einen Ist-Zustand (z.B. Marktanteile), das explikative Design testet vorab formulierte Hypothesen über Ursache-Wirkungs-Zusammenhänge", "Beide Designs sind bedeutungsgleich", "Das explikative Design wird nur bei qualitativen Studien eingesetzt", "Das deskriptive Design erfordert immer ein Experiment"
+      ], correct: 0, explain: "Deskriptive Designs beschreiben einen bestehenden Zustand (Wer? Was? Wie viel?), ohne Kausalzusammenhänge zu testen. Explikative (auch: kausale) Designs prüfen dagegen vorab aufgestellte Hypothesen über Ursache-Wirkungs-Beziehungen, häufig mittels Experimenten." },
+    { le: 'mafo', q: "Was unterscheidet Primär- von Sekundärforschung?", opts: [
+        "Primärforschung erhebt neue, eigens für die Fragestellung generierte Daten; Sekundärforschung nutzt bereits vorhandene, für andere Zwecke erhobene Daten", "Primärforschung ist stets günstiger als Sekundärforschung", "Sekundärforschung darf ausschließlich von externen Instituten durchgeführt werden", "Primär- und Sekundärforschung liefern grundsätzlich identische Datenqualität"
+      ], correct: 0, explain: "Primärforschung: eigens für die aktuelle Fragestellung neu erhobene Daten (z.B. eigene Befragung). Sekundärforschung: Nutzung bereits vorhandener Daten, die ursprünglich für einen anderen Zweck erhoben wurden (z.B. amtliche Statistiken, Marktforschungspanels) – i.d.R. schneller und günstiger, aber ggf. weniger passgenau." },
+] },
   strategie: { label: 'Marketingstrategie', sub: 'Strategieprozess, Segmentierung, CLV, Erfahrungskurve, Wettbewerbsstrategien', questions: [
     { le: 'strategie', q: "In welcher Reihenfolge läuft der Prozess der Strategieentwicklung laut Vorlesung ab?", opts: [
         "Vision/Mission → interne+externe Analyse → Zielformulierung → Strategie/Positionierung → Marketing-Mix → Kontrolle", "Marketing-Mix → Zielformulierung → Vision/Mission → Kontrolle → Analyse", "Kontrolle → Vision/Mission → Marketing-Mix → Analyse → Zielformulierung", "Zielformulierung → Marketing-Mix → Vision/Mission → Analyse → Kontrolle"
@@ -1053,7 +1149,16 @@ const QUIZ_DATA_MV =   {
         { term: 'The Same for Less', def: 'Preisangebot bei vergleichbarer Leistung (z.B. Škoda)' },
         { term: 'Less for Much Less', def: '"Hard-Discount"-Angebot (z.B. Aldi)' },
       ], explain: "Die Value-Propositioning-Matrix ordnet Marken entlang von Preis- und Leistungsniveau relativ zum Wettbewerb ein – zusätzlich existiert 'More for Less' als Kategorie-Killer-Position (z.B. Ikea)." },
-  ] },
+      { le: 'strategie', q: "Ordne die vier Wachstumsstrategien der Ansoff-Matrix ihrer korrekten Produkt-Markt-Kombination zu.", type: 'match', pairs: [
+        { term: 'Marktdurchdringung', def: 'Bestehendes Produkt, bestehender Markt' },
+        { term: 'Marktentwicklung', def: 'Bestehendes Produkt, neuer Markt' },
+        { term: 'Produktentwicklung', def: 'Neues Produkt, bestehender Markt' },
+        { term: 'Diversifikation', def: 'Neues Produkt, neuer Markt' },
+      ], explain: "Die Ansoff-Matrix (Produkt-Markt-Matrix) unterscheidet vier Wachstumsstrategien entlang der Dimensionen 'Produkt' (bestehend/neu) und 'Markt' (bestehend/neu): Marktdurchdringung, Marktentwicklung, Produktentwicklung und Diversifikation (die risikoreichste Option, da beides neu ist)." },
+    { le: 'strategie', q: "Welche drei generischen Wettbewerbsstrategien nach Porter werden unterschieden?", opts: [
+        "Kostenführerschaft, Differenzierung, Fokussierung (Nischenstrategie)", "Marktdurchdringung, Marktentwicklung, Diversifikation", "Skimming, Penetration, Preisdifferenzierung", "Push, Pull, Omnichannel"
+      ], correct: 0, explain: "Porters drei generische Wettbewerbsstrategien: Kostenführerschaft (niedrigste Kosten in der Branche), Differenzierung (einzigartiger, honorierter Zusatznutzen) und Fokussierung/Nischenstrategie (Konzentration auf ein enges Marktsegment, kombiniert mit Kosten- oder Differenzierungsvorteil). Eine 'Stuck in the middle'-Position zwischen den Strategien gilt als nachteilig." },
+] },
   produkt: { label: 'Produktpolitik', sub: 'Innovationsprozess, Conjoint-Analyse, Produktprogramm, Bündelung', questions: [
     { le: 'produkt', q: "In welcher Reihenfolge läuft der Innovationsprozess ab?", opts: [
         "Ideengewinnung/-konkretisierung → Konzeptdefinition → Konzeptbewertung/-selektion → Markteinführung", "Markteinführung → Konzeptdefinition → Ideengewinnung → Konzeptbewertung", "Konzeptbewertung → Markteinführung → Ideengewinnung → Konzeptdefinition", "Ideengewinnung → Markteinführung → Konzeptdefinition → Konzeptbewertung"
@@ -1085,7 +1190,19 @@ const QUIZ_DATA_MV =   {
     { le: 'produkt', q: "Was ist ein zentrales Merkmal digitaler Produkte, das die Gestaltung des Produktprogramms beeinflusst?", opts: [
         "Hohe Fixkosten bei niedrigen variablen Kosten, wodurch die Grenzkosten gegen Null tendieren", "Digitale Produkte haben grundsätzlich eine geringere Reproduzierbarkeit als physische Produkte", "Digitale Produkte können nicht verändert oder angepasst werden", "Es gibt keinerlei Unterschiede zu physischen Produkten im Produktmanagement"
       ], correct: 0, explain: "Digitale Produkte zeichnen sich aus durch: einfache Reproduzierbarkeit, hohe Fixkosten bei niedrigen variablen Kosten (Grenzkosten gegen Null), einfache Veränderbarkeit, fehlende Abnutzbarkeit, eingeschränkte Wahrnehmung." },
-  ] },
+      { le: 'produkt', q: "Ordne die Adoptorenkategorien nach Rogers (Diffusionstheorie) ihrer korrekten Position im zeitlichen Diffusionsverlauf zu.", type: 'match', pairs: [
+        { term: 'Innovators', def: 'Übernehmen die Innovation als Allererste, sehr risikofreudig' },
+        { term: 'Early Adopters', def: 'Meinungsführer, übernehmen früh, aber überlegt' },
+        { term: 'Early/Late Majority', def: 'Große Mehrheit der Übernehmer, folgt erst nach Bewährung der Innovation' },
+        { term: 'Laggards', def: 'Übernehmen die Innovation als Letzte, sehr traditionsverbunden' },
+      ], explain: "Rogers' Diffusionstheorie ordnet Adopter entlang einer (annähernd normalverteilten) Zeitachse: Innovators → Early Adopters → Early Majority → Late Majority → Laggards. Early Adopters gelten oft als besonders wichtige Meinungsführer für die weitere Verbreitung." },
+    { le: 'produkt', q: "Was unterscheidet Produktvariation von Produktdifferenzierung im Rahmen des Produktprogramms?", opts: [
+        "Bei der Produktvariation wird das bestehende Produkt ERSETZT (die alte Version verschwindet), bei der Produktdifferenzierung wird eine zusätzliche Produktvariante NEBEN dem bestehenden Angebot eingeführt", "Beide Begriffe sind exakte Synonyme", "Produktdifferenzierung bedeutet immer eine Preissenkung", "Produktvariation betrifft ausschließlich die Verpackung, nie das Kernprodukt"
+      ], correct: 0, explain: "Produktvariation: Veränderung/Ersatz eines bestehenden Produkts (die alte Version wird vom Markt genommen). Produktdifferenzierung: Ergänzung des Sortiments um eine zusätzliche Variante, während das ursprüngliche Produkt weiterhin angeboten wird – beides sind Formen der 'Gestaltung der Verbundenheit'/Ausweitung des Produktprogramms." },
+    { le: 'produkt', q: "Was versteht man unter Produktkannibalisierung im Kontext des Produktprogramms?", opts: [
+        "Ein neu eingeführtes Produkt verdrängt vor allem Absatz der eigenen, bereits bestehenden Produkte, statt zusätzliches Marktwachstum zu erzeugen", "Die vollständige Elimination eines Produkts ohne Ersatz", "Der Zukauf eines Konkurrenzprodukts durch Übernahme", "Die Auslagerung der Produktion an einen externen Zulieferer"
+      ], correct: 0, explain: "Kannibalisierung tritt auf, wenn ein neues Produkt hauptsächlich Umsatz von den EIGENEN bestehenden Produkten abzieht, statt echtes Zusatzwachstum (neue Kunden oder Marktanteile vom Wettbewerb) zu generieren – ein zentrales Risiko bei der Erweiterung des Produktprogramms." },
+] },
   marke: { label: 'Markenpolitik', sub: 'Markenfunktionen, Positionierung, Markenarchitektur, Markentransfer', questions: [
     { le: 'marke', q: "Welche Facette der Markenpositionierung beantwortet die Frage 'Was biete ich an?'", opts: [
         "Markennutzen", "Markenkern", "Markenpersönlichkeit", "Markenarchitektur"
@@ -1102,7 +1219,31 @@ const QUIZ_DATA_MV =   {
     { le: 'marke', q: "Nenne ein zentrales Risiko des Markentransfers (Brand Extension).", opts: [
         "Imageverwässerung bei Ansprache unterschiedlicher Zielgruppen", "Garantierter Markterfolg des Transferprodukts", "Wegfall jeglicher Werbekosten für das neue Produkt", "Automatischer Ausschluss von negativen Rückkopplungseffekten"
       ], correct: 0, explain: "Hauptrisiken des Markentransfers: Imageverwässerung, Gefährdung der Glaubwürdigkeit bei zu vielen Transfers, Gefahr negativer Rückkopplungseffekte auf die Muttermarke." },
-  ] },
+      { le: 'marke', q: "Welche Funktionen erfüllt eine Marke aus Konsumentensicht? (mehrere richtig)", multi: true, opts: [
+        "Orientierungsfunktion (Vereinfachung der Kaufentscheidung)", "Vertrauensfunktion (Risikoreduktion)", "Identifikationsfunktion (Selbstdarstellung/Prestige)", "Produktionskostenfunktion (senkt die Herstellkosten des Anbieters)"
+      ], correct: [0,1,2], explain: "Zentrale Markenfunktionen aus Konsumentensicht: Orientierung (schnellere, einfachere Kaufentscheidung), Vertrauen/Risikoreduktion, Identifikation/Prestige. Eine 'Produktionskostenfunktion' gibt es nicht – Marken wirken über Zahlungsbereitschaft und Nachfrage, nicht über die Herstellkosten." },
+    { le: 'marke', q: "Was versteht man unter Markenwert (Brand Equity) nach Aaker?", opts: [
+        "Den zusätzlichen Wert, den eine Marke einem Produkt über den rein funktionalen Nutzen hinaus verleiht – gespeist aus Markenbekanntheit, wahrgenommener Qualität, Markenassoziationen und Markenloyalität", "Ausschließlich die Herstellungskosten des Markenlogos", "Den Umsatz des laufenden Geschäftsjahres, unabhängig von der Marke", "Die Anzahl der Vertriebspartner, die die Marke führen"
+      ], correct: 0, explain: "Brand Equity (Aaker) ist der Mehrwert, den eine Marke gegenüber einem markenlosen Produkt schafft, gespeist aus vier Dimensionen: Markenbekanntheit, wahrgenommene Qualität, Markenassoziationen/-image und Markenloyalität." },
+    { le: 'marke', q: "Was unterscheidet gestützte (aided) von ungestützter (unaided) Markenbekanntheit?", opts: [
+        "Bei gestützter Bekanntheit wird die Marke aus einer vorgegebenen Liste wiedererkannt, bei ungestützter muss sie ohne Hilfestellung aktiv erinnert werden", "Beide Begriffe sind identisch", "Gestützte Bekanntheit misst nur die Kaufabsicht, ungestützte die Zufriedenheit", "Ungestützte Bekanntheit kann nur bei neuen Marken gemessen werden"
+      ], correct: 0, explain: "Aided/gestützte Bekanntheit: Wiedererkennung der Marke aus einer vorgelegten Liste. Unaided/ungestützte Bekanntheit (Recall): aktive, freie Erinnerung ohne Hilfestellung – ein deutlich strengerer Test der Markenpräsenz im Gedächtnis." },
+    { le: 'marke', q: "Was zeigt eine Positionierungskarte (Perceptual Map) typischerweise?", opts: [
+        "Die relative Wahrnehmung von Marken durch Konsumenten entlang zentraler Beurteilungsdimensionen (z.B. Preis/Qualität), um Positionierungslücken zu erkennen", "Die geografische Verteilung der Vertriebsstandorte einer Marke", "Ausschließlich die Umsatzentwicklung einer Marke über die Zeit", "Die interne Kostenstruktur eines Unternehmens"
+      ], correct: 0, explain: "Eine Positionierungskarte (Perceptual Map) bildet ab, wie Konsumenten Marken relativ zueinander entlang zentraler Wahrnehmungsdimensionen (z.B. hochwertig/günstig) einordnen – sie dient dazu, Positionierungslücken und die Nähe zu Wettbewerbern zu erkennen." },
+    { le: 'marke', q: "Was ist ein zentraler Vorteil der Einzelmarkenstrategie gegenüber der Dachmarkenstrategie?", opts: [
+        "Jede Marke kann exakt und ohne Rücksicht auf andere Produkte auf ihre eigene Zielgruppe positioniert werden, und ein Misserfolg gefährdet nicht das Image der anderen Marken", "Geringerer Marketingaufwand, da nur eine einzige Marke beworben werden muss", "Automatischer Goodwill-Transfer zwischen allen Produkten", "Neue Produkte profitieren immer sofort vom Bekanntheitsgrad bestehender Produkte"
+      ], correct: 0, explain: "Einzelmarkenstrategie: scharfe, zielgruppengenaue Positionierung je Marke, kein Übergreifen von Misserfolgen auf andere Marken (kein Badwill-Transfer) – dafür aber höherer Marketingaufwand pro Marke, da kein gemeinsamer Goodwill genutzt werden kann (das ist gerade der Vorteil der Dachmarke, nicht der Einzelmarke)." },
+    { le: 'marke', q: "Was versteht man unter dem Kannibalisierungseffekt bei einer Line Extension?", opts: [
+        "Das neue Produkt gewinnt Umsatz vor allem von den bestehenden Produkten derselben Marke, statt zusätzliche Marktanteile vom Wettbewerb zu erschließen", "Das neue Produkt erschließt ausschließlich komplett neue Kundengruppen ohne jede Überschneidung", "Kannibalisierung beschreibt die Übernahme eines Konkurrenzunternehmens", "Der Effekt tritt nur bei Dachmarkenstrategien auf, nie bei Line Extensions"
+      ], correct: 0, explain: "Kannibalisierung bedeutet, dass ein neues Produkt (z.B. eine Line Extension) hauptsächlich Kunden von den bereits bestehenden Produkten DERSELBEN Marke abzieht, statt echtes Zusatzwachstum durch neue Kunden oder Marktanteilsgewinne vom Wettbewerb zu generieren." },
+    { le: 'marke', q: "Was ist Co-Branding?", opts: [
+        "Die Kombination von zwei (oder mehr) eigenständigen Marken zu einem gemeinsamen Angebot, um von den jeweiligen Markenimages und Kundenstämmen beider Partner zu profitieren", "Der Verkauf einer Marke an ein anderes Unternehmen", "Die Umbenennung einer bestehenden Marke", "Die ausschließliche Nutzung einer Handelsmarke ohne Herstellermarke"
+      ], correct: 0, explain: "Co-Branding kombiniert zwei eigenständige Marken (z.B. zweier verschiedener Unternehmen) zu einem gemeinsamen Produkt/Angebot, um wechselseitig vom Image, den Kompetenzen und dem Kundenstamm der Partnermarke zu profitieren (z.B. Zusammenarbeit von Sportartikel- und Automarken)." },
+    { le: 'marke', q: "Was beschreibt die Markenloyalitätspyramide (Aaker) in ihrer Grundidee?", opts: [
+        "Sie ordnet Kunden nach zunehmender Bindung an eine Marke ein – von reinen Preis-/Wechselkäufern über zufriedene Gewohnheitskäufer bis zu Kunden mit starkem, emotionalem Commitment zur Marke", "Sie misst ausschließlich den Marktanteil einer Marke im Zeitverlauf", "Sie beschreibt die Anzahl der Vertriebsstufen zwischen Hersteller und Endkunde", "Sie zeigt die Verteilung des Werbebudgets auf verschiedene Mediakanäle"
+      ], correct: 0, explain: "Die Markenloyalitätspyramide ordnet Kundensegmente nach dem Grad ihrer Markenbindung: von Preis-/Wechselkäufern (keine Loyalität) über zufriedene Gewohnheitskäufer und Kunden mit hohen Wechselkosten bis hin zu Kunden mit echtem Commitment (starke emotionale Bindung an die Marke)." },
+] },
   preis: { label: 'Preispolitik', sub: 'Preis-Absatz-Funktionen, Elastizität, Gewinnmaximierung, Preisdifferenzierung', questions: [
     { le: 'preis', q: "Rechenaufgabe (lineare PAF, Regression): Aus den Klausurdaten ergibt sich b = -105 und a = 13.540 für x(p) = a + b·p. Welche Rechnung liefert den erwarteten Absatz bei p = 65€?", opts: [
         "x(65) = 13.540 − 105 · 65 = 6.715", "x(65) = 13.540 + 105 · 65", "x(65) = 13.540 / 65", "x(65) = 13.540 − 105 + 65"
@@ -1128,7 +1269,19 @@ const QUIZ_DATA_MV =   {
     { le: 'preis', q: "Bei der Markteinführung eines neuen Produkts wird ein bewusst hoher Preis gewählt, um zunächst preisunempfindliche Käuferschichten abzuschöpfen. Wie heißt diese Strategie?", opts: [
         "Skimmingstrategie", "Penetrationsstrategie", "Preisdifferenzierung", "Assimilationsstrategie"
       ], correct: 0, explain: "Skimmingstrategie: hoher Einführungspreis zur Abschöpfung der Zahlungsbereitschaft. Penetrationsstrategie: niedriger Einführungspreis zur schnellen Erzielung hoher Marktanteile (Gegenteil)." },
-  ] },
+      { le: 'preis', q: "Was besagt die Amoroso-Robinson-Relation für den gewinnoptimalen Preis p*?", opts: [
+        "p*·(1 + 1/ε) = k' (Grenzkosten), wobei ε die Preiselastizität ist – der optimale Preisaufschlag hängt von der Elastizität ab", "p* = k', unabhängig von der Elastizität", "p* = a/b, unabhängig von den Kosten", "p*·ε = k'"
+      ], correct: 0, explain: "Die Amoroso-Robinson-Relation p*(1+1/ε) = k' verknüpft den gewinnoptimalen Preis mit der Preiselastizität ε und den Grenzkosten k'. Je unelastischer die Nachfrage (ε nahe 0), desto größer der optimale Preisaufschlag über die Grenzkosten." },
+    { le: 'preis', q: "Rechenaufgabe (Amoroso-Robinson): Bei ε = -2 und Grenzkosten k' = 10 – welche Rechnung liefert den gewinnoptimalen Preis p*?", opts: [
+        "p*·(1 + 1/(−2)) = 10  ⟹  p*·0,5 = 10  ⟹  p* = 20", "p*·(1 − 1/(−2)) = 10  ⟹  p* = 6,67", "p* = 10·(−2) = −20", "p* = 10/(−2) = −5"
+      ], correct: 0, calc: true, explain: "p*(1+1/ε) = k' ⟹ p*(1 + 1/(−2)) = 10 ⟹ p*·(1−0,5) = 10 ⟹ p*·0,5 = 10 ⟹ p* = 20." },
+    { le: 'preis', q: "Was unterscheidet 'Pure Bundling' von 'Mixed Bundling' bei der Preisbündelung?", opts: [
+        "Bei Pure Bundling sind die Produkte NUR im Paket erhältlich, bei Mixed Bundling können Kunden zusätzlich zwischen Einzelkauf und Paketkauf wählen", "Bei Pure Bundling sind die Produkte nur einzeln erhältlich", "Beide Begriffe beschreiben denselben Sachverhalt", "Mixed Bundling bezieht sich ausschließlich auf digitale Produkte"
+      ], correct: 0, explain: "Pure Bundling: ausschließlicher Verkauf als Paket, kein Einzelkauf möglich. Mixed Bundling: Kunden können wählen zwischen Einzelkauf (zum Einzelpreis) und Paketkauf (meist mit Preisvorteil gegenüber der Summe der Einzelpreise)." },
+    { le: 'preis', q: "Was ist das Grundprinzip von Yield Management (dynamischer Preisbildung)?", opts: [
+        "Preise werden in Echtzeit an Nachfrage, verbleibende Kapazität und Buchungszeitpunkt angepasst, um den Erlös bei begrenzter, verderblicher Kapazität zu maximieren (z.B. Flugtickets, Hotelzimmer)", "Es wird stets ein einheitlicher, unveränderlicher Preis für alle Kunden verlangt", "Yield Management funktioniert nur bei physischen Produkten mit unbegrenzter Lagerfähigkeit", "Preise sinken bei Yield Management grundsätzlich mit steigender Nachfrage"
+      ], correct: 0, explain: "Yield Management passt Preise dynamisch an aktuelle Nachfrage, Restkapazität und Zeitpunkt bis zur Inanspruchnahme an, um den Gesamterlös zu maximieren – typisch bei Angeboten mit fixer, verderblicher Kapazität wie Flügen, Hotelzimmern oder Veranstaltungen." },
+] },
   komm: { label: 'Kommunikationspolitik', sub: 'AIDA, Budgetierung, Werbewirkungsfunktionen, Mediaplanung, Social Media', questions: [
     { le: 'komm', q: "Welche der 4 AIDA-Stufen ist das markterfolgsbezogene Ziel (im Gegensatz zu den potenzialbezogenen Zielen)?", opts: [
         "Action", "Attention", "Interest", "Desire"
@@ -1201,7 +1354,22 @@ const QUIZ_DATA_MV =   {
         { term: 'Kernphase', def: 'Nutzung von Verhandlungstaktiken und Verkaufstechniken (Präsentation, Closing)' },
         { term: 'Gesprächsabschlussphase', def: 'Zusammenfassung der besprochenen Punkte und der nächsten Schritte' },
       ], explain: "Reihenfolge: Vorbereitungsphase → Gesprächseröffnungsphase → Kernphase → Gesprächsabschlussphase." },
-  ] },
+      { le: 'vertrieb', q: "Was ist die zentrale Aufgabe des Key-Account-Managements?", opts: [
+        "Die individuelle, bereichsübergreifende Betreuung besonders wichtiger (umsatz-/strategiestarker) Kunden durch einen dedizierten Ansprechpartner", "Die Betreuung aller Kunden nach demselben standardisierten Schema, unabhängig von deren Bedeutung", "Die ausschließliche Zuständigkeit für die Preisfestsetzung im Unternehmen", "Die Auswahl neuer Vertriebspartner im Ausland"
+      ], correct: 0, explain: "Key-Account-Management bündelt die Betreuung besonders wichtiger Kunden (Schlüsselkunden) bei einem dedizierten, oft bereichsübergreifend agierenden Ansprechpartner, um die langfristige, individuelle Beziehung zu diesen strategisch wichtigen Kunden zu sichern." },
+    { le: 'vertrieb', q: "Was beschreibt die 'Länge' eines Vertriebswegs?", opts: [
+        "Die Anzahl der Vertriebsstufen (Zwischenhandelsstufen) zwischen Hersteller und Endkunde", "Die Anzahl parallel eingesetzter Vertriebspartner auf einer Stufe", "Die geografische Distanz zwischen Hersteller und Kunde", "Die Anzahl der angebotenen Produktvarianten"
+      ], correct: 0, explain: "Die Länge eines Vertriebswegs bezeichnet die Anzahl der zwischengeschalteten Handelsstufen (0-stufig = Direktvertrieb, 1-stufig = z.B. nur Einzelhandel, 2-stufig = Großhandel + Einzelhandel usw.). Die BREITE bezeichnet dagegen die Anzahl paralleler Vertriebspartner je Stufe." },
+    { le: 'vertrieb', q: "Was unterscheidet eine Push- von einer Pull-Strategie im Vertrieb?", opts: [
+        "Bei der Push-Strategie wird das Produkt aktiv über den Handel 'in den Markt gedrückt' (z.B. Handelsrabatte), bei der Pull-Strategie wird über Endkundenwerbung Nachfrage erzeugt, die den Handel zur Listung 'zieht'", "Push und Pull bezeichnen ausschließlich unterschiedliche Zahlungsbedingungen mit dem Handel", "Bei der Pull-Strategie gibt es keinerlei Kommunikation mit dem Handel", "Push und Pull sind bei modernen Vertriebssystemen bedeutungsgleich"
+      ], correct: 0, explain: "Push-Strategie: Der Hersteller motiviert den Handel (z.B. über Konditionen, Verkaufsförderung), das Produkt aktiv zu platzieren und zu verkaufen. Pull-Strategie: Der Hersteller baut über direkte Endkundenkommunikation (Werbung) Nachfrage auf, die den Handel praktisch zur Listung zwingt." },
+    { le: 'vertrieb', q: "Was ist der zentrale Unterschied zwischen Multichannel- und Omnichannel-Vertrieb?", opts: [
+        "Beim Multichannel-Vertrieb existieren mehrere Vertriebskanäle eher unabhängig nebeneinander, beim Omnichannel-Vertrieb sind alle Kanäle nahtlos miteinander verzahnt und bieten dem Kunden ein einheitliches Erlebnis über Kanalwechsel hinweg", "Multichannel bedeutet, dass nur ein einziger Kanal genutzt wird", "Omnichannel bezieht sich ausschließlich auf den stationären Handel", "Es gibt keinen inhaltlichen Unterschied zwischen beiden Begriffen"
+      ], correct: 0, explain: "Multichannel: mehrere, oft separat gesteuerte Vertriebskanäle (z.B. Online-Shop und stationäres Geschäft unabhängig voneinander). Omnichannel: konsequente Verzahnung aller Kanäle zu einem nahtlosen, konsistenten Kundenerlebnis (z.B. online bestellen, im Laden abholen und zurückgeben)." },
+    { le: 'vertrieb', q: "Welche drei Grundtypen vertikaler Marketingsysteme (VMS) werden unterschieden?", opts: [
+        "Korporiertes (konzerneigenes), vertragliches und administriertes (durch Marktmacht gesteuertes) VMS", "Nur direkter und indirekter Vertrieb", "Push- und Pull-Systeme", "Exklusiver, selektiver und intensiver Vertrieb"
+      ], correct: 0, explain: "Vertikale Marketingsysteme koordinieren aufeinanderfolgende Vertriebsstufen: korporiert (eine Stufe besitzt/kontrolliert die andere, z.B. Filialsysteme), vertraglich (z.B. Franchise-Systeme), administriert (Koordination allein durch die Marktmacht eines Partners, ohne formale Bindung). Die Optionen 'exklusiv/selektiv/intensiv' beschreiben dagegen die BREITE des Vertriebswegs, nicht ein VMS." },
+] },
 };
 const AWI_CALC_GENERATORS_MV = {};
 const AWI_FORMULA_QUIZ_MV = {
@@ -1520,7 +1688,13 @@ const QUIZ_DATA_STRAT = {
     { le: 'm1', q: "Im SS24-Altklausur-Beispiel erklären die Honda-Führungskräfte SELBST den Erfolg des Honda Super Cub über welche Strategieschule – während BCGs offizielle Analyse eine andere Schule nutzt?", opts: [
         "Führungskräfte: Lernschule (emergent) – BCG: Designschule/Planungsschule (top-down geplant)", "Führungskräfte: Designschule – BCG: Lernschule", "Beide nutzen die gleiche Schule: die Positionierungsschule", "Führungskräfte: Umweltschule – BCG: Unternehmertumsschule"
       ], correct: 0, explain: "Klassische Klausurfrage: die Führungskräfte selbst betonen Lernen/Experimentieren vor Ort (Lernschule), während BCGs nachträgliche Analyse eine geplante, top-down umgesetzte Strategie unterstellt (Designschule/Planungsschule)." },
-  ] },
+      { le: 'm1', q: "Nach Mintzbergs Modell der Strategierealisierung – welche Aussage ist korrekt?", opts: [
+        "Die beabsichtigte (intended) Strategie zerfällt in eine bewusst umgesetzte (deliberate) und eine unrealisierte (unrealized) Strategie; zusammen mit emergenten Strategien (die während der Umsetzung ungeplant entstehen) ergibt sich die tatsächlich realisierte (realized) Strategie", "Die realisierte Strategie ist immer identisch mit der ursprünglich beabsichtigten Strategie", "Emergente Strategien sind grundsätzlich ein Zeichen für schlechtes Management", "Das Modell kennt nur die Kategorien 'geplant' und 'gescheitert'"
+      ], correct: 0, explain: "Mintzbergs Modell unterscheidet: intended strategy (beabsichtigt) → wird teils deliberate (bewusst umgesetzt) und teils unrealized (nicht umgesetzt); zusätzlich entstehen während der Umsetzung emergent strategies (ungeplant, aus dem Prozess heraus). Deliberate + emergent ergeben zusammen die realized strategy – die tatsächlich gelebte Strategie weicht damit fast immer von der ursprünglichen Absicht ab." },
+    { le: 'm1', q: "Wie definiert Chandler (1962) den Begriff 'Strategie' in seiner klassischen Definition?", opts: [
+        "Die Festlegung langfristiger Ziele und Zwecke eines Unternehmens sowie die Wahl der Handlungsweisen und Ressourcenallokation, die zur Erreichung dieser Ziele nötig sind", "Die kurzfristige Reaktion auf Wettbewerberaktionen im Tagesgeschäft", "Ausschließlich die Festlegung des Jahresbudgets", "Die reine Beschreibung der aktuellen Organisationsstruktur"
+      ], correct: 0, explain: "Chandlers klassische Definition: Strategie ist die Festlegung der langfristigen Ziele und Zwecke eines Unternehmens sowie die Wahl der Handlungsweisen und die Allokation der für die Zielerreichung notwendigen Ressourcen. Diese Definition betont die Langfristigkeit UND die konkrete Ressourcenzuteilung." },
+] },
   m2: { label: 'Modul 2 · Branchenstrukturen', sub: 'SCP-Paradigma, Porters 5(+1) Kräfte, strategische Gruppen, Profit-Pool, Einzelhandel-Fall', questions: [
     { le: 'm2', q: "Was besagt das SCP-Paradigma?", opts: [
         "Branchenstruktur (Structure) bestimmt das Verhalten der Firma (Conduct), welches wiederum den Unternehmenserfolg (Performance) bestimmt", "Unternehmenserfolg bestimmt die Branchenstruktur", "Verhalten der Firma ist unabhängig von der Branchenstruktur", "Nur das Verhalten der Firma zählt, die Struktur ist irrelevant"
@@ -1565,7 +1739,13 @@ const QUIZ_DATA_STRAT = {
         { term: 'Technological', def: 'Neue Technologien' },
         { term: 'Legal', def: 'Rechtliche Rahmenbedingungen' },
       ], explain: "PESTEL untersucht das Makro-Umfeld: Political, Economic, Social, Technological, Environmental, Legal." },
-  ] },
+      { le: 'm2', q: "Welche Bedingungen erhöhen typischerweise die Verhandlungsmacht der ABNEHMER (Buyer Power) in Porters 5-Kräfte-Modell? (mehrere richtig)", multi: true, opts: [
+        "Wenige, konzentrierte Abnehmer stehen vielen Anbietern gegenüber", "Die Abnehmer haben niedrige Wechselkosten zu Konkurrenzprodukten", "Das gekaufte Produkt macht einen großen Anteil der Kosten des Abnehmers aus", "Die Abnehmer sind stark fragmentiert und kaufen jeweils nur kleine Mengen"
+      ], correct: [0,1,2], explain: "Hohe Abnehmermacht entsteht durch: Konzentration der Abnehmer (wenige, große Käufer), niedrige Wechselkosten, hohen Kostenanteil des Produkts am Gesamteinkauf des Abnehmers, sowie Rückwärtsintegrationsdrohung. Stark fragmentierte Abnehmer mit kleinen Mengen haben dagegen WENIG Verhandlungsmacht." },
+    { le: 'm2', q: "Welche Bedingungen erhöhen typischerweise die Bedrohung durch Substitutionsprodukte?", opts: [
+        "Ein gutes Preis-Leistungs-Verhältnis des Substituts im Vergleich zum Branchenprodukt und niedrige Wechselkosten für den Kunden", "Ausschließlich die Anzahl der direkten Wettbewerber in der Branche", "Hohe Markteintrittsbarrieren für neue Anbieter", "Eine hohe Konzentration der Lieferanten"
+      ], correct: 0, explain: "Die Bedrohung durch Substitute steigt, wenn diese ein attraktives Preis-Leistungs-Verhältnis bieten und die Wechselkosten für den Kunden gering sind. Substitute erfüllen dieselbe Funktion aus einer ANDEREN Branche heraus (z.B. Videokonferenz statt Geschäftsreise) – anders als 'neue Marktteilnehmer', die innerhalb derselben Branche eintreten." },
+] },
   m3: { label: 'Modul 3 · Interne Ressourcen', sub: 'Ressourcenbasierter Ansatz, VRIN/VRIO, Wertschöpfungskette, dynamische Fähigkeiten, IBM-Fall', questions: [
     { le: 'm3', q: "Was besagt der ressourcenbasierte Ansatz im Gegensatz zum marktbasierten Ansatz?", opts: [
         "Interne Ressourcen und Fähigkeiten sind die primäre Quelle nachhaltiger Wettbewerbsvorteile, nicht primär die Branchenstruktur", "Nur die externe Branchenstruktur bestimmt den Unternehmenserfolg", "Ressourcen sind irrelevant für Wettbewerbsvorteile", "Beide Ansätze widersprechen sich vollständig und schließen sich aus"
@@ -1603,7 +1783,13 @@ const QUIZ_DATA_STRAT = {
     { le: 'm3', q: "Welche gehören zu den Kernerkenntnissen der IBM-Fallstudie? (mehrere richtig)", multi: true, opts: [
         "Dynamische Fähigkeiten lassen sich durch konkrete Mechanismen aufbauen", "Strategiekonzeption und -umsetzung müssen Hand in Hand gehen", "Strategische Annahmen sollten NICHT regelmäßig hinterfragt werden", "Strategieprozesse profitieren von einem kontinuierlichen, demokratischen, evolutionären Prozess"
       ], correct: [0,1,3], explain: "Die dritte Option ist eine klassische Klausur-Falle – genau das Gegenteil ist richtig: strategische Annahmen SOLLTEN regelmäßig hinterfragt werden." },
-  ] },
+      { le: 'm3', q: "Welche drei Kriterien müssen Fähigkeiten nach Prahalad & Hamel (1990) erfüllen, um als 'Kernkompetenz' (Core Competence) zu gelten?", opts: [
+        "Zugang zu einer Vielzahl von Märkten ermöglichen, signifikant zum wahrgenommenen Kundennutzen beitragen, und für Wettbewerber schwer zu imitieren sein", "Ausschließlich kostengünstig in der Herstellung sein", "Nur für ein einziges Produkt nutzbar sein", "Leicht durch Wettbewerber kopierbar, aber trotzdem wertvoll sein"
+      ], correct: 0, explain: "Prahalad & Hamels Kernkompetenz-Konzept verlangt: (1) Zugang zu verschiedenen Märkten, (2) signifikanter Beitrag zum wahrgenommenen Kundennutzen des Endprodukts, (3) schwer imitierbar für Wettbewerber. Kernkompetenzen sind bereichsübergreifend nutzbar – im Gegensatz zu Fähigkeiten, die nur für ein einziges Produkt gelten." },
+    { le: 'm3', q: "Was versteht man unter 'Pfadabhängigkeit' (Path Dependency) als Isolationsmechanismus im ressourcenbasierten Ansatz?", opts: [
+        "Der Wert einer Ressource entsteht auch durch ihre einzigartige historische Entwicklung – ohne dieselbe (oft langwierige und kontextspezifische) Historie durchlaufen zu haben, können Wettbewerber die Ressource nicht identisch nachbilden", "Alle Ressourcen sind unabhängig von ihrer Entstehungsgeschichte jederzeit beliebig am Markt kaufbar", "Pfadabhängigkeit beschreibt ausschließlich die Reihenfolge von Kundenkontakten im Vertrieb", "Isolationsmechanismen betreffen nur rechtliche Patente, keine sonstigen Ressourcen"
+      ], correct: 0, explain: "Pfadabhängigkeit ist ein Isolationsmechanismus, der die Imitation erschwert: Manche Ressourcen/Fähigkeiten entstehen nur durch einen spezifischen, historisch gewachsenen Entwicklungspfad (z.B. jahrzehntelang aufgebautes Erfahrungswissen) – Wettbewerber können diesen Weg nicht einfach nachträglich 'einkaufen' oder in kurzer Zeit nachholen, was die Imperfect Imitability (das 'I' in VRIN) erklärt." },
+] },
   m4: { label: 'Modul 4 · Positionierung', sub: 'McKinsey-/BCG-Matrix, generische Strategien, Red vs. Blue Ocean', questions: [
     { le: 'm4', q: "In der BCG-Matrix befindet sich ein Geschäftsfeld mit hohem Marktwachstum, aber niedrigem relativem Marktanteil. Wie wird es genannt?", opts: [
         "Fragezeichen", "Stern", "Melkkuh", "Armer Hund"
@@ -1641,7 +1827,13 @@ const QUIZ_DATA_STRAT = {
     { le: 'm4', q: "Welche Aussage fasst die Kernerkenntnisse der Cirque-du-Soleil-Fallstudie korrekt zusammen?", opts: [
         "Branchenstrukturen sind nicht exogen, und blaue Ozeane entstehen oft durch gleichzeitige Kostensenkung UND Nutzensteigerung", "Branchenstrukturen sind vollständig exogen vorgegeben und unveränderbar", "Blaue Ozeane sind leicht zu finden und zu verteidigen", "Kostenführerschaft ist bei Cirque du Soleil irrelevant für den Erfolg"
       ], correct: 0, explain: "Cirque du Soleil zeigt: Organisationen können Branchenstrukturen aktiv prägen, und Wertinnovation entsteht durch gleichzeitige Kostensenkung und Nutzensteigerung. Blaue Ozeane sind aber schwer zu entdecken UND zu verteidigen." },
-  ] },
+      { le: 'm4', q: "In der BCG-Matrix befindet sich ein Geschäftsfeld mit hohem Marktwachstum UND hohem relativem Marktanteil. Wie wird dieses Feld genannt, und welche Cashflow-Eigenschaft hat es typischerweise?", opts: [
+        "'Stars' – erwirtschaften hohe Einnahmen, benötigen aber auch hohe Investitionen zur Finanzierung des Wachstums (Cashflow tendenziell ausgeglichen)", "'Poor Dogs' – erwirtschaften durchgängig negative Cashflows", "'Melkkühe' – erfordern keinerlei weitere Investitionen", "'Question Marks' – erwirtschaften garantiert hohe Netto-Cashflows"
+      ], correct: 0, explain: "'Stars' (hohes Wachstum + hoher relativer Marktanteil) erwirtschaften zwar hohe Einnahmen aus ihrer starken Marktposition, benötigen aber gleichzeitig hohe Investitionen, um mit dem Marktwachstum Schritt zu halten – der Netto-Cashflow ist daher oft nur ausgeglichen, nicht stark positiv (im Gegensatz zu 'Melkkühen', die bei niedrigem Wachstum kaum reinvestieren müssen)." },
+    { le: 'm4', q: "Was unterscheidet verwandte (related) von unverwandter (unrelated/konglomerater) Diversifikation?", opts: [
+        "Bei verwandter Diversifikation bestehen Verwandtschafts-/Synergiepotenziale zwischen dem neuen und dem bestehenden Geschäft (z.B. gemeinsame Technologien, Kunden, Vertriebskanäle); bei unverwandter Diversifikation fehlen solche Bezüge weitgehend", "Verwandte Diversifikation bezieht sich ausschließlich auf geografische Expansion", "Unverwandte Diversifikation ist per Definition immer erfolgreicher als verwandte", "Beide Begriffe beschreiben denselben Sachverhalt"
+      ], correct: 0, explain: "Verwandte (related) Diversifikation nutzt Synergiepotenziale zum bestehenden Geschäft (geteilte Ressourcen, Kompetenzen, Kunden). Unverwandte (unrelated/konglomerate) Diversifikation erschließt Geschäftsfelder ohne solche inhaltlichen Bezüge, oft primär zur Risikostreuung – meist mit geringerem Synergiepotenzial, aber auch geringerer Klumpenrisiko-Korrelation." },
+] },
   m5: { label: 'Modul 5 · Strategische Allianzen', sub: 'Allianztypologien, Nutzen & Scheitern, Ökosysteme, offene Innovation', questions: [
     { le: 'm5', q: "Wie definiert Gulati (1998) strategische Allianzen?", opts: [
         "Formale, freiwillige Vereinbarungen zwischen Organisationen zum Austausch bzw. zur gemeinsamen Entwicklung von Produkten, Technologien oder Dienstleistungen", "Ausschließlich feindliche Übernahmen zwischen Wettbewerbern", "Informelle, unverbindliche Absprachen ohne Vertragscharakter", "Fusionen, bei denen ein Partner die vollständige Unabhängigkeit verliert"
@@ -1684,7 +1876,13 @@ const QUIZ_DATA_STRAT = {
     { le: 'm5', q: "Nenne die 4 Spannungsfelder, die in Allianzen/Ökosystemen ausbalanciert werden müssen.", opts: [
         "Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen", "Profit vs. Verantwortung, Plan vs. Umsetzung, Risiko vs. Sicherheit, Wachstum vs. Stabilität", "Zentralisierung vs. Dezentralisierung, Innovation vs. Tradition, Global vs. Lokal, Kurzfristig vs. Langfristig", "Formalisierung vs. Flexibilität, Autonomie vs. Kooperation, Wettbewerb vs. Vertrauen, Kontrolle vs. Emergenz"
       ], correct: 0, explain: "Die 4 zentralen Spannungsfelder in Allianzen/Ökosystemen: Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen." },
-  ] },
+      { le: 'm5', q: "Was unterscheidet eine 'Equity Alliance' von einer 'Non-Equity Alliance'?", opts: [
+        "Bei einer Equity Alliance ist eine wechselseitige oder einseitige Kapitalbeteiligung der Partner (bis hin zum Joint Venture) Teil der Vereinbarung, bei einer Non-Equity Alliance basiert die Zusammenarbeit rein auf vertraglicher Basis ohne Kapitalverflechtung", "Equity Alliances sind grundsätzlich kurzfristiger als Non-Equity Alliances", "Non-Equity Alliances beinhalten immer eine vollständige Fusion der Partnerunternehmen", "Es gibt keinen inhaltlichen Unterschied zwischen beiden Formen"
+      ], correct: 0, explain: "Equity Alliances beinhalten eine Kapitalbeteiligung (z.B. Minderheitsbeteiligung, Joint Venture) als Bindungs- und Absicherungsmechanismus. Non-Equity Alliances basieren rein auf vertraglichen Vereinbarungen (z.B. Lizenz-, Liefer- oder Kooperationsverträge) ohne gegenseitige Kapitalbindung – meist flexibler, aber mit schwächerem Commitment-Signal." },
+    { le: 'm5', q: "Welche zwei grundlegenden Governance-Mechanismen zur Steuerung von Allianzen werden einander gegenübergestellt?", opts: [
+        "Vertragliche Steuerung (formale, explizite Regeln und Sanktionsmechanismen) vs. vertrauensbasierte Steuerung (informelle Normen, Reputationsmechanismen, relationale Bindung)", "Ausschließlich staatliche Regulierung vs. gar keine Steuerung", "Nur Preisverhandlung vs. nur Mengenverhandlung", "Kapitalbeteiligung vs. Personalaustausch als einzige Optionen"
+      ], correct: 0, explain: "In Allianzen konkurrieren/ergänzen sich zwei Governance-Mechanismen: formale VERTRAGLICHE Steuerung (explizite Regeln, Kontroll- und Sanktionsrechte) und VERTRAUENSBASIERTE Steuerung (informelle Normen, Reputation, relationale Bindung). In der Praxis wird meist eine Kombination genutzt, wobei Vertrauen tendenziell Transaktionskosten für Verhandlung/Kontrolle senken kann." },
+] },
   m6: { label: 'Modul 6 · Soziale Verantwortung', sub: 'CSR-Perspektiven, Triple Bottom Line, Ethiktheorien, Sadhu-Fall', questions: [
     { le: 'm6', q: "Ordne Carrolls (1991) 4 CSR-Verantwortungsebenen ihrem jeweiligen Motto zu.", type: 'match', pairs: [
         { term: 'Ökonomische Verantwortung', def: '"Make profit"' },
@@ -1719,7 +1917,13 @@ const QUIZ_DATA_STRAT = {
     { le: 'm6', q: "Ein Unternehmen betrachtet CSR primär als Mittel, um langfristige wirtschaftliche Interessen zu sichern. Welche CSR-Perspektive liegt vor?", opts: [
         "Business-Case-Perspektive", "Compliance-Perspektive", "Philanthropische Perspektive", "Management-Perspektive"
       ], correct: 0, explain: "Die Business-Case-Perspektive versteht CSR als Mittel zur Erreichung der langfristigen wirtschaftlichen Interessen der Organisation." },
-  ] },
+      { le: 'm6', q: "Was unterscheidet eine deontologische (pflichtenethische) von einer konsequentialistischen (folgenethischen) Perspektive der Ethik?", opts: [
+        "Die deontologische Perspektive bewertet Handlungen nach ihrer Übereinstimmung mit moralischen Pflichten/Regeln (unabhängig von den Konsequenzen), die konsequentialistische Perspektive bewertet Handlungen ausschließlich nach ihren Folgen/Ergebnissen", "Beide Perspektiven sind bedeutungsgleich", "Die deontologische Perspektive berücksichtigt ausschließlich wirtschaftliche Konsequenzen", "Konsequentialismus lehnt jede Bewertung von Handlungen grundsätzlich ab"
+      ], correct: 0, explain: "Deontologische Ethik (z.B. Kants Pflichtenethik) bewertet, ob eine Handlung bestimmten moralischen Regeln/Pflichten entspricht – unabhängig vom Ergebnis. Konsequentialistische Ethik (z.B. Utilitarismus) bewertet Handlungen ausschließlich anhand ihrer Folgen (z.B. Nutzenmaximierung für die Allgemeinheit)." },
+    { le: 'm6', q: "Was beschreibt das Konzept der 'Triple Bottom Line' im Kontext unternehmerischer Verantwortung?", opts: [
+        "Die gleichzeitige Berücksichtigung von ökonomischem Erfolg (Profit), ökologischer Verantwortung (Planet) und sozialer Verantwortung (People) als Erfolgsmaßstäbe eines Unternehmens", "Die ausschließliche Fokussierung auf den finanziellen Gewinn als einzigen relevanten Erfolgsmaßstab", "Ein rein rechtliches Konzept ohne Bezug zu Nachhaltigkeit", "Ein Maß für die Anzahl der Vorstandsmitglieder eines Unternehmens"
+      ], correct: 0, explain: "Die Triple Bottom Line (People, Planet, Profit) erweitert den klassischen, rein finanziellen Erfolgsmaßstab um eine soziale und eine ökologische Dimension – ein zentrales Konzept, um CSR/Nachhaltigkeit systematisch neben dem wirtschaftlichen Erfolg zu verankern." },
+] },
 };
 const AWI_CALC_GENERATORS_STRAT = {};
 const AWI_FORMULA_QUIZ_STRAT = {
@@ -1986,7 +2190,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c1', q: "Welche Aussage zum neoklassischen Ansatz trifft zu?", opts: [
         "Er kann die Existenz realer Organisationen kaum erklären, da im Marktgleichgewicht keine 'übermäßigen' Gewinne entstehen", "Er erklärt die Existenz von Organisationen besser als die Neue Institutionenökonomik", "Er geht von unvollkommener Information aus", "Er dient nicht als Vergleichsmaßstab für die Neue Institutionenökonomik"
       ], correct: 0, explain: "Der neoklassische Ansatz (vollkommene Information, unbegrenzte Teilbarkeit etc.) führt zu einem Gleichgewicht ohne 'übermäßige' Gewinne und kann daher die Existenz realer Organisationen nicht erklären – er dient aber als Vergleichsmaßstab (Benchmark) für die Neue Institutionenökonomik." },
-  ] },
+      { le: 'c1', q: "Wie ist ein Nash-Gleichgewicht definiert?", opts: [
+        "Ein Zustand, von dem ausgehend kein Spieler für sich einen Vorteil erzielen kann, indem er einseitig von seiner Strategie abweicht – alle Spieler spielen eine 'beste Antwort' auf das Verhalten der übrigen", "Ein Zustand, in dem alle Spieler exakt denselben Gewinn erzielen", "Ein Zustand, der nur in kooperativen Spielen existiert", "Ein Zustand, bei dem mindestens ein Spieler einen Verlust erleidet"
+      ], correct: 0, explain: "Ein Nash-Gleichgewicht ist ein Zustand eines strategischen Gleichgewichts, von dem aus kein Spieler einseitig abweichen würde, um sich zu verbessern – jeder spielt eine beste Antwort auf die Strategien der anderen." },
+    { le: 'c1', q: "Was bedeutet Pareto-Effizienz eines Zustands?", opts: [
+        "Es ist nicht möglich, einen Spieler besserzustellen, ohne gleichzeitig mindestens einen anderen Spieler schlechterzustellen", "Alle Spieler erzielen exakt den gleichen Nutzen", "Der Zustand maximiert ausschließlich den Nutzen eines einzigen Spielers", "Pareto-Effizienz ist gleichbedeutend mit einem Nash-Gleichgewicht"
+      ], correct: 0, explain: "Pareto-Effizienz bedeutet, dass keine Umverteilung möglich ist, die einen Spieler besserstellt, ohne einen anderen schlechterzustellen. Ein Zustand kann pareto-effizient sein, ohne ein Nash-Gleichgewicht zu sein, und umgekehrt – beide Konzepte fallen NICHT automatisch zusammen." },
+    { le: 'c1', q: "Das Spiel 'Battle of the Sexes' (zwei Partner möchten sich treffen, bevorzugen aber unterschiedliche Veranstaltungsorte) ist ein klassisches Beispiel für welchen Situationstyp?", opts: [
+        "Koordinationsspiel mit mehreren Nash-Gleichgewichten (Mehrdeutigkeit, welches Gleichgewicht gespielt wird)", "Ein Kooperationsspiel mit genau einem, nicht pareto-optimalen Nash-Gleichgewicht", "Ein Spiel ohne jedes Nash-Gleichgewicht", "Ein rein kompetitives Nullsummenspiel"
+      ], correct: 0, explain: "Battle of the Sexes ist das klassische Beispiel für ein Koordinationsspiel: Es existieren mehrere Nash-Gleichgewichte (beide zusammen bei Ort A, beide zusammen bei Ort B), die beide pareto-optimal sind – das Problem ist die Mehrdeutigkeit, welches der beiden Gleichgewichte tatsächlich gespielt wird (Überwindung des Nichtwissens)." },
+] },
   c2: { label: 'Kap. 2 · Neue Institutionenökonomik', sub: 'Transaktionskosten, Hold-up, Verfügungsrechte, Skalenerträge, Prinzipal-Agenten/LEN-Modell', questions: [
     { le: 'c2', q: "Welche der folgenden gehören zu den externen Transaktionskosten? (mehrere richtig)", multi: true, opts: [
         "Anbahnungskosten", "Durchsetzungskosten", "Produktionskosten", "Kontrollkosten"
@@ -2007,7 +2220,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c2', q: "Im linearen Entlohnungsschema w(π) = α + βπ des LEN-Modells steht β für...", opts: [
         "den Beteiligungsparameter (Anteil des Agenten am Ergebnis π)", "das Fixum", "die Risikoaversion des Prinzipals", "die Varianz des Störterms θ"
       ], correct: 0, explain: "α ist das Fixum, β∈[0;1] der Beteiligungsparameter (variable, ergebnisabhängige Entlohnungskomponente)." },
-  ] },
+      { le: 'c2', q: "Was versteht man unter interner Transaktionskosten im Gegensatz zu externen (marktlichen) Transaktionskosten?", opts: [
+        "Kosten, die bei der Koordination von Transaktionen INNERHALB einer Organisation entstehen (z.B. Kosten der internen Kommunikation, Kontrolle, Motivation), statt bei der Nutzung des externen Marktes", "Kosten, die ausschließlich beim Import von Rohstoffen anfallen", "Es gibt keinen Unterschied zwischen internen und externen Transaktionskosten", "Interne Transaktionskosten betreffen ausschließlich Steuerzahlungen"
+      ], correct: 0, explain: "Externe Transaktionskosten entstehen bei der Nutzung des Marktes als Koordinationsmechanismus (Anbahnung, Vereinbarung, Kontrolle, Anpassung von Verträgen mit externen Partnern). Interne Transaktionskosten entstehen dagegen bei der Koordination INNERHALB der Hierarchie/Organisation (z.B. Bürokratie-, Kontroll- und Motivationskosten)." },
+    { le: 'c2', q: "Was versteht man unter 'Faktorspezifität' (Asset Specificity) nach Williamson, und welche Konsequenz hat hohe Spezifität?", opts: [
+        "Faktorspezifität beschreibt, wie stark eine Investition auf eine bestimmte Transaktion/einen bestimmten Partner zugeschnitten ist; hohe Spezifität erhöht die Gefahr des Hold-up-Problems und spricht daher eher für Organisation statt Marktnutzung", "Faktorspezifität beschreibt ausschließlich die geografische Lage eines Unternehmens", "Hohe Spezifität senkt automatisch die Transaktionskosten", "Faktorspezifität ist irrelevant für die Wahl zwischen Markt und Hierarchie"
+      ], correct: 0, explain: "Faktorspezifität ist neben Unsicherheit und Häufigkeit eine zentrale Dimension der Transaktionskostentheorie: Je spezifischer eine Investition auf eine bestimmte Transaktion zugeschnitten ist, desto größer die Gefahr, nach der Investition vom Partner ausgebeutet zu werden (Hold-up) – das spricht für eine Organisation der Transaktion innerhalb der Hierarchie statt über den Markt." },
+    { le: 'c2', q: "Was unterscheidet 'Hidden Action' von 'Hidden Information' als Grundformen asymmetrischer Information in Prinzipal-Agenten-Beziehungen?", opts: [
+        "Bei Hidden Action kann der Prinzipal die Handlung/Anstrengung des Agenten NACH Vertragsschluss nicht beobachten (moralisches Risiko); bei Hidden Information verfügt eine Seite bereits VOR Vertragsschluss über nicht beobachtbare Informationen (adverse Selektion)", "Beide Begriffe beschreiben denselben Sachverhalt zu unterschiedlichen Zeitpunkten", "Hidden Action tritt nur bei Aktiengesellschaften auf", "Hidden Information betrifft ausschließlich den Prinzipal, nie den Agenten"
+      ], correct: 0, explain: "Hidden Action (Moral Hazard): Informationsasymmetrie entsteht NACH Vertragsschluss, da die Handlung/Anstrengung des Agenten nicht beobachtbar ist. Hidden Information (Adverse Selektion): Informationsasymmetrie besteht bereits VOR Vertragsschluss (z.B. über die Qualität/Fähigkeiten einer Vertragspartei). Beide Formen erfordern unterschiedliche Lösungsmechanismen (Anreizverträge vs. Signaling/Screening)." },
+] },
   c3: { label: 'Kap. 3 · Organisationsformen', sub: 'Publikumsgesellschaft, Einzelunternehmung, Partnerschaften, Genossenschaften, Franchising, Netzwerke', questions: [
     { le: 'c3', q: "Im Modell von Baumol (1959) maximieren Manager primär...", opts: [
         "die Unternehmensgröße bzw. den Umsatz (bei Mindestgewinn als Nebenbedingung)", "den Gewinn der Anteilseigner", "ausschließlich den Aktienkurs", "die Dividende"
@@ -2028,7 +2250,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c3', q: "Welche Vorteile bietet Franchising gegenüber rein zentralisierten Filialstrukturen? (mehrere richtig)", multi: true, opts: [
         "Bessere Nutzung dezentralen Wissens vor Ort", "Entschärfung von Kontrollproblemen bei dezentralen Vertriebsstätten", "Vollständige Elimination von Opportunismusrisiken", "Gleichzeitige Nutzung von Zentralisierungs- und Dezentralisierungsvorteilen"
       ], correct: [0,1,3], explain: "Franchising nutzt dezentrales Wissen und mildert Kontrollprobleme, kombiniert Zentralisierungs-/Dezentralisierungsvorteile – Opportunismus (von FN und FG) bleibt aber ein bestehendes Problem, keine 'vollständige Elimination'." },
-  ] },
+      { le: 'c3', q: "Was kennzeichnet eine Publikumsgesellschaft (Aktiengesellschaft mit breitem Streubesitz)?", opts: [
+        "Eine Vielzahl von Kleinaktionären hält Anteile, wodurch Eigentum und Kontrolle (Management) faktisch getrennt sind", "Ein einzelner Eigentümer hält 100% der Anteile und führt das Unternehmen selbst", "Es handelt sich um eine reine Personengesellschaft ohne Kapitalmarktzugang", "Die Gesellschafter haften unbeschränkt mit ihrem Privatvermögen"
+      ], correct: 0, explain: "Eine Publikumsgesellschaft zeichnet sich durch breiten Streubesitz (viele Kleinaktionäre) aus – daraus resultiert die klassische Trennung von Eigentum (Aktionäre) und Kontrolle (angestelltes Management), die die Grundlage des Prinzipal-Agenten-Problems in Aktiengesellschaften bildet." },
+    { le: 'c3', q: "Worin besteht das klassische Prinzipal-Agenten-Problem bei einer Aktiengesellschaft mit breitem Streubesitz?", opts: [
+        "Das angestellte Management (Agent) kann eigene Interessen (z.B. Empire Building, geringerer Arbeitseinsatz) verfolgen, die von den Interessen der Aktionäre (Prinzipal, Gewinnmaximierung) abweichen, ohne dass einzelne Kleinaktionäre eine wirksame Kontrolle ausüben", "Aktionäre haben immer vollständige Information über alle Managemententscheidungen", "Das Management ist rechtlich verpflichtet, ausschließlich im Interesse einzelner Großaktionäre zu handeln", "Es entsteht kein Interessenkonflikt, da Management und Aktionäre identische Ziele verfolgen"
+      ], correct: 0, explain: "Durch die Trennung von Eigentum und Kontrolle kann das Management eigene Ziele verfolgen (Hidden Action), während einzelne Kleinaktionäre aufgrund geringer eigener Anteile kaum Anreiz/Möglichkeit zur wirksamen Kontrolle haben (Trittbrettfahrerproblem der Kontrolle) – ein zentrales Beispiel für Prinzipal-Agenten-Konflikte." },
+    { le: 'c3', q: "Was ist ein grundlegendes Prinzip einer Genossenschaft im Vergleich zu einer Kapitalgesellschaft?", opts: [
+        "Die Mitglieder sind gleichzeitig Eigentümer UND Nutzer/Kunden der Genossenschaft, mit dem Förderzweck (Förderung der Mitglieder), nicht primär der Gewinnmaximierung, im Vordergrund", "Genossenschaften dürfen grundsätzlich keine wirtschaftliche Tätigkeit ausüben", "Genossenschaftsmitglieder haften stets unbeschränkt mit ihrem gesamten Privatvermögen", "Genossenschaften sind rechtlich identisch mit Aktiengesellschaften"
+      ], correct: 0, explain: "Genossenschaften verfolgen primär den Förderzweck ihrer Mitglieder (die zugleich Eigentümer und Nutzer/Kunden sind), nicht die reine Gewinnmaximierung für externe Kapitalgeber – ein wesentlicher struktureller Unterschied zu klassischen Kapitalgesellschaften." },
+] },
   c4: { label: 'Kap. 4 · Interne Organisationsstrukturen', sub: 'Aufgabenverteilung, Koordination, Weisungsrechte, Organisatorischer Wandel', questions: [
     { le: 'c4', q: "Das Prinzip 'Structure follows Strategy' beschreibt, dass...", opts: [
         "steigende Diversifikation den Wechsel von funktionaler zu divisionaler Organisation begünstigt", "die Organisationsstruktur unabhängig von der Unternehmensstrategie gewählt wird", "divisionale Organisation immer der funktionalen vorzuziehen ist", "Strategie sich der Organisationsstruktur anpassen muss"
@@ -2045,7 +2276,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c4', q: "Formalisierung umfasst welche der folgenden Teildimensionen? (mehrere richtig)", multi: true, opts: [
         "Schriftliche Fixierung organisatorischer Regeln", "Formalisierung des Informationsflusses", "Leistungsdokumentation", "Vollständige Abschaffung von Hierarchieebenen"
       ], correct: [0,1,2], explain: "Formalisierung umfasst schriftliche Regelfixierung, Formalisierung des Informationsflusses und Leistungsdokumentation – nicht die Abschaffung von Hierarchie." },
-  ] },
+      { le: 'c4', q: "Welche Vorteile bietet eine funktionale Organisationsstruktur typischerweise im Vergleich zu einer divisionalen Struktur? (mehrere richtig)", multi: true, opts: [
+        "Kostendegressionseffekte durch Bündelung gleichartiger Aktivitäten", "Positive Lern- und Erfahrungskurveneffekte je Funktionsbereich", "Der Erfolg ist einzelnen Funktionsbereichen direkt und eindeutig zurechenbar", "Sehr hohe Anpassungsfähigkeit bei Umstrukturierungen einzelner Geschäftsfelder"
+      ], correct: [0,1], explain: "Funktionale Strukturen bündeln gleichartige Tätigkeiten (z.B. alle Produktion, aller Vertrieb) → Kostendegressions- und Lernkurveneffekte. Die direkte Erfolgszurechnung UND hohe Anpassungsfähigkeit bei Umstrukturierungen sind dagegen typische Vorteile der DIVISIONALEN Struktur, nicht der funktionalen." },
+    { le: 'c4', q: "Welche Aussagen zur Zentralisation vs. Dezentralisation von Entscheidungsrechten treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Dezentralisation lohnt sich tendenziell, wenn untergeordnete Stellen über bessere lokale Information verfügen als die Zentrale", "Zentralisation erleichtert eine einheitliche, konsistente Ausrichtung der Gesamtorganisation", "Dezentralisation ist immer und ausnahmslos die überlegene Lösung", "Je höher die Opportunitätskosten der Zeit der Vorgesetzten, desto eher lohnt sich Delegation von Entscheidungsrechten"
+      ], correct: [0,1,3], explain: "Dezentralisation nutzt lokales Wissen untergeordneter Stellen und entlastet die Zentrale (insbesondere wenn deren Zeit hohe Opportunitätskosten hat). Zentralisation erleichtert dagegen eine konsistente, koordinierte Gesamtausrichtung. Es gibt keine universell überlegene Lösung – die optimale Wahl hängt vom Trade-off zwischen Informationsvorteil und Koordinationsbedarf ab." },
+    { le: 'c4', q: "Was unterscheidet ein Einliniensystem von einem Mehrliniensystem der Weisungsorganisation?", opts: [
+        "Im Einliniensystem erhält jede Stelle Weisungen von genau EINER übergeordneten Instanz (Einheit der Auftragserteilung); im Mehrliniensystem können mehrere spezialisierte Instanzen gleichzeitig Weisungen erteilen", "Im Einliniensystem gibt es überhaupt keine Hierarchie", "Beide Systeme sind identisch in Bezug auf die Weisungsbefugnis", "Ein Mehrliniensystem verbietet jede Form von Spezialisierung der Leitung"
+      ], correct: 0, explain: "Einliniensystem (Fayol'sches Prinzip): jede Stelle hat genau einen Vorgesetzten, klare Verantwortlichkeiten, aber potenziell lange Kommunikationswege. Mehrliniensystem (Taylor'sches Prinzip): mehrere spezialisierte Instanzen dürfen direkt weisen, was Spezialisierungsvorteile bringt, aber zu Kompetenzüberschneidungen und Autoritätskonflikten führen kann." },
+] },
   c5: { label: 'Kap. 5 · Informationsbewertung', sub: 'Informationswert, Satz von Bayes, A-priori/A-posteriori-Erwartungswerte', questions: [
     { le: 'c5', q: "Wie wird der Informationswert (IW) definiert?", opts: [
         "IW = E** (a posteriori) − E* (a priori)", "IW = E* − E**", "IW = E* + E**", "IW = E* · E**"
@@ -2062,7 +2302,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c5', q: "Welche Aussagen zum Vorgehen der Informationswertberechnung treffen zu? (mehrere richtig)", multi: true, opts: [
         "Zuerst wird der A-priori-Erwartungswert als Maximum über alle Handlungsalternativen berechnet", "Die A-posteriori-Wahrscheinlichkeiten werden über den Satz von Bayes ermittelt", "Bei jeder Nachricht wird stets zufällig eine Handlung gewählt", "Der A-posteriori-Erwartungswert gewichtet die bedingten Erwartungswerte mit den Nachrichtenwahrscheinlichkeiten"
       ], correct: [0,1,3], explain: "Bei jeder Nachricht m wird NICHT zufällig, sondern die Handlung mit dem höchsten bedingten Erwartungswert gewählt – das ist gerade der Kern des Optimierungskalküls." },
-  ] },
+      { le: 'c5', q: "Wie lautet der Satz von Bayes zur Berechnung der a-posteriori-Wahrscheinlichkeit P(Zustand|Signal)?", opts: [
+        "P(Zustand|Signal) = P(Signal|Zustand)·P(Zustand) / P(Signal), wobei P(Signal) über die totale Wahrscheinlichkeit aus allen möglichen Zuständen berechnet wird", "P(Zustand|Signal) = P(Signal) · P(Zustand)", "P(Zustand|Signal) = P(Signal) − P(Zustand)", "P(Zustand|Signal) = P(Zustand) allein, unabhängig vom Signal"
+      ], correct: 0, explain: "Der Satz von Bayes dreht die bedingte Wahrscheinlichkeit um: P(Zustand|Signal) = P(Signal|Zustand)·P(Zustand)/P(Signal). Der Nenner P(Signal) wird über den Satz der totalen Wahrscheinlichkeit als gewichtete Summe über alle möglichen Zustände berechnet. Dies ist die Grundlage zur Berechnung der a-posteriori-Wahrscheinlichkeiten nach Erhalt eines (unvollkommenen) Signals." },
+    { le: 'c5', q: "Was unterscheidet den a-priori- vom a-posteriori-Erwartungswert bei der Informationsbewertung?", opts: [
+        "Der a-priori-Erwartungswert E* wird VOR Erhalt zusätzlicher Information berechnet (beste Handlungsalternative ohne Info), der a-posteriori-Erwartungswert E** NACH Erhalt und Auswertung des Informationssignals (für jeden Signalausgang die jeweils beste Handlung gewählt)", "Beide Erwartungswerte sind immer identisch", "Der a-posteriori-Erwartungswert wird ausschließlich vor Vertragsschluss berechnet", "E* bezeichnet die Varianz, E** den Erwartungswert"
+      ], correct: 0, explain: "E* (a priori) = erwarteter Wert der besten EINEN Handlungsalternative, wenn man sich VORAB für eine Alternative festlegen muss, ohne den tatsächlichen Umweltzustand zu kennen. E** (a posteriori) = erwarteter Wert, wenn man für JEDEN möglichen Signalausgang jeweils die dann optimale Handlung wählen kann – dieser Wert ist wegen der zusätzlichen Flexibilität stets ≥ E*." },
+    { le: 'c5', q: "Rechenaufgabe (a-posteriori-Erwartungswert via Bayes): Ein perfektes Informationssystem liefert für Zustand s1 (P=0,4) den Ertrag 60 bei optimaler Handlung, für Zustand s2 (P=0,6) den Ertrag 80 bei optimaler Handlung. Welche Rechnung liefert E**?", opts: [
+        "E** = 0,4 · 60 + 0,6 · 80 = 24 + 48 = 72", "E** = 60 + 80 = 140", "E** = (60+80)/2 = 70, unabhängig von den Wahrscheinlichkeiten", "E** = 0,4 · 80 + 0,6 · 60 = 68"
+      ], correct: 0, calc: true, explain: "Bei einem perfekten Informationssystem wird für jeden Zustand exakt der zugehörige optimale Ertrag mit seiner Eintrittswahrscheinlichkeit gewichtet: E** = P(s1)·Ertrag(s1) + P(s2)·Ertrag(s2) = 0,4·60 + 0,6·80 = 24+48 = 72." },
+] },
   c6: { label: 'Kap. 6 · Rekrutierung', sub: 'Personalbedarfsplanung, Adverse Selektion, Signaling/Screening, Abwerbung', questions: [
     { le: 'c6', q: "Rechenaufgabe (Personalbedarfsplanung): Arbeitsmenge (erforderliche Stundenzahl) = 1.002.762 Std./Jahr, Leistungsfähigkeit je Mitarbeiter = 1.776 Std./Jahr. Welche Rechnung liefert den Brutto-Personalbedarf PB?", opts: [
         "PB = 1.002.762 / 1.776 ≈ 565 Mitarbeiter", "PB = 1.002.762 · 1.776", "PB = 1.776 / 1.002.762", "PB = 1.002.762 − 1.776"
@@ -2083,7 +2332,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c6', q: "Was besagt der 'Winner's Curse' im Kontext von Abwerbungen?", opts: [
         "Der abwerbende Arbeitgeber bietet tendenziell zu viel, weil der aktuelle Arbeitgeber gute Mitarbeiter mit Gegenangeboten hält", "Abgeworbene Mitarbeiter sind immer die besten am Markt verfügbaren", "Abwerbung ist niemals profitabel", "Der Winner's Curse tritt nur bei Auktionen physischer Güter auf"
       ], correct: 0, explain: "Da der aktuelle AG seine Mitarbeiter besser kennt und gute AN halten kann, sind erfolgreich abgeworbene AN häufig überdurchschnittlich teuer relativ zu ihrer tatsächlichen Produktivität – ein Transfer des Auktionstheorie-Konzepts auf den Arbeitsmarkt." },
-  ] },
+      { le: 'c6', q: "Was versteht man allgemein unter 'Adverser Selektion' in Vertragsbeziehungen?", opts: [
+        "Aufgrund von Hidden Information (Qualitätsunterschieden, die vor Vertragsschluss nicht beobachtbar sind) ziehen sich tendenziell die 'guten' Vertragspartner aus dem Markt zurück, während überproportional die 'schlechten' übrig bleiben", "Ein Zustand, bei dem alle Marktteilnehmer über identische, vollständige Information verfügen", "Die bewusste Bevorzugung überdurchschnittlich qualifizierter Bewerber durch objektive Tests", "Ein rein rechtliches Konzept ohne ökonomische Bedeutung"
+      ], correct: 0, explain: "Adverse Selektion entsteht durch Hidden Information vor Vertragsschluss: Da die schlechter informierte Marktseite die Qualität nicht unterscheiden kann und daher nur einen Durchschnittspreis/-lohn bietet, ziehen sich überproportional die qualitativ besseren Anbieter zurück (für sie lohnt sich der Durchschnittspreis nicht) – im Extremfall bricht der Markt für gute Qualität zusammen." },
+    { le: 'c6', q: "Was ist der Kerngedanke von Self-Selection (Selbstselektion) als Lösungsmechanismus für adverse Selektion?", opts: [
+        "Durch geschickte Gestaltung mehrerer Vertragsoptionen (z.B. unterschiedliche Lohn-Leistungs-Kombinationen) wählen unterschiedliche Bewerbertypen freiwillig unterschiedliche Optionen, wodurch sich ihr Typ indirekt offenbart", "Selbstselektion bedeutet, dass der Arbeitgeber die Bewerber zufällig auswählt", "Selbstselektion funktioniert nur, wenn alle Bewerber identisch sind", "Selbstselektion erfordert immer eine vollständige Offenlegung aller Informationen von Anfang an"
+      ], correct: 0, explain: "Bei Self-Selection werden mehrere Vertragsalternativen angeboten (z.B. hoher Fixlohn + geringe Erfolgsbeteiligung vs. niedriger Fixlohn + hohe Erfolgsbeteiligung), die für unterschiedliche Typen (z.B. risikoscheu vs. leistungsstark) unterschiedlich attraktiv sind – durch die freiwillige Wahl offenbart sich der ansonsten unbeobachtbare Typ des Bewerbers." },
+    { le: 'c6', q: "Warum bietet ein Arbeitgeber im 'Market for Lemons'-Szenario nur einen Durchschnittslohn an, statt individuelle, qualifikationsgerechte Löhne zu zahlen?", opts: [
+        "Weil er die tatsächliche Qualifikation/Produktivität des einzelnen Bewerbers vor Vertragsschluss nicht beobachten kann (Hidden Information) und daher nur den erwarteten Durchschnittswert aller Bewerber zugrunde legen kann", "Weil gesetzliche Vorschriften einheitliche Löhne für alle Mitarbeiter zwingend vorschreiben", "Weil individuelle Löhne grundsätzlich rechtlich unzulässig sind", "Weil alle Bewerber immer exakt dieselbe Produktivität aufweisen"
+      ], correct: 0, explain: "Da der Arbeitgeber die tatsächliche Qualifikation des einzelnen Bewerbers nicht direkt beobachten kann, bleibt ihm nur die Zahlung eines am Marktdurchschnitt orientierten Lohns – was wiederum hochqualifizierte Bewerber benachteiligt und zu deren Marktaustritt (adverse Selektion) führen kann." },
+] },
   c7: { label: 'Kap. 7 · Arbeitnehmer-Stellen-Matching', sub: 'Markov-Ketten, Fähigkeitsmerkmale, Zuordnungsproblem', questions: [
     { le: 'c7', q: "Rechenaufgabe (Markov-Kette): Ausgangsbestand W1 = 378, Übergangswahrscheinlichkeit W1→W1 = 0,82. Welche Rechnung liefert den prognostizierten Bestand, der von W1 in W1 verbleibt?", opts: [
         "378 · 0,82 ≈ 310", "378 / 0,82", "378 + 0,82", "378 − 0,82"
@@ -2100,7 +2358,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c7', q: "Welche Kategorie umfasst 'Personalnummer, Name, Familienstand' als Fähigkeitsmerkmal?", opts: [
         "Identifizierende Merkmale", "Kenntnisbezogene Merkmale", "Physische Merkmale", "Psychische Merkmale"
       ], correct: 0, explain: "Identifizierende Merkmale dienen der reinen Identifikation (Personalnummer, Name, Arbeitsplatz, Familienstand), nicht der Fähigkeitsbeschreibung im engeren Sinne." },
-  ] },
+      { le: 'c7', q: "Was ist die Kernidee zur Lösung des Zuordnungsproblems (z.B. mittels der Ungarischen Methode)?", opts: [
+        "Personen und Stellen werden so einander zugeordnet, dass die Summe der Eignungswerte über alle Zuordnungspaare maximiert wird, unter der Nebenbedingung, dass jede Person genau einer Stelle und jede Stelle genau einer Person zugeordnet wird", "Es wird immer die Person mit dem höchsten Einzel-Eignungswert JEDER Stelle unabhängig zugewiesen, auch wenn dadurch Mehrfachzuweisungen entstehen", "Das Zuordnungsproblem hat grundsätzlich keine eindeutige Lösung", "Die Zuordnung erfolgt zufällig unter allen infrage kommenden Personen"
+      ], correct: 0, explain: "Das Zuordnungsproblem ist ein Optimierungsproblem: Gesucht ist die Zuordnung von Personen zu Stellen, die die GESAMTE Summe der Eignungswerte maximiert (nicht die isolierte Maximierung je Stelle), unter den Nebenbedingungen, dass jede Person/Stelle nur einmal vergeben wird. Verfahren wie die Ungarische Methode lösen dieses Optimierungsproblem effizient." },
+    { le: 'c7', q: "Was ist die zentrale Annahme (Markov-Eigenschaft) bei der Personalbestandsplanung mit Markov-Ketten?", opts: [
+        "Die Übergangswahrscheinlichkeit in den nächsten Zustand hängt nur vom AKTUELLEN Zustand ab, nicht von der weiter zurückliegenden Historie (Gedächtnislosigkeit)", "Die Übergangswahrscheinlichkeiten ändern sich von Periode zu Periode völlig zufällig und unvorhersagbar", "Jede Person wechselt garantiert jede Periode ihre Stelle", "Die Markov-Eigenschaft erfordert die vollständige Kenntnis aller vergangenen Perioden"
+      ], correct: 0, explain: "Die Markov-Eigenschaft (Gedächtnislosigkeit) besagt, dass die Wahrscheinlichkeit für den nächsten Zustand ausschließlich vom aktuellen Zustand abhängt – die weiter zurückliegende Historie liefert keine zusätzliche Information. Das vereinfacht die Personalbestandsprognose erheblich, da nur eine (meist stabile) Übergangsmatrix benötigt wird." },
+    { le: 'c7', q: "Rechenaufgabe (Markov-Kette, Prognose): Aktueller Bestand in Stelle A = 200, Übergangswahrscheinlichkeit A→A = 0,7, Zugang von Stelle B nach A: Bestand B = 100, Übergangswahrscheinlichkeit B→A = 0,2. Wie hoch ist der prognostizierte Gesamtbestand in Stelle A in der Folgeperiode?", opts: [
+        "200·0,7 + 100·0,2 = 140 + 20 = 160", "200 + 100 = 300", "200·0,7 − 100·0,2 = 120", "200·0,2 + 100·0,7 = 110"
+      ], correct: 0, calc: true, explain: "Der prognostizierte Bestand einer Stelle ergibt sich als Summe der Beiträge aus allen Quellstellen: Bestand_A(t+1) = Bestand_A(t)·P(A→A) + Bestand_B(t)·P(B→A) = 200·0,7 + 100·0,2 = 140+20 = 160." },
+] },
   c8: { label: 'Kap. 8 · Betriebliche Qualifizierung', sub: 'Qualifikations-/Potentialanalyse, Personalentwicklung, Humankapital-Investition', questions: [
     { le: 'c8', q: "Rechenaufgabe (Humankapitalinvestition): Direkte+indirekte Kosten C0+J0 = 20.000€. Barwert der zukünftigen Einkommensdifferenzen Σ(Kt−Jt)/(1+r)^t = 35.000€. Lohnt sich die Investition?", opts: [
         "Ja, da 20.000€ ≤ 35.000€ (Kosten kleiner als Barwert der Erträge)", "Nein, da die Kosten immer höher sein müssen", "Das lässt sich ohne den Zinssatz nicht bestimmen", "Nein, weil 20.000€ < 35.000€ die Investition unrentabel macht"
@@ -2117,7 +2384,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c8', q: "Die Kernkette der Ausbildung als Investitionsentscheidung lautet:", opts: [
         "Humankapital ↑ → Produktivität ↑ → Lohn ↑", "Lohn ↑ → Produktivität ↑ → Humankapital ↑", "Produktivität ↑ → Humankapital ↓ → Lohn ↑", "Humankapital ↑ → Lohn ↓"
       ], correct: 0, explain: "Die Wirkungskette der Human-Capital-Theorie: mehr Humankapital führt zu höherer Produktivität, die sich in höherem Lohn niederschlägt." },
-  ] },
+      { le: 'c8', q: "Welche Maßnahmen zählen zu den 'off-the-job'-Personalentwicklungsmaßnahmen (im Gegensatz zu 'on-the-job')?", opts: [
+        "Externe Seminare, Schulungen und Weiterbildungskurse, die AUSSERHALB des unmittelbaren Arbeitsplatzes stattfinden", "Job Rotation direkt am Arbeitsplatz", "Training-on-the-Job durch erfahrene Kollegen während der laufenden Arbeit", "Coaching direkt während der Aufgabenerledigung am Arbeitsplatz"
+      ], correct: 0, explain: "Off-the-job-Maßnahmen finden ABSEITS des direkten Arbeitsplatzes statt (z.B. externe Seminare, Kurse, Fernstudium). On-the-job-Maßnahmen (Job Rotation, Training-on-the-Job, Coaching) sind dagegen unmittelbar in den Arbeitsprozess integriert." },
+    { le: 'c8', q: "Wer trägt nach Beckers Humankapitaltheorie typischerweise die Kosten einer Investition in ALLGEMEINES Humankapital (überbetrieblich verwertbare Qualifikation)?", opts: [
+        "Überwiegend der Arbeitnehmer selbst, da allgemeines Humankapital auch bei anderen Arbeitgebern verwertbar ist und der aktuelle Arbeitgeber sonst Gefahr liefe, in abwerbbare Qualifikation zu investieren", "Ausschließlich der Arbeitgeber, unabhängig von der Verwertbarkeit", "Der Staat übernimmt grundsätzlich alle Kosten allgemeinen Humankapitals", "Es entstehen bei allgemeinem Humankapital nie Kosten"
+      ], correct: 0, explain: "Bei allgemeinem (überbetrieblich verwertbarem) Humankapital trägt nach Becker überwiegend der Arbeitnehmer die Kosten (z.B. über geringeren Lohn während der Ausbildungsphase), da der Arbeitgeber sonst riskiert, in eine Qualifikation zu investieren, die der Arbeitnehmer anschließend bei einem Konkurrenten nutzt (Abwerbungsgefahr). Bei SPEZIFISCHEM Humankapital (nur im eigenen Betrieb wertvoll) trägt eher der Arbeitgeber die Kosten." },
+    { le: 'c8', q: "Was versteht man unter der Amortisationsdauer (Payback-Periode) einer Humankapitalinvestition?", opts: [
+        "Den Zeitraum, nach dem die kumulierten zusätzlichen Erträge aus der Investition die anfänglichen Investitionskosten gerade ausgeglichen haben", "Den Gesamtzeitraum des gesamten Erwerbslebens, unabhängig von der konkreten Investition", "Die Zeitspanne zwischen zwei Gehaltserhöhungen", "Ein rein rechtlicher Begriff ohne finanzielle Bedeutung"
+      ], correct: 0, explain: "Die Amortisationsdauer gibt an, wie lange es dauert, bis sich eine Humankapitalinvestition (z.B. Weiterbildung) über die zusätzlich erzielten Erträge finanziell 'ausgezahlt' hat. Je kürzer die verbleibende Erwerbsdauer (z.B. bei kurz vor der Rente stehenden Mitarbeitern), desto weniger lohnt sich eine Investition mit langer Amortisationsdauer." },
+] },
   c9: { label: 'Kap. 9 · Leistungsbeurteilung & Beförderungen', sub: 'Relative Leistungsturniere, Lohnspreizung, subjektive Beurteilung/Biases', questions: [
     { le: 'c9', q: "Welche 2 Funktionen erfüllen relative Leistungsturniere?", opts: [
         "Anreizfunktion und Selektionsfunktion", "Nur Anreizfunktion", "Nur Selektionsfunktion", "Kontrollfunktion und Sanktionsfunktion"
@@ -2137,7 +2413,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c9', q: "Warum sind objektive Leistungsmaße oft unzureichend?", opts: [
         "Multitasking-Probleme (nur Teilleistung erfasst) und Trittbrettfahrerprobleme (nur Gruppenleistung erfasst)", "Sie sind immer teurer als subjektive Maße", "Sie erfassen immer die vollständige Leistung", "Es gibt keine Nachteile objektiver Maße"
       ], correct: 0, explain: "Objektive Maße erfassen oft nur einen Teilaspekt der Arbeit (Multitasking-Problem) oder nur Gruppenergebnisse statt individueller Beiträge (Trittbrettfahrerproblem)." },
-  ] },
+      { le: 'c9', q: "Was ist die Grundidee von Beförderungsturnieren (Promotion Tournaments) nach Lazear/Rosen?", opts: [
+        "Mitarbeiter konkurrieren um eine begrenzte Anzahl höherer Positionen; der Turnierpreis (Beförderung + höheres Gehalt) erzeugt einen Leistungsanreiz, unabhängig vom absoluten, sondern anhand des relativen Leistungsrangs", "Alle Mitarbeiter werden automatisch nach einer festen Anzahl Dienstjahre unabhängig von ihrer Leistung befördert", "Beförderungsturniere basieren ausschließlich auf zufälliger Auswahl", "Der Turnierpreis hängt ausschließlich vom Unternehmensgewinn ab, nie von der individuellen Leistung"
+      ], correct: 0, explain: "Beförderungsturniere setzen einen Leistungsanreiz durch die relative RANGFOLGE der Mitarbeiter statt durch absolute Leistungsmessung – der 'Turnierpreis' ist die Beförderung mit entsprechend höherer Entlohnung. Das funktioniert auch dann, wenn absolute Leistung schwer objektiv messbar ist, solange die relative Rangfolge bestimmbar ist." },
+    { le: 'c9', q: "Was besagt das Peter-Prinzip im Kontext von Beförderungen?", opts: [
+        "Mitarbeiter werden so lange befördert, bis sie eine Position erreichen, in der sie inkompetent sind – da Beförderungen meist aufgrund der Leistung auf der VORHERIGEN (nicht der neuen) Position erfolgen", "Beförderungen erfolgen ausschließlich nach dem Senioritätsprinzip", "Das Peter-Prinzip besagt, dass jede Beförderung automatisch zu höherer Leistung führt", "Es handelt sich um ein rein rechtliches Konzept ohne Bezug zur Personalökonomik"
+      ], correct: 0, explain: "Das Peter-Prinzip beschreibt das Problem, dass die Eignung für eine Beförderung oft anhand der Leistung auf der BISHERIGEN Stelle beurteilt wird – diese Leistung ist aber kein perfekter Indikator für die Eignung auf der NEUEN (andersartigen) Position, wodurch Mitarbeiter tendenziell bis zu ihrer 'Stufe der Inkompetenz' aufsteigen." },
+    { le: 'c9', q: "Was ist ein zentraler Trade-off zwischen relativer und absoluter Leistungsbeurteilung?", opts: [
+        "Relative Beurteilung filtert gemeinsame, externe Störeinflüsse (z.B. Konjunktur) heraus, birgt aber Kollusions- und Sabotagegefahr zwischen den Mitarbeitern; absolute Beurteilung vermeidet diese Gefahr, ist aber anfälliger für nicht kontrollierbare externe Einflüsse", "Absolute Beurteilung ist in jedem Fall der relativen Beurteilung überlegen", "Es gibt keinen relevanten Unterschied zwischen beiden Ansätzen", "Relative Beurteilung ist ausschließlich bei Teamarbeit anwendbar, absolute Beurteilung nur bei Einzelarbeit"
+      ], correct: 0, explain: "Relative Leistungsbeurteilung (Turniere) hat den Vorteil, gemeinsame externe Störgrößen herauszufiltern (da alle Mitarbeiter gleichermaßen betroffen sind), birgt aber die Gefahr von Kollusion (Absprachen) und Sabotage zwischen den Konkurrenten. Absolute Beurteilung vermeidet diese Gefahren, lässt aber externe, nicht beeinflussbare Störeinflüsse ungefiltert in die Bewertung einfließen." },
+] },
   c10: { label: 'Kap. 10 · Teams', sub: 'Formen der Gruppenarbeit, Trittbrettfahrerproblem, Anreizverträge', questions: [
     { le: 'c10', q: "Beim Trittbrettfahrerproblem in Teams mit gleichmäßiger Aufteilung (π/n) trägt jedes Mitglied...", opts: [
         "die vollen Kosten der eigenen Anstrengung, erhält aber nur einen Anteil 1/n am Ertrag", "nur einen Anteil 1/n der Kosten und den vollen Ertrag", "weder Kosten noch Ertrag", "immer den vollen Ertrag π"
@@ -2154,7 +2439,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c10', q: "Formen der Gruppenarbeit als REGULÄRE Arbeitsorganisation (nicht als Ergänzung) sind: (mehrere richtig)", multi: true, opts: [
         "Fertigungsteams", "Teilautonome Arbeitsgruppen", "Qualitätszirkel", "Integrierte Arbeitsgruppen"
       ], correct: [0,1,3], explain: "Fertigungsteams, teilautonome und integrierte Arbeitsgruppen sind reguläre Organisationsformen. Qualitätszirkel sind dagegen eine ERGÄNZUNG der regulären Arbeitsorganisation." },
-  ] },
+      { le: 'c10', q: "Was versteht man unter 'teilautonomen Arbeitsgruppen'?", opts: [
+        "Gruppen, die einen definierten Aufgabenbereich eigenverantwortlich organisieren (z.B. eigene Arbeitsverteilung, Zeitplanung), aber weiterhin in übergeordnete Unternehmensvorgaben eingebunden sind", "Gruppen, die vollständig unabhängig vom Unternehmen agieren wie ein eigenständiges Unternehmen", "Gruppen, in denen jedes Mitglied ausschließlich isoliert und ohne jede Abstimmung arbeitet", "Ein Synonym für klassische tayloristische Fließbandarbeit"
+      ], correct: 0, explain: "Teilautonome Arbeitsgruppen erhalten innerhalb eines definierten Aufgabenbereichs erhöhte Selbstorganisationsspielräume (z.B. Aufgabenverteilung, Reihenfolge, teils auch Auswahl neuer Mitglieder), bleiben aber in die übergeordneten Ziele und Vorgaben des Unternehmens eingebunden – ein Mittelweg zwischen strikter Fremdsteuerung und voller Autonomie." },
+    { le: 'c10', q: "Was beschreibt der Ringelmann-Effekt in Gruppenarbeit?", opts: [
+        "Die individuelle Anstrengung/Leistung pro Mitglied sinkt tendenziell, je größer die Gruppe wird – ein empirischer Beleg für das Trittbrettfahrerproblem", "Größere Gruppen erzielen immer proportional höhere Gesamtleistung als kleinere Gruppen", "Der Effekt beschreibt ausschließlich physische (nicht kognitive) Gruppenaufgaben", "Der Ringelmann-Effekt tritt nur bei Gruppen mit genau 2 Mitgliedern auf"
+      ], correct: 0, explain: "Der Ringelmann-Effekt (ursprünglich beim Tauziehen beobachtet) zeigt empirisch, dass die individuelle Anstrengung mit wachsender Gruppengröße sinkt – ein klassischer empirischer Beleg für das Trittbrettfahrerproblem (Social Loafing) in Gruppen." },
+    { le: 'c10', q: "Welcher Trade-off besteht zwischen Gruppenprämien und individuellen Prämien als Anreizmechanismus in Teams?", opts: [
+        "Gruppenprämien fördern Kooperation und Wissensaustausch im Team, verschärfen aber tendenziell das Trittbrettfahrerproblem; individuelle Prämien reduzieren Trittbrettfahren, können aber Kooperation und Teamgeist untergraben", "Gruppenprämien und individuelle Prämien haben identische Anreizwirkungen", "Individuelle Prämien sind in Teamkontexten grundsätzlich nicht anwendbar", "Gruppenprämien eliminieren das Trittbrettfahrerproblem vollständig"
+      ], correct: 0, explain: "Gruppenprämien (gleichmäßige Aufteilung π/n) fördern gegenseitige Unterstützung, schwächen aber den individuellen Leistungsanreiz (Trittbrettfahrerproblem, da der eigene Beitrag zur Prämie 'verwässert' wird). Individuelle Prämien setzen stärkere persönliche Anreize, können aber Kooperationsbereitschaft und Wissensteilung im Team beeinträchtigen." },
+] },
   c11: { label: 'Kap. 11 · Entlohnung', sub: 'Entlohnungskomponenten/-kriterien, Akkord-/Prämienlohn, intrinsische Motivation', questions: [
     { le: 'c11', q: "Rechenaufgabe (Geldakkord): erarbeitete Menge M = 500 Stück, Geldsatz Ge = 2,40€/Stück. Wie hoch ist der Lohn L?", opts: [
         "L = 500 · 2,40 = 1.200€", "L = 500 / 2,40", "L = 500 + 2,40", "L = 2,40 / 500"
@@ -2171,7 +2465,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c11', q: "Was besagt der 'Verdrängungseffekt' bei monetären Anreizen?", opts: [
         "Monetäre Belohnungen/Bestrafungen können intrinsische Motivation verdrängen", "Monetäre Anreize verstärken immer die intrinsische Motivation", "Intrinsische Motivation existiert laut ökonomischer Theorie nicht", "Der Effekt ist unabhängig von der Darstellung des Anreizsystems"
       ], correct: 0, explain: "Monetäre Anreize können intrinsische Motivation verdrängen (Deci 1971) – der Effekt hängt jedoch von der Darstellung ab (Bonuszahlung wirkt weniger verdrängend als Lohnabzug)." },
-  ] },
+      { le: 'c11', q: "Was ist der grundlegende Unterschied zwischen Zeitlohn und Leistungslohn (Stücklohn)?", opts: [
+        "Beim Zeitlohn wird die Entlohnung nach der aufgewendeten ARBEITSZEIT bemessen, beim Leistungslohn nach der erbrachten LEISTUNGSMENGE (z.B. produzierte Stückzahl)", "Beide Lohnformen sind rechtlich identisch geregelt", "Zeitlohn existiert nur in der Verwaltung, Leistungslohn nur in der Produktion", "Leistungslohn garantiert immer ein höheres Gesamteinkommen als Zeitlohn"
+      ], correct: 0, explain: "Zeitlohn bemisst sich rein an der geleisteten Arbeitszeit, unabhängig von der erbrachten Menge – gibt dem Arbeitnehmer Einkommenssicherheit, setzt aber wenig direkten Leistungsanreiz. Leistungslohn (z.B. Stücklohn/Akkordlohn) koppelt die Entlohnung direkt an die erbrachte Ausbringungsmenge – setzt starke Leistungsanreize, überträgt aber auch mehr Einkommensrisiko auf den Arbeitnehmer." },
+    { le: 'c11', q: "Was unterscheidet intrinsische von extrinsischer Motivation im Entlohnungskontext?", opts: [
+        "Intrinsische Motivation entspringt der Tätigkeit selbst (Freude, Sinn, Interesse an der Aufgabe), extrinsische Motivation entsteht durch äußere Anreize wie Bezahlung oder Beförderung", "Beide Begriffe beschreiben denselben psychologischen Mechanismus", "Intrinsische Motivation kann ausschließlich durch höhere Bezahlung erzeugt werden", "Extrinsische Motivation ist grundsätzlich wirkungslos"
+      ], correct: 0, explain: "Intrinsische Motivation: Die Tätigkeit selbst wird als befriedigend/sinnvoll erlebt (Freude an der Aufgabe). Extrinsische Motivation: Antrieb durch äußere Belohnungen (Geld, Status, Beförderung). Ein zu starker Fokus auf extrinsische (monetäre) Anreize kann bestehende intrinsische Motivation sogar verdrängen (Verdrängungseffekt/Crowding-out)." },
+    { le: 'c11', q: "Was versteht man unter einem Cafeteria-System (flexiblen Zusatzleistungen) in der Entlohnung?", opts: [
+        "Mitarbeiter können innerhalb eines vorgegebenen Budgets individuell zwischen verschiedenen Vergütungsbestandteilen wählen (z.B. mehr Urlaub, Dienstwagen, betriebliche Altersvorsorge), passend zu ihren persönlichen Präferenzen", "Ein System, das ausschließlich die Verpflegung in der Betriebskantine regelt", "Ein starres, für alle Mitarbeiter identisches Vergütungspaket ohne Wahlmöglichkeit", "Ein rein gesetzlich vorgeschriebenes Mindestlohnmodell"
+      ], correct: 0, explain: "Cafeteria-Systeme erlauben es Mitarbeitern, innerhalb eines Gesamtbudgets individuell aus verschiedenen Vergütungsbausteinen zu wählen (analog zur Cafeteria-Speisenauswahl) – das erhöht die wahrgenommene Attraktivität der Vergütung, da unterschiedliche Mitarbeiter unterschiedliche Präferenzen haben (z.B. junge vs. ältere Mitarbeiter)." },
+] },
   c12: { label: 'Kap. 12 · Personalfreisetzung', sub: 'Maßnahmen, Seniorität, adverse Selektion bei Abfindungen', questions: [
     { le: 'c12', q: "Welche Maßnahmen zählen zur 'Arbeitszeitvariation' als weiche Personalfreisetzungsmaßnahme? (mehrere richtig)", multi: true, opts: [
         "Kurzarbeit", "Umwandlung Vollzeit in Teilzeit", "Betriebsbedingte Entlassung", "Gewährung von Langzeiturlaub"
@@ -2188,7 +2491,16 @@ const QUIZ_DATA_PUO = {
     { le: 'c12', q: "Welche der 3 Entlassungsarten wird durch unternehmerische Gründe wie Auftragsrückgang ausgelöst?", opts: [
         "Betriebsbedingte Entlassung", "Personenbedingte Entlassung", "Verhaltensbedingte Entlassung", "Keine der 3 Arten"
       ], correct: 0, explain: "Betriebsbedingte Entlassungen resultieren aus unternehmerischen Gründen (z.B. Auftragsrückgang); personenbedingt = z.B. Krankheit/fehlende Eignung; verhaltensbedingt = Fehlverhalten." },
-  ] },
+      { le: 'c12', q: "Was versteht man unter Outplacement als Personalfreisetzungsmaßnahme?", opts: [
+        "Die Unterstützung ausscheidender Mitarbeiter durch das Unternehmen (z.B. Bewerbungscoaching, Vermittlungshilfe) beim Übergang in eine neue berufliche Position", "Die interne Versetzung eines Mitarbeiters auf eine andere Stelle im selben Unternehmen", "Ein Synonym für die betriebsbedingte Kündigung selbst", "Die Reduzierung der Arbeitszeit ohne Personalabbau"
+      ], correct: 0, explain: "Outplacement bezeichnet die (oft von externen Beratern durchgeführte) Unterstützung ausscheidender Mitarbeiter bei der beruflichen Neuorientierung (z.B. Bewerbungstraining, Coaching, Vermittlungsunterstützung) – eine 'weiche', sozialverträgliche Form der Personalfreisetzung, die auch dem Employer Branding des Unternehmens dient." },
+    { le: 'c12', q: "Was regelt das Senioritätsprinzip (Sozialauswahl) bei betriebsbedingten Kündigungen?", opts: [
+        "Bei der Auswahl der zu kündigenden Mitarbeiter werden u.a. Betriebszugehörigkeit, Lebensalter und Unterhaltspflichten berücksichtigt, um sozial besonders schutzbedürftige Mitarbeiter vorrangig zu schützen", "Es werden ausschließlich die leistungsschwächsten Mitarbeiter unabhängig von sozialen Kriterien gekündigt", "Das Prinzip gilt ausschließlich für freiwillige Kündigungen durch den Arbeitnehmer", "Seniorität spielt bei Kündigungen rechtlich keine Rolle"
+      ], correct: 0, explain: "Die Sozialauswahl (in Deutschland z.B. nach § 1 KSchG) berücksichtigt bei betriebsbedingten Kündigungen soziale Kriterien wie Betriebszugehörigkeit (Seniorität), Lebensalter, Unterhaltspflichten und ggf. Schwerbehinderung, um besonders schutzbedürftige Mitarbeiter vorrangig vor Kündigung zu bewahren." },
+    { le: 'c12', q: "Neben der betriebsbedingten Kündigung (ausgelöst durch unternehmerische Gründe wie Auftragsrückgang) werden typischerweise zwei weitere Kündigungsarten unterschieden. Welche?", opts: [
+        "Personenbedingte Kündigung (z.B. dauerhafte Krankheit/fehlende Eignung) und verhaltensbedingte Kündigung (z.B. Pflichtverletzung des Arbeitnehmers)", "Freiwillige und unfreiwillige Kündigung als einzige weitere Kategorien", "Nur eine weitere Kategorie: die außerordentliche Kündigung", "Saisonale und permanente Kündigung"
+      ], correct: 0, explain: "Die drei klassischen Kündigungsgründe sind: betriebsbedingt (unternehmerische/wirtschaftliche Gründe, z.B. Auftragsrückgang, Umstrukturierung), personenbedingt (in der Person des Arbeitnehmers liegende Gründe, z.B. dauerhafte Krankheit) und verhaltensbedingt (schuldhaftes Fehlverhalten des Arbeitnehmers, z.B. wiederholte Pflichtverletzung)." },
+] },
 };
 const AWI_CALC_GENERATORS_PUO = {};
 const AWI_FORMULA_QUIZ_PUO = {
