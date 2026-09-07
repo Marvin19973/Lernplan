@@ -213,7 +213,6 @@
   <div class="course-select" id="courseSelect">
     <button class="course-btn" data-course="stat">Statistik</button>
     <button class="course-btn" data-course="mv">Marketing &amp; Vertrieb</button>
-    <button class="course-btn" data-course="strat">Strat. Management</button>
     <button class="course-btn" data-course="puo">Personal &amp; Organisation</button>
   </div>
   <div class="top-label" id="topLabel">&nbsp;</div>
@@ -1070,7 +1069,22 @@ const QUIZ_DATA_MV =   {
         { term: 'Funktionaler Nutzen', def: 'Feld A' },
         { term: 'Psychosozialer Nutzen', def: 'Feld B' },
       ], explain: "Vollständige Kette: Konkrete Produkteigenschaften → Funktionaler Nutzen (A) → Psychosozialer Nutzen (B) → Werte. In einer echten Klausur wurde A (Funktionaler Nutzen) richtig erkannt, B jedoch mit 'Funktionaler Nutzen' verwechselt statt 'Psychosozialer Nutzen' – auf den Unterschied zwischen den beiden Nutzen-Ebenen achten!" },
-  ] },
+      { le: 'konsum', q: "Ordne den Stufen der Maslowschen Bedürfnispyramide (1 = unterste Stufe, 5 = oberste Stufe) die richtige Bedürfniskategorie zu.", type: 'match', pairs: [
+        { term: 'Stufe 1', def: 'Existenzbedürfnisse (physiologische Grundbedürfnisse)' },
+        { term: 'Stufe 2', def: 'Sicherheitsbedürfnisse' },
+        { term: 'Stufe 3', def: 'Soziale Bedürfnisse' },
+        { term: 'Stufe 4', def: 'Anerkennungsbedürfnisse' },
+        { term: 'Stufe 5', def: 'Selbstverwirklichungsbedürfnisse' },
+      ], explain: "Maslows Bedürfnispyramide (von unten nach oben): Existenzbedürfnisse → Sicherheitsbedürfnisse → Soziale Bedürfnisse → Anerkennungsbedürfnisse → Selbstverwirklichungsbedürfnisse. Diese exakte Zuordnung kam in einer echten Klausur vor (dort mit 7,5 von 7,5 Punkten voll richtig gelöst)." },
+    { le: 'konsum', q: "Welche Aussagen zur Theorie der kognitiven Dissonanz (Festinger) treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Individuen streben nach einem inneren (kognitiven) Gleichgewicht.", "Dissonante Informationen werden BESSER aufgenommen als konsonante Informationen.", "Je STÄRKER die Dissonanz, desto stärker ist der Druck zur Dissonanzreduktion.", "Kognitives Ungleichgewicht wird als unangenehmer Zustand empfunden, der einen Druck zur Reduktion erzeugt."
+      ], correct: [0,2,3], explain: "Individuen streben nach innerem Gleichgewicht; kognitives Ungleichgewicht wird als unangenehm empfunden und erzeugt Handlungsdruck; JE STÄRKER die Dissonanz, desto stärker der Reduktionsdruck. FALSCH ist dagegen, dass dissonante Informationen besser aufgenommen werden als konsonante – tatsächlich werden KONSONANTE (zum eigenen Standpunkt passende) Informationen bevorzugt gesucht und leichter aufgenommen, dissonante Informationen werden eher gemieden oder umgedeutet." },
+    { le: 'konsum', q: "Ordne die Gütertypen ihrer korrekten Beschreibung im Hinblick auf die Informationsökonomik zu.", type: 'match', pairs: [
+        { term: 'Suchgut (z.B. Laptop-Kauf)', def: 'Qualität lässt sich bereits VOR dem Kauf beurteilen (z.B. durch Testberichte, technische Daten)' },
+        { term: 'Erfahrungsgut (z.B. Restaurantbesuch)', def: 'Qualität lässt sich erst NACH dem Kauf/Konsum beurteilen' },
+        { term: 'Vertrauensgut (z.B. Arztbesuch)', def: 'Qualität lässt sich weder vor noch nach dem Kauf vollständig beurteilen' },
+      ], explain: "Such-, Erfahrungs- und Vertrauensgüter unterscheiden sich danach, WANN (falls überhaupt) der Konsument die Qualität beurteilen kann. Ein Laptop ist ein klassisches Suchgut (Beurteilung vor dem Kauf möglich), ein Restaurantbesuch ein Erfahrungsgut (Beurteilung erst nach dem Konsum), ein Arztbesuch dagegen ein Vertrauensgut (Qualität bleibt für den Laien auch nach dem Besuch oft unklar) – dies war in einer echten Klausur eine Fehlerquelle (Arztbesuch fälschlich als Erfahrungsgut eingestuft)." },
+] },
   mafo: { label: 'Marktforschung & Datenanalyse', sub: 'Gütekriterien, Untersuchungsdesigns, Skalenniveaus, Korrelation/Regression, Cluster-/Faktorenanalyse', questions: [
     { le: 'mafo', q: "Welches Gütekriterium der Marktforschung ist verletzt, wenn zwei unabhängige Personen bei derselben Messung zu unterschiedlichen Ergebnissen kommen?", opts: [
         "Objektivität", "Validität", "Reliabilität", "Repräsentativität"
@@ -1111,6 +1125,12 @@ const QUIZ_DATA_MV =   {
     { le: 'mafo', q: "Was unterscheidet Primär- von Sekundärforschung?", opts: [
         "Primärforschung erhebt neue, eigens für die Fragestellung generierte Daten; Sekundärforschung nutzt bereits vorhandene, für andere Zwecke erhobene Daten", "Primärforschung ist stets günstiger als Sekundärforschung", "Sekundärforschung darf ausschließlich von externen Instituten durchgeführt werden", "Primär- und Sekundärforschung liefern grundsätzlich identische Datenqualität"
       ], correct: 0, explain: "Primärforschung: eigens für die aktuelle Fragestellung neu erhobene Daten (z.B. eigene Befragung). Sekundärforschung: Nutzung bereits vorhandener Daten, die ursprünglich für einen anderen Zweck erhoben wurden (z.B. amtliche Statistiken, Marktforschungspanels) – i.d.R. schneller und günstiger, aber ggf. weniger passgenau." },
+    { le: 'mafo', q: "Rechenaufgabe (Bestimmtheitsmaß R²): Geschätzte Werte ŷᵢ = 5, 3, 1; beobachtete Werte yᵢ = 6, 2, 1 (Mittelwert ȳ = 3). Es gilt R² = Σ(ŷᵢ−ȳ)² / Σ(yᵢ−ȳ)². Welche Rechnung liefert R²?", opts: [
+        "((5-3)²+(3-3)²+(1-3)²) / ((6-3)²+(2-3)²+(1-3)²) = 8/14 ≈ 0,57", "((6-3)²+(2-3)²+(1-3)²) / ((5-3)²+(3-3)²+(1-3)²) = 14/8 ≈ 1,75", "(5+3+1) / (6+2+1) = 9/9 = 1", "(6+2+1) / (5+3+1) = 9/9 = 1"
+      ], correct: 0, calc: true, explain: "R² = erklärte Streuung (Σ(ŷᵢ−ȳ)²) / Gesamtstreuung (Σ(yᵢ−ȳ)²) = (4+0+4)/(9+1+4) = 8/14 ≈ 0,57. Das bedeutet: 57% der Varianz der beobachteten Werte werden durch das Regressionsmodell erklärt. Dieses exakte Zahlenbeispiel kam in einer echten Klausur vor." },
+    { le: 'mafo', q: "Rechenaufgabe (Clusteranalyse, City-Block-Distanz): Zwei Befragte gaben folgende Werte an – A: (Häufigkeit=6, Dauer=1, Gepäck=2), B: (Häufigkeit=2, Dauer=6, Gepäck=5). Welche Rechnung liefert die City-Block-Distanz zwischen A und B?", opts: [
+        "|6-2| + |1-6| + |2-5| = 4 + 5 + 3 = 12", "√((6-2)² + (1-6)² + (2-5)²) = √50 ≈ 7,07", "(6-2) + (1-6) + (2-5) = -8", "|6-2| · |1-6| · |2-5| = 60"
+      ], correct: 0, calc: true, explain: "Die City-Block-Distanz (Manhattan-Distanz) summiert die absoluten Differenzen je Merkmal: |6-2|+|1-6|+|2-5| = 4+5+3 = 12. Im Unterschied dazu würde die Euklidische Distanz die Wurzel der Summe der QUADRIERTEN Differenzen bilden – in einer echten Klausur war 'Euklidische Distanz' hier die falsche, häufig gewählte Antwort." },
 ] },
   strategie: { label: 'Marketingstrategie', sub: 'Strategieprozess, Segmentierung, CLV, Erfahrungskurve, Wettbewerbsstrategien', questions: [
     { le: 'strategie', q: "In welcher Reihenfolge läuft der Prozess der Strategieentwicklung laut Vorlesung ab?", opts: [
@@ -1158,6 +1178,12 @@ const QUIZ_DATA_MV =   {
     { le: 'strategie', q: "Welche drei generischen Wettbewerbsstrategien nach Porter werden unterschieden?", opts: [
         "Kostenführerschaft, Differenzierung, Fokussierung (Nischenstrategie)", "Marktdurchdringung, Marktentwicklung, Diversifikation", "Skimming, Penetration, Preisdifferenzierung", "Push, Pull, Omnichannel"
       ], correct: 0, explain: "Porters drei generische Wettbewerbsstrategien: Kostenführerschaft (niedrigste Kosten in der Branche), Differenzierung (einzigartiger, honorierter Zusatznutzen) und Fokussierung/Nischenstrategie (Konzentration auf ein enges Marktsegment, kombiniert mit Kosten- oder Differenzierungsvorteil). Eine 'Stuck in the middle'-Position zwischen den Strategien gilt als nachteilig." },
+    { le: 'strategie', q: "Zur Schätzung der Erfahrungskurvenfunktion k(x) = a · x^b mittels linearer Regression muss zunächst eine Log-Linearisierung erfolgen. Wie lautet die korrekt linearisierte Form?", opts: [
+        "ln(k(x)) = ln(a) + b · ln(x)", "k(x) = ln(a) + b · x", "ln(k(x)) = a + ln(b) · x", "k(x) = a + b · ln(x)"
+      ], correct: 0, explain: "Durch Logarithmieren von k(x) = a·x^b ergibt sich ln(k(x)) = ln(a) + b·ln(x) – eine lineare Funktion in ln(x) mit Steigung b und Achsenabschnitt ln(a). So lässt sich b per gewöhnlicher linearer Regression von ln(k) auf ln(x) schätzen." },
+    { le: 'strategie', q: "Nachdem der Exponent b der Erfahrungskurvenfunktion k(x)=a·x^b per Regression von ln(k) auf ln(x) geschätzt wurde, wie wird anschließend der Parameter a bestimmt?", opts: [
+        "ln(a) = Mittelwert(ln k) − b · Mittelwert(ln x), anschließend a = e^(ln a)", "a = Mittelwert(k) / Mittelwert(x)^b, ohne Logarithmierung", "a wird direkt aus der ersten Beobachtung übernommen, ohne weitere Berechnung", "a = b · Mittelwert(ln k)"
+      ], correct: 0, explain: "Der Achsenabschnitt der log-linearisierten Regressionsgeraden liefert ln(a) = Mittelwert(ln k) − b·Mittelwert(ln x); durch Rücktransformation (Exponentialfunktion) erhält man a = e^(ln a). Dieses zweistufige Vorgehen (erst b, dann a) kam in einer echten Klausur als Rechenaufgabe zur Erfahrungskurve vor." },
 ] },
   produkt: { label: 'Produktpolitik', sub: 'Innovationsprozess, Conjoint-Analyse, Produktprogramm, Bündelung', questions: [
     { le: 'produkt', q: "In welcher Reihenfolge läuft der Innovationsprozess ab?", opts: [
@@ -1202,6 +1228,12 @@ const QUIZ_DATA_MV =   {
     { le: 'produkt', q: "Was versteht man unter Produktkannibalisierung im Kontext des Produktprogramms?", opts: [
         "Ein neu eingeführtes Produkt verdrängt vor allem Absatz der eigenen, bereits bestehenden Produkte, statt zusätzliches Marktwachstum zu erzeugen", "Die vollständige Elimination eines Produkts ohne Ersatz", "Der Zukauf eines Konkurrenzprodukts durch Übernahme", "Die Auslagerung der Produktion an einen externen Zulieferer"
       ], correct: 0, explain: "Kannibalisierung tritt auf, wenn ein neues Produkt hauptsächlich Umsatz von den EIGENEN bestehenden Produkten abzieht, statt echtes Zusatzwachstum (neue Kunden oder Marktanteile vom Wettbewerb) zu generieren – ein zentrales Risiko bei der Erweiterung des Produktprogramms." },
+    { le: 'produkt', q: "Rechenaufgabe (Conjoint-Analyse, relative Wichtigkeit): Die absolute Wichtigkeit des Merkmals 'Preis' beträgt 0,6; die Summe der absoluten Wichtigkeiten aller Merkmale (Preis, Marke, Farbe) beträgt 1,2. Welche Rechnung liefert die relative Wichtigkeit von 'Preis' in %?", opts: [
+        "0,6 / 1,2 × 100 = 50%", "1,2 / 0,6 × 100 = 200%", "0,6 × 1,2 × 100 = 72%", "(1,2 − 0,6) × 100 = 60%"
+      ], correct: 0, calc: true, explain: "Relative Wichtigkeit (%) = absolute Wichtigkeit des Merkmals / Summe aller absoluten Wichtigkeiten × 100 = 0,6/1,2 × 100 = 50%. Die relativen Wichtigkeiten aller Merkmale summieren sich stets zu 100%." },
+    { le: 'produkt', q: "Rechenaufgabe (Conjoint-Analyse, Gesamtnutzen): Ein Produktkonzept besteht aus den Teilnutzenwerten 0,8 (Preis-Ausprägung) + 0,3 (Marken-Ausprägung) + 0,4 (Farb-Ausprägung). Welche Rechnung liefert den Gesamtnutzen dieses Konzepts?", opts: [
+        "0,8 + 0,3 + 0,4 = 1,5", "0,8 × 0,3 × 0,4 = 0,096", "(0,8 + 0,3 + 0,4) / 3 = 0,5", "0,8 − 0,3 − 0,4 = 0,1"
+      ], correct: 0, calc: true, explain: "Der Gesamtnutzen eines Konzepts ergibt sich als SUMME der Teilnutzenwerte aller enthaltenen Merkmalsausprägungen: 0,8+0,3+0,4 = 1,5. Zur Bestimmung des Konzepts mit dem höchsten/niedrigsten Gesamtnutzen werden die Gesamtnutzenwerte aller betrachteten Konzepte auf diese Weise berechnet und verglichen." },
 ] },
   marke: { label: 'Markenpolitik', sub: 'Markenfunktionen, Positionierung, Markenarchitektur, Markentransfer', questions: [
     { le: 'marke', q: "Welche Facette der Markenpositionierung beantwortet die Frage 'Was biete ich an?'", opts: [
@@ -1281,6 +1313,15 @@ const QUIZ_DATA_MV =   {
     { le: 'preis', q: "Was ist das Grundprinzip von Yield Management (dynamischer Preisbildung)?", opts: [
         "Preise werden in Echtzeit an Nachfrage, verbleibende Kapazität und Buchungszeitpunkt angepasst, um den Erlös bei begrenzter, verderblicher Kapazität zu maximieren (z.B. Flugtickets, Hotelzimmer)", "Es wird stets ein einheitlicher, unveränderlicher Preis für alle Kunden verlangt", "Yield Management funktioniert nur bei physischen Produkten mit unbegrenzter Lagerfähigkeit", "Preise sinken bei Yield Management grundsätzlich mit steigender Nachfrage"
       ], correct: 0, explain: "Yield Management passt Preise dynamisch an aktuelle Nachfrage, Restkapazität und Zeitpunkt bis zur Inanspruchnahme an, um den Gesamterlös zu maximieren – typisch bei Angeboten mit fixer, verderblicher Kapazität wie Flügen, Hotelzimmern oder Veranstaltungen." },
+    { le: 'preis', q: "Wie ist die Gutenberg-Preis-Absatz-Funktion (doppelt-geknickte PAF) grundsätzlich aufgebaut?", opts: [
+        "Ein flacher, wenig preiselastischer mittlerer Bereich (monopolistischer Bereich um den Wettbewerberpreis) mit zwei steilen, stark preiselastischen Randbereichen", "Ein durchgehend linearer Verlauf ohne jede Knickstelle", "Ein durchgehend exponentieller Verlauf ohne linearen Abschnitt", "Zwei flache Randbereiche mit einem einzigen steilen mittleren Bereich"
+      ], correct: 0, explain: "Die Gutenberg-Funktion modelliert einen preisunelastischen ('monopolistischen') mittleren Bereich um den Preis der Konkurrenz, in dem kleine Preisänderungen kaum Absatzwirkung haben, sowie zwei steile, stark preiselastische Randbereiche, in denen der Absatz sehr sensibel auf Preisänderungen reagiert (z.B. weil Kunden zur Konkurrenz wechseln)." },
+    { le: 'preis', q: "Rechenaufgabe (Gutenberg-Funktion, Preiselastizität im mittleren Segment): Für den mittleren (monopolistischen) Bereich 10≤p<30 gilt x(p) = 90 − p. Wie hoch ist die Preiselastizität des Absatzes bei p = 20?", opts: [
+        "ε = x'(p) · p/x(p) = -1 · 20/70 ≈ -0,29", "ε = -1 · 20/90 ≈ -0,22", "ε = 20/70 ≈ 0,29", "ε = 20 / (-1) = -20"
+      ], correct: 0, calc: true, explain: "x(20) = 90-20 = 70; x'(p) = -1 (Steigung im linearen Segment). Preiselastizität ε = x'(p)·p/x(p) = -1·20/70 ≈ -0,29 – der Betrag ist deutlich kleiner als 1, der Absatz reagiert im mittleren (monopolistischen) Bereich der Gutenberg-Funktion also UNELASTISCH auf Preisänderungen." },
+    { le: 'preis', q: "Bei einer multiplikativen Preis-Absatz-Funktion x(p) = a · p^(-b) ist die Preiselastizität des Absatzes...", opts: [
+        "konstant gleich -b, unabhängig vom aktuellen Preisniveau", "linear steigend mit dem Preis p", "immer exakt gleich -1, unabhängig von b", "nur bei p=0 definiert"
+      ], correct: 0, explain: "Bei der multiplikativen (potenzförmigen) Preis-Absatz-Funktion x(p)=a·p^(-b) ist die Preiselastizität des Absatzes KONSTANT und entspricht direkt dem (negativen) Exponenten -b – im Gegensatz zur linearen PAF, bei der die Elastizität vom jeweiligen Preisniveau abhängt und sich entlang der Geraden verändert." },
 ] },
   komm: { label: 'Kommunikationspolitik', sub: 'AIDA, Budgetierung, Werbewirkungsfunktionen, Mediaplanung, Social Media', questions: [
     { le: 'komm', q: "Welche der 4 AIDA-Stufen ist das markterfolgsbezogene Ziel (im Gegensatz zu den potenzialbezogenen Zielen)?", opts: [
@@ -1328,7 +1369,10 @@ const QUIZ_DATA_MV =   {
     { le: 'komm', q: "Welche 3 Grundsätze gelten für erfolgreiches Sponsoring?", opts: [
         "Imageaffinität, Kontinuität, Zielgruppenintegration", "Ausschließlich maximales Budget", "Nur kurzfristige, einmalige Aktionen", "Vollständige Vermeidung jeglichen Risikos"
       ], correct: 0, explain: "Imageaffinität (Passung zum Unternehmensimage), Kontinuität (langfristiger Betrieb für Glaubwürdigkeit), Zielgruppenintegration (aktive Einbindung der Zielgruppe) – dabei besteht immer das Risiko eines negativen Imagetransfers." },
-  ] },
+      { le: 'komm', q: "Zur Schätzung der Parameter b und c der multiplikativen Werbewirkungsfunktion x(W) = a + b·W^c (mit bekanntem a) mittels linearer Regression muss zunächst umgeformt werden zu...", opts: [
+        "ln(x(W) − a) = ln(b) + c · ln(W), anschließend lineare Regression von ln(x−a) auf ln(W)", "x(W) − a = b + c · W, direkt linear ohne jede Logarithmierung", "ln(x(W)) = a + b + c · W", "x(W) = ln(a) + ln(b) · W^c"
+      ], correct: 0, explain: "Durch Subtraktion von a und anschließendes Logarithmieren wird b·W^c linearisiert: ln(x(W)-a) = ln(b) + c·ln(W). Diese Gleichung ist linear in ln(W), sodass b (über den Achsenabschnitt ln(b)) und c (über die Steigung) per linearer Regression von ln(x-a) auf ln(W) geschätzt werden können. Dieses Vorgehen (inkl. korrekter Reihenfolge der Schritte) kam in einer echten Klausur als Zuordnungsaufgabe vor." },
+] },
   vertrieb: { label: 'Vertriebspolitik', sub: 'Vertriebsorgane, direkter/indirekter Vertrieb, Key Accounts, persönlicher Verkauf', questions: [
     { le: 'vertrieb', q: "Was unterscheidet einen Handelsvertreter von einem Kommissionär?", opts: [
         "Der Handelsvertreter handelt im Namen und für Rechnung des Anbieters, der Kommissionär im EIGENEN Namen für Rechnung des Anbieters", "Beide handeln im eigenen Namen und auf eigene Rechnung", "Der Kommissionär ist immer ein Angestellter des Herstellers", "Es gibt keinen relevanten Unterschied zwischen beiden"
@@ -1496,525 +1540,6 @@ const AWI_FORMULA_QUIZ_MV = {
 };
 
 /* ---------- STRAT DATA ---------- */
-const MODULES_STRAT = [
-  { id: 'm1', title: 'Modul 1 · Strategieprozesse gestalten', sub: 'Strategiedefinitionen, Mintzbergs 4 Ps, Strategiehierarchie, Design- vs. Emergenzlogik', lernplan: [
-    { id: 'm1-1', text: "Was ist Strategie nach Porter (1996)?", a: 'Schaffung einer einzigartigen und wertvollen Position durch das Treffen von Abwägungen (Trade-offs) – Strategie ist die Entscheidung, was NICHT zu tun ist – und durch die Schaffung von Passung (Fit) zwischen den Aktivitäten einer Organisation.' },
-    { id: 'm1-2', text: "Nenne Mintzbergs 4 Metaphern der Strategie (die '4 Ps') mit ihrer jeweiligen Leitfrage.", a: 'Plan (Wie?), Verhaltensmuster/Pattern (Was?), Position (Wo?), Perspektive (Wohin?) – Mintzberg et al. 2005.' },
-    { id: 'm1-3', text: "Nenne die 3 Ebenen der Strategiehierarchie (Wheelen & Hunger 2008).", a: 'Unternehmensstrategie (Corporate Level), Geschäftsfeldstrategie (Business Level), (Cross-)Funktionale Strategie (Functional Level).' },
-    { id: 'm1-4', text: "Nenne die 3 Forschungsziele der Strategieforschung.", a: 'Überdurchschnittlichen Unternehmenserfolg erklären, strategische Maßnahmen evaluieren, strategisches Verhalten erklären.' },
-    { id: 'm1-5', text: "Nenne die 5 Epochen der Strategieforschung mit ihrem jeweils dominanten Thema (Grant 2015).", a: '1950-60 Budgetierung (Unternehmen in Isolation), 1960-75 Planung (Unternehmen in Isolation), 1975-85 Positionierung (Unternehmen im Wettbewerb, Branche als Analyseeinheit), 1985-2000 Wettbewerb (Ressourcen als Analyseeinheit), 2000-heute Kooperation (Netzwerke als Analyseeinheit).' },
-    { id: 'm1-6', text: "Beschreibe die 6 Schritte des dominanten linearen Strategieprozessmodells (Kaplan & Norton 2008).", a: 'Mission & Vision → Langfristige Ziele → Strategische Analyse (extern + intern) → Strategieformulierung → Strategieumsetzung → Strategiebewertung.' },
-    { id: 'm1-7', text: "Was unterscheidet Mission und Vision voneinander?", a: 'Mission beantwortet "Warum existieren wir?" (Zweck/Daseinsberechtigung, Gegenwartsbezug). Vision beantwortet "Wo wollen wir hin?" (angestrebter Zukunftszustand).' },
-    { id: 'm1-8', text: "Nenne die 3 Trugschlüsse, mit denen Mintzberg et al. (2005) das lineare Prozessmodell kritisieren.", a: 'Vorhersage-Trugschluss (Zukunft ist unbekannt/nicht vorhersagbar), Entkopplungs-Trugschluss (Formulierung und Umsetzung sind in Wahrheit verknüpft, nicht getrennt), Formalisierungs-Trugschluss (Formalisierung hemmt Lernen/Experimentieren/Anpassen).' },
-    { id: 'm1-9', text: "Charakterisiere die Designschule: Prozessverständnis, zentrale Annahme, Metapher.", a: 'Prozessverständnis: systematischer analytischer Konzeptionsprozess. Annahme: Stabilität des Umfelds, Fokus obere Führungsebene, organisationale Plastizität. Ansatz: Erzielung von Fit zwischen externen Anforderungen und internen Kompetenzen. Metapher: Stratege als Architekt.' },
-    { id: 'm1-10', text: "Charakterisiere die Lernschule als Gegenpol zur Designschule.", a: 'Modell: Strategiebildung als emergenter Prozess. Annahme: Dynamik der Umwelt, kollektiver Fokus, organisationale Anpassungsfähigkeit. Ansatz: Lernen aus Feedback, inkrementelle Weiterentwicklung. Metapher: Stratege als Schüler.' },
-    { id: 'm1-11', text: "Nenne 3 der 9 Unterscheidungsmerkmale zwischen Design- und Emergenzlogik (De Wit & Meyer 2014).", a: 'Z.B.: Strategieentstehung bewusst gestaltet vs. allmählich geformt; Zukunftsverständnis Verstehen vs. Herausfinden; Entscheidungsfindung hierarchisch vs. verteilt; Implementierungsfokus Planen vs. Lernen.' },
-    { id: 'm1-12', text: "Welche 4 Arten von Strategie unterscheidet Mintzberg (intendiert/realisiert/emergent/nicht-realisiert)?", a: 'Intendierte Strategie → teilweise Realisierte Strategie (+ Emergente Strategie, die ungeplant entsteht) = tatsächlich Realisierte Strategie. Der nicht umgesetzte Teil der intendierten Strategie ist die Nicht-realisierte Strategie.' },
-    { id: 'm1-13', text: "Welche Strategieschule nutzen die Honda-Führungskräfte SELBST zur Erklärung ihres Erfolgs (Honda Super Cub), und welche nutzt BCG in der offiziellen Analyse?", a: 'Die Honda-Führungskräfte erklären ihren Erfolg über die Lernschule (emergent, durch Experimentieren und Anpassung vor Ort entstanden). BCGs offizielle Analyse erklärt ihn dagegen über die Designschule/Planungsschule (Top-down-Implementierung, Versuch die Zukunft zu prognostizieren, Fokus auf Planen) – ein klassisches Klausurbeispiel für unterschiedliche Strategieverständnisse.' },
-    { id: 'm1-14', text: "Nenne die 2 zentralen Erkenntnisse der Honda-Fallstudie.", a: '1) Strategieverständnisse können sich fundamental unterscheiden und sind eine Quelle tiefgehender Missverständnisse. 2) Die realisierte Strategie ist fast immer das Ergebnis von Design UND Emergenz zusammen – Strategieprozesse sollten daher beide Aspekte vereinen.' },
-  ] },
-  { id: 'm2', title: 'Modul 2 · Branchenstrukturen analysieren', sub: 'SCP-Paradigma, Porters 5(+1) Kräfte, Strategische Gruppen, Profit-Pool-Analyse', lernplan: [
-    { id: 'm2-1', text: "Was besagt das SCP-Paradigma (Porter 2008)?", a: 'Industry Structure (Branchenstruktur) → Firm Conduct (Verhalten der Firma) → Firm Performance (Unternehmenserfolg). Die Branchenstruktur bestimmt maßgeblich das Gewinnpotenzial.' },
-    { id: 'm2-2', text: "Nenne Porters 5 Wettbewerbskräfte.", a: 'Rivalität bestehender Wettbewerber, Bedrohung durch neue Marktteilnehmer, Verhandlungsmacht der Lieferanten, Verhandlungsmacht der Käufer, Bedrohung durch Substitute.' },
-    { id: 'm2-3', text: "Was ist die erweiternde 'sechste Kraft' und welche Determinanten hat sie?", a: 'Verhandlungsmacht der Komplemente/Komplementoren – Determinanten: Substituierbarkeit der Komplemente, Integrationsmöglichkeit, Systemfokus der Kunden, Wertbeitrag der Komplemente, Differenzierung/Marktkonzentration der Komplemente.' },
-    { id: 'm2-4', text: "Nenne 3 Determinanten der Rivalität bestehender Wettbewerber.", a: 'Z.B.: Marktkonzentration, Diversität der Wettbewerber, Produkt-/Dienstleistungsdifferenzierung, Niveau überschüssiger Kapazität, Fixkostenanteil, Austrittsbarrieren.' },
-    { id: 'm2-5', text: "Nenne die 5 Phasen des Branchenanalyse-Prozesses (Grant 2015).", a: 'Branchendefinition, Teilnehmeridentifikation, Strukturelle Analyse, Dynamische Analyse, Maßnahmenauswahl.' },
-    { id: 'm2-6', text: "Nenne 3 häufige Fehler bei der Branchenanalyse (Porter 2008).", a: 'Z.B.: Branche zu breit/eng definieren; Listen statt systematischer Analyse erstellen; allen Kräften gleiche Aufmerksamkeit statt Fokus auf die wichtigsten; statische Analyse, die Branchentrends ignoriert; zyklische mit strukturellen Veränderungen verwechseln.' },
-    { id: 'm2-7', text: "Was ist das übergeordnete Ziel der Strategischen Gruppenanalyse (3 Teile)?", a: 'Cluster-Identifikation, Konkurrenz verstehen, Organisationspositionierung.' },
-    { id: 'm2-8', text: "Nenne die 4 Schritte zur Visualisierung strategischer Gruppen.", a: 'Achsen wählen → Organisationen einzeichnen → Cluster identifizieren → Cluster beschreiben.' },
-    { id: 'm2-9', text: "Wie werden zentrale Erfolgsfaktoren (Key Success Factors) hergeleitet (2 Leitfragen)?", a: 'Analyse der Nachfrage: "Was wollen die Kunden?" und Analyse des Wettbewerbs: "Wie besteht die Organisation im Wettbewerb?"' },
-    { id: 'm2-10', text: "Nenne die 3 Schritte der Profit-Pool-Analyse.", a: 'Profit-Pool definieren (wertschöpfende Aktivitäten entlang der Wertschöpfungskette identifizieren) → Größe der Pools schätzen (Umsätze/Gewinne quantifizieren) → Profit-Pool aufschlüsseln (nach wertschöpfender Aktivität).' },
-    { id: 'm2-11', text: "Welche 2 Merkmale kategorisieren Segmentierungsvariablen für strategische Gruppen?", a: 'Merkmale des Käufers (z.B. B2B/B2C, Vertriebskanäle, geografischer Standort) und Merkmale des Produkts (z.B. Produktpalette, Preisniveau, Technologie/Design, Leistungsmerkmale).' },
-    { id: 'm2-12', text: "Wann ist die Rivalität bestehender Wettbewerber besonders hoch bzw. eher gering?", a: 'Hoch bei: hohen Austrittsbarrieren, hohem Fixkostenanteil, hohem Niveau überschüssiger Kapazität. Gering bei: hoher Marktkonzentration, diversen Wettbewerbern, hoher Produkt-/Dienstleistungsdifferenzierung.' },
-    { id: 'm2-13', text: "Wann ist die Verhandlungsmacht der Lieferanten besonders hoch bzw. eher gering?", a: 'Hoch bei: konzentrierten Lieferanten, hohem Organisationsgrad der Lieferanten, hohen Wechselkosten, Möglichkeit der Vorwärtsintegration der Lieferanten, hohem Wertbeitrag der Lieferanten. Gering bei: verfügbaren Ersatzlieferanten, Möglichkeit der Rückwärtsintegration durch die fokale Organisation.' },
-    { id: 'm2-14', text: "Wann ist die Verhandlungsmacht der Käufer besonders hoch bzw. eher gering?", a: 'Hoch bei: hoher Käuferkonzentration, verfügbaren Substituten, hoher Preisempfindlichkeit, Möglichkeit der Rückwärtsintegration der Käufer. Gering bei: hohen Wechselkosten für Käufer, Möglichkeit der Vorwärtsintegration der fokalen Organisation, hoher Differenzierung, hohem Wertbeitrag der fokalen Organisation.' },
-    { id: 'm2-15', text: "Wann ist die Bedrohung durch neue Marktteilnehmer besonders hoch bzw. eher gering?", a: 'Hoch bei: einfachem Zugang zu Vertriebskanälen. Gering bei: hohem Kapital-/Wissensbedarf, Skalenvorteilen bestehender Marktteilnehmer, Kosten-/Lernvorteilen bestehender Marktteilnehmer, Reputationsvorteilen, staatlichen/rechtlichen Hindernissen, Verteidigungsmöglichkeiten bestehender Wettbewerber.' },
-    { id: 'm2-16', text: "Wann ist die Bedrohung durch Substitute besonders hoch bzw. eher gering, und wann ist die Verhandlungsmacht der Komplemente (6. Kraft) besonders hoch bzw. eher gering?", a: 'Substitute: hoch bei Verfügbarkeit, guter Attraktivität/gutem Momentum, guter relativer Leistungsfähigkeit, relativem Preisvorteil; gering bei hoher Nutzerloyalität und hohen Wechselkosten. Komplemente: hohe Verhandlungsmacht bei hoher Differenzierung, hohem Wertbeitrag, starker Marktkonzentration, Systemfokus der Kunden; gering bei Substituierbarkeit und Integrationsmöglichkeit der Komplemente.' },
-    { id: 'm2-17', text: "Was ist die PESTEL-Analyse und wofür stehen die 6 Buchstaben?", a: 'Strategisches Werkzeug zur Untersuchung des Makro-Umfelds. Political (Regierungseinfluss), Economic (wirtschaftliche Lage), Social (gesellschaftliche Trends), Technological (neue Technologien), Environmental (Umweltauflagen), Legal (rechtliche Rahmenbedingungen).' },
-  ] },
-  { id: 'm3', title: 'Modul 3 · Interne Ressourcen entwickeln', sub: 'Ressourcenbasierter Ansatz, VRIN/VRIO, Wertschöpfungskette, dynamische Fähigkeiten', lernplan: [
-    { id: 'm3-1', text: "Nenne die 3 Kernkonzepte des ressourcenbasierten Ansatzes (Barney 1991).", a: 'Wettbewerbsvorteil (wertschöpfende Strategie, die nicht implementiert/leicht imitiert wird), Ressourcen (verfügbare Faktoren im Besitz/unter Kontrolle der Organisation), Fähigkeiten (Kapazität für den Ressourceneinsatz in Produktions-/Dienstleistungsaktivitäten).' },
-    { id: 'm3-2', text: "Nenne die 3 zentralen Ressourcenmerkmale, die nachhaltige Wettbewerbsvorteile ermöglichen.", a: 'Heterogenität (ungleiche Verteilung selbst innerhalb einer Branche), Unvollkommene Mobilität (schwer zu entwickeln/austauschen), Strategische Relevanz.' },
-    { id: 'm3-3', text: "Nenne die 5 Phasen der Ressourcenanalyse (Grant 2015).", a: 'Ressourcenidentifikation, Ressourcenbewertung, Fähigkeitsidentifikation, Fähigkeitsentwicklung, Strategische Bewertung.' },
-    { id: 'm3-4', text: "Wofür steht VRIN und was bedeutet jedes Kriterium (Barney 1991)?", a: 'Valuable (wertvoll/relevant), Rare (selten/knapp), Imperfectly Imitable (unvollkommen imitierbar), Non-Substitutable (nicht substituierbar).' },
-    { id: 'm3-5', text: "Was unterscheidet VRIO von VRIN?", a: 'VRIO ersetzt das 4. Kriterium "Non-Substitutable" durch "Organized" (in der Organisation genutzt) – dadurch entsteht ein 5. mögliches Ergebnis: erfüllt eine Ressource VRI, wird aber nicht genutzt, liegt ein "nicht genutzter Wettbewerbsvorteil" vor statt eines "nachhaltigen".' },
-    { id: 'm3-6', text: "Nenne die 5 primären Aktivitäten der Wertschöpfungskette (Porter 1998).", a: 'Eingehende Logistik, Betrieb (Operations), Ausgehende Logistik, Marketing & Verkauf, After-Sales-Service.' },
-    { id: 'm3-7', text: "Nenne die 4 unterstützenden Aktivitäten der Wertschöpfungskette.", a: 'Organisationale Infrastruktur, Personalmanagement, Technologie-Entwicklung, Beschaffung.' },
-    { id: 'm3-8', text: "Nenne die 3 Wege zur Entwicklung von Fähigkeiten.", a: 'Externe Akquisition (M&A/Allianzen), Internes Venturing (Finanzierung interner Unternehmungen), Interne Entwicklung (Schulung/Rekrutierung/Wissensmanagement).' },
-    { id: 'm3-9', text: "Definiere dynamische Fähigkeiten nach Teece (2007) und nenne die 3 Bestandteile.", a: 'Definition: "Die Fähigkeit, neue Chancen zu erkennen und dann zu ergreifen sowie Wissensbestände, Kompetenzen und komplementäre Ressourcen neu zu konfigurieren und zu schützen, um nachhaltige Wettbewerbsvorteile zu erzielen." Bestandteile: Erkennen (Sensing), Ergreifen (Seizing), Rekonfigurieren.' },
-    { id: 'm3-10', text: "Was unterscheidet die statische von der dynamischen Sichtweise auf Ressourcen (Teece 2007)?", a: 'Statisch: Fokus auf strategische Überlegenheit der Ressourcen in Quantität/Qualität, geringes Bewusstsein für Veralterung. Dynamisch: Fokus auf optimale Orchestrierung/Neukonfiguration in dynamischen Kontexten, nicht auf die Ressourcen an sich.' },
-    { id: 'm3-11', text: "Wie hängt die Art der dynamischen Fähigkeiten vom Umfeldtyp ab (Ambrosini et al. 2009)?", a: 'Stabiles Umfeld → Inkrementelle dynamische Fähigkeiten (kontinuierliche Verbesserung). Dynamisches Umfeld → Erneuernde dynamische Fähigkeiten (regelmäßige Auffrischung). Transformierendes Umfeld → Regenerative dynamische Fähigkeiten (gelegentliche Änderung der Erneuerungsweise selbst).' },
-    { id: 'm3-12', text: "Welche 3 Ressourcenarten unterscheidet der ressourcenbasierte Ansatz, mit je einem Beispiel?", a: 'Materielle/tangible Ressourcen (physisch, z.B. Grundstücke und Gebäude), immaterielle/intangible Ressourcen (z.B. Marken = Reputation; Patente und wissenschaftlich-technologische Kompetenz = Technologie), personelle/humane Ressourcen (z.B. Ausbildung und Erfahrung der Mitarbeiter).' },
-    { id: 'm3-13', text: "Was unterscheidet Exploitation von Exploration, und was ist das Grundproblem jeder Organisation?", a: 'Exploitation: verschafft Effizienz, beinhaltet Verfeinerung/inkrementelles Lernen/Implementierung/Auswahl, gedeiht in stabilen Umgebungen, kann strategische Trägheit verursachen. Exploration: weckt Neuartigkeit, beinhaltet Suchen/Experimentieren/Entdecken/Risikobereitschaft, gedeiht in flexiblen Umgebungen, kann Effizienzverluste verursachen. Grundproblem: genug Exploitation für die GEGENWÄRTIGE Lebensfähigkeit betreiben, während gleichzeitig genug Energie in Exploration für die ZUKÜNFTIGE Lebensfähigkeit investiert wird – beide müssen ausbalanciert werden, keins darf vernachlässigt werden.' },
-    { id: 'm3-14', text: "Nenne 3 der 5 zentralen Erkenntnisse der IBM-Fallstudie.", a: 'Z.B.: Organisationen können dynamische Fähigkeiten durch konkrete Mechanismen aufbauen und stärken; Strategiekonzeption und Strategieumsetzung müssen Hand in Hand gehen; Organisationen müssen Exploitation und Exploration ausbalancieren, um aktuelle und zukünftige Lebensfähigkeit zu sichern; Strategie muss durch messbare Geschäftsanforderungen angetrieben werden; Strategieprozesse profitieren von einem kontinuierlichen, demokratischen und evolutionären Prozess, der vom Experimentieren und Lernen lebt.' },
-  ] },
-  { id: 'm4', title: 'Modul 4 · Organisationen positionieren', sub: 'Strategieportfolios (McKinsey/BCG), generische Strategien, Red vs. Blue Ocean', lernplan: [
-    { id: 'm4-1', text: "Nenne die 2 Dimensionen der McKinsey-Matrix.", a: 'Außenansicht/MBV: Attraktivität der Branche (basiert auf Branchenanalyse). Innenansicht/RBV: Wettbewerbsvorteil (basiert auf Ressourcen-/Fähigkeitsanalyse).' },
-    { id: 'm4-2', text: "Nenne die 2 Dimensionen der BCG-Matrix und ihre 4 Felder.", a: 'Dimensionen: Marktwachstumsrate und relativer Marktanteil. Felder: Sterne (hoch/hoch), Fragezeichen (hoch Wachstum/niedrig Anteil), Melkkühe (niedrig Wachstum/hoch Anteil), Arme Hunde (niedrig/niedrig).' },
-    { id: 'm4-3', text: "Nenne die 3 Tests, die Diversifizierungsoptionen bestehen müssen (Grant 2015).", a: 'Attraktivitätstest (Branche muss attraktiv sein/werden können), Eintrittskostentest (Eintrittskosten dürfen nicht alle zukünftigen Gewinne übersteigen), Besserstellungstest (neues Geschäftsfeld muss Wettbewerbsvorteil aus Verbindung mit Gesamtorganisation ziehen, oder umgekehrt).' },
-    { id: 'm4-4', text: "Nenne Porters 3 generische Strategien.", a: 'Kostenführerschaft, Differenzierung, Fokus/Nischenstrategie (jeweils auf gesamte Branche oder spezifisches Segment bezogen).' },
-    { id: 'm4-5', text: "Nenne 3 Kostentreiber, über die Kostenvorteile erarbeitet werden können.", a: 'Z.B.: Lernvorteile, Skalenvorteile, Produktionsverfahren (Prozessinnovation), Produktdesign, Input-Kosten, Kapazitätsauslastung.' },
-    { id: 'm4-6', text: "Was unterscheidet tangible von intangiblen Differenzierungsmerkmalen?", a: 'Tangible: beobachtbare Merkmale (Technologie-, Leistungs-, Qualitäts-, Design-, Serviceeigenschaften). Intangible: nicht beobachtbare Merkmale, Appell an Wertekanon/Image/Status/Exklusivität/Emotionen des Kunden.' },
-    { id: 'm4-7', text: "Was unterscheidet die Red Ocean von der Blue Ocean Strategie (Kim & Mauborgne 2015)?", a: 'Red Ocean: auf bestehenden Märkten konkurrieren, bestehende Spielregeln akzeptieren, Wettbewerber besiegen. Blue Ocean: neue, unbesetzte Märkte kreieren, neue Spielregeln definieren, Wettbewerb irrelevant machen.' },
-    { id: 'm4-8', text: "Nenne die 4 Aktionen des Blue-Ocean-Werkzeugkastens für Wertinnovation.", a: 'Eliminieren, Reduzieren, Steigern, Kreieren (bezogen auf Produktattribute im Vergleich zum Branchenstandard).' },
-    { id: 'm4-9', text: "Nenne die 4 Pfade, über die Wertinnovationen durch Perspektivwechsel entstehen können.", a: 'Pfad 1: andere Branchen mit ähnlichen Herausforderungen betrachten. Pfad 2: andere strategische Gruppen betrachten. Pfad 3: ergänzende Produkte/Dienstleistungen betrachten. Pfad 4: andere Käufergruppen betrachten.' },
-    { id: 'm4-10', text: "Was besagt Porters Zitat zum 'Kern einer Strategie' im Kontext der Organisationsstrategie?", a: '"Der Kern einer Strategie besteht darin zu entscheiden, was NICHT zu tun ist. Strategie bedeutet die Herstellung von Passung zwischen den verschiedenen Aktivitäten einer Organisation."' },
-    { id: 'm4-11', text: "Nenne 3 der Normstrategien der McKinsey-Matrix (9-Felder-Raster) mit ihrer jeweiligen Feld-Kombination.", a: 'Z.B.: "Investition und Wachstum" (hoher Wettbewerbsvorteil + hohe Branchenattraktivität), "Selektives Wachstum"/"Selektivität" (mittlere Kombinationen), "Ernten/Veräußern" (niedriger Wettbewerbsvorteil + niedrige Branchenattraktivität).' },
-    { id: 'm4-12', text: "Welche Netto-Cashflow-Eigenschaften haben die 4 BCG-Felder?", a: 'Melkkühe: stark positiver Netto-Cashflow (kein hoher Investitionsbedarf). Arme Hunde: negativer/neutraler Netto-Cashflow. Weder Sterne noch Fragezeichen haben einen sehr hohen positiven Netto-Cashflow (beide erfordern hohe Investitionen wegen des Marktwachstums).' },
-    { id: 'm4-13', text: "Nenne die 5 Kernerkenntnisse der Cirque-du-Soleil-Fallstudie.", a: '1) Branchenstrukturen sind nicht exogen – Organisationen können sie prägen und verändern. 2) Im besten Fall gelingt es, das eigene Spielfeld neu zu definieren und den Wettbewerb zunächst zu vermeiden. 3) Blaue Ozeane entstehen oft durch gleichzeitige Kostenreduktion UND Erhöhung des Kundennutzens. 4) Werkzeuge wie Wertkurve und die 4 Pfade unterstützen Entscheidungsträger dabei. 5) Blaue Ozeane sind schwer zu entdecken und noch schwerer zu verteidigen.' },
-  ] },
-  { id: 'm5', title: 'Modul 5 · Strategische Allianzen orchestrieren', sub: 'Allianztypologien, Nutzen & Scheitern von Allianzen, Ökosysteme, Offene Innovation', lernplan: [
-    { id: 'm5-1', text: "Definiere strategische Allianzen (Gulati 1998).", a: '"Formale und freiwillige Vereinbarungen zwischen Organisationen, im Rahmen derer Produkte, Technologien oder Dienstleistungen ausgetauscht oder gemeinsam entwickelt und hergestellt werden." Können vertikaler sowie horizontaler Natur sein.' },
-    { id: 'm5-2', text: "Nenne die 3 Allianztypen nach Art der Kapitalbeteiligung.", a: 'Equity-Joint-Venture (Partner gründen gemeinsam neue rechtlich unabhängige Einheit), Equity-Allianz (Partner als Minderheitsgesellschafter des jeweils anderen), Non-Equity-Allianz (rein vertragsbasiert, keine Kapitalbeteiligung).' },
-    { id: 'm5-3', text: "Nenne die 3 Allianztypen nach Marktposition der Partner.", a: 'Vertikal (verschiedene Stufen der Wertschöpfungskette), Horizontal (Konkurrenten derselben Branche), Lateral (weder Wettbewerbs- noch Wertschöpfungskettenbeziehung).' },
-    { id: 'm5-4', text: "Nenne die 3 Allianztypen nach strategischem Fokus.", a: 'Synergistisch (Verbund-/Skaleneffekte in einem definierten Wertschöpfungskettenelement), Diversifizierend (Einstieg in neue Technologien/Produkte/Märkte), Komplementär (Zugang zu ergänzenden Ressourcen/Fähigkeiten).' },
-    { id: 'm5-5', text: "Nenne die 4 Kategorien von Gründen, warum strategische Allianzen scheitern (De Rond 2007).", a: 'Umwelt (z.B. strategische Abnutzung, neue Technologien), Strategie (z.B. ungeeignete Partnerwahl, divergierende Ziele), Struktur (z.B. unzureichende vertragliche Flexibilität), Verhalten (z.B. unzureichendes Top-Management-Engagement, Misstrauen).' },
-    { id: 'm5-6', text: "Nenne 3 der 6 einfachen Regeln für effektive Partnerschaften (De Rond 2007).", a: 'Z.B.: eigene Erwartungen kennen; Stärken/Schwächen des Partners kennen; Fähigkeiten/Routinen/Kultur des Partners verstehen; Motive des Partners ergründen; eigene Organisation vorbereiten; in den Aufbau kooperativer Beziehungen investieren.' },
-    { id: 'm5-7', text: "Nenne die 3 Ökosystem-Prozesse nach Dhanaraj & Parkhe (2006).", a: 'Steuerung der Wissensmobilität, Steuerung der Wert(ab)schöpfung, Steuerung der Ökosystemstabilität.' },
-    { id: 'm5-8', text: "Was unterscheidet geschlossene von offener Innovation (Chesbrough 2003)?", a: 'Geschlossen: eigene kluge Köpfe genügen, F&E muss selbst betrieben werden, geistiges Eigentum wird geschützt. Offen: auch mit externen Akteuren zusammenarbeiten, Forschung muss nicht selbst betrieben werden, Zugang zu eigenem geistigem Eigentum kann gewährt werden, wenn es das Geschäftsmodell unterstützt.' },
-    { id: 'm5-9', text: "Nenne die 4 Typen offener Innovation (Dahlander & Gann 2010).", a: 'Nicht-monetär eingehend: Beschaffen. Monetär eingehend: Akquirieren. Nicht-monetär ausgehend: Teilen. Monetär ausgehend: Veräußern.' },
-    { id: 'm5-10', text: "Was unterscheidet die organisationszentrierte von der netzwerkzentrierten Perspektive auf Allianzen?", a: 'Organisationszentrierte Perspektive: Organisationen werden als isoliert agierende Einheiten betrachtet. Netzwerkzentrierte Perspektive: Organisationen werden als in ihr Umfeld/Netzwerk eingebettet verstanden – diese Perspektive ist notwendig, um Ökosysteme und Allianznetzwerke zu verstehen.' },
-    { id: 'm5-11', text: "Wie ist ein Ökosystem definiert, und was bedeutet 'Ausrichtung' (Alignment) in diesem Kontext?", a: 'Ein Ökosystem ergibt sich aus der gemeinsamen Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden. Ausrichtung ist das Ausmaß, in dem zwischen den Mitgliedern ein gemeinsames Verständnis hinsichtlich ihrer Positionen und Aktivitätsflüsse besteht.' },
-    { id: 'm5-12', text: "Nenne die 3 Dimensionen der Ökosystemzusammensetzung nach Dhanaraj & Parkhe (2006), mit je einem Beispielmerkmal.", a: 'Mitgliedschaft im Ökosystem (Größe, Vielfalt), Struktur des Ökosystems (Dichte, Autonomie), Position im Ökosystem (Zentralität, Status).' },
-    { id: 'm5-13', text: "Was unterscheidet die 6 Facetten, wie sich das Scheitern einer Allianz MANIFESTIERT, von den 4 Kategorien möglicher URSACHEN (De Rond 2007)?", a: 'Manifestation (wie es sich zeigt): Ziele nicht erreicht, Erwartungen nicht erfüllt, Unzufriedenheit der Partner, erwartete Lebensdauer nicht erreicht (vorzeitig aufgegeben), enttäuschend aus persönlicher aber erfolgreich aus ökonomischer Sicht, ungleiche Nutzenverteilung. Ursachen (warum es passiert): Umwelt, Strategie, Struktur, Verhalten.' },
-    { id: 'm5-14', text: "Nenne die 4 Spannungsfelder, die in Allianzen/Ökosystemen ausbalanciert werden müssen.", a: 'Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen.' },
-    { id: 'm5-15', text: "Welche Kernerkenntnisse liefert die Lufthansa/Ökosystem-Fallstudie (Modul 5)?", a: 'Strategische Partnerschaften eröffnen neue Möglichkeiten, gehen aber auch mit neuen Abhängigkeiten einher. Der Erfolg eines Ökosystems kann stark von seinem schwächsten Element abhängen. Die Ausrichtung aller Mitglieder am gemeinsamen Wertversprechen ist zentral.' },
-  ] },
-  { id: 'm6', title: 'Modul 6 · Soziale Verantwortung übernehmen', sub: 'CSR-Perspektiven, Triple Bottom Line, Wirtschaftsethik-Theorien', lernplan: [
-    { id: 'm6-1', text: "Nenne die 3 Dimensionen der Triple Bottom Line.", a: 'Profit (ökonomische Verantwortung), Planet (ökologische Verantwortung), People (soziale Verantwortung).' },
-    { id: 'm6-2', text: "Nenne Carrolls (1991) 4 CSR-Verantwortungsebenen (Pyramide, von unten nach oben).", a: 'Ökonomische Verantwortung ("Make profit", gefordert) → Rechtliche Verantwortung ("Obey the law", gefordert) → Moralische Verantwortung ("Be ethical", erwartet) → Philanthropische Verantwortung ("Be a good corporate citizen", erwünscht).' },
-    { id: 'm6-3', text: "Was besagt Milton Friedmans Position zur Verantwortung von Unternehmen (Shareholder View)?", a: 'Die einzige Verantwortung von Unternehmensführern ist es, im Rahmen der Gesetze so viel Geld wie möglich für die Aktionäre zu verdienen – Unternehmen selbst können keine Verantwortung "haben", nur Individuen.' },
-    { id: 'm6-4', text: "Nenne die 3 ethischen Perspektiven, die zur moralischen Bewertung herangezogen werden.", a: 'Utilitarismus/Nutzenethik (Bentham, Mill – Fokus auf Handlungsfolgen), Pflichtethik/Deontologie (Kant – Fokus auf Charakter der Handlung selbst), Gerechtigkeitsethik (Rawls – Fokus auf faire Prozesse/Ergebnisse).' },
-    { id: 'm6-5', text: "Was ist die primäre Frage des Utilitarismus?", a: 'Maximiert die Handlung den Nutzen für die größtmögliche Anzahl der von ihr betroffenen Stakeholder? ("Prinzip des größten Glücks").' },
-    { id: 'm6-6', text: "Wie lautet Kants Universalisierungsformel (Kategorischer Imperativ)?", a: '"Handle nur nach derjenigen Maxime, durch die du zugleich wollen kannst, dass sie ein allgemeines Gesetz werde."' },
-    { id: 'm6-7', text: "Was ist die primäre Frage der Gerechtigkeitsethik (Rawls)?", a: 'Sind Entscheidungsverfahren und -ergebnisse fair? Erhält jeder sein Recht/das, was er/sie verdient? (Prozedurale und distributive Gerechtigkeit.)' },
-    { id: 'm6-8', text: "Was unterscheidet die Shareholder View von der Stakeholder View hinsichtlich der Prioritätensetzung?", a: 'Shareholder View: Profitabilität vor Verantwortung, Zweck = den Eigentümern dienen. Stakeholder View: Verantwortung vor Profitabilität, Zweck = allen Interessensgruppen dienen (De Wit & Meyer 2014).' },
-    { id: 'm6-9', text: "Nenne 3 der 6 Schritte zur moralischen Bewertung von Handlungsalternativen.", a: 'Z.B.: 1) Ist die Handlung legal? 2) Stimmt sie mit unseren Werten überein? 3) Würden wir uns schlecht fühlen, sie umzusetzen? 4) Wie würde sie in der Zeitung aussehen? 5/6) Wissen wir insgeheim, dass es falsch ist / sind wir unsicher – dann weiterfragen.' },
-    { id: 'm6-10', text: "Nenne die 4 unterschiedlichen Perspektiven auf CSR, die Organisationen einnehmen können.", a: 'Management-Perspektive (CSR als ganzheitlicher Managementansatz, der alle Geschäftsprozesse an gesellschaftlicher Verantwortung ausrichtet), Compliance-Perspektive (CSR als Einhaltung von Gesetzen und moralischen Regeln), Philanthropische Perspektive (CSR als moralisch motivierter Beitrag zum Gemeinwohl über gesetzliche Anforderungen hinaus), Business-Case-Perspektive (CSR als Mittel zur Erreichung langfristiger wirtschaftlicher Interessen).' },
-  ] },
-];
-const DAYPLAN_STRAT = [
-  { title: 'Phase 1 · Parallel-Merken (nebenbei, während Statistik & Marketing Vorrang haben)', days: [
-    { date: '2026-08-30', label: 'So 30.08.', tag: '10 Min Modul 1 Kernbegriffe (nebenbei)', mods: ['m1'], tasks: [
-      '1) Nur MODUL 1 – 10 Min: Mintzberg 4 Ps, 3 Strategieebenen, 5 Epochen der Strategieforschung überfliegen',
-      '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik/Marketing!'
-    ]},
-    { date: '2026-09-03', label: 'Do 03.09.', tag: '10 Min Modul 2 Kernbegriffe (nebenbei)', mods: ['m2'], tasks: [
-      '1) Nur MODUL 2 – 10 Min: Porters 5(+1) Kräfte + SCP-Paradigma kurz auffrischen',
-      '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik/Marketing!'
-    ]},
-    { date: '2026-09-07', label: 'Mo 07.09.', tag: '10 Min Modul 3 Kernbegriffe (nebenbei)', mods: ['m3'], tasks: [
-      '1) Nur MODUL 3 – 10 Min: VRIN/VRIO-Kriterien + 3 Bestandteile dynamischer Fähigkeiten (Sensing/Seizing/Reconfiguring)',
-      '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik/Marketing!'
-    ]},
-    { date: '2026-09-11', label: 'Fr 11.09.', tag: '10 Min Modul 4 Kernbegriffe (nebenbei)', mods: ['m4'], tasks: [
-      '1) Nur MODUL 4 – 10 Min: Porters 3 generische Strategien + Red-vs-Blue-Ocean-Gegenüberstellung',
-      '2) Kein weiterer Stoff heute – Fokus bleibt auf Statistik (14.9) und Marketing (16.9)!'
-    ]},
-  ]},
-  { title: 'Phase 2 · Intensivphase (17.–22.9, nach Statistik- und Marketing-Klausur)', days: [
-    { date: '2026-09-17', label: 'Do 17.09.', tag: 'Modul 1 + 2 komplett', mods: ['m1', 'm2'], tasks: [
-      '1) MODUL – Modul 1 (Strategieprozesse) und Modul 2 (Branchenstrukturen) im Module-Tab komplett durchgehen',
-      '2) QUIZ – Teil m1 und m2 je eine Runde spielen',
-      '3) RAHMENWERKE – m1 und m2 je eine Runde spielen (Mintzberg 4 Ps, 3 Ebenen, 5 Kräfte, SCP, 5-Phasen-Prozess)'
-    ]},
-    { date: '2026-09-18', label: 'Fr 18.09.', tag: 'Modul 3 + 4 komplett', mods: ['m3', 'm4'], tasks: [
-      '1) MODUL – Modul 3 (Ressourcen) und Modul 4 (Positionierung) im Module-Tab komplett durchgehen',
-      '2) QUIZ – Teil m3 und m4 je eine Runde spielen',
-      '3) RAHMENWERKE – m3 und m4 je eine Runde spielen (VRIN/VRIO, Wertschöpfungskette, BCG-Felder, ERSK-Raster)'
-    ]},
-    { date: '2026-09-19', label: 'Sa 19.09.', tag: 'Modul 5 + 6 komplett', mods: ['m5', 'm6'], tasks: [
-      '1) MODUL – Modul 5 (Allianzen) und Modul 6 (Verantwortung) im Module-Tab komplett durchgehen',
-      '2) QUIZ – Teil m5 und m6 je eine Runde spielen',
-      '3) RAHMENWERKE – m5 und m6 je eine Runde spielen (Allianztypen, Ökosystem-Prozesse, CSR-Pyramide, Ethiktheorien)'
-    ]},
-    { date: '2026-09-20', label: 'So 20.09.', tag: 'Fallstudien vertiefen + Quiz Runde 2', mods: ['m1', 'm2', 'm3', 'm6'], tasks: [
-      '1) FALLSTUDIEN – Honda (Modul 1, Design vs. Emergenz), Einzelhandel (Modul 2, strategische Gruppen), IBM (Modul 3, dynamische Fähigkeiten), Sadhu (Modul 6, Wirtschaftsethik) noch einmal in den Original-Fragen-PDFs durchgehen',
-      '2) QUIZ – alle 6 Teile eine 2. Runde spielen, "Nur falsche wiederholen" nutzen',
-      '3) Denk daran: die Fallstudie in der Klausur enthält alle nötigen Infos im Text selbst – es geht darum, die richtigen Lektions-Frameworks korrekt anzuwenden, nicht die Fälle auswendig zu kennen'
-    ]},
-    { date: '2026-09-21', label: 'Mo 21.09.', tag: 'Wrap-Up-PDF + Probeklausur-Beispiel + Rahmenwerke', mods: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'], tasks: [
-      '1) WRAP-UP – StrategischesManagement_WrapUp_SS26_final.pdf noch einmal komplett lesen (Klausurformat + Gesamtbild-Grid)',
-      '2) PROBEKLAUSUR – das im Wrap-Up enthaltene Aufgabenbeispiel (Lückentext + Fallstudie "In-Vitro Fleisch") unter Zeitdruck durchrechnen',
-      '3) RAHMENWERKE – "Nur falsche wiederholen" durch alle 6 Teile'
-    ]},
-    { date: '2026-09-22', label: 'Di 22.09.', tag: 'Volle Wiederholung + schwache Themen', mods: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'], tasks: [
-      '1) QUIZ + RAHMENWERKE – gezielt die Themen wiederholen, bei denen bisher die meisten Fehler passiert sind',
-      '2) KLAUSURFORMAT im Kopf durchgehen: 60 Min, 60 Punkte, 3 Teile (Lückentext / SC+MC+Klassifikation / Fallstudie), MC = alles-oder-nichts (kein Teilpunkt), Bestehensgrenze 60%, kein Taschenrechner, kein eigenes Papier',
-      '3) Sprache prüfen: Standard ist Deutsch (Wahl-Deadline war bereits Fr 10.08.) – falls du dich für Englisch angemeldet hast, entsprechend auf Englisch wiederholen'
-    ]},
-    { date: '2026-09-23', label: 'Mi 23.09. — KLAUSURTAG', tag: 'Letzter Schliff vor der Klausur', mods: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'], tasks: [
-      '1) FRÜH – RAHMENWERKE: letzte "Nur falsche wiederholen"-Runde durch alle 6 Teile (v.a. die 5(+1) Kräfte, VRIN/VRIO, BCG-Felder, ERSK-Raster, CSR-Pyramide)',
-      '2) FRÜH – kurz die 6 Lektions-Frameworks im Kopf durchgehen, damit du sie in der Fallstudie sicher anwenden kannst',
-      '3) Klausur "Strategisches Management" – bitte genaue Uhrzeit im offiziellen Prüfungsplan prüfen. Viel Erfolg!'
-    ]},
-  ]},
-];
-const QUIZ_DATA_STRAT = {
-  m1: { label: 'Modul 1 · Strategieprozesse', sub: 'Strategiedefinitionen, Mintzberg 4 Ps, Strategieschulen, Design vs. Emergenz, Honda-Fall', questions: [
-    { le: 'm1', q: "Was meint Porter (1996) mit 'Der Kern einer Strategie besteht darin zu entscheiden, was NICHT zu tun ist'?", opts: [
-        "Strategie erfordert bewusste Abwägungen (Trade-offs) und die Schaffung von Passung zwischen Aktivitäten", "Strategie sollte möglichst viele Optionen gleichzeitig offenhalten", "Strategie ist ausschließlich eine Frage der Kostenreduktion", "Strategie bedeutet, alle Wettbewerber gleichzeitig anzugreifen"
-      ], correct: 0, explain: "Porter betont, dass echte Strategie bewusste Trade-offs verlangt: sich klar gegen bestimmte Optionen zu entscheiden und stattdessen Passung (Fit) zwischen den eigenen Aktivitäten zu schaffen." },
-    { le: 'm1', q: "Welche Aussagen zu Mintzbergs '4 Ps' der Strategie treffen zu? (mehrere richtig)", multi: true, opts: [
-        "Position beantwortet die Frage 'Wo?'", "Perspektive beantwortet die Frage 'Wohin?'", "Plan beantwortet die Frage 'Was?'", "Verhaltensmuster (Pattern) beantwortet die Frage 'Was?'"
-      ], correct: [0,1,3], explain: "Die 4 Ps: Plan=Wie?, Verhaltensmuster/Pattern=Was?, Position=Wo?, Perspektive=Wohin?. 'Plan beantwortet Was?' ist falsch – das ist die Frage des Verhaltensmusters." },
-    { le: 'm1', q: "Ordne die 5 Epochen der Strategieforschung ihrem dominanten Thema zu.", type: 'match', pairs: [
-        { term: '1950-1960', def: 'Budgetierung' },
-        { term: '1960-1975', def: 'Planung' },
-        { term: '1975-1985', def: 'Positionierung' },
-        { term: '1985-2000', def: 'Wettbewerb (Ressourcen)' },
-      ], explain: "5-Epochen-Tabelle nach Grant (2015): Budgetierung → Planung → Positionierung → Wettbewerb → Kooperation (2000-heute)." },
-    { le: 'm1', q: "Welcher der 3 Trugschlüsse (Mintzberg et al. 2005) besagt, dass Formalisierung das organisationale Lernen und Experimentieren hemmt?", opts: [
-        "Formalisierungs-Trugschluss", "Vorhersage-Trugschluss", "Entkopplungs-Trugschluss", "Positionierungs-Trugschluss"
-      ], correct: 0, explain: "Formalisierungs-Trugschluss: starre Formalisierung hemmt Lernen, Experimentieren und Anpassung. Vorhersage-Trugschluss: Zukunft ist nicht vorhersagbar. Entkopplungs-Trugschluss: Formulierung und Umsetzung sind in Wahrheit verknüpft, nicht trennbar." },
-    { le: 'm1', q: "Welche Aussagen charakterisieren die Designschule korrekt? (mehrere richtig)", multi: true, opts: [
-        "Der Stratege wird als Architekt verstanden", "Sie geht von einem stabilen Umfeld und organisationaler Plastizität aus", "Sie versteht Strategiebildung als emergenten, kollektiven Lernprozess", "Sie zielt auf die Erzielung von Fit zwischen externen Anforderungen und internen Kompetenzen"
-      ], correct: [0,1,3], explain: "Die Designschule (Metapher: Architekt) geht von Umweltstabilität aus und sucht systematisch Fit zwischen extern/intern. 'Emergenter kollektiver Lernprozess' beschreibt dagegen die Lernschule." },
-    { le: 'm1', q: "Mintzbergs Kritik an der Designschule lautet u.a., dass sie...", opts: [
-        "Denken und Handeln künstlich trennt, obwohl Strategie ein langer, vielschichtiger Lernprozess ist", "zu wenig systematisch und zu unstrukturiert vorgeht", "keinerlei Alternative zum reinen Trial-and-Error bietet", "ausschließlich auf kurzfristige operative Entscheidungen fokussiert"
-      ], correct: 0, explain: "Mintzbergs zentrale Kritik: die Designschule vereinfacht zu stark und trennt Denken (Formulierung) von Handeln (Umsetzung), obwohl Strategie tatsächlich im Austausch mit Kunden/Mitarbeitern und durch Umsetzungsversuche entsteht." },
-    { le: 'm1', q: "Ordne die Design- und Emergenzlogik ihren jeweiligen Attributausprägungen zu (De Wit & Meyer 2014).", type: 'match', pairs: [
-        { term: 'Zukunftsverständnis (Design)', def: 'Verstehen / Prognostizieren' },
-        { term: 'Zukunftsverständnis (Emergenz)', def: 'Herausfinden / Unsicherheit akzeptieren' },
-        { term: 'Entscheidungsfindung (Design)', def: 'Hierarchisch' },
-        { term: 'Entscheidungsfindung (Emergenz)', def: 'Verteilt' },
-      ], explain: "De Wit & Meyer (2014) stellen 9 Attribute gegenüber: u.a. Zukunftsverständnis (Verstehen vs. Herausfinden) und Entscheidungsfindung (hierarchisch vs. verteilt)." },
-    { le: 'm1', q: "Das klassische Honda-Fallbeispiel (Markteintritt in den US-Motorradmarkt) wird in der Strategieliteratur oft herangezogen, um zu illustrieren, dass...", opts: [
-        "Erfolgreiche Strategien häufig nicht dem ursprünglichen Plan entsprechen, sondern durch Lernen und Anpassung im Prozess emergent entstehen", "Ausschließlich detaillierte Vorabplanung zu Markterfolg führt", "Strategische Analyse in dynamischen Märkten überflüssig ist", "Emergente Strategien in der Praxis nie zum Erfolg führen"
-      ], correct: 0, explain: "Der Honda-Fall (u.a. bei Mintzberg diskutiert) zeigt exemplarisch, wie eine ursprünglich anders geplante Marktbearbeitung durch unerwartetes Kundenfeedback und Lernprozesse vor Ort zu einer letztlich sehr erfolgreichen, aber emergenten Strategie führte – ein Kernbeispiel für die Design-vs-Emergenz-Debatte." },
-    { le: 'm1', q: "Welche der folgenden Strategieebenen gehört NICHT zur klassischen 3-Ebenen-Hierarchie (Wheelen & Hunger 2008)?", opts: [
-        "Internationale Strategie", "Unternehmensstrategie", "Geschäftsfeldstrategie", "(Cross-)Funktionale Strategie"
-      ], correct: 0, explain: "Die 3 Ebenen sind Unternehmensstrategie (Corporate), Geschäftsfeldstrategie (Business) und (Cross-)Funktionale Strategie (Functional). 'Internationale Strategie' ist keine eigene Hierarchieebene in diesem Modell." },
-    { le: 'm1', q: "Im SS24-Altklausur-Beispiel erklären die Honda-Führungskräfte SELBST den Erfolg des Honda Super Cub über welche Strategieschule – während BCGs offizielle Analyse eine andere Schule nutzt?", opts: [
-        "Führungskräfte: Lernschule (emergent) – BCG: Designschule/Planungsschule (top-down geplant)", "Führungskräfte: Designschule – BCG: Lernschule", "Beide nutzen die gleiche Schule: die Positionierungsschule", "Führungskräfte: Umweltschule – BCG: Unternehmertumsschule"
-      ], correct: 0, explain: "Klassische Klausurfrage: die Führungskräfte selbst betonen Lernen/Experimentieren vor Ort (Lernschule), während BCGs nachträgliche Analyse eine geplante, top-down umgesetzte Strategie unterstellt (Designschule/Planungsschule)." },
-      { le: 'm1', q: "Nach Mintzbergs Modell der Strategierealisierung – welche Aussage ist korrekt?", opts: [
-        "Die beabsichtigte (intended) Strategie zerfällt in eine bewusst umgesetzte (deliberate) und eine unrealisierte (unrealized) Strategie; zusammen mit emergenten Strategien (die während der Umsetzung ungeplant entstehen) ergibt sich die tatsächlich realisierte (realized) Strategie", "Die realisierte Strategie ist immer identisch mit der ursprünglich beabsichtigten Strategie", "Emergente Strategien sind grundsätzlich ein Zeichen für schlechtes Management", "Das Modell kennt nur die Kategorien 'geplant' und 'gescheitert'"
-      ], correct: 0, explain: "Mintzbergs Modell unterscheidet: intended strategy (beabsichtigt) → wird teils deliberate (bewusst umgesetzt) und teils unrealized (nicht umgesetzt); zusätzlich entstehen während der Umsetzung emergent strategies (ungeplant, aus dem Prozess heraus). Deliberate + emergent ergeben zusammen die realized strategy – die tatsächlich gelebte Strategie weicht damit fast immer von der ursprünglichen Absicht ab." },
-    { le: 'm1', q: "Wie definiert Chandler (1962) den Begriff 'Strategie' in seiner klassischen Definition?", opts: [
-        "Die Festlegung langfristiger Ziele und Zwecke eines Unternehmens sowie die Wahl der Handlungsweisen und Ressourcenallokation, die zur Erreichung dieser Ziele nötig sind", "Die kurzfristige Reaktion auf Wettbewerberaktionen im Tagesgeschäft", "Ausschließlich die Festlegung des Jahresbudgets", "Die reine Beschreibung der aktuellen Organisationsstruktur"
-      ], correct: 0, explain: "Chandlers klassische Definition: Strategie ist die Festlegung der langfristigen Ziele und Zwecke eines Unternehmens sowie die Wahl der Handlungsweisen und die Allokation der für die Zielerreichung notwendigen Ressourcen. Diese Definition betont die Langfristigkeit UND die konkrete Ressourcenzuteilung." },
-] },
-  m2: { label: 'Modul 2 · Branchenstrukturen', sub: 'SCP-Paradigma, Porters 5(+1) Kräfte, strategische Gruppen, Profit-Pool, Einzelhandel-Fall', questions: [
-    { le: 'm2', q: "Was besagt das SCP-Paradigma?", opts: [
-        "Branchenstruktur (Structure) bestimmt das Verhalten der Firma (Conduct), welches wiederum den Unternehmenserfolg (Performance) bestimmt", "Unternehmenserfolg bestimmt die Branchenstruktur", "Verhalten der Firma ist unabhängig von der Branchenstruktur", "Nur das Verhalten der Firma zählt, die Struktur ist irrelevant"
-      ], correct: 0, explain: "SCP: Industry Structure → Firm Conduct → Firm Performance (Porter 2008). Die Branchenstruktur gibt maßgeblich das Gewinnpotenzial vor." },
-    { le: 'm2', q: "Welche gehören zu Porters ursprünglichen 5 Wettbewerbskräften? (mehrere richtig)", multi: true, opts: [
-        "Verhandlungsmacht der Lieferanten", "Bedrohung durch Substitute", "Verhandlungsmacht der Komplementoren", "Rivalität bestehender Wettbewerber"
-      ], correct: [0,1,3], explain: "Die 5 klassischen Kräfte: Rivalität, neue Marktteilnehmer, Lieferantenmacht, Käufermacht, Substitute. Die Verhandlungsmacht der Komplementoren ist die ERWEITERNDE 'sechste Kraft', nicht Teil der ursprünglichen 5." },
-    { le: 'm2', q: "In einer Branche mit hohem Fixkostenanteil, geringer Produktdifferenzierung und hohen Austrittsbarrieren ist typischerweise mit welcher Wettbewerbskraft besonders zu rechnen?", opts: [
-        "Hoher Rivalität bestehender Wettbewerber", "Geringer Bedrohung durch neue Marktteilnehmer", "Geringer Verhandlungsmacht der Käufer", "Keiner der Kräfte – diese Faktoren sind irrelevant"
-      ], correct: 0, explain: "Hohe Fixkosten, geringe Differenzierung und hohe Austrittsbarrieren sind klassische Determinanten hoher Rivalität – Firmen können sich dem Preiswettbewerb schwer entziehen und bleiben trotz geringer Rentabilität im Markt." },
-    { le: 'm2', q: "Nenne die richtige Reihenfolge der 5 Phasen des Branchenanalyse-Prozesses.", opts: [
-        "Branchendefinition → Teilnehmeridentifikation → Strukturelle Analyse → Dynamische Analyse → Maßnahmenauswahl", "Maßnahmenauswahl → Branchendefinition → Strukturelle Analyse → Dynamische Analyse → Teilnehmeridentifikation", "Strukturelle Analyse → Branchendefinition → Dynamische Analyse → Teilnehmeridentifikation → Maßnahmenauswahl", "Teilnehmeridentifikation → Dynamische Analyse → Branchendefinition → Strukturelle Analyse → Maßnahmenauswahl"
-      ], correct: 0, explain: "Die Reihenfolge nach Grant (2015): erst die Branche definieren, dann Teilnehmer identifizieren, dann strukturell UND dynamisch analysieren, zuletzt Maßnahmen ableiten." },
-    { le: 'm2', q: "Welche Aussagen beschreiben häufige Fehler bei der Branchenanalyse (Porter 2008)? (mehrere richtig)", multi: true, opts: [
-        "Die Branche wird zu breit oder zu eng definiert", "Alle 5 Kräfte erhalten unreflektiert die gleiche Aufmerksamkeit statt Fokus auf die wichtigsten", "Eine rein dynamische, zukunftsoffene Analyse wird konsequent vermieden", "Zyklische Schwankungen werden mit strukturellen Veränderungen verwechselt"
-      ], correct: [0,1,3], explain: "Häufige Fehler u.a.: falsche Branchenabgrenzung, undifferenzierte Gewichtung aller Kräfte, STATISCHE (nicht dynamische) Analyse, die Trends ignoriert, sowie Verwechslung von zyklischen mit strukturellen Veränderungen." },
-    { le: 'm2', q: "Was ist das Ziel der strategischen Gruppenanalyse im deutschen Lebensmitteleinzelhandel (Übungsfall), wenn Discounter, Vollsortimenter und Bio-Fachhändler auf Achsen wie Preisniveau und Sortimentsbreite eingeordnet werden?", opts: [
-        "Cluster ähnlich positionierter Wettbewerber zu identifizieren, um Konkurrenzdynamik und eigene Positionierungsoptionen besser zu verstehen", "Ausschließlich den Gesamtumsatz der Branche zu berechnen", "Die Anzahl der Wettbewerbskräfte nach Porter zu zählen", "Eine Diversifizierungsentscheidung mittels BCG-Matrix zu treffen"
-      ], correct: 0, explain: "Strategische Gruppenanalyse dient der Cluster-Identifikation, dem Verständnis der Konkurrenzdynamik innerhalb ähnlich positionierter Anbieter und der eigenen Positionierung – z.B. Discounter vs. Vollsortimenter vs. Bio-Fachhändler im Lebensmitteleinzelhandel." },
-    { le: 'm2', q: "Ordne die Segmentierungsvariablen-Kategorien ihren Beispielen zu.", type: 'match', pairs: [
-        { term: 'Merkmale des Käufers', def: 'B2B/B2C, Vertriebskanäle, geografischer Standort' },
-        { term: 'Merkmale des Produkts', def: 'Produktpalette, Preisniveau, Technologie/Design' },
-      ], explain: "Segmentierungsvariablen für strategische Gruppen lassen sich in käuferbezogene und produktbezogene Merkmale einteilen." },
-    { le: 'm2', q: "Was wird bei der Profit-Pool-Analyse im 2. Schritt gemacht?", opts: [
-        "Die Größe der einzelnen Profit-Pools wird geschätzt (Umsätze/Gewinne quantifiziert)", "Der Profit-Pool wird definiert (wertschöpfende Aktivitäten identifiziert)", "Der Profit-Pool wird nach wertschöpfender Aktivität aufgeschlüsselt", "Es werden Wettbewerber befragt"
-      ], correct: 0, explain: "3 Schritte: 1) Profit-Pool definieren, 2) Größe der Pools SCHÄTZEN, 3) Profit-Pool nach Aktivität aufschlüsseln." },
-    { le: 'm2', q: "Wie werden zentrale Erfolgsfaktoren (Key Success Factors) im Rahmen der strategischen Gruppenanalyse abgeleitet?", opts: [
-        "Über 2 Leitfragen: 'Was wollen die Kunden?' (Nachfrage) und 'Wie besteht die Organisation im Wettbewerb?' (Wettbewerb)", "Ausschließlich über eine Analyse der Unternehmensbilanz", "Über eine reine Befragung der eigenen Mitarbeiter", "Über die BCG-Matrix"
-      ], correct: 0, explain: "Zentrale Erfolgsfaktoren ergeben sich aus der Kombination von Nachfrageanalyse und Wettbewerbsanalyse je strategischer Gruppe (Grant 2015)." },
-    { le: 'm2', q: "Welche Bedingungen erhöhen typischerweise die Rivalität bestehender Wettbewerber? (mehrere richtig)", multi: true, opts: [
-        "Hohe Austrittsbarrieren", "Hoher Fixkostenanteil", "Hohe Marktkonzentration", "Hohes Niveau überschüssiger Kapazität"
-      ], correct: [0,1,3], explain: "Hohe Marktkonzentration SENKT tendenziell die Rivalität (weniger, aber größere Akteure) – die anderen drei Faktoren erhöhen sie." },
-    { le: 'm2', q: "Welche Bedingungen senken typischerweise die Verhandlungsmacht der Lieferanten? (mehrere richtig)", multi: true, opts: [
-        "Verfügbare Ersatzlieferanten", "Möglichkeit der Rückwärtsintegration der fokalen Organisation", "Hohe Wechselkosten für die fokale Organisation", "Konzentrierte Lieferanten"
-      ], correct: [0,1], explain: "Verfügbare Ersatzlieferanten und die Möglichkeit der Rückwärtsintegration SENKEN die Lieferantenmacht. Hohe Wechselkosten und konzentrierte Lieferanten ERHÖHEN sie." },
-    { le: 'm2', q: "Welcher der folgenden Faktoren ERHÖHT die Bedrohung durch neue Marktteilnehmer (die meisten klassischen Faktoren senken sie als Eintrittsbarriere)?", opts: [
-        "Einfacher Zugang zu Vertriebskanälen", "Hoher Kapital-/Wissensbedarf", "Starke Skalenvorteile bestehender Anbieter", "Staatliche/rechtliche Markteintrittshürden"
-      ], correct: 0, explain: "Nur der einfache Vertriebszugang ERHÖHT die Bedrohung durch neue Marktteilnehmer. Kapitalbedarf, Skalenvorteile und rechtliche Hürden sind Eintrittsbarrieren, die die Bedrohung SENKEN." },
-    { le: 'm2', q: "Ordne die PESTEL-Dimensionen ihrem Inhalt zu.", type: 'match', pairs: [
-        { term: 'Political', def: 'Regierungseinfluss' },
-        { term: 'Economic', def: 'Wirtschaftliche Lage' },
-        { term: 'Technological', def: 'Neue Technologien' },
-        { term: 'Legal', def: 'Rechtliche Rahmenbedingungen' },
-      ], explain: "PESTEL untersucht das Makro-Umfeld: Political, Economic, Social, Technological, Environmental, Legal." },
-      { le: 'm2', q: "Welche Bedingungen erhöhen typischerweise die Verhandlungsmacht der ABNEHMER (Buyer Power) in Porters 5-Kräfte-Modell? (mehrere richtig)", multi: true, opts: [
-        "Wenige, konzentrierte Abnehmer stehen vielen Anbietern gegenüber", "Die Abnehmer haben niedrige Wechselkosten zu Konkurrenzprodukten", "Das gekaufte Produkt macht einen großen Anteil der Kosten des Abnehmers aus", "Die Abnehmer sind stark fragmentiert und kaufen jeweils nur kleine Mengen"
-      ], correct: [0,1,2], explain: "Hohe Abnehmermacht entsteht durch: Konzentration der Abnehmer (wenige, große Käufer), niedrige Wechselkosten, hohen Kostenanteil des Produkts am Gesamteinkauf des Abnehmers, sowie Rückwärtsintegrationsdrohung. Stark fragmentierte Abnehmer mit kleinen Mengen haben dagegen WENIG Verhandlungsmacht." },
-    { le: 'm2', q: "Welche Bedingungen erhöhen typischerweise die Bedrohung durch Substitutionsprodukte?", opts: [
-        "Ein gutes Preis-Leistungs-Verhältnis des Substituts im Vergleich zum Branchenprodukt und niedrige Wechselkosten für den Kunden", "Ausschließlich die Anzahl der direkten Wettbewerber in der Branche", "Hohe Markteintrittsbarrieren für neue Anbieter", "Eine hohe Konzentration der Lieferanten"
-      ], correct: 0, explain: "Die Bedrohung durch Substitute steigt, wenn diese ein attraktives Preis-Leistungs-Verhältnis bieten und die Wechselkosten für den Kunden gering sind. Substitute erfüllen dieselbe Funktion aus einer ANDEREN Branche heraus (z.B. Videokonferenz statt Geschäftsreise) – anders als 'neue Marktteilnehmer', die innerhalb derselben Branche eintreten." },
-] },
-  m3: { label: 'Modul 3 · Interne Ressourcen', sub: 'Ressourcenbasierter Ansatz, VRIN/VRIO, Wertschöpfungskette, dynamische Fähigkeiten, IBM-Fall', questions: [
-    { le: 'm3', q: "Was besagt der ressourcenbasierte Ansatz im Gegensatz zum marktbasierten Ansatz?", opts: [
-        "Interne Ressourcen und Fähigkeiten sind die primäre Quelle nachhaltiger Wettbewerbsvorteile, nicht primär die Branchenstruktur", "Nur die externe Branchenstruktur bestimmt den Unternehmenserfolg", "Ressourcen sind irrelevant für Wettbewerbsvorteile", "Beide Ansätze widersprechen sich vollständig und schließen sich aus"
-      ], correct: 0, explain: "Der ressourcenbasierte Ansatz (Wernerfelt, Barney) stellt interne Ressourcen/Fähigkeiten ins Zentrum, während der marktbasierte Ansatz (Porter) die externe Branchenstruktur betont – beide Perspektiven ergänzen sich in der Praxis." },
-    { le: 'm3', q: "Welche Kriterien gehören zu VRIN? (mehrere richtig)", multi: true, opts: [
-        "Valuable (wertvoll/relevant)", "Rare (selten/knapp)", "Organized (in der Organisation genutzt)", "Non-Substitutable (nicht substituierbar)"
-      ], correct: [0,1,3], explain: "VRIN = Valuable, Rare, Imperfectly Imitable, Non-Substitutable. 'Organized' ist das 4. Kriterium bei VRIO, nicht bei VRIN." },
-    { le: 'm3', q: "Eine Ressource erfüllt Valuable, Rare und Imperfectly Imitable, wird aber NICHT von der Organisation genutzt (VRIO-Analyse). Welches Ergebnis liegt vor?", opts: [
-        "Nicht genutzter Wettbewerbsvorteil", "Nachhaltiger Wettbewerbsvorteil", "Wettbewerbsparität", "Wettbewerbsnachteil"
-      ], correct: 0, explain: "Erfüllt eine Ressource V+R+I, wird aber nicht organisational genutzt, liegt laut VRIO-Framework ein 'nicht genutzter Wettbewerbsvorteil' vor – erst mit Nutzung wird er zum 'nachhaltigen Wettbewerbsvorteil'." },
-    { le: 'm3', q: "Ordne die Wertschöpfungskettenaktivitäten ihrer Kategorie zu.", type: 'match', pairs: [
-        { term: 'Eingehende Logistik', def: 'Primäre Aktivität' },
-        { term: 'After-Sales-Service', def: 'Primäre Aktivität' },
-        { term: 'Technologie-Entwicklung', def: 'Unterstützende Aktivität' },
-        { term: 'Personalmanagement', def: 'Unterstützende Aktivität' },
-      ], explain: "Primäre Aktivitäten (Porter 1998): Eingehende Logistik, Betrieb, Ausgehende Logistik, Marketing&Verkauf, After-Sales-Service. Unterstützende: Infrastruktur, Personalmanagement, Technologie-Entwicklung, Beschaffung." },
-    { le: 'm3', q: "Nenne die 3 Bestandteile dynamischer Fähigkeiten nach Teece (2007).", opts: [
-        "Erkennen (Sensing), Ergreifen (Seizing), Rekonfigurieren", "Planen, Umsetzen, Kontrollieren", "Analysieren, Entscheiden, Kommunizieren", "Beschaffen, Produzieren, Vertreiben"
-      ], correct: 0, explain: "Teeces 3 Bestandteile dynamischer Fähigkeiten: Erkennen neuer Chancen/Bedrohungen (Sensing), Ergreifen durch Investitionen/Innovation (Seizing), Rekonfigurieren der Ressourcenbasis." },
-    { le: 'm3', q: "IBMs Wandel vom Hardware-Hersteller zum Dienstleistungs-/Lösungsanbieter in den 1990er/2000er Jahren wird häufig als Beispiel für welches Konzept herangezogen?", opts: [
-        "Dynamische Fähigkeiten (Erkennen eines Marktwandels und Rekonfiguration der Ressourcenbasis)", "Ausschließlich Kostenführerschaft nach Porter", "Blue-Ocean-Strategie ohne jede Ressourcenanpassung", "Eine rein zufällige, ungeplante Entwicklung ohne strategische Logik"
-      ], correct: 0, explain: "Der IBM-Fall illustriert exemplarisch dynamische Fähigkeiten: das Unternehmen erkannte den Wandel der Branche (Sensing), investierte gezielt in neue Geschäftsfelder wie Beratung/Software (Seizing) und baute seine Ressourcenbasis grundlegend um (Rekonfigurieren)." },
-    { le: 'm3', q: "Welche Aussagen zur statischen vs. dynamischen Sichtweise auf Ressourcen treffen zu? (mehrere richtig)", multi: true, opts: [
-        "Die statische Sichtweise fokussiert auf Quantität/Qualität vorhandener Ressourcen", "Die dynamische Sichtweise fokussiert auf die optimale Orchestrierung in dynamischen Kontexten", "Die statische Sichtweise hat ein hohes Bewusstsein für Ressourcenveralterung", "Die dynamische Sichtweise betont Routinen zur schnellen Koordination/Umverteilung"
-      ], correct: [0,1,3], explain: "Statisch: Fokus Quantität/Qualität, GERINGES Bewusstsein für Veralterung. Dynamisch: Fokus Orchestrierung/Neukonfiguration, hohes Bewusstsein für Veralterung, Betonung schneller Koordinationsroutinen (Teece 2007)." },
-    { le: 'm3', q: "Nenne die 3 zentralen Ressourcenmerkmale, die nachhaltige Wettbewerbsvorteile ermöglichen.", opts: [
-        "Heterogenität, unvollkommene Mobilität, strategische Relevanz", "Homogenität, hohe Mobilität, geringe Relevanz", "Sichtbarkeit, Standardisierung, Austauschbarkeit", "Preis, Menge, Verfügbarkeit"
-      ], correct: 0, explain: "Zentrale Ressourcenmerkmale: Heterogenität (ungleiche Verteilung), unvollkommene Mobilität (schwer entwickel-/austauschbar), strategische Relevanz." },
-    { le: 'm3', q: "Welche 3 Ressourcenarten unterscheidet der ressourcenbasierte Ansatz?", opts: [
-        "Materiell (tangible), immateriell (intangible), personell (human)", "Finanziell, technisch, organisational", "Intern, extern, hybrid", "Statisch, dynamisch, adaptiv"
-      ], correct: 0, explain: "Die 3 klassischen Ressourcenarten: materiell/tangible (z.B. Grundstücke), immateriell/intangible (z.B. Marken, Patente), personell/human (z.B. Ausbildung/Erfahrung der Mitarbeiter)." },
-    { le: 'm3', q: "Welche Aussagen zu Exploitation und Exploration treffen zu? (mehrere richtig)", multi: true, opts: [
-        "Exploitation gedeiht in stabilen, kontrollierten Umgebungen", "Exploration kann Effizienzverluste mit sich bringen", "Organisationen sollten sich nur auf eines von beiden konzentrieren", "Beide müssen für gegenwärtige UND zukünftige Lebensfähigkeit ausbalanciert werden"
-      ], correct: [0,1,3], explain: "Klassische Klausurfalle: 'nur auf eines konzentrieren' ist FALSCH – Organisationen müssen Exploitation (Gegenwart) und Exploration (Zukunft) ausbalancieren (vgl. IBM-Fallstudie)." },
-    { le: 'm3', q: "Welche gehören zu den Kernerkenntnissen der IBM-Fallstudie? (mehrere richtig)", multi: true, opts: [
-        "Dynamische Fähigkeiten lassen sich durch konkrete Mechanismen aufbauen", "Strategiekonzeption und -umsetzung müssen Hand in Hand gehen", "Strategische Annahmen sollten NICHT regelmäßig hinterfragt werden", "Strategieprozesse profitieren von einem kontinuierlichen, demokratischen, evolutionären Prozess"
-      ], correct: [0,1,3], explain: "Die dritte Option ist eine klassische Klausur-Falle – genau das Gegenteil ist richtig: strategische Annahmen SOLLTEN regelmäßig hinterfragt werden." },
-      { le: 'm3', q: "Welche drei Kriterien müssen Fähigkeiten nach Prahalad & Hamel (1990) erfüllen, um als 'Kernkompetenz' (Core Competence) zu gelten?", opts: [
-        "Zugang zu einer Vielzahl von Märkten ermöglichen, signifikant zum wahrgenommenen Kundennutzen beitragen, und für Wettbewerber schwer zu imitieren sein", "Ausschließlich kostengünstig in der Herstellung sein", "Nur für ein einziges Produkt nutzbar sein", "Leicht durch Wettbewerber kopierbar, aber trotzdem wertvoll sein"
-      ], correct: 0, explain: "Prahalad & Hamels Kernkompetenz-Konzept verlangt: (1) Zugang zu verschiedenen Märkten, (2) signifikanter Beitrag zum wahrgenommenen Kundennutzen des Endprodukts, (3) schwer imitierbar für Wettbewerber. Kernkompetenzen sind bereichsübergreifend nutzbar – im Gegensatz zu Fähigkeiten, die nur für ein einziges Produkt gelten." },
-    { le: 'm3', q: "Was versteht man unter 'Pfadabhängigkeit' (Path Dependency) als Isolationsmechanismus im ressourcenbasierten Ansatz?", opts: [
-        "Der Wert einer Ressource entsteht auch durch ihre einzigartige historische Entwicklung – ohne dieselbe (oft langwierige und kontextspezifische) Historie durchlaufen zu haben, können Wettbewerber die Ressource nicht identisch nachbilden", "Alle Ressourcen sind unabhängig von ihrer Entstehungsgeschichte jederzeit beliebig am Markt kaufbar", "Pfadabhängigkeit beschreibt ausschließlich die Reihenfolge von Kundenkontakten im Vertrieb", "Isolationsmechanismen betreffen nur rechtliche Patente, keine sonstigen Ressourcen"
-      ], correct: 0, explain: "Pfadabhängigkeit ist ein Isolationsmechanismus, der die Imitation erschwert: Manche Ressourcen/Fähigkeiten entstehen nur durch einen spezifischen, historisch gewachsenen Entwicklungspfad (z.B. jahrzehntelang aufgebautes Erfahrungswissen) – Wettbewerber können diesen Weg nicht einfach nachträglich 'einkaufen' oder in kurzer Zeit nachholen, was die Imperfect Imitability (das 'I' in VRIN) erklärt." },
-] },
-  m4: { label: 'Modul 4 · Positionierung', sub: 'McKinsey-/BCG-Matrix, generische Strategien, Red vs. Blue Ocean', questions: [
-    { le: 'm4', q: "In der BCG-Matrix befindet sich ein Geschäftsfeld mit hohem Marktwachstum, aber niedrigem relativem Marktanteil. Wie wird es genannt?", opts: [
-        "Fragezeichen", "Stern", "Melkkuh", "Armer Hund"
-      ], correct: 0, explain: "Hohes Wachstum + niedriger relativer Marktanteil = Fragezeichen (hoher Investitionsbedarf, unsichere Rentabilität). Stern = hoch/hoch, Melkkuh = niedrig/hoch, Armer Hund = niedrig/niedrig." },
-    { le: 'm4', q: "Welche Normstrategie ist für 'Melkkühe' (hoher relativer Marktanteil, niedriges Marktwachstum) typisch?", opts: [
-        "Abschöpfungsstrategie (Halten, hohe Rentabilität, niedriger Investitionsbedarf, stark positiver Cashflow)", "Investitionsstrategie mit sehr hohem Investitionsbedarf", "Desinvestitionsstrategie (Ernten/Veräußern)", "Selektionsstrategie mit unklarem Marktanteilsziel"
-      ], correct: 0, explain: "Melkkühe werden abgeschöpft: Marktanteil halten, hohe Rentabilität bei niedrigem Investitionsbedarf, stark positiver Netto-Cashflow – dieser wird oft zur Finanzierung von Fragezeichen/Sternen genutzt." },
-    { le: 'm4', q: "Welche Dimensionen bilden die McKinsey-Matrix?", opts: [
-        "Attraktivität der Branche (Außenansicht) und relativer Wettbewerbsvorteil (Innenansicht)", "Marktwachstum und relativer Marktanteil", "Reifegrad der Branche und Position des Geschäftsfelds", "Differenzierungsmöglichkeiten und Ausmaß des Wettbewerbsvorteils"
-      ], correct: 0, explain: "McKinsey-Matrix: Branchenattraktivität (MBV, externe Betrachtung) × Wettbewerbsvorteil (RBV, interne Betrachtung). Die zweite Antwortoption beschreibt die BCG-Matrix." },
-    { le: 'm4', q: "Welche Aussagen zu Porters generischen Strategien treffen zu? (mehrere richtig)", multi: true, opts: [
-        "Kostenführerschaft und Differenzierung können auf die gesamte Branche ODER auf ein spezifisches Segment (Fokus) bezogen werden", "Differenzierung zielt auf vom Kunden wahrgenommene Einzigartigkeit ab", "Kostenführerschaft und Differenzierung sind laut Porter beliebig gleichzeitig uneingeschränkt kombinierbar", "Kostenvorsprung ist der strategische Vorteil der Kostenführerschaft"
-      ], correct: [0,1,3], explain: "Porter (1998) sieht Kostenführerschaft und Differenzierung klassisch als Alternativen (mit Fokus als 3. Dimension) – uneingeschränkte gleichzeitige Verfolgung beider wird i.d.R. NICHT empfohlen (Gefahr des 'Stuck in the middle'). Blue-Ocean-Denken hinterfragt diese Trennung allerdings explizit." },
-    { le: 'm4', q: "Was unterscheidet Red Ocean von Blue Ocean Strategie hinsichtlich des Nachfragemusters?", opts: [
-        "Red Ocean nutzt bestehende Nachfrage, Blue Ocean schafft und nutzt neue Nachfrage", "Beide schaffen ausschließlich neue Nachfrage", "Red Ocean schafft neue Nachfrage, Blue Ocean nutzt nur bestehende", "Nachfragemuster spielen bei beiden keine Rolle"
-      ], correct: 0, explain: "Red Ocean: bestehende Nachfrage nutzen, Wettbewerb gewinnen. Blue Ocean: neue Nachfrage schaffen und nutzen, Wettbewerb irrelevant machen (Kim & Mauborgne 2015)." },
-    { le: 'm4', q: "Ordne die 4 Aktionen des Blue-Ocean-Werkzeugkastens ihrer jeweiligen Leitfrage zu.", type: 'match', pairs: [
-        { term: 'Eliminieren', def: 'Welche selbstverständlichen Attribute sollten gestrichen werden?' },
-        { term: 'Reduzieren', def: 'Welche Attribute sollten deutlich unter den Branchenstandard gesenkt werden?' },
-        { term: 'Steigern', def: 'Welche Attribute sollten deutlich über den Branchenstandard angehoben werden?' },
-        { term: 'Kreieren', def: 'Welche Attribute hat die Branche noch nie angeboten?' },
-      ], explain: "Das Eliminieren-Reduzieren-Steigern-Kreieren-Raster (Kim & Mauborgne 2015) dient der systematischen Entwicklung einer neuen Wertkurve." },
-    { le: 'm4', q: "Welcher der 4 Pfade zur Wertinnovation beschreibt die Betrachtung anderer strategischer Gruppen innerhalb derselben Branche (z.B. Fitnessclub vs. Heimtrainingsvideo)?", opts: [
-        "Pfad 2", "Pfad 1", "Pfad 3", "Pfad 4"
-      ], correct: 0, explain: "Pfad 1: andere Branchen. Pfad 2: andere strategische Gruppen (z.B. Curves vs. traditionelle Fitnessclubs). Pfad 3: ergänzende Produkte/Dienstleistungen. Pfad 4: andere Käufergruppen." },
-    { le: 'm4', q: "Welche 3 Tests müssen Diversifizierungsoptionen bestehen (Grant 2015)?", opts: [
-        "Attraktivitätstest, Eintrittskostentest, Besserstellungstest", "Kostentest, Zeittest, Rentabilitätstest", "Marktanteilstest, Wachstumstest, Portfoliotest", "Fit-Test, Risikotest, Synergietest"
-      ], correct: 0, explain: "Die 3 klassischen Diversifizierungstests: Attraktivitätstest (Branche attraktiv?), Eintrittskostentest (Kosten < zukünftige Gewinne?), Besserstellungstest (wechselseitiger Wettbewerbsvorteil?)." },
-    { le: 'm4', q: "Welche Aussage zu den Netto-Cashflow-Eigenschaften der BCG-Matrix ist korrekt?", opts: [
-        "Melkkühe haben einen stark positiven, arme Hunde einen negativen/neutralen Netto-Cashflow", "Alle 4 Felder haben den gleichen Netto-Cashflow", "Nur Sterne haben einen positiven Netto-Cashflow", "Fragezeichen haben den höchsten Netto-Cashflow aller Felder"
-      ], correct: 0, explain: "Melkkühe: stark positiver Cashflow (kein hoher Investitionsbedarf). Arme Hunde: negativ/neutral. Weder Sterne noch Fragezeichen haben einen sehr hohen positiven Cashflow, da beide hohe Investitionen erfordern." },
-    { le: 'm4', q: "Ein Geschäftsfeld hat hohen Wettbewerbsvorteil UND hohe Branchenattraktivität in der McKinsey-Matrix. Welche Normstrategie ist typisch?", opts: [
-        "Investition und Wachstum", "Ernten/Veräußern", "Selektives Wachstum", "Desinvestition"
-      ], correct: 0, explain: "Bei hoher Attraktivität UND hohem Wettbewerbsvorteil lautet die klassische Normstrategie 'Investition und Wachstum' (Dominanz aufbauen, Investition maximieren)." },
-    { le: 'm4', q: "Welche Aussage fasst die Kernerkenntnisse der Cirque-du-Soleil-Fallstudie korrekt zusammen?", opts: [
-        "Branchenstrukturen sind nicht exogen, und blaue Ozeane entstehen oft durch gleichzeitige Kostensenkung UND Nutzensteigerung", "Branchenstrukturen sind vollständig exogen vorgegeben und unveränderbar", "Blaue Ozeane sind leicht zu finden und zu verteidigen", "Kostenführerschaft ist bei Cirque du Soleil irrelevant für den Erfolg"
-      ], correct: 0, explain: "Cirque du Soleil zeigt: Organisationen können Branchenstrukturen aktiv prägen, und Wertinnovation entsteht durch gleichzeitige Kostensenkung und Nutzensteigerung. Blaue Ozeane sind aber schwer zu entdecken UND zu verteidigen." },
-      { le: 'm4', q: "In der BCG-Matrix befindet sich ein Geschäftsfeld mit hohem Marktwachstum UND hohem relativem Marktanteil. Wie wird dieses Feld genannt, und welche Cashflow-Eigenschaft hat es typischerweise?", opts: [
-        "'Stars' – erwirtschaften hohe Einnahmen, benötigen aber auch hohe Investitionen zur Finanzierung des Wachstums (Cashflow tendenziell ausgeglichen)", "'Poor Dogs' – erwirtschaften durchgängig negative Cashflows", "'Melkkühe' – erfordern keinerlei weitere Investitionen", "'Question Marks' – erwirtschaften garantiert hohe Netto-Cashflows"
-      ], correct: 0, explain: "'Stars' (hohes Wachstum + hoher relativer Marktanteil) erwirtschaften zwar hohe Einnahmen aus ihrer starken Marktposition, benötigen aber gleichzeitig hohe Investitionen, um mit dem Marktwachstum Schritt zu halten – der Netto-Cashflow ist daher oft nur ausgeglichen, nicht stark positiv (im Gegensatz zu 'Melkkühen', die bei niedrigem Wachstum kaum reinvestieren müssen)." },
-    { le: 'm4', q: "Was unterscheidet verwandte (related) von unverwandter (unrelated/konglomerater) Diversifikation?", opts: [
-        "Bei verwandter Diversifikation bestehen Verwandtschafts-/Synergiepotenziale zwischen dem neuen und dem bestehenden Geschäft (z.B. gemeinsame Technologien, Kunden, Vertriebskanäle); bei unverwandter Diversifikation fehlen solche Bezüge weitgehend", "Verwandte Diversifikation bezieht sich ausschließlich auf geografische Expansion", "Unverwandte Diversifikation ist per Definition immer erfolgreicher als verwandte", "Beide Begriffe beschreiben denselben Sachverhalt"
-      ], correct: 0, explain: "Verwandte (related) Diversifikation nutzt Synergiepotenziale zum bestehenden Geschäft (geteilte Ressourcen, Kompetenzen, Kunden). Unverwandte (unrelated/konglomerate) Diversifikation erschließt Geschäftsfelder ohne solche inhaltlichen Bezüge, oft primär zur Risikostreuung – meist mit geringerem Synergiepotenzial, aber auch geringerer Klumpenrisiko-Korrelation." },
-] },
-  m5: { label: 'Modul 5 · Strategische Allianzen', sub: 'Allianztypologien, Nutzen & Scheitern, Ökosysteme, offene Innovation', questions: [
-    { le: 'm5', q: "Wie definiert Gulati (1998) strategische Allianzen?", opts: [
-        "Formale, freiwillige Vereinbarungen zwischen Organisationen zum Austausch bzw. zur gemeinsamen Entwicklung von Produkten, Technologien oder Dienstleistungen", "Ausschließlich feindliche Übernahmen zwischen Wettbewerbern", "Informelle, unverbindliche Absprachen ohne Vertragscharakter", "Fusionen, bei denen ein Partner die vollständige Unabhängigkeit verliert"
-      ], correct: 0, explain: "Gulati (1998, S. 293): formale, freiwillige Vereinbarungen zum Ressourcenaustausch/gemeinsamer Entwicklung – Partner bleiben dabei rechtlich unabhängig, im Gegensatz zu einer Fusion." },
-    { le: 'm5', q: "Ordne die Allianztypen ihrer Definition zu.", type: 'match', pairs: [
-        { term: 'Equity-Joint-Venture', def: 'Partner gründen gemeinsam eine neue rechtlich unabhängige Einheit' },
-        { term: 'Non-Equity-Allianz', def: 'Rein vertragsbasiert, keine Kapitalbeteiligung' },
-        { term: 'Vertikale Allianz', def: 'Partner auf verschiedenen Stufen der Wertschöpfungskette' },
-        { term: 'Horizontale Allianz', def: 'Partner sind Konkurrenten in derselben Branche' },
-      ], explain: "Allianzen lassen sich nach Kapitalbeteiligung (Equity-JV/Equity-Allianz/Non-Equity) UND nach Marktposition (vertikal/horizontal/lateral) klassifizieren." },
-    { le: 'm5', q: "Welche der genannten Kategorien gehören zu den Gründen für das Scheitern strategischer Allianzen (De Rond 2007)? (mehrere richtig)", multi: true, opts: [
-        "Umwelt (z.B. strategische Abnutzung durch veränderte Kundenpräferenzen)", "Struktur (z.B. unzureichende vertragliche Flexibilität)", "Verhalten (z.B. Misstrauen und interne Konflikte)", "Reputationsverlust ist die einzig relevante Kategorie"
-      ], correct: [0,1,2], explain: "De Rond (2007) unterscheidet 4 Kategorien: Umwelt, Strategie, Struktur, Verhalten. Es gibt keine einzige 'wichtigste' Kategorie – Reputationsverlust ist kein eigener der 4 Bereiche." },
-    { le: 'm5', q: "Die Tesla-Panasonic-Gigafactory-Allianz zur Batterieproduktion wird im Kurs als Beispiel für welchen Allianztyp (strategischer Fokus) diskutiert?", opts: [
-        "Exploitative Allianz (Fokus auf Produktion bestehender Technologie)", "Rein explorative Allianz ohne jeden Produktionsbezug", "Horizontale Allianz zwischen direkten Wettbewerbern", "Feindliche Übernahme"
-      ], correct: 0, explain: "Die Gigafactory-Allianz mit Panasonic hat einen exploitativen Fokus (Bau & Betrieb der Produktion, Start 2014) – im Gegensatz z.B. zur explorativen Allianz mit Alphabet/Google (autonomes Fahren, F&E-Fokus)." },
-    { le: 'm5', q: "Nenne die 3 Ökosystem-Prozesse nach Dhanaraj & Parkhe (2006).", opts: [
-        "Steuerung der Wissensmobilität, Steuerung der Wert(ab)schöpfung, Steuerung der Ökosystemstabilität", "Rekrutierung, Schulung, Vergütung", "Planung, Organisation, Kontrolle", "Beschaffung, Produktion, Distribution"
-      ], correct: 0, explain: "Die 3 Prozesse eines Orchestrators: Wissensmobilität steuern (Wissen dorthin bringen, wo es gebraucht wird), Wert(ab)schöpfung steuern (faire Verteilung), Ökosystemstabilität steuern (zentrale Partner halten)." },
-    { le: 'm5', q: "Welche Aussagen zu offener Innovation (Chesbrough 2003) treffen zu? (mehrere richtig)", multi: true, opts: [
-        "Organisationen müssen Forschung nicht zwingend selbst betreiben, um davon zu profitieren", "Auch außerhalb der eigenen Organisation arbeiten viele kluge Köpfe", "Geistiges Eigentum darf niemals mit externen Partnern geteilt werden", "Ein überlegenes Geschäftsmodell ist wichtiger als reines 'Erster-am-Markt-Sein'"
-      ], correct: [0,1,3], explain: "Prinzipien offener Innovation (Chesbrough 2003): externe Expertise nutzen, Forschung muss nicht selbst betrieben werden, geistiges Eigentum KANN geteilt werden wenn es das Geschäftsmodell unterstützt, überlegenes Geschäftsmodell schlägt reine Erstmarktposition." },
-    { le: 'm5', q: "Welcher der 4 Typen offener Innovation beschreibt die Lizenzierung externer Technologien gegen Bezahlung?", opts: [
-        "Akquirieren (monetär, eingehend)", "Beschaffen (nicht-monetär, eingehend)", "Teilen (nicht-monetär, ausgehend)", "Veräußern (monetär, ausgehend)"
-      ], correct: 0, explain: "Akquirieren = monetär + eingehend (z.B. Lizenznahme externer Technologie, Kauf von Know-how). Beschaffen = nicht-monetär eingehend. Teilen = nicht-monetär ausgehend. Veräußern = monetär ausgehend (Dahlander & Gann 2010)." },
-    { le: 'm5', q: "Welche Perspektive beschreibt Organisationen als in ihr Umfeld eingebettet statt isoliert agierend?", opts: [
-        "Netzwerkzentrierte Perspektive", "Organisationszentrierte Perspektive", "Interorganisationelle Perspektive", "Infrastrukturzentrierte Perspektive"
-      ], correct: 0, explain: "Die netzwerkzentrierte Perspektive versteht Organisationen als in ihr Umfeld/Netzwerk eingebettet – zentral für das Verständnis von Ökosystemen." },
-    { le: 'm5', q: "Wie ist ein Ökosystem definiert?", opts: [
-        "Gemeinsame Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden", "Eine rein vertikale Lieferkette ohne gemeinsames Wertversprechen", "Ein einzelnes Unternehmen mit mehreren Tochtergesellschaften", "Ein Kartell zur Preisabsprache"
-      ], correct: 0, explain: "Ein Ökosystem ergibt sich aus der gemeinsamen Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden." },
-    { le: 'm5', q: "Ordne die 3 Dimensionen der Ökosystemzusammensetzung (Dhanaraj & Parkhe 2006) ihren Beispielmerkmalen zu.", type: 'match', pairs: [
-        { term: 'Mitgliedschaft', def: 'Größe, Vielfalt' },
-        { term: 'Struktur', def: 'Dichte, Autonomie' },
-        { term: 'Position', def: 'Zentralität, Status' },
-      ], explain: "Die 3 Dimensionen der Ökosystemzusammensetzung nach Dhanaraj & Parkhe (2006)." },
-    { le: 'm5', q: "Welche der folgenden gehören zu den 6 Facetten, wie sich das Scheitern einer Allianz MANIFESTIEREN kann? (mehrere richtig)", multi: true, opts: [
-        "Ziele wurden nicht erreicht", "Ungleiche Nutzenverteilung zwischen den Partnern", "Unzureichendes Top-Management-Engagement", "Erwartungen wurden nicht erfüllt"
-      ], correct: [0,1,3], explain: "'Unzureichendes Top-Management-Engagement' ist eine URSACHE (Kategorie 'Verhalten' nach De Rond), keine der 6 Facetten der Manifestation des Scheiterns selbst." },
-    { le: 'm5', q: "Nenne die 4 Spannungsfelder, die in Allianzen/Ökosystemen ausbalanciert werden müssen.", opts: [
-        "Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen", "Profit vs. Verantwortung, Plan vs. Umsetzung, Risiko vs. Sicherheit, Wachstum vs. Stabilität", "Zentralisierung vs. Dezentralisierung, Innovation vs. Tradition, Global vs. Lokal, Kurzfristig vs. Langfristig", "Formalisierung vs. Flexibilität, Autonomie vs. Kooperation, Wettbewerb vs. Vertrauen, Kontrolle vs. Emergenz"
-      ], correct: 0, explain: "Die 4 zentralen Spannungsfelder in Allianzen/Ökosystemen: Wettbewerb vs. Kooperation, Kontrolle vs. Autonomie, Design vs. Emergenz, Wachsamkeit vs. Vertrauen." },
-      { le: 'm5', q: "Was unterscheidet eine 'Equity Alliance' von einer 'Non-Equity Alliance'?", opts: [
-        "Bei einer Equity Alliance ist eine wechselseitige oder einseitige Kapitalbeteiligung der Partner (bis hin zum Joint Venture) Teil der Vereinbarung, bei einer Non-Equity Alliance basiert die Zusammenarbeit rein auf vertraglicher Basis ohne Kapitalverflechtung", "Equity Alliances sind grundsätzlich kurzfristiger als Non-Equity Alliances", "Non-Equity Alliances beinhalten immer eine vollständige Fusion der Partnerunternehmen", "Es gibt keinen inhaltlichen Unterschied zwischen beiden Formen"
-      ], correct: 0, explain: "Equity Alliances beinhalten eine Kapitalbeteiligung (z.B. Minderheitsbeteiligung, Joint Venture) als Bindungs- und Absicherungsmechanismus. Non-Equity Alliances basieren rein auf vertraglichen Vereinbarungen (z.B. Lizenz-, Liefer- oder Kooperationsverträge) ohne gegenseitige Kapitalbindung – meist flexibler, aber mit schwächerem Commitment-Signal." },
-    { le: 'm5', q: "Welche zwei grundlegenden Governance-Mechanismen zur Steuerung von Allianzen werden einander gegenübergestellt?", opts: [
-        "Vertragliche Steuerung (formale, explizite Regeln und Sanktionsmechanismen) vs. vertrauensbasierte Steuerung (informelle Normen, Reputationsmechanismen, relationale Bindung)", "Ausschließlich staatliche Regulierung vs. gar keine Steuerung", "Nur Preisverhandlung vs. nur Mengenverhandlung", "Kapitalbeteiligung vs. Personalaustausch als einzige Optionen"
-      ], correct: 0, explain: "In Allianzen konkurrieren/ergänzen sich zwei Governance-Mechanismen: formale VERTRAGLICHE Steuerung (explizite Regeln, Kontroll- und Sanktionsrechte) und VERTRAUENSBASIERTE Steuerung (informelle Normen, Reputation, relationale Bindung). In der Praxis wird meist eine Kombination genutzt, wobei Vertrauen tendenziell Transaktionskosten für Verhandlung/Kontrolle senken kann." },
-] },
-  m6: { label: 'Modul 6 · Soziale Verantwortung', sub: 'CSR-Perspektiven, Triple Bottom Line, Ethiktheorien, Sadhu-Fall', questions: [
-    { le: 'm6', q: "Ordne Carrolls (1991) 4 CSR-Verantwortungsebenen ihrem jeweiligen Motto zu.", type: 'match', pairs: [
-        { term: 'Ökonomische Verantwortung', def: '"Make profit"' },
-        { term: 'Rechtliche Verantwortung', def: '"Obey the law"' },
-        { term: 'Moralische Verantwortung', def: '"Be ethical"' },
-        { term: 'Philanthropische Verantwortung', def: '"Be a good corporate citizen"' },
-      ], explain: "Carrolls CSR-Pyramide (von unten/gefordert nach oben/erwünscht): Ökonomisch → Rechtlich → Moralisch → Philanthropisch." },
-    { le: 'm6', q: "Welche Position vertritt Milton Friedman zur Verantwortung von Unternehmen?", opts: [
-        "Die einzige Verantwortung von Unternehmensführern ist es, im Rahmen der Gesetze Gewinn für die Aktionäre zu maximieren", "Unternehmen tragen primär Verantwortung gegenüber allen Stakeholdern gleichermaßen", "Unternehmen sollten Profitabilität stets der sozialen Verantwortung unterordnen", "Nur der Staat trägt wirtschaftliche Verantwortung, Unternehmen keine"
-      ], correct: 0, explain: "Friedmans klassische Position (Shareholder View): Verantwortung können nur Individuen haben; Unternehmensführer sollen legal möglichst viel Gewinn für die Aktionäre erwirtschaften." },
-    { le: 'm6', q: "Welche 3 ethischen Perspektiven werden zur moralischen Bewertung von Handlungen herangezogen?", opts: [
-        "Utilitarismus, Pflichtethik, Gerechtigkeitsethik", "Marktethik, Wettbewerbsethik, Portfolioethik", "Shareholder-Ethik, Stakeholder-Ethik, Konsumentenethik", "Kostenethik, Nutzenethik, Risikoethik"
-      ], correct: 0, explain: "Die 3 klassischen Ethikperspektiven: Utilitarismus/Nutzenethik (Bentham/Mill), Pflichtethik/Deontologie (Kant), Gerechtigkeitsethik (Rawls)." },
-    { le: 'm6', q: "Welche Aussagen zum Utilitarismus treffen zu? (mehrere richtig)", multi: true, opts: [
-        "Eine Handlung ist moralisch richtig, wenn sie für die größte Anzahl Betroffener den größten Nutzen bringt", "Der Fokus liegt auf den Handlungsfolgen (teleologische Ethik)", "Die Quantifizierung von Kosten/Nutzen ist unproblematisch und eine Limitation existiert nicht", "Jeremy Bentham und John Stuart Mill gelten als Vordenker"
-      ], correct: [0,1,3], explain: "Utilitarismus fokussiert auf Handlungsfolgen und das größte Wohlergehen der größten Zahl (Bentham, Mill). Limitationen bestehen SEHR WOHL: Quantifizierung von Kosten/Nutzen ist schwierig, ebenso die gerechte Verteilung des Nutzens (Minderheitenproblem)." },
-    { le: 'm6', q: "Wie lautet Kants 'Selbstzweckformel'?", opts: [
-        "\"Handle so, dass du die Menschheit... jederzeit zugleich als Zweck, niemals bloß als Mittel brauchest.\"", "\"Handle nur nach derjenigen Maxime, durch die du zugleich wollen kannst, dass sie ein allgemeines Gesetz werde.\"", "\"Maximiere den Nutzen für die größte Anzahl Betroffener.\"", "\"Handle so, dass die Wirkungen deiner Handlung verträglich sind mit der Permanenz menschlichen Lebens.\""
-      ], correct: 0, explain: "Die Selbstzweckformel betont, Menschen niemals bloß als Mittel zum Zweck zu behandeln. Die 2. Antwort ist Kants Universalisierungsformel (Kategorischer Imperativ), die 4. ist Hans Jonas' ökologischer Imperativ." },
-    { le: 'm6', q: "Im Sadhu-Fallbeispiel (Business-Ethik-Parabel im Himalaya) geht es zentral um die Frage, wie...", opts: [
-        "individuelle Verantwortung in einer Gruppensituation ohne klare organisationale Struktur wahrgenommen wird, wenn schnelles ethisches Handeln gefordert ist", "man in einer Aktiengesellschaft die Dividende maximiert", "die BCG-Matrix auf Bergsteiger-Expeditionen angewendet wird", "Porters 5 Kräfte in der Tourismusbranche wirken"
-      ], correct: 0, explain: "Der Sadhu-Fall (eine Gruppe von Bergsteigern trifft im Himalaya auf einen sterbenden Sadhu) thematisiert, wie individuelle moralische Verantwortung unter Zeitdruck und ohne klare Organisationsstrukturen oft verwässert – ein Kernbeispiel für Fragen der Wirtschaftsethik in der Praxis." },
-    { le: 'm6', q: "Was unterscheidet die Shareholder View von der Stakeholder View hinsichtlich des Erfolgsmaßstabs?", opts: [
-        "Shareholder View: Aktienkurs und Dividende; Stakeholder View: Zufriedenheit der Stakeholder", "Beide nutzen ausschließlich den Aktienkurs als Erfolgsmaßstab", "Shareholder View nutzt Stakeholder-Zufriedenheit, Stakeholder View den Aktienkurs", "Erfolgsmaßstäbe spielen in beiden Sichtweisen keine Rolle"
-      ], correct: 0, explain: "De Wit & Meyer (2014): Shareholder View misst Erfolg über Aktienkurs/Dividende, Stakeholder View über die Zufriedenheit aller Anspruchsgruppen." },
-    { le: 'm6', q: "Nenne die ersten beiden der 6 Schritte zur moralischen Bewertung von Handlungsalternativen (in der richtigen Reihenfolge).", opts: [
-        "1) Ist die Handlung legal? 2) Stimmt sie mit unseren Werten überein?", "1) Wie würde es in der Zeitung aussehen? 2) Ist sie legal?", "1) Fühlen wir uns schlecht dabei? 2) Ist sie profitabel?", "1) Maximiert sie den Shareholder Value? 2) Ist sie legal?"
-      ], correct: 0, explain: "Die 6-Schritte-Prüfung beginnt mit der Legalitätsfrage (Schritt 1), gefolgt von der Werteübereinstimmung (Schritt 2) – erst danach folgen Gefühls-, Öffentlichkeits- und Gewissensprüfung." },
-    { le: 'm6', q: "Welche 4 Perspektiven auf CSR wurden im Kurs unterschieden?", opts: [
-        "Management-, Compliance-, Philanthropische, Business-Case-Perspektive", "Shareholder-, Stakeholder-, Compliance-, Marketing-Perspektive", "Ökonomische, Rechtliche, Moralische, Philanthropische Perspektive (Carroll)", "Interne, externe, globale, lokale Perspektive"
-      ], correct: 0, explain: "Achtung Verwechslungsgefahr: die 4 CSR-PERSPEKTIVEN (Management/Compliance/Philanthropisch/Business Case) sind ein anderes Framework als Carrolls 4 CSR-VERANTWORTUNGSEBENEN (ökonomisch/rechtlich/moralisch/philanthropisch, Antwort C)." },
-    { le: 'm6', q: "Ein Unternehmen betrachtet CSR primär als Mittel, um langfristige wirtschaftliche Interessen zu sichern. Welche CSR-Perspektive liegt vor?", opts: [
-        "Business-Case-Perspektive", "Compliance-Perspektive", "Philanthropische Perspektive", "Management-Perspektive"
-      ], correct: 0, explain: "Die Business-Case-Perspektive versteht CSR als Mittel zur Erreichung der langfristigen wirtschaftlichen Interessen der Organisation." },
-      { le: 'm6', q: "Was unterscheidet eine deontologische (pflichtenethische) von einer konsequentialistischen (folgenethischen) Perspektive der Ethik?", opts: [
-        "Die deontologische Perspektive bewertet Handlungen nach ihrer Übereinstimmung mit moralischen Pflichten/Regeln (unabhängig von den Konsequenzen), die konsequentialistische Perspektive bewertet Handlungen ausschließlich nach ihren Folgen/Ergebnissen", "Beide Perspektiven sind bedeutungsgleich", "Die deontologische Perspektive berücksichtigt ausschließlich wirtschaftliche Konsequenzen", "Konsequentialismus lehnt jede Bewertung von Handlungen grundsätzlich ab"
-      ], correct: 0, explain: "Deontologische Ethik (z.B. Kants Pflichtenethik) bewertet, ob eine Handlung bestimmten moralischen Regeln/Pflichten entspricht – unabhängig vom Ergebnis. Konsequentialistische Ethik (z.B. Utilitarismus) bewertet Handlungen ausschließlich anhand ihrer Folgen (z.B. Nutzenmaximierung für die Allgemeinheit)." },
-    { le: 'm6', q: "Was beschreibt das Konzept der 'Triple Bottom Line' im Kontext unternehmerischer Verantwortung?", opts: [
-        "Die gleichzeitige Berücksichtigung von ökonomischem Erfolg (Profit), ökologischer Verantwortung (Planet) und sozialer Verantwortung (People) als Erfolgsmaßstäbe eines Unternehmens", "Die ausschließliche Fokussierung auf den finanziellen Gewinn als einzigen relevanten Erfolgsmaßstab", "Ein rein rechtliches Konzept ohne Bezug zu Nachhaltigkeit", "Ein Maß für die Anzahl der Vorstandsmitglieder eines Unternehmens"
-      ], correct: 0, explain: "Die Triple Bottom Line (People, Planet, Profit) erweitert den klassischen, rein finanziellen Erfolgsmaßstab um eine soziale und eine ökologische Dimension – ein zentrales Konzept, um CSR/Nachhaltigkeit systematisch neben dem wirtschaftlichen Erfolg zu verankern." },
-] },
-};
-const AWI_CALC_GENERATORS_STRAT = {};
-const AWI_FORMULA_QUIZ_STRAT = {
-  m1: { label: 'Rahmenwerke · Strategieprozesse', sub: 'Mintzberg 4 Ps, Strategiehierarchie, Strategieprozessmodell, Trugschlüsse', questions: [
-    { le: 'm1', q: "Rahmenwerk 1:1 (Mintzbergs '4 Ps'): Wie lauten alle 4 Elemente in der korrekten Reihenfolge Plan-Pattern-Position-Perspective?", opts: [
-        "Plan, Verhaltensmuster (Pattern), Position, Perspektive", "Plan, Position, Perspektive, Verhaltensmuster", "Position, Plan, Perspektive, Verhaltensmuster", "Perspektive, Position, Plan, Verhaltensmuster"
-      ], correct: 0, explain: "Mintzbergs 4 Ps: Plan (Wie?), Verhaltensmuster/Pattern (Was?), Position (Wo?), Perspektive (Wohin?)." },
-    { le: 'm1', q: "Rahmenwerk 1:1 (3-Ebenen-Strategiehierarchie, Wheelen & Hunger 2008): Wie lauten alle 3 Ebenen von oben nach unten?", opts: [
-        "Unternehmensstrategie, Geschäftsfeldstrategie, (Cross-)Funktionale Strategie", "Geschäftsfeldstrategie, Unternehmensstrategie, Funktionale Strategie", "Funktionale Strategie, Geschäftsfeldstrategie, Unternehmensstrategie", "Unternehmensstrategie, Funktionale Strategie, Geschäftsfeldstrategie"
-      ], correct: 0, explain: "Von oben nach unten: Unternehmensstrategie (Corporate) → Geschäftsfeldstrategie (Business) → (Cross-)Funktionale Strategie (Functional)." },
-    { le: 'm1', q: "Rahmenwerk 1:1 (dominantes lineares Strategieprozessmodell, Kaplan & Norton 2008): Wie lauten alle 6 Schritte in Reihenfolge?", opts: [
-        "Mission & Vision → Langfristige Ziele → Strategische Analyse → Strategieformulierung → Strategieumsetzung → Strategiebewertung", "Strategische Analyse → Mission & Vision → Strategieformulierung → Langfristige Ziele → Strategieumsetzung → Strategiebewertung", "Strategieformulierung → Strategieumsetzung → Mission & Vision → Langfristige Ziele → Strategische Analyse → Strategiebewertung", "Strategiebewertung → Strategieumsetzung → Strategieformulierung → Strategische Analyse → Langfristige Ziele → Mission & Vision"
-      ], correct: 0, explain: "Linearer Prozess: Mission&Vision → Langfristige Ziele → Strategische Analyse (extern+intern) → Strategieformulierung → Strategieumsetzung → Strategiebewertung." },
-    { le: 'm1', q: "Rahmenwerk 1:1 (Mintzbergs 3 Trugschlüsse, 2005): Wie lauten alle 3 exakt?", opts: [
-        "Vorhersage-Trugschluss, Entkopplungs-Trugschluss, Formalisierungs-Trugschluss", "Vorhersage-Trugschluss, Positionierungs-Trugschluss, Kooperations-Trugschluss", "Formalisierungs-Trugschluss, Diversifizierungs-Trugschluss, Entkopplungs-Trugschluss", "Entkopplungs-Trugschluss, Wettbewerbs-Trugschluss, Vorhersage-Trugschluss"
-      ], correct: 0, explain: "Mintzbergs 3 Trugschlüsse gegen das lineare Modell: Vorhersage-, Entkopplungs- und Formalisierungs-Trugschluss." },
-  ] },
-  m2: { label: 'Rahmenwerke · Branchenstrukturen', sub: 'SCP-Paradigma, Porters 5(+1) Kräfte, Phasen der Branchenanalyse', questions: [
-    { le: 'm2', q: "Rahmenwerk 1:1 (SCP-Paradigma): Wie lautet die vollständige Wirkkette?", opts: [
-        "Structure (Branchenstruktur) → Conduct (Verhalten) → Performance (Erfolg)", "Performance → Conduct → Structure", "Conduct → Structure → Performance", "Structure → Performance → Conduct"
-      ], correct: 0, explain: "SCP-Paradigma (Porter 2008): Industry Structure → Firm Conduct → Firm Performance." },
-    { le: 'm2', q: "Rahmenwerk 1:1 (Porters 5+1 Wettbewerbskräfte): Wie lauten alle 6 Kräfte inkl. der erweiternden 'sechsten Kraft'?", opts: [
-        "Rivalität, neue Marktteilnehmer, Lieferantenmacht, Käufermacht, Substitute, Verhandlungsmacht der Komplementoren", "Rivalität, neue Marktteilnehmer, Lieferantenmacht, Käufermacht, Substitute, Regulierung", "Rivalität, Substitute, Käufermacht, Marktwachstum, Komplementoren, Lieferantenmacht", "Neue Marktteilnehmer, Substitute, Komplementoren, Regulierung, Rivalität, Innovation"
-      ], correct: 0, explain: "Die 5 klassischen Kräfte plus die 6. erweiternde Kraft: Verhandlungsmacht der Komplementoren." },
-    { le: 'm2', q: "Rahmenwerk 1:1 (5 Phasen der Branchenanalyse, Grant 2015): Wie lauten alle 5 Phasen in Reihenfolge?", opts: [
-        "Branchendefinition, Teilnehmeridentifikation, Strukturelle Analyse, Dynamische Analyse, Maßnahmenauswahl", "Teilnehmeridentifikation, Branchendefinition, Dynamische Analyse, Strukturelle Analyse, Maßnahmenauswahl", "Strukturelle Analyse, Dynamische Analyse, Branchendefinition, Teilnehmeridentifikation, Maßnahmenauswahl", "Maßnahmenauswahl, Branchendefinition, Strukturelle Analyse, Teilnehmeridentifikation, Dynamische Analyse"
-      ], correct: 0, explain: "5-Phasen-Prozess: Branchendefinition → Teilnehmeridentifikation → Strukturelle Analyse → Dynamische Analyse → Maßnahmenauswahl." },
-    { le: 'm2', q: "Rahmenwerk 1:1 (3 Schritte der Profit-Pool-Analyse): Wie lauten alle 3 Schritte in Reihenfolge?", opts: [
-        "Profit-Pool definieren, Größe der Pools schätzen, Profit-Pool aufschlüsseln", "Größe schätzen, Profit-Pool definieren, aufschlüsseln", "Profit-Pool aufschlüsseln, definieren, Größe schätzen", "Definieren, aufschlüsseln, schätzen"
-      ], correct: 0, explain: "Profit-Pool-Analyse: 1) definieren, 2) Größe schätzen, 3) aufschlüsseln nach wertschöpfender Aktivität." },
-  ] },
-  m3: { label: 'Rahmenwerke · Interne Ressourcen', sub: 'VRIN/VRIO, Wertschöpfungskette, dynamische Fähigkeiten', questions: [
-    { le: 'm3', q: "Rahmenwerk 1:1 (VRIN-Kriterien, Barney 1991): Wie lauten alle 4 Kriterien exakt?", opts: [
-        "Valuable, Rare, Imperfectly Imitable, Non-Substitutable", "Valuable, Rare, Innovative, Non-Substitutable", "Valuable, Reliable, Imperfectly Imitable, Necessary", "Visible, Rare, Imitable, Non-Substitutable"
-      ], correct: 0, explain: "VRIN: Valuable, Rare, Imperfectly Imitable, Non-Substitutable (Barney 1991)." },
-    { le: 'm3', q: "Rahmenwerk 1:1 (VRIO-Variante): Welches Kriterium ersetzt bei VRIO das 'Non-Substitutable' von VRIN?", opts: [
-        "Organized (in der Organisation genutzt)", "Original (einzigartig entstanden)", "Operational (operativ einsetzbar)", "Owned (im Eigentum der Organisation)"
-      ], correct: 0, explain: "VRIO = Valuable, Rare, Imperfectly Imitable, Organized (statt Non-Substitutable bei VRIN)." },
-    { le: 'm3', q: "Rahmenwerk 1:1 (Porters Wertschöpfungskette, primäre Aktivitäten): Wie lauten alle 5 primären Aktivitäten in Reihenfolge?", opts: [
-        "Eingehende Logistik, Betrieb, Ausgehende Logistik, Marketing & Verkauf, After-Sales-Service", "Beschaffung, Betrieb, Marketing & Verkauf, Ausgehende Logistik, Eingehende Logistik", "Betrieb, Eingehende Logistik, After-Sales-Service, Marketing & Verkauf, Ausgehende Logistik", "Marketing & Verkauf, Eingehende Logistik, Betrieb, Beschaffung, Ausgehende Logistik"
-      ], correct: 0, explain: "Primäre Aktivitäten in Reihenfolge des Wertschöpfungsflusses: Eingehende Logistik → Betrieb → Ausgehende Logistik → Marketing&Verkauf → After-Sales-Service." },
-    { le: 'm3', q: "Rahmenwerk 1:1 (Porters Wertschöpfungskette, unterstützende Aktivitäten): Wie lauten alle 4 unterstützenden Aktivitäten?", opts: [
-        "Organisationale Infrastruktur, Personalmanagement, Technologie-Entwicklung, Beschaffung", "Organisationale Infrastruktur, Marketing, Technologie-Entwicklung, Vertrieb", "Personalmanagement, Beschaffung, Betrieb, Logistik", "Technologie-Entwicklung, Beschaffung, Marketing & Verkauf, After-Sales-Service"
-      ], correct: 0, explain: "Unterstützende Aktivitäten: Organisationale Infrastruktur, Personalmanagement, Technologie-Entwicklung, Beschaffung." },
-    { le: 'm3', q: "Rahmenwerk 1:1 (dynamische Fähigkeiten, Teece 2007): Wie lauten alle 3 Bestandteile exakt?", opts: [
-        "Erkennen (Sensing), Ergreifen (Seizing), Rekonfigurieren", "Erkennen, Planen, Kontrollieren", "Analysieren, Ergreifen, Bewerten", "Sensing, Planning, Reconfiguring"
-      ], correct: 0, explain: "3 Bestandteile dynamischer Fähigkeiten: Erkennen (Sensing), Ergreifen (Seizing), Rekonfigurieren (Reconfiguring)." },
-  ] },
-  m4: { label: 'Rahmenwerke · Positionierung', sub: 'Generische Strategien, BCG-Felder, Blue-Ocean-Werkzeugkasten', questions: [
-    { le: 'm4', q: "Rahmenwerk 1:1 (Porters 3 generische Strategien): Wie lauten alle 3 exakt?", opts: [
-        "Kostenführerschaft, Differenzierung, Fokus", "Kostenführerschaft, Diversifizierung, Wachstum", "Differenzierung, Innovation, Kostenführerschaft", "Fokus, Wachstum, Diversifizierung"
-      ], correct: 0, explain: "Porters 3 generische Strategien: Kostenführerschaft, Differenzierung, Fokus (Nische)." },
-    { le: 'm4', q: "Rahmenwerk 1:1 (4 Felder der BCG-Matrix): Wie lauten alle 4 Felder exakt?", opts: [
-        "Sterne, Fragezeichen, Melkkühe, Arme Hunde", "Sterne, Melkkühe, Wachstumssegmente, Nischen", "Fragezeichen, Investitionen, Ernten, Wachsen", "Sterne, Arme Hunde, Investitionen, Selektion"
-      ], correct: 0, explain: "BCG-Felder: Sterne (hoch/hoch), Fragezeichen (hoch Wachstum/niedrig Anteil), Melkkühe (niedrig/hoch), Arme Hunde (niedrig/niedrig)." },
-    { le: 'm4', q: "Rahmenwerk 1:1 (Blue-Ocean-Werkzeugkasten, Kim & Mauborgne 2015): Wie lauten alle 4 Aktionen exakt?", opts: [
-        "Eliminieren, Reduzieren, Steigern, Kreieren", "Eliminieren, Reduzieren, Optimieren, Erweitern", "Reduzieren, Steigern, Vermeiden, Kreieren", "Kreieren, Steigern, Verkaufen, Eliminieren"
-      ], correct: 0, explain: "Das ERSK-Raster: Eliminieren, Reduzieren, Steigern, Kreieren." },
-    { le: 'm4', q: "Rahmenwerk 1:1 (3 Tests für Diversifizierungsoptionen, Grant 2015): Wie lauten alle 3 exakt?", opts: [
-        "Attraktivitätstest, Eintrittskostentest, Besserstellungstest", "Attraktivitätstest, Marktanteilstest, Wachstumstest", "Eintrittskostentest, Portfoliotest, Fit-Test", "Besserstellungstest, Risikotest, Synergietest"
-      ], correct: 0, explain: "Die 3 Diversifizierungstests: Attraktivitätstest, Eintrittskostentest, Besserstellungstest." },
-  ] },
-  m5: { label: 'Rahmenwerke · Strategische Allianzen', sub: 'Allianztypologien, Ökosystem-Prozesse, offene Innovation', questions: [
-    { le: 'm5', q: "Rahmenwerk 1:1 (3 Allianztypen nach Kapitalbeteiligung): Wie lauten alle 3 exakt?", opts: [
-        "Equity-Joint-Venture, Equity-Allianz, Non-Equity-Allianz", "Equity-Joint-Venture, Fusion, Übernahme", "Non-Equity-Allianz, Lizenzvertrag, Franchise", "Equity-Allianz, Kooperation, Konsortium"
-      ], correct: 0, explain: "3 Allianztypen nach Kapitalbeteiligung: Equity-Joint-Venture, Equity-Allianz, Non-Equity-Allianz." },
-    { le: 'm5', q: "Rahmenwerk 1:1 (3 Allianztypen nach Marktposition): Wie lauten alle 3 exakt?", opts: [
-        "Vertikal, Horizontal, Lateral", "Vertikal, Horizontal, Diagonal", "Intern, Extern, Lateral", "Vertikal, Global, Lokal"
-      ], correct: 0, explain: "3 Allianztypen nach Marktposition der Partner: Vertikal, Horizontal, Lateral." },
-    { le: 'm5', q: "Rahmenwerk 1:1 (3 Ökosystem-Prozesse, Dhanaraj & Parkhe 2006): Wie lauten alle 3 exakt?", opts: [
-        "Steuerung der Wissensmobilität, Steuerung der Wert(ab)schöpfung, Steuerung der Ökosystemstabilität", "Rekrutierung, Steuerung der Wertschöpfung, Kontrolle", "Wissensmobilität, Marktanalyse, Portfoliosteuerung", "Wert(ab)schöpfung, Wettbewerbsanalyse, Positionierung"
-      ], correct: 0, explain: "3 Ökosystem-Prozesse eines Orchestrators: Wissensmobilität, Wert(ab)schöpfung, Ökosystemstabilität." },
-    { le: 'm5', q: "Rahmenwerk 1:1 (4 Typen offener Innovation, Dahlander & Gann 2010): Wie lauten alle 4 exakt?", opts: [
-        "Beschaffen, Akquirieren, Teilen, Veräußern", "Beschaffen, Verkaufen, Teilen, Kaufen", "Akquirieren, Fusionieren, Teilen, Lizenzieren", "Beschaffen, Akquirieren, Kooperieren, Investieren"
-      ], correct: 0, explain: "4 Typen: Beschaffen (nicht-monetär eingehend), Akquirieren (monetär eingehend), Teilen (nicht-monetär ausgehend), Veräußern (monetär ausgehend)." },
-  ] },
-  m6: { label: 'Rahmenwerke · Soziale Verantwortung', sub: 'CSR-Pyramide, Triple Bottom Line, Ethiktheorien', questions: [
-    { le: 'm6', q: "Rahmenwerk 1:1 (Carrolls CSR-Pyramide, 1991): Wie lauten alle 4 Ebenen von unten (gefordert) nach oben (erwünscht)?", opts: [
-        "Ökonomische, Rechtliche, Moralische, Philanthropische Verantwortung", "Rechtliche, Ökonomische, Philanthropische, Moralische Verantwortung", "Moralische, Rechtliche, Ökonomische, Philanthropische Verantwortung", "Philanthropische, Moralische, Rechtliche, Ökonomische Verantwortung"
-      ], correct: 0, explain: "Carrolls Pyramide von unten (gefordert) nach oben (erwünscht): Ökonomisch → Rechtlich → Moralisch → Philanthropisch." },
-    { le: 'm6', q: "Rahmenwerk 1:1 (Triple Bottom Line): Wie lauten alle 3 Dimensionen exakt?", opts: [
-        "Profit, Planet, People", "Profit, Prozess, Personal", "Planet, Politik, Personal", "People, Process, Profit-Margin"
-      ], correct: 0, explain: "Triple Bottom Line: Profit (ökonomisch), Planet (ökologisch), People (sozial)." },
-    { le: 'm6', q: "Rahmenwerk 1:1 (3 ethische Perspektiven zur moralischen Bewertung): Wie lauten alle 3 exakt inkl. Vordenker?", opts: [
-        "Utilitarismus (Bentham/Mill), Pflichtethik (Kant), Gerechtigkeitsethik (Rawls)", "Utilitarismus (Kant), Pflichtethik (Rawls), Gerechtigkeitsethik (Mill)", "Deontologie (Rawls), Utilitarismus (Kant), Gerechtigkeitsethik (Bentham)", "Pflichtethik (Bentham), Utilitarismus (Rawls), Gerechtigkeitsethik (Kant)"
-      ], correct: 0, explain: "Utilitarismus: Bentham/Mill. Pflichtethik/Deontologie: Kant. Gerechtigkeitsethik: Rawls." },
-    { le: 'm6', q: "Rahmenwerk 1:1 (Kants Kategorischer Imperativ, Universalisierungsformel): Wie lautet er exakt?", opts: [
-        "\"Handle nur nach derjenigen Maxime, durch die du zugleich wollen kannst, dass sie ein allgemeines Gesetz werde.\"", "\"Handle so, dass du die Menschheit niemals bloß als Mittel brauchest.\"", "\"Maximiere den Nutzen für die größte Anzahl Betroffener.\"", "\"Sind Entscheidungsverfahren und -ergebnisse fair?\""
-      ], correct: 0, explain: "Die Universalisierungsformel ist Kants Kategorischer Imperativ. Die 2. Option ist die Selbstzweckformel (ebenfalls von Kant, aber ein anderes Prinzip)." },
-  ] },
-};
 
 /* ---------- PUO DATA ---------- */
 const MODULES_PUO = [
@@ -2119,7 +1644,7 @@ const MODULES_PUO = [
   ] },
 ];
 const DAYPLAN_PUO = [
-  { title: 'Phase 1 · Parallel-Merken (nebenbei, während Statistik/Marketing/StratMgmt Vorrang haben) – chronologisch Kap. 1 bis 12', days: [
+  { title: 'Phase 1 · Parallel-Merken (nebenbei, während Statistik/Marketing Vorrang haben) – chronologisch Kap. 1 bis 12', days: [
     { date: '2026-08-31', label: 'Mo 31.08.', tag: '10 Min Überblick Kap. 1+2 (nebenbei)', mods: ['c1', 'c2'], tasks: [
       '1) Nur MODUL – Kap. 1 (Organisationsprobleme, Koordinations-/Kooperationsspiele) und Kap. 2 (Transaktionskosten, Hold-up-Problem, Prinzipal-Agent/LEN-Modell) kurz überfliegen',
       '2) Kein weiterer Stoff heute – Fokus bleibt auf den anderen Klausuren!'
@@ -2138,35 +1663,79 @@ const DAYPLAN_PUO = [
       '2) Nur FORMELN – Kap. 7: Eignungswert eij und Markov-Ketten-Prognose sowie Kap. 8: Humankapitalinvestitions-Bedingung auffrischen',
       '3) Rest des Tages: Statistik hat Vorrang (Klausur 14.9)!'
     ]},
-    { date: '2026-09-19', label: 'Sa 19.09.', tag: '10 Min Überblick Kap. 9+10 (nebenbei)', mods: ['c9', 'c10'], tasks: [
-      '1) Nur MODUL – Kap. 9 (relative Leistungsturniere, Lohnspreizung, Biases) und Kap. 10 (Gruppenarbeit, Trittbrettfahrerproblem) kurz überfliegen',
-      '2) Rest des Tages: Strategisches Management hat Vorrang (Klausur 23.9)!'
+    { date: '2026-09-13', label: 'So 13.09.', tag: '10 Min Überblick Kap. 9+10 (nebenbei)', mods: ['c9', 'c10'], tasks: [
+      '1) Nur MODUL – Kap. 9 (relative Leistungsturniere, Lohnspreizung, Beurteilungs-Biases) und Kap. 10 (Gruppenarbeit, Trittbrettfahrerproblem, Team-Anreizvertrag) kurz überfliegen',
+      '2) Rest des Tages: Statistik hat oberste Priorität (Klausur morgen, 14.9)!'
     ]},
-    { date: '2026-09-22', label: 'Di 22.09.', tag: '10 Min Überblick + Formelkarten Kap. 11+12 (nebenbei)', mods: ['c11', 'c12'], tasks: [
+    { date: '2026-09-15', label: 'Di 15.09.', tag: '10 Min Überblick + Formelkarten Kap. 11+12 (nebenbei)', mods: ['c11', 'c12'], tasks: [
       '1) Nur MODUL – Kap. 11 (Entlohnungskomponenten, Akkord-/Prämienlohn) und Kap. 12 (Personalfreisetzung, Seniorität, adverse Selektion bei Abfindungen) kurz überfliegen',
-      '2) Nur FORMELN – Kap. 11: Geldakkord/Zeitakkord-Formeln auffrischen',
-      '3) Rest des Tages: Strategisches Management hat Vorrang (Klausur 23.9)!'
+      '2) Nur FORMELN – Kap. 11: Geldakkord/Zeitakkord-Formeln kurz auffrischen',
+      '3) Rest des Tages: Marketing & Vertrieb hat Priorität (Klausur morgen, 16.9)!'
     ]},
   ]},
-  { title: 'Phase 2 · Intensivphase (26.–28.9, nach dem 23-25.9 Blackout, vor der Klausur am 29.9)', days: [
-    { date: '2026-09-26', label: 'Sa 26.09.', tag: 'Teil A komplett: Kap. 1-4 (Organisation)', mods: ['c1', 'c2', 'c3', 'c4'], tasks: [
-      '1) MODUL – Kap. 1 Grundlagen, Kap. 2 Neue Institutionenökonomik, Kap. 3 Organisationsformen, Kap. 4 Interne Organisationsstrukturen komplett durchgehen',
-      '2) QUIZ – Teile c1-c4 je eine Runde spielen',
-      '3) Denk daran: die echte Klausur besteht aus offenen Aufgaben ("Beschreiben Sie...", "Nennen Sie...") – übe daher auch, die Antworten frei zu formulieren, nicht nur die Quiz-Option zu erkennen'
+  { title: 'Phase 2 · Intensivphase (17.–28.9, nach Statistik & Marketing – da Strategisches Management nicht geschrieben wird, ist jetzt fast 2 Wochen Zeit für P&O)', days: [
+    { date: '2026-09-17', label: 'Do 17.09.', tag: 'Kap. 1-3 komplett (Organisation Teil 1)', mods: ['c1', 'c2', 'c3'], tasks: [
+      '1) MODUL – Kap. 1 Grundlagen, Kap. 2 Neue Institutionenökonomik, Kap. 3 Organisationsformen komplett durchgehen (jetzt in Ruhe, nicht nur überfliegen)',
+      '2) QUIZ – Teile c1-c3 je eine Runde spielen',
+      '3) Da Strategisches Management wegfällt, hast du jetzt fast 2 Wochen bis zur P&O-Klausur (29.9) – nutze die Zeit für einen wirklich gründlichen ersten Durchgang statt Last-Minute-Cram'
     ]},
-    { date: '2026-09-27', label: 'So 27.09.', tag: 'Teil A Ende + Teil B Start: Kap. 5-8', mods: ['c5', 'c6', 'c7', 'c8'], tasks: [
-      '1) MODUL – Kap. 5 Informationsbewertung, Kap. 6 Rekrutierung, Kap. 7 Arbeitnehmer-Stellen-Matching, Kap. 8 Betriebliche Qualifizierung komplett durchgehen',
-      '2) QUIZ – Teile c5-c8 je eine Runde spielen',
-      '3) FORMELN – Kap. 5-8: Informationswert/Bayes, Personalbedarf, Markov/Zuordnung, Humankapital-Rechenaufgaben mehrfach üben (das sind die punktereichsten Rechenaufgaben-Typen laut Altklausur)'
+    { date: '2026-09-18', label: 'Fr 18.09.', tag: 'Kap. 4-6 komplett + Formeln Kap. 5+6', mods: ['c4', 'c5', 'c6'], tasks: [
+      '1) MODUL – Kap. 4 Interne Organisationsstrukturen, Kap. 5 Informationsbewertung, Kap. 6 Rekrutierung komplett durchgehen',
+      '2) QUIZ – Teile c4-c6 je eine Runde spielen',
+      '3) FORMELN – Kap. 5: Informationswert/Bayes-Rechenaufgaben mehrfach üben'
     ]},
-    { date: '2026-09-28', label: 'Mo 28.09.', tag: 'Teil B Ende: Kap. 9-12 + volle Wiederholung', mods: ['c9', 'c10', 'c11', 'c12'], tasks: [
-      '1) MODUL – Kap. 9 Leistungsbeurteilung, Kap. 10 Teams, Kap. 11 Entlohnung, Kap. 12 Personalfreisetzung komplett durchgehen',
-      '2) QUIZ – Teile c9-c12 spielen, danach alle 12 Teile "Nur falsche wiederholen"',
-      '3) FORMELN – alle Formelkarten (Kap. 5,6,7,8,10,11) "Nur falsche wiederholen"',
-      '4) Falls vorhanden: die alten Klausuren/Übungen (PT1/PT2) nochmal unter Zeitdruck als offene Fragen üben – die echte Klausur läuft über offene Textantworten, nicht Multiple Choice'
+    { date: '2026-09-19', label: 'Sa 19.09.', tag: 'Kap. 7-9 komplett + Formeln Kap. 7+8', mods: ['c7', 'c8', 'c9'], tasks: [
+      '1) MODUL – Kap. 7 Arbeitnehmer-Stellen-Matching, Kap. 8 Betriebliche Qualifizierung, Kap. 9 Leistungsbeurteilung komplett durchgehen',
+      '2) QUIZ – Teile c7-c9 je eine Runde spielen',
+      '3) FORMELN – Kap. 7: Markov-Ketten/Zuordnungsproblem, Kap. 8: Humankapital-Rechenaufgaben üben'
+    ]},
+    { date: '2026-09-20', label: 'So 20.09.', tag: 'Kap. 10-12 komplett + Formeln Kap. 11', mods: ['c10', 'c11', 'c12'], tasks: [
+      '1) MODUL – Kap. 10 Teams, Kap. 11 Entlohnung, Kap. 12 Personalfreisetzung komplett durchgehen',
+      '2) QUIZ – Teile c10-c12 je eine Runde spielen',
+      '3) FORMELN – Kap. 11: Geldakkord/Zeitakkord-Rechenaufgaben üben',
+      '4) Damit sind alle 12 Kapitel einmal komplett durchgegangen – ab jetzt geht es in die Vertiefung'
+    ]},
+    { date: '2026-09-21', label: 'Mo 21.09.', tag: 'Volle Quiz-Runde alle 12 Kapitel', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+      '1) QUIZ – alle 12 Teile (c1-c12) einmal komplett durchspielen, um zu sehen, wo die größten Lücken sind',
+      '2) Notiere dir die 2-3 Kapitel mit den meisten Fehlern – die bekommen in den nächsten Tagen extra Aufmerksamkeit',
+      '3) "Nur falsche wiederholen" direkt im Anschluss nutzen'
+    ]},
+    { date: '2026-09-22', label: 'Di 22.09.', tag: 'Freitext Teil 1 – Kap. 1-6', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'], tasks: [
+      '1) FREITEXT – die erste Hälfte der 22 echten Altklausur-Aufgaben (Themen aus Kap. 1-6) frei beantworten, dann mit der Musterlösung vergleichen',
+      '2) Denk dran: die echte Klausur läuft über offene Aufgaben ("Beschreiben Sie...", "Nennen Sie...") – das freie Formulieren ist hier der wichtigste Skill, nicht das Wiedererkennen von Multiple-Choice-Optionen',
+      '3) Sei ehrlich bei der Selbstbewertung – lieber jetzt eine Lücke erkennen als in der Klausur'
+    ]},
+    { date: '2026-09-23', label: 'Mi 23.09.', tag: 'Freitext Teil 2 – Kap. 7-12', mods: ['c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+      '1) FREITEXT – die zweite Hälfte der Altklausur-Aufgaben (Themen aus Kap. 7-12) frei beantworten, dann mit der Musterlösung vergleichen',
+      '2) Damit hast du alle 22 Freitext-Aufgaben einmal komplett durchgearbeitet',
+      '3) QUIZ – "Nur falsche wiederholen" für die 2-3 schwächsten Kapitel aus dem 21.9-Test'
+    ]},
+    { date: '2026-09-24', label: 'Do 24.09.', tag: 'Formelkarten komplett + falsche wiederholen', mods: ['c5', 'c6', 'c7', 'c8', 'c10', 'c11'], tasks: [
+      '1) FORMELN – alle Formelkarten (Kap. 5 Informationswert/Bayes, Kap. 6 Personalbedarf, Kap. 7 Markov/Zuordnung, Kap. 8 Humankapital, Kap. 10 Team-Anreizvertrag, Kap. 11 Akkordlohn) komplett durchspielen',
+      '2) FORMELN – direkt danach "Nur falsche wiederholen"',
+      '3) Kurze QUIZ-Auffrischung der beiden schwächsten Kapitel'
+    ]},
+    { date: '2026-09-25', label: 'Fr 25.09.', tag: 'Bewusster Ruhetag (nur leichte Wiederholung)', mods: [], tasks: [
+      '1) Heute nur eine kurze, entspannte Quiz-Runde (15-20 Min) – kein neuer Stoff, kein Druck',
+      '2) Nutze den Tag zur Erholung, damit du für die letzten Tage vor der Klausur wieder Energie hast – nach 8 durchgehenden Lerntagen (17.-24.9) hast du dir das verdient'
+    ]},
+    { date: '2026-09-26', label: 'Sa 26.09.', tag: 'Vollständige Altklausur unter Zeitdruck (PT1)', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+      '1) Eine komplette Altklausur (PT1) unter realistischen Zeitbedingungen als offene Fragen durchschreiben, nicht nur im Kopf beantworten',
+      '2) Danach in Ruhe mit der Musterlösung vergleichen und Punkte ehrlich schätzen'
+    ]},
+    { date: '2026-09-27', label: 'So 27.09.', tag: 'Altklausur auswerten + gezielt nacharbeiten', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+      '1) Die Fehler/Lücken aus der Altklausur vom 26.9. gezielt im Module-Tab nacharbeiten',
+      '2) Falls Zeit bleibt: eine zweite Altklausur (PT2) ebenfalls unter Zeitdruck üben',
+      '3) QUIZ + FORMELN – "Nur falsche wiederholen" über alle Kapitel'
+    ]},
+    { date: '2026-09-28', label: 'Mo 28.09.', tag: 'Finale Zusammenfassung', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+      '1) QUIZ – alle 12 Teile "Nur falsche wiederholen", danach kurze Gesamtrunde',
+      '2) FREITEXT – die 3-4 Aufgaben nochmal überfliegen, bei denen deine Selbstbewertung am 22./23.9. am schwächsten war',
+      '3) FORMELN – letzte "Nur falsche wiederholen"-Runde durch alle Rechenformeln',
+      '4) Früh schlafen gehen – morgen ist Klausurtag!'
     ]},
     { date: '2026-09-29', label: 'Di 29.09. — KLAUSURTAG', tag: 'Letzter Schliff vor der Klausur', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
-      '1) FRÜH – FORMELN: letzte "Nur falsche wiederholen"-Runde durch alle Rechenformeln (Informationswert, Personalbedarf, Humankapital, Zuordnung/Markov, Akkordlohn)',
+      '1) FRÜH – FORMELN: letzte "Nur falsche wiederholen"-Runde durch alle Rechenformeln (Informationswert, Personalbedarf, Humankapital, Zuordnung/Markov, Team-Anreizvertrag, Akkordlohn)',
       '2) FRÜH – MODULE: kurz alle 12 Kapitel-Zusammenfassungen überfliegen, insbesondere Definitionen (Koordination/Kooperation, TAK-Arten, Signaling/Screening, Turniertheorie)',
       '3) Klausur "Personal und Organisation" – bitte genaue Uhrzeit im offiziellen Prüfungsplan prüfen. Viel Erfolg!'
     ]},
@@ -2587,83 +2156,6 @@ const AWI_FORMULA_QUIZ_PUO = {
 let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT, FREITEXT;
 let CURRENT_COURSE_ID = 'stat';
 
-const LUECKENTEXT_STRAT = [
-  { id: 'lt1', title: 'Altklausur-Fallstudie: Apexstream Technologies (Hochgeschwindigkeitszug-Ausschreibung Ägypten)', text: `Der Vorstand von Apexstream Technologies, einem international führenden Konzern für Elektrotechnik und Energie, bittet Sie um die Ausarbeitung eines Strategiekonzepts zwecks Bewerbung auf die staatliche Ausschreibung zum Bau eines Hochgeschwindigkeits-Zugnetzes in Ägypten.
-
-Da Apexstream in den verschiedensten Geschäftsfeldern agiert, planen Sie zunächst in einem Meeting mit dem Strategiemanagement, welche Ressourcen auf die notwendigen Funktionsbereiche verteilt werden müssen. Diese Überarbeitung der {{1}} ist notwendig, um genügend Kapazitäten für die Umsetzung des milliardenschweren Auftrages zu gewährleisten. Im Strategieprozess müssen zwei Risikofaktoren besonders berücksichtigt werden. Zum einen müssen Sie sich der ungewissen politischen Lage im Land bewusst sein und so einen potenziellen {{2}} vermeiden. Auf der anderen Seite müssen Sie einem {{3}} vorbeugen, indem die formulierten Strategien auch zügig praktisch umgesetzt, erprobt und ggf. angepasst werden.
-
-Anschließend setzen Sie sich aus einer marktbasierten Perspektive mit den {{4}} nach Porter (1980) auseinander. Als deutsches Unternehmen befindet sich Apexstream mit internationalen Unternehmen aus China, Frankreich, der Schweiz und Südkorea im Pool der Kandidaten. Die {{5}} ist demnach groß. Die europäischen Unternehmen konkurrieren zudem um dieselben Rohstoffquellen für die Produktion ihrer Technologien. Somit ist die große {{6}} durch eine hohe Marktkonzentration innerhalb Europas entscheidend für die Branche. Apexstream muss daher prüfen, ob es die Möglichkeit einer {{7}} gibt, um Abhängigkeiten innerhalb der Lieferkette zu minimieren.
-
-Mit einem Blick auf die internen Ressourcen stellen Sie fest, dass alle Unternehmen auf dem Markt ähnliche Technologien besitzen. Apexstreams Vorteil liegt insbesondere in einer leistungsstarken Mitarbeiterbasis – somit sind Apexstreams {{8}} eine grundlegende Voraussetzung für die Umsetzung des Projekts. Hierfür soll Apexstream von den drei Wegen zur Fähigkeitsentwicklung auf externe Akquise verzichten und stattdessen {{9}} sowie interne Entwicklung verfolgen.
-
-Die konkurrierenden Wettbewerber setzen auf ein simples, fertigungsfreundliches Produktionsdesign sowie Skaleneffekte in der Fertigung, um möglichst preisgünstige Züge anbieten zu können. Dies entspricht der generischen Strategie der {{10}}. Apexstream hingegen plant den Bau hochmoderner, patentierter Züge mit deutlich mehr Komfort, Sicherheit und Energieeffizienz – Apexstream verfolgt also die generische Strategie der {{11}} basierend auf höherer Qualität und technologischen Innovationen.
-
-Mit über 1700 globalen Partnerunternehmen kann man Apexstream als eine in Netzwerken eingebettete Organisation bezeichnen. Der Fokus auf eine {{12}} ist daher wichtig, sodass Sie Apexstream stets aus einer {{13}} betrachten sollten. Unabhängig von der Ausschreibung strebt Apexstream zudem eine {{14}} mit einem Startup an, welches an Wasserstoffantrieben forscht – aufgrund des Fokus auf gemeinsame Forschung und Entwicklung lässt sich diese als {{15}} klassifizieren.
-
-Über die rechtliche Perspektive auf das Thema Ethik hinaus, möchte Apexstream in Zusammenarbeit mit der ägyptischen Regierung die Arbeitsbedingungen von angeworbenen Gastarbeitern vor Ort stärken. Dies entspricht der freiwilligen Selbstverpflichtung des Unternehmens, neben der ökonomischen und ökologischen Verantwortung auch die {{16}} gemäß des Konzepts der {{17}} zu tragen.`,
-    blanks: [
-      ['funktionale strategie','funktionalen strategie'],
-      ['vorhersage-trugschluss','trugschluss der vorhersage'],
-      ['formalisierungs-trugschluss','trugschluss der formalisierung','entkopplungs-trugschluss','trugschluss der entkopplung'],
-      ['fünf wettbewerbskräften','5 wettbewerbskräften','wettbewerbskräfte','fünf wettbewerbskräfte'],
-      ['rivalität der bestehenden wettbewerber','rivalität bestehender wettbewerber'],
-      ['verhandlungsmacht der lieferanten'],
-      ['rückwärtsintegration'],
-      ['humanen ressourcen','human-ressourcen','personellen ressourcen','personelle ressourcen'],
-      ['internes venturing'],
-      ['kostenführerschaft'],
-      ['differenzierung'],
-      ['kooperative strategie'],
-      ['netzwerkzentrierten perspektive','netzwerkzentrierte perspektive'],
-      ['vertikale allianz'],
-      ['explorativ','explorative allianz'],
-      ['soziale verantwortung'],
-      ['triple bottom line'],
-    ], explain: 'Basiert auf einer echten Altklausur (SS24, Teil 2) und deckt alle 6 Module ab: funktionale Strategie & Trugschlüsse (M1), Porters 5 Kräfte (M2), Ressourcen/Fähigkeiten (M3), generische Strategien (M4), Allianzen/Ökosysteme (M5), CSR/Triple Bottom Line (M6).' },
-  { id: 'lt2', title: 'Exploitation vs. Exploration (IBM-Fallstudie)', text: `Das Grundproblem, mit dem jede Organisation konfrontiert ist, besteht darin, genügend {{1}} zu betreiben, um ihre gegenwärtige Lebensfähigkeit zu sichern, und gleichzeitig genügend Energie für {{2}} aufzuwenden, um ihre zukünftige Lebensfähigkeit zu sichern. Ersteres verschafft Effizienz und gedeiht in stabilen, kontrollierten Umgebungen, kann aber strategische {{3}} mit sich bringen. Letzteres weckt Neuartigkeit und gedeiht in lockeren, flexiblen Umgebungen, kann aber {{4}} mit sich bringen. Am Beispiel der IBM-Fallstudie zeigt sich: Organisationen können {{5}} durch ganz konkrete Mechanismen aufbauen und weiter stärken, wobei Strategiekonzeption und Strategieumsetzung Hand in Hand gehen müssen.`,
-    blanks: [
-      ['exploitation'],
-      ['exploration'],
-      ['trägheit','strategische trägheit'],
-      ['effizienzverluste','effizienzverlusten'],
-      ['dynamische fähigkeiten'],
-    ], explain: 'Klassiker der Klausurfallen: Organisationen müssen Exploitation UND Exploration ausbalancieren, nicht sich auf eines konzentrieren.' },
-  { id: 'lt3', title: 'Porters 5 Kräfte – Determinanten', text: `Die Rivalität bestehender Wettbewerber ist besonders hoch, wenn die {{1}} hoch sind, der {{2}} hoch ist und ein hohes Niveau überschüssiger Kapazität besteht. Die Verhandlungsmacht der Lieferanten ist hoch, wenn Lieferanten stark {{3}} sind und die {{4}} für die fokale Organisation hoch sind. Die Bedrohung durch neue Marktteilnehmer ist dagegen gering, wenn ein hoher Kapital- und Wissensbedarf besteht und etablierte Anbieter über {{5}} verfügen. Die Bedrohung durch Substitute ist hoch, wenn Nutzerloyalität und {{6}} gering sind.`,
-    blanks: [
-      ['austrittsbarrieren'],
-      ['fixkostenanteil'],
-      ['konzentriert','marktkonzentriert'],
-      ['wechselkosten'],
-      ['skalenvorteile','reputationsvorteile','skalen- und lernvorteile','skalen-/lernvorteile'],
-      ['wechselkosten'],
-    ], explain: 'Die genauen "hoch wenn / gering wenn"-Bedingungen für alle 5(+1) Kräfte werden in der Klausur oft als Zuordnungsaufgabe abgefragt.' },
-  { id: 'lt4', title: 'CSR-Perspektiven & Carrolls Verantwortungspyramide', text: `Ein Unternehmen, das CSR primär als Mittel zur Erreichung langfristiger wirtschaftlicher Interessen versteht, nimmt die {{1}} ein. Ein Unternehmen, das dagegen alle Geschäftsprozesse ganzheitlich an der gesellschaftlichen Verantwortung der Organisation ausrichtet, nimmt die {{2}} ein. Unabhängig davon unterscheidet Carrolls CSR-Pyramide vier Verantwortungsebenen: von unten (gefordert) nach oben (erwünscht) die {{3}}, die {{4}}, die {{5}} und schließlich die {{6}}.`,
-    blanks: [
-      ['business-case-perspektive','business case perspektive'],
-      ['management-perspektive','management perspektive'],
-      ['ökonomische verantwortung'],
-      ['rechtliche verantwortung'],
-      ['moralische verantwortung'],
-      ['philanthropische verantwortung'],
-    ], explain: 'Achtung: die 4 CSR-Perspektiven (Management/Compliance/Philanthropisch/Business Case) sind ein ANDERES Framework als Carrolls 4 Verantwortungsebenen – beide werden gerne verwechselt.' },
-  { id: 'lt5', title: 'Ökosysteme & Allianzen', text: `Ein {{1}} ergibt sich aus der gemeinsamen Ausrichtung unterschiedlicher Partner an einem gemeinsamen Wertversprechen an die Nutzenden. Nach Dhanaraj und Parkhe (2006) muss ein Orchestrator drei Prozesse steuern: die Steuerung der {{2}}, die Steuerung der {{3}} und die Steuerung der {{4}}. Scheitert eine Allianz, zeigt sich dies u.a. darin, dass die {{5}} nicht erreicht wurden oder eine {{6}} zwischen den Partnern entsteht.`,
-    blanks: [
-      ['ökosystem'],
-      ['wissensmobilität'],
-      ['wert(ab)schöpfung','wertabschöpfung','wertschöpfung'],
-      ['ökosystemstabilität'],
-      ['ziele'],
-      ['ungleiche nutzenverteilung','nutzenverteilung'],
-    ], explain: 'Definition von Ökosystem, die 3 Ökosystem-Prozesse (Dhanaraj & Parkhe 2006) und die Facetten des Allianz-Scheiterns – drei separate, oft verwechselte Konzepte aus Modul 5.' },
-  { id: 'lt6', title: 'McKinsey- & BCG-Matrix', text: `Die McKinsey-Matrix verknüpft die {{1}} (marktbasierter Ansatz) mit dem {{2}} (ressourcenbasierter Ansatz) zu einem 9-Felder-Raster. Liegen beide Dimensionen hoch, lautet die typische Normstrategie "{{3}}". Die BCG-Matrix nutzt dagegen die Dimensionen Marktwachstum und relativer Marktanteil: ein Geschäftsfeld mit niedrigem Wachstum und hohem Marktanteil wird als {{4}} bezeichnet und erzielt typischerweise einen stark positiven {{5}}.`,
-    blanks: [
-      ['branchenattraktivität','attraktivität der branche'],
-      ['wettbewerbsvorteil'],
-      ['investition und wachstum'],
-      ['melkkuh','melkkühe'],
-      ['netto-cashflow','cashflow','netto cashflow'],
-    ], explain: 'McKinsey-Matrix (Branchenattraktivität × Wettbewerbsvorteil, 9 Felder mit Normstrategien) vs. BCG-Matrix (Marktwachstum × relativer Marktanteil, 4 Felder mit Cashflow-Eigenschaften) – zwei unterschiedliche Portfolio-Werkzeuge, die leicht verwechselt werden.' },
-];
 const LUECKENTEXT_STAT = [];
 const LUECKENTEXT_MV = [];
 const LUECKENTEXT_PUO = [];
@@ -2781,7 +2273,6 @@ const FREITEXT_PUO = [
 ];
 const FREITEXT_STAT = [];
 const FREITEXT_MV = [];
-const FREITEXT_STRAT = [];
 const COURSES = {
   stat: {
     label: "STATISTIK · RWTH AACHEN · WIEDERHOLUNGSKLAUSUR",
@@ -2797,7 +2288,7 @@ const COURSES = {
     infoQuiz: "Achte besonders auf den Divisor bei Varianzformeln: Teil A (Beschreibende Statistik) nutzt <b>n</b>, Teil D (Schließende Statistik) nutzt <b>n−1</b> – genau diese Verwechslung war vermutlich ein Fehler in deiner letzten Klausur.",
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     tabLuecken: "Lückentext",
-    infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt (dort ein zentraler Klausurbestandteil). Für Statistik übst du Rechenwege am besten direkt in den Formelkarten.",
+    infoLuecken: "Für Statistik sind aktuell keine Lückentext-Übungen hinterlegt – die Klausur ist ohnehin Rechenaufgaben-lastig. Übe Rechenwege am besten direkt in den Formelkarten.",
     tabFreitext: "Freitext",
     infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt (dort der zentrale Klausurbestandteil). Für Statistik sind die Formelkarten dein Freitext-Ersatz.",
     lsProgress: "stat_progress",
@@ -2824,7 +2315,7 @@ const COURSES = {
     infoQuiz: "Dieser Kurs verwendet für die empirische Varianz durchgehend den Divisor <b>n−1</b> (anders als z.B. in Statistik Teil A, wo n verwendet wird) – nicht verwechseln! Achte außerdem auf die Unterscheidung von deskriptivem/explorativem/explikativem Untersuchungsdesign und von Reliabilität/Validität – beides kam in deinen letzten Klausuren wiederholt als Lückentext-Frage vor.",
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     tabLuecken: "Lückentext",
-    infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt. Für M&V üben die Diagramm-Zuordnungsfragen im Quiz-Tab den gleichen Skill (Begriffe präzise zuordnen).",
+    infoLuecken: "Für M&V sind aktuell keine Lückentext-Übungen hinterlegt. Die Diagramm-Zuordnungsfragen im Quiz-Tab üben den gleichen Skill (Begriffe präzise zuordnen).",
     tabFreitext: "Freitext",
     infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt. M&amp;V ist hauptsächlich Multiple-Choice.",
     lsProgress: "mv_progress",
@@ -2836,33 +2327,6 @@ const COURSES = {
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_MV,
     LUECKENTEXT: LUECKENTEXT_MV,
     FREITEXT: FREITEXT_MV,
-  },
-  strat: {
-    label: "STRATEGISCHES MANAGEMENT · RWTH AACHEN · KLAUSUR",
-    title: "Strategisches Management – Klausuren-Dashboard",
-    subtitle: "Lernplan, Quiz &amp; Rahmenwerke für die Klausur „Strategisches Management\"",
-    examName: "Strategisches Management",
-    examDateLabel: "23.09.2026",
-    examDateISO: "2026-09-23T09:00:00",
-    tabQuiz: "Strat Quiz",
-    tabFormeln: "Rahmenwerke",
-    infoModule: "<b>Enger Zeitplan:</b> 17.–22.9. ist deine Intensivphase für Strategisches Management (nach Statistik 14.9. und Marketing 16.9.). Bis dahin nur kurze 10-Min-Merkeinheiten nebenbei, siehe Tagesplan.",
-    infoTagesplan: "<b>Klausurformat:</b> 60 Minuten, 60 Punkte, Bestehensgrenze 60%. 3 Teile: (1) Lückentext (präzises Fachvokabular, 0,5 Pkt/Lücke), (2) SC/MC/Klassifikationsaufgaben (MC = alles-oder-nichts, keine Teilpunkte), (3) Fallstudie (alle nötigen Infos stehen im Text – es geht um die richtige Anwendung der Lektions-Frameworks). Kein Taschenrechner, kein eigenes Papier.",
-    infoQuiz: "Alle Fallstudien (Honda, Einzelhandel, IBM, Sadhu) sind Anwendungsbeispiele der jeweiligen Lektions-Frameworks – in der Klausur zählt die korrekte <b>Anwendung des Frameworks</b> auf den gegebenen Fall, nicht das Auswendiglernen der Fälle selbst.",
-    infoFormeln: "<b>Statt Formeln: Rahmenwerke 1:1.</b> Strategisches Management ist ein qualitativer Kurs ohne Rechenformeln – hier trainierst du das exakte, wörtliche Erinnern zentraler Modelle (z.B. Porters 5 Kräfte, VRIN/VRIO, BCG-Felder), die im Lückentext-Teil der Klausur präzise Begriffe verlangen.",
-    tabLuecken: "Lückentext",
-    infoLuecken: "Genau wie in der echten Klausur: Teil 1 ist ein Fließtext mit Lücken, in die du das exakte Fachvokabular eintippst (0,5 Punkte pro Lücke, keine Multiple-Choice-Hilfe). Tipp/Groß-Kleinschreibung werden automatisch toleriert, aber der Begriff muss stimmen.",
-    tabFreitext: "Freitext",
-    infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt. Für Strat. Management ist der Lückentext-Tab dein Pendant zu offenen Aufgaben.",
-    lsProgress: "strat_progress",
-    lsStats: "strat_quizStats",
-    MODULES: MODULES_STRAT,
-    DAYPLAN: DAYPLAN_STRAT,
-    QUIZ_DATA: QUIZ_DATA_STRAT,
-    AWI_FORMULA_QUIZ: AWI_FORMULA_QUIZ_STRAT,
-    AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_STRAT,
-    LUECKENTEXT: LUECKENTEXT_STRAT,
-    FREITEXT: FREITEXT_STRAT,
   },
   puo: {
     label: "PERSONAL UND ORGANISATION · RWTH AACHEN · KLAUSUR",
@@ -2878,7 +2342,7 @@ const COURSES = {
     infoQuiz: "12 Kapitel in 2 Teilen: <b>Teil A \"Organisation\"</b> (Kap. 1-5: Grundlagen, Neue Institutionenökonomik, Organisationsformen, Interne Strukturen, Informationsbewertung) und <b>Teil B \"Personal\"</b> (Kap. 6-12: Rekrutierung bis Personalfreisetzung).",
     infoFormeln: "<b>Echte Rechenformeln!</b> Anders als in manchen anderen Modulen hat P&amp;O reale Formeln (Informationswert/Bayes, Personalbedarf, Humankapital-Barwert, Markov-Ketten, Zuordnungsproblem, Akkordlohn) – diese kommen in der Klausur als offene Rechenaufgaben dran, hier zum Einprägen als Auswahlfrage.",
     tabLuecken: "Lückentext",
-    infoLuecken: "Lückentext-Übungen sind aktuell nur für Strategisches Management hinterlegt. P&O-Klausuren bestehen laut deinen Screenshots ohnehin aus offenen Aufgaben statt Lückentext.",
+    infoLuecken: "Für P&O sind aktuell keine Lückentext-Übungen hinterlegt. P&O-Klausuren bestehen laut deinen Screenshots ohnehin aus offenen Aufgaben statt Lückentext – der Freitext-Tab ist dein eigentliches Übungsformat.",
     tabFreitext: "Freitext",
     infoFreitext: "<b>22 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst – die Klausur besteht überwiegend aus genau diesem Aufgabentyp, plus ca. 10 Single-Choice-Fragen am Ende (dafür ist der Quiz-Tab da).",
     lsProgress: "puo_progress",
@@ -2897,7 +2361,6 @@ let EXAM_DATE;
 const COURSE_META = {
   stat: { short: 'Statistik' },
   mv: { short: 'M&V' },
-  strat: { short: 'Strat.' },
   puo: { short: 'P&O' },
 };
 
@@ -2907,13 +2370,11 @@ const COURSE_META = {
 const COURSE_LABELS = {
   stat: 'Statistik',
   mv: 'Marketing &amp; Vertrieb',
-  strat: 'Strat. Management',
   puo: 'Personal &amp; Organisation',
 };
 const COURSE_RING_COLORS = {
   stat: '#5b8def',
   mv: '#34d399',
-  strat: '#f5a623',
   puo: '#a78bfa',
 };
 function computeCoursePct(courseId) {
@@ -2952,7 +2413,7 @@ function renderCourseButtons() {
   });
 }
 function buildMasterDayplan() {
-  const src = { stat: DAYPLAN_STAT, mv: DAYPLAN_MV, strat: DAYPLAN_STRAT, puo: DAYPLAN_PUO };
+  const src = { stat: DAYPLAN_STAT, mv: DAYPLAN_MV, puo: DAYPLAN_PUO };
   const byDate = {};
   Object.keys(src).forEach(course => {
     src[course].forEach(phase => {
