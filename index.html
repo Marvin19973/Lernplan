@@ -157,6 +157,10 @@
   .luecken-input:focus { outline: none; border-color: var(--accent); }
   .luecken-input.luecken-correct { border-color: #34d399; background: rgba(52,211,153,0.12); }
   .luecken-input.luecken-wrong { border-color: #f87171; background: rgba(248,113,113,0.12); }
+  .luecken-select { display: inline-block; max-width: 280px; background: var(--pill-bg); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: 6px; padding: 2px 6px; font-size: 13px; margin: 0 2px; }
+  .luecken-select:focus { outline: none; border-color: var(--accent); }
+  .luecken-select.luecken-correct { border-color: #34d399; background: rgba(52,211,153,0.12); }
+  .luecken-select.luecken-wrong { border-color: #f87171; background: rgba(248,113,113,0.12); }
   .luecken-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .luecken-score { font-size: 13px; font-weight: 600; color: var(--text-primary); }
   .luecken-solution { display: none; margin-top: 0.7rem; font-size: 12.5px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 8px; padding: 0.7rem 0.9rem; line-height: 1.6; }
@@ -2157,7 +2161,1709 @@ let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENT
 let CURRENT_COURSE_ID = 'stat';
 
 const LUECKENTEXT_STAT = [];
-const LUECKENTEXT_MV = [];
+const LUECKENTEXT_MV = [
+  {
+    "title": "Lückentext SS2025 (30 Lücken)",
+    "text": "1. Auslösende Faktoren für die Aktivierung bei Konsumenten sind physische und physikalische Reize, emotionale Reize, und {{1}} Reize.\n\n2. Kunden im B2B-Marketing sind sowohl privatwirtschaftliche Unternehmen, als auch {{2}} und öffentliche Institute.\n\n3. Grob kann man Produktinnovationen in marktinduzierte und {{3}} Innovationen unterscheiden.\n\n4. Marketingziele können nicht nur wirtschaftlich, sondern auch markterfolgsbezogen oder {{4}} sein.\n\n5. Bei der Means-End-Analyse werden konkrete Produkteigenschaften mit {{5}} in Verbindung gebracht.\n\n6. Um in einer Clusteranalyse heuristisch die optimale Anzahl an Clustern zu ermitteln, kann das sogenannte {{6}} genutzt werden.\n\n7. Das Untersuchungsdesign in der Marktforschung ist entweder deskriptiv, {{7}} oder explikativ.\n\n8. Als grundlegende Wettbewerbsstrategie können Unternehmen entweder auf Kostenführerschaft oder auf {{8}} setzen.\n\n9. Ist die Preiselastizität des Absatzes geringer als -1, so reagiert der Absatz {{9}} auf Preisänderungen.\n\n10. Sogenannte {{10}} informieren sich online über Produkte, um sie dann offline zu kaufen.\n\n11. Bei Arten der Unsicherheit von Konsumenten in der Informationssuche unterscheidet man zunächst zwischen Ereignisunsicherheit und {{11}}.\n\n12. Bei {{12}} handelt es sich um sämtliche Aktivitäten, durch die die Inhalte einer Unternehmenswebsite eine möglichst gute Platzierung im organischen Bereich der Suchergebnisseiten erzielen.\n\n13. Wird eine neue Marke für eine bestehende Produktlinie eingeführt, so spricht man von {{13}}.\n\n14. Produkteigenschaften, die von den Konsumenten erst nach dem Kauf oder Gebrauch des Gutes beurteilt werden können, bezeichnet man als {{14}}.\n\n15. Die Methode des empathischen Designs wird insbesondere verwendet, um {{15}} von Kunden zu erfassen.\n\n16. Der Umsatz mit Ge- und Verbrauchsgütern ist grundsätzlich {{16}} Umsatz mit Vorleistungs- und Investitionsgütern.\n\n17. Die zentralen Rollen im Buying Center sind Initiator, {{17}}, Entscheider, Informationsselektierer, Beeinflusser und Einkäufer.\n\n18. Die Standardabweichung ist {{18}} der Varianz.\n\n19. Bei einem {{19}} Untersuchungsdesign stehen das Verständnis und die Strukturierung einer meist noch relativ unerforschten Untersuchungsthematik im Mittelpunkt.\n\n20. Ein Messverfahren ist dann valide, wenn es frei von {{20}} ist.\n\n21. Gleiche oder sehr ähnliche Produkte werden häufig verschiedenen Kunden(segmenten) zu unterschiedlichen Preisen angeboten. Dies bezeichnet man im Marketing als {{21}}.\n\n22. Informationen verarbeiten wir häufig oberflächlich und mit überwiegend emotionalen Prozessen. Diese Route der Informationsverarbeitung wird als {{22}} Route bezeichnet.\n\n23. Bei Preissetzungen für neue Produkte wird die {{23}} verwendet, um durch relativ niedrige Preise eine rasche Diffusion im Markt zu erreichen.\n\n24. Für etablierte Produkte wird typischerweise eine {{24}} Verteilung des Kommunikationsbudgets gewählt.\n\n25. Kommunikationspolitische Ziele werden nach dem AIDA-Modell in Attention, Interest, {{25}} und Action aufgeteilt.\n\n26. Preispolitische Entscheidungen zeichnen sich u. a. durch eine {{26}} aus.\n\n27. Die Charakteristiken von Big Data beinhalten Volume, Velocity, {{27}} und Veracity.\n\n28. Bei einer Regressionsanalyse werden die Parameter so geschätzt, dass die {{28}} zwischen beobachtetem und geschätztem Wert der abhängigen Variable minimiert werden.\n\n29. Die {{29}} Betrachtungsweise beschreibt eine Marke als ein in der Psyche des Konsumenten verankertes, unverwechselbares Vorstellungsbild von einem Produkt oder einer Dienstleistung.\n\n30. Bei der Strategieentwicklung von Unternehmen stehen bei der {{30}} die Beschaffung und der Einsatz der notwendigen Ressourcen am Ende des Prozesses.",
+    "blanks": [
+      {
+        "correct": "kognitive",
+        "accepted": [
+          "kognitive"
+        ],
+        "options": [
+          "kognitive",
+          "rationale",
+          "soziale"
+        ]
+      },
+      {
+        "correct": "staatliche Einrichtungen",
+        "accepted": [
+          "staatliche Einrichtungen",
+          "staatliche Einrichtung"
+        ],
+        "options": [
+          "gemeinnützige Vereine",
+          "staatliche Einrichtungen",
+          "Privathaushalte"
+        ]
+      },
+      {
+        "correct": "technologieinduzierte",
+        "accepted": [
+          "technologieinduzierte",
+          "technologieinduziert"
+        ],
+        "options": [
+          "technologieinduzierte",
+          "wettbewerbsinduzierte",
+          "kundeninduzierte"
+        ]
+      },
+      {
+        "correct": "potenzialbezogen",
+        "accepted": [
+          "potenzialbezogen"
+        ],
+        "options": [
+          "risikobezogen",
+          "potenzialbezogen",
+          "kostenbezogen"
+        ]
+      },
+      {
+        "correct": "terminalen Werten",
+        "accepted": [
+          "terminalen Werten",
+          "terminale Werte"
+        ],
+        "options": [
+          "instrumentellen Werten",
+          "funktionalen Konsequenzen",
+          "terminalen Werten"
+        ]
+      },
+      {
+        "correct": "Ellenbogenkriterium",
+        "accepted": [
+          "Ellenbogenkriterium"
+        ],
+        "options": [
+          "Ward-Verfahren",
+          "Silhouettenkoeffizient",
+          "Ellenbogenkriterium"
+        ]
+      },
+      {
+        "correct": "explorativ",
+        "accepted": [
+          "explorativ"
+        ],
+        "options": [
+          "explikativ",
+          "deskriptiv",
+          "explorativ"
+        ]
+      },
+      {
+        "correct": "Differenzierung",
+        "accepted": [
+          "Differenzierung"
+        ],
+        "options": [
+          "Differenzierung",
+          "Fokussierung",
+          "Nischenstrategie"
+        ]
+      },
+      {
+        "correct": "überproportional",
+        "accepted": [
+          "überproportional"
+        ],
+        "options": [
+          "unterproportional",
+          "überproportional",
+          "proportional"
+        ]
+      },
+      {
+        "correct": "Webroomer",
+        "accepted": [
+          "Webroomer"
+        ],
+        "options": [
+          "Showroomer",
+          "Webroomer",
+          "Multichannel-Shopper"
+        ]
+      },
+      {
+        "correct": "Marktunsicherheit",
+        "accepted": [
+          "Marktunsicherheit"
+        ],
+        "options": [
+          "Ereignisunsicherheit",
+          "Marktunsicherheit",
+          "Informationsunsicherheit"
+        ]
+      },
+      {
+        "correct": "Search Engine Optimization",
+        "accepted": [
+          "Search Engine Optimization",
+          "SEO"
+        ],
+        "options": [
+          "Content-Marketing",
+          "Search Engine Advertising",
+          "Search Engine Optimization"
+        ]
+      },
+      {
+        "correct": "Parallelmarkeneinführung",
+        "accepted": [
+          "Parallelmarkeneinführung",
+          "Parallelmarkenstrategie"
+        ],
+        "options": [
+          "Parallelmarkeneinführung",
+          "Dachmarkenstrategie",
+          "Markentransfer"
+        ]
+      },
+      {
+        "correct": "Erfahrungseigenschaften",
+        "accepted": [
+          "Erfahrungseigenschaften"
+        ],
+        "options": [
+          "Erfahrungseigenschaften",
+          "Sucheigenschaften",
+          "Vertrauenseigenschaften"
+        ]
+      },
+      {
+        "correct": "latente Bedürfnisse",
+        "accepted": [
+          "latente Bedürfnisse",
+          "latentes Bedürfnis"
+        ],
+        "options": [
+          "artikulierte Bedürfnisse",
+          "latente Bedürfnisse",
+          "manifeste Bedürfnisse"
+        ]
+      },
+      {
+        "correct": "niedriger als der",
+        "accepted": [
+          "niedriger als der"
+        ],
+        "options": [
+          "genauso hoch wie der",
+          "niedriger als der",
+          "höher als der"
+        ]
+      },
+      {
+        "correct": "Benutzer",
+        "accepted": [
+          "Benutzer"
+        ],
+        "options": [
+          "Beeinflusser",
+          "Benutzer",
+          "Einkäufer"
+        ]
+      },
+      {
+        "correct": "die Wurzel",
+        "accepted": [
+          "die Wurzel",
+          "Wurzel"
+        ],
+        "options": [
+          "die Wurzel",
+          "das Quadrat",
+          "der Kehrwert"
+        ]
+      },
+      {
+        "correct": "explorativen",
+        "accepted": [
+          "explorativen",
+          "explorativ"
+        ],
+        "options": [
+          "deskriptiven",
+          "explorativen",
+          "explikativen"
+        ]
+      },
+      {
+        "correct": "systematischen Fehlern",
+        "accepted": [
+          "systematischen Fehlern",
+          "systematische Fehler"
+        ],
+        "options": [
+          "Messfehlern",
+          "Zufallsfehlern",
+          "systematischen Fehlern"
+        ]
+      },
+      {
+        "correct": "Preisdifferenzierung",
+        "accepted": [
+          "Preisdifferenzierung"
+        ],
+        "options": [
+          "Produktdifferenzierung",
+          "Preisdifferenzierung",
+          "Preisbündelung"
+        ]
+      },
+      {
+        "correct": "periphere",
+        "accepted": [
+          "periphere",
+          "periphär"
+        ],
+        "options": [
+          "zentrale",
+          "duale",
+          "periphere"
+        ]
+      },
+      {
+        "correct": "Penetrationsstrategie",
+        "accepted": [
+          "Penetrationsstrategie"
+        ],
+        "options": [
+          "Penetrationsstrategie",
+          "Präventivstrategie",
+          "Skimmingstrategie"
+        ]
+      },
+      {
+        "correct": "konstante",
+        "accepted": [
+          "konstante"
+        ],
+        "options": [
+          "steigende",
+          "konstante",
+          "pulsierende"
+        ]
+      },
+      {
+        "correct": "Desire",
+        "accepted": [
+          "Desire"
+        ],
+        "options": [
+          "Desire",
+          "Determination",
+          "Decision"
+        ]
+      },
+      {
+        "correct": "schwere Revidierbarkeit",
+        "accepted": [
+          "schwere Revidierbarkeit"
+        ],
+        "options": [
+          "hohe Flexibilität",
+          "schwere Revidierbarkeit",
+          "leichte Revidierbarkeit"
+        ]
+      },
+      {
+        "correct": "Variety",
+        "accepted": [
+          "Variety"
+        ],
+        "options": [
+          "Variety",
+          "Visibility",
+          "Value"
+        ]
+      },
+      {
+        "correct": "Summe der quadrierten Differenzen",
+        "accepted": [
+          "Summe der quadrierten Differenzen",
+          "quadrierte Differenzen"
+        ],
+        "options": [
+          "Produkt der Differenzen",
+          "Summe der quadrierten Differenzen",
+          "Summe der absoluten Differenzen"
+        ]
+      },
+      {
+        "correct": "wirkungsbezogene",
+        "accepted": [
+          "wirkungsbezogene",
+          "wirkungsorientierte",
+          "wirkungsbezogene/wirkungsorientierte"
+        ],
+        "options": [
+          "merkmalsbezogene",
+          "verhaltensbezogene",
+          "wirkungsbezogene"
+        ]
+      },
+      {
+        "correct": "Outside-In-Perspektive",
+        "accepted": [
+          "Outside-In-Perspektive",
+          "Outside-In"
+        ],
+        "options": [
+          "Resource-Based View",
+          "Inside-Out-Perspektive",
+          "Outside-In-Perspektive"
+        ]
+      }
+    ],
+    "explain": "Echte Klausur-Lückentext-Aufgaben Sommersemester 2025."
+  },
+  {
+    "title": "Lückentext SS2024 – Teil A (30 Lücken)",
+    "text": "1. Die Leistungsfähigkeit von Konsumenten ist mit steigendem Aktivierungsgrad {{1}}.\n\n2. Mit dem Begriff {{2}} bezeichnet man solche Kunden (in aller Regel Firmenkunden), die aufgrund ihres tatsächlichen oder potenziellen Einkaufsvolumens für das Unternehmen von großer Bedeutung sind.\n\n3. Die Zuteilung von Besuchern einer Website zu bereits identifizierten Segmenten, deren Mitglieder ein ähnliches Verhalten oder ähnliche Präferenzen und Einstellungen aufweisen, bezeichnet man als {{3}}.\n\n4. Beim {{4}} entstehen technisch normierte und kundenspezifische Schnittstellen.\n\n5. {{5}} sind Handelsunternehmen, die in eigenem Namen und auf eigene Rechnung auftreten und Produkte mit Gewinnabsicht weiterverkaufen.\n\n6. Bei der {{6}} werden alle Produkte eines Unternehmens unter einer Marke angeboten.\n\n7. {{7}} Innovationen gehen von unerfüllten Kundenbedürfnissen aus.\n\n8. Preis oder Qualität von Produkten einer Marke sind {{8}} Determinanten der Markenpersönlichkeit.\n\n9. Die aktivierende Ausrichtung eines Individuums auf einen als positiv oder negativ bewerteten Zielzustand bezeichnet man als {{9}}.\n\n10. Produkteigenschaften, die von den Konsumenten schon vor dem Kauf vollständig beurteilt werden können, bezeichnet man als {{10}}.\n\n11. Der Umsatz, den ein Produkt generiert, ist immer dann maximal, wenn die Preiselastizität des Absatzes {{11}} beträgt.\n\n12. Als {{12}} übernimmt ein externes Unternehmen das Recht sowie die Pflicht zu einer Beteiligung am Marktauftritt eines Anbieters und zur damit verbundenen Nutzung des Vertriebskonzepts des Anbieters.\n\n13. Anhand der Gesamtbeurteilung von Produkten werden in der Conjoint-Analyse Rückschlüsse auf die Bedeutung einzelner {{13}} gezogen.\n\n14. Die Aufgabe der {{14}} ist es, die Stellung eines Leistungsangebots im Markt und im Wettbewerb festzulegen, um die Richtung für einen effizienten Einsatz des Marketing-Mix vorzugeben.\n\n15. Sind die Bedürfnisse in einem Gesamtmarkt sehr heterogen, so bietet sich {{15}} an.\n\n16. Die definierte Menge von Produkten oder Marken, die ein Konsument beim Kauf prinzipiell in Erwägung zieht, bezeichnet man als {{16}}.\n\n17. Die zielgerichtete Form der Aktivierung des Konsumenten zur Suche, Aufnahme, Verarbeitung und Speicherung von Informationen bezeichnet man als {{17}}.\n\n18. {{18}} sind geeignete Instrumente, um die Kausalität zwischen zwei Variablen eindeutig zu etablieren.\n\n19. Ein Korrelationskoeffizient kann die Werte von {{19}} annehmen.\n\n20. Die Anzahl an parallel eingesetzten Vertriebspartnern innerhalb eines Vertriebswegs, über welche der Anbieter das Produkt am Markt anbietet, bezeichnet man als {{20}} des Vertriebswegs.\n\n21. Vertriebspolitik lässt sich grob in marktgerichtete, akquisitorische Tätigkeiten und {{21}} Aktivitäten unterteilen.\n\n22. Wenn gleiche oder sehr ähnliche Produkte verschiedenen Kunden zu unterschiedlichen Preisen angeboten werden, so spricht man von {{22}}.\n\n23. Bei der {{23}} werden mehrere Indikatorvariablen auf einen latenten Faktor reduziert.\n\n24. Wird das Alter von Probanden in einer Umfrage nicht durch Abfrage einer genauen Zahl, sondern in unregelmäßigen Abschnitten (18-21; 22-31 usw.) gemessen, so ist die resultierende Variable lediglich {{24}}.\n\n25. Während deskriptive Verfahren präzise Aussagen über eine Stichprobe ermöglichen, werden {{25}} Verfahren angewandt, um Aussagen über die Grundgesamtheit abzuleiten.\n\n26. Die optimale Clusteranzahl in einer Clusteranalyse lässt sich anhand {{26}} schätzen.\n\n27. Bei potenzialbezogenen Marketingzielen steht bspw. {{27}} im Vordergrund.\n\n28. Bei der {{28}} Produktdifferenzierung werden Produktvarianten in unterschiedlicher Qualität und zu unterschiedlichen Preisen angeboten.\n\n29. {{29}} beschreibt das zielgerichtete Durchsuchen von User Generated Content nach bestimmten Schlüsselwörtern, Marken oder Trends, um daraus neue Produktideen zu generieren.\n\n30. Kommunikationspolitische Ziele werden nach dem AIDA-Modell in Attention, Interest, {{30}} und Action aufgeteilt.",
+    "blanks": [
+      {
+        "correct": "erst steigend, dann fallend",
+        "accepted": [
+          "erst steigend, dann fallend",
+          "zuerst steigend, dann fallend"
+        ],
+        "options": [
+          "erst steigend, dann fallend",
+          "stetig steigend",
+          "stetig fallend"
+        ]
+      },
+      {
+        "correct": "Key Account",
+        "accepted": [
+          "Key Account"
+        ],
+        "options": [
+          "Großkunde ohne Sonderstatus",
+          "Key Account",
+          "Named Account"
+        ]
+      },
+      {
+        "correct": "Collaborative Filtering",
+        "accepted": [
+          "Collaborative Filtering"
+        ],
+        "options": [
+          "Collaborative Filtering",
+          "Content-Based Filtering",
+          "Social Listening"
+        ]
+      },
+      {
+        "correct": "Zuliefergeschäft",
+        "accepted": [
+          "Zuliefergeschäft"
+        ],
+        "options": [
+          "Anlagengeschäft",
+          "Zuliefergeschäft",
+          "Systemgeschäft"
+        ]
+      },
+      {
+        "correct": "Absatzmittler",
+        "accepted": [
+          "Absatzmittler"
+        ],
+        "options": [
+          "Absatzhelfer",
+          "Direktvertriebspartner",
+          "Absatzmittler"
+        ]
+      },
+      {
+        "correct": "Dachmarkenstrategie",
+        "accepted": [
+          "Dachmarkenstrategie"
+        ],
+        "options": [
+          "Dachmarkenstrategie",
+          "Parallelmarkenstrategie",
+          "Markentransfer"
+        ]
+      },
+      {
+        "correct": "Marktinduzierte",
+        "accepted": [
+          "Marktinduzierte",
+          "Marktinduziert"
+        ],
+        "options": [
+          "Technologieinduzierte",
+          "Wettbewerbsinduzierte",
+          "Marktinduzierte"
+        ]
+      },
+      {
+        "correct": "indirekte",
+        "accepted": [
+          "indirekte"
+        ],
+        "options": [
+          "direkte",
+          "indirekte",
+          "neutrale"
+        ]
+      },
+      {
+        "correct": "Motivation",
+        "accepted": [
+          "Motivation"
+        ],
+        "options": [
+          "Motivation",
+          "Emotion",
+          "Kognition"
+        ]
+      },
+      {
+        "correct": "Sucheigenschaften",
+        "accepted": [
+          "Sucheigenschaften"
+        ],
+        "options": [
+          "Vertrauenseigenschaften",
+          "Sucheigenschaften",
+          "Erfahrungseigenschaften"
+        ]
+      },
+      {
+        "correct": "-1",
+        "accepted": [
+          "-1"
+        ],
+        "options": [
+          "-0,5",
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "correct": "Franchise-Systempartner",
+        "accepted": [
+          "Franchise-Systempartner",
+          "Franchisenehmer"
+        ],
+        "options": [
+          "Franchise-Systempartner",
+          "Vertragshändler",
+          "Kommissionär"
+        ]
+      },
+      {
+        "correct": "Merkmalsausprägung",
+        "accepted": [
+          "Merkmalsausprägung",
+          "Merkmalsausprägungen"
+        ],
+        "options": [
+          "Merkmalsausprägung",
+          "Nutzenscore",
+          "Merkmalsgewicht"
+        ]
+      },
+      {
+        "correct": "Positionierung",
+        "accepted": [
+          "Positionierung"
+        ],
+        "options": [
+          "Targeting",
+          "Segmentierung",
+          "Positionierung"
+        ]
+      },
+      {
+        "correct": "ein Segmentmarketing",
+        "accepted": [
+          "ein Segmentmarketing",
+          "Segmentmarketing"
+        ],
+        "options": [
+          "ein individualisiertes Marketing",
+          "ein Segmentmarketing",
+          "ein Massenmarketing"
+        ]
+      },
+      {
+        "correct": "Evoked Set",
+        "accepted": [
+          "Evoked Set"
+        ],
+        "options": [
+          "Consideration Set",
+          "Awareness Set",
+          "Evoked Set"
+        ]
+      },
+      {
+        "correct": "Involvement",
+        "accepted": [
+          "Involvement"
+        ],
+        "options": [
+          "Involvement",
+          "Motivation",
+          "Aktivierung"
+        ]
+      },
+      {
+        "correct": "Experimente",
+        "accepted": [
+          "Experimente"
+        ],
+        "options": [
+          "Befragungen",
+          "Experimente",
+          "Beobachtungen"
+        ]
+      },
+      {
+        "correct": "-1 bis 1",
+        "accepted": [
+          "-1 bis 1",
+          "-1 bis +1"
+        ],
+        "options": [
+          "0 bis 1",
+          "-1 bis 1",
+          "-∞ bis +∞"
+        ]
+      },
+      {
+        "correct": "Breite",
+        "accepted": [
+          "Breite"
+        ],
+        "options": [
+          "Tiefe",
+          "Breite",
+          "Länge"
+        ]
+      },
+      {
+        "correct": "vertriebslogistische",
+        "accepted": [
+          "vertriebslogistische"
+        ],
+        "options": [
+          "marktgerichtete",
+          "akquisitorische",
+          "vertriebslogistische"
+        ]
+      },
+      {
+        "correct": "Preisdifferenzierung",
+        "accepted": [
+          "Preisdifferenzierung"
+        ],
+        "options": [
+          "Produktdifferenzierung",
+          "Preisdifferenzierung",
+          "Preisbündelung"
+        ]
+      },
+      {
+        "correct": "Faktoranalyse",
+        "accepted": [
+          "Faktoranalyse"
+        ],
+        "options": [
+          "Clusteranalyse",
+          "Faktoranalyse",
+          "Regressionsanalyse"
+        ]
+      },
+      {
+        "correct": "ordinalskaliert",
+        "accepted": [
+          "ordinalskaliert"
+        ],
+        "options": [
+          "nominalskaliert",
+          "metrisch skaliert",
+          "ordinalskaliert"
+        ]
+      },
+      {
+        "correct": "induktive",
+        "accepted": [
+          "induktive"
+        ],
+        "options": [
+          "induktive",
+          "deskriptive",
+          "deduktive"
+        ]
+      },
+      {
+        "correct": "des Ellenbogenkriteriums",
+        "accepted": [
+          "des Ellenbogenkriteriums",
+          "Ellenbogenkriterium"
+        ],
+        "options": [
+          "des Silhouettenkoeffizienten",
+          "des Ellenbogenkriteriums",
+          "des Ward-Verfahrens"
+        ]
+      },
+      {
+        "correct": "der Bekanntheitsgrad des Unternehmens",
+        "accepted": [
+          "der Bekanntheitsgrad des Unternehmens",
+          "Bekanntheitsgrad"
+        ],
+        "options": [
+          "der Umsatz",
+          "der Bekanntheitsgrad des Unternehmens",
+          "der Marktanteil"
+        ]
+      },
+      {
+        "correct": "vertikalen",
+        "accepted": [
+          "vertikalen",
+          "vertikal"
+        ],
+        "options": [
+          "horizontalen",
+          "lateralen",
+          "vertikalen"
+        ]
+      },
+      {
+        "correct": "Social Listening",
+        "accepted": [
+          "Social Listening"
+        ],
+        "options": [
+          "Search Engine Optimization",
+          "Social Listening",
+          "Collaborative Filtering"
+        ]
+      },
+      {
+        "correct": "Desire",
+        "accepted": [
+          "Desire"
+        ],
+        "options": [
+          "Desire",
+          "Determination",
+          "Decision"
+        ]
+      }
+    ],
+    "explain": "Echte Klausur-Lückentext-Aufgaben Sommersemester 2024 (Konsumentenverhalten/Marktforschung/Strategie-Schwerpunkt)."
+  },
+  {
+    "title": "Lückentext SS2024 – Teil B (29 Lücken)",
+    "text": "1. Einzelhandelsunternehmen wie beispielsweise MediaMarkt zählen im Rahmen der Vertriebspolitik zu den {{1}}.\n\n2. Ein klarer Vorteil des {{2}} Vertriebs liegt darin, dass Hersteller unmittelbar mit den Endabnehmern kommunizieren können.\n\n3. Die zielgerichtete Form der Aktivierung von Konsumenten zur Suche, Aufnahme, Verarbeitung und Speicherung von Informationen bezeichnet man als {{3}}.\n\n4. Den Ausgangspunkt der Strategieentwicklung im Unternehmen stellt/stellen die {{4}} dar.\n\n5. Das Ziel der {{5}} ist es, die Stellung eines Leistungsangebots im Markt und im Wettbewerb festzulegen, um die Richtung für einen effektiven Einsatz des Marketing-Mix vorzugeben.\n\n6. Ein wesentliches Merkmal des organisationalen Kaufverhaltens ist der {{6}}.\n\n7. Herrscht im B2B-Marketing zwischen zwei Unternehmen eine hohe Kontinuität in der Beziehung sowie eine geringe Individualität der Leistung, so spricht man von einem {{7}}.\n\n8. Ein Messverfahren in der Marktforschung wird dann als {{8}} eingestuft, wenn es frei von systematischen Fehlern ist.\n\n9. Das klassische Schulnoten-System (Noten 1-6) ist ein gutes Beispiel für eine {{9}}.\n\n10. Die {{10}} erlaubt eine Untersuchung der einseitigen Abhängigkeit zwischen einer unabhängigen Variablen (x) und einer abhängigen Variablen (y).\n\n11. Das Erfahrungskurvengesetz besagt, dass mit jeder Verdoppelung der im Zeitablauf {{11}} Produktionsmenge eines Produktes üblicherweise ein Stückkostensenkungspotenzial von etwa 20-30 % besteht, bezogen auf alle in der Wertschöpfung des Produktes enthaltenen Stückkosten.\n\n12. Die {{12}} eines Produktprogramms beschreibt die Anzahl der Produkte oder Produktvarianten innerhalb einer Produktlinie.\n\n13. Eine {{13}} bezeichnet die Ergänzung eines bereits eingeführten Produktes um einen „Ableger“ bzw. eine neue Produktvariante.\n\n14. Von {{14}} Vertrieb spricht man dann, wenn externe Vertriebspartner in der Vermarktung der Produkte eine wesentliche akquisitorische Funktion wahrnehmen.\n\n15. Eine Strategie, die auf eine rasche Diffusion eines Produktes im Markt durch relativ niedrige Preise abzielt, wird als {{15}} bezeichnet.\n\n16. Der gewinnoptimale Preis wird unter der Voraussetzung einer linearen Preis-Absatz-Funktion sowie einer linearen Kostenfunktion als {{16}} bezeichnet.\n\n17. Bestimmte Unternehmensressourcen können als dauerhafte Wettbewerbsvorteile erwachsen und strategisch genutzt werden. Damit eine Ressource als dauerhafter Wettbewerbsvorteil gesehen werden kann, sollte diese unter anderem {{17}} sein.\n\n18. Unter {{18}} versteht man den Verkauf zusätzlicher Produkte im Rahmen bereits existierender Kundenbeziehungen.\n\n19. Bei einer {{19}} werden alle Produkte des Unternehmens unter einer Marke angeboten.\n\n20. Bei einer Preiselastizität des Absatzes von {{20}} ist die relative Absatzänderung größer als die relative Preisänderung; d. h. der Absatz reagiert überproportional auf Preisänderungen.\n\n21. Bei einer Dachmarkenstrategie ist das Potenzial zur Synergienutzung {{21}}.\n\n22. Überführt ein Unternehmen eine bestehende Marke auf eine neue Produktlinie, so ist von {{22}} die Rede.\n\n23. Die Webseite eines Unternehmens oder etwa eine unternehmenseigene App sind Beispiele für {{23}} Media.\n\n24. Ein bedeutsamer Vorteil der Fernsehwerbung ist grundsätzlich {{24}}.\n\n25. Stellen Sie sich vor, Sie laufen nach der Klausur durch einen Supermarkt und entscheiden sich spontan für den Kauf eines Schokoriegels. Dieses Szenario wäre ein Beispiel für eine {{25}} Kaufentscheidung.\n\n26. Der Kauf {{26}} ist ein Beispiel für eine Low-Involvement Aktivität.\n\n27. Einkäufer, Benutzer, Entscheider und Beeinflusser sind typische Beispiele für zentrale Rollen in einem sogenannten {{27}}.\n\n28. Der Entscheidungsprozess des organisationalen Kaufverhaltens beginnt bei einem identischen Wiederkauf üblicherweise bei der {{28}}.\n\n29. {{29}} gehen von unerfüllten bzw. nicht optimal erfüllten Kundenbedürfnissen aus.",
+    "blanks": [
+      {
+        "correct": "Absatzmittlern",
+        "accepted": [
+          "Absatzmittlern",
+          "Absatzmittler"
+        ],
+        "options": [
+          "Absatzmittlern",
+          "Direktvertriebspartnern",
+          "Absatzhelfern"
+        ]
+      },
+      {
+        "correct": "direkten",
+        "accepted": [
+          "direkten"
+        ],
+        "options": [
+          "hybriden",
+          "indirekten",
+          "direkten"
+        ]
+      },
+      {
+        "correct": "Involvement",
+        "accepted": [
+          "Involvement"
+        ],
+        "options": [
+          "Involvement",
+          "Motivation",
+          "Aktivierung"
+        ]
+      },
+      {
+        "correct": "Vision und Mission",
+        "accepted": [
+          "Vision und Mission"
+        ],
+        "options": [
+          "Wettbewerbsanalyse",
+          "Vision und Mission",
+          "Marktanalyse"
+        ]
+      },
+      {
+        "correct": "Positionierung",
+        "accepted": [
+          "Positionierung"
+        ],
+        "options": [
+          "Targeting",
+          "Segmentierung",
+          "Positionierung"
+        ]
+      },
+      {
+        "correct": "hohe Formalisierungsgrad",
+        "accepted": [
+          "hohe Formalisierungsgrad"
+        ],
+        "options": [
+          "hohe Formalisierungsgrad",
+          "hohe Individualisierungsgrad",
+          "niedrige Formalisierungsgrad"
+        ]
+      },
+      {
+        "correct": "Systemgeschäft",
+        "accepted": [
+          "Systemgeschäft"
+        ],
+        "options": [
+          "Systemgeschäft",
+          "Anlagengeschäft",
+          "Zuliefergeschäft"
+        ]
+      },
+      {
+        "correct": "valide",
+        "accepted": [
+          "valide"
+        ],
+        "options": [
+          "objektiv",
+          "valide",
+          "reliabel"
+        ]
+      },
+      {
+        "correct": "Ordinalskala",
+        "accepted": [
+          "Ordinalskala"
+        ],
+        "options": [
+          "Intervallskala",
+          "Ordinalskala",
+          "Nominalskala"
+        ]
+      },
+      {
+        "correct": "Regressionsanalyse",
+        "accepted": [
+          "Regressionsanalyse"
+        ],
+        "options": [
+          "Korrelationsanalyse",
+          "Varianzanalyse",
+          "Regressionsanalyse"
+        ]
+      },
+      {
+        "correct": "kumulierten",
+        "accepted": [
+          "kumulierten"
+        ],
+        "options": [
+          "initialen",
+          "kumulierten",
+          "durchschnittlichen"
+        ]
+      },
+      {
+        "correct": "Tiefe",
+        "accepted": [
+          "Tiefe"
+        ],
+        "options": [
+          "Länge",
+          "Breite",
+          "Tiefe"
+        ]
+      },
+      {
+        "correct": "Produktdifferenzierung",
+        "accepted": [
+          "Produktdifferenzierung"
+        ],
+        "options": [
+          "Preisdifferenzierung",
+          "Markendifferenzierung",
+          "Produktdifferenzierung"
+        ]
+      },
+      {
+        "correct": "indirektem",
+        "accepted": [
+          "indirektem",
+          "indirekt"
+        ],
+        "options": [
+          "hybridem",
+          "direktem",
+          "indirektem"
+        ]
+      },
+      {
+        "correct": "Penetrationsstrategie",
+        "accepted": [
+          "Penetrationsstrategie"
+        ],
+        "options": [
+          "Penetrationsstrategie",
+          "Präventivstrategie",
+          "Skimmingstrategie"
+        ]
+      },
+      {
+        "correct": "Cournot-Preis",
+        "accepted": [
+          "Cournot-Preis"
+        ],
+        "options": [
+          "Skimming-Preis",
+          "Cournot-Preis",
+          "Penetrationspreis"
+        ]
+      },
+      {
+        "correct": "nicht vollständig mobil",
+        "accepted": [
+          "nicht vollständig mobil"
+        ],
+        "options": [
+          "leicht imitierbar",
+          "beliebig übertragbar",
+          "nicht vollständig mobil"
+        ]
+      },
+      {
+        "correct": "Cross-Selling",
+        "accepted": [
+          "Cross-Selling"
+        ],
+        "options": [
+          "Cross-Selling",
+          "Up-Selling",
+          "Bundling"
+        ]
+      },
+      {
+        "correct": "Dachmarkenstrategie",
+        "accepted": [
+          "Dachmarkenstrategie"
+        ],
+        "options": [
+          "Dachmarkenstrategie",
+          "Parallelmarkenstrategie",
+          "Markentransfer"
+        ]
+      },
+      {
+        "correct": "-1,5",
+        "accepted": [
+          "-1,5",
+          "-1.5"
+        ],
+        "options": [
+          "-1,5",
+          "1,5",
+          "-0,5"
+        ]
+      },
+      {
+        "correct": "sehr hoch",
+        "accepted": [
+          "sehr hoch"
+        ],
+        "options": [
+          "sehr hoch",
+          "mittel",
+          "sehr gering"
+        ]
+      },
+      {
+        "correct": "einem Markentransfer",
+        "accepted": [
+          "einem Markentransfer",
+          "Markentransfer"
+        ],
+        "options": [
+          "einer Parallelmarkenstrategie",
+          "einem Markentransfer",
+          "einer Dachmarkenstrategie"
+        ]
+      },
+      {
+        "correct": "Owned",
+        "accepted": [
+          "Owned"
+        ],
+        "options": [
+          "Owned",
+          "Earned",
+          "Paid"
+        ]
+      },
+      {
+        "correct": "der relativ niedrige Tausender-Kontaktpreis",
+        "accepted": [
+          "der relativ niedrige Tausender-Kontaktpreis",
+          "niedriger Tausender-Kontaktpreis"
+        ],
+        "options": [
+          "die niedrigen Produktionskosten",
+          "der relativ niedrige Tausender-Kontaktpreis",
+          "die hohe Zielgruppengenauigkeit"
+        ]
+      },
+      {
+        "correct": "impulsive",
+        "accepted": [
+          "impulsive"
+        ],
+        "options": [
+          "extensive",
+          "impulsive",
+          "habitualisierte"
+        ]
+      },
+      {
+        "correct": "einer Handseife",
+        "accepted": [
+          "einer Handseife",
+          "Handseife"
+        ],
+        "options": [
+          "eines neuen Autos",
+          "einer Küche",
+          "einer Handseife"
+        ]
+      },
+      {
+        "correct": "Buying-Center",
+        "accepted": [
+          "Buying-Center",
+          "Buying Center"
+        ],
+        "options": [
+          "Buying-Center",
+          "Decision-Board",
+          "Selling-Center"
+        ]
+      },
+      {
+        "correct": "Anbietervorauswahl",
+        "accepted": [
+          "Anbietervorauswahl"
+        ],
+        "options": [
+          "Anbietervorauswahl",
+          "Anbieterauswahl",
+          "Bedarfserkennung"
+        ]
+      },
+      {
+        "correct": "Marktinduzierte Innovationen",
+        "accepted": [
+          "Marktinduzierte Innovationen",
+          "Marktinduziert"
+        ],
+        "options": [
+          "Marktinduzierte Innovationen",
+          "Technologieinduzierte Innovationen",
+          "Wettbewerbsinduzierte Innovationen"
+        ]
+      }
+    ],
+    "explain": "Echte Klausur-Lückentext-Aufgaben Sommersemester 2024 (Vertrieb/Strategie/Preis-Schwerpunkt, andere Klausurvariante)."
+  },
+  {
+    "title": "Lückentext SS2023 (30 Lücken)",
+    "text": "1. Auslösende Faktoren für die Aktivierung bei Konsumenten sind physische und physikalische Reize, {{1}} Reize, und kognitive Reize.\n\n2. Kunden im B2B-Marketing sind sowohl {{2}}, als auch staatliche Einrichtungen und öffentliche Institute.\n\n3. Grob kann man Produktinnovationen in {{3}} und technologieinduzierte Innovationen unterscheiden.\n\n4. Marketingziele können nicht nur wirtschaftlich, sondern auch {{4}} oder potenzialbezogen sein.\n\n5. Bei der {{5}} werden konkrete Produkteigenschaften mit terminalen Werten in Verbindung gebracht.\n\n6. Die vier Phasen in der Entwicklung von langfristigen Geschäftsbeziehungen sind Awareness, {{6}}, Expansion und Commitment.\n\n7. Das Untersuchungsdesign in der Marktforschung ist entweder {{7}}, explorativ oder explikativ.\n\n8. Als grundlegende Wettbewerbsstrategie können Unternehmen entweder auf {{8}} oder auf Differenzierung setzen.\n\n9. Liegt die Preiselastizität des Absatzes zwischen -1 und 0, so reagiert der Absatz {{9}} auf Preisänderungen.\n\n10. Sogenannte {{10}} informieren sich offline über Produkte um sie dann online zu kaufen.\n\n11. Bei Arten der Unsicherheit von Konsumenten in der Informationssuche unterscheidet man zunächst zwischen {{11}} und Marktunsicherheit.\n\n12. Als {{12}} bezeichnet man gegen Bezahlung platzierte Inhalte im Ergebnisbereich von Online-Suchmaschinen.\n\n13. Wird für eine bestehende Marke eine neue Produktlinie eingeführt, so spricht man von {{13}}.\n\n14. Produkteigenschaften, die von den Konsumenten weder vor noch nach dem Kauf vollständig beurteilt werden können, bezeichnet man als {{14}}.\n\n15. Die Methodik {{15}} wird insbesondere darum verwendet, um latente Bedürfnisse von Kunden zu erfassen.\n\n16. Der Umsatz mit Vorleistungs- und Investitionsgütern ist grundsätzlich {{16}} mit Ge- und Verbrauchsgütern.\n\n17. Die zentralen Rollen im Buying Center sind {{17}}, Benutzer, Entscheider, Informationsselektierer, Beeinflusser und Einkäufer.\n\n18. Ist in einem B2B-Geschäft die Kontinuität der Beziehung und die Individualität der Leistung hoch, so handelt es sich um ein {{18}}.\n\n19. Bei einem {{19}} Untersuchungsdesign werden die Zusammenhänge zwischen Variablen auf Basis vorab formulierter Hypothesen betrachtet.\n\n20. Ein Messverfahren ist dann reliabel, wenn es frei von {{20}} ist.\n\n21. Um kognitives Ungleichgewicht nach dem Kauf eines Produktes zu reduzieren, können Kunden {{21}}.\n\n22. In Hinblick auf die Leistungsfähigkeit von Konsumenten ist der optimale Aktivierungsgrad im Zustand der {{22}} erreicht.\n\n23. Bei Preissetzungen für neue Produkte wird die {{23}} verwendet, um durch relativ hohe Preise Zahlungsbereitschaften abzuschöpfen.\n\n24. Für saisonale Produkte wird typischerweise eine {{24}} Verteilung des Kommunikationsbudgets gewählt.\n\n25. Kommunikationspolitische Ziele werden nach dem AIDA-Modell in Attention, {{25}}, Desire und Action aufgeteilt.\n\n26. Preispolitische Entscheidungen zeichnen sich u.a. durch eine {{26}} aus.\n\n27. Die Charakteristiken von Big Data beinhalten Volume, {{27}}, Variety und Veracity.\n\n28. Bei einer Regressionsanalyse werden die Parameter so geschätzt, dass die Summe der quadrierten Differenzen zwischen {{28}} Wert der abhängigen Variable minimiert werden.\n\n29. Das Lebenszyklusmodell von Produkten endet mit der Phase der {{29}}.\n\n30. Bei der Strategieentwicklung von Unternehmen steht bei der {{30}} die Identifikation der eigenen Ressourcen und Kompetenzen am Beginn des Prozesses.",
+    "blanks": [
+      {
+        "correct": "emotionale",
+        "accepted": [
+          "emotionale"
+        ],
+        "options": [
+          "rationale",
+          "emotionale",
+          "kognitive"
+        ]
+      },
+      {
+        "correct": "privatwirtschaftliche Unternehmen",
+        "accepted": [
+          "privatwirtschaftliche Unternehmen"
+        ],
+        "options": [
+          "Endkonsumenten",
+          "Privathaushalte",
+          "privatwirtschaftliche Unternehmen"
+        ]
+      },
+      {
+        "correct": "marktinduzierte",
+        "accepted": [
+          "marktinduzierte"
+        ],
+        "options": [
+          "wettbewerbsinduzierte",
+          "marktinduzierte",
+          "technologieinduzierte"
+        ]
+      },
+      {
+        "correct": "markterfolgsbezogen",
+        "accepted": [
+          "markterfolgsbezogen"
+        ],
+        "options": [
+          "kostenbezogen",
+          "potenzialbezogen",
+          "markterfolgsbezogen"
+        ]
+      },
+      {
+        "correct": "Means-End-Analyse",
+        "accepted": [
+          "Means-End-Analyse"
+        ],
+        "options": [
+          "Conjoint-Analyse",
+          "Means-End-Analyse",
+          "Faktoranalyse"
+        ]
+      },
+      {
+        "correct": "Exploration",
+        "accepted": [
+          "Exploration"
+        ],
+        "options": [
+          "Awareness",
+          "Exploration",
+          "Expansion"
+        ]
+      },
+      {
+        "correct": "deskriptiv",
+        "accepted": [
+          "deskriptiv"
+        ],
+        "options": [
+          "explorativ",
+          "deskriptiv",
+          "explikativ"
+        ]
+      },
+      {
+        "correct": "Kostenführerschaft",
+        "accepted": [
+          "Kostenführerschaft"
+        ],
+        "options": [
+          "Differenzierung",
+          "Fokussierung",
+          "Kostenführerschaft"
+        ]
+      },
+      {
+        "correct": "unterproportional",
+        "accepted": [
+          "unterproportional"
+        ],
+        "options": [
+          "überproportional",
+          "proportional",
+          "unterproportional"
+        ]
+      },
+      {
+        "correct": "Showroomer",
+        "accepted": [
+          "Showroomer"
+        ],
+        "options": [
+          "Multichannel-Shopper",
+          "Showroomer",
+          "Webroomer"
+        ]
+      },
+      {
+        "correct": "Ereignisunsicherheit",
+        "accepted": [
+          "Ereignisunsicherheit"
+        ],
+        "options": [
+          "Marktunsicherheit",
+          "Ereignisunsicherheit",
+          "Informationsunsicherheit"
+        ]
+      },
+      {
+        "correct": "Search Engine Advertising",
+        "accepted": [
+          "Search Engine Advertising",
+          "SEA"
+        ],
+        "options": [
+          "Search Engine Optimization",
+          "Content-Marketing",
+          "Search Engine Advertising"
+        ]
+      },
+      {
+        "correct": "Markentransfer",
+        "accepted": [
+          "Markentransfer"
+        ],
+        "options": [
+          "Dachmarkenstrategie",
+          "Markentransfer",
+          "Parallelmarkenstrategie"
+        ]
+      },
+      {
+        "correct": "Vertrauenseigenschaften",
+        "accepted": [
+          "Vertrauenseigenschaften"
+        ],
+        "options": [
+          "Sucheigenschaften",
+          "Erfahrungseigenschaften",
+          "Vertrauenseigenschaften"
+        ]
+      },
+      {
+        "correct": "des empathischen Designs",
+        "accepted": [
+          "des empathischen Designs",
+          "empathisches Design"
+        ],
+        "options": [
+          "des empathischen Designs",
+          "der Conjoint-Analyse",
+          "der Faktoranalyse"
+        ]
+      },
+      {
+        "correct": "höher als der",
+        "accepted": [
+          "höher als der"
+        ],
+        "options": [
+          "niedriger als der",
+          "genauso hoch wie der",
+          "höher als der"
+        ]
+      },
+      {
+        "correct": "Initiator",
+        "accepted": [
+          "Initiator"
+        ],
+        "options": [
+          "Beeinflusser",
+          "Einkäufer",
+          "Initiator"
+        ]
+      },
+      {
+        "correct": "Zuliefergeschäft",
+        "accepted": [
+          "Zuliefergeschäft"
+        ],
+        "options": [
+          "Anlagengeschäft",
+          "Zuliefergeschäft",
+          "Systemgeschäft"
+        ]
+      },
+      {
+        "correct": "explikativen",
+        "accepted": [
+          "explikativen",
+          "explikativ"
+        ],
+        "options": [
+          "explikativen",
+          "deskriptiven",
+          "explorativen"
+        ]
+      },
+      {
+        "correct": "Zufallsfehlern",
+        "accepted": [
+          "Zufallsfehlern",
+          "Zufallsfehler"
+        ],
+        "options": [
+          "Messfehlern",
+          "systematischen Fehlern",
+          "Zufallsfehlern"
+        ]
+      },
+      {
+        "correct": "nach konsonanten Informationen suchen",
+        "accepted": [
+          "nach konsonanten Informationen suchen",
+          "konsonante Informationen"
+        ],
+        "options": [
+          "nach dissonanten Informationen suchen",
+          "den Kauf komplett verdrängen",
+          "nach konsonanten Informationen suchen"
+        ]
+      },
+      {
+        "correct": "wachen Aufmerksamkeit",
+        "accepted": [
+          "wachen Aufmerksamkeit"
+        ],
+        "options": [
+          "Übererregung",
+          "Monotonie",
+          "wachen Aufmerksamkeit"
+        ]
+      },
+      {
+        "correct": "Skimmingstrategie",
+        "accepted": [
+          "Skimmingstrategie"
+        ],
+        "options": [
+          "Penetrationsstrategie",
+          "Präventivstrategie",
+          "Skimmingstrategie"
+        ]
+      },
+      {
+        "correct": "pulsierende",
+        "accepted": [
+          "pulsierende"
+        ],
+        "options": [
+          "konstante",
+          "pulsierende",
+          "steigende"
+        ]
+      },
+      {
+        "correct": "Interest",
+        "accepted": [
+          "Interest"
+        ],
+        "options": [
+          "Involvement",
+          "Interest",
+          "Intention"
+        ]
+      },
+      {
+        "correct": "hohe Wirkungsgeschwindigkeit",
+        "accepted": [
+          "hohe Wirkungsgeschwindigkeit"
+        ],
+        "options": [
+          "hohe Wirkungsgeschwindigkeit",
+          "hohe Reversibilität",
+          "niedrige Wirkungsgeschwindigkeit"
+        ]
+      },
+      {
+        "correct": "Velocity",
+        "accepted": [
+          "Velocity"
+        ],
+        "options": [
+          "Value",
+          "Vision",
+          "Velocity"
+        ]
+      },
+      {
+        "correct": "beobachtetem und geschätztem",
+        "accepted": [
+          "beobachtetem und geschätztem"
+        ],
+        "options": [
+          "erwartetem und tatsächlichem",
+          "beobachtetem und geschätztem",
+          "minimalem und maximalem"
+        ]
+      },
+      {
+        "correct": "Sättigung",
+        "accepted": [
+          "Sättigung"
+        ],
+        "options": [
+          "Reife",
+          "Degeneration",
+          "Sättigung"
+        ]
+      },
+      {
+        "correct": "Inside-Out-Perspektive",
+        "accepted": [
+          "Inside-Out-Perspektive",
+          "Inside-Out"
+        ],
+        "options": [
+          "Inside-Out-Perspektive",
+          "Resource-Based View",
+          "Outside-In-Perspektive"
+        ]
+      }
+    ],
+    "explain": "Echte Klausur-Lückentext-Aufgaben Sommersemester 2023."
+  },
+  {
+    "title": "Lückentext SS2022 (28 Lücken)",
+    "text": "1. Die Anzahl der Kontakte, die mit einer Werbemaßnahme (einmalige oder mehrmalige Belegung eines Mediums oder mehrerer Medien) realisiert werden, nennt man {{1}}.\n\n2. Der Bereich der für einen Konsumenten grundsätzlich akzeptablen Preise wird durch {{2}} Preisschwellen begrenzt.\n\n3. Bei der {{3}} werden Produkte in der Markteinführungsphase zu relativ hohen Preisen angeboten, um so die Zahlungsbereitschaft der Nachfrager abzuschöpfen.\n\n4. Wenn ein bereits eingeführtes Produkt um eine neue Produktvariante mit unterschiedlicher Qualität und unterschiedlichem Preis erweitert wird, spricht man von einer {{4}}.\n\n5. Grundidee der {{5}} ist es, zu zeigen, wie die Motive eines Konsumenten mit realen Eigenschaften eines Produktes zusammenhängen.\n\n6. Welchen Wert nimmt die Preiselastizität des Absatzes der Preisabsatzfunktion x(p) = 3.500p^(-1,8) bei p = 6 an? Antwort: {{6}}\n\n7. Das Lebenszyklusmodell besagt im Kern, dass jedes Produkt am Markt bestimmte Lebenszyklusphasen durchläuft. Die vierte Phase dieses Modells wird als {{7}} bezeichnet.\n\n8. Güter zeichnen sich i. d. R. durch verschiedene Eigenschaften aus. Eigenschaften, die erst dann beurteilt werden können, wenn man ein Gut ausprobiert hat, bezeichnet man als {{8}}.\n\n9. Im Elaboration Likelihood Model (ELM) erfolgt die Informationsbeurteilung über die {{9}} Route mittels kognitiver Prozesse, d.h. durch sorgfältige Überprüfung der Argumente.\n\n10. Initiator, Benutzer, {{10}}, Informationsselektierer, Beeinflusser und Einkäufer sind die zentralen Rollen des Buying Centers.\n\n11. Werden gleiche oder sehr ähnliche Produkte verschiedenen Kunden (Segmenten) zu unterschiedlichen Preisen angeboten, so bezeichnet man diese Maßnahme als {{11}}.\n\n12. {{12}} ist eine relativ zeitbeständige innere Denkhaltung eines Konsumenten gegenüber einer Person, Idee oder Sache, die in Verbindung mit einer Wertung oder Erwartung steht.\n\n13. Im Rahmen der multiplen Regressionsanalyse spricht man von den sogenannten {{13}} Regressionskoeffizienten. Diese sind unabhängig von der Skalierung der unabhängigen Variablen.\n\n14. Liegt Validität vor, ist das Messverfahren frei von {{14}}.\n\n15. Bei Produkten mit Erfahrungseigenschaften suchen Konsumenten häufig nach leistungsbezogenen Informationen, die auf die Qualität eines Produktes schließen lassen. Bei den gesuchten Informationen handelt es sich somit um leistungsbezogene {{15}}.\n\n16. Eine {{16}} Kaufentscheidung ist gekennzeichnet durch niedriges emotionales und niedriges kognitives Involvement.\n\n17. {{17}} ist eine Markenstrategie, bei der in einer bestehenden Produktlinie neben der existierenden Marke weitere Marken vom Unternehmen eingeführt werden.\n\n18. Nach dem {{18}} ist die optimale Clusteranzahl erreicht, wenn sich zwischen zwei Verschmelzungsschritten eine im Vergleich zu den vorherigen Verschmelzungsschritten überproportional große Verschmelzungsdistanz ergibt.\n\n19. Die {{19}} beschreibt die prozentuale Reduktion der Stückkosten bei Verdopplung der kumulierten Menge.\n\n20. Am Fuß der Bedürfnispyramide von Maslow stehen die {{20}}.\n\n21. Die Güte der Regressionsfunktion kann mit Hilfe des {{21}} beurteilt werden.\n\n22. Die {{22}} ist ein Maß für die Stärke des Zusammenhangs zwischen Kommunikationsbudget W und Absatz x. Sie gibt das Verhältnis der relativen Änderung des Absatzes zu der sie verursachenden relativen Änderung des Kommunikationsbudgets an.\n\n23. Die Umfeldfaktoren des Konsumentenverhaltens ergeben sich aus dem physischen, sozialen und {{23}} Umfeld des Konsumenten.\n\n24. Das Anlagengeschäft oder auch Projektgeschäft zeichnet sich durch eine niedrige Kontinuität der Geschäftsbeziehung und eine hohe {{24}} der Leistungen aus.\n\n25. Geht es bei einer Untersuchung um eine möglichst genaue Erfassung und Beschreibung der für die Untersuchungsthematik relevanten Tatbestände, ohne dass Zusammenhänge zwischen Variablen beleuchtet werden, handelt es sich um ein {{25}} Untersuchungsdesign.\n\n26. Das AIDA-Modell setzt sich aus den Begriffen {{26}}, Interest, Desire und Action zusammen.\n\n27. Nach dem Ajzen/Fishbein-Modell kommt eine Verhaltensabsicht durch eine Abwägung zwischen der {{27}} zu einem bestimmten Verhalten und der subjektiven Norm zustande.\n\n28. Die {{28}} beschreibt den Zusammenhang zwischen Aktivierungsgrad und Leistungsfähigkeit.",
+    "blanks": [
+      {
+        "correct": "Bruttoreichweite",
+        "accepted": [
+          "Bruttoreichweite"
+        ],
+        "options": [
+          "Nettoreichweite",
+          "Bruttoreichweite",
+          "Streuverlust"
+        ]
+      },
+      {
+        "correct": "absolute",
+        "accepted": [
+          "absolute"
+        ],
+        "options": [
+          "relative",
+          "absolute",
+          "individuelle"
+        ]
+      },
+      {
+        "correct": "Skimmingstrategie",
+        "accepted": [
+          "Skimmingstrategie"
+        ],
+        "options": [
+          "Penetrationsstrategie",
+          "Präventivstrategie",
+          "Skimmingstrategie"
+        ]
+      },
+      {
+        "correct": "vertikalen Produktdifferenzierung",
+        "accepted": [
+          "vertikalen Produktdifferenzierung"
+        ],
+        "options": [
+          "horizontalen Produktdifferenzierung",
+          "vertikalen Produktdifferenzierung",
+          "Markendifferenzierung"
+        ]
+      },
+      {
+        "correct": "Means-End-Analyse",
+        "accepted": [
+          "Means-End-Analyse"
+        ],
+        "options": [
+          "Conjoint-Analyse",
+          "Means-End-Analyse",
+          "Faktoranalyse"
+        ]
+      },
+      {
+        "correct": "-1,8",
+        "accepted": [
+          "-1,8",
+          "-1.8"
+        ],
+        "options": [
+          "-0,8",
+          "1,8",
+          "-1,8"
+        ]
+      },
+      {
+        "correct": "Sättigungsphase",
+        "accepted": [
+          "Sättigungsphase"
+        ],
+        "options": [
+          "Reifephase",
+          "Wachstumsphase",
+          "Sättigungsphase"
+        ]
+      },
+      {
+        "correct": "Erfahrungseigenschaften",
+        "accepted": [
+          "Erfahrungseigenschaften"
+        ],
+        "options": [
+          "Erfahrungseigenschaften",
+          "Sucheigenschaften",
+          "Vertrauenseigenschaften"
+        ]
+      },
+      {
+        "correct": "zentrale",
+        "accepted": [
+          "zentrale"
+        ],
+        "options": [
+          "periphere",
+          "zentrale",
+          "duale"
+        ]
+      },
+      {
+        "correct": "Entscheider",
+        "accepted": [
+          "Entscheider"
+        ],
+        "options": [
+          "Beeinflusser",
+          "Entscheider",
+          "Informationsselektierer"
+        ]
+      },
+      {
+        "correct": "Preisdifferenzierung",
+        "accepted": [
+          "Preisdifferenzierung"
+        ],
+        "options": [
+          "Produktdifferenzierung",
+          "Preisdifferenzierung",
+          "Preisbündelung"
+        ]
+      },
+      {
+        "correct": "Die Einstellung",
+        "accepted": [
+          "Die Einstellung",
+          "Einstellung"
+        ],
+        "options": [
+          "Die Motivation",
+          "Das Involvement",
+          "Die Einstellung"
+        ]
+      },
+      {
+        "correct": "standardisierten",
+        "accepted": [
+          "standardisierten",
+          "standardisiert"
+        ],
+        "options": [
+          "unstandardisierten",
+          "standardisierten",
+          "partiellen"
+        ]
+      },
+      {
+        "correct": "systematischen Fehlern",
+        "accepted": [
+          "systematischen Fehlern",
+          "systematische Fehler"
+        ],
+        "options": [
+          "Messfehlern",
+          "Zufallsfehlern",
+          "systematischen Fehlern"
+        ]
+      },
+      {
+        "correct": "Informationssubstitute",
+        "accepted": [
+          "Informationssubstitute"
+        ],
+        "options": [
+          "Informationssubstitute",
+          "Informationsquellen",
+          "Informationskanäle"
+        ]
+      },
+      {
+        "correct": "habitualisierte",
+        "accepted": [
+          "habitualisierte"
+        ],
+        "options": [
+          "habitualisierte",
+          "extensive",
+          "impulsive"
+        ]
+      },
+      {
+        "correct": "Parallelmarkenstrategie",
+        "accepted": [
+          "Parallelmarkenstrategie",
+          "Parallelmarkeneinführung"
+        ],
+        "options": [
+          "Dachmarkenstrategie",
+          "Parallelmarkenstrategie",
+          "Markentransfer"
+        ]
+      },
+      {
+        "correct": "Ellenbogenkriterium",
+        "accepted": [
+          "Ellenbogenkriterium",
+          "Ellenbogenkriterium / Dendrogramm",
+          "Dendrogramm"
+        ],
+        "options": [
+          "Ward-Verfahren",
+          "Silhouettenkoeffizient",
+          "Ellenbogenkriterium"
+        ]
+      },
+      {
+        "correct": "Lernrate",
+        "accepted": [
+          "Lernrate"
+        ],
+        "options": [
+          "Verbundeffekt",
+          "Skaleneffekt",
+          "Lernrate"
+        ]
+      },
+      {
+        "correct": "Existenzbedürfnisse",
+        "accepted": [
+          "Existenzbedürfnisse"
+        ],
+        "options": [
+          "Existenzbedürfnisse",
+          "Sicherheitsbedürfnisse",
+          "soziale Bedürfnisse"
+        ]
+      },
+      {
+        "correct": "Bestimmtheitsmaßes r²",
+        "accepted": [
+          "Bestimmtheitsmaßes r²",
+          "Bestimmtheitsmaß",
+          "R²",
+          "Bestimmtheitsmaß r²"
+        ],
+        "options": [
+          "Korrelationskoeffizienten r",
+          "Bestimmtheitsmaßes r²",
+          "Standardfehlers"
+        ]
+      },
+      {
+        "correct": "Werbeelastizität",
+        "accepted": [
+          "Werbeelastizität"
+        ],
+        "options": [
+          "Werbewirkungsfunktion",
+          "Preiselastizität",
+          "Werbeelastizität"
+        ]
+      },
+      {
+        "correct": "kulturellen",
+        "accepted": [
+          "kulturellen"
+        ],
+        "options": [
+          "rechtlichen",
+          "kulturellen",
+          "technologischen"
+        ]
+      },
+      {
+        "correct": "Individualität",
+        "accepted": [
+          "Individualität"
+        ],
+        "options": [
+          "Individualität",
+          "Kontinuität",
+          "Standardisierung"
+        ]
+      },
+      {
+        "correct": "deskriptives",
+        "accepted": [
+          "deskriptives",
+          "deskriptiv"
+        ],
+        "options": [
+          "exploratives",
+          "deskriptives",
+          "explikatives"
+        ]
+      },
+      {
+        "correct": "Attention",
+        "accepted": [
+          "Attention"
+        ],
+        "options": [
+          "Activation",
+          "Awareness",
+          "Attention"
+        ]
+      },
+      {
+        "correct": "Einstellung",
+        "accepted": [
+          "Einstellung"
+        ],
+        "options": [
+          "Einstellung",
+          "Involvement",
+          "Motivation"
+        ]
+      },
+      {
+        "correct": "Wundt-Kurve",
+        "accepted": [
+          "Wundt-Kurve",
+          "Aktivierungs-Leistungs-Kurve"
+        ],
+        "options": [
+          "Maslowsche Bedürfnispyramide",
+          "Wundt-Kurve",
+          "Yerkes-Dodson-Gesetz"
+        ]
+      }
+    ],
+    "explain": "Echte Klausur-Lückentext-Aufgaben Sommersemester 2022. Frage 6 ist eine Rechenaufgabe. Frage 14/17/28 wurden anhand von Parallelstellen in anderen Jahrgängen rekonstruiert."
+  }
+];
 const LUECKENTEXT_PUO = [];
 const FREITEXT_PUO = [
   {
@@ -2315,7 +4021,7 @@ const COURSES = {
     infoQuiz: "Dieser Kurs verwendet für die empirische Varianz durchgehend den Divisor <b>n−1</b> (anders als z.B. in Statistik Teil A, wo n verwendet wird) – nicht verwechseln! Achte außerdem auf die Unterscheidung von deskriptivem/explorativem/explikativem Untersuchungsdesign und von Reliabilität/Validität – beides kam in deinen letzten Klausuren wiederholt als Lückentext-Frage vor.",
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     tabLuecken: "Lückentext",
-    infoLuecken: "Für M&V sind aktuell keine Lückentext-Übungen hinterlegt. Die Diagramm-Zuordnungsfragen im Quiz-Tab üben den gleichen Skill (Begriffe präzise zuordnen).",
+    infoLuecken: "5 echte Klausur-Lückentexte (SS2022–SS2025, 147 Lücken) – genau wie in der echten Klausur musst du den fehlenden Fachbegriff selbst eintippen. Viele Begriffe (Preisdifferenzierung, AIDA-Modell, Ellenbogenkriterium, Buying-Center-Rollen...) wiederholen sich über mehrere Jahre – ein starkes Signal, was garantiert wieder drankommt.",
     tabFreitext: "Freitext",
     infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt. M&amp;V ist hauptsächlich Multiple-Choice.",
     lsProgress: "mv_progress",
@@ -3289,8 +4995,13 @@ function renderLuecken() {
       if (i % 2 === 0) {
         html += escapeHtmlLT(parts[i]).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
       } else {
-        const blankNum = parts[i];
-        html += `<input type="text" class="luecken-input" data-item="${itemIdx}" data-blank="${blankNum}" autocomplete="off" spellcheck="false">`;
+        const blankNum = parseInt(parts[i], 10);
+        const blank = item.blanks[blankNum - 1];
+        const opts = (blank && blank.options) || [];
+        let selHtml = `<select class="luecken-select" data-item="${itemIdx}" data-blank="${blankNum}"><option value="">– wählen –</option>`;
+        opts.forEach(o => { selHtml += `<option value="${escapeHtmlLT(o)}">${escapeHtmlLT(o)}</option>`; });
+        selHtml += '</select>';
+        html += selHtml;
       }
     }
     html += '</p></div>';
@@ -3299,7 +5010,7 @@ function renderLuecken() {
       <button class="flashcard-btn show luecken-solution-btn" data-item="${itemIdx}">Musterlösung</button>
       <span class="luecken-score" id="lueckenScore-${itemIdx}"></span>
     </div>`;
-    html += `<div class="luecken-solution" id="lueckenSolution-${itemIdx}"><b>Musterlösung:</b> ${item.blanks.map((b,i2) => (i2+1) + '. ' + escapeHtmlLT(b[0])).join(' &middot; ')}<br><span class="luecken-explain">${escapeHtmlLT(item.explain || '')}</span></div>`;
+    html += `<div class="luecken-solution" id="lueckenSolution-${itemIdx}"><b>Musterlösung:</b> ${item.blanks.map((b,i2) => (i2+1) + '. ' + escapeHtmlLT(b.correct)).join(' &middot; ')}<br><span class="luecken-explain">${escapeHtmlLT(item.explain || '')}</span></div>`;
     card.innerHTML = html;
     wrap.appendChild(card);
   });
@@ -3308,23 +5019,18 @@ function renderLuecken() {
     btn.addEventListener('click', () => {
       const itemIdx = btn.dataset.item;
       const item = LUECKENTEXT[itemIdx];
-      const inputs = wrap.querySelectorAll('.luecken-input[data-item="' + itemIdx + '"]');
+      const selects = wrap.querySelectorAll('.luecken-select[data-item="' + itemIdx + '"]');
       let correct = 0;
-      const norm = s => (s || '').toLowerCase().trim().replace(/[.,;:!?"'„“]/g,'').replace(/\s+/g,' ');
-      inputs.forEach(inp => {
-        const blankNum = parseInt(inp.dataset.blank, 10);
-        const accepted = item.blanks[blankNum - 1] || [];
-        const guess = norm(inp.value);
-        const ok = guess.length > 0 && accepted.some(a => {
-          const an = norm(a);
-          return guess === an || an.includes(guess) || guess.includes(an);
-        });
-        inp.classList.remove('luecken-correct','luecken-wrong');
-        inp.classList.add(ok ? 'luecken-correct' : 'luecken-wrong');
+      selects.forEach(sel => {
+        const blankNum = parseInt(sel.dataset.blank, 10);
+        const blank = item.blanks[blankNum - 1] || {};
+        const ok = sel.value.length > 0 && sel.value === blank.correct;
+        sel.classList.remove('luecken-correct','luecken-wrong');
+        sel.classList.add(sel.value.length > 0 ? (ok ? 'luecken-correct' : 'luecken-wrong') : '');
         if (ok) correct++;
       });
       const scoreEl = document.getElementById('lueckenScore-' + itemIdx);
-      if (scoreEl) scoreEl.textContent = correct + ' / ' + inputs.length + ' richtig';
+      if (scoreEl) scoreEl.textContent = correct + ' / ' + selects.length + ' richtig';
     });
   });
   wrap.querySelectorAll('.luecken-solution-btn').forEach(btn => {
