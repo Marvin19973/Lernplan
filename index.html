@@ -161,6 +161,10 @@
   .luecken-select:focus { outline: none; border-color: var(--accent); }
   .luecken-select.luecken-correct { border-color: #34d399; background: rgba(52,211,153,0.12); }
   .luecken-select.luecken-wrong { border-color: #f87171; background: rgba(248,113,113,0.12); }
+  .luecken-inline-ans { display: none; margin-left: 5px; font-size: 12px; font-weight: 600; color: #34d399; white-space: nowrap; }
+  .luecken-card.show-solution .luecken-inline-ans { display: inline; }
+  .luecken-explain { display: none; margin-top: 0.7rem; font-size: 12.5px; color: var(--text-secondary); border-top: 1px solid var(--card-border); padding-top: 0.6rem; }
+  .luecken-card.show-solution .luecken-explain { display: block; }
   .luecken-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .luecken-score { font-size: 13px; font-weight: 600; color: var(--text-primary); }
   .luecken-solution { display: none; margin-top: 0.7rem; font-size: 12.5px; color: var(--text-secondary); background: var(--pill-bg); border-radius: 8px; padding: 0.7rem 0.9rem; line-height: 1.6; }
@@ -5001,6 +5005,7 @@ function renderLuecken() {
         let selHtml = `<select class="luecken-select" data-item="${itemIdx}" data-blank="${blankNum}"><option value="">– wählen –</option>`;
         opts.forEach(o => { selHtml += `<option value="${escapeHtmlLT(o)}">${escapeHtmlLT(o)}</option>`; });
         selHtml += '</select>';
+        selHtml += `<span class="luecken-inline-ans">✓ ${escapeHtmlLT(blank ? blank.correct : '')}</span>`;
         html += selHtml;
       }
     }
@@ -5010,7 +5015,9 @@ function renderLuecken() {
       <button class="flashcard-btn show luecken-solution-btn" data-item="${itemIdx}">Musterlösung</button>
       <span class="luecken-score" id="lueckenScore-${itemIdx}"></span>
     </div>`;
-    html += `<div class="luecken-solution" id="lueckenSolution-${itemIdx}"><b>Musterlösung:</b> ${item.blanks.map((b,i2) => (i2+1) + '. ' + escapeHtmlLT(b.correct)).join(' &middot; ')}<br><span class="luecken-explain">${escapeHtmlLT(item.explain || '')}</span></div>`;
+    if (item.explain) {
+      html += `<div class="luecken-explain">${escapeHtmlLT(item.explain)}</div>`;
+    }
     card.innerHTML = html;
     wrap.appendChild(card);
   });
@@ -5035,8 +5042,8 @@ function renderLuecken() {
   });
   wrap.querySelectorAll('.luecken-solution-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const el = document.getElementById('lueckenSolution-' + btn.dataset.item);
-      if (el) el.classList.toggle('show');
+      const card = btn.closest('.luecken-card');
+      if (card) card.classList.toggle('show-solution');
     });
   });
 }
