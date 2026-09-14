@@ -6892,7 +6892,7 @@ function renderExamMV() {
       const isMulti = !!p.multi;
       const userAns = st.answers[pi];
       html += '  <div class="exam-part" data-aid="' + a.id + '" data-pi="' + pi + '">';
-      html += '    <div class="exam-part-q"><span>' + escapeHtmlFT(p.q) + '</span><span class="exam-part-pts">' + p.points + (p.points === 1 ? ' Punkt' : ' Punkte') + '</span></div>';
+      html += '    <div class="exam-part-q"><span>' + p.q + '</span><span class="exam-part-pts">' + p.points + (p.points === 1 ? ' Punkt' : ' Punkte') + '</span></div>';
       html += '    <div class="exam-opts">';
       p.opts.forEach((opt, oi) => {
         let picked = false;
