@@ -1019,6 +1019,76 @@ const MV_MEANSEND_DIAGRAM = `
     <text x="15" y="320" font-size="10" fill="var(--text-muted)">A, B = die 2 zu bestimmenden Nutzen-Ebenen, exakt wie im Original (Pfeile zeigen nach oben = "Warum?")</text>
   </svg>
 </div>`;
+const MV_INVOLVEMENT_DIAGRAM = `
+<div class="quiz-diagram-wrap" style="padding:1rem;">
+  <svg viewBox="0 0 480 380" width="100%" style="max-width:420px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <marker id="invArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <polygon points="0,0 7,3 0,6" fill="var(--text-secondary)"/>
+      </marker>
+    </defs>
+    <text x="15" y="16" font-size="11" fill="var(--text-primary)" font-weight="600">Kognitives Involvement</text>
+    <line x1="55" y1="330" x2="55" y2="25" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#invArrow)"/>
+    <text x="35" y="45" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="end">hoch</text>
+    <text x="35" y="325" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="end">niedrig</text>
+
+    <line x1="55" y1="330" x2="450" y2="330" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#invArrow)"/>
+    <text x="90" y="352" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="middle">niedrig</text>
+    <text x="400" y="352" font-size="10.5" font-style="italic" fill="var(--text-secondary)" text-anchor="middle">hoch</text>
+    <text x="250" y="370" font-size="11" fill="var(--text-primary)" font-weight="600" text-anchor="middle">Emotionales Involvement</text>
+
+    <rect x="70" y="35" width="180" height="140" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="160" y="112" font-size="22" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+
+    <rect x="250" y="35" width="180" height="140" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="340" y="112" font-size="22" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
+
+    <rect x="70" y="175" width="180" height="140" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="160" y="252" font-size="22" font-weight="700" fill="var(--accent)" text-anchor="middle">C</text>
+
+    <rect x="250" y="175" width="180" height="140" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="340" y="252" font-size="22" font-weight="700" fill="var(--accent)" text-anchor="middle">D</text>
+
+    <text x="15" y="378" font-size="9.5" fill="var(--text-muted)">A–D (blau hervorgehoben) = die 4 zu bestimmenden Kaufentscheidungstypen, exakt wie im Original</text>
+  </svg>
+</div>`;
+const MV_INFOPROZESS_DIAGRAM = `
+<div class="quiz-diagram-wrap" style="padding:1rem;">
+  <svg viewBox="0 0 700 230" width="100%" style="max-width:620px; display:block; margin:0 auto; background:var(--card); border-radius:10px;" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <marker id="ipArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <polygon points="0,0 7,3 0,6" fill="var(--accent)"/>
+      </marker>
+    </defs>
+    <rect x="15" y="15" width="130" height="40" rx="3" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="80" y="40" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+    <rect x="15" y="95" width="130" height="40" rx="3" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="80" y="120" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+    <rect x="15" y="175" width="130" height="40" rx="3" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="80" y="200" font-size="18" font-weight="700" fill="var(--accent)" text-anchor="middle">A</text>
+
+    <path d="M 145,35 L 200,35 L 200,80" fill="none" stroke="var(--text-secondary)" stroke-width="1.6"/>
+    <path d="M 145,115 L 200,115 L 200,80" fill="none" stroke="var(--text-secondary)" stroke-width="1.6"/>
+    <path d="M 145,195 L 200,195 L 200,152" fill="none" stroke="var(--text-secondary)" stroke-width="1.6"/>
+    <line x1="200" y1="80" x2="245" y2="80" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#ipArrow)"/>
+    <line x1="200" y1="152" x2="245" y2="152" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#ipArrow)"/>
+
+    <ellipse cx="300" cy="80" rx="55" ry="28" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="300" y="88" font-size="19" font-weight="700" fill="var(--accent)" text-anchor="middle">C</text>
+
+    <ellipse cx="300" cy="152" rx="55" ry="28" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+    <text x="300" y="160" font-size="19" font-weight="700" fill="var(--accent)" text-anchor="middle">B</text>
+
+    <line x1="355" y1="80" x2="470" y2="105" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#ipArrow)"/>
+    <line x1="355" y1="152" x2="470" y2="127" stroke="var(--text-secondary)" stroke-width="1.6" marker-end="url(#ipArrow)"/>
+
+    <rect x="475" y="90" width="160" height="52" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.6"/>
+    <text x="555" y="112" font-size="12" fill="var(--text-primary)" text-anchor="middle">Informations-</text>
+    <text x="555" y="128" font-size="12" fill="var(--text-primary)" text-anchor="middle">aufnahme</text>
+
+    <text x="15" y="228" font-size="9.5" fill="var(--text-muted)">A (3×), B, C (blau hervorgehoben) = die zu bestimmenden Begriffe, exakt wie im Original</text>
+  </svg>
+</div>`;
 
 const QUIZ_DATA_MV =   {
   konsum: { label: 'Konsumentenverhalten & B2B', sub: 'Aktivierung, Involvement, Dissonanz, Buying Center, Geschäftstypen', questions: [
@@ -1092,6 +1162,37 @@ const QUIZ_DATA_MV =   {
         { term: 'Erfahrungsgut (z.B. Restaurantbesuch)', def: 'Qualität lässt sich erst NACH dem Kauf/Konsum beurteilen' },
         { term: 'Vertrauensgut (z.B. Arztbesuch)', def: 'Qualität lässt sich weder vor noch nach dem Kauf vollständig beurteilen' },
       ], explain: "Such-, Erfahrungs- und Vertrauensgüter unterscheiden sich danach, WANN (falls überhaupt) der Konsument die Qualität beurteilen kann. Ein Laptop ist ein klassisches Suchgut (Beurteilung vor dem Kauf möglich), ein Restaurantbesuch ein Erfahrungsgut (Beurteilung erst nach dem Konsum), ein Arztbesuch dagegen ein Vertrauensgut (Qualität bleibt für den Laien auch nach dem Besuch oft unklar) – dies war in einer echten Klausur eine Fehlerquelle (Arztbesuch fälschlich als Erfahrungsgut eingestuft)." },
+    { le: 'konsum', q: "Welche Aussagen zu Involvement sind wahr? (mehrere richtig)", multi: true, opts: [
+        "Involvement = Erregungszustand, der den Konsumenten zu Handlungen stimuliert und ihn in den Zustand der Leistungsfähigkeit/-bereitschaft versetzt.", "Involvement = Zielgerichtete Form der Aktivierung des Konsumenten zur Suche, Aufnahme, Verarbeitung und Speicherung von Informationen.", "Seife, Jeans und ein Auto sind typische Beispielprodukte für Low-Involvement Entscheidungen.", "Keine Antwort ist korrekt."
+      ], correct: [0,1], explain: "Beide Definitionen von Involvement sind laut Vorlesung korrekt (Erregungszustand UND zielgerichtete Aktivierungsform). FALSCH: ein Auto ist ein klassisches HIGH-Involvement-Produkt (hohe Relevanz, komplexer Entscheidungsprozess), nicht Low-Involvement wie Seife und Jeans – genau diese Verwechslung war in einer echten Klausur eine Fehlerquelle." },
+    { le: 'konsum', q: "Was sind Charakteristika des organisationalen Kaufverhaltens (B2B)? (mehrere richtig)", multi: true, opts: [
+        "Hoher Formalisierungsgrad", "Multipersonalität (mehrere Personen am Kauf beteiligt)", "Multiorganisationalität (mehrere Organisationseinheiten beteiligt)", "Niedriger Grad der Interaktion zwischen Anbieter und Nachfrager"
+      ], correct: [0,1,2], explain: "Organisationales Kaufverhalten zeichnet sich aus durch: hohen Formalisierungsgrad, Multipersonalität, Multiorganisationalität (sowie i.d.R. langfristige Geschäftsbeziehungen). FALSCH ist ein niedriger Interaktionsgrad – B2B-Beziehungen sind gerade durch INTENSIVE Interaktion gekennzeichnet." },
+    { le: 'konsum', q: "Ordne die Beispiele der jeweiligen Einstellungsart zu.", type: 'match', pairs: [
+        { term: 'Einstellung zu einem Bier auf Basis des Erfahrungsberichts eines Bierkritikers', def: 'Übernommene Einstellung' },
+        { term: 'Positive Einstellung gegenüber einem konkreten, hellen Bier (z.B. "Kuelsche diari")', def: 'Spezifische Einstellung' },
+      ], explain: "Übernommene Einstellung: basiert nicht auf eigener Erfahrung, sondern wird von Dritten (z.B. Kritiker, Testbericht) übernommen – Gegensatz: eigene Einstellung (aus eigener Erfahrung). Spezifische Einstellung: bezieht sich auf ein konkretes, einzelnes Objekt (ein bestimmtes Bier) – Gegensatz: generelle Einstellung (bezieht sich auf eine ganze Kategorie, z.B. 'Bier allgemein'). Diese Unterscheidung (übernommen/eigen bzw. spezifisch/generell) kam in einer echten Klausur vor." },
+    { le: 'konsum', q: MV_INVOLVEMENT_DIAGRAM + "DIAGRAMM-BESCHRIFTUNG (Involvement-Typologie, 2×2-Matrix): Ordne jedem Feld (A–D) im Diagramm oben den richtigen Kaufentscheidungstyp zu.", type: 'match', pairs: [
+        { term: 'Rationale Kaufentscheidung', def: 'Feld A (hoch kognitiv, niedrig emotional)' },
+        { term: 'Extensive Kaufentscheidung', def: 'Feld B (hoch kognitiv, hoch emotional)' },
+        { term: 'Habitualisierte Kaufentscheidung', def: 'Feld C (niedrig kognitiv, niedrig emotional)' },
+        { term: 'Impulsive Kaufentscheidung', def: 'Feld D (niedrig kognitiv, hoch emotional)' },
+      ], explain: "Achtung auf die Achsenbeschriftung im Original: Y-Achse = Kognitives Involvement (hoch oben/niedrig unten), X-Achse = Emotionales Involvement (niedrig links/hoch rechts). A=Rational (Versicherung), B=Extensiv (Auto/Haus), C=Habitualisiert (Milch, Brot), D=Impulsiv (Süßigkeiten). Diese exakte Matrix kam in einer echten Klausur vor (dort voll richtig gelöst)." },
+    { le: 'konsum', q: "Der Kauf eines/von ... ist typischerweise eine Kaufentscheidung des Typs B (Extensive Kaufentscheidung, siehe Involvement-Matrix oben).", opts: [
+        "Hauses", "Shampoo", "Süßigkeiten", "Versicherung"
+      ], correct: 0, explain: "Der Kauf eines Hauses ist ein klassisches Beispiel für eine Extensive Kaufentscheidung (Typ B: hohes kognitives UND hohes emotionales Involvement). Shampoo → Habitualisiert (C), Süßigkeiten → Impulsiv (D), Versicherung → Rational (A)." },
+    { le: 'konsum', q: "Der Kauf eines/von ... ist typischerweise eine Kaufentscheidung des Typs A (Rationale Kaufentscheidung, siehe Involvement-Matrix oben).", opts: [
+        "Süßigkeiten", "Küchenrolle", "Autos", "Versicherung"
+      ], correct: 3, explain: "Der Kauf einer Versicherung ist ein klassisches Beispiel für eine Rationale Kaufentscheidung (Typ A: hohes kognitives, aber niedriges emotionales Involvement). Süßigkeiten → Impulsiv (D), Küchenrolle → Habitualisiert (C), Autos → Extensiv (B)." },
+    { le: 'konsum', q: MV_INFOPROZESS_DIAGRAM + "DIAGRAMM-BESCHRIFTUNG (Informationsverarbeitungsprozess): Wähle die richtigen Begriffe für Feld A aus (mehrere richtig).", multi: true, opts: [
+        "Aktion", "Umfeldfaktoren", "Stimulus", "Exposure", "Individuelle Faktoren", "Aufmerksamkeit"
+      ], correct: [1,2,4], explain: "Feld A steht 3× für die Ausgangsgrößen des Informationsverarbeitungsprozesses: Umfeldfaktoren, Stimulus und Individuelle Faktoren. Diese münden in Feld C (Exposure) → Feld B (Aufmerksamkeit) → Informationsaufnahme. 'Aktion' und die Begriffe für B/C selbst sind hier falsch." },
+    { le: 'konsum', q: MV_INFOPROZESS_DIAGRAM + "DIAGRAMM-BESCHRIFTUNG (Informationsverarbeitungsprozess): Welcher Begriff gehört zu Feld B (untere Ellipse, direkt vor 'Informationsaufnahme')?", opts: [
+        "Aufmerksamkeit", "Exposure", "Individuelle Faktoren", "Stimulus"
+      ], correct: 0, explain: "Feld B = Aufmerksamkeit. Vollständiger Ablauf: Umfeldfaktoren/Stimulus/Individuelle Faktoren (A) → Exposure (C) → Aufmerksamkeit (B) → Informationsaufnahme." },
+    { le: 'konsum', q: MV_INFOPROZESS_DIAGRAM + "DIAGRAMM-BESCHRIFTUNG (Informationsverarbeitungsprozess): Welcher Begriff gehört zu Feld C (obere Ellipse)?", opts: [
+        "Exposure", "Aufmerksamkeit", "Umfeldfaktoren", "Informationsaufnahme"
+      ], correct: 0, explain: "Feld C = Exposure (die Konfrontation des Konsumenten mit einem Stimulus), der erste Schritt nach den Ausgangsgrößen (A) und vor der Aufmerksamkeit (B)." },
 ] },
   mafo: { label: 'Marktforschung & Datenanalyse', sub: 'Gütekriterien, Untersuchungsdesigns, Skalenniveaus, Korrelation/Regression, Cluster-/Faktorenanalyse', questions: [
     { le: 'mafo', q: "Welches Gütekriterium der Marktforschung ist verletzt, wenn zwei unabhängige Personen bei derselben Messung zu unterschiedlichen Ergebnissen kommen?", opts: [
@@ -2166,6 +2267,145 @@ let CURRENT_COURSE_ID = 'stat';
 
 const LUECKENTEXT_STAT = [];
 const LUECKENTEXT_MV = [
+{
+  "title": "Lückentext SS2025 PT1 – zusätzliche Begriffe (12 Lücken)",
+  "text": "1. Unter einer {{1}} versteht man die Modifikation von Eigenschaften eines bereits existierenden Produktes, wobei dessen Kernfunktionen nicht veraendert werden.\n\n2. Der {{2}} Produktbegriff beschreibt ein Produkt als ein Buendel von Eigenschaften, das auf die Schaffung von Kundennutzen jedweder Art abzielt.\n\n3. Unter {{3}} wird das durch die Digitalisierung verstaerkte Verhalten von Kunden beschrieben, entlang des Kaufprozesses bewusst auf verschiedene (On- und Offline-)Kommunikations- und Absatzkanaele zuzugreifen.\n\n4. Psychologische Produktdifferenzierung ist allgemein die Aufgabe der {{4}}.\n\n5. {{5}} wurden im Rahmen der eigenen Marktforschung selbst erhoben und sind speziell auf die individuellen Informationsbeduerfnisse der Studie zugeschnitten.\n\n6. Kommen mehrere Personen, die unabhaengig voneinander die Messergebnisse registrieren, zum gleichen Ergebnis, so weist die Messung ein hohes Mass an {{6}} auf.\n\n7. Klassische Medien, Sponsoring, SEA, Werbung in Social Media, Affiliate Marketing: Das sind Beispiele fuer {{7}}.\n\n8. Ein wesentlicher Vorteil der {{8}} liegt in der Moeglichkeit zur Konzentration auf abgrenzbare Zielgruppen.\n\n9. Der Jahresumsatz von Unternehmen ist ein Beispiel fuer eine {{9}}.\n\n10. Das {{10}} ist ein komparatives Skalierungsverfahren.\n\n11. Im Sinne der zeitlichen Verteilung des Kommunikationsbudgets ist {{11}} Werbung bei Neuprodukten grundsaetzlich am sinnvollsten.\n\n12. Im Lebenszyklusmodell von Produkten weist der Absatz grundsaetzlich in der Phase der/des {{12}} das Maximum auf.",
+  "blanks": [
+    {
+      "correct": "Produktvariation",
+      "accepted": [
+        "Produktvariation"
+      ],
+      "options": [
+        "Produktvariation",
+        "Produktinnovation",
+        "Produktdifferenzierung"
+      ]
+    },
+    {
+      "correct": "generische",
+      "accepted": [
+        "generische"
+      ],
+      "options": [
+        "erweiterte",
+        "formale",
+        "generische"
+      ]
+    },
+    {
+      "correct": "Channel Hopping",
+      "accepted": [
+        "Channel Hopping"
+      ],
+      "options": [
+        "Research Shopping",
+        "Channel Hopping",
+        "Multichannel-Marketing"
+      ]
+    },
+    {
+      "correct": "Kommunikationspolitik",
+      "accepted": [
+        "Kommunikationspolitik"
+      ],
+      "options": [
+        "Kommunikationspolitik",
+        "Preispolitik",
+        "Produktpolitik"
+      ]
+    },
+    {
+      "correct": "Primärdaten",
+      "accepted": [
+        "Primärdaten"
+      ],
+      "options": [
+        "Paneldaten",
+        "Sekundärdaten",
+        "Primärdaten"
+      ]
+    },
+    {
+      "correct": "Objektivität",
+      "accepted": [
+        "Objektivität"
+      ],
+      "options": [
+        "Objektivität",
+        "Validität",
+        "Reliabilität"
+      ]
+    },
+    {
+      "correct": "Paid Media",
+      "accepted": [
+        "Paid Media"
+      ],
+      "options": [
+        "Earned Media",
+        "Paid Media",
+        "Owned Media"
+      ]
+    },
+    {
+      "correct": "Einzelmarkenstrategie",
+      "accepted": [
+        "Einzelmarkenstrategie"
+      ],
+      "options": [
+        "Einzelmarkenstrategie",
+        "Markentransferstrategie",
+        "Dachmarkenstrategie"
+      ]
+    },
+    {
+      "correct": "Ratioskala",
+      "accepted": [
+        "Ratioskala"
+      ],
+      "options": [
+        "Intervallskala",
+        "Ratioskala",
+        "Ordinalskala"
+      ]
+    },
+    {
+      "correct": "Konstantsummenverfahren",
+      "accepted": [
+        "Konstantsummenverfahren"
+      ],
+      "options": [
+        "Semantisches Differenzial",
+        "Likert-Verfahren",
+        "Konstantsummenverfahren"
+      ]
+    },
+    {
+      "correct": "konzentrierte",
+      "accepted": [
+        "konzentrierte"
+      ],
+      "options": [
+        "pulsierende",
+        "konzentrierte",
+        "konstante"
+      ]
+    },
+    {
+      "correct": "Sättigung",
+      "accepted": [
+        "Sättigung"
+      ],
+      "options": [
+        "Reife",
+        "Wachstums",
+        "Sättigung"
+      ]
+    }
+  ],
+  "explain": "Aus deiner eigenen echten SS2025-Klausur (Teil 1) - Begriffe, die in den anderen Lückentexten noch nicht vorkamen."
+},
   {
     "title": "Lückentext SS2025 (30 Lücken)",
     "text": "1. Auslösende Faktoren für die Aktivierung bei Konsumenten sind physische und physikalische Reize, emotionale Reize, und {{1}} Reize.\n\n2. Kunden im B2B-Marketing sind sowohl privatwirtschaftliche Unternehmen, als auch {{2}} und öffentliche Institute.\n\n3. Grob kann man Produktinnovationen in marktinduzierte und {{3}} Innovationen unterscheiden.\n\n4. Marketingziele können nicht nur wirtschaftlich, sondern auch markterfolgsbezogen oder {{4}} sein.\n\n5. Bei der Means-End-Analyse werden konkrete Produkteigenschaften mit {{5}} in Verbindung gebracht.\n\n6. Um in einer Clusteranalyse heuristisch die optimale Anzahl an Clustern zu ermitteln, kann das sogenannte {{6}} genutzt werden.\n\n7. Das Untersuchungsdesign in der Marktforschung ist entweder deskriptiv, {{7}} oder explikativ.\n\n8. Als grundlegende Wettbewerbsstrategie können Unternehmen entweder auf Kostenführerschaft oder auf {{8}} setzen.\n\n9. Ist die Preiselastizität des Absatzes geringer als -1, so reagiert der Absatz {{9}} auf Preisänderungen.\n\n10. Sogenannte {{10}} informieren sich online über Produkte, um sie dann offline zu kaufen.\n\n11. Bei Arten der Unsicherheit von Konsumenten in der Informationssuche unterscheidet man zunächst zwischen Ereignisunsicherheit und {{11}}.\n\n12. Bei {{12}} handelt es sich um sämtliche Aktivitäten, durch die die Inhalte einer Unternehmenswebsite eine möglichst gute Platzierung im organischen Bereich der Suchergebnisseiten erzielen.\n\n13. Wird eine neue Marke für eine bestehende Produktlinie eingeführt, so spricht man von {{13}}.\n\n14. Produkteigenschaften, die von den Konsumenten erst nach dem Kauf oder Gebrauch des Gutes beurteilt werden können, bezeichnet man als {{14}}.\n\n15. Die Methode des empathischen Designs wird insbesondere verwendet, um {{15}} von Kunden zu erfassen.\n\n16. Der Umsatz mit Ge- und Verbrauchsgütern ist grundsätzlich {{16}} Umsatz mit Vorleistungs- und Investitionsgütern.\n\n17. Die zentralen Rollen im Buying Center sind Initiator, {{17}}, Entscheider, Informationsselektierer, Beeinflusser und Einkäufer.\n\n18. Die Standardabweichung ist {{18}} der Varianz.\n\n19. Bei einem {{19}} Untersuchungsdesign stehen das Verständnis und die Strukturierung einer meist noch relativ unerforschten Untersuchungsthematik im Mittelpunkt.\n\n20. Ein Messverfahren ist dann valide, wenn es frei von {{20}} ist.\n\n21. Gleiche oder sehr ähnliche Produkte werden häufig verschiedenen Kunden(segmenten) zu unterschiedlichen Preisen angeboten. Dies bezeichnet man im Marketing als {{21}}.\n\n22. Informationen verarbeiten wir häufig oberflächlich und mit überwiegend emotionalen Prozessen. Diese Route der Informationsverarbeitung wird als {{22}} Route bezeichnet.\n\n23. Bei Preissetzungen für neue Produkte wird die {{23}} verwendet, um durch relativ niedrige Preise eine rasche Diffusion im Markt zu erreichen.\n\n24. Für etablierte Produkte wird typischerweise eine {{24}} Verteilung des Kommunikationsbudgets gewählt.\n\n25. Kommunikationspolitische Ziele werden nach dem AIDA-Modell in Attention, Interest, {{25}} und Action aufgeteilt.\n\n26. Preispolitische Entscheidungen zeichnen sich u. a. durch eine {{26}} aus.\n\n27. Die Charakteristiken von Big Data beinhalten Volume, Velocity, {{27}} und Veracity.\n\n28. Bei einer Regressionsanalyse werden die Parameter so geschätzt, dass die {{28}} zwischen beobachtetem und geschätztem Wert der abhängigen Variable minimiert werden.\n\n29. Die {{29}} Betrachtungsweise beschreibt eine Marke als ein in der Psyche des Konsumenten verankertes, unverwechselbares Vorstellungsbild von einem Produkt oder einer Dienstleistung.\n\n30. Bei der Strategieentwicklung von Unternehmen stehen bei der {{30}} die Beschaffung und der Einsatz der notwendigen Ressourcen am Ende des Prozesses.",
