@@ -4222,7 +4222,120 @@ const FREITEXT_PUO = [
   }
 ];
 const FREITEXT_STAT = [];
-const FREITEXT_MV = [];
+const FREITEXT_MV = [
+  {
+    "id": "ft-mv-1",
+    "cat": "Clusteranalyse (Distanzmaß & Verschmelzung)",
+    "points": 6,
+    "q": "Vier Befragte wurden zu drei Kriterien (Skala 1–7) befragt:<br>K1: Ausgefallene Eissorten=7, Nachhaltige Zutaten=6, Preisbereitschaft=3<br>K2: 6, 1, 3 &nbsp; K3: 2, 2, 7 &nbsp; K4: 1, 5, 2<br><br>Bekannt ist bereits: d(K1,K2)=6, d(K2,K3)=9, d(K1,K4)=8.<br>Welches Distanzmaß wurde hier verwendet, und wie lauten d(K1,K3), d(K2,K4) und d(K3,K4)?",
+    "a": "<b>Lösungsweg:</b><br>Prüfe zuerst mit d(K1,K2): |7-6|+|6-1|+|3-3| = 1+5+0 = 6 ✓ → das ist die <b>City-Block-Distanz</b> (Summe der absoluten Differenzen je Merkmal), NICHT die euklidische Distanz (die würde wurzeln und quadrieren).<br><br>d(K1,K3) = |7-2|+|6-2|+|3-7| = 5+4+4 = <b>13</b><br>d(K2,K4) = |6-1|+|1-5|+|3-2| = 5+4+1 = <b>10</b><br>d(K3,K4) = |2-1|+|2-5|+|7-2| = 1+3+5 = <b>9</b><br><br><i>Genau diese Konstellation (inkl. der 3 zu berechnenden Zellen) kam 1:1 in deiner SS2025-Klausur (Teil 1) vor.</i>"
+  },
+  {
+    "id": "ft-mv-2",
+    "cat": "Clusteranalyse (Distanzmaß & Verschmelzung)",
+    "points": 6,
+    "q": "Distanzmatrix (City-Block) für 4 weitere Kunden:<br>d(K6,K5)=15, d(K7,K5)=9, d(K7,K6)=8, d(K8,K5)=7, d(K8,K6)=15, d(K8,K7)=3<br><br>Führe den <b>ersten Verschmelzungsschritt</b> des Single-Linkage-Verfahrens durch: Welche zwei Kunden werden zuerst geclustert, und wie lautet die neue (reduzierte) Distanzmatrix zwischen K5, K6 und dem neuen Cluster?",
+    "a": "<b>Lösungsweg:</b><br>1) Kleinste Distanz in der Matrix finden: d(K8,K7)=3 ist die kleinste → <b>K7 und K8 werden zuerst zu einem Cluster {K7,K8} verschmolzen.</b><br>2) Single-Linkage = Minimum-Prinzip: Die Distanz eines übrigen Punktes zum neuen Cluster ist das MINIMUM seiner Distanzen zu den beiden verschmolzenen Punkten.<br>d(K5, {K7,K8}) = min(d(K5,K7), d(K5,K8)) = min(9, 7) = <b>7</b><br>d(K6, {K7,K8}) = min(d(K6,K7), d(K6,K8)) = min(8, 15) = <b>8</b><br>d(K5,K6) bleibt unverändert = <b>15</b> (beide noch nicht verschmolzen)<br><br><i>Achtung: bei Single-Linkage IMMER das Minimum nehmen – bei Complete-Linkage wäre es das Maximum, bei Average-Linkage der Mittelwert. Diese Verwechslung ist eine häufige Fehlerquelle.</i>"
+  },
+  {
+    "id": "ft-mv-3",
+    "cat": "Clusteranalyse (Distanzmaß & Verschmelzung)",
+    "points": 4,
+    "q": "Zwei Kunden A und B wurden zu 3 Kriterien befragt: A=(6, 1, 2), B=(2, 6, 5).<br>Berechne die <b>quadrierte euklidische Distanz</b> zwischen A und B. Vergleiche das Ergebnis mit der City-Block-Distanz.",
+    "a": "<b>Lösungsweg:</b><br>D(A,B) = Σ(xA−xB)² = (6−2)² + (1−6)² + (2−5)² = 16 + 25 + 9 = <b>50</b><br><br>Zum Vergleich – City-Block-Distanz derselben Punkte: |6-2|+|1-6|+|2-5| = 4+5+3 = <b>12</b>.<br><i>Merke den Unterschied: City-Block summiert die BETRÄGE (linear), die quadrierte euklidische Distanz summiert die QUADRATE (bestraft große Einzelabweichungen stärker). Beide Maße werden in Klausuren gerne verwechselt – schau immer, ob 'Wurzel'/'quadriert' im Aufgabentext steht.</i>"
+  },
+  {
+    "id": "ft-mv-4",
+    "cat": "Regression & Preis-Absatz-Funktion",
+    "points": 9,
+    "q": "Ein Streaming-Anbieter hat folgende Preise (p) und Abo-Verkäufe (Absatz x) der letzten 4 Jahre:<br>2021: p=24€, x=9.000.000 &nbsp; 2022: p=24€, x=10.500.000 &nbsp; 2023: p=25,6€, x=8.590.000 &nbsp; 2024: p=27€, x=8.260.000<br><br>Schätze mittels der Formel b = [n·Σ(pᵢxᵢ) − Σpᵢ·Σxᵢ] / [n·Σpᵢ² − (Σpᵢ)²] den Parameter b sowie anschließend a der linearen Funktion x(p)=a+b·p. <b>Runde JEDES Zwischenergebnis auf 2 Nachkommastellen.</b>",
+    "a": "<b>Lösungsweg:</b><br>Σp = 24+24+25,6+27 = 100,6 &nbsp; Σx = 36.350.000<br>Σ(p·x) = 24·9.000.000 + 24·10.500.000 + 25,6·8.590.000 + 27·8.260.000 = 910.924.000<br>Zähler: n·Σ(px) − Σp·Σx = 4·910.924.000 − 100,6·36.350.000 = 3.643.696.000 − 3.656.810.000 = <b>−13.114.000,00</b><br>Σp² = 24²+24²+25,6²+27² = 2536,36 &nbsp; Nenner: n·Σp² − (Σp)² = 4·2536,36 − 100,6² = 10.145,44 − 10.120,36 = <b>25,08</b><br>b = −13.114.000,00 / 25,08 = <b>−522.886,76</b><br>a = x̄ − b·p̄ = 9.087.500 − (−522.886,76)·25,15 = 9.087.500 + 13.150.602,01 = <b>22.238.102,01</b><br><br>→ x(p) = 22.238.102,01 − 522.886,76·p. <i>Exakt dieses Zahlenbeispiel (Webflix) kam in deiner SS2025-Klausur PT1 vor, dort mit vollen Punkten für Feld A=−13.114.000 vorgegeben.</i>"
+  },
+  {
+    "id": "ft-mv-5",
+    "cat": "Regression & Preis-Absatz-Funktion",
+    "points": 8,
+    "q": "Gegeben ist die PAF x(p) = 21.000.000 − 658.000·p. Der Anbieter erhöht den Preis auf p=27,50€.<br>Berechne: (a) den geschätzten Absatz bei p=27,50€, (b) die Sättigungsmenge, (c) den Maximalpreis, (d) die Preiselastizität bei p=27,50€. Interpretiere (d).",
+    "a": "<b>Lösungsweg:</b><br>(a) x(27,5) = 21.000.000 − 658.000·27,5 = 21.000.000 − 18.095.000 = <b>2.905.000</b><br>(b) Sättigungsmenge = x(0) = <b>21.000.000</b> (maximal möglicher Absatz bei p=0)<br>(c) Maximalpreis = x=0 auflösen: p = a/(−b)... bzw. 21.000.000/658.000 = <b>31,91€</b> (Preis, ab dem niemand mehr kauft)<br>(d) ε = b·p/x(p) = −658.000·27,5 / 2.905.000 = −18.095.000/2.905.000 = <b>−6,23</b><br>Interpretation: |ε|=6,23 > 1 → <b>preiselastischer Absatz</b>, die relative Mengenänderung ist GRÖSSER als die relative Preisänderung. Eine Preiserhöhung würde hier den Umsatz eher senken als steigern.<br><br><i>Diese vollständige Aufgabenkette (a)-(d) kam in deiner SS2025-Klausur PT1 vor.</i>"
+  },
+  {
+    "id": "ft-mv-6",
+    "cat": "Regression & Preis-Absatz-Funktion",
+    "points": 5,
+    "q": "Für eine Regression wurde ermittelt: Σ(ŷᵢ−ȳ)² = 8 (erklärte Streuung) und Σ(yᵢ−ȳ)² = 14 (Gesamtstreuung).<br>Berechne das Bestimmtheitsmaß R² und interpretiere den Wert in einem Satz.",
+    "a": "<b>Lösungsweg:</b><br>R² = erklärte Streuung / Gesamtstreuung = 8/14 ≈ <b>0,57</b><br>Interpretation: <b>57%</b> der Varianz der abhängigen Variable werden durch das Regressionsmodell erklärt (die restlichen 43% durch nicht im Modell erfasste Einflüsse/Zufall).<br><br><i>Achte darauf, NICHT die Formel mit dem Mittelwert direkt zu verwechseln (Σ(yi−ȳ) ohne Quadrat wäre falsch) – R² beruht immer auf den QUADRIERTEN Streuungen.</i>"
+  },
+  {
+    "id": "ft-mv-7",
+    "cat": "Preispolitik (Cournot & Elastizität)",
+    "points": 5,
+    "q": "Lineare Preis-Absatz-Funktion x = a − b·p mit a=100, b=2. Variable Stückkosten k=10€.<br>Berechne den gewinnoptimalen Preis p* (Cournot-Preis).",
+    "a": "<b>Lösungsweg:</b><br>p* = ½·(a/b + k) = ½·(100/2 + 10) = ½·(50 + 10) = ½·60 = <b>30€</b><br><br><i>Der Cournot-Preis gilt NUR unter der Doppelannahme: (1) lineare PAF, (2) lineare Kostenfunktion mit konstanten variablen Stückkosten. Ohne diese beiden Annahmen ist die Formel nicht anwendbar!</i>"
+  },
+  {
+    "id": "ft-mv-8",
+    "cat": "Preispolitik (Cournot & Elastizität)",
+    "points": 6,
+    "q": "(a) Gegeben die multiplikative PAF x = 5·p⁻¹,². Wie hoch ist die Preiselastizität ε, und wie verhält sie sich bei Preisänderungen?<br>(b) Gegeben die lineare PAF x = 100 − 2p. Berechne ε bei p=20€.",
+    "a": "<b>Lösungsweg:</b><br>(a) Bei multiplikativer PAF (x=a·p^b) ist der Exponent b bereits DIREKT die Preiselastizität: <b>ε = −1,2</b>, und zwar <b>konstant über den gesamten Preisbereich</b> (unabhängig von p) – das ist der zentrale Unterschied zur linearen PAF!<br>(b) Bei linearer PAF: ε = −b·p/(a−bp). x(20) = 100−2·20 = 60. ε = −2·20/60 = −40/60 = <b>−0,667</b><br>|ε| < 1 → <b>unelastisch</b>: der Absatz reagiert UNTERproportional auf die Preisänderung. Bei linearer PAF ändert sich ε mit dem Preisniveau (anders als bei multiplikativer PAF)!"
+  },
+  {
+    "id": "ft-mv-9",
+    "cat": "Werbewirkungsfunktion & Werbebudget",
+    "points": 8,
+    "q": "Absatz-Werbebudget-Zusammenhang: x(W) = a + b·W^0,5, mit a=205, b=3 (Budget W in €).<br>(a) Leite die Formel der Werbeelastizität WE her.<br>(b) Berechne WE für die Budgets W₁=8.300€ und W₂=11.000€. Runde auf 2 Nachkommastellen.",
+    "a": "<b>Lösungsweg:</b><br>(a) WE = (dx/dW)·(W/x). dx/dW = 0,5·b·W^−0,5. Also: <b>WE = 0,5·b·W^0,5 / (a + b·W^0,5)</b><br>(b) W₁=8.300: √8.300 ≈ 91,10. x(W₁) = 205 + 3·91,10 = 478,31<br>WE₁ = 0,5·3·91,10 / 478,31 = 136,66/478,31 ≈ <b>0,29</b><br><br>W₂=11.000: √11.000 ≈ 104,88. x(W₂) = 205 + 3·104,88 = 519,64<br>WE₂ = 0,5·3·104,88 / 519,64 = 157,32/519,64 ≈ <b>0,30</b><br><br><i>Beide Werte < 1 → unelastisch: eine Erhöhung des Werbebudgets führt zu einer unterproportionalen Absatzsteigerung. Dieses exakte Beispiel (Sweatshirt-Linie) kam in deiner SS2025-Klausur PT1 vor.</i>"
+  },
+  {
+    "id": "ft-mv-10",
+    "cat": "Werbewirkungsfunktion & Werbebudget",
+    "points": 6,
+    "q": "Weiterhin gilt x(W) = 205 + 3·W^0,5. Ein Sweatshirt wird für 54,99€ verkauft, variable Stückkosten 9,50€, Fixkosten 17.000€.<br>Bestimme das gewinnoptimale Werbebudget W*. (Tipp: Gewinnfunktion aufstellen, nach W ableiten, =0 setzen, nach W umstellen.)",
+    "a": "<b>Lösungsweg:</b><br>1) Gewinnfunktion: G(W) = (p−k)·x(W) − W − Fixkosten = (54,99−9,50)·(205+3·√W) − W − 17.000 = 45,49·(205+3√W) − W − 17.000<br>2) Ableiten nach W: dG/dW = 45,49·3·0,5·W^−0,5 − 1 = 68,235·W^−0,5 − 1<br>3) Nullsetzen: 68,235·W^−0,5 = 1 ⟹ W^0,5 = 68,235 ⟹ W* = 68,235² = <b>4.656,02€</b><br><br><i>Dieses W* stimmt exakt mit dem in deiner echten Klausur bestätigten Ergebnis überein. Klassischer Aufbau: erst Gewinnfunktion aufstellen, dann Grenzgewinn=0.</i>"
+  },
+  {
+    "id": "ft-mv-11",
+    "cat": "Customer Lifetime Value (CLV)",
+    "points": 5,
+    "q": "Ein Kundensegment hat eine konstante Marge m=100€, eine konstante Überlebenswahrscheinlichkeit r=0,8 pro Periode und einen Kalkulationszinssatz i=0,12.<br>Berechne den CLV bei unendlichem Zeithorizont.",
+    "a": "<b>Lösungsweg:</b><br>Vereinfachte Formel: CLV = m·r / (1+i−r) = 100·0,8 / (1+0,12−0,8) = 80 / 0,32 = <b>250€</b><br><br><i>Diese vereinfachte Formel gilt NUR unter 3 Annahmen: unendlicher Zeithorizont, konstante Marge, konstante Überlebenswahrscheinlichkeit. Ohne diese Annahmen musst du die vollständige Summenformel Σ[(pt−ct)·rt/(1+i)^t] − AC periodenweise berechnen.</i>"
+  },
+  {
+    "id": "ft-mv-12",
+    "cat": "Customer Lifetime Value (CLV)",
+    "points": 5,
+    "q": "In einer CLV-Tabellenberechnung beträgt der abgezinste Wert für t=1 genau 18.886,79€, bei einem Kalkulationszinssatz von i=6%.<br>Berechne den undiskontierten Gesamtgewinn/-profit für dieses Jahr (t=1).",
+    "a": "<b>Lösungsweg:</b><br>Abgezinster Wert = Gesamtgewinn / (1+i)^t. Für t=1: 18.886,79 = Gesamtgewinn / 1,06<br>⟹ Gesamtgewinn = 18.886,79 · 1,06 = <b>20.020,00€</b><br><br><i>Bei CLV-Tabellenaufgaben IMMER zuerst genau lesen, ob nach dem undiskontierten Gesamtgewinn oder dem bereits abgezinsten Wert gefragt ist – das ist eine der häufigsten Fehlerquellen in echten Klausuren.</i>"
+  },
+  {
+    "id": "ft-mv-13",
+    "cat": "Erfahrungskurve",
+    "points": 7,
+    "q": "Die Stückkosten der 1. produzierten Einheit betragen a=1.847,21€. Die Lernrate beträgt 23% (d.h. bei jeder Verdopplung der kumulierten Menge sinken die Stückkosten auf 77% des vorherigen Werts, also 1−0,23=0,77=2^b).<br>(a) Berechne den Exponenten b der Erfahrungskurvenfunktion k(x)=a·x^b.<br>(b) Berechne die Stückkosten bei der 2. produzierten Einheit (x=2, also nach einer Verdopplung).",
+    "a": "<b>Lösungsweg:</b><br>(a) 2^b = 0,77 ⟹ b·ln(2) = ln(0,77) ⟹ b = ln(0,77)/ln(2) ≈ <b>−0,3771</b><br>(b) Bei EINER Verdopplung gilt direkt (per Definition der Lernrate): k(2) = a · 0,77 = 1.847,21 · 0,77 = <b>1.422,35€</b><br>(Kontrollrechnung über die Funktion: k(2) = a·2^b = 1.847,21 · 2^(−0,3771) = 1.847,21 · 0,77 ≈ 1.422,35€ ✓)<br><br><i>Merke: Du musst NICHT bei jeder Verdopplung wieder 2^b ausrechnen – die Lernrate (hier 77%) gilt bei JEDER Verdopplung gleich, also wäre bei x=4 (2 Verdopplungen): k(4)=1.847,21·0,77²≈1.095,21€.</i>"
+  },
+  {
+    "id": "ft-mv-14",
+    "cat": "Conjoint-Analyse",
+    "points": 10,
+    "q": "Eine Conjoint-Analyse liefert folgende Teilnutzenwerte:<br>Merkmal 'Garantie' (2 Ausprägungen): 0,1 / 0,6<br>Merkmal 'Marke' (3 Ausprägungen): 0,2 / 0,5 / 0,9<br>Merkmal 'Preis' (3 Ausprägungen): 0,0 / 0,5 / 0,9<br><br>Berechne: (a) die Spannweite (absolute Wichtigkeit) je Merkmal, (b) die relative Wichtigkeit je Merkmal in %, (c) die Anzahl potenzieller Stimuli, (d) den Gesamtnutzen des besten und des schlechtesten Konzepts.",
+    "a": "<b>Lösungsweg:</b><br>(a) Spannweite = Max−Min je Merkmal: Garantie = 0,6−0,1 = <b>0,5</b>, Marke = 0,9−0,2 = <b>0,7</b>, Preis = 0,9−0,0 = <b>0,9</b> (= absolute Wichtigkeit)<br>(b) Summe der Spannweiten = 0,5+0,7+0,9 = 2,1. Relative Wichtigkeit = Spannweite/Summe:<br>Garantie = 0,5/2,1 ≈ <b>23,81%</b>, Marke = 0,7/2,1 ≈ <b>33,33%</b>, Preis = 0,9/2,1 ≈ <b>42,86%</b><br>→ Ranking nach Wichtigkeit: <b>Preis (1) &gt; Marke (2) &gt; Garantie (3)</b><br>(c) Anzahl Stimuli = Produkt der Ausprägungszahlen = 2 · 3 · 3 = <b>18</b><br>(d) Bestes Konzept (jeweils Max-Wert je Merkmal): 0,6+0,9+0,9 = <b>2,4</b><br>Schlechtestes Konzept (jeweils Min-Wert je Merkmal): 0,1+0,2+0,0 = <b>0,3</b><br><br><i>Absolute Wichtigkeit = einfach die Spannweite selbst (unskaliert). Relative Wichtigkeit = Spannweite geteilt durch die SUMME aller Spannweiten, als Prozentwert. Beide Begriffe werden in Klausuren gerne verwechselt.</i>"
+  },
+  {
+    "id": "ft-mv-15",
+    "cat": "Conjoint-Analyse",
+    "points": 5,
+    "q": "Merkmal 'Displaygröße' hat eine Spannweite von 0,7 (aktuell das wichtigste Merkmal). Ein neues Merkmal 'Bedienung' hat 3 Ausprägungen mit Teilnutzenwerten: Tastatur=0,1, Touch=x (unbekannt), Touch&amp;Tastatur=0,6.<br>Wie groß muss der Teilnutzenwert x von 'Touch' mindestens sein, damit 'Bedienung' zum wichtigsten Merkmal wird (wichtiger als Displaygröße)?",
+    "a": "<b>Lösungsweg:</b><br>'Bedienung' wird wichtigstes Merkmal, wenn seine Spannweite größer ist als 0,7 (die von Displaygröße).<br>Aktuelle Spannweite von 'Bedienung' (ohne x): zwischen 0,1 (Tastatur) und 0,6 (Touch&Tastatur) → Spannweite hängt davon ab, ob x das neue Minimum oder Maximum wird.<br>Da x der Teilnutzenwert von 'Touch' ist und typischerweise die bevorzugte Bedienart, wird x voraussichtlich zum Maximum. Spannweite = x − 0,1 (Minimum bleibt Tastatur=0,1).<br>Bedingung: x − 0,1 &gt; 0,7 ⟹ x &gt; <b>0,8</b><br><br><i>Diese Art von Aufgabe (unbekannter Teilnutzenwert aus einer Rangfolge-Bedingung rückrechnen) kam in deiner SS2025-Klausur PT1 exakt so vor – mit denselben Werten 0,1 / 0,6 und der Bedingung 'wichtigstes Merkmal'.</i>"
+  },
+  {
+    "id": "ft-mv-16",
+    "cat": "Fishbein-Modell (Einstellungsmessung)",
+    "points": 8,
+    "q": "Ein Konsument bewertet ein Produkt nach 3 Eigenschaften (Eigenschaftsbewertung a auf Skala -10 bis +10, Eigenschaftswahrscheinlichkeit p zwischen 0 und 1):<br>Geschmack: a=8, p=0,7 &nbsp; Preis-Leistung: a=6, p=0,9 &nbsp; Verfügbarkeit: a=4, p=0,5<br><br>Berechne die 3 Eindruckswerte sowie die Gesamteinstellung Eij nach dem Fishbein-Modell.",
+    "a": "<b>Lösungsweg:</b><br>Eindruckswert je Eigenschaft = aijk · pijk:<br>Geschmack: 8 · 0,7 = <b>5,6</b><br>Preis-Leistung: 6 · 0,9 = <b>5,4</b><br>Verfügbarkeit: 4 · 0,5 = <b>2,0</b><br><br>Gesamteinstellung Eij = Σ Eindruckswerte = 5,6 + 5,4 + 2,0 = <b>13,0</b><br><br><i>Die Gesamteinstellung ist einfach die SUMME der einzelnen Eindruckswerte über alle Eigenschaften – nicht der Durchschnitt und nicht das Produkt. Je höher Eij, desto positiver die Gesamteinstellung des Konsumenten zum Produkt.</i>"
+  }
+];
 const COURSES = {
   stat: {
     label: "STATISTIK · RWTH AACHEN · WIEDERHOLUNGSKLAUSUR",
@@ -4266,8 +4379,8 @@ const COURSES = {
     infoFormeln: "<b>Ohne Taschenrechner unterwegs?</b> Bei den Rechenaufgaben zeigen die Antwortmöglichkeiten die fertig eingesetzte Formel (nicht ausgerechnet) – du musst nur die richtige Rechnung erkennen, nicht lösen. Danach siehst du Formel + Ergebnis.",
     tabLuecken: "Lückentext",
     infoLuecken: "5 echte Klausur-Lückentexte (SS2022–SS2025, 147 Lücken) – genau wie in der echten Klausur musst du den fehlenden Fachbegriff selbst eintippen. Viele Begriffe (Preisdifferenzierung, AIDA-Modell, Ellenbogenkriterium, Buying-Center-Rollen...) wiederholen sich über mehrere Jahre – ein starkes Signal, was garantiert wieder drankommt.",
-    tabFreitext: "Freitext",
-    infoFreitext: "Freitext-Übungen mit echten Klausuraufgaben sind aktuell nur für Personal &amp; Organisation hinterlegt. M&amp;V ist hauptsächlich Multiple-Choice.",
+    tabFreitext: "Rechenaufgaben",
+    infoFreitext: "<b>16 echte Rechenaufgaben-Typen</b> aus deinen Altklausuren (SS2025 PT1 u.a.) mit vollständigem, nachvollziehbarem Lösungsweg – Clusteranalyse (City-Block/euklidisch/Single-Linkage), Regression &amp; Preis-Absatz-Funktion, Cournot-Preis &amp; Elastizität, Werbewirkungsfunktion &amp; Werbebudget, CLV, Erfahrungskurve, Conjoint-Analyse und Fishbein-Modell. Rechne erst selbst auf Papier, dann Musterlösung aufdecken und ehrlich bewerten – diese Rechentypen müssen in der Klausur sitzen.",
     lsProgress: "mv_progress",
     lsStats: "mv_quizStats",
     MODULES: MODULES_MV,
