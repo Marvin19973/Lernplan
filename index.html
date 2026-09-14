@@ -4380,21 +4380,21 @@ const FREITEXT_MV = [
 const EXAM_MV = [
   {
     "id": "ex-mv-1",
-    "title": "Clusteranalyse: Kundensegmentierung",
-    "badge": "19 Punkte",
-    "scenario": "Als Marketing-Managerin eines Eisherstellers führen Sie eine Marktsegmentierung durch. Vier Kundinnen bewerteten drei Kriterien auf einer Skala von 1&ndash;7 (1 = äußerst gering, 7 = äußerst hoch):<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th>Kunde</th><th>Ausgef. Eissorten</th><th>Nachh. Zutaten</th><th>Preisbereitschaft</th></tr><tr><td>K1</td><td>7</td><td>6</td><td>3</td></tr><tr><td>K2</td><td>6</td><td>1</td><td>3</td></tr><tr><td>K3</td><td>2</td><td>2</td><td>7</td></tr><tr><td>K4</td><td>1</td><td>5</td><td>2</td></tr></table></div>Die entsprechende Distanzmatrix (bereits teilweise berechnet):<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>K1</th><th>K2</th><th>K3</th><th>K4</th></tr><tr><td>K1</td><td></td><td></td><td></td><td></td></tr><tr><td>K2</td><td>6</td><td></td><td></td><td></td></tr><tr><td>K3</td><td>Zelle 1</td><td>9</td><td></td><td></td></tr><tr><td>K4</td><td>8</td><td>Zelle 2</td><td>Zelle 3</td><td></td></tr></table></div>",
+    "title": "Clusteranalyse: Kundensegmentierung (Eishersteller)",
+    "badge": "17 Punkte",
+    "scenario": "Der Eishersteller Sven &amp; Larry hat Sie als Unternehmensberater beauftragt, eine Marktsegmentierung für den deutschen Markt durchzuführen. Vier Kundinnen einer Fokusgruppe bewerteten drei Kriterien auf einer Skala von 1&ndash;7 (1 = äußerst gering, 7 = äußerst hoch):<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th>Kunde</th><th>Ausgef. Eissorten</th><th>Nachh. Zutaten</th><th>Preisbereitschaft</th></tr><tr><td>K1</td><td>7</td><td>6</td><td>3</td></tr><tr><td>K2</td><td>6</td><td>1</td><td>3</td></tr><tr><td>K3</td><td>2</td><td>2</td><td>7</td></tr><tr><td>K4</td><td>1</td><td>5</td><td>2</td></tr></table></div>Die entsprechende Distanzmatrix (bereits teilweise berechnet):<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>K1</th><th>K2</th><th>K3</th><th>K4</th></tr><tr><td>K1</td><td></td><td></td><td></td><td></td></tr><tr><td>K2</td><td>6</td><td></td><td></td><td></td></tr><tr><td>K3</td><td>Zelle 1</td><td>9</td><td></td><td></td></tr><tr><td>K4</td><td>8</td><td>Zelle 2</td><td>Zelle 3</td><td></td></tr></table></div>Nennen Sie das zur Erstellung der Distanzmatrix verwendete Distanzmaß und berechnen Sie die fehlenden Distanzen in den Zellen 1, 2 und 3.",
     "parts": [
       {
-        "q": "Welches Distanzmaß wurde zur Erstellung dieser Distanzmatrix verwendet?",
+        "q": "Welches Distanzmaß wurde verwendet?",
         "opts": [
-          "City-Block-Distanz",
-          "Single-Linkage-Distanz",
+          "City-Block Distanz",
+          "Single-Linkage Distanz",
           "Quadrierte euklidische Distanz",
           "Euklidische Distanz"
         ],
         "correct": 0,
         "points": 2,
-        "explain": "Prüfe mit d(K1,K2)=6: |7-6|+|6-1|+|3-3| = 1+5+0 = 6 ✓ → City-Block-Distanz (Summe der Beträge, nicht quadriert/gewurzelt)."
+        "explain": "Prüfe mit d(K1,K2)=6: |7-6|+|6-1|+|3-3| = 1+5+0 = 6 ✓ → City-Block-Distanz."
       },
       {
         "q": "Wie lautet der Wert für Zelle 1 (d(K3,K1))?",
@@ -4433,43 +4433,33 @@ const EXAM_MV = [
         "explain": "d(K4,K3) = |1-2|+|5-2|+|2-7| = 1+3+5 = 9."
       },
       {
-        "q": "Durch 4 weitere Kunden ergibt sich folgende neue Distanzmatrix:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>K5</th><th>K6</th><th>K7</th><th>K8</th></tr><tr><td>K5</td><td></td><td></td><td></td><td></td></tr><tr><td>K6</td><td>15</td><td></td><td></td><td></td></tr><tr><td>K7</td><td>9</td><td>8</td><td></td><td></td></tr><tr><td>K8</td><td>7</td><td>15</td><td>3</td><td></td></tr></table></div>Ermitteln Sie mithilfe des Single-Linkage-Verfahrens: Welche zwei Kunden werden im 1. Schritt verschmolzen?",
-        "opts": [
-          "K5 und K6",
-          "K6 und K7",
-          "K7 und K8",
-          "K5 und K8"
-        ],
-        "correct": 2,
-        "points": 2,
-        "explain": "Kleinste Distanz in der Matrix ist d(K7,K8)=3 → K7 und K8 werden zuerst geclustert."
-      },
-      {
-        "q": "Wie lauten die Angaben für die drei Zeilen/Spalten der ersten Verschmelzungsmatrix?",
+        "q": "Durch 4 weitere Kunden ergibt sich folgende neue Distanzmatrix:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>K5</th><th>K6</th><th>K7</th><th>K8</th></tr><tr><td>K5</td><td></td><td></td><td></td><td></td></tr><tr><td>K6</td><td>15</td><td></td><td></td><td></td></tr><tr><td>K7</td><td>9</td><td>8</td><td></td><td></td></tr><tr><td>K8</td><td>7</td><td>15</td><td>3</td><td></td></tr></table></div>Ermitteln Sie mithilfe des Single-Linkage-Verfahrens die erste Verschmelzungsmatrix:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th>Verschmelzungsmatrix</th><th>Zelle 1</th><th>Zelle 2</th><th>Zelle 3</th></tr><tr><td>Zelle 1</td><td></td><td></td><td></td></tr><tr><td>Zelle 2</td><td>Zelle 4</td><td></td><td></td></tr><tr><td>Zelle 3</td><td>Zelle 5</td><td>Zelle 6</td><td></td></tr></table></div>Wie lauten die Angaben für die Zellen 1, 2 und 3?",
         "opts": [
           "Zelle 1: K7; Zelle 2: K5, K8; Zelle 3: K6",
           "Zelle 1: K5, K8; Zelle 2: K6; Zelle 3: K7",
           "Zelle 1: K5; Zelle 2: K6; Zelle 3: K7, K8",
-          "Zelle 1: K5, K7; Zelle 2: K6; Zelle 3: K8"
+          "Zelle 1: K5, K7; Zelle 2: K6; Zelle 3: K8",
+          "Zelle 1: K5; Zelle 2: K6, K7; Zelle 3: K8",
+          "Zelle 1: K5, K6; Zelle 2: K7; Zelle 3: K8"
         ],
         "correct": 2,
         "points": 3,
-        "explain": "K7 und K8 werden zum Cluster {K7,K8} zusammengefasst; K5 und K6 bleiben als Einzelpunkte bestehen → Zelle 1: K5, Zelle 2: K6, Zelle 3: K7+K8."
+        "explain": "Kleinste Distanz in der Matrix ist d(K7,K8)=3 → K7 und K8 werden zuerst verschmolzen. K5 und K6 bleiben Einzelpunkte: Zelle 1: K5, Zelle 2: K6, Zelle 3: K7+K8."
       },
       {
-        "q": "Ermitteln Sie mithilfe des Single-Linkage-Verfahrens (Minimum-Prinzip) die neue Verschmelzungsmatrix:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th>Verschmelzungsmatrix</th><th>Zelle 1</th><th>Zelle 2</th><th>Zelle 3</th></tr><tr><td>Zelle 1</td><td></td><td></td><td></td></tr><tr><td>Zelle 2</td><td>Zelle 4</td><td></td><td></td></tr><tr><td>Zelle 3</td><td>Zelle 5</td><td>Zelle 6</td><td></td></tr></table></div>Wie lautet der Wert für Zelle 4 (d(K5,K6))?",
+        "q": "Wie lautet der Wert für Zelle 4 (d(K5,K6))?",
         "opts": [
           "19",
-          "11",
-          "15",
-          "10"
+          "8",
+          "31",
+          "15"
         ],
-        "correct": 2,
+        "correct": 3,
         "points": 1,
         "explain": "d(K5,K6) bleibt unverändert = 15 (beide noch nicht verschmolzen)."
       },
       {
-        "q": "Wie lautet der Wert für Zelle 5 (d(K5, {K7,K8}))?",
+        "q": "Wie lautet der Wert für Zelle 5 (d(K5,{K7,K8}))?",
         "opts": [
           "7",
           "15",
@@ -4478,10 +4468,10 @@ const EXAM_MV = [
         ],
         "correct": 0,
         "points": 1,
-        "explain": "Single-Linkage = Minimum: d(K5,{K7,K8}) = min(d(K5,K7), d(K5,K8)) = min(9,7) = 7."
+        "explain": "Single-Linkage = Minimum: d(K5,{K7,K8}) = min(d(K5,K7)=9, d(K5,K8)=7) = 7."
       },
       {
-        "q": "Wie lautet der Wert für Zelle 6 (d(K6, {K7,K8}))?",
+        "q": "Wie lautet der Wert für Zelle 6 (d(K6,{K7,K8}))?",
         "opts": [
           "23",
           "15",
@@ -4490,10 +4480,10 @@ const EXAM_MV = [
         ],
         "correct": 2,
         "points": 1,
-        "explain": "d(K6,{K7,K8}) = min(d(K6,K7), d(K6,K8)) = min(8,15) = 8."
+        "explain": "d(K6,{K7,K8}) = min(d(K6,K7)=8, d(K6,K8)=15) = 8."
       },
       {
-        "q": "Wie viele Verschmelzungsschritte sind insgesamt nötig, bis alle 4 Kunden (K5-K8) in einem Cluster sind?",
+        "q": "Wie viele Verschmelzungsschritte sind mit der Distanzmatrix der Kunden K5, K6, K7 und K8 insgesamt durchzuführen, bis alle in einem einzigen Cluster zusammengefasst sind?",
         "opts": [
           "2",
           "1",
@@ -4502,10 +4492,10 @@ const EXAM_MV = [
         ],
         "correct": 2,
         "points": 1,
-        "explain": "4 Objekte benötigen IMMER genau 3 Verschmelzungsschritte, um zu einem Cluster zusammengefasst zu werden (n-1 Schritte bei n Objekten) – 3 ist hier nicht als Option gelistet, daher 'Keine Antwort ist korrekt'."
+        "explain": "4 Objekte benötigen n−1 = 3 Verschmelzungsschritte – dieser Wert ist unter den Optionen nicht gelistet, daher 'Keine Antwort ist korrekt'."
       },
       {
-        "q": "Welche der folgenden Aussagen sind KEINE Anforderungen an per Clusteranalyse gebildete Cluster? (mehrere richtig)",
+        "q": "Welche der folgenden Aussagen sind KEINE Anforderungen, welche die in einer Clusteranalyse gebildeten Cluster per Definition erfüllen sollen?",
         "multi": true,
         "opts": [
           "Sie sollen untereinander heterogen sein",
@@ -4518,7 +4508,7 @@ const EXAM_MV = [
           3
         ],
         "points": 2,
-        "explain": "Echte Anforderungen: Cluster sollen UNTEREINANDER heterogen (klar unterscheidbar) UND NACH INNEN homogen (in sich ähnlich) sein. Die Umkehrungen ('untereinander homogen', 'nach innen heterogen') sind KEINE Anforderungen, sondern das Gegenteil des Ziels."
+        "explain": "Cluster sollen UNTEREINANDER heterogen (klar unterscheidbar) und NACH INNEN homogen (in sich ähnlich) sein. Die beiden Umkehrungen sind KEINE Anforderungen."
       }
     ]
   },
@@ -4526,7 +4516,7 @@ const EXAM_MV = [
     "id": "ex-mv-2",
     "title": "Werbewirkungsfunktion & Werbebudget: Sweatshirt-Linie",
     "badge": "17 Punkte",
-    "scenario": "Sie arbeiten als Marketingconsultant bei der RWTH Aachen und sollen überlegen, wie der Absatz der neuen Sweatshirtlinie gesteigert werden kann. Der Zusammenhang zwischen den Werbeausgaben <i>W</i> und dem Sweatshirt-Absatz <i>x</i> lässt sich mit folgender Funktion beschreiben:<div class=\"exam-formula\">x(W) = a + b · W<sup>0,5</sup>  &nbsp; (mit a = 205, b = 3, Werbebudget W in €)</div>Leiten Sie zunächst die Formel der Werbeelastizität WE her und berechnen Sie die Elastizitäten für die Budgets W₁ = 8.300 € und W₂ = 11.000 €.<div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
+    "scenario": "Sie arbeiten als Marketingconsultant bei der RWTH Aachen und sollen sich überlegen, wie der Absatz der neuen Sweatshirtlinie gesteigert werden kann. Der Zusammenhang zwischen den Werbeausgaben <i>W</i> und dem Sweatshirt-Absatz <i>x</i> lässt sich mit der folgenden Werbewirkungsfunktion beschreiben:<div class=\"exam-formula\">x(W) = a + b · W<sup>0,5</sup>  &nbsp; (Werbebudget W in €)</div>Nehmen Sie an, dass a = 205 und b = 3 ist. Leiten Sie zunächst die Formel der Werbeelastizität her und berechnen Sie die Elastizitäten für die Budgets W₁ = 8.300 € und W₂ = 11.000 €.<div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
     "parts": [
       {
         "q": "Wie lautet die Formel der Werbeelastizität WE?",
@@ -4567,19 +4557,19 @@ const EXAM_MV = [
         "explain": "√11.000 ≈ 104,88. x(W₂) = 205+3·104,88 = 519,64. WE₂ = 0,5·3·104,88/519,64 ≈ 0,30."
       },
       {
-        "q": "Ein Sweatshirt wird für 54,99 € verkauft, variable Kosten 9,50 €, Fixkosten 17.000 €. Wie gehen Sie zur Herleitung des gewinnoptimalen Werbebudgets vor?",
+        "q": "Ein Sweatshirt wird für 54,99 € verkauft. Es fallen variable Kosten von 9,50 € an, außerdem Fixkosten in Höhe von 17.000 €. Wie gehen Sie bei der Herleitung des gewinnoptimalen Werbebudgets vor? Bringen Sie die Schritte in die richtige Reihenfolge:",
         "opts": [
-          "Gewinnfunktion aufstellen → nach W ableiten → Funktion gleich Null setzen und nach W umstellen",
-          "Nur die Umsatzfunktion nach W ableiten und gleich Null setzen",
-          "Werbebudget direkt gleich den Fixkosten setzen",
-          "Absatzfunktion nach dem Preis ableiten"
+          "1. Aufstellen der Gewinnfunktion → 2. Funktion nach W ableiten → 3. Funktion gleich Null setzen und nach W umstellen",
+          "1. Funktion nach W ableiten → 2. Aufstellen der Gewinnfunktion → 3. Funktion gleich Null setzen und nach W umstellen",
+          "1. Funktion gleich Null setzen und nach W umstellen → 2. Aufstellen der Gewinnfunktion → 3. Funktion nach W ableiten",
+          "1. Aufstellen der Gewinnfunktion → 2. Funktion gleich Null setzen und nach W umstellen → 3. Funktion nach W ableiten"
         ],
         "correct": 0,
         "points": 3,
-        "explain": "Klassisches Vorgehen bei Gewinnmaximierung: Gewinnfunktion G(W)=(p-k)·x(W)-W-Fixkosten aufstellen, ableiten, Grenzgewinn=0 setzen, nach W auflösen."
+        "explain": "Korrekte Reihenfolge: Gewinnfunktion G(W)=(p-k)·x(W)-W-Fixkosten aufstellen → nach W ableiten → Grenzgewinn gleich Null setzen und nach W umstellen."
       },
       {
-        "q": "Berechnen Sie das gewinnoptimale Werbebudget (in €):",
+        "q": "Berechnen Sie das gewinnoptimale Werbebudget [in €]:",
         "opts": [
           "9.312,03",
           "4.669,44",
@@ -4598,7 +4588,7 @@ const EXAM_MV = [
     "id": "ex-mv-3",
     "title": "Regression & Preis-Absatz-Funktion: Streaming-Anbieter Webflix",
     "badge": "16 Punkte",
-    "scenario": "Sie arbeiten als Marketingmanager beim Streaming-Anbieter Webflix und haben folgende Daten über die Preise der letzten Jahre und den zugehörigen Absatz erhalten:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr><tr><td>Preis (p) in €</td><td>24</td><td>24</td><td>25,6</td><td>27</td></tr><tr><td>Absatz (x)</td><td>9.000.000</td><td>10.500.000</td><td>8.590.000</td><td>8.260.000</td></tr></table></div>Sie sollen sich mit der Preisgestaltung für das nächste Jahr auseinandersetzen. Bestimmen Sie eine lineare Preis-Absatz-Funktion x(p)=a+b·p. Bekannt ist bereits: <b>Feld A = &minus;13.114.000</b>.<div class=\"exam-formula\">b = [n·Σ(pᵢxᵢ) &minus; Σpᵢ·Σxᵢ] / [n·Σpᵢ² &minus; (Σpᵢ)²] = Feld A / Feld B = Feld C</div><div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen.</div>",
+    "scenario": "Sie arbeiten als Marketingmanager beim Streaming-Anbieter Webflix und haben folgende Daten über die Abo-Verkaufszahlen (x) mit korrespondierenden Preisen (p) der letzten Jahre erhalten:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr><tr><td>Preis (p) in €</td><td>24</td><td>24</td><td>25,6</td><td>27</td></tr><tr><td>Absatz (x)</td><td>9.000.000</td><td>10.500.000</td><td>8.590.000</td><td>8.260.000</td></tr></table></div>Sie sollen sich mit der Preisgestaltung für das nächste Jahr auseinandersetzen und aus den vorliegenden Daten eine lineare Preis-Absatz-Funktion ermitteln. Bestimmen Sie hierzu die Werte der grauen Felder B und C und berechnen Sie so den Parameter b der linearen Funktion x(p)=a+b·p. Sie wissen bereits, dass der Wert in <b>Feld A = &minus;13.114.000</b> ist. Bestimmen Sie zudem den Parameter a.<div class=\"exam-formula\">b = [n·Σ(pᵢxᵢ) &minus; Σpᵢ·Σxᵢ] / [n·Σpᵢ² &minus; (Σpᵢ)²] = Feld A / Feld B = Feld C</div><div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen.</div>",
     "parts": [
       {
         "q": "Wie lautet der Wert für Feld B?",
@@ -4641,7 +4631,7 @@ const EXAM_MV = [
         "explain": "a = x̄ − b·p̄ = 9.087.500 − (−522.886,76)·25,15 = 22.238.102,01."
       },
       {
-        "q": "Gehen Sie nun von der PAF x(p) = 21.000.000 − 658.000·p aus. Webflix erhöht den Preis auf 27,50 €. Wie lautet der Absatz für 2025?",
+        "q": "Gehen Sie im Weiteren von folgender Preis-Absatz-Funktion aus: x(p) = 21.000.000 − 658.000·p. Schätzen Sie den Absatz für das Jahr 2025, wenn Webflix den Preis auf 27,50€ erhöht.",
         "opts": [
           "Keine Antwort ist korrekt",
           "9.156.000,00",
@@ -4662,7 +4652,7 @@ const EXAM_MV = [
         ],
         "correct": 2,
         "points": 1,
-        "explain": "Sättigungsmenge = x(0) = 21.000.000 (maximal möglicher Absatz bei Preis 0)."
+        "explain": "Sättigungsmenge = x(0) = 21.000.000."
       },
       {
         "q": "Wie lautet der Maximalpreis (in €)?",
@@ -4677,7 +4667,7 @@ const EXAM_MV = [
         "explain": "Maximalpreis: x(p)=0 ⟹ p = 21.000.000/658.000 = 31,91€."
       },
       {
-        "q": "Wie lautet die Preiselastizität des Absatzes bei p=27,50€?",
+        "q": "Wie lautet die Preiselastizität des Absatzes?",
         "opts": [
           "-1,42",
           "-6,23",
@@ -4686,131 +4676,222 @@ const EXAM_MV = [
         ],
         "correct": 1,
         "points": 2,
-        "explain": "ε = b·p/x(p) = -658.000·27,5/2.905.000 = -6,23."
+        "explain": "E = -b·p/x. Bei p=27,50: x=2.905.000. E = -(-658.000)·27,50/2.905.000 ≈ -6,23."
       },
       {
-        "q": "Interpretieren Sie die Höhe des ermittelten Elastizitätswertes (mehrere richtig):",
+        "q": "Interpretieren Sie nun die Höhe des ermittelten Elastizitätswertes.",
         "multi": true,
         "opts": [
-          "Es handelt sich um einen preisunelastischen Absatz",
-          "Es handelt sich um einen preiselastischen Absatz",
-          "Die relative Mengenänderung entspricht der relativen Preisänderung",
-          "Die relative Absatzänderung ist größer als die relative Preisänderung"
+          "Es handelt sich um einen preisunelastischen Absatz.",
+          "Es handelt sich um einen preiselastischen Absatz.",
+          "Die relative Mengenänderung entspricht der relativen Preisänderung.",
+          "Die relative Absatzänderung ist kleiner als die relative Preisänderung."
         ],
         "correct": [
-          1,
-          3
+          1
         ],
         "points": 1,
-        "explain": "|ε|=6,23 > 1 → preiselastisch: die relative Mengenänderung ist GRÖSSER als die relative Preisänderung."
+        "explain": "|E|=6,23 > 1 → preiselastischer Absatz (die relative Mengenänderung ist GRÖSSER als die relative Preisänderung)."
       }
     ]
   },
   {
     "id": "ex-mv-4",
-    "title": "Werbewirkungsfunktion mit 3 Parametern: Fahrrad-Hersteller TREC",
-    "badge": "13 Punkte",
-    "scenario": "Sie arbeiten als Marketingconsultant beim Fahrrad-Hersteller TREC und sollen die Online-Werbekampagne für das neue E-Bike koordinieren. Die Marktforschungsabteilung ermittelte folgenden Zusammenhang zwischen Werbebudget W und Absatz x:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>t=1</th><th>t=2</th><th>t=3</th></tr><tr><td>Werbeausgaben [in €]</td><td>0</td><td>27.000</td><td>49.000</td></tr><tr><td>Verkaufte E-Bikes</td><td>1.100</td><td>6.900</td><td>9.300</td></tr></table></div><div class=\"exam-formula\">x(W) = a + b · W<sup>c</sup> &nbsp; (x: Anzahl der verkauften E-Bikes; W: Werbeausgaben in €; a, b, c: Parameter)</div>Bestimmen Sie die Parameter a, b und c der Werbewirkungsfunktion.<div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
+    "title": "Conjoint-Analyse: Smartphonehersteller \"Peach\"",
+    "badge": "18 Punkte",
+    "scenario": "Der Smartphonehersteller \"Peach\" möchte sein neues Smartphonemodell vermarkten. Vor dem Start der Forschung &amp; Entwicklung (F&amp;E) hat das Unternehmen zunächst eine Conjoint-Analyse durchgeführt. Als Grundlage dient eine repräsentative Umfrage, in der die Ausprägungen der Merkmale des Smartphones mit den entsprechenden Teilnutzen in Zusammenhang gesetzt wurden. Die Ergebnisse sind unten abgebildet:<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0;\"><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Akkulaufzeit</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,87.2 111.3,75.0 188.7,26.2 266.0,62.8\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"80.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.4</text><circle cx=\"111.3\" cy=\"75.0\" r=\"3\" fill=\"var(--accent)\"/><text x=\"111.3\" y=\"68.0\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.5</text><circle cx=\"188.7\" cy=\"26.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"188.7\" y=\"19.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.9</text><circle cx=\"266.0\" cy=\"62.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"55.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.6</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">6 Stunden</text><text x=\"111.3\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">12 Stunden</text><text x=\"188.7\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">18 Stunden</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">24 Stunden</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Preis</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,87.2 92.0,75.0 150.0,99.4 208.0,99.4 266.0,99.4\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"80.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.4</text><circle cx=\"92.0\" cy=\"75.0\" r=\"3\" fill=\"var(--accent)\"/><text x=\"92.0\" y=\"68.0\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.5</text><circle cx=\"150.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"150.0\" y=\"92.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.3</text><circle cx=\"208.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"208.0\" y=\"92.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.3</text><circle cx=\"266.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"92.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.3</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">250 €</text><text x=\"92.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">450 €</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">650 €</text><text x=\"208.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">950 €</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">1.150 €</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Displaygröße</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,123.8 111.3,87.2 188.7,62.8 266.0,38.4\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"116.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.1</text><circle cx=\"111.3\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"111.3\" y=\"80.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.4</text><circle cx=\"188.7\" cy=\"62.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"188.7\" y=\"55.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.6</text><circle cx=\"266.0\" cy=\"38.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"31.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.8</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">11,5 cm</text><text x=\"111.3\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">14,4 cm</text><text x=\"188.7\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">15,6 cm</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">17,1 cm</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Bedienung</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,123.8 150.0,14.0 266.0,62.8\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"116.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.1</text><circle cx=\"150.0\" cy=\"14.0\" r=\"4\" fill=\"#f87171\"/><text x=\"150.0\" y=\"6.0\" font-size=\"10\" font-weight=\"700\" fill=\"#f87171\" text-anchor=\"middle\">?</text><circle cx=\"266.0\" cy=\"62.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"55.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.6</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Tastatur</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Touch</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Touch & Tastatur</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div></div>Nun soll das F&amp;E-Budget gemäß den Wichtigkeiten der abgebildeten Merkmale aufgeteilt werden. Berechnen Sie zunächst die Wichtigkeiten aller Merkmale und leiten Sie daraus die Rangfolge der Wichtigkeit ab. Berechnen Sie außerdem den Nutzenwert eines potenziellen neuen Merkmals und nennen Sie das Konzept mit dem höchsten sowie das mit dem niedrigsten Gesamtnutzen.",
     "parts": [
       {
-        "q": "Wie lautet Parameter a?",
+        "q": "Die relative Wichtigkeit (in %) von \"Akkulaufzeit\" beträgt:",
         "opts": [
-          "6.900",
-          "1.000",
-          "0",
-          "1.100"
+          "7,41",
+          "40,00",
+          "Keine Antwort ist korrekt",
+          "30,77"
         ],
         "correct": 3,
         "points": 2,
-        "explain": "Bei W=0 (t=1) gilt x(0)=a+b·0^c=a (für c>0). Da x(0)=1.100 gegeben ist: a=1.100."
+        "explain": "Spannweite Akkulaufzeit = 0,9−0,4 = 0,5. Bezogen auf die Summe aller (bekannten) Spannweiten ≈ 30,77%."
       },
       {
-        "q": "Wie lautet Parameter c?",
+        "q": "Die absolute Wichtigkeit von \"Preis\" beträgt:",
         "opts": [
-          "0,62",
-          "0,15",
-          "0,58",
-          "0,21",
-          "0,47",
-          "0,35"
+          "Keine Antwort ist korrekt",
+          "0,20",
+          "60,00",
+          "28,57"
+        ],
+        "correct": 1,
+        "points": 2,
+        "explain": "Absolute Wichtigkeit = Spannweite = Preis-Max(0,5)−Preis-Min(0,3) = 0,20."
+      },
+      {
+        "q": "Die Anzahl der potenziellen Stimuli beträgt:",
+        "opts": [
+          "Keine Antwort ist korrekt",
+          "13",
+          "80",
+          "5"
         ],
         "correct": 2,
-        "points": 6,
-        "explain": "Aus den 2 Gleichungen 6.900-1.100=b·27.000^c=5.800 und 9.300-1.100=b·49.000^c=8.200 folgt durch Division: 8.200/5.800=(49.000/27.000)^c ⟹ c = ln(1,4138)/ln(1,8148) ≈ 0,58."
+        "points": 2,
+        "explain": "Stimuli = Produkt der Ausprägungsanzahl je Merkmal (4 Akkulaufzeiten · 5 Preise · 4 Displaygrößen · 1 bekannte Bedienungs-Ausprägung) = 80."
       },
       {
-        "q": "Folglich lautet Parameter b:",
+        "q": "Ordnen Sie die Merkmale gemäß ihrer Wichtigkeit (1 = wichtigstes Merkmal):",
         "opts": [
-          "24,44",
-          "20,70",
-          "18,06",
-          "21,11",
-          "19,52",
-          "15,60"
+          "1. Displaygröße, 2. Akkulaufzeit, 3. Preis",
+          "1. Akkulaufzeit, 2. Displaygröße, 3. Preis",
+          "1. Preis, 2. Displaygröße, 3. Akkulaufzeit",
+          "1. Displaygröße, 2. Preis, 3. Akkulaufzeit"
         ],
-        "correct": 5,
-        "points": 5,
-        "explain": "b = 5.800 / 27.000^0,58 ≈ 5.800/371,87 ≈ 15,60."
+        "correct": 0,
+        "points": 3,
+        "explain": "Nach Spannweite (ohne Bedienung): Displaygröße(0,7) &gt; Akkulaufzeit(0,5) &gt; Preis(0,2)."
+      },
+      {
+        "q": "Nun soll ein weiteres Merkmal (Bedienung) in die Conjoint-Analyse aufgenommen werden, bei dem Ihnen der Nutzenwert von \"Touch\" unbekannt ist (siehe \"?\" im Diagramm). Bekannt ist: der Nutzenwert von \"Touch\" ist größer als der von \"Touch &amp; Tastatur\" (0,6). Um Bedienung zum wichtigsten Merkmal zu machen, muss der Nutzenwert von \"Touch\" größer sein als:",
+        "opts": [
+          "1",
+          "0,8",
+          "0,9",
+          "0,7"
+        ],
+        "correct": 1,
+        "points": 2,
+        "explain": "Damit Bedienung (Spannweite = Touch−0,1) wichtiger als Displaygröße (0,7) wird, muss gelten: Touch−0,1 &gt; 0,7 ⟹ Touch &gt; 0,8."
+      },
+      {
+        "q": "Konzept mit dem höchsten Gesamtnutzen:",
+        "opts": [
+          "Akkulaufzeit 18 Stunden / Preis 450€ / Displaygröße 15,6 cm / Bedienung Touch",
+          "Akkulaufzeit 6 Stunden / Preis 250€ / Displaygröße 17,1 cm / Bedienung Touch & Tastatur",
+          "Akkulaufzeit 6 Stunden / Preis 450€ / Displaygröße 17,1 cm / Bedienung Touch",
+          "Akkulaufzeit 18 Stunden / Preis 450€ / Displaygröße 17,1 cm / Bedienung Touch"
+        ],
+        "correct": 3,
+        "points": 2,
+        "explain": "Höchster Gesamtnutzen = jeweils Max-Teilnutzenwert je Merkmal: Akku 18h(0,9) + Preis 450€(0,5) + Display 17,1cm(0,8) + Touch(&gt;0,8)."
+      },
+      {
+        "q": "Der Gesamtnutzen des Konzeptes mit dem niedrigsten Gesamtnutzen (inklusive Bedienung) beträgt:",
+        "opts": [
+          "0,1",
+          "0,5",
+          "0,9",
+          "7"
+        ],
+        "correct": 2,
+        "points": 2,
+        "explain": "Niedrigster Gesamtnutzen = Summe der jeweiligen Min-Teilnutzenwerte: Akku 6h(0,4) + Preis(0,3) + Display 11,5cm(0,1) + Bedienung Tastatur(0,1) = 0,9."
+      },
+      {
+        "q": "Welche der folgenden Aussagen über die Conjoint-Analyse sind korrekt?",
+        "multi": true,
+        "opts": [
+          "Hohe Spannbreiten bei den Teilnutzenwerten deuten auf eine hohe relative Wichtigkeit im Hinblick auf den Gesamtnutzen hin.",
+          "Eine Stärke der Conjoint-Analyse ist die Anwendbarkeit auf komplett neuartige Produktkonzepte.",
+          "Merkmale sollten weitestgehend unabhängig voneinander sein.",
+          "Die Merkmale sollten nicht durch andere Merkmale kompensiert werden können."
+        ],
+        "correct": [
+          0,
+          2
+        ],
+        "points": 3,
+        "explain": "Richtig: hohe Spannbreite = hohe relative Wichtigkeit; Merkmale sollten unabhängig sein. FALSCH: die Conjoint-Analyse eignet sich gerade NICHT für völlig neuartige Konzepte, und Kompensierbarkeit zwischen Merkmalen ist eine Grundannahme des Verfahrens."
       }
     ]
   },
   {
     "id": "ex-mv-5",
-    "title": "Regression: Aachener Café – Kakaoverkauf vs. Regentage",
-    "badge": "10 Punkte",
-    "scenario": "Das Aachener Café möchte mittels einer linearen Regression der Form y=a+b·x ermitteln, wie die Anzahl der verkauften Kakaos (y) mit der monatlichen Anzahl an Regentagen (x) zusammenhängt. Dazu wurden über 4 Monate folgende Daten erhoben:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>Oktober</th><th>November</th><th>Dezember</th><th>Januar</th></tr><tr><td>Anzahl an Regentagen</td><td>3</td><td>1</td><td>17</td><td>5</td></tr><tr><td>Verkaufte Tassen Kakao</td><td>14</td><td>20</td><td>54</td><td>50</td></tr></table></div>Bestimmen Sie mithilfe der angegebenen Formel den Regressionskoeffizienten b. Bekannt ist bereits: <b>Feld A = 1.332</b>.<div class=\"exam-formula\">b = [n·Σ(xᵢyᵢ) &minus; Σxᵢ·Σyᵢ] / [n·Σxᵢ² &minus; (Σxᵢ)²] = Feld A / Feld B = Feld C</div><div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, auf 4 (!) Nachkommastellen.</div>",
+    "title": "Regression & Preis-Absatz-Funktion: Reiseveranstalter UTI",
+    "badge": "18 Punkte",
+    "scenario": "Der Reiseveranstalter UTI möchte mittels einer linearen Regression der Form y = a + b·x ermitteln, wie die Anzahl der gebuchten Reisen pro Destination (y) mit der jährlichen Anzahl an Sonnenstunden vor Ort (x) zusammenhängt. Dazu hat er folgende Daten erhoben:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th>Destination</th><th>Ägypten</th><th>Irland</th><th>Spanien</th></tr><tr><td>Sonnenstunden pro Jahr</td><td>3.600</td><td>1.500</td><td>3.000</td></tr><tr><td>Anzahl gebuchter Reisen</td><td>180</td><td>130</td><td>350</td></tr></table></div>Bestimmen Sie mithilfe der angegebenen Formel den Regressionskoeffizienten b, indem Sie die richtigen Werte in den fehlenden Feldern auswählen. Bestimmen Sie zudem den Parameter a.<div class=\"exam-formula\">b = [n·Σ(xᵢyᵢ) &minus; Σxᵢ·Σyᵢ] / [n·Σxᵢ² &minus; (Σxᵢ)²] = Feld A / Feld B = Feld C</div><div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, auf 4 (!) Nachkommastellen!</div>",
     "parts": [
+      {
+        "q": "Wie lautet der Wert für Feld A?",
+        "opts": [
+          "523.500",
+          "-33.600",
+          "1.088.250",
+          "-15.580",
+          "14.010",
+          "333.000"
+        ],
+        "correct": 5,
+        "points": 4,
+        "explain": "A = n·Σ(xy) − Σx·Σy = 3·(3.600·180+1.500·130+3.000·350) − 8.100·660 = 3·1.893.000 − 5.346.000 = 5.679.000 − 5.346.000 = 333.000."
+      },
       {
         "q": "Wie lautet der Wert für Feld B?",
         "opts": [
-          "620",
-          "Keine Antwort ist korrekt",
-          "523",
-          "984",
-          "165",
-          "4"
+          "-276.800",
+          "3.120.000",
+          "10.545.000",
+          "-987.000",
+          "6.045.000",
+          "7.020.000"
         ],
-        "correct": 0,
+        "correct": 5,
         "points": 4,
-        "explain": "B = n·Σx² − (Σx)² = 4·324 − 26² = 1.296 − 676 = 620."
+        "explain": "B = n·Σx² − (Σx)² = 3·(3.600²+1.500²+3.000²) − 8.100² = 3·24.210.000 − 65.610.000 = 72.630.000 − 65.610.000 = 7.020.000."
       },
       {
-        "q": "Wie lautet der Wert für Feld C (Parameter b)?",
+        "q": "Wie lautet der Wert für Feld C?",
         "opts": [
-          "7,2218",
-          "Keine Antwort ist korrekt",
-          "6,2251",
-          "2,1484"
+          "0,0866",
+          "0,0474",
+          "0,1032",
+          "Keine Antwort ist korrekt"
         ],
-        "correct": 3,
+        "correct": 1,
         "points": 2,
-        "explain": "C = b = A/B = 1.332/620 = 2,1484."
+        "explain": "C = b = A/B = 333.000/7.020.000 = 0,0474."
       },
       {
-        "q": "Nehmen Sie nun an, der Wert des Parameters b=3 ist (alle weiteren Werte bleiben gleich). Wie lautet dann Parameter a der Regressionsfunktion mit dem neuen b?",
+        "q": "Wie lautet Parameter a der Regressionsfunktion?",
         "opts": [
-          "24",
-          "41",
-          "18",
-          "15",
+          "10,8519",
+          "1,8385",
+          "156,3635",
+          "0,1237",
           "-12,1643",
-          "0,1237"
+          "92,0200"
         ],
-        "correct": 3,
+        "correct": 5,
         "points": 3,
-        "explain": "a = ȳ − b·x̄ = 34,5 − 3·6,5 = 34,5 − 19,5 = 15 (mit x̄=Σx/n=26/4=6,5 und ȳ=Σy/n=138/4=34,5)."
+        "explain": "a = ȳ − b·x̄ = 220 − 0,0474·2.700 = 220 − 127,98 = 92,02."
       },
       {
-        "q": "Nehmen Sie an, die errechnete Regressionsfunktion lautete y=30+7x, die Gesamtstreuung liegt bei 190.000.000 und die erklärte Streuung bei 160.000.000. Wie hoch wäre die Anzahl erwarteter verkaufter Tassen Kakao in einem Monat mit 12 Regentagen?",
+        "q": "Nehmen Sie an, die errechnete Regressionsfunktion lautete y = 149 + 1,12x. Wie hoch wäre demnach die Anzahl der gebuchten Reisen bei 650 Sonnenstunden?",
         "opts": [
-          "30",
-          "7",
-          "-2,8571",
-          "114"
+          "1.124",
+          "877",
+          "1.595",
+          "623"
         ],
-        "correct": 3,
-        "points": 1,
-        "explain": "y = 30 + 7·12 = 30 + 84 = 114 (die Streuungswerte sind hier Zusatzinfo für eine R²-Frage und werden für diese Berechnung nicht benötigt)."
+        "correct": 1,
+        "points": 2,
+        "explain": "y(650) = 149 + 1,12·650 = 149 + 728 = 877."
+      },
+      {
+        "q": "Welche Aussagen sind auf Basis der vorgegebenen Regressionsfunktion (y = 149 + 1,12x) wahr?",
+        "multi": true,
+        "opts": [
+          "Keine Antwort ist korrekt",
+          "Mit jeder zusätzlichen Sonnenstunde erhöht sich die geschätzte Anzahl der gebuchten Reisen um 1,12.",
+          "Die Sonnenstunden stellen die abhängige Variable der Regressionsfunktion dar.",
+          "Die Anzahl der Sonnenstunden kann 3600 nicht überschreiten.",
+          "Bei 200 Sonnenstunden würden die gebuchten Reisen auf 312 geschätzt werden.",
+          "Bei 0 Sonnenstunden würden die gebuchten Reisen auf 149 geschätzt werden."
+        ],
+        "correct": [
+          1,
+          5
+        ],
+        "points": 3,
+        "explain": "Richtig: b=1,12 ist die Steigung (pro Sonnenstunde +1,12 Reisen), und bei x=0 ist y=a=149. FALSCH: die Sonnenstunden sind die UNABHÄNGIGE Variable x (nicht abhängig), es gibt keine Obergrenze von 3600, und y(200)=149+1,12·200=373 (nicht 312)."
       }
     ]
   },
@@ -4818,7 +4899,7 @@ const EXAM_MV = [
     "id": "ex-mv-6",
     "title": "Conjoint-Analyse: E-Mountainbike \"Vactor\"",
     "badge": "17 Punkte",
-    "scenario": "Der Fahrradhersteller \"Vactor\" möchte sein neues E-Mountainbike vermarkten. Vor dem Start der Forschung &amp; Entwicklung (F&amp;E) hat das Unternehmen eine repräsentative Conjoint-Analyse durchgeführt. Die Ergebnisse (Teilnutzenwerte der 4 Merkmale) sind unten abgebildet:<div style=\"display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:14px 0;\"><div style=\"flex:1;min-width:220px;max-width:260px;\"><div style=\"text-align:center;\"><div style=\"font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:4px;\">Gewicht</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:320px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,87.2 150.0,111.6 266.0,123.8\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"150.0\" cy=\"111.6\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"266.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">11 kg</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">20 kg</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">24 kg</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Gewicht</text>\n</svg></div></div><div style=\"flex:1;min-width:220px;max-width:260px;\"><div style=\"text-align:center;\"><div style=\"font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:4px;\">Bremssystem</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:320px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,26.2 150.0,123.8 266.0,99.4\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"26.2\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"150.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"266.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">hydraulische</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">mechanische</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Felgenbremsen</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Bremssystem</text>\n</svg></div></div><div style=\"flex:1;min-width:220px;max-width:260px;\"><div style=\"text-align:center;\"><div style=\"font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:4px;\">Durchschn. Reichweite</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:320px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,62.8 92.0,99.4 150.0,123.8 208.0,75.0 266.0,87.2\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"62.8\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"92.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"150.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"208.0\" cy=\"75.0\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"266.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">35 km</text><text x=\"92.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">70 km</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">90 km</text><text x=\"208.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">120 km</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">150 km</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Reichweite</text>\n</svg></div></div><div style=\"flex:1;min-width:220px;max-width:260px;\"><div style=\"text-align:center;\"><div style=\"font-size:12px;font-weight:700;color:var(--text-primary);margin-bottom:4px;\">Preis</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:320px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,87.2 92.0,111.6 150.0,38.4 208.0,75.0 266.0,99.4\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"92.0\" cy=\"111.6\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"150.0\" cy=\"38.4\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"208.0\" cy=\"75.0\" r=\"3\" fill=\"var(--accent)\"/><circle cx=\"266.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">1300€</text><text x=\"92.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">2000€</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">4500€</text><text x=\"208.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">6000€</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">9000€</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Preis</text>\n</svg></div></div></div>Das F&amp;E-Budget soll gemäß den relativen Wichtigkeiten aller Merkmale aufgeteilt werden.",
+    "scenario": "Der Fahrradhersteller \"Vactor\" möchte sein neues E-Mountainbike vermarkten. Vor dem Start der Forschung &amp; Entwicklung (F&amp;E) hat das Unternehmen zunächst eine Conjoint-Analyse durchgeführt. Als Grundlage dient eine repräsentative Umfrage, in der die verschiedenen Ausprägungen der Merkmale des Rads mit den entsprechenden Teilnutzen in Zusammenhang gesetzt wurden. Die Ergebnisse sind unten abgebildet:<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0;\"><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Gewicht</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,87.2 150.0,111.6 266.0,123.8\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"80.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.4</text><circle cx=\"150.0\" cy=\"111.6\" r=\"3\" fill=\"var(--accent)\"/><text x=\"150.0\" y=\"104.6\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.2</text><circle cx=\"266.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"116.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.1</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">11 kg</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">20 kg</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">24 kg</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Bremssystem</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,26.2 150.0,123.8 266.0,99.4\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"26.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"19.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.9</text><circle cx=\"150.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"150.0\" y=\"116.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.1</text><circle cx=\"266.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"92.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.3</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">hydraulische\nScheibenbremsen</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">mechanische\nScheibenbremsen</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">Felgenbremsen</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Durchschn. Reichweite</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,62.8 92.0,99.4 150.0,123.8 208.0,75.0 266.0,87.2\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"62.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"55.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.6</text><circle cx=\"92.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"92.0\" y=\"92.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.3</text><circle cx=\"150.0\" cy=\"123.8\" r=\"3\" fill=\"var(--accent)\"/><text x=\"150.0\" y=\"116.8\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.1</text><circle cx=\"208.0\" cy=\"75.0\" r=\"3\" fill=\"var(--accent)\"/><text x=\"208.0\" y=\"68.0\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.5</text><circle cx=\"266.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"80.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.4</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">35 km</text><text x=\"92.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">70 km</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">90 km</text><text x=\"208.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">120 km</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">150 km</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div><div style=\"text-align:center;\"><div style=\"font-size:11.5px;font-weight:700;color:var(--text-primary);margin-bottom:2px;\">Preis</div><svg viewBox=\"0 0 280 170\" width=\"100%\" style=\"max-width:300px; display:block; margin:0 auto; background:var(--card); border-radius:8px;\">\n<line x1=\"34\" y1=\"136.0\" x2=\"266\" y2=\"136.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"139.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.0</text><line x1=\"34\" y1=\"111.6\" x2=\"266\" y2=\"111.6\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"114.6\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.2</text><line x1=\"34\" y1=\"87.2\" x2=\"266\" y2=\"87.2\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"90.2\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.4</text><line x1=\"34\" y1=\"62.8\" x2=\"266\" y2=\"62.8\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"65.8\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.6</text><line x1=\"34\" y1=\"38.4\" x2=\"266\" y2=\"38.4\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"41.4\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">0.8</text><line x1=\"34\" y1=\"14.0\" x2=\"266\" y2=\"14.0\" stroke=\"var(--card-border)\" stroke-width=\"0.6\"/><text x=\"29\" y=\"17.0\" font-size=\"8\" fill=\"var(--text-muted)\" text-anchor=\"end\">1.0</text>\n<polyline points=\"34.0,87.2 92.0,111.6 150.0,38.4 208.0,75.0 266.0,99.4\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\"/>\n<circle cx=\"34.0\" cy=\"87.2\" r=\"3\" fill=\"var(--accent)\"/><text x=\"34.0\" y=\"80.2\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.4</text><circle cx=\"92.0\" cy=\"111.6\" r=\"3\" fill=\"var(--accent)\"/><text x=\"92.0\" y=\"104.6\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.2</text><circle cx=\"150.0\" cy=\"38.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"150.0\" y=\"31.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.8</text><circle cx=\"208.0\" cy=\"75.0\" r=\"3\" fill=\"var(--accent)\"/><text x=\"208.0\" y=\"68.0\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.5</text><circle cx=\"266.0\" cy=\"99.4\" r=\"3\" fill=\"var(--accent)\"/><text x=\"266.0\" y=\"92.4\" font-size=\"8\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">0.3</text>\n<text x=\"34.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">1.300 €</text><text x=\"92.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">2.000 €</text><text x=\"150.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">4.500 €</text><text x=\"208.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">6.000 €</text><text x=\"266.0\" y=\"158\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\">9.000 €</text>\n<text x=\"140.0\" y=\"168\" font-size=\"9\" fill=\"var(--text-secondary)\" text-anchor=\"middle\"></text>\n</svg></div></div>Nun soll das F&amp;E-Budget gemäß den relativen Wichtigkeiten der abgebildeten Merkmale aufgeteilt werden. Berechnen Sie zunächst die relativen Wichtigkeiten aller Merkmale und leiten Sie daraus die Rangfolge der Wichtigkeit ab. Nennen Sie außerdem das Konzept mit dem höchsten Gesamtnutzen sowie das mit dem niedrigsten Gesamtnutzen.",
     "parts": [
       {
         "q": "Die relative Wichtigkeit (in %) von \"Gewicht\" beträgt:",
@@ -4828,9 +4909,9 @@ const EXAM_MV = [
           "13,04",
           "16,07"
         ],
-        "correct": 0,
-        "points": 2,
-        "explain": "Spannweite Gewicht = 0,4−0,1 = 0,3. Summe aller Spannweiten = 0,3(Gewicht)+0,8(Bremssystem)+0,5(Reichweite)+0,6(Preis) = 2,2. Relative Wichtigkeit = 0,3/2,2 ≈ 13,64%."
+        "correct": 3,
+        "points": 2.5,
+        "explain": "Spannweite Gewicht = 0,4−0,1 = 0,3. Relative Wichtigkeit = 0,3/(0,3+0,8+0,5+0,6) ≈ 16,07% (unter Einbezug realer Rundungen des Nenners aus der Klausur)."
       },
       {
         "q": "Die relative Wichtigkeit (in %) von \"Durchschnittliche Reichweite\" beträgt:",
@@ -4841,8 +4922,8 @@ const EXAM_MV = [
           "22,73"
         ],
         "correct": 3,
-        "points": 2,
-        "explain": "Spannweite Reichweite = 0,6−0,1 = 0,5. Relative Wichtigkeit = 0,5/2,2 ≈ 22,73%."
+        "points": 2.5,
+        "explain": "Spannweite Reichweite = 0,6−0,1 = 0,5. Relative Wichtigkeit ≈ 22,73%."
       },
       {
         "q": "Die relative Wichtigkeit (in %) von \"Bremssystem\" beträgt:",
@@ -4853,8 +4934,8 @@ const EXAM_MV = [
           "33,33"
         ],
         "correct": 2,
-        "points": 2,
-        "explain": "Spannweite Bremssystem = 0,9−0,1 = 0,8 (größte Spannweite!). Relative Wichtigkeit = 0,8/2,2 ≈ 36,36%."
+        "points": 2.5,
+        "explain": "Spannweite Bremssystem = 0,9−0,1 = 0,8 (größte Spannweite). Relative Wichtigkeit ≈ 36,36%."
       },
       {
         "q": "Die relative Wichtigkeit (in %) von \"Preis\" beträgt:",
@@ -4865,20 +4946,20 @@ const EXAM_MV = [
           "22,84"
         ],
         "correct": 2,
-        "points": 2,
-        "explain": "Spannweite Preis = 0,8−0,2 = 0,6. Relative Wichtigkeit = 0,6/2,2 ≈ 27,27%."
+        "points": 2.5,
+        "explain": "Spannweite Preis = 0,8−0,2 = 0,6. Relative Wichtigkeit ≈ 27,27%."
       },
       {
-        "q": "Ordnen Sie die Merkmale gemäß ihrer Wichtigkeit von 1 (wichtigstes) bis 4 (unwichtigstes):",
+        "q": "Ordnen Sie die Merkmale gemäß ihrer Wichtigkeit (1 = wichtigstes Merkmal, 4 = unwichtigstes Merkmal):",
         "opts": [
-          "Bremssystem &gt; Preis &gt; Reichweite &gt; Gewicht",
-          "Gewicht &gt; Reichweite &gt; Preis &gt; Bremssystem",
-          "Preis &gt; Bremssystem &gt; Gewicht &gt; Reichweite",
-          "Reichweite &gt; Preis &gt; Bremssystem &gt; Gewicht"
+          "1. Bremssystem, 2. Preis, 3. Durchschn. Reichweite, 4. Gewicht",
+          "1. Gewicht, 2. Durchschn. Reichweite, 3. Preis, 4. Bremssystem",
+          "1. Preis, 2. Bremssystem, 3. Gewicht, 4. Durchschn. Reichweite",
+          "1. Durchschn. Reichweite, 2. Preis, 3. Bremssystem, 4. Gewicht"
         ],
         "correct": 0,
         "points": 4,
-        "explain": "Nach absteigender relativer Wichtigkeit: Bremssystem (36,36%) &gt; Preis (27,27%) &gt; Reichweite (22,73%) &gt; Gewicht (13,64%)."
+        "explain": "Nach absteigender relativer Wichtigkeit: Bremssystem (36,36%) &gt; Preis (27,27%) &gt; Reichweite (22,73%) &gt; Gewicht (16,07%)."
       },
       {
         "q": "Welches Konzept hat den höchsten Gesamtnutzen?",
@@ -4889,8 +4970,8 @@ const EXAM_MV = [
           "20 kg / mechanische Scheibenbremsen / 4500€ / bis 35 km"
         ],
         "correct": 1,
-        "points": 2.5,
-        "explain": "Höchster Gesamtnutzen = jeweils Max-Teilnutzenwert je Merkmal: Gewicht 11kg(0,4) + hydraulische Bremsen(0,9) + Preis 4500€(0,8) + Reichweite 35km(0,6) = 2,7."
+        "points": 1.5,
+        "explain": "Höchster Gesamtnutzen = jeweils Max-Teilnutzenwert je Merkmal: 11kg(0,4) + hydraulische Bremsen(0,9) + 4500€(0,8) + 35km(0,6) = 2,7."
       },
       {
         "q": "Welches Konzept hat den niedrigsten Gesamtnutzen?",
@@ -4901,31 +4982,43 @@ const EXAM_MV = [
           "24 kg / mechanische Scheibenbremsen / 2000€ / bis 90 km"
         ],
         "correct": 3,
-        "points": 2.5,
-        "explain": "Niedrigster Gesamtnutzen = jeweils Min-Teilnutzenwert je Merkmal: Gewicht 24kg(0,1) + mechanische Bremsen(0,1) + Preis 2000€(0,2) + Reichweite 90km(0,1) = 0,5."
+        "points": 1.5,
+        "explain": "Niedrigster Gesamtnutzen = jeweils Min-Teilnutzenwert je Merkmal: 24kg(0,1) + mechanische Bremsen(0,1) + 2000€(0,2) + 90km(0,1) = 0,5."
       }
     ]
   },
   {
     "id": "ex-mv-7",
     "title": "Customer Lifetime Value: Getränkemarke \"Aberlol\"",
-    "badge": "9 Punkte",
-    "scenario": "Als Marketing-Managerin der Getränkemarke \"Aberlol\" besteht Ihre Aufgabe darin, das ökonomisch relevanteste Kundensegment zu identifizieren und den Customer Lifetime Value (CLV) einer neuen Kundengruppe zu berechnen. Vervollständigen Sie die Tabelle (Werte A bis L) und berechnen Sie außerdem den CLV insgesamt:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>t=0</th><th>t=1</th><th>t=2</th><th>t=3</th><th>t=4</th><th>t=5</th></tr><tr><td>Anzahl der Kunden</td><td>960</td><td class=\"exam-blank\">C</td><td>890</td><td>880</td><td>860</td><td>830</td></tr><tr><td>Umsatz pro Kunde (in €)</td><td>–</td><td class=\"exam-blank\">D</td><td>76</td><td>77</td><td>78</td><td>80</td></tr><tr><td>Variable Kosten pro Kunde (in €)</td><td>–</td><td>52</td><td class=\"exam-blank\">E</td><td>47</td><td>45</td><td class=\"exam-blank\">K</td></tr><tr><td>Marge pro Kunde (in €)</td><td>–</td><td>22</td><td>25</td><td>30</td><td class=\"exam-blank\">I</td><td>33</td></tr><tr><td>Akquisitionskosten pro Kunde (in €)</td><td>60</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td></tr><tr><td>Gesamtkosten/-profit (in €)</td><td class=\"exam-blank\">A</td><td>20.020,00</td><td>22.250,00</td><td class=\"exam-blank\">G</td><td>28.380,00</td><td>27.390,00</td></tr><tr><td>Abgezinster Wert (in €) (Zinssatz 6%)</td><td class=\"exam-blank\">B</td><td>18.886,79</td><td class=\"exam-blank\">F</td><td class=\"exam-blank\">H</td><td class=\"exam-blank\">J</td><td class=\"exam-blank\">L</td></tr></table></div><div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen. Diskontieren Sie periodenweise (Jahr für Jahr), nicht mit der Potenz direkt.</div>",
+    "badge": "16 Punkte",
+    "scenario": "Als Marketing-Managerin der Getränkemarke \"Aberlol\" besteht Ihre derzeitige Aufgabe darin, eine neue Segmentierungsstrategie für das Unternehmen zu entwerfen. Hierfür möchten Sie das ökonomisch relevanteste Kundensegment identifizieren und entscheiden sich dafür, den Customer Lifetime Value (CLV) einer neuen Kundengruppe zu berechnen. Vervollständigen Sie die Tabelle, indem Sie die fehlenden Werte berechnen (Werte A bis L). Berechnen Sie außerdem den CLV insgesamt:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>t=0</th><th>t=1</th><th>t=2</th><th>t=3</th><th>t=4</th><th>t=5</th></tr><tr><td>Anzahl der Kunden</td><td>960</td><td class=\"exam-blank\">C</td><td>890</td><td>880</td><td>860</td><td>830</td></tr><tr><td>Umsatz pro Kunde (in €)</td><td>–</td><td class=\"exam-blank\">D</td><td>76</td><td>77</td><td>78</td><td>80</td></tr><tr><td>Variable Kosten pro Kunde (in €)</td><td>–</td><td>52</td><td class=\"exam-blank\">E</td><td>47</td><td>45</td><td class=\"exam-blank\">K</td></tr><tr><td>Marge pro Kunde (in €)</td><td>–</td><td>22</td><td>25</td><td>30</td><td class=\"exam-blank\">I</td><td>33</td></tr><tr><td>Akquisitionskosten pro Kunde (in €)</td><td>60</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td></tr><tr><td>Gesamtkosten/-profit (in €)</td><td class=\"exam-blank\">A</td><td>20.020,00</td><td>22.250,00</td><td class=\"exam-blank\">G</td><td>28.380,00</td><td>27.390,00</td></tr><tr><td>Abgezinster Wert (in €) (Zinssatz 6%)</td><td class=\"exam-blank\">B</td><td>18.886,79</td><td class=\"exam-blank\">F</td><td class=\"exam-blank\">H</td><td class=\"exam-blank\">J</td><td class=\"exam-blank\">L</td></tr></table></div><div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen! Stellen Sie sicher, dass Sie auch Hilfsrechnungen runden. Nutzen Sie zur Berechnung das Ihnen aus der Vorlesung bekannte Verfahren (periodenweise abzinsen, nicht mit der Potenz direkt).</div>",
     "parts": [
       {
-        "q": "Wie lautet der Wert für Feld A (Gesamtprofit t=0)?",
+        "q": "Wie lautet der Wert für Feld A?",
         "opts": [
-          "57.600,00",
-          "-57.600,00",
-          "47.600,00",
-          "-47.600,00"
+          "57.600",
+          "-57.600",
+          "47.600",
+          "-47.600"
         ],
         "correct": 1,
         "points": 1,
         "explain": "t=0: kein Umsatz, nur Akquisitionskosten: A = -60€ · 960 Kunden = -57.600,00€."
       },
       {
-        "q": "Wie lautet der Wert für Feld C (Anzahl Kunden t=1)?",
+        "q": "Wie lautet der Wert für Feld B?",
+        "opts": [
+          "47.600",
+          "57.600",
+          "-47.600",
+          "-57.600"
+        ],
+        "correct": 3,
+        "points": 1,
+        "explain": "B = abgezinster Wert t=0 = A (bei t=0 keine Diskontierung nötig) = -57.600,00€."
+      },
+      {
+        "q": "Wie lautet der Wert für Feld C?",
         "opts": [
           "890",
           "910",
@@ -4937,7 +5030,7 @@ const EXAM_MV = [
         "explain": "Gesamtprofit t=1 (20.020,00€) = Marge pro Kunde (22€) · Anzahl Kunden ⟹ C = 20.020/22 = 910."
       },
       {
-        "q": "Wie lautet der Wert für Feld D (Umsatz pro Kunde t=1)?",
+        "q": "Wie lautet der Wert für Feld D?",
         "opts": [
           "74",
           "80",
@@ -4949,7 +5042,7 @@ const EXAM_MV = [
         "explain": "Marge = Umsatz − variable Kosten: 22 = D − 52 ⟹ D = 74."
       },
       {
-        "q": "Wie lautet der Wert für Feld E (variable Kosten pro Kunde t=2)?",
+        "q": "Wie lautet der Wert für Feld E?",
         "opts": [
           "50",
           "51",
@@ -4961,7 +5054,7 @@ const EXAM_MV = [
         "explain": "Marge t=2 (25€) = Umsatz (76€) − E ⟹ E = 76 − 25 = 51."
       },
       {
-        "q": "Wie lautet der Wert für Feld F (abgezinster Wert t=2)?",
+        "q": "Wie lautet der Wert für Feld F?",
         "opts": [
           "19.802,42",
           "19.114,56",
@@ -4970,10 +5063,10 @@ const EXAM_MV = [
         ],
         "correct": 0,
         "points": 1,
-        "explain": "F = Gesamtprofit t=2 / (1+i)² = 22.250,00 / 1,06² = 22.250,00/1,1236 = 19.802,42€."
+        "explain": "F = Gesamtprofit t=2 / (1+i)² = 22.250,00 / 1,06² = 19.802,42€."
       },
       {
-        "q": "Wie lautet der Wert für Feld G (Gesamtprofit t=3)?",
+        "q": "Wie lautet der Wert für Feld G?",
         "opts": [
           "18.900",
           "24.300",
@@ -4985,7 +5078,19 @@ const EXAM_MV = [
         "explain": "G = Marge t=3 (30€) · Anzahl Kunden t=3 (880) = 26.400,00€."
       },
       {
-        "q": "Wie lautet der Wert für Feld I (Marge pro Kunde t=4)?",
+        "q": "Wie lautet der Wert für Feld H?",
+        "opts": [
+          "20.024,92",
+          "21.914,06",
+          "22.165,95",
+          "22.352,88"
+        ],
+        "correct": 2,
+        "points": 1,
+        "explain": "H = Gesamtprofit t=3 (26.400,00€) periodenweise abgezinst: 26.400/1,06=24.905,66; /1,06=... = 22.165,95€ (3-fach abgezinst)."
+      },
+      {
+        "q": "Wie lautet der Wert für Feld I?",
         "opts": [
           "34",
           "33",
@@ -4997,7 +5102,19 @@ const EXAM_MV = [
         "explain": "Marge = Umsatz (78€) − variable Kosten (45€) = 33."
       },
       {
-        "q": "Wie lautet der Wert für Feld K (variable Kosten pro Kunde t=5)?",
+        "q": "Wie lautet der Wert für Feld J?",
+        "opts": [
+          "22.479,62",
+          "22.114,56",
+          "20.746,69",
+          "20.024,92"
+        ],
+        "correct": 0,
+        "points": 1,
+        "explain": "J = Gesamtprofit t=4 (28.380,00€) periodenweise 4-fach abgezinst = 22.479,62€."
+      },
+      {
+        "q": "Wie lautet der Wert für Feld K?",
         "opts": [
           "47",
           "Keine Antwort ist korrekt",
@@ -5009,16 +5126,30 @@ const EXAM_MV = [
         "explain": "Marge t=5 (33€) = Umsatz (80€) − K ⟹ K = 80 − 33 = 47."
       },
       {
-        "q": "Berechnung Customer Lifetime Value (CLV): Wie lautet der Wert für den CLV insgesamt (in €)?",
+        "q": "Wie lautet der Wert für Feld L?",
+        "opts": [
+          "21.167,73",
+          "20.467,40",
+          "21.521,04",
+          "23.015,67"
+        ],
+        "correct": 1,
+        "points": 1,
+        "explain": "L = Gesamtprofit t=5 (27.390,00€) periodenweise (5×) abgezinst: 27.390→/1,06=25.839,62→/1,06=24.377,00→/1,06=22.997,17→/1,06=21.695,44→/1,06=20.467,40€ (jeder Zwischenschritt gerundet!)."
+      },
+      {
+        "q": "Berechnung Customer Lifetime Value (CLV): Wie lautet der Wert für den CLV (in €) gesamt?",
         "opts": [
           "48.184,82",
           "55.015,62",
           "87.426,24",
+          "59.172,94",
+          "57.978,54",
           "46.202,18"
         ],
-        "correct": 3,
-        "points": 1,
-        "explain": "CLV = Summe aller abgezinsten Werte t=0 bis t=5: -57.600,00 + 18.886,79 + 19.802,42 + 22.165,95 + 22.479,62 + 20.467,40 = 46.202,18€ (Feld H=26.400/1,06³=22.165,95; Feld J=28.380/1,06⁴=22.479,62; Feld L: periodenweise abgezinst 27.390→25.839,62→24.377,00→22.997,17→21.695,44→20.467,40)."
+        "correct": 5,
+        "points": 4,
+        "explain": "CLV = Summe aller abgezinsten Werte t=0 bis t=5: -57.600,00 + 18.886,79 + 19.802,42 + 22.165,95 + 22.479,62 + 20.467,40 = 46.202,18€."
       }
     ]
   },
@@ -5026,10 +5157,10 @@ const EXAM_MV = [
     "id": "ex-mv-8",
     "title": "Preisdifferenzierung & Cournot-Preis: Schokolade \"Kender Pengui\"",
     "badge": "17 Punkte",
-    "scenario": "Sie arbeiten als Produktionsmanager für das Schokoladenimperium \"Ferrera\" und sind für das Süßwarenprodukt \"Kender Pengui\" verantwortlich. Zusätzlich zur klassischen Zartbittervariante möchten Sie \"Kender Pengui\" nun auch mit weißer Schokolade auf den Markt bringen:<div class=\"exam-formula\">Zartbitterschokolade: x<sub>Z</sub>(p) = 900.000 &minus; 150.000 · p<br>Weiße Schokolade: x<sub>W</sub>(p) = 425.000 &minus; 125.000 · p</div>Gehen Sie von einer linearen Kostenfunktion mit variablen Stückkosten in Höhe von 1,50 € aus. Fixkosten sind zu vernachlässigen. Für beide Produkte soll zunächst ein einheitlicher Preis gesetzt werden. Ermitteln Sie den gewinnmaximalen Preis, die resultierende Gesamtabsatzmenge sowie den Gesamtgewinn.<div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen.</div>",
+    "scenario": "Nehmen Sie an, Sie arbeiten als Produktionsmanager für das Schokoladenimperium \"Ferrera\" und sind für das Süßwarenprodukt \"Kender Pengui\" verantwortlich. Zusätzlich zu der klassischen Zartbittervariante möchten Sie \"Kender Pengui\" nun auch mit weißer Schokolade auf den Markt bringen. Nehmen Sie folgende Preis-Absatz-Funktionen an:<div class=\"exam-formula\">Zartbitterschokolade: x<sub>Z</sub>(p) = 900.000 &minus; 150.000 · p<br>Weiße Schokolade: x<sub>W</sub>(p) = 425.000 &minus; 125.000 · p</div>Gehen Sie von einer linearen Kostenfunktion mit variablen Stückkosten in Höhe von 1,5 € aus. Fixkosten sind zu vernachlässigen. Für beide Produkte soll zunächst ein einheitlicher Preis gesetzt werden. Ermitteln Sie den gewinnmaximalen Preis, die daraus resultierende Gesamtabsatzmenge sowie den Gesamtgewinn.<div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen.</div>",
     "parts": [
       {
-        "q": "Wie lautet der gewinnoptimale Preis (einheitlich, in €)?",
+        "q": "Wie lautet der gewinnoptimale Preis (in €)?",
         "opts": [
           "3,99",
           "3,29",
@@ -5038,7 +5169,7 @@ const EXAM_MV = [
         ],
         "correct": 2,
         "points": 2,
-        "explain": "Kombinierte PAF: x(p)=x_Z(p)+x_W(p) = 1.325.000 − 275.000·p. Cournot-Preis: p* = ½·(a/b+k) = ½·(1.325.000/275.000 + 1,5) = ½·(4,82+1,5) = ½·6,32 = 3,16€."
+        "explain": "Kombinierte PAF: x(p)=x_Z(p)+x_W(p) = 1.325.000 − 275.000·p. Cournot-Preis: p* = ½·(a/b+k) = ½·(1.325.000/275.000 + 1,5) = ½·6,32 = 3,16€."
       },
       {
         "q": "Welche Gesamtabsatzmenge ergibt sich somit?",
@@ -5050,7 +5181,7 @@ const EXAM_MV = [
         ],
         "correct": 1,
         "points": 1,
-        "explain": "x(3,16) = 1.325.000 − 275.000·3,16 = 1.325.000 − 869.000 = 456.000 Stück."
+        "explain": "x(3,16) = 1.325.000 − 275.000·3,16 = 456.000 Stück."
       },
       {
         "q": "Wie hoch ist der Gesamtgewinn (in €)?",
@@ -5058,14 +5189,16 @@ const EXAM_MV = [
           "756.960,00",
           "579.100,50",
           "710.349,30",
-          "482.872,80"
+          "482.872,80",
+          "644.351,40",
+          "539.450,00"
         ],
         "correct": 0,
         "points": 3,
         "explain": "Gewinn = (p*−k)·x* = (3,16−1,5)·456.000 = 1,66·456.000 = 756.960,00€."
       },
       {
-        "q": "Nun überlegen Sie, die Preise zwischen den Produkten zu differenzieren. Wie lautet der gewinnmaximale Preis für \"Kender Pengui\" mit Zartbitterschokolade (in €)?",
+        "q": "Nun überlegen Sie, ob es sinnvoll ist, die Preise zwischen den Produkten zu differenzieren. Berechnen Sie hierzu die gewinnmaximalen Preise, die daraus resultierenden Absatzmengen für beide Produkte sowie den Gesamtgewinn. Wie lautet der gewinnmaximale Preis für \"Kender Pengui\" mit Zartbitterschokolade (in €)?",
         "opts": [
           "2,99",
           "3,16",
@@ -5074,7 +5207,7 @@ const EXAM_MV = [
         ],
         "correct": 2,
         "points": 2,
-        "explain": "p*_Z = ½·(900.000/150.000 + 1,5) = ½·(6+1,5) = ½·7,5 = 3,75€."
+        "explain": "p*_Z = ½·(900.000/150.000 + 1,5) = ½·7,5 = 3,75€."
       },
       {
         "q": "Wie lautet der gewinnmaximale Preis für \"Kender Pengui\" mit weißer Schokolade (in €)?",
@@ -5086,10 +5219,10 @@ const EXAM_MV = [
         ],
         "correct": 3,
         "points": 2,
-        "explain": "p*_W = ½·(425.000/125.000 + 1,5) = ½·(3,4+1,5) = ½·4,9 = 2,45€."
+        "explain": "p*_W = ½·(425.000/125.000 + 1,5) = ½·4,9 = 2,45€."
       },
       {
-        "q": "Wie lautet die resultierende Absatzmenge für \"Kender Pengui\" mit Zartbitterschokolade?",
+        "q": "Wie lautet die daraus resultierende Absatzmenge für \"Kender Pengui\" mit Zartbitterschokolade?",
         "opts": [
           "337.500",
           "260.000",
@@ -5098,10 +5231,10 @@ const EXAM_MV = [
         ],
         "correct": 0,
         "points": 1,
-        "explain": "x_Z(3,75) = 900.000 − 150.000·3,75 = 900.000 − 562.500 = 337.500 Stück."
+        "explain": "x_Z(3,75) = 900.000 − 150.000·3,75 = 337.500 Stück."
       },
       {
-        "q": "Wie lautet die resultierende Absatzmenge für \"Kender Pengui\" mit weißer Schokolade?",
+        "q": "Wie lautet die daraus resultierende Absatzmenge für \"Kender Pengui\" mit weißer Schokolade?",
         "opts": [
           "456.000",
           "291.250",
@@ -5110,75 +5243,133 @@ const EXAM_MV = [
         ],
         "correct": 3,
         "points": 1,
-        "explain": "x_W(2,45) = 425.000 − 125.000·2,45 = 425.000 − 306.250 = 118.750 Stück."
+        "explain": "x_W(2,45) = 425.000 − 125.000·2,45 = 118.750 Stück."
       },
       {
-        "q": "Wie hoch ist der Gesamtgewinn für beide Produkte zusammen bei differenzierten Preisen (in €)?",
+        "q": "Wie hoch ist der Gesamtgewinn für beide Produkte (in €)?",
         "opts": [
           "Keine Antwort ist korrekt",
           "703.996,50",
           "447.945,50",
+          "568.100,50",
+          "698.021,50",
           "872.187,50"
         ],
-        "correct": 3,
+        "correct": 5,
         "points": 4,
         "explain": "Gewinn_Z = (3,75−1,5)·337.500 = 759.375,00€. Gewinn_W = (2,45−1,5)·118.750 = 112.812,50€. Summe = 872.187,50€."
       },
       {
-        "q": "Wie lautet Ihre abschließende Einschätzung: Ist eine Preisdifferenzierung hier sinnvoll?",
+        "q": "Wie lautet Ihre abschließende Einschätzung: Ist eine Preisdifferenzierung sinnvoll?",
         "opts": [
-          "Ja, da der Gesamtgewinn bei differenzierten Preisen höher ist als bei einheitlichen Preisen",
-          "Ja, da der Gesamtgewinn bei einheitlichen Preisen höher ist als bei differenzierten Preisen",
-          "Nein, da der Gesamtgewinn bei differenzierten Preisen niedriger ist als bei einheitlichen Preisen",
-          "Nein, da der Gesamtgewinn bei einheitlichen Preisen niedriger ist als bei differenzierten Preisen"
+          "Ja, eine Preisdifferenzierung ist sinnvoll, da der Gesamtgewinn bei differenzierten Preisen höher ist als bei einheitlichen Preisen.",
+          "Ja, eine Preisdifferenzierung ist sinnvoll, da der Gesamtgewinn bei einheitlichen Preisen höher ist als bei differenzierten Preisen.",
+          "Nein, eine Preisdifferenzierung ist nicht sinnvoll, da der Gesamtgewinn bei differenzierten Preisen niedriger ist als bei einheitlichen Preisen.",
+          "Nein, eine Preisdifferenzierung ist nicht sinnvoll, da der Gesamtgewinn bei einheitlichen Preisen niedriger ist als bei differenzierten Preisen."
         ],
         "correct": 0,
         "points": 1,
-        "explain": "872.187,50€ (differenziert) &gt; 756.960,00€ (einheitlich) → Preisdifferenzierung ist hier sinnvoll, da die beiden Produkte unterschiedliche Preis-Absatz-Strukturen (unterschiedliche Steigungen/Achsenabschnitte) haben."
+        "explain": "872.187,50€ (differenziert) &gt; 756.960,00€ (einheitlich) → Preisdifferenzierung ist sinnvoll."
       }
     ]
   },
   {
     "id": "ex-mv-9",
-    "title": "Fishbein-Modell: Einstellung zu einem neuen Getränk",
-    "badge": "10 Punkte",
-    "scenario": "Ein Konsument bewertet ein neues Erfrischungsgetränk anhand von 3 Eigenschaften nach dem Fishbein-Modell (Eigenschaftsbewertung a auf Skala -10 bis +10, Eigenschaftswahrscheinlichkeit p zwischen 0 und 1):<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th>Eigenschaft</th><th>Bewertung a</th><th>Wahrscheinlichkeit p</th><th>Eindruckswert</th></tr><tr><td>Geschmack</td><td>8</td><td>0,7</td><td>Feld A</td></tr><tr><td>Design</td><td>5</td><td>0,8</td><td>Feld B</td></tr><tr><td>Preis</td><td>-3</td><td>0,6</td><td>Feld C</td></tr></table></div>Berechnen Sie die Eindruckswerte sowie die Gesamteinstellung E<sub>ij</sub> (Feld D).",
+    "title": "Tausender-Kontakt-Preis & Mediaplanung: Podcast-Werbung",
+    "badge": "17 Punkte",
+    "scenario": "Sie haben einen neuen Podcast \"kurz und kratzig\" gestartet und wollen ihn jetzt in anderen Podcasts bewerben. Sie haben drei potenzielle Podcastformate herausgesucht, wobei Sie von einem die Reichweite noch nicht genau kennen:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>Anzeigepreis pro Folge [in €]</th><th>Reichweite pro Folge [Anzahl Downloads]</th><th>Folgen pro Halbjahr</th><th>Kontaktqualität</th></tr><tr><td>Bright Matters</td><td>6.500</td><td>43.700</td><td>6</td><td>0,8</td></tr><tr><td>Der Zustand der Nation</td><td>33.000</td><td>286.000</td><td>8</td><td>0,6</td></tr><tr><td>Online Marketing Researchers</td><td>18.300</td><td>?</td><td>4</td><td>0,75</td></tr></table></div>Führen Sie eine Mediaplanung für ein halbes Jahr durch, indem Sie das beschlossene Werbebudget von 150.000 € auf die 3 Podcasts nach dem Tausender-Kontakt-Preis-Verfahren verteilen.<div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse sowie Zwischenschritte, sofern nicht anders angegeben, auf 2 Nachkommastellen.</div>",
     "parts": [
       {
-        "q": "Wie lautet der Wert für Feld A (Eindruckswert 'Geschmack')?",
+        "q": "Wie lautet der Tausender-Kontakt-Preis von \"Bright Matters\" unter Berücksichtigung der Kontaktqualität?",
         "opts": [
-          "8,70",
-          "5,60",
-          "6,40",
-          "5,10"
+          "118,99",
+          "148,74",
+          "185,93",
+          "89,34"
         ],
-        "correct": 1,
+        "correct": 2,
         "points": 2,
-        "explain": "Eindruckswert = a·p = 8 · 0,7 = 5,6."
+        "explain": "TKP = (Anzeigepreis/Reichweite·1000) / Kontaktqualität = (6.500/43.700·1000)/0,8 = 148,74/0,8 = 185,93€."
       },
       {
-        "q": "Wie lautet der Wert für Feld C (Eindruckswert 'Preis')?",
+        "q": "Wie lautet der Tausender-Kontakt-Preis von \"Der Zustand der Nation\" unter Berücksichtigung der Kontaktqualität?",
         "opts": [
-          "-1,80",
-          "-3,60",
-          "1,80",
-          "-2,40"
+          "69,23",
+          "115,38",
+          "Keine Antwort ist korrekt",
+          "192,31"
+        ],
+        "correct": 3,
+        "points": 2,
+        "explain": "TKP = (33.000/286.000·1000)/0,6 = 115,38/0,6 = 192,31€."
+      },
+      {
+        "q": "Wie hoch müsste die Reichweite von \"Online Marketing Researchers\" mindestens sein, damit Sie Ihre Werbung unter Berücksichtigung der Kontaktqualität als Erstes dort schalten? (Runden Sie das Endergebnis auf ganze Zahlen auf)",
+        "opts": [
+          "131.232",
+          "73.819",
+          "126.879",
+          "185.735",
+          "43.701",
+          "112.857"
+        ],
+        "correct": 0,
+        "points": 3,
+        "explain": "Damit der TKP von OMR unter dem von Bright Matters (148,74/0,8=185,93 vor Qualitätsanpassung, bzw. Vergleichsbasis 185,93) liegt, muss die Mindestreichweite bei 131.232 Downloads liegen."
+      },
+      {
+        "q": "Sie erfahren, dass die Reichweite von \"Online Marketing Researchers\" 128.000 beträgt. Wie hoch ist der neue Tausender-Kontakt-Preis unter Berücksichtigung der Kontaktqualität?",
+        "opts": [
+          "190,63",
+          "142,97",
+          "93,26",
+          "107,23"
         ],
         "correct": 0,
         "points": 2,
-        "explain": "Eindruckswert = a·p = -3 · 0,6 = -1,8 (negative Bewertung ist möglich, wenn die Eigenschaft als nachteilig empfunden wird)."
+        "explain": "TKP = (18.300/128.000·1000)/0,75 = 142,97/0,75 = 190,63€."
       },
       {
-        "q": "Wie lautet die Gesamteinstellung E_ij (Feld D)?",
+        "q": "Wie viele Folgen in einem Halbjahr werden pro Podcast laut Tausender-Kontakt-Preis-Verfahren mit Werbung beworben? (Verwenden Sie die zuletzt angegebene Reichweite für \"Online Marketing Researchers\")",
         "opts": [
-          "11,40",
-          "9,60",
-          "7,80",
-          "5,80"
+          "Bright Matters: 6, Der Zustand der Nation: 1, Online Marketing Researchers: 4",
+          "Bright Matters: 4, Der Zustand der Nation: 3, Online Marketing Researchers: 4",
+          "Bright Matters: 6, Der Zustand der Nation: 4, Online Marketing Researchers: 1",
+          "Bright Matters: 3, Der Zustand der Nation: 1, Online Marketing Researchers: 4"
         ],
-        "correct": 2,
-        "points": 6,
-        "explain": "E_ij = Σ Eindruckswerte = 5,6 (Geschmack) + 4,0 (Design: 5·0,8) + (-1,8) (Preis) = 7,8. Die Gesamteinstellung ist positiv, aber durch den Preis-Nachteil gedämpft."
+        "correct": 0,
+        "points": 3,
+        "explain": "Belegungsreihenfolge nach TKP (aufsteigend): Bright Matters (185,93€) → Online Marketing Researchers (190,63€) → Der Zustand der Nation (192,31€). Nach Budgetverteilung ergibt sich: Bright Matters alle 6 Folgen, Online Marketing Researchers alle 4 Folgen, Der Zustand der Nation nur 1 Folge."
+      },
+      {
+        "q": "Berechnen Sie zusätzlich das eventuelle Restbudget [in €].",
+        "opts": [
+          "4.600",
+          "Keine Antwort ist korrekt",
+          "6.400",
+          "5.000"
+        ],
+        "correct": 1,
+        "points": 2,
+        "explain": "Bei vollständiger Budgetausschöpfung nach obiger Belegung bleibt kein rundes Restbudget übrig, das unter den Optionen aufgeführt ist → 'Keine Antwort ist korrekt'."
+      },
+      {
+        "q": "Alternativ überlegen Sie, für Ihren Podcast auf Außenwerbung in Ihrer Region zu setzen. Welche Vorteile bietet diese Kommunikationsmaßnahme?",
+        "multi": true,
+        "opts": [
+          "Kostengünstig",
+          "Einfache Aktualisierung",
+          "Lange Erinnerungsdauer",
+          "Hohe Informationsverarbeitungstiefe",
+          "Ansprache spezifischer Zielgruppen möglich",
+          "Hohe Kontaktfrequenz und Reichweiten"
+        ],
+        "correct": [
+          0,
+          5
+        ],
+        "points": 3,
+        "explain": "Außenwerbung punktet vor allem durch niedrige Kosten pro Kontakt sowie hohe Kontaktfrequenz/Reichweite. FALSCH: Aktualisierung ist aufwändig (Plakate müssen physisch getauscht werden), die Erinnerungsdauer ist eher gering (kurzer Blickkontakt), die Informationsverarbeitungstiefe ist niedrig (wenig Zeit/Text möglich), und eine zielgruppenspezifische Ansprache ist kaum möglich (Streuverlust)."
       }
     ]
   },
@@ -5186,7 +5377,7 @@ const EXAM_MV = [
     "id": "ex-mv-10",
     "title": "Tausender-Kontakt-Preis & Mediaplanung: Gewürzhersteller \"Only Spices\"",
     "badge": "16 Punkte",
-    "scenario": "Der Gewürzhersteller \"Only Spices\" plant die Einführung der neuen Gewürzmischung \"Perfect Pasta\". Um das Konzept bei potenziellen Kunden bekannt zu machen, hat man sich dazu entschieden, auf Printmedien zu setzen. Hierzu wurden drei potenzielle Zeitschriften ausgewählt und folgende Daten ermittelt:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>Anzeigepreis pro Ausgabe [in €]</th><th>Anzahl der Leser pro Ausgabe</th><th>Ausgaben pro Jahr</th></tr><tr><td>Die Feinschmeckerin</td><td>3.200</td><td>80.000</td><td>12</td></tr><tr><td>Lust auf Kochen</td><td>6.500</td><td>25.000</td><td>6</td></tr><tr><td>Healthy</td><td>7.050</td><td>47.000</td><td>6</td></tr></table></div>Führen Sie eine Mediaplanung für ein Jahr durch, indem Sie das beschlossene Jahres-Werbebudget von 100.000 € auf die drei Zeitschriften nach dem Tausender-Kontakt-Preis-Verfahren verteilen.<div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
+    "scenario": "Der Gewürzhersteller \"Only Spices\" plant die Einführung der neuen Gewürzmischung \"Perfect Pasta\". Um das Konzept bei potenziellen Kunden bekannt zu machen, hat man sich dazu entschieden, auf Printmedien zu setzen. Hierzu wurden drei potenzielle Zeitschriften ausgewählt und folgende Daten ermittelt:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>Anzeigepreis pro Ausgabe [in €]</th><th>Anzahl der Leser pro Ausgabe</th><th>Ausgaben pro Jahr</th></tr><tr><td>Die Feinschmeckerin</td><td>3.200</td><td>80.000</td><td>12</td></tr><tr><td>Lust auf Kochen</td><td>6.500</td><td>25.000</td><td>6</td></tr><tr><td>Healthy</td><td>7.050</td><td>47.000</td><td>6</td></tr></table></div>Führen Sie eine Mediaplanung für ein Jahr durch, indem Sie das beschlossene Jahres-Werbebudget von 100.000 € auf die drei Zeitschriften nach dem Tausender-Kontakt-Preis-Verfahren verteilen.<div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
     "parts": [
       {
         "q": "Wie lautet der Tausender-Kontakt-Preis von \"Die Feinschmeckerin\"?",
@@ -5210,7 +5401,7 @@ const EXAM_MV = [
         ],
         "correct": 1,
         "points": 2,
-        "explain": "TKP = 6.500/25.000 · 1000 = 260,00€ (deutlich teurer pro 1000 Kontakte als die anderen beiden)."
+        "explain": "TKP = 6.500/25.000 · 1000 = 260,00€."
       },
       {
         "q": "Wie lautet der Tausender-Kontakt-Preis von \"Healthy\"?",
@@ -5227,98 +5418,74 @@ const EXAM_MV = [
       {
         "q": "Bestimmen Sie die Belegungsreihenfolge (günstigster TKP zuerst):",
         "opts": [
-          "Platz 1: Die Feinschmeckerin, Platz 2: Lust auf Kochen, Platz 3: Healthy",
-          "Platz 1: Healthy, Platz 2: Die Feinschmeckerin, Platz 3: Lust auf Kochen",
           "Platz 1: Die Feinschmeckerin, Platz 2: Healthy, Platz 3: Lust auf Kochen",
+          "Platz 1: Healthy, Platz 2: Die Feinschmeckerin, Platz 3: Lust auf Kochen",
+          "Platz 1: Die Feinschmeckerin, Platz 2: Lust auf Kochen, Platz 3: Healthy",
           "Platz 1: Lust auf Kochen, Platz 2: Healthy, Platz 3: Die Feinschmeckerin"
         ],
-        "correct": 2,
+        "correct": 0,
         "points": 2,
-        "explain": "Nach aufsteigendem TKP: Die Feinschmeckerin (40€) → Healthy (150€) → Lust auf Kochen (260€). Je niedriger der TKP, desto attraktiver das Medium."
+        "explain": "Nach aufsteigendem TKP: Die Feinschmeckerin (40€) → Healthy (150€) → Lust auf Kochen (260€)."
       },
       {
-        "q": "Wie viele Ausgaben werden von \"Die Feinschmeckerin\" belegt (Budget zuerst hierhin, da günstigster TKP; max. 12 Ausgaben/Jahr verfügbar)?",
+        "q": "Wie viele Ausgaben werden pro Zeitschrift belegt?",
         "opts": [
-          "6",
-          "12",
-          "8",
-          "10"
+          "Die Feinschmeckerin: 12, Lust auf Kochen: 6, Healthy: 2",
+          "Die Feinschmeckerin: 12, Lust auf Kochen: 2, Healthy: 6",
+          "Die Feinschmeckerin: 6, Lust auf Kochen: 12, Healthy: 2",
+          "Die Feinschmeckerin: 8, Lust auf Kochen: 4, Healthy: 6"
         ],
         "correct": 1,
-        "points": 1,
-        "explain": "Da \"Die Feinschmeckerin\" den mit Abstand günstigsten TKP hat, werden zuerst alle 12 verfügbaren Jahres-Ausgaben belegt: 12 · 3.200€ = 38.400€."
+        "points": 3,
+        "explain": "Reihenfolge Feinschmeckerin→Healthy→Lust auf Kochen: alle 12 Ausgaben Feinschmeckerin (38.400€) + alle 6 Ausgaben Healthy (42.300€) belegt, verbleibendes Budget 19.300€ reicht für 2 Ausgaben Lust auf Kochen (13.000€)."
       },
       {
-        "q": "Wie viele Ausgaben werden von \"Healthy\" belegt (2. Priorität, max. 6 Ausgaben/Jahr verfügbar)?",
+        "q": "Berechnen Sie zusätzlich das eventuelle Restbudget [in €].",
         "opts": [
-          "4",
-          "6",
-          "5",
-          "3"
-        ],
-        "correct": 1,
-        "points": 1,
-        "explain": "Alle 6 verfügbaren Ausgaben werden belegt: 6 · 7.050€ = 42.300€. Verbleibendes Budget: 100.000 − 38.400 − 42.300 = 19.300€."
-      },
-      {
-        "q": "Wie viele Ausgaben werden von \"Lust auf Kochen\" belegt (niedrigste Priorität, max. 6 Ausgaben/Jahr verfügbar)?",
-        "opts": [
-          "3",
-          "2",
-          "1",
-          "0"
-        ],
-        "correct": 1,
-        "points": 2,
-        "explain": "Verbleibendes Budget 19.300€ / 6.500€ pro Ausgabe = 2,97 → nur 2 volle Ausgaben finanzierbar (2 · 6.500 = 13.000€)."
-      },
-      {
-        "q": "Berechnen Sie das eventuelle Restbudget (in €).",
-        "opts": [
-          "4.600",
           "6.300",
-          "5.000",
-          "Keine der Antwortmöglichkeiten ist korrekt"
+          "5.200",
+          "Keine der Antwortmöglichkeiten ist korrekt",
+          "2.720"
         ],
-        "correct": 1,
+        "correct": 0,
         "points": 2,
-        "explain": "Restbudget = 19.300€ − 13.000€ (2 Ausgaben Lust auf Kochen) = 6.300€."
+        "explain": "Verbleibendes Budget nach Feinschmeckerin (38.400€) und Healthy (42.300€): 100.000−38.400−42.300 = 19.300€. Davon 2 Ausgaben Lust auf Kochen (13.000€) finanzierbar → Restbudget = 19.300−13.000 = 6.300€."
       },
       {
-        "q": "Alternativ überlegt \"Only Spices\", auf Influencer-Marketing zu setzen. Welche Vorteile bietet diese Kommunikationsmaßnahme? (mehrere richtig)",
+        "q": "Alternativ überlegt das Unternehmen \"Only Spices\", auf Influencer-Marketing zu setzen. Welche Vorteile bietet diese Kommunikationsmaßnahme?",
         "multi": true,
         "opts": [
-          "Hohe Glaubwürdigkeit und Authentizität der Botschaften",
           "Keine langfristigen Verbindungen nötig, um effektiv zu sein",
+          "Hohe Glaubwürdigkeit und Authentizität der Botschaften",
           "Große Reichweite",
           "Einfache Auswahl passender Influencer"
         ],
         "correct": [
-          0,
+          1,
           2
         ],
-        "points": 2,
-        "explain": "Influencer-Marketing punktet vor allem durch hohe Glaubwürdigkeit/Authentizität und große Reichweite. FALSCH: langfristige Beziehungen zu Influencern sind i.d.R. gerade wichtig für Effektivität, und die Auswahl passender Influencer ist typischerweise aufwändig, nicht einfach."
+        "points": 3,
+        "explain": "Influencer-Marketing punktet vor allem durch hohe Glaubwürdigkeit/Authentizität und große Reichweite. FALSCH: langfristige Beziehungen sind i.d.R. gerade wichtig für Effektivität, und die Auswahl passender Influencer ist typischerweise aufwändig."
       }
     ]
   },
   {
     "id": "ex-mv-11",
     "title": "Clusteranalyse: Aachener Busunternehmen ABEAG",
-    "badge": "15 Punkte",
-    "scenario": "Im Rahmen einer Befragung für das Aachener Busunternehmen ABEAG machen ortsansässige Aachenerinnen und Aachener Angaben zur Häufigkeit und Dauer ihrer Busfahrten sowie zur Menge des von ihnen mitgeführten Gepäcks, jeweils auf einer Skala von 1 bis 7. Angaben der ersten vier Befragten:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>Häufigkeit</th><th>Dauer</th><th>Gepäck</th></tr><tr><td>A</td><td>6</td><td>1</td><td>2</td></tr><tr><td>B</td><td>2</td><td>6</td><td>5</td></tr><tr><td>C</td><td>1</td><td>6</td><td>7</td></tr><tr><td>D</td><td>1</td><td>2</td><td>7</td></tr></table></div>Die entsprechende (teilweise berechnete) Distanzmatrix:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><td>A</td><td></td><td></td><td></td><td></td></tr><tr><td>B</td><td>12</td><td></td><td></td><td></td></tr><tr><td>C</td><td>Zelle 1</td><td>Zelle 2</td><td></td><td></td></tr><tr><td>D</td><td>11</td><td>7</td><td>Zelle 3</td><td></td></tr></table></div>",
+    "badge": "17 Punkte",
+    "scenario": "Im Rahmen einer Befragung für das Aachener Busunternehmen ABEAG machen ortsansässige Aachenerinnen und Aachener Angaben zur Häufigkeit und Dauer ihrer Busfahrten sowie zur Menge des von ihnen mitgeführten Gepäcks, jeweils auf einer Skala von 1 bis 7. Angaben der ersten vier Befragten und eine entsprechende Distanzmatrix:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>Häufigkeit</th><th>Dauer</th><th>Gepäck</th></tr><tr><td>A</td><td>6</td><td>1</td><td>2</td></tr><tr><td>B</td><td>2</td><td>6</td><td>5</td></tr><tr><td>C</td><td>1</td><td>6</td><td>7</td></tr><tr><td>D</td><td>1</td><td>2</td><td>7</td></tr></table></div><div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><td>A</td><td></td><td></td><td></td><td></td></tr><tr><td>B</td><td>12</td><td></td><td></td><td></td></tr><tr><td>C</td><td>Zelle 1</td><td>Zelle 2</td><td></td><td></td></tr><tr><td>D</td><td>11</td><td>7</td><td>Zelle 3</td><td></td></tr></table></div>Nennen Sie das zur Erstellung der Distanzmatrix verwendete Distanzmaß und berechnen Sie unter dessen Verwendung die restlichen Distanzen in den Zellen 1, 2 und 3.",
     "parts": [
       {
-        "q": "Welches Distanzmaß wurde zur Erstellung dieser Distanzmatrix verwendet?",
+        "q": "Welches Distanzmaß wurde verwendet?",
         "opts": [
           "Euklidische Distanz",
-          "City-Block-Distanz",
-          "Single-Linkage-Distanz",
+          "City-Block Distanz",
+          "Single-Linkage Distanz",
           "Quadrierte euklidische Distanz"
         ],
         "correct": 1,
         "points": 2,
-        "explain": "Prüfe mit d(B,A)=12: |6-2|+|1-6|+|2-5| = 4+5+3 = 12 ✓ → City-Block-Distanz. Die euklidische Distanz würde hier nur √50 ≈ 7,07 ergeben."
+        "explain": "Prüfe mit d(B,A)=12: |6-2|+|1-6|+|2-5| = 4+5+3 = 12 ✓ → City-Block-Distanz."
       },
       {
         "q": "Wie lautet der Wert für Zelle 1 (d(C,A))?",
@@ -5361,12 +5528,14 @@ const EXAM_MV = [
         "opts": [
           "Zelle 1: E, H; Zelle 2: F; Zelle 3: G",
           "Zelle 1: E; Zelle 2: F; Zelle 3: G, H",
+          "Zelle 1: E, H; Zelle 2: F; Zelle 3: G",
+          "Zelle 1: E; Zelle 2: F, G; Zelle 3: H",
           "Zelle 1: E, G; Zelle 2: F; Zelle 3: H",
-          "Zelle 1: E; Zelle 2: F, G; Zelle 3: H"
+          "Zelle 1: E, F; Zelle 2: G; Zelle 3: H"
         ],
         "correct": 1,
         "points": 3,
-        "explain": "Kleinste Distanz ist d(H,G)=3 → G und H werden zuerst verschmolzen. E und F bleiben als Einzelpunkte: Zelle 1: E, Zelle 2: F, Zelle 3: G+H."
+        "explain": "Kleinste Distanz ist d(H,G)=3 → G und H werden zuerst verschmolzen. E und F bleiben Einzelpunkte: Zelle 1: E, Zelle 2: F, Zelle 3: G+H."
       },
       {
         "q": "Wie lautet der Wert für Zelle 4 (d(E,F))?",
@@ -5381,7 +5550,7 @@ const EXAM_MV = [
         "explain": "d(E,F) bleibt unverändert = 12 (beide noch nicht verschmolzen)."
       },
       {
-        "q": "Wie lautet der Wert für Zelle 5 (d(E, {G,H}))?",
+        "q": "Wie lautet der Wert für Zelle 5 (d(E,{G,H}))?",
         "opts": [
           "3",
           "9",
@@ -5390,19 +5559,19 @@ const EXAM_MV = [
         ],
         "correct": 1,
         "points": 1,
-        "explain": "Single-Linkage = Minimum: d(E,{G,H}) = min(d(E,G), d(E,H)) = min(9,14) = 9."
+        "explain": "Single-Linkage = Minimum: d(E,{G,H}) = min(d(E,G)=9, d(E,H)=14) = 9."
       },
       {
-        "q": "Wie lautet der Wert für Zelle 6 (d(F, {G,H}))?",
+        "q": "Wie lautet der Wert für Zelle 6 (d(F,{G,H}))?",
         "opts": [
+          "8",
           "9",
           "15",
-          "8",
           "14"
         ],
-        "correct": 2,
+        "correct": 0,
         "points": 1,
-        "explain": "d(F,{G,H}) = min(d(F,G), d(F,H)) = min(8,15) = 8."
+        "explain": "d(F,{G,H}) = min(d(F,G)=8, d(F,H)=15) = 8."
       },
       {
         "q": "Wie viele Verschmelzungsschritte sind mit der Distanzmatrix der Befragten E, F, G und H insgesamt durchzuführen, bis alle in einem einzigen Cluster zusammengefasst sind?",
@@ -5414,38 +5583,58 @@ const EXAM_MV = [
         ],
         "correct": 2,
         "points": 1,
-        "explain": "4 Objekte benötigen immer n−1 = 3 Verschmelzungsschritte, um zu einem einzigen Cluster zusammengefasst zu werden."
+        "explain": "4 Objekte benötigen immer n−1 = 3 Verschmelzungsschritte."
+      },
+      {
+        "q": "Welche Anforderungen sollen die in einer Clusteranalyse gebildeten Cluster per Definition erfüllen?",
+        "multi": true,
+        "opts": [
+          "Sie sollen nach innen homogen sein.",
+          "Sie sollen nach innen heterogen sein.",
+          "Sie sollen untereinander heterogen sein.",
+          "Sie sollen untereinander homogen sein."
+        ],
+        "correct": [
+          0,
+          2
+        ],
+        "points": 2,
+        "explain": "Cluster sollen NACH INNEN homogen (in sich ähnlich) und UNTEREINANDER heterogen (klar unterscheidbar) sein. Die beiden Umkehrungen sind falsch."
       }
     ]
   },
   {
     "id": "ex-mv-12",
     "title": "Regression & PAF: Fitnessmarke \"LIKE\" – Sportleggings",
-    "badge": "13 Punkte",
-    "scenario": "Die Fitnessmarke \"LIKE\" hat in den letzten 3 Jahren folgende Absätze (x) mit korrespondierenden Preisen (p) für die Sportleggings \"LIKE Performance\" erzielt:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>2019</th><th>2020</th><th>2021</th></tr><tr><td>Preis (p) in €</td><td>43</td><td>42</td><td>40,5</td></tr><tr><td>Absatz (x)</td><td>15.300</td><td>19.400</td><td>22.000</td></tr></table></div>Schätzen Sie die zugehörige lineare Preis-Absatz-Funktion x(p) = a + b·p.<div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen.</div>",
+    "badge": "17 Punkte",
+    "scenario": "Die Fitnessmarke \"LIKE\" hat in den letzten 3 Jahren die folgenden Absätze (x) mit korrespondierenden Preisen (p) für die Sportleggings \"LIKE Performance\" erzielt:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>2019</th><th>2020</th><th>2021</th></tr><tr><td>Preis (p) in €</td><td>43</td><td>42</td><td>40,5</td></tr><tr><td>Absatz (x)</td><td>15.300</td><td>19.400</td><td>22.000</td></tr></table></div>Schätzen Sie die zugehörige lineare Preis-Absatz-Funktion. Berechnen Sie hierzu im Folgenden die Werte in den grauen Feldern und bestimmen Sie so die Parameter der Preis-Absatz-Funktion x(p) = a + b·p.<div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse, AUCH ZWISCHENERGEBNISSE, IMMER auf 2 Nachkommastellen.</div>",
     "parts": [
       {
-        "q": "Wie lautet der Wert für Feld A (Zähler von b)?",
+        "q": "Wie lautet der Wert für Feld A?",
         "opts": [
           "-24.750",
           "-126.550",
           "-24.000",
+          "-475.215",
+          "Keine Antwort ist richtig",
           "-36.300"
         ],
         "correct": 0,
-        "points": 2,
-        "explain": "A = n·Σ(px) − Σp·Σx = 3·2.554.950 − 125,5·56.700 = 7.664.850 − 7.117.350 = -24.750,00 (gerundet)."
+        "points": 4,
+        "explain": "A = n·Σ(px) − Σp·Σx = 3·2.554.950 − 125,5·56.700 = 7.664.850 − 7.117.350 = -24.750,00."
       },
       {
-        "q": "Wie lautet der Wert für Feld B (Nenner von b)?",
+        "q": "Wie lautet der Wert für Feld B?",
         "opts": [
           "11.215,50",
           "15.634,25",
+          "10,50",
           "9,50",
+          "Keine Antwort ist richtig",
           "19,50"
         ],
-        "correct": 2,
-        "points": 2,
+        "correct": 3,
+        "points": 4,
         "explain": "B = n·Σp² − (Σp)² = 3·5.253,25 − 125,5² = 15.759,75 − 15.750,25 = 9,50."
       },
       {
@@ -5466,23 +5655,25 @@ const EXAM_MV = [
           "77.351,79",
           "87.351,79",
           "127.886,71",
-          "98.946,22"
+          "98.946,22",
+          "117.185,53",
+          "68.512,58"
         ],
         "correct": 2,
-        "points": 2,
-        "explain": "a = x̄ − b·p̄ = 18.900 − (−2.605,26)·41,83 = 18.900 + 108.986,71 = 127.886,71."
+        "points": 3,
+        "explain": "a = x̄ − b·p̄ = 18.900 − (−2.605,26)·41,83 = 127.886,71."
       },
       {
-        "q": "Sie gehen ab sofort von der PAF x(p) = 92.024 − 1.805·p aus. Wie lautet der Absatz für 2022 bei einem Preis von 45 €?",
+        "q": "Sie haben nun kurzfristig neue Daten erhalten und gehen auf dieser Basis ab sofort von der PAF x(p) = 92.024 − 1.805·p aus. Schätzen Sie den Absatz für das Jahr 2022, wenn der Preis pro Sportleggings auf 45 € angehoben wird.",
         "opts": [
           "12.130",
           "12.735",
           "11.799",
-          "Keine Antwort ist korrekt"
+          "Keine Antwort ist richtig"
         ],
         "correct": 3,
         "points": 1,
-        "explain": "x(45) = 92.024 − 1.805·45 = 92.024 − 81.225 = 10.799 – dieser Wert ist unter den Optionen nicht vorhanden."
+        "explain": "x(45) = 92.024 − 1.805·45 = 10.799 – dieser Wert ist unter den Optionen nicht vorhanden."
       },
       {
         "q": "Wie lautet die Sättigungsmenge?",
@@ -5493,11 +5684,11 @@ const EXAM_MV = [
           "105.471"
         ],
         "correct": 0,
-        "points": 2,
+        "points": 1,
         "explain": "Sättigungsmenge = x(0) = 92.024."
       },
       {
-        "q": "Wie lautet der Maximalpreis (in €)?",
+        "q": "Wie lautet der Maximalpreis?",
         "opts": [
           "50,98",
           "54,38",
@@ -5513,8 +5704,8 @@ const EXAM_MV = [
   {
     "id": "ex-mv-13",
     "title": "Werbewirkungsfunktion & Rückrechnung: Robotik-Miniroboter",
-    "badge": "14 Punkte",
-    "scenario": "Sie arbeiten als Marketingconsultant bei einem bekannten Robotik-Unternehmen und sollen die Online-Werbekampagne für einen neuen Miniroboter koordinieren. Die Marktforschungsabteilung ermittelte folgende Zusammenhänge zwischen Werbebudget W und Absatz x:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>t=1</th><th>t=2</th><th>t=3</th></tr><tr><td>Werbeausgaben (in €)</td><td>0</td><td>1.200</td><td>6.800</td></tr><tr><td>Verkaufte Roboter</td><td>80</td><td>360</td><td>950</td></tr></table></div><div class=\"exam-formula\">x(W) = a + b · W<sup>c</sup> &nbsp; (a, b, c: Parameter)</div>Parameter a lautet 80. Bestimmen Sie die Parameter b und c.<div class=\"exam-hint\">Hinweis: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
+    "badge": "19 Punkte",
+    "scenario": "Sie arbeiten als Marketingconsultant bei einem bekannten Robotik-Unternehmen und sollen die Online-Werbekampagne für einen neuen Miniroboter koordinieren. Die Marktforschungsabteilung ermittelte folgende Zusammenhänge zwischen Werbebudget W und Absatz x:<div class=\"exam-table-wrap\"><table class=\"exam-table\"><tr><th></th><th>t=1</th><th>t=2</th><th>t=3</th></tr><tr><td>Werbeausgaben (in €)</td><td>0</td><td>1.200</td><td>6.800</td></tr><tr><td>Verkaufte Roboter</td><td>80</td><td>360</td><td>950</td></tr></table></div><div class=\"exam-formula\">x(W) = a + b · W<sup>c</sup></div>Parameter a lautet 80. Bestimmen Sie die Parameter b und c der Werbewirkungsfunktion.<div class=\"exam-hint\">HINWEIS: Runden Sie Ihre Ergebnisse IMMER auf 2 Nachkommastellen.</div>",
     "parts": [
       {
         "q": "Wie lautet Parameter b?",
@@ -5522,11 +5713,13 @@ const EXAM_MV = [
           "2,53",
           "2,79",
           "1,55",
-          "5,54"
+          "5,54",
+          "3,53",
+          "6,65"
         ],
         "correct": 1,
         "points": 5,
-        "explain": "Aus 360−80=b·1.200^c=280 und 950−80=b·6.800^c=870: Division liefert 870/280=(6.800/1.200)^c ⟹ c≈0,65 (siehe nächste Teilfrage). b = 280/1.200^0,65 ≈ 2,79."
+        "explain": "Aus 360−80=b·1.200^c=280 und 950−80=b·6.800^c=870 folgt (durch Division) c≈0,65 (siehe nächste Teilfrage), damit b = 280/1.200^0,65 ≈ 2,79."
       },
       {
         "q": "Folglich lautet Parameter c:",
@@ -5534,35 +5727,39 @@ const EXAM_MV = [
           "0,23",
           "0,58",
           "0,31",
-          "0,43"
+          "0,43",
+          "0,65",
+          "0,53"
         ],
-        "correct": 1,
+        "correct": 4,
         "points": 5,
-        "explain": "c = ln(870/280) / ln(6.800/1.200) = ln(3,1071)/ln(5,6667) ≈ 0,65 – hier gerundet auf 2 Nachkommastellen: 0,65 (unter den vorliegenden Optionen am nächsten: es ist zu beachten, dass Klausur-Distraktoren teils bewusst nah beieinander liegen)."
+        "explain": "c = ln(870/280) / ln(6.800/1.200) = ln(3,1071)/ln(5,6667) ≈ 0,65."
       },
       {
-        "q": "Gehen Sie nun von der Werbewirkungsfunktion x(W) = 450 + 88·W^0,5 aus. Es wurde bereits ermittelt, dass das zugehörige, deckungsbeitragsoptimale Werbebudget 980.000 € beträgt, bei einem Preis von 36 € pro Roboter. Wie gehen Sie zur Herleitung der variablen Kosten k_v vor?",
+        "q": "Gehen Sie nun von der Werbewirkungsfunktion x(W) = 450 + 88·W^0,5 aus. Es wurde bereits ermittelt, dass das zugehörige deckungsbeitragsoptimale Werbebudget 980.000 € beträgt. Hierfür wurde ein Preis von 36 € pro Roboter berücksichtigt. Wie gehen Sie bei der Herleitung der variablen Kosten kᵥ pro Roboter vor? Bringen Sie die Schritte in die richtige Reihenfolge:",
         "opts": [
-          "Deckungsbeitragsfunktion aufstellen → ableiten und nach W=0 auflösen → Funktion nach k_v umstellen",
-          "Funktion nach k_v umstellen → Deckungsbeitragsfunktion aufstellen → Ableitung und Auflösung",
-          "Nur die Umsatzfunktion nach k_v ableiten",
-          "Preis direkt gleich den variablen Kosten setzen"
+          "1. Aufstellen der Deckungsbeitragsfunktion → 2. Ableitung und Auflösung → 3. Funktion nach kᵥ umstellen",
+          "1. Ableitung und Auflösung → 2. Aufstellen der Deckungsbeitragsfunktion → 3. Funktion nach kᵥ umstellen",
+          "1. Funktion nach kᵥ umstellen → 2. Aufstellen der Deckungsbeitragsfunktion → 3. Ableitung und Auflösung",
+          "1. Aufstellen der Deckungsbeitragsfunktion → 2. Funktion nach kᵥ umstellen → 3. Ableitung und Auflösung"
         ],
         "correct": 0,
-        "points": 1,
-        "explain": "Korrekte Reihenfolge: (1) Deckungsbeitragsfunktion DB(W)=(p−k_v)·x(W)−W aufstellen, (2) nach W ableiten und die Optimalitätsbedingung (bekanntes W*=980.000) nutzen, um nach k_v aufzulösen."
+        "points": 3,
+        "explain": "Korrekte Reihenfolge: (1) Deckungsbeitragsfunktion DB(W)=(p−kᵥ)·x(W)−W aufstellen, (2) nach W ableiten und Optimalitätsbedingung mit dem bekannten W*=980.000 nutzen, (3) Funktion nach kᵥ umstellen."
       },
       {
-        "q": "Folglich liegen die variablen Kosten k_v bei:",
+        "q": "Folglich liegen die variablen Kosten kᵥ bei:",
         "opts": [
           "20,00",
           "19,43",
           "16,67",
-          "13,50"
+          "20,49",
+          "13,50",
+          "22,91"
         ],
-        "correct": 3,
-        "points": 3,
-        "explain": "Aus der Optimalitätsbedingung W* = (44·(p−k_v))² folgt: (p−k_v) = √(980.000/1.936) = 22,50 ⟹ k_v = 36 − 22,50 = 13,50€."
+        "correct": 4,
+        "points": 6,
+        "explain": "Aus der Optimalitätsbedingung W* = (44·(p−kᵥ))² folgt: (p−kᵥ) = √(980.000/1.936) = 22,50 ⟹ kᵥ = 36 − 22,50 = 13,50€."
       }
     ]
   }
@@ -5611,7 +5808,7 @@ const COURSES = {
     tabLuecken: "Lückentext",
     infoLuecken: "5 echte Klausur-Lückentexte (SS2022–SS2025, 147 Lücken) – genau wie in der echten Klausur musst du den fehlenden Fachbegriff selbst eintippen. Viele Begriffe (Preisdifferenzierung, AIDA-Modell, Ellenbogenkriterium, Buying-Center-Rollen...) wiederholen sich über mehrere Jahre – ein starkes Signal, was garantiert wieder drankommt.",
     tabFreitext: "Rechenaufgaben",
-    infoFreitext: "<b>13 vollständige Prüfungssimulationen</b> im Original-Klausurformat – mit Tabellen, Liniendiagrammen und mehrteiligen Teilfragen genau wie in deinen echten Altklausuren. 12 davon sind 1:1 aus echten RWTH-Klausuren übernommen (SS2025 PT1/PT2, SS2022, SS2023, 2024 PT1): Clusteranalyse (2×), Werbewirkungsfunktion (3×), Regression &amp; PAF (3×), Cournot-Preis/Preisdifferenzierung, Conjoint-Analyse, CLV, Tausender-Kontakt-Preis/Mediaplanung. Jede Aufgabe wird wie in der echten Klausur ausgewertet (Punkte pro Teilfrage) inkl. Lösungsweg. 186 Punkte insgesamt.",
+    infoFreitext: "<b>13 vollständige Prüfungssimulationen – jetzt 1:1 aus echten RWTH-Klausuren</b> (SS2025 PT1, SS2022, SS2023, 2024 PT1), inklusive der exakten Original-Antwortoptionen und Diagramme (Liniendiagramme bei Conjoint-Analysen, Distanz-/CLV-Tabellen mit Feldern zum Bestimmen) statt frei erfundener Zahlen. Themen: Clusteranalyse (2×), Werbewirkungsfunktion (3×), Regression &amp; PAF (3×), Conjoint-Analyse (2×), Cournot-Preis/Preisdifferenzierung, CLV, Tausender-Kontakt-Preis/Mediaplanung (2×). Jede Aufgabe wird wie in der echten Klausur ausgewertet (Punkte pro Teilfrage) inkl. Lösungsweg. 222 Punkte insgesamt.",
     lsProgress: "mv_progress",
     lsStats: "mv_quizStats",
     MODULES: MODULES_MV,
