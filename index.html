@@ -1852,7 +1852,7 @@ const DAYPLAN_PUO = [
     ]},
     { date: '2026-09-22', label: 'Di 22.09.', tag: 'Freitext Teil 1 – Kap. 1-6', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'], tasks: [
       '1) FREITEXT – die erste Hälfte der 22 echten Altklausur-Aufgaben (Themen aus Kap. 1-6) frei beantworten, dann mit der Musterlösung vergleichen',
-      '2) Denk dran: die echte Klausur läuft über offene Aufgaben ("Beschreiben Sie...", "Nennen Sie...") – das freie Formulieren ist hier der wichtigste Skill, nicht das Wiedererkennen von Multiple-Choice-Optionen',
+      '2) Denk dran: die echte Klausur mischt offene Aufgaben ("Beschreiben Sie...", "Nennen Sie...") MIT Multiple-/Mehrfachauswahl-Fragen (laut den echten SS24/SS25-Klausuren über 25 MC-Items) – beide Skills zählen etwa gleich viel, also heute bewusst auch eine kurze QUIZ-Runde dranhängen',
       '3) Sei ehrlich bei der Selbstbewertung – lieber jetzt eine Lücke erkennen als in der Klausur'
     ]},
     { date: '2026-09-23', label: 'Mi 23.09.', tag: 'Freitext Teil 2 – Kap. 7-12', mods: ['c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
@@ -1869,13 +1869,13 @@ const DAYPLAN_PUO = [
       '1) Heute nur eine kurze, entspannte Quiz-Runde (15-20 Min) – kein neuer Stoff, kein Druck',
       '2) Nutze den Tag zur Erholung, damit du für die letzten Tage vor der Klausur wieder Energie hast – nach 8 durchgehenden Lerntagen (17.-24.9) hast du dir das verdient'
     ]},
-    { date: '2026-09-26', label: 'Sa 26.09.', tag: 'Vollständige Altklausur unter Zeitdruck (PT1)', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
-      '1) Eine komplette Altklausur (PT1) unter realistischen Zeitbedingungen als offene Fragen durchschreiben, nicht nur im Kopf beantworten',
-      '2) Danach in Ruhe mit der Musterlösung vergleichen und Punkte ehrlich schätzen'
+    { date: '2026-09-26', label: 'Sa 26.09.', tag: 'Vollständige Altklausur unter Zeitdruck (SS24 PT1)', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+      '1) Die echte Altklausur "P&O ss24 PT1" komplett unter realistischen Zeitbedingungen durcharbeiten – MC-Items anklicken UND offene Aufgaben tatsächlich ausformulieren, nicht nur im Kopf beantworten',
+      '2) Danach in Ruhe mit der im PDF sichtbaren Musterlösung/Bewertung vergleichen und Punkte ehrlich schätzen'
     ]},
-    { date: '2026-09-27', label: 'So 27.09.', tag: 'Altklausur auswerten + gezielt nacharbeiten', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
+    { date: '2026-09-27', label: 'So 27.09.', tag: 'Altklausur auswerten + 2. Klausur (SS24 PT2 / SS25 PT2)', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
       '1) Die Fehler/Lücken aus der Altklausur vom 26.9. gezielt im Module-Tab nacharbeiten',
-      '2) Falls Zeit bleibt: eine zweite Altklausur (PT2) ebenfalls unter Zeitdruck üben',
+      '2) Eine zweite komplette Altklausur ("P&O ss24 PT2" oder eine der beiden SS25-PT2-Varianten) ebenfalls unter Zeitdruck durcharbeiten (MC + offene Aufgaben)',
       '3) QUIZ + FORMELN – "Nur falsche wiederholen" über alle Kapitel'
     ]},
     { date: '2026-09-28', label: 'Mo 28.09.', tag: 'Finale Zusammenfassung', mods: ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11', 'c12'], tasks: [
@@ -2012,6 +2012,9 @@ const QUIZ_DATA_PUO = {
     { le: 'c5', q: "Warum kann der Informationswert nie negativ werden?", opts: [
         "Man könnte bei jeder Nachricht immer mindestens die a-priori-optimale Handlung wählen – zusätzliche Info kann also nur helfen oder neutral sein", "Weil Informationen immer perfekt sind", "Weil die Nachrichtenwahrscheinlichkeiten immer 1 sind", "Weil Prinzipale stets risikoavers sind"
       ], correct: 0, explain: "Da man bei jeder Nachricht immer auf die a-priori-optimale Handlung a* zurückgreifen könnte, kann zusätzliche Information den Entscheider nie schlechter stellen." },
+    { le: 'c5', q: "Welche Aussagen zu Informationssystemen bzw. Informationswerten treffen zu? (mehrere richtig)", multi: true, opts: [
+        "Informationssysteme können einen Informationswert von 0 aufweisen", "Wenn a-priori- und a-posteriori-Eintrittswahrscheinlichkeiten gleich sind, lohnt sich der Kauf eines Informationssystems auf keinen Fall", "Je weniger Fehler ein Informationssystem macht, desto größer der Informationswert", "Die a-priori-Eintrittswahrscheinlichkeiten sind bei Vorliegen eines technisch perfekten Informationssystems 0 bzw. 1"
+      ], correct: [0,1,2], explain: "IW=0 ist möglich (z.B. wenn die Info am Handlungsoptimum nichts ändert). Wenn a-priori=a-posteriori gilt, liefert das System keine neue Erkenntnis → IW=0, Kauf lohnt sich nicht. Weniger Fehler → präzisere Nachrichten → höherer IW. FALSCH ist die 4. Aussage: 0/1-Werte betreffen bei einem perfekten System die A-POSTERIORI-Wahrscheinlichkeiten (nach Auswertung der Nachricht), nicht die A-PRIORI-Wahrscheinlichkeiten (die bleiben unverändert die ursprünglichen Zustandswahrscheinlichkeiten) – eine beliebte Verwechslungsfalle." },
     { le: 'c5', q: "Rechenaufgabe (Informationswert): E* (a priori, beste Handlung ohne Info) = 45; E** (a posteriori, mit Info) = 52. Wie hoch ist der Informationswert IW?", opts: [
         "IW = 52 − 45 = 7", "IW = 45 − 52 = -7", "IW = 52 + 45 = 97", "IW = 52 / 45 ≈ 1,16"
       ], correct: 0, calc: true, explain: "IW = E** − E* = 52 − 45 = 7." },
@@ -2167,6 +2170,9 @@ const QUIZ_DATA_PUO = {
     { le: 'c10', q: "Welcher Trade-off besteht zwischen Gruppenprämien und individuellen Prämien als Anreizmechanismus in Teams?", opts: [
         "Gruppenprämien fördern Kooperation und Wissensaustausch im Team, verschärfen aber tendenziell das Trittbrettfahrerproblem; individuelle Prämien reduzieren Trittbrettfahren, können aber Kooperation und Teamgeist untergraben", "Gruppenprämien und individuelle Prämien haben identische Anreizwirkungen", "Individuelle Prämien sind in Teamkontexten grundsätzlich nicht anwendbar", "Gruppenprämien eliminieren das Trittbrettfahrerproblem vollständig"
       ], correct: 0, explain: "Gruppenprämien (gleichmäßige Aufteilung π/n) fördern gegenseitige Unterstützung, schwächen aber den individuellen Leistungsanreiz (Trittbrettfahrerproblem, da der eigene Beitrag zur Prämie 'verwässert' wird). Individuelle Prämien setzen stärkere persönliche Anreize, können aber Kooperationsbereitschaft und Wissensteilung im Team beeinträchtigen." },
+    { le: 'c10', q: "Welche Ziele, auf Mitarbeitende und Unternehmen bezogen, sprechen für die Einführung von Gruppenarbeit? (mehrere richtig)", multi: true, opts: [
+        "Behebung des Trittbrettfahrerproblems", "Produktivitätserhöhung und Kostenreduzierung", "Verbesserung der Arbeitssituation", "Verbesserung der Flexibilität"
+      ], correct: [1,2,3], explain: "Produktivitätserhöhung/Kostenreduzierung (Unternehmensziel), Verbesserung der Arbeitssituation und Verbesserung der Flexibilität (Mitarbeitenden- bzw. beidseitige Ziele) sind die genannten Einführungsziele. Das Trittbrettfahrerproblem wird durch Gruppenarbeit nicht behoben, sondern überhaupt erst durch sie verursacht/verschärft – das ist eine typische Verwechslungsfalle in der Klausur." },
 ] },
   c11: { label: 'Kap. 11 · Entlohnung', sub: 'Entlohnungskomponenten/-kriterien, Akkord-/Prämienlohn, intrinsische Motivation', questions: [
     { le: 'c11', q: "Rechenaufgabe (Geldakkord): erarbeitete Menge M = 500 Stück, Geldsatz Ge = 2,40€/Stück. Wie hoch ist der Lohn L?", opts: [
@@ -2304,7 +2310,7 @@ const AWI_FORMULA_QUIZ_PUO = {
 };
 
 let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT, FREITEXT;
-let CURRENT_COURSE_ID = 'stat';
+let CURRENT_COURSE_ID = 'puo';
 
 const LUECKENTEXT_STAT = [];
 const LUECKENTEXT_MV = [
@@ -5830,13 +5836,13 @@ const COURSES = {
     tabQuiz: "P&amp;O Quiz",
     tabFormeln: "P&amp;O Formelkarten",
     infoModule: "<b>Enger Zeitplan:</b> 26.–28.9. ist deine Intensivphase für P&amp;O (nach dem 23.-25.9-Blackout, direkt vor der Klausur am 29.9.). Bis dahin nur kurze 10-Min-Merkeinheiten nebenbei, siehe Tagesplan.",
-    infoTagesplan: "<b>Achtung Klausurformat:</b> Laut den bisherigen Klausur-Screenshots (PT1/PT2, je 60 Punkte) besteht die Klausur aus <b>offenen Aufgaben</b> (\"Beschreiben Sie...\", \"Nennen Sie...\", Rechenaufgaben ohne Auswahlantworten) – kein Multiple Choice! Nutze das Quiz zum Einprägen der Inhalte, aber übe zusätzlich freies Formulieren und die Rechenaufgaben (Informationswert, Personalbedarf, Humankapital, Zuordnung/Markov) auf Papier.",
+    infoTagesplan: "<b>Klausurformat (aus den echten Altklausuren SS24 PT1/PT2, SS25 PT2):</b> Die Klausur (60 Punkte) MISCHT beide Formate über die gesamte Aufgabenfolge verteilt: <b>offene Aufgaben</b> (\"Beschreiben Sie...\", \"Nennen Sie...\", Rechenaufgaben als Freitext) UND <b>Multiple-/Mehrfachauswahl-Fragen</b> (Single- und Multi-Select, in den Screenshots über 25 MC-Items) – beide Formate kommen in etwa gleichem Umfang vor, nicht nur \"ein paar MC am Ende\". Nutze den Quiz-Tab GENAUSO ernsthaft wie den Freitext-Tab: Quiz für die Auswahlfragen, Freitext fürs freie Formulieren, Formelkarten für die Rechenaufgaben (Informationswert, Personalbedarf, Humankapital, Zuordnung/Markov).",
     infoQuiz: "12 Kapitel in 2 Teilen: <b>Teil A \"Organisation\"</b> (Kap. 1-5: Grundlagen, Neue Institutionenökonomik, Organisationsformen, Interne Strukturen, Informationsbewertung) und <b>Teil B \"Personal\"</b> (Kap. 6-12: Rekrutierung bis Personalfreisetzung).",
     infoFormeln: "<b>Echte Rechenformeln!</b> Anders als in manchen anderen Modulen hat P&amp;O reale Formeln (Informationswert/Bayes, Personalbedarf, Humankapital-Barwert, Markov-Ketten, Zuordnungsproblem, Akkordlohn) – diese kommen in der Klausur als offene Rechenaufgaben dran, hier zum Einprägen als Auswahlfrage.",
     tabLuecken: "Lückentext",
-    infoLuecken: "Für P&O sind aktuell keine Lückentext-Übungen hinterlegt. P&O-Klausuren bestehen laut deinen Screenshots ohnehin aus offenen Aufgaben statt Lückentext – der Freitext-Tab ist dein eigentliches Übungsformat.",
+    infoLuecken: "Für P&O sind aktuell keine Lückentext-Übungen hinterlegt – P&O-Klausuren verwenden kein Lückentext-Format. Stattdessen mischen sie offene Aufgaben (Freitext-Tab) mit Multiple-/Mehrfachauswahl-Fragen (Quiz-Tab).",
     tabFreitext: "Freitext",
-    infoFreitext: "<b>22 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst – die Klausur besteht überwiegend aus genau diesem Aufgabentyp, plus ca. 10 Single-Choice-Fragen am Ende (dafür ist der Quiz-Tab da).",
+    infoFreitext: "<b>22 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst. Diese offenen Aufgaben machen etwa die Hälfte der Klausurpunkte aus – die andere Hälfte sind Multiple-/Mehrfachauswahl-Fragen (dafür ist der Quiz-Tab da, genauso wichtig wie dieser Tab).",
     lsProgress: "puo_progress",
     lsStats: "puo_quizStats",
     MODULES: MODULES_PUO,
@@ -7158,7 +7164,7 @@ function render() {
 }
 
 loadTagesplanState();
-const savedCourse = localStorage.getItem('dashboard_activeCourse') || 'stat';
+const savedCourse = localStorage.getItem('dashboard_activeCourse') || 'puo';
 switchCourse(savedCourse);
 setInterval(renderCountdown, 60000);
 loadTagesplanRemote();
