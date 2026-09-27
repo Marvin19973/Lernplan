@@ -1447,6 +1447,37 @@ const LUECKENTEXT_PUO = [
     ],
     explain: "Original-Musterlösung (volle 4 von 4 Punkten) aus der Altklausur P&O SoSe25 PT2 zur divisionalen Organisationsstruktur."
   },
+  {
+    title: "LEN-Modell – wofür die drei Buchstaben stehen (Original, SoSe25 PT2)",
+    text: "Linearitäts-Annahme: {{1}}.\n\nExponential-Annahme: {{2}}.\n\nNormalverteilungsannahme: {{3}}.\n\n0,5 Punkte für jede korrekte Nennung, 1 Punkt für jede korrekte Erläuterung; 0,5 Punkte für die Beschreibung des LEN-Modells allgemein: Das Modell beschreibt, wie eine anreizeffiziente Vertragsausgestaltung bei Hidden Action zustande kommt.",
+    blanks: [
+      { options: ["Linearer Entlohnungsvertrag", "Linearer Produktionsprozess", "Lineares Nutzenmaximum", "Linearer Reservationsnutzen"], correct: "Linearer Entlohnungsvertrag" },
+      { options: ["Exponentielle Nutzenfunktion des Agenten", "Exponentielles Arbeitsleid des Agenten", "Exponentielles Wachstum des Unternehmens", "Exponentielle Risikoprämie"], correct: "Exponentielle Nutzenfunktion des Agenten" },
+      { options: ["Normalverteilter Störterm in der Produktionsfunktion", "Normalverteiltes Arbeitsleid", "Normalverteilte Auszahlungen im Turnier", "Normalverteilter Reservationsnutzen"], correct: "Normalverteilter Störterm in der Produktionsfunktion" },
+    ],
+    explain: "Original-Bewertung (2 von 5 Punkten) aus der Altklausur P&O SoSe25 PT2 zur Abkürzung LEN im Prinzipal-Agenten-Modell."
+  },
+  {
+    title: "Lösungswege gegen asymmetrische Informationsverteilung: Signaling & Screening (Original, SoSe25 PT2)",
+    text: "Signaling: Informationsaufdeckung durch die besser informierte Marktseite ({{1}}) – die besser informierte Marktseite tätigt eine Investition, welche kostenintensiv, überprüfbar und kostengünstiger für Arbeitnehmer mit hoher Qualität ist, sodass nur Arbeitnehmer mit hoher Qualität diese tätigen. Beispiel: {{2}}.\n\nScreening: Informationsaufdeckung durch die schlechter informierte Marktseite ({{3}}) – mögliche Verfahren dafür sind Tests und die Selbstselektion. Beispiel: {{4}} und umsatzabhängige Löhne.",
+    blanks: [
+      { options: ["Arbeitnehmer (AN)", "Arbeitgeber (AG)", "Prinzipal", "Vermittler"], correct: "Arbeitnehmer (AN)" },
+      { options: ["Bildungsabschluss", "Arbeitszeugnis", "Bewerbungsschreiben", "Probearbeitstag"], correct: "Bildungsabschluss" },
+      { options: ["Arbeitgeber (AG) oder Dritte", "Arbeitnehmer (AN)", "Agent", "Gewerkschaft"], correct: "Arbeitgeber (AG) oder Dritte" },
+      { options: ["Assessment-Center und Einstellungstests", "Bewerbungsgespräche ohne Vorbereitung", "Zufallsauswahl der Bewerber", "Anciennitätsprinzip"], correct: "Assessment-Center und Einstellungstests" },
+    ],
+    explain: "Original-Bewertung (3,5 von 4 Punkten) aus der Altklausur P&O SoSe25 PT2 zu Lösungswegen gegen Informationsasymmetrie bei der Personalauswahl."
+  },
+  {
+    title: "Wann lohnt sich eine Humankapitalinvestition? (Original, SoSe25 PT2)",
+    text: "Eine Investition in Humankapital ist eher vorteilhaft, wenn:\n\n– der {{1}} > dem Barwert der Ausgaben ist (allgemeine Bedingung),\n– die {{2}} sinken,\n– das Alternativeinkommen (ohne die Humankapitalinvestition) sinkt,\n– der {{3}} sinkt,\n– die Amortisationsdauer sinkt bzw. der Verrentungszeitpunkt später liegt,\n– das zusätzliche Einkommen durch die Humankapitalinvestition steigt.",
+    blanks: [
+      { options: ["Barwert der zukünftigen Erträge", "Nominalwert der Investition", "Reservationsnutzen", "Marktzins"], correct: "Barwert der zukünftigen Erträge" },
+      { options: ["Ausbildungs-/direkten Kosten", "Opportunitätskosten der Freizeit", "Lohnnebenkosten", "Transaktionskosten"], correct: "Ausbildungs-/direkten Kosten" },
+      { options: ["Diskontfaktor/Zinssatz", "Beteiligungsparameter", "Reservationsnutzen", "Turnierpreis"], correct: "Diskontfaktor/Zinssatz" },
+    ],
+    explain: "Original-Bewertung aus der Altklausur P&O SoSe25 PT2 zu den Einflussfaktoren auf die Vorteilhaftigkeit einer Humankapitalinvestition."
+  },
 ];
 const FREITEXT_PUO = [
   {
@@ -1558,7 +1589,17 @@ const FREITEXT_PUO = [
     id: 'ft-puo-22', cat: 'Humankapital & Informationswert', points: 6,
     q: "Ein risikoneutraler Arbeitgeber muss über die beste Handlungsalternative unter Unsicherheit entscheiden. Berechnen Sie zunächst den a-priori-Erwartungswert E*. Gehen Sie danach von E* = 40 aus und berechnen Sie den a-posteriori-Erwartungswert E** = 71,25 sowie den Informationswert IW eines perfekten Informationssystems. Erläutern Sie abschließend, warum sich der Wert eines <i>nicht perfekten</i> Informationssystems zwischen einer risikoneutralen und einer risikoaversen Person unterscheidet.",
     a: "<b>Informationswert (3P):</b> IW = E** − E* = 71,25 − 40 = <b>31,25</b> (der Erwartungswert steigt, weil man dank perfekter Information immer die für den jeweils eingetretenen Zustand beste Alternative wählen kann, statt vorab auf eine einzige Alternative festgelegt zu sein).<br><b>Risikoneutral vs. risikoavers (2P):</b> Eine risikoneutrale Person bewertet Alternativen nur nach ihrem Erwartungswert – der Wert eines Informationssystems ergibt sich rein aus der Verbesserung des erwarteten Ergebnisses. Eine risikoaverse Person zieht zusätzlich Nutzen aus der <b>Reduktion der Unsicherheit/Varianz</b> selbst (unabhängig vom Erwartungswert) – ein (auch unvollkommenes) Informationssystem ist für sie daher tendenziell <i>wertvoller</i>, weil es zusätzlich das Risiko senkt, das sie sonst mit einem Risikoabschlag bewerten müsste."
-  }
+  },
+  {
+    id: "ft-puo-23", cat: "Informationsbewertung", points: 6,
+    q: "Ein risikoneutraler Arbeitgeber steht vor der Entscheidung, für welchen von drei Mitarbeitern (Alex, Bente, Charlie) er die Kosten für einen MBA im Ausland übernimmt. In Abhängigkeit von zwei möglichen Umweltzuständen s1 und s2 ergeben sich folgende zukünftige Leistungsergebnisse (die Mitarbeiter haben bisher auf ihrer aktuellen Position gleich gute Ergebnisse erzielt):<br><table style='border-collapse:collapse;margin:8px 0;'><tr><th style='border:1px solid #ccc;padding:4px 10px;'></th><th style='border:1px solid #ccc;padding:4px 10px;'>s1</th><th style='border:1px solid #ccc;padding:4px 10px;'>s2</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Alex</td><td style='border:1px solid #ccc;padding:4px 10px;'>50</td><td style='border:1px solid #ccc;padding:4px 10px;'>110</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Bente</td><td style='border:1px solid #ccc;padding:4px 10px;'>90</td><td style='border:1px solid #ccc;padding:4px 10px;'>35</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Charlie</td><td style='border:1px solid #ccc;padding:4px 10px;'>25</td><td style='border:1px solid #ccc;padding:4px 10px;'>140</td></tr></table>Der Eintritt von s1 sei dreimal so wahrscheinlich wie der von s2. a) Berechnen Sie den A-priori-Erwartungswert (bei Wahl der Handlungsalternative mit dem größten Erwartungswert). b) Nehmen Sie nun an, dass der A-priori-Erwartungswert 74,25 beträgt, und rechnen Sie mit diesem weiter: Berechnen Sie den maximalen Kaufpreis für ein Informationssystem, das dem Arbeitgeber mit Sicherheit sagen kann, welcher Umweltzustand eintritt.",
+    a: "<b>a) A-priori-Erwartungswert (3P):</b><br>P(s1) = 0,75, P(s2) = 0,25 (s1 dreimal so wahrscheinlich wie s2).<br>E(Alex) = 0,75·50 + 0,25·110 = 37,5 + 27,5 = 65<br>E(Bente) = 0,75·90 + 0,25·35 = 67,5 + 8,75 = 76,25<br>E(Charlie) = 0,75·25 + 0,25·140 = 18,75 + 35 = 53,75<br>E* = max{65; 76,25; 53,75} = <b>76,25</b> (Bente wird gewählt).<br><br><b>b) Maximaler Kaufpreis für perfektes Informationssystem = Informationswert (3P):</b><br>Bei perfekter Information wählt der AG bei s1 immer Bente (90) und bei s2 immer Charlie (140).<br>A-posteriori-Erwartungswert E** = 0,75·90 + 0,25·140 = 67,5 + 35 = 102,5<br>Informationswert IW = E** − E* = 102,5 − 74,25 = <b>28,25</b> – mehr als dieser Betrag sollte für das perfekte Informationssystem nicht gezahlt werden."
+  },
+  {
+    id: "ft-puo-24", cat: "Personalauswahl & Karriere", points: 4,
+    q: "Erläutern Sie mit eigenen Worten, warum Partnerschaften (z.B. Anwaltskanzleien, Arztpraxen) gegenüber Einzelunternehmen Risikovorteile aufweisen, und ergänzen Sie, unter welcher Bedingung dieser Effekt am stärksten wirkt.",
+    a: "Bei einer Partnerschaft werden die Risiken unter den Partnern verteilt (Risikoverteilung/gemeinsamer Risikopool), während ein Einzelunternehmer mit seinem gesamten Vermögen haftet, keine Absicherung hat und alle Risiken allein trägt (1P). Durch die unbeschränkte, gesamtschuldnerische Haftung aller Partner entsteht ein Versicherungseffekt: positive und negative stochastische Einflüsse einzelner Partner gleichen sich aus, Verluste einzelner werden von der Gemeinschaft aufgefangen (2P). Dieser Effekt funktioniert am besten, wenn die Fachgebiete der Partner nicht zu nah beieinanderliegen, d.h. ihre Risiken nicht stark korrelieren (1P, Bonus im Original)."
+  },
 ];
 const COURSES = {
   puo: {
