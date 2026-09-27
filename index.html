@@ -1249,7 +1249,7 @@ const QUIZ_DATA_PUO = {
     { le: "AK SoSe25 PT2", q: "Was sind Beispiele für Informationssysteme?", opts: ["privater Arbeitsvermittler", "Personalabteilung", "Headhunter", "Expertisen von Gutachtern"], multi: true,
       correct: [0,1,2,3], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Aussagen über den notwendigen Verteilzeitfaktor in der Rosenkranzformel treffen zu?", opts: ["Der notwendige Verteilzeitfaktor ist der Quotient aus der tatsächlich benötigten Zeit für die Haupttätigkeiten und der dafür zur Verfügung stehenden Zeit laut Zeitstudien.", "Der notwendige Verteilzeitfaktor sorgt dafür, dass für die Aufgabenverrichtungen de facto mehr Zeit eingeplant wird.", "Der notwendige Verteilzeitfaktor setzt sich multiplikativ aus den drei Zuschlagsfaktoren für Nebenarbeiten, Erholungszeiten und Ausfallzeiten zusammen.", "Der notwendige Verteilzeitfaktor wird als Ineffizienz gewertet und fließt daher negativ in den Personalbedarf ein."], multi: true,
-      correct: [1,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
+      correct: [0,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien). Korrigiert nach erneutem Abgleich mit der Original-Klausureinsicht (SS25 PT2-Kopie): richtig sind 'Quotient aus tatsächlich benötigter Zeit...' und 'setzt sich multiplikativ...'." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Effekte treten bei der Erhöhung des Beteiligungsparameters beta im LEN-Modell auf?", opts: ["Sicherheitseffekt", "Vermögenseffekt", "Anreizeffekt", "Partizipationseffekt"], multi: true,
       correct: [1,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
     { le: "AK SoSe25 PT2", q: "Wenn man Ausbildung als Investitionsentscheidung versteht, dann steigt ceteris paribus die Attraktivität von Humankapitalinvestitionen ...", opts: ["mit sinkendem Diskontfaktor.", "mit steigendem gegenwärtigen und zukünftigen Alternativeinkommen.", "mit abnehmendem verbleibenden Amortisationszeitraum.", "mit sinkenden Ausbildungskosten."], multi: true,
@@ -1365,7 +1365,89 @@ const AWI_FORMULA_QUIZ_PUO = {
 let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT, FREITEXT;
 let CURRENT_COURSE_ID = 'puo';
 
-const LUECKENTEXT_PUO = [];
+const LUECKENTEXT_PUO = [
+  {
+    title: "Trittbrettfahrerproblem bei Teamarbeit – Lösungsansätze (Original, SoSe22 PT2)",
+    text: "Das Problem der Trittbrettfahrer ist, dass alle Teilnehmer ihr volles {{1}} tragen, aber nur {{2}} des Gruppenertrags erhalten und sich deshalb nicht anstrengen, sondern nur den Ertrag der gesamten Gruppe mitnehmen.\n\nGruppendruck: Durch den {{3}} wird die individuelle Vermögensfunktion des einzelnen Arbeitnehmers so erweitert, dass ein Senkterm in Höhe des empfundenen Drucks hinzugefügt wird. Ähnlich wie beim Arbeitsleid senkt dieser Gruppendruck das Vermögen des Arbeitnehmers nicht wirklich, sondern ist ein immaterieller Anreiz. Der Druck bei der Erbringung einer geringen Leistung führt beim Arbeitnehmer zu Unbehagen und motiviert ihn so, mehr Leistung zu bringen.\n\nStrafe, wenn Teamergebnis {{4}} unterschreitet: Die Entlohnung des gesamten Teams und damit auch der einzelnen Teammitglieder wird um die Strafe reduziert. Der Arbeitnehmer läuft mit seinem Shirking also auch Gefahr, seine eigene Auszahlung drastisch zu senken, wenn das gesamte Team aufgrund seiner Leistungszurückhaltung den Sollwert nicht erreicht. Deshalb wird jeder Arbeitnehmer seine Arbeitsanstrengung so anheben, dass das Team den Sollwert erreicht.",
+    blanks: [
+      { options: ["Arbeitsleid", "Reservationsnutzen", "Sicherheitsäquivalent", "Humankapital"], correct: "Arbeitsleid" },
+      { options: ["1/n", "1/(n-1)", "die Hälfte", "den vollen Anteil"], correct: "1/n" },
+      { options: ["Gruppendruck", "Turnierpreis", "Beteiligungsparameter", "Sicherheitsäquivalent"], correct: "Gruppendruck" },
+      { options: ["Sollwert", "Reservationsnutzen", "Höchstwert", "Erwartungswert"], correct: "Sollwert" },
+    ],
+    explain: "Original-Musterlösung (7 von 8 Punkten) aus der Altklausur P&O SoSe22 PT2, offener Teil zu Gruppenarbeit/Trittbrettfahrerproblem."
+  },
+  {
+    title: "Signaling & Humankapital – warum Hochschulabsolventen mehr verdienen (Original, SoSe22 PT2)",
+    text: "Signaling: Laut Michael Spence setzen nur Arbeitnehmer mit hoher Qualität das kostenintensive Signal eines {{1}} und wollen damit den Arbeitgebern ihre Qualität signalisieren. Voraussetzung dafür ist, dass das Signal kostenintensiv, überprüfbar und für Arbeitnehmer hoher Qualität mit geringeren Kosten verbunden ist. Laut der Theorie lohnt sich die Setzung dieses Signals für Arbeitnehmer geringer Qualität nicht, da die Kosten für den Hochschulabschluss die Lohndifferenz komplett kompensieren und der Lohn ohne Hochschulabschluss sinnvoller ist.\n\nHumankapital: Humankapital sind wirtschaftlich verwertbare Fähigkeiten. Der Gedanke hinter der Theorie des Humankapitals ist, dass die Arbeitnehmer in der schulischen Bildung, zu der eine Hochschule zählt, {{2}} erwerben. Dieses allgemeine Humankapital führt zu einer {{3}} des Arbeitnehmers und damit auch zu einer Lohnsteigerung.",
+    blanks: [
+      { options: ["Hochschulabschlusses", "Arbeitszeugnisses", "Bewerbungsschreibens", "Probearbeitstages"], correct: "Hochschulabschlusses" },
+      { options: ["allgemeines Humankapital", "spezifisches Humankapital", "Sozialkapital", "Reservationsnutzen"], correct: "allgemeines Humankapital" },
+      { options: ["Produktivitätssteigerung", "Risikoreduktion", "Fluktuationssteigerung", "Lohnminderung"], correct: "Produktivitätssteigerung" },
+    ],
+    explain: "Original-Musterlösung (volle 8 von 8 Punkten) aus der Altklausur P&O SoSe22 PT2, offener Teil zu Signaling/Humankapitaltheorie."
+  },
+  {
+    title: "Trauerspiel der Allmende – Privateigentum vs. Gemeinschaftseigentum (Original, SS24 PT2)",
+    text: "Privateigentum: Ein Eigentümer besitzt die Kontrolle über das Weideland. Im Optimum wird sich ein rationaler Eigentümer so verhalten, dass die {{1}} (Vernichtung der Nutzfläche durch Grasen) = dem {{2}} (zusätzliche erwirtschaftete Einheiten an Milch) ist.\n\nGemeinschaftsrecht: Allen Dorfbewohnern gehört die Weide. Für die einzelnen Dorfbewohner ist es so lange vorteilhaft, weitere Kühe weiden zu lassen, so lange der Milchertrag größer als die Kosten sind. Der Einzelne berücksichtigt dabei nicht, dass er die Milchleistung (Nutzen) aller anderen Dorfbewohner reduziert (durch verminderte Milchleistung). Fehlgeleitete Anreize – alle Dorfbewohner werden weitere Kühe auf das Weideland setzen. Das {{3}} steht dem {{4}} entgegen.",
+    blanks: [
+      { options: ["Grenzkosten", "Grenzerlöse", "Durchschnittskosten", "Fixkosten"], correct: "Grenzkosten" },
+      { options: ["Grenznutzen", "Gesamtnutzen", "Deckungsbeitrag", "Reservationsnutzen"], correct: "Grenznutzen" },
+      { options: ["individuelle Interesse", "kollektive Interesse", "Unternehmensinteresse", "Verfügungsrecht"], correct: "individuelle Interesse" },
+      { options: ["Gemeinwohl", "Eigeninteresse", "Verfügungsrecht", "Marktgleichgewicht"], correct: "Gemeinwohl" },
+    ],
+    explain: "Original-Korrekturkommentar (Bewertungshinweis) aus der Altklausur P&O SS24 PT2 zum Trauerspiel der Allmende / Property-Rights."
+  },
+  {
+    title: "Kollusionsproblem bei relativen Leistungsturnieren (Original, SS24 PT2)",
+    text: "Kollusion ungleich Sabotage! Kollusionsgefahr zwischen Arbeitnehmern → Absprachen und vorab Festlegung des Siegers, keine {{1}} mehr & Manipulation der Ergebnisse, kein Mehrwert mehr für den Arbeitgeber. Lösungen: große Gruppen, Kombination mit {{2}}, externe Arbeitnehmer als Konkurrenten, {{3}} der Lohnstruktur.",
+    blanks: [
+      { options: ["Anreizwirkung", "Risikoprämie", "Fixlohnkomponente", "Sozialauswahl"], correct: "Anreizwirkung" },
+      { options: ["absoluter Leistungsbeurteilung", "relativer Leistungsbeurteilung", "subjektiver Leistungsbeurteilung", "kollektiver Leistungsbeurteilung"], correct: "absoluter Leistungsbeurteilung" },
+      { options: ["Komprimierung", "Spreizung", "Individualisierung", "Maximierung"], correct: "Komprimierung" },
+    ],
+    explain: "Original-Korrekturkommentar aus der Altklausur P&O SS24 PT2 zum Kollusionsproblem bei relativen Leistungsturnieren."
+  },
+  {
+    title: "Ziele relativer Leistungsturniere – Anreiz- und Selektionsfunktion (Original, SS24 PT2)",
+    text: "Relative Leistungsturniere verfolgen zwei zentrale Ziele:\n\n{{1}}: Turniere erzeugen durch die Turnierpreise, die Turnierpreisdifferenz und die Option, an weiteren Turnieren teilnehmen zu können, einen Leistungsanreiz.\n\n{{2}}: Die leistungsfähigsten Arbeitnehmer setzen sich durch – es erfolgt eine Allokation von guten Arbeitnehmern auf die wichtigen Stellen.",
+    blanks: [
+      { options: ["Anreizfunktion", "Selektionsfunktion", "Kontrollfunktion", "Koordinationsfunktion"], correct: "Anreizfunktion" },
+      { options: ["Selektionsfunktion", "Anreizfunktion", "Sanktionsfunktion", "Partizipationsfunktion"], correct: "Selektionsfunktion" },
+    ],
+    explain: "Original-Korrekturkommentar aus der Altklausur P&O SS24 PT2 zu den zwei Zielen relativer Leistungsturniere."
+  },
+  {
+    title: "Asymmetrische Informationsverteilung bei der Personalauswahl (Original, SoSe25 PT2)",
+    text: "Hidden Information: Der Arbeitgeber ist die schlechter informierte Marktseite bezüglich der Fähigkeiten und Interessen des Arbeitnehmers.\n\nFolge: {{1}}: Der Arbeitgeber zahlt nur einen {{2}}, wodurch die guten Bewerber sich aus dem Markt zurückziehen.",
+    blanks: [
+      { options: ["Adverse Selektion", "Moral Hazard", "Signaling", "Screening"], correct: "Adverse Selektion" },
+      { options: ["Durchschnittslohn", "Mindestlohn", "Höchstlohn", "Stücklohn"], correct: "Durchschnittslohn" },
+    ],
+    explain: "Original-Bewertung (volle 2 von 2 Punkten) aus der Altklausur P&O SoSe25 PT2 zur asymmetrischen Informationsverteilung bei der Personalauswahl."
+  },
+  {
+    title: "LEN-Modell – Second-Best-Lösung: die drei Rechenschritte (Original, SoSe25 PT2)",
+    text: "Second-Best-Lösung im LEN-Modell – drei Schritte:\n\n1. {{1}}: Der Agent maximiert seinen Nutzen durch e – dafür wird das Sicherheitsäquivalent (SÄ) berechnet und nach e abgeleitet, um e* zu bestimmen.\n\n2. Teilnahmebedingung: Der Prinzipal gestaltet den Vertrag so, dass der Agent ihn annimmt: SÄ ≥ {{2}}; diese Bedingung wird abgeleitet und nach {{3}} umgestellt.\n\n3. Der Prinzipal maximiert seine eigene Nutzenfunktion: Durch Einsetzen von e und alpha und Maximieren der Nutzenfunktion ergibt sich {{4}}. Durch Einsetzen von beta in e und alpha erhält man schließlich alle numerischen Werte.",
+    blanks: [
+      { options: ["Anreizverträglichkeitsbedingung", "Teilnahmebedingung", "Partizipationsbedingung", "Risikoprämienbedingung"], correct: "Anreizverträglichkeitsbedingung" },
+      { options: ["Reservationswert", "Höchstlohn", "Sicherheitsäquivalent", "Fixlohn"], correct: "Reservationswert" },
+      { options: ["alpha", "beta", "e", "theta"], correct: "alpha" },
+      { options: ["beta", "alpha", "e", "theta"], correct: "beta" },
+    ],
+    explain: "Original-Bewertung (4 von 6 Punkten) aus der Altklausur P&O SoSe25 PT2 zu den Rechenschritten der Second-Best-Lösung im LEN-Modell."
+  },
+  {
+    title: "Divisionale Organisationsstruktur – Aufbau, Vorteil, Nachteil (Original, SoSe25 PT2)",
+    text: "Divisionale Organisationsstruktur: Abteilungen werden nach {{1}} zu Divisionen zusammengefasst.\n\nVorteil: {{2}} fällt sehr einfach, da einzelne Divisionen unabhängig voneinander angepasst werden können.\n\nNachteil: Es kann zu {{3}} zwischen den Divisionen bzw. Instanzen kommen, da unter Umständen Doppelarbeiten in den Divisionen entstehen und gewisse Funktionsbereiche in jeder Division vorhanden sind.",
+    blanks: [
+      { options: ["Produktgruppen, Absatzmärkten oder Kundengruppen", "Funktionsbereichen wie Einkauf und Produktion", "Regionen und Hierarchieebenen", "Kostenstellen und Profitcentern"], correct: "Produktgruppen, Absatzmärkten oder Kundengruppen" },
+      { options: ["Umstrukturierung", "Zentralisierung", "Sozialauswahl", "Personalbedarfsplanung"], correct: "Umstrukturierung" },
+      { options: ["Konfliktpotential", "Kostendegressionseffekten", "Lernkurveneffekten", "Skalenerträgen"], correct: "Konfliktpotential" },
+    ],
+    explain: "Original-Musterlösung (volle 4 von 4 Punkten) aus der Altklausur P&O SoSe25 PT2 zur divisionalen Organisationsstruktur."
+  },
+];
 const FREITEXT_PUO = [
   {
     id: 'ft-puo-1', cat: 'Personalbedarf (Rosenkranz)', points: 3,
