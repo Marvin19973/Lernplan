@@ -277,6 +277,7 @@
     <button class="tab-btn" id="tab-formeln"><span id="tabFormelnLabel">Formelkarten</span></button>
     <button class="tab-btn" id="tab-luecken"><span id="tabLueckenLabel">Lückentext</span></button>
     <button class="tab-btn" id="tab-freitext"><span id="tabFreitextLabel">Freitext</span></button>
+    <button class="tab-btn" id="tab-rechnen"><span id="tabRechnenLabel">Rechenaufgaben</span></button>
   </div>
 
   <div class="view active" id="view-moduleprogress">
@@ -316,6 +317,11 @@
   <div class="view" id="view-freitext">
     <div class="info-box" id="infoFreitext"></div>
     <div id="freitextWrap"></div>
+  </div>
+
+  <div class="view" id="view-rechnen">
+    <div class="info-box" id="infoRechnen"></div>
+    <div id="rechnenWrap"></div>
   </div>
 
 </div>
@@ -1362,7 +1368,7 @@ const AWI_FORMULA_QUIZ_PUO = {
   ] },
 };
 
-let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT, FREITEXT;
+let MODULES, DAYPLAN, QUIZ_DATA, AWI_FORMULA_QUIZ, AWI_CALC_GENERATORS, LUECKENTEXT, FREITEXT, RECHENAUFGABEN;
 let CURRENT_COURSE_ID = 'puo';
 
 const LUECKENTEXT_PUO = [
@@ -1601,6 +1607,103 @@ const FREITEXT_PUO = [
     a: "Bei einer Partnerschaft werden die Risiken unter den Partnern verteilt (Risikoverteilung/gemeinsamer Risikopool), während ein Einzelunternehmer mit seinem gesamten Vermögen haftet, keine Absicherung hat und alle Risiken allein trägt (1P). Durch die unbeschränkte, gesamtschuldnerische Haftung aller Partner entsteht ein Versicherungseffekt: positive und negative stochastische Einflüsse einzelner Partner gleichen sich aus, Verluste einzelner werden von der Gemeinschaft aufgefangen (2P). Dieser Effekt funktioniert am besten, wenn die Fachgebiete der Partner nicht zu nah beieinanderliegen, d.h. ihre Risiken nicht stark korrelieren (1P, Bonus im Original)."
   },
 ];
+const RECHENAUFGABEN_PUO = [
+  {
+    id: "rk-puo-1", cat: "Personalbedarf (Rosenkranz)", points: 3,
+    q: "Ermitteln Sie den für die Rosenkranzformel notwendigen <b>Verteilzeitfaktor (VZF)</b>. Gegeben: Nebenarbeitszuschlag 15%, Erholzeitenzuschlag 12%, nur 80% der bezahlten Arbeitszeit stehen tatsächlich zur Verfügung (Ausfallquote durch Urlaub/Krankheit). Runden Sie auf zwei Nachkommastellen.",
+    a: "<b>Lösungsweg:</b><br>VZF = (1 + Nebenarbeitszuschlag) × (1 + Erholzeitenzuschlag) × (1 / Nutzungsgrad)<br>VZF = 1,15 × 1,12 × (1 / 0,80) = 1,15 × 1,12 × 1,25<br><b>VZF ≈ 1,61</b>"
+  },
+  {
+    id: "rk-puo-2", cat: "Personalbedarf (Rosenkranz)", points: 3,
+    q: "Nutzen Sie den VZF = 1,61. Eine Abteilung mit 18 Angestellten (36 Std./Woche) hat pro Woche: 100 E-Mails à 16 Min., 200 Telefonanfragen à 10 Min., 160 Beratungsgespräche à 30 Min. sowie 400 Arbeitsstunden für sonstige Tätigkeiten. Errechnen Sie mittels der Rosenkranzformel den angemessenen Personalbestand (auf natürliche Zahl aufrunden).",
+    a: "<b>Lösungsweg:</b><br>1) Zeitbedarf Kernaufgaben: 100×16 + 200×10 + 160×30 = 1600 + 2000 + 4800 = 8400 Min. = 140 Std./Woche<br>2) Tätigkeitsverteilzeitfaktor (fTV) = (18×36 − 400) / 140 = (648−400)/140 = 1,77<br>3) Personalbedarf = (140 × 1,61)/36 + (400/36) × (1,61/1,77)<br>= 225,4/36 + 11,11×0,910 = 6,26 + 10,11 = 16,37<br><b>→ aufgerundet: 17 Mitarbeitende</b>"
+  },
+  {
+    id: "rk-puo-3", cat: "Informationsbewertung", points: 3,
+    q: "Der a-priori-Erwartungswert (beste Handlung ohne Zusatzinfo) beträgt E* = 45, der a-posteriori-Erwartungswert (mit perfekter Information) E** = 52. Wie hoch ist der Informationswert IW?",
+    a: "IW = E** − E* = 52 − 45 = <b>7</b>."
+  },
+  {
+    id: "rk-puo-4", cat: "Informationsbewertung", points: 2,
+    q: "Ein perfektes Informationssystem liefert für Zustand s1 (P=0,4) bei optimaler Handlung den Ertrag 60, für Zustand s2 (P=0,6) bei optimaler Handlung den Ertrag 80. Berechnen Sie E**.",
+    a: "Bei einem perfekten Informationssystem wird für jeden Zustand exakt der zugehörige optimale Ertrag mit seiner Eintrittswahrscheinlichkeit gewichtet:<br>E** = P(s1)·Ertrag(s1) + P(s2)·Ertrag(s2) = 0,4·60 + 0,6·80 = 24 + 48 = <b>72</b>."
+  },
+  {
+    id: "rk-puo-5", cat: "Informationsbewertung", points: 2,
+    q: "E* = 38,5 (a priori); E** = 41,2 (a posteriori). Wie hoch ist der Informationswert IW?",
+    a: "IW = E** − E* = 41,2 − 38,5 = <b>2,7</b>."
+  },
+  {
+    id: "rk-puo-6", cat: "Informationsbewertung", points: 6,
+    q: "Ein risikoneutraler Arbeitgeber muss über die beste Handlungsalternative unter Unsicherheit entscheiden. Berechnen Sie zunächst den a-priori-Erwartungswert E*. Gehen Sie danach von E* = 40 aus und berechnen Sie den a-posteriori-Erwartungswert E** = 71,25 sowie den Informationswert IW eines perfekten Informationssystems.",
+    a: "<b>Informationswert:</b> IW = E** − E* = 71,25 − 40 = <b>31,25</b> (der Erwartungswert steigt, weil man dank perfekter Information immer die für den jeweils eingetretenen Zustand beste Alternative wählen kann, statt vorab auf eine einzige Alternative festgelegt zu sein)."
+  },
+  {
+    id: "rk-puo-7", cat: "Informationsbewertung", points: 6,
+    q: "Ein risikoneutraler Arbeitgeber steht vor der Entscheidung, für welchen von drei Mitarbeitern (Alex, Bente, Charlie) er die Kosten für einen MBA im Ausland übernimmt. In Abhängigkeit von zwei möglichen Umweltzuständen s1 und s2 ergeben sich folgende zukünftige Leistungsergebnisse:<br><table style='border-collapse:collapse;margin:8px 0;'><tr><th style='border:1px solid #ccc;padding:4px 10px;'></th><th style='border:1px solid #ccc;padding:4px 10px;'>s1</th><th style='border:1px solid #ccc;padding:4px 10px;'>s2</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Alex</td><td style='border:1px solid #ccc;padding:4px 10px;'>50</td><td style='border:1px solid #ccc;padding:4px 10px;'>110</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Bente</td><td style='border:1px solid #ccc;padding:4px 10px;'>90</td><td style='border:1px solid #ccc;padding:4px 10px;'>35</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Charlie</td><td style='border:1px solid #ccc;padding:4px 10px;'>25</td><td style='border:1px solid #ccc;padding:4px 10px;'>140</td></tr></table>Der Eintritt von s1 sei dreimal so wahrscheinlich wie der von s2. a) Berechnen Sie E*. b) Nehmen Sie E* = 74,25 an und berechnen Sie den maximalen Kaufpreis für ein perfektes Informationssystem.",
+    a: "<b>a) E*:</b> P(s1)=0,75, P(s2)=0,25.<br>E(Alex)=0,75·50+0,25·110=65; E(Bente)=0,75·90+0,25·35=76,25; E(Charlie)=0,75·25+0,25·140=53,75<br>E* = max = <b>76,25</b> (Bente).<br><br><b>b) Maximaler Kaufpreis = IW:</b> Bei perfekter Info: s1→Bente(90), s2→Charlie(140).<br>E** = 0,75·90+0,25·140 = 67,5+35 = 102,5<br>IW = E** − E* = 102,5 − 74,25 = <b>28,25</b>."
+  },
+  {
+    id: "rk-puo-8", cat: "Informationsbewertung", points: 5,
+    q: "Ein risikoneutraler Arbeitgeber steht vor der Entscheidung, für welchen von drei Arbeitsplätzen (a1, a2, a3) er zwei streicht. In Abhängigkeit von zwei Umweltzuständen s1 und s2 ergeben sich folgende Ergebnisse:<br><table style='border-collapse:collapse;margin:8px 0;'><tr><th style='border:1px solid #ccc;padding:4px 10px;'></th><th style='border:1px solid #ccc;padding:4px 10px;'>s1</th><th style='border:1px solid #ccc;padding:4px 10px;'>s2</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>a1</td><td style='border:1px solid #ccc;padding:4px 10px;'>60</td><td style='border:1px solid #ccc;padding:4px 10px;'>30</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>a2</td><td style='border:1px solid #ccc;padding:4px 10px;'>55</td><td style='border:1px solid #ccc;padding:4px 10px;'>60</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>a3</td><td style='border:1px solid #ccc;padding:4px 10px;'>30</td><td style='border:1px solid #ccc;padding:4px 10px;'>85</td></tr></table>Der Eintritt von s1 sei vier Mal so wahrscheinlich wie der von s2 (auf 2 Nachkommastellen runden). Berechnen Sie E*, E** (perfektes Informationssystem) und den Informationswert IW.",
+    a: "P(s1)=0,8, P(s2)=0,2.<br>E(a1)=0,8·60+0,2·30=54; E(a2)=0,8·55+0,2·60=56; E(a3)=0,8·30+0,2·85=41<br>E* = max = <b>56</b> (a2).<br>Bei perfekter Info: s1→a1 (60), s2→a3 (85).<br>E** = 0,8·60+0,2·85 = 48+17 = <b>65</b>.<br>IW = E** − E* = 65 − 56 = <b>9</b>."
+  },
+  {
+    id: "rk-puo-9", cat: "Personalbedarf", points: 2,
+    q: "Arbeitsmenge (erforderliche Stundenzahl) = 1.002.762 Std./Jahr, Leistungsfähigkeit je Mitarbeiter = 1.776 Std./Jahr. Wie hoch ist der Brutto-Personalbedarf PB?",
+    a: "PB = Arbeitsmenge / Leistungsfähigkeit je AN = 1.002.762 / 1.776 ≈ <b>565 Mitarbeiter</b>."
+  },
+  {
+    id: "rk-puo-10", cat: "Personalbedarf", points: 2,
+    q: "Arbeitsmenge = 900.000 Stunden/Jahr, Leistungsfähigkeit je AN = 1.800 Stunden/Jahr. Wie hoch ist der Brutto-Personalbedarf PB?",
+    a: "PB = Arbeitsmenge / Leistungsfähigkeit je AN = 900.000 / 1.800 = <b>500 Mitarbeiter</b>."
+  },
+  {
+    id: "rk-puo-11", cat: "Signaling", points: 3,
+    q: "Lohn mit Bildungssignal w(e*) = 50.000€, Lohn ohne Signal w(0) = 30.000€, Bildungskosten c(e*) = 25.000€ (AN schlechter Qualität), Bildungskosten für AN guter Qualität = c(e*)/2 = 12.500€. Entsteht ein separierendes Gleichgewicht?",
+    a: "Für ein separierendes Gleichgewicht müssen beide Bedingungen gelten:<br>AN guter Qualität muss von Bildung profitieren: 50.000−12.500 = <b>37.500€ > 30.000€</b> ✓<br>AN schlechter Qualität darf NICHT profitieren: 50.000−25.000 = <b>25.000€ < 30.000€</b> ✓<br>→ Beide Bedingungen erfüllt: es entsteht ein <b>separierendes (trennendes) Gleichgewicht</b> – nur die AN mit hoher Qualität setzen das Signal."
+  },
+  {
+    id: "rk-puo-12", cat: "Markov-Ketten", points: 2,
+    q: "Ausgangsbestand W1 = 378, Übergangswahrscheinlichkeit W1→W1 = 0,82. Wie hoch ist der prognostizierte Bestand, der in W1 verbleibt?",
+    a: "Prognose = Ausgangsbestand · Übergangswahrscheinlichkeit = 378 · 0,82 ≈ <b>310</b>."
+  },
+  {
+    id: "rk-puo-13", cat: "Markov-Ketten", points: 3,
+    q: "Aktueller Bestand in Stelle A = 200, Übergangswahrscheinlichkeit A→A = 0,7. Zugang von Stelle B nach A: Bestand B = 100, Übergangswahrscheinlichkeit B→A = 0,2. Wie hoch ist der prognostizierte Gesamtbestand in Stelle A in der Folgeperiode?",
+    a: "Der prognostizierte Bestand einer Stelle ergibt sich als Summe der Beiträge aus allen Quellstellen:<br>Bestand_A(t+1) = Bestand_A(t)·P(A→A) + Bestand_B(t)·P(B→A) = 200·0,7 + 100·0,2 = 140+20 = <b>160</b>."
+  },
+  {
+    id: "rk-puo-14", cat: "Markov-Ketten", points: 2,
+    q: "Ausgangsbestand W2 = 328, Übergangswahrscheinlichkeit W2→W2 = 0,88. Wie viele verbleiben prognostisch in W2?",
+    a: "328 · 0,88 ≈ 288,64 ≈ <b>289</b> (gerundet)."
+  },
+  {
+    id: "rk-puo-15", cat: "Humankapitalinvestition", points: 2,
+    q: "Direkte+indirekte Kosten C0+J0 = 20.000€. Barwert der zukünftigen Einkommensdifferenzen Σ(Kt−Jt)/(1+r)^t = 35.000€. Lohnt sich die Investition?",
+    a: "Die Investition lohnt sich, wenn C0+J0 ≤ Σ(Kt−Jt)/(1+r)^t – hier <b>20.000 ≤ 35.000</b>, also <b>lohnend</b>. Der Zinssatz r ist bereits in der Diskontierung der rechten Seite berücksichtigt."
+  },
+  {
+    id: "rk-puo-16", cat: "Humankapitalinvestition", points: 2,
+    q: "C0+J0 = 15.000€, Barwert Σ(Kt−Jt)/(1+r)^t = 12.000€. Lohnt sich die Investition?",
+    a: "Die Bedingung C0+J0 ≤ Σ(Kt−Jt)/(1+r)^t ist mit <b>15.000 > 12.000</b> NICHT erfüllt – die Investition lohnt sich hier <b>nicht</b>."
+  },
+  {
+    id: "rk-puo-17", cat: "Entlohnung", points: 2,
+    q: "Geldakkord: erarbeitete Menge M = 500 Stück, Geldsatz Ge = 2,40€/Stück. Wie hoch ist der Lohn L?",
+    a: "Geldakkord: L = M · Ge = 500 · 2,40€ = <b>1.200€</b>."
+  },
+  {
+    id: "rk-puo-18", cat: "Entlohnung", points: 2,
+    q: "Zeitakkord: M = 300 Stück, te = 4 Vorgabeminuten/Stück, fg = 0,50€/Vorgabeminute. Wie hoch ist der Lohn L?",
+    a: "Zeitakkord: L = M · te · fg = 300 · 4 · 0,50 = <b>600€</b>."
+  },
+  {
+    id: "rk-puo-19", cat: "Spieltheorie", points: 3,
+    q: "Spieler A wählt a1/a2, Spieler B wählt b1/b2. Auszahlungen (A,B): (a1,b1)=(4,2); (a1,b2)=(0,0); (a2,b1)=(0,0); (a2,b2)=(2,4). Welche Strategiekombination(en) sind Nash-Gleichgewichte?",
+    a: "Beste-Antwort-Prüfung: Spielt B b1, ist A's beste Antwort a1 (4>0). Spielt B b2, ist A's beste Antwort a2 (2>0). Spielt A a1, ist B's beste Antwort b1 (2>0). Spielt A a2, ist B's beste Antwort b2 (4>0).<br>→ Beide Diagonalfelder <b>(a1,b1) und (a2,b2)</b> sind wechselseitig beste Antworten → 2 Nash-Gleichgewichte (klassische Koordinationsspiel-Struktur wie Battle of the Sexes)."
+  },
+];
 const COURSES = {
   puo: {
     label: "PERSONAL UND ORGANISATION · RWTH AACHEN · KLAUSUR",
@@ -1616,9 +1719,11 @@ const COURSES = {
     infoQuiz: "12 Kapitel in 2 Teilen: <b>Teil A \"Organisation\"</b> (Kap. 1-5: Grundlagen, Neue Institutionenökonomik, Organisationsformen, Interne Strukturen, Informationsbewertung) und <b>Teil B \"Personal\"</b> (Kap. 6-12: Rekrutierung bis Personalfreisetzung).",
     infoFormeln: "<b>Echte Rechenformeln!</b> Anders als in manchen anderen Modulen hat P&amp;O reale Formeln (Informationswert/Bayes, Personalbedarf, Humankapital-Barwert, Markov-Ketten, Zuordnungsproblem, Akkordlohn) – diese kommen in der Klausur als offene Rechenaufgaben dran, hier zum Einprägen als Auswahlfrage.",
     tabLuecken: "Lückentext",
-    infoLuecken: "Für P&O sind aktuell keine Lückentext-Übungen hinterlegt – P&O-Klausuren verwenden kein Lückentext-Format. Stattdessen mischen sie offene Aufgaben (Freitext-Tab) mit Multiple-/Mehrfachauswahl-Fragen (Quiz-Tab).",
+    infoLuecken: "<b>11 echte Lückentext-Aufgaben</b> aus den Original-Musterlösungen/Korrekturkommentaren deiner Altklausuren (SoSe22 PT2, SS24 PT2, SoSe25 PT2) – Originalwortlaut, Schlüsselbegriffe als Dropdown-Lücken. Wähle für jede Lücke den passenden Begriff, prüfe dann und deck bei Bedarf die Musterlösung auf.",
     tabFreitext: "Freitext",
-    infoFreitext: "<b>22 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst. Diese offenen Aufgaben machen etwa die Hälfte der Klausurpunkte aus – die andere Hälfte sind Multiple-/Mehrfachauswahl-Fragen (dafür ist der Quiz-Tab da, genauso wichtig wie dieser Tab).",
+    infoFreitext: "<b>24 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25, PT2 SoSe22) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst. Diese offenen Aufgaben machen etwa die Hälfte der Klausurpunkte aus – die andere Hälfte sind Multiple-/Mehrfachauswahl-Fragen (dafür ist der Quiz-Tab da, genauso wichtig wie dieser Tab).",
+    tabRechnen: "Rechenaufgaben",
+    infoRechnen: "<b>Alle 19 echten Rechenaufgaben</b> aus deinen Altklausuren und Formelkarten an einem Ort gesammelt: Rosenkranzformel/Personalbedarf, Informationswert (a-priori/a-posteriori), Signaling-Gleichgewicht, Markov-Ketten, Humankapitalinvestition, Akkordlohn und Nash-Gleichgewicht. Erst selbst rechnen, dann Lösungsweg aufdecken.",
     lsProgress: "puo_progress",
     lsStats: "puo_quizStats",
     MODULES: MODULES_PUO,
@@ -1628,6 +1733,7 @@ const COURSES = {
     AWI_CALC_GENERATORS: AWI_CALC_GENERATORS_PUO,
     LUECKENTEXT: LUECKENTEXT_PUO,
     FREITEXT: FREITEXT_PUO,
+    RECHENAUFGABEN: RECHENAUFGABEN_PUO,
   }
 };
 let EXAM_DATE;
@@ -2708,6 +2814,103 @@ function renderFreitext() {
 }
 
 /* ============================================================
+   RECHENAUFGABEN (alle Rechenaufgaben aus allen Altklausuren, gesammelt)
+   ============================================================ */
+const LS_RECHNEN_RATINGS = 'dashboard_rechnen_ratings';
+function loadRechnenRatings() {
+  try { return JSON.parse(localStorage.getItem(LS_RECHNEN_RATINGS)) || {}; } catch (e) { return {}; }
+}
+function saveRechnenRatings(r) {
+  localStorage.setItem(LS_RECHNEN_RATINGS, JSON.stringify(r));
+  if (sb) sb.from('app_data').upsert({ key: LS_RECHNEN_RATINGS, value: r }, { onConflict: 'key' }).then(() => {});
+}
+let rechnenRatings = loadRechnenRatings();
+let rechnenCatFilter = 'all';
+let rechnenOnlyWeak = false;
+
+function renderRechnen() {
+  const wrap = document.getElementById('rechnenWrap');
+  if (!wrap) return;
+  const list = (typeof RECHENAUFGABEN !== 'undefined' ? RECHENAUFGABEN : []);
+  if (!list.length) {
+    wrap.innerHTML = '';
+    return;
+  }
+  const cats = [...new Set(list.map(i => i.cat))];
+  let items = list.filter(i => rechnenCatFilter === 'all' || i.cat === rechnenCatFilter);
+  if (rechnenOnlyWeak) {
+    items = items.filter(i => rechnenRatings[i.id] !== 'good');
+  }
+  const doneGood = list.filter(i => rechnenRatings[i.id] === 'good').length;
+
+  let html = '<div class="kk-controls">';
+  html += '<label>Kategorie: <select id="rechnenCatSelect">';
+  html += '<option value="all"' + (rechnenCatFilter === 'all' ? ' selected' : '') + '>Alle (' + list.length + ')</option>';
+  cats.forEach(c => {
+    const n = list.filter(i => i.cat === c).length;
+    html += '<option value="' + escapeHtmlFT(c) + '"' + (rechnenCatFilter === c ? ' selected' : '') + '>' + escapeHtmlFT(c) + ' (' + n + ')</option>';
+  });
+  html += '</select></label>';
+  html += '<label><input type="checkbox" id="rechnenWeakCheck"' + (rechnenOnlyWeak ? ' checked' : '') + '> nur noch nicht „gut getroffen“</label>';
+  html += '</div>';
+  html += '<div class="freitext-progress">' + doneGood + ' von ' + list.length + ' Rechenaufgaben als „gut getroffen“ markiert.</div>';
+
+  if (!items.length) {
+    html += '<div class="info-box">Keine Aufgaben in dieser Auswahl – Filter zurücksetzen?</div>';
+    wrap.innerHTML = html;
+    document.getElementById('rechnenCatSelect').addEventListener('change', e => { rechnenCatFilter = e.target.value; renderRechnen(); });
+    document.getElementById('rechnenWeakCheck').addEventListener('change', e => { rechnenOnlyWeak = e.target.checked; renderRechnen(); });
+    return;
+  }
+
+  items.forEach(item => {
+    const rating = rechnenRatings[item.id];
+    html += '<div class="freitext-card">';
+    html += '  <div class="freitext-meta"><span class="freitext-cat">' + escapeHtmlFT(item.cat) + '</span><span class="freitext-points">' + item.points + ' Punkte (Original)</span></div>';
+    html += '  <div class="freitext-q">' + item.q + '</div>';
+    html += '  <textarea class="freitext-answer" placeholder="Rechne hier deinen Lösungsweg wie in der Klausur, dann Lösung aufdecken und vergleichen..." data-item="' + item.id + '"></textarea>';
+    html += '  <div class="freitext-actions">';
+    html += '    <button class="freitext-btn" data-reveal="' + item.id + '">Lösungsweg anzeigen</button>';
+    html += '    <button class="freitext-btn secondary" data-clear="' + item.id + '">Antwort löschen</button>';
+    html += '  </div>';
+    html += '  <div class="freitext-solution" id="rsol-' + item.id + '"><b>Lösungsweg:</b><br>' + item.a + '</div>';
+    html += '  <div class="freitext-rate-row" id="rrate-' + item.id + '" style="display:none;">';
+    html += '    <button class="freitext-rate-btn good' + (rating === 'good' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="good">🟢 gut getroffen</button>';
+    html += '    <button class="freitext-rate-btn partial' + (rating === 'partial' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="partial">🟡 teilweise</button>';
+    html += '    <button class="freitext-rate-btn bad' + (rating === 'bad' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="bad">🔴 verfehlt</button>';
+    html += '  </div>';
+    html += '</div>';
+  });
+
+  wrap.innerHTML = html;
+
+  document.getElementById('rechnenCatSelect').addEventListener('change', e => { rechnenCatFilter = e.target.value; renderRechnen(); });
+  document.getElementById('rechnenWeakCheck').addEventListener('change', e => { rechnenOnlyWeak = e.target.checked; renderRechnen(); });
+
+  wrap.querySelectorAll('[data-reveal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.reveal;
+      document.getElementById('rsol-' + id).classList.add('show');
+      document.getElementById('rrate-' + id).style.display = 'flex';
+    });
+  });
+  wrap.querySelectorAll('[data-clear]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ta = wrap.querySelector('textarea[data-item="' + btn.dataset.clear + '"]');
+      if (ta) ta.value = '';
+    });
+  });
+  wrap.querySelectorAll('[data-rate]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.rate;
+      rechnenRatings[id] = btn.dataset.val;
+      saveRechnenRatings(rechnenRatings);
+      renderRechnen();
+    });
+  });
+}
+
+/* ============================================================
    NAV / INIT
    ============================================================ */
 function resetQuizEngineState() {
@@ -2731,6 +2934,7 @@ function switchCourse(id) {
   AWI_CALC_GENERATORS = c.AWI_CALC_GENERATORS;
   LUECKENTEXT = c.LUECKENTEXT;
   FREITEXT = c.FREITEXT;
+  RECHENAUFGABEN = c.RECHENAUFGABEN;
   LS_PROGRESS = c.lsProgress;
   LS_STATS = c.lsStats;
   EXAM_DATE = new Date(c.examDateISO);
@@ -2750,6 +2954,8 @@ function switchCourse(id) {
   document.getElementById('infoLuecken').innerHTML = c.infoLuecken;
   document.getElementById('tabFreitextLabel').innerHTML = c.tabFreitext;
   document.getElementById('infoFreitext').innerHTML = c.infoFreitext;
+  document.getElementById('tabRechnenLabel').innerHTML = c.tabRechnen;
+  document.getElementById('infoRechnen').innerHTML = c.infoRechnen;
 
   document.querySelectorAll('.course-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.course === id);
@@ -2783,6 +2989,7 @@ document.getElementById('tab-quiz').addEventListener('click', () => { showView('
 document.getElementById('tab-formeln').addEventListener('click', () => { showView('view-formeln', 'tab-formeln'); renderEbwlCards(); });
 document.getElementById('tab-luecken').addEventListener('click', () => { showView('view-luecken', 'tab-luecken'); renderLuecken(); });
 document.getElementById('tab-freitext').addEventListener('click', () => { showView('view-freitext', 'tab-freitext'); renderFreitext(); });
+document.getElementById('tab-rechnen').addEventListener('click', () => { showView('view-rechnen', 'tab-rechnen'); renderRechnen(); });
 document.querySelectorAll('.course-btn').forEach(btn => {
   btn.addEventListener('click', () => switchCourse(btn.dataset.course));
 });
