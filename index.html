@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -178,6 +179,12 @@
   .freitext-solution { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--card-border); font-size: 13.5px; line-height: 1.65; color: var(--text-secondary); }
   .freitext-solution.show { display: block; }
   .freitext-solution b { color: var(--text-primary); }
+  .rechnen-check-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+  .rechnen-result-input { flex: 1 1 180px; background: var(--pill-bg); border: 1px solid var(--card-border); border-radius: 8px; color: var(--text-primary); padding: 0.5rem 0.75rem; font-size: 13.5px; font-family: inherit; box-sizing: border-box; }
+  .rechnen-check-result { font-size: 13px; font-weight: 600; }
+  .rechnen-check-result.correct { color: #22c55e; }
+  .rechnen-check-result.wrong { color: #f87171; }
+  .rechnen-check-result.neutral { color: var(--text-secondary); }
   .freitext-rate-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
   .freitext-rate-btn { border: 1px solid var(--card-border); background: var(--pill-bg); color: var(--text-secondary); border-radius: 8px; padding: 0.4rem 0.75rem; font-size: 12.5px; font-weight: 600; cursor: pointer; }
   .freitext-rate-btn.good.active { background: var(--green); color: #06281d; border-color: var(--green); }
@@ -1125,7 +1132,7 @@ const QUIZ_DATA_PUO = {
     { le: "AK SS21 PT2", q: "Was ist eine typische Folge des Hold-up-Problems laut dem Vertrauensspiel?", opts: ["Eine lohnende Investition wird durchgeführt, aber der Gewinn wird zwischen den Vertragspartnern*innen unfair verteilt.", "Eine lohnende Investition wird unterlassen.", "Eine nicht-lohnende Investition wird durchgeführt.", "Keine der anderen Antworten ist korrekt."],
       correct: 1, explain: "Original-Aufgabe aus der Altklausur P&O SS21 PT2 (Dynexite-Einsicht)." },
     { le: "AK SS21 PT2", q: "Wie wirkt sich eine Erhöhung des Beteiligungsparameters (beta) im LEN-Modell auf die Höhe des Fixlohns (alpha) aus, wenn alle anderen Bedingungen gleichbleiben?", opts: ["Der Fixlohn steigt.", "Der Fixlohn sinkt.", "Der Fixlohn kann steigen oder sinken.", "Keine der anderen Antworten ist korrekt."],
-      correct: 1, explain: "Original-Aufgabe aus der Altklausur P&O SS21 PT2 (Dynexite-Einsicht)." },
+      correct: 2, explain: "Original-Aufgabe aus der Altklausur P&O SS21 PT2 (Dynexite-Einsicht). Korrigiert: Die Klausureinsicht zeigt, dass der Student hier 'sinkt' ausgewählt hatte und dies als FALSCH markiert wurde; die tatsächlich korrekte Antwort laut Musterlösung ist 'Der Fixlohn kann steigen oder sinken.'" },
     { le: "AK SoSe22 PT2", q: "Welche Aussagen über Markov-Ketten treffen zu?", opts: ["Markov-Ketten werden zur Personalbedarfsplanung genutzt.", "Markov-Ketten legen Abgangs- und Beförderungsbewegungen im Unternehmen zugrunde.", "Markov-Ketten geben Wahrscheinlichkeiten für das Eintreten zukünftiger Ereignisse an.", "Markov-Ketten eignen sich zur Personalbestandsplanung bei instabilen Wahrscheinlichkeiten."], multi: true,
       correct: [1,2], explain: "Original-Aufgabe aus der Altklausur Perso & Orga SoSe22 PT2." },
     { le: "AK SoSe22 PT2", q: "Welche grundlegenden Formen von Organisationsproblemen entstehen durch Arbeitsteilung und Abstimmung/Tausch?", opts: ["Koordinationsproblem", "Arbeitsleid", "Liquiditätsproblem", "Kooperationsproblem"], multi: true,
@@ -1158,7 +1165,7 @@ const QUIZ_DATA_PUO = {
       correct: 0, explain: "Original-Aufgabe aus der Altklausur Perso & Orga SoSe22 PT2." },
     { le: "AK SoSe22 PT2", q: "Was ist ein typisches Beispiel für indirekte immaterielle Entlohnung?", opts: ["Nette Kollegen", "Keine der anderen Antworten ist korrekt.", "Lob", "Erfinderbonus"],
       correct: 1, explain: "Original-Aufgabe aus der Altklausur Perso & Orga SoSe22 PT2." },
-    { le: "AK SoSe22 PT2", q: "Ein Unternehmen ordnet seine Vertriebsstellen tabellarisch nach Region (Europa/Amerika/Asien/Afrika) UND Kundentyp (Privatkunden/Geschäftskunden). Welche Organisationsstruktur wird dargestellt?", opts: ["Divisionale Organisation", "Keine der anderen Antworten ist korrekt.", "Funktionale Organisation", "Matrixorganisation"],
+    { le: "AK SoSe22 PT2", q: "Ein Unternehmen ordnet seine Vertriebsstellen wie folgt an:<br><table style='border-collapse:collapse;margin:8px 0;font-size:13px;'><tr><th style='border:1px solid #ccc;padding:4px 10px;' colspan='3'>Zentrale</th></tr><tr><th style='border:1px solid #ccc;padding:4px 10px;'></th><th style='border:1px solid #ccc;padding:4px 10px;'>Privatkunden</th><th style='border:1px solid #ccc;padding:4px 10px;'>Geschäftskunden</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Europa</td><td style='border:1px solid #ccc;padding:4px 10px;'></td><td style='border:1px solid #ccc;padding:4px 10px;'></td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Amerika</td><td style='border:1px solid #ccc;padding:4px 10px;'></td><td style='border:1px solid #ccc;padding:4px 10px;'></td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Asien</td><td style='border:1px solid #ccc;padding:4px 10px;'></td><td style='border:1px solid #ccc;padding:4px 10px;'></td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Afrika</td><td style='border:1px solid #ccc;padding:4px 10px;'></td><td style='border:1px solid #ccc;padding:4px 10px;'></td></tr></table>Jede Vertriebsstelle wird also gleichzeitig nach Region UND Kundentyp geführt. Welche Organisationsstruktur wird dargestellt?", opts: ["Divisionale Organisation", "Keine der anderen Antworten ist korrekt.", "Funktionale Organisation", "Matrixorganisation"],
       correct: 3, explain: "Original-Aufgabe aus der Altklausur Perso & Orga SoSe22 PT2." },
     { le: "AK SoSe22 PT2", q: "Was wird allgemein unter Partizipation in Organisationen verstanden?", opts: ["Untergebene Mitarbeiter/innen werden an Entscheidungen der/des Vorgesetzten beteiligt.", "Untergebene Mitarbeiter/innen treffen autonome Entscheidungen.", "Keine der anderen Antworten ist korrekt.", "Externe Mitglieder der Organisation werden angeworben."],
       correct: 0, explain: "Original-Aufgabe aus der Altklausur Perso & Orga SoSe22 PT2." },
@@ -1167,9 +1174,9 @@ const QUIZ_DATA_PUO = {
     { le: "AK SoSe22 PT2", q: "Welche der folgenden Aussagen trifft allgemein auf verhaltensbedingte Entlassungen zu?", opts: ["Keine der anderen Antworten ist korrekt.", "Betroffene Mitarbeitende sind nicht fähig, die erforderte Leistung zu erbringen.", "In vielen dieser Fälle muss eine Sozialauswahl stattfinden.", "Wegen Fehlverhaltens der betroffenen Mitarbeitenden wird ein Aufhebungsvertrag vereinbart."],
       correct: 0, explain: "Original-Aufgabe aus der Altklausur Perso & Orga SoSe22 PT2." },
     { le: "AK SS24 PT1", q: "Welche Aussagen zu Informationssystemen bzw. Informationswerten treffen zu?", opts: ["Informationssysteme können einen Informationswert von 0 aufweisen.", "Wenn a-priori und a-posteriori Eintrittswahrscheinlichkeiten gleich sind, lohnt sich der Kauf eines Informationssystems auf keinen Fall.", "Je weniger Fehler ein Informationssystem macht, desto größer der Informationswert.", "Die a-priori Eintrittswahrscheinlichkeiten sind bei Vorliegen eines technisch perfekten Informationssystems 0 bzw. 1."], multi: true,
-      correct: [0,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
+      correct: [0,1,2], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1. Korrigiert nach erneutem Abgleich mit der Klausureinsicht: korrekt sind die ersten drei Aussagen, die vierte Aussage ist falsch (bei einem perfekten Informationssystem sind die A-POSTERIORI-, nicht die A-priori-Wahrscheinlichkeiten 0 bzw. 1)." },
     { le: "AK SS24 PT1", q: "Welche Ziele, auf Mitarbeitende und Unternehmen bezogen, sprechen für die Einführung von Gruppenarbeit?", opts: ["Behebung des Trittbrettfahrerproblems", "Produktivitätserhöhung und Kostenreduzierung", "Verbesserung der Arbeitssituation", "Verbesserung der Flexibilität"], multi: true,
-      correct: [1,2], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
+      correct: [1,2,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1. Korrigiert: 'Verbesserung der Flexibilität' wurde in der Klausureinsicht ebenfalls als korrekt markiert." },
     { le: "AK SS24 PT1", q: "Welche Agenten werden vom Prinzipal im Rahmen des LEN-Modells bevorzugt?", opts: ["Agenten mit niedrigem Arbeitsleid", "Agenten mit einer hohen Produktivität außerhalb des Unternehmens", "Wenig risikoaverse Agenten", "Agenten, die einen niedrigen Reservationsnutzen haben"], multi: true,
       correct: [0,2,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
     { le: "AK SS24 PT1", q: "Was beschreibt relationale Verträge?", opts: ["Vollständige Verträge", "Implizite Vereinbarungen", "Asymmetrische Informationsverteilung", "Langfristige Austauschbeziehungen"], multi: true,
@@ -1185,7 +1192,7 @@ const QUIZ_DATA_PUO = {
     { le: "AK SS24 PT1", q: "Welche der folgenden Aussagen über Beförderungsturniere treffen allgemein zu?", opts: ["Leistungsturniere verbessern den Team-Spirit zwischen den Teilnehmenden.", "Aufstiegspositionen und die hierarchische Lohnstruktur sind vor Beginn des Leistungsturniers festgelegt.", "Die Ermittlung absoluter Leistungswerte der Mitarbeitenden ist erforderlich.", "Die Durchführung von Leistungsturnieren bietet sich zur Auffindung von Talenten an."], multi: true,
       correct: [1,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
     { le: "AK SS24 PT1", q: "Was sind geeignete Bedingungen für gewinnbringende Abwerbeversuche von Mitarbeitenden?", opts: ["Abgeschlossene berufliche Fortbildung der Mitarbeitenden", "Mitarbeitende in schnell veränderlichen und schrumpfenden Branchen", "Vorliegen des Winner's Curse", "Abwerbungen durch sehr produktive Unternehmen"], multi: true,
-      correct: [1,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
+      correct: [0,1,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1. Korrigiert: Die Klausureinsicht zeigt drei korrekte Antworten (auch 'Abgeschlossene berufliche Fortbildung der Mitarbeitenden' zählt als korrekt), nicht nur zwei." },
     { le: "AK SS24 PT1", q: "Eine Unternehmung kann zur Verringerung ihres Informationsdefizits bei der Personalauswahl folgende Mechanismen einsetzen:", opts: ["Signaling, Screening und Selbstselektion", "Screening und Selbstselektion", "Signaling und Screening", "Signaling und Selbstselektion"],
       correct: 1, explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
     { le: "AK SS24 PT1", q: "Welcher der folgenden Effekte ist ein Problem von subjektiver Leistungsbeurteilung?", opts: ["Default-Effekt", "Decoy-Effekt", "Primacy-Effekt", "Winner's-Curse-Effekt"],
@@ -1198,7 +1205,7 @@ const QUIZ_DATA_PUO = {
       correct: 2, explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
     { le: "AK SS24 PT1", q: "Unter welcher der folgenden Bedingungen lohnt sich prinzipiell eine stärkere Delegation von Entscheidungsrechten?", opts: ["Untergeordnete Stellen haben niedriges Qualifikationsniveau.", "Keine der anderen Antworten ist korrekt.", "Vorgesetzte*r kann Arbeit der Ausführungsstellen nicht kontrollieren.", "Vorgesetzte*r hat hohe Opportunitätskosten der Zeit."],
       correct: 3, explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
-    { le: "AK SS24 PT1", q: "Eine Grafik zeigt eine von 0 an linear steigende Gerade (Lohn über Output q, ohne Fixum). Welche Entlohnungsform zeigt die Grafik?", opts: ["Fixlohn", "Stücklohn mit Mindestlohn", "Stundenlohn", "Stücklohn"],
+    { le: "AK SS24 PT1", q: "Welche Entlohnungsform zeigt die folgende Grafik (Lohn L über Output q)?<br><svg viewBox='0 0 260 160' style='width:100%;max-width:320px;background:#fff;border-radius:8px;margin-top:6px;'><line x1='30' y1='140' x2='240' y2='140' stroke='#333' stroke-width='2'/><line x1='30' y1='140' x2='30' y2='15' stroke='#333' stroke-width='2'/><line x1='30' y1='140' x2='220' y2='25' stroke='#2563eb' stroke-width='3'/><text x='225' y='150' font-size='11' fill='#333'>Output (q)</text><text x='6' y='20' font-size='11' fill='#333'>L</text></svg>", opts: ["Fixlohn", "Stücklohn mit Mindestlohn", "Stundenlohn", "Stücklohn"],
       correct: 3, explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
     { le: "AK SS24 PT1", q: "Was beschreibt das Wesen des Ähnlichkeitsphänomen?", opts: ["Die Beurteilung eines Merkmales strahlt auf die Beurteilung ähnlicher Merkmale ab.", "Mitarbeiter, die der bewertenden Person ähneln, werden besser beurteilt.", "Vorgesetzte beurteilen Mitarbeiter sehr ähnlich.", "Mitarbeiter mit geringen Leistungen werden tendenziell zu gut bewertet."],
       correct: 1, explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT1." },
@@ -1239,12 +1246,12 @@ const QUIZ_DATA_PUO = {
     { le: "AK SS24 PT2", q: "Was trifft auf den Informationswert zu?", opts: ["Der Informationswert kann nur berechnet werden, wenn ein vollkommenes bzw. perfektes Informationssystem vorliegt.", "Der Informationswert gibt die minimale Zahlungsbereitschaft eines rationalen Entscheiders für das Informationssystem an.", "Der Informationswert ist das erwartete Ergebnis mit zusätzlichen Informationen abzüglich des erwarteten Ergebnisses ohne zusätzliche Information.", "Der Informationswert gibt den Zusatznutzen aus der Nachfrage nach einem bestimmten Informationssystem an."], multi: true,
       correct: [2,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2." },
     { le: "AK SS24 PT2", q: "Welche Aussagen gelten in der Neoklassik?", opts: ["Arbeitnehmer werden nach ihrem Wertgrenzprodukt entlohnt", "Das Grenzprodukt der Arbeit gleicht dem Grenzprodukt des Kapitals", "Es existiert ein marktäumendes Gleichgewicht", "Es wird im Minimum der Grenzkosten produziert"], multi: true,
-      correct: [0,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2." },
+      correct: [0,2], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2. Korrigiert: Die Klausureinsicht zeigt 'Arbeitnehmer werden nach ihrem Wertgrenzprodukt entlohnt' und 'Es existiert ein marktäumendes Gleichgewicht' als korrekt, nicht die Grenzkosten-Aussage." },
     { le: "AK SS24 PT2", q: "Welche der folgenden Aussagen zur Humankapitaltheorie sind zutreffend?", opts: ["Eine Investition in das allgemeine Humankapital eines Arbeitnehmers erhöht dessen Wertgrenzprodukt generell und unternehmensunabhängig.", "Es sollte in das Humankapital investiert werden, wenn der Barwert der Ausgaben bzw. Kosten kleiner ist als der Barwert der Einnahmen bzw. Erträge.", "Nach der Theorie von Becker würde ein Arbeitgeber nie eine Investition in das allgemeine Humankapital seines Arbeitnehmers finanzieren.", "Ein Arbeitnehmer wird sich nicht an der Investition in sein spezifisches Humankapital beteiligen."], multi: true,
-      correct: [0,1,3], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2." },
+      correct: [0,1,2], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2. Korrigiert: Auch 'Nach der Theorie von Becker würde ein Arbeitgeber nie eine Investition in das allgemeine Humankapital seines Arbeitnehmers finanzieren' ist laut Klausureinsicht korrekt, nicht die vierte Aussage." },
     { le: "AK SS24 PT2", q: "Welche Vorteile gelten für eine funktionale Organisationsstruktur im Vergleich zu einer divisionalen Organisationsstruktur?", opts: ["Kostendegressionseffekt", "Positive Lern- und Erfahrungskurve", "Erfolg ist den einzelnen Abteilungen direkt zurechenbar", "Entlastung der Zentrale"], multi: true,
       correct: [0,1], explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2." },
-    { le: "AK SS24 PT2", q: "Eine Grafik zeigt eine Lohnkurve mit einem Knick: flach bis zum Mindestlohn bei q0, dann steil ansteigend bis q*, danach normal weiter ansteigend. Welche Entlohnungsform zeigt die Grafik?", opts: ["Fixlohn", "Stücklohn", "Stundenlohn", "Stücklohn mit Mindestlohn"],
+    { le: "AK SS24 PT2", q: "Welche Entlohnungsform zeigt die folgende Grafik (Lohn L über Output q)?<br><svg viewBox='0 0 260 160' style='width:100%;max-width:320px;background:#fff;border-radius:8px;margin-top:6px;'><line x1='30' y1='140' x2='240' y2='140' stroke='#333' stroke-width='2'/><line x1='30' y1='140' x2='30' y2='15' stroke='#333' stroke-width='2'/><polyline points='30,120 90,120 130,30 220,15' stroke='#2563eb' stroke-width='3' fill='none'/><text x='225' y='150' font-size='11' fill='#333'>Output (q)</text><text x='6' y='20' font-size='11' fill='#333'>L</text><text x='84' y='153' font-size='10' fill='#666'>q0</text><text x='124' y='153' font-size='10' fill='#666'>q*</text></svg>", opts: ["Fixlohn", "Stücklohn", "Stundenlohn", "Stücklohn mit Mindestlohn"],
       correct: 3, explain: "Original-Aufgabe aus der Altklausur P&O SS24 PT2." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Transaktionen stellt eine horizontale Diversifikation dar?", opts: ["Ein Musiker gründet ein Musik-Label", "Ein Fahrradhändler nimmt E-Scooter mit ins Angebot auf", "Ein Lebensmittelhersteller kauft ein Logistikunternehmen auf", "Eine Kinderbetreuung bietet Nachhilfe an"], multi: true,
       correct: [1], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
@@ -1255,13 +1262,13 @@ const QUIZ_DATA_PUO = {
     { le: "AK SoSe25 PT2", q: "Was sind Beispiele für Informationssysteme?", opts: ["privater Arbeitsvermittler", "Personalabteilung", "Headhunter", "Expertisen von Gutachtern"], multi: true,
       correct: [0,1,2,3], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Aussagen über den notwendigen Verteilzeitfaktor in der Rosenkranzformel treffen zu?", opts: ["Der notwendige Verteilzeitfaktor ist der Quotient aus der tatsächlich benötigten Zeit für die Haupttätigkeiten und der dafür zur Verfügung stehenden Zeit laut Zeitstudien.", "Der notwendige Verteilzeitfaktor sorgt dafür, dass für die Aufgabenverrichtungen de facto mehr Zeit eingeplant wird.", "Der notwendige Verteilzeitfaktor setzt sich multiplikativ aus den drei Zuschlagsfaktoren für Nebenarbeiten, Erholungszeiten und Ausfallzeiten zusammen.", "Der notwendige Verteilzeitfaktor wird als Ineffizienz gewertet und fließt daher negativ in den Personalbedarf ein."], multi: true,
-      correct: [0,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien). Korrigiert nach erneutem Abgleich mit der Original-Klausureinsicht (SS25 PT2-Kopie): richtig sind 'Quotient aus tatsächlich benötigter Zeit...' und 'setzt sich multiplikativ...'." },
+      correct: [1,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien). Korrigiert nach nochmaliger, sorgfältiger Prüfung beider Klausureinsicht-Kopien (inkl. einer Kopie mit vollen Punkten, 1 von 1, für exakt diese Auswahl): richtig sind 'sorgt dafür, dass für die Aufgabenverrichtungen de facto mehr Zeit eingeplant wird' und 'setzt sich multiplikativ aus den drei Zuschlagsfaktoren zusammen' — NICHT die Quotienten-Aussage." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Effekte treten bei der Erhöhung des Beteiligungsparameters beta im LEN-Modell auf?", opts: ["Sicherheitseffekt", "Vermögenseffekt", "Anreizeffekt", "Partizipationseffekt"], multi: true,
       correct: [1,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
     { le: "AK SoSe25 PT2", q: "Wenn man Ausbildung als Investitionsentscheidung versteht, dann steigt ceteris paribus die Attraktivität von Humankapitalinvestitionen ...", opts: ["mit sinkendem Diskontfaktor.", "mit steigendem gegenwärtigen und zukünftigen Alternativeinkommen.", "mit abnehmendem verbleibenden Amortisationszeitraum.", "mit sinkenden Ausbildungskosten."], multi: true,
       correct: [0,3], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Eigenschaften haben Gemeinschaftsrechte prinzipiell?", opts: ["Ein einzelner Akteur hält die Verfügungsrechte.", "Die Entscheidung über den Zugriff auf die Güter wird individuell getroffen.", "Die Entscheidung über den Zugriff auf die Güter wird kollektiv getroffen.", "Mehrere Akteure halten die Verfügungsrechte."], multi: true,
-      correct: [2,3], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
+      correct: [1,3], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien; beide Kopien zeigen für genau diese Auswahl volle Punktzahl). Korrigiert: Bei Gemeinschaftsrechten halten mehrere Akteure die Verfügungsrechte, UND jeder Einzelne kann individuell über den Zugriff entscheiden (kein kollektives Gatekeeping) — genau das führt zum Tragik-der-Allmende-Problem." },
     { le: "AK SoSe25 PT2", q: "Wenn ein Unternehmen A eine*n Mitarbeiter*in eines anderen Unternehmens B abwirbt, dann ist die Wahrscheinlichkeit, dass A dabei dem Winner's Curse unterliegt, umso höher, ...", opts: ["je genauer A über die Qualität des Arbeitnehmers informiert ist.", "je höher das Bleibeangebot von B an den Beschäftigten ausfällt.", "je höher das derzeitige betriebsspezifische Humankapital des Arbeitnehmers ist.", "je schneller das Wachstum in A im Vergleich zu B ist."], multi: true,
       correct: [1,2], explain: "Original-Aufgabe aus der Altklausur P&O SoSe25 PT2 (identisch in beiden hochgeladenen Kopien)." },
     { le: "AK SoSe25 PT2", q: "Welche der folgenden Annahmen wird in der Neoklassik im Gegensatz zur Neuen Institutionenökonomik vertreten?", opts: ["Es treten externe Effekte auf.", "Alle Akteure verfügen über vollkommene Information.", "Steigende Skalenerträge sind möglich.", "Kosten entstehen bei der Nutzung des Marktes als Koordinationsmechanismus."],
@@ -1610,98 +1617,123 @@ const FREITEXT_PUO = [
 const RECHENAUFGABEN_PUO = [
   {
     id: "rk-puo-1", cat: "Personalbedarf (Rosenkranz)", points: 3,
+    answer: "1,61",
     q: "Ermitteln Sie den für die Rosenkranzformel notwendigen <b>Verteilzeitfaktor (VZF)</b>. Gegeben: Nebenarbeitszuschlag 15%, Erholzeitenzuschlag 12%, nur 80% der bezahlten Arbeitszeit stehen tatsächlich zur Verfügung (Ausfallquote durch Urlaub/Krankheit). Runden Sie auf zwei Nachkommastellen.",
     a: "<b>Lösungsweg:</b><br>VZF = (1 + Nebenarbeitszuschlag) × (1 + Erholzeitenzuschlag) × (1 / Nutzungsgrad)<br>VZF = 1,15 × 1,12 × (1 / 0,80) = 1,15 × 1,12 × 1,25<br><b>VZF ≈ 1,61</b>"
   },
   {
     id: "rk-puo-2", cat: "Personalbedarf (Rosenkranz)", points: 3,
+    answer: "17",
     q: "Nutzen Sie den VZF = 1,61. Eine Abteilung mit 18 Angestellten (36 Std./Woche) hat pro Woche: 100 E-Mails à 16 Min., 200 Telefonanfragen à 10 Min., 160 Beratungsgespräche à 30 Min. sowie 400 Arbeitsstunden für sonstige Tätigkeiten. Errechnen Sie mittels der Rosenkranzformel den angemessenen Personalbestand (auf natürliche Zahl aufrunden).",
     a: "<b>Lösungsweg:</b><br>1) Zeitbedarf Kernaufgaben: 100×16 + 200×10 + 160×30 = 1600 + 2000 + 4800 = 8400 Min. = 140 Std./Woche<br>2) Tätigkeitsverteilzeitfaktor (fTV) = (18×36 − 400) / 140 = (648−400)/140 = 1,77<br>3) Personalbedarf = (140 × 1,61)/36 + (400/36) × (1,61/1,77)<br>= 225,4/36 + 11,11×0,910 = 6,26 + 10,11 = 16,37<br><b>→ aufgerundet: 17 Mitarbeitende</b>"
   },
   {
     id: "rk-puo-3", cat: "Informationsbewertung", points: 3,
+    answer: "7",
     q: "Der a-priori-Erwartungswert (beste Handlung ohne Zusatzinfo) beträgt E* = 45, der a-posteriori-Erwartungswert (mit perfekter Information) E** = 52. Wie hoch ist der Informationswert IW?",
     a: "IW = E** − E* = 52 − 45 = <b>7</b>."
   },
   {
     id: "rk-puo-4", cat: "Informationsbewertung", points: 2,
+    answer: "72",
     q: "Ein perfektes Informationssystem liefert für Zustand s1 (P=0,4) bei optimaler Handlung den Ertrag 60, für Zustand s2 (P=0,6) bei optimaler Handlung den Ertrag 80. Berechnen Sie E**.",
     a: "Bei einem perfekten Informationssystem wird für jeden Zustand exakt der zugehörige optimale Ertrag mit seiner Eintrittswahrscheinlichkeit gewichtet:<br>E** = P(s1)·Ertrag(s1) + P(s2)·Ertrag(s2) = 0,4·60 + 0,6·80 = 24 + 48 = <b>72</b>."
   },
   {
     id: "rk-puo-5", cat: "Informationsbewertung", points: 2,
+    answer: "2,7",
     q: "E* = 38,5 (a priori); E** = 41,2 (a posteriori). Wie hoch ist der Informationswert IW?",
     a: "IW = E** − E* = 41,2 − 38,5 = <b>2,7</b>."
   },
   {
     id: "rk-puo-6", cat: "Informationsbewertung", points: 6,
+    answer: "31,25",
     q: "Ein risikoneutraler Arbeitgeber muss über die beste Handlungsalternative unter Unsicherheit entscheiden. Berechnen Sie zunächst den a-priori-Erwartungswert E*. Gehen Sie danach von E* = 40 aus und berechnen Sie den a-posteriori-Erwartungswert E** = 71,25 sowie den Informationswert IW eines perfekten Informationssystems.",
     a: "<b>Informationswert:</b> IW = E** − E* = 71,25 − 40 = <b>31,25</b> (der Erwartungswert steigt, weil man dank perfekter Information immer die für den jeweils eingetretenen Zustand beste Alternative wählen kann, statt vorab auf eine einzige Alternative festgelegt zu sein)."
   },
   {
     id: "rk-puo-7", cat: "Informationsbewertung", points: 6,
+    answer: "76,25 / 28,25",
     q: "Ein risikoneutraler Arbeitgeber steht vor der Entscheidung, für welchen von drei Mitarbeitern (Alex, Bente, Charlie) er die Kosten für einen MBA im Ausland übernimmt. In Abhängigkeit von zwei möglichen Umweltzuständen s1 und s2 ergeben sich folgende zukünftige Leistungsergebnisse:<br><table style='border-collapse:collapse;margin:8px 0;'><tr><th style='border:1px solid #ccc;padding:4px 10px;'></th><th style='border:1px solid #ccc;padding:4px 10px;'>s1</th><th style='border:1px solid #ccc;padding:4px 10px;'>s2</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Alex</td><td style='border:1px solid #ccc;padding:4px 10px;'>50</td><td style='border:1px solid #ccc;padding:4px 10px;'>110</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Bente</td><td style='border:1px solid #ccc;padding:4px 10px;'>90</td><td style='border:1px solid #ccc;padding:4px 10px;'>35</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>Charlie</td><td style='border:1px solid #ccc;padding:4px 10px;'>25</td><td style='border:1px solid #ccc;padding:4px 10px;'>140</td></tr></table>Der Eintritt von s1 sei dreimal so wahrscheinlich wie der von s2. a) Berechnen Sie E*. b) Nehmen Sie E* = 74,25 an und berechnen Sie den maximalen Kaufpreis für ein perfektes Informationssystem.",
     a: "<b>a) E*:</b> P(s1)=0,75, P(s2)=0,25.<br>E(Alex)=0,75·50+0,25·110=65; E(Bente)=0,75·90+0,25·35=76,25; E(Charlie)=0,75·25+0,25·140=53,75<br>E* = max = <b>76,25</b> (Bente).<br><br><b>b) Maximaler Kaufpreis = IW:</b> Bei perfekter Info: s1→Bente(90), s2→Charlie(140).<br>E** = 0,75·90+0,25·140 = 67,5+35 = 102,5<br>IW = E** − E* = 102,5 − 74,25 = <b>28,25</b>."
   },
   {
     id: "rk-puo-8", cat: "Informationsbewertung", points: 5,
+    answer: "56 / 65 / 9",
     q: "Ein risikoneutraler Arbeitgeber steht vor der Entscheidung, für welchen von drei Arbeitsplätzen (a1, a2, a3) er zwei streicht. In Abhängigkeit von zwei Umweltzuständen s1 und s2 ergeben sich folgende Ergebnisse:<br><table style='border-collapse:collapse;margin:8px 0;'><tr><th style='border:1px solid #ccc;padding:4px 10px;'></th><th style='border:1px solid #ccc;padding:4px 10px;'>s1</th><th style='border:1px solid #ccc;padding:4px 10px;'>s2</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>a1</td><td style='border:1px solid #ccc;padding:4px 10px;'>60</td><td style='border:1px solid #ccc;padding:4px 10px;'>30</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>a2</td><td style='border:1px solid #ccc;padding:4px 10px;'>55</td><td style='border:1px solid #ccc;padding:4px 10px;'>60</td></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'>a3</td><td style='border:1px solid #ccc;padding:4px 10px;'>30</td><td style='border:1px solid #ccc;padding:4px 10px;'>85</td></tr></table>Der Eintritt von s1 sei vier Mal so wahrscheinlich wie der von s2 (auf 2 Nachkommastellen runden). Berechnen Sie E*, E** (perfektes Informationssystem) und den Informationswert IW.",
     a: "P(s1)=0,8, P(s2)=0,2.<br>E(a1)=0,8·60+0,2·30=54; E(a2)=0,8·55+0,2·60=56; E(a3)=0,8·30+0,2·85=41<br>E* = max = <b>56</b> (a2).<br>Bei perfekter Info: s1→a1 (60), s2→a3 (85).<br>E** = 0,8·60+0,2·85 = 48+17 = <b>65</b>.<br>IW = E** − E* = 65 − 56 = <b>9</b>."
   },
   {
     id: "rk-puo-9", cat: "Personalbedarf", points: 2,
+    answer: "565",
     q: "Arbeitsmenge (erforderliche Stundenzahl) = 1.002.762 Std./Jahr, Leistungsfähigkeit je Mitarbeiter = 1.776 Std./Jahr. Wie hoch ist der Brutto-Personalbedarf PB?",
     a: "PB = Arbeitsmenge / Leistungsfähigkeit je AN = 1.002.762 / 1.776 ≈ <b>565 Mitarbeiter</b>."
   },
   {
     id: "rk-puo-10", cat: "Personalbedarf", points: 2,
+    answer: "500",
     q: "Arbeitsmenge = 900.000 Stunden/Jahr, Leistungsfähigkeit je AN = 1.800 Stunden/Jahr. Wie hoch ist der Brutto-Personalbedarf PB?",
     a: "PB = Arbeitsmenge / Leistungsfähigkeit je AN = 900.000 / 1.800 = <b>500 Mitarbeiter</b>."
   },
   {
     id: "rk-puo-11", cat: "Signaling", points: 3,
+    answer: "ja, separierendes Gleichgewicht",
     q: "Lohn mit Bildungssignal w(e*) = 50.000€, Lohn ohne Signal w(0) = 30.000€, Bildungskosten c(e*) = 25.000€ (AN schlechter Qualität), Bildungskosten für AN guter Qualität = c(e*)/2 = 12.500€. Entsteht ein separierendes Gleichgewicht?",
     a: "Für ein separierendes Gleichgewicht müssen beide Bedingungen gelten:<br>AN guter Qualität muss von Bildung profitieren: 50.000−12.500 = <b>37.500€ > 30.000€</b> ✓<br>AN schlechter Qualität darf NICHT profitieren: 50.000−25.000 = <b>25.000€ < 30.000€</b> ✓<br>→ Beide Bedingungen erfüllt: es entsteht ein <b>separierendes (trennendes) Gleichgewicht</b> – nur die AN mit hoher Qualität setzen das Signal."
   },
   {
     id: "rk-puo-12", cat: "Markov-Ketten", points: 2,
+    answer: "310",
     q: "Ausgangsbestand W1 = 378, Übergangswahrscheinlichkeit W1→W1 = 0,82. Wie hoch ist der prognostizierte Bestand, der in W1 verbleibt?",
     a: "Prognose = Ausgangsbestand · Übergangswahrscheinlichkeit = 378 · 0,82 ≈ <b>310</b>."
   },
   {
     id: "rk-puo-13", cat: "Markov-Ketten", points: 3,
+    answer: "160",
     q: "Aktueller Bestand in Stelle A = 200, Übergangswahrscheinlichkeit A→A = 0,7. Zugang von Stelle B nach A: Bestand B = 100, Übergangswahrscheinlichkeit B→A = 0,2. Wie hoch ist der prognostizierte Gesamtbestand in Stelle A in der Folgeperiode?",
     a: "Der prognostizierte Bestand einer Stelle ergibt sich als Summe der Beiträge aus allen Quellstellen:<br>Bestand_A(t+1) = Bestand_A(t)·P(A→A) + Bestand_B(t)·P(B→A) = 200·0,7 + 100·0,2 = 140+20 = <b>160</b>."
   },
   {
     id: "rk-puo-14", cat: "Markov-Ketten", points: 2,
+    answer: "289",
     q: "Ausgangsbestand W2 = 328, Übergangswahrscheinlichkeit W2→W2 = 0,88. Wie viele verbleiben prognostisch in W2?",
     a: "328 · 0,88 ≈ 288,64 ≈ <b>289</b> (gerundet)."
   },
   {
     id: "rk-puo-15", cat: "Humankapitalinvestition", points: 2,
+    answer: "ja, lohnend",
     q: "Direkte+indirekte Kosten C0+J0 = 20.000€. Barwert der zukünftigen Einkommensdifferenzen Σ(Kt−Jt)/(1+r)^t = 35.000€. Lohnt sich die Investition?",
     a: "Die Investition lohnt sich, wenn C0+J0 ≤ Σ(Kt−Jt)/(1+r)^t – hier <b>20.000 ≤ 35.000</b>, also <b>lohnend</b>. Der Zinssatz r ist bereits in der Diskontierung der rechten Seite berücksichtigt."
   },
   {
     id: "rk-puo-16", cat: "Humankapitalinvestition", points: 2,
+    answer: "nein, nicht lohnend",
     q: "C0+J0 = 15.000€, Barwert Σ(Kt−Jt)/(1+r)^t = 12.000€. Lohnt sich die Investition?",
     a: "Die Bedingung C0+J0 ≤ Σ(Kt−Jt)/(1+r)^t ist mit <b>15.000 > 12.000</b> NICHT erfüllt – die Investition lohnt sich hier <b>nicht</b>."
   },
   {
     id: "rk-puo-17", cat: "Entlohnung", points: 2,
+    answer: "1200",
     q: "Geldakkord: erarbeitete Menge M = 500 Stück, Geldsatz Ge = 2,40€/Stück. Wie hoch ist der Lohn L?",
     a: "Geldakkord: L = M · Ge = 500 · 2,40€ = <b>1.200€</b>."
   },
   {
     id: "rk-puo-18", cat: "Entlohnung", points: 2,
+    answer: "600",
     q: "Zeitakkord: M = 300 Stück, te = 4 Vorgabeminuten/Stück, fg = 0,50€/Vorgabeminute. Wie hoch ist der Lohn L?",
     a: "Zeitakkord: L = M · te · fg = 300 · 4 · 0,50 = <b>600€</b>."
   },
   {
     id: "rk-puo-19", cat: "Spieltheorie", points: 3,
+    answer: "(a1,b1) und (a2,b2)",
     q: "Spieler A wählt a1/a2, Spieler B wählt b1/b2. Auszahlungen (A,B): (a1,b1)=(4,2); (a1,b2)=(0,0); (a2,b1)=(0,0); (a2,b2)=(2,4). Welche Strategiekombination(en) sind Nash-Gleichgewichte?",
     a: "Beste-Antwort-Prüfung: Spielt B b1, ist A's beste Antwort a1 (4>0). Spielt B b2, ist A's beste Antwort a2 (2>0). Spielt A a1, ist B's beste Antwort b1 (2>0). Spielt A a2, ist B's beste Antwort b2 (4>0).<br>→ Beide Diagonalfelder <b>(a1,b1) und (a2,b2)</b> sind wechselseitig beste Antworten → 2 Nash-Gleichgewichte (klassische Koordinationsspiel-Struktur wie Battle of the Sexes)."
+  },
+  {
+    id: "rk-puo-20", cat: "Spieltheorie", points: 12,
+    answer: "(Investition1;Investition1) und (Investition2;Investition2)",
+    q: "Sie sind Leiter/in eines Teams, in dem die Mitarbeiter/innen A und B beschäftigt sind. Jede/r der beiden führt entweder Investition 1 oder Investition 2 durch. Die Entscheidungen finden gleichzeitig statt. Die Tabelle zeigt den Nutzen für A und B (in Normalform):<br><table style='border-collapse:collapse;margin:8px 0;font-size:13px;'><tr><td style='border:1px solid #ccc;padding:4px 10px;'></td><td style='border:1px solid #ccc;padding:4px 10px;'></td><th style='border:1px solid #ccc;padding:4px 10px;' colspan='2'>B</th></tr><tr><td style='border:1px solid #ccc;padding:4px 10px;'></td><td style='border:1px solid #ccc;padding:4px 10px;'></td><th style='border:1px solid #ccc;padding:4px 10px;'>Investition 1</th><th style='border:1px solid #ccc;padding:4px 10px;'>Investition 2</th></tr><tr><th style='border:1px solid #ccc;padding:4px 10px;' rowspan='2'>A</th><th style='border:1px solid #ccc;padding:4px 10px;'>Investition 1</th><td style='border:1px solid #ccc;padding:4px 10px;'>4 ; 1</td><td style='border:1px solid #ccc;padding:4px 10px;'>0 ; 0</td></tr><tr><th style='border:1px solid #ccc;padding:4px 10px;'>Investition 2</th><td style='border:1px solid #ccc;padding:4px 10px;'>0 ; 0</td><td style='border:1px solid #ccc;padding:4px 10px;'>3 ; 3</td></tr></table>a) Geben Sie alle Nash-Gleichgewichte vollständig an.<br>b) Liegt ein Koordinations- oder ein Kooperationsproblem vor? Begründen Sie kurz.<br>c) Besteht ein Verteilungsproblem? Begründen Sie kurz.<br>d) Erläutern Sie, welche Fehler (unerwünschte Ergebnisse) aufgrund des oben genannten Problems auftreten können.<br>e) Was würden Sie als Teamleiter/in tun, um diese Fehler zu vermeiden?",
+    a: "<b>a) Nash-Gleichgewichte:</b> Sowohl (Investition 1; Investition 1) als auch (Investition 2; Investition 2) sind Nash-Gleichgewichte – bei beiden ist die jeweilige Strategie wechselseitig die beste Antwort auf die des anderen Spielers.<br><b>b) Koordinations- oder Kooperationsproblem?</b> Es liegen zwei Nash-Gleichgewichte vor, weshalb ein <b>Koordinationsproblem</b> vorliegt (kein Interessenkonflikt über das Grundprinzip, aber Unklarheit, welches der beiden Gleichgewichte gespielt wird).<br><b>c) Verteilungsproblem?</b> Ja: Die beiden Nash-Gleichgewichte werden von A und B unterschiedlich bevorzugt – A bevorzugt (Investition 1; Investition 1) mit Auszahlung 4, B bevorzugt (Investition 2; Investition 2) mit Auszahlung 3 (statt nur 1). Die Verteilung der Auszahlungen ist also asymmetrisch und umstritten.<br><b>d) Mögliche Fehler:</b> Da A das Gleichgewicht (Investition 1; Investition 1) bevorzugt und B das Gleichgewicht (Investition 2; Investition 2), ist es wahrscheinlich, dass A sich für Investition 1 und B sich für Investition 2 entscheidet – jeweils in der Hoffnung, der andere spiele die gleiche Entscheidung wie man selbst. Das Ergebnis wäre dann (Investition 1; Investition 2) mit Auszahlung (0;0) – eine suboptimale Koordinationslösung, obwohl beide Spieler durch Wahl desselben Gleichgewichts besser gestanden hätten.<br><b>e) Vermeidung:</b> Als Teamleiter/in sollte eine Möglichkeit geschaffen werden, dass A und B sich vor ihrer Investitionsentscheidung absprechen können, um sich auf ein gemeinsames Gleichgewicht zu einigen (wobei auch dann keine Garantie besteht, dass Absprache zum gewünschten Ergebnis führt)."
   },
 ];
 const COURSES = {
@@ -1723,7 +1755,7 @@ const COURSES = {
     tabFreitext: "Freitext",
     infoFreitext: "<b>24 echte Freitext-Aufgaben</b> aus deinen Altklausuren (PT1/PT2 SS24, PT2 SS25, PT2 SoSe22) inkl. Original-Musterlösung und Punktelogik. Schreib deine Antwort in das Feld, deck dann die Musterlösung auf und bewerte selbst ehrlich, wie nah du dran warst. Diese offenen Aufgaben machen etwa die Hälfte der Klausurpunkte aus – die andere Hälfte sind Multiple-/Mehrfachauswahl-Fragen (dafür ist der Quiz-Tab da, genauso wichtig wie dieser Tab).",
     tabRechnen: "Rechenaufgaben",
-    infoRechnen: "<b>Alle 19 echten Rechenaufgaben</b> aus deinen Altklausuren und Formelkarten an einem Ort gesammelt: Rosenkranzformel/Personalbedarf, Informationswert (a-priori/a-posteriori), Signaling-Gleichgewicht, Markov-Ketten, Humankapitalinvestition, Akkordlohn und Nash-Gleichgewicht. Erst selbst rechnen, dann Lösungsweg aufdecken.",
+    infoRechnen: "<b>Alle 20 echten Rechenaufgaben</b> aus deinen Altklausuren und Formelkarten an einem Ort gesammelt: Rosenkranzformel/Personalbedarf, Informationswert (a-priori/a-posteriori), Signaling-Gleichgewicht, Markov-Ketten, Humankapitalinvestition, Akkordlohn und Nash-Gleichgewicht (inkl. Investitionsspiel-Tabelle mit 5 Teilaufgaben). Endergebnis eintragen und mit „Ergebnis prüfen“ direkt checken, oder Lösungsweg aufdecken.",
     lsProgress: "puo_progress",
     lsStats: "puo_quizStats",
     MODULES: MODULES_PUO,
@@ -2868,12 +2900,17 @@ function renderRechnen() {
     html += '<div class="freitext-card">';
     html += '  <div class="freitext-meta"><span class="freitext-cat">' + escapeHtmlFT(item.cat) + '</span><span class="freitext-points">' + item.points + ' Punkte (Original)</span></div>';
     html += '  <div class="freitext-q">' + item.q + '</div>';
-    html += '  <textarea class="freitext-answer" placeholder="Rechne hier deinen Lösungsweg wie in der Klausur, dann Lösung aufdecken und vergleichen..." data-item="' + item.id + '"></textarea>';
+    html += '  <textarea class="freitext-answer" placeholder="Rechne hier deinen Lösungsweg wie in der Klausur, dann Ergebnis eintragen und prüfen..." data-item="' + item.id + '"></textarea>';
+    html += '  <div class="rechnen-check-row">';
+    html += '    <input type="text" class="rechnen-result-input" placeholder="Dein Endergebnis..." data-check-input="' + item.id + '">';
+    html += '    <button class="freitext-btn" data-check="' + item.id + '">Ergebnis prüfen</button>';
+    html += '    <span class="rechnen-check-result" id="rcheck-' + item.id + '"></span>';
+    html += '  </div>';
     html += '  <div class="freitext-actions">';
-    html += '    <button class="freitext-btn" data-reveal="' + item.id + '">Lösungsweg anzeigen</button>';
+    html += '    <button class="freitext-btn secondary" data-reveal="' + item.id + '">Lösungsweg anzeigen</button>';
     html += '    <button class="freitext-btn secondary" data-clear="' + item.id + '">Antwort löschen</button>';
     html += '  </div>';
-    html += '  <div class="freitext-solution" id="rsol-' + item.id + '"><b>Lösungsweg:</b><br>' + item.a + '</div>';
+    html += '  <div class="freitext-solution" id="rsol-' + item.id + '"><b>Lösungsweg:</b><br>' + item.a + (item.answer ? '<br><br><b>Endergebnis:</b> ' + escapeHtmlFT(item.answer) : '') + '</div>';
     html += '  <div class="freitext-rate-row" id="rrate-' + item.id + '" style="display:none;">';
     html += '    <button class="freitext-rate-btn good' + (rating === 'good' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="good">🟢 gut getroffen</button>';
     html += '    <button class="freitext-rate-btn partial' + (rating === 'partial' ? ' active' : '') + '" data-rate="' + item.id + '" data-val="partial">🟡 teilweise</button>';
@@ -2898,6 +2935,10 @@ function renderRechnen() {
     btn.addEventListener('click', () => {
       const ta = wrap.querySelector('textarea[data-item="' + btn.dataset.clear + '"]');
       if (ta) ta.value = '';
+      const inp = wrap.querySelector('[data-check-input="' + btn.dataset.clear + '"]');
+      if (inp) inp.value = '';
+      const res = document.getElementById('rcheck-' + btn.dataset.clear);
+      if (res) { res.textContent = ''; res.className = 'rechnen-check-result'; }
     });
   });
   wrap.querySelectorAll('[data-rate]').forEach(btn => {
@@ -2908,6 +2949,52 @@ function renderRechnen() {
       renderRechnen();
     });
   });
+  wrap.querySelectorAll('[data-check]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.check;
+      const item = list.find(i => i.id === id);
+      const inp = wrap.querySelector('[data-check-input="' + id + '"]');
+      const res = document.getElementById('rcheck-' + id);
+      if (!item || !inp || !res) return;
+      const ok = rechnenAnswersMatch(inp.value, item.answer || '');
+      if (!inp.value.trim()) {
+        res.textContent = 'Bitte erst ein Ergebnis eintragen.';
+        res.className = 'rechnen-check-result neutral';
+      } else if (ok) {
+        res.textContent = '✓ Richtig!';
+        res.className = 'rechnen-check-result correct';
+      } else {
+        res.textContent = '✗ Noch nicht ganz – Lösungsweg checken.';
+        res.className = 'rechnen-check-result wrong';
+      }
+      document.getElementById('rsol-' + id).classList.add('show');
+      document.getElementById('rrate-' + id).style.display = 'flex';
+    });
+  });
+  wrap.querySelectorAll('[data-check-input]').forEach(inp => {
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        wrap.querySelector('[data-check="' + inp.dataset.checkInput + '"]').click();
+      }
+    });
+  });
+}
+
+function rechnenNormalize(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/€|\s|≈|ca\.?/g, '')
+    .replace(/,/g, '.')
+    .replace(/\.+$/, '');
+}
+function rechnenAnswersMatch(userVal, correctVal) {
+  const userParts = String(userVal).split('/').map(rechnenNormalize).filter(Boolean);
+  const correctParts = String(correctVal).split('/').map(rechnenNormalize).filter(Boolean);
+  if (!correctParts.length) return false;
+  // Every correct part must be found (as substring, to tolerate units/extra words) among the user's parts/whole input.
+  const userWhole = rechnenNormalize(userVal);
+  return correctParts.every(cp => userWhole.includes(cp) || userParts.some(up => up.includes(cp) || cp.includes(up)));
 }
 
 /* ============================================================
